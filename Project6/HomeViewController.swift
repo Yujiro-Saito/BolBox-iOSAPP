@@ -14,9 +14,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var menuItem: UIBarButtonItem!
     @IBOutlet weak var newCollection: UICollectionView!
     @IBOutlet weak var popularCollection: UICollectionView!
-    var tableImagesOne: [String] = ["1", "2", "3", "4", "5", "6", "7", "8"]
-    var tableImagesTwo: [String] = ["1", "2", "3", "4", "5", "6", "7", "8"]
     
+    var images = ["sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample"]
     
     
 
@@ -52,26 +51,21 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
-        if let newCelly = newCollection?.dequeueReusableCell(withReuseIdentifier: "newCell", for: indexPath) {
-            newCelly.backgroundColor = UIColor.blue
-            return newCelly
-        } else if let popuCelly = popularCollection?.dequeueReusableCell(withReuseIdentifier: "PopularCell", for: indexPath) {
-            popuCelly.backgroundColor = UIColor.green
-            return popuCelly
+        if let newCell = newCollection?.dequeueReusableCell(withReuseIdentifier: "newCell", for: indexPath) as? newCollectionViewCell  {
+            
+            newCell.celImage.image = UIImage(named: images[indexPath.row])
+            newCell.cellTitle.text = "SmartMenu"
+            return newCell
+            
+        } else if let popularCell = popularCollection?.dequeueReusableCell(withReuseIdentifier: "PopularCell", for: indexPath) as? popularCollectionViewCell {
+            
+            
+            popularCell.cellImage.image = UIImage(named: images[indexPath.row])
+            popularCell.cellTitle.text = "SmartMenu"
+            return popularCell
         }
         
-        /*
-        
-        let newCell = newCollection.dequeueReusableCell(withReuseIdentifier: "newCell", for: indexPath)
-        let popularCell = popularCollection.dequeueReusableCell(withReuseIdentifier: "PopularCell", for: indexPath)
-        
-        
-        
-        newCell.backgroundColor = UIColor.blue
-        popularCell.backgroundColor = UIColor.green
-        
-        return newCell,popularCell
-        */
+       
         
         return UICollectionViewCell()
         
@@ -80,10 +74,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == newCollection {
-            return 10
+            return images.count
             
         } else if collectionView == popularCollection {
-            return 5
+            return images.count
         }
         
         return 3
