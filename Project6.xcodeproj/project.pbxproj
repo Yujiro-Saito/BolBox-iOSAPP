@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B70B4CE61EC6FAC9006CBE55 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70B4CE51EC6FAC9006CBE55 /* CategoryCollectionViewCell.swift */; };
 		B727ADDB1EC67AB20081F500 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B727ADDA1EC67AB20081F500 /* SWRevealViewController.m */; };
 		B727ADDD1EC67DB00081F500 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B727ADDC1EC67DB00081F500 /* HomeViewController.swift */; };
 		B72A71F71EC677C100EA9BDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A71F61EC677C100EA9BDF /* AppDelegate.swift */; };
@@ -22,6 +23,7 @@
 		063493BB14E15DFF892F2F2C /* Pods-Project6.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project6.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Project6/Pods-Project6.debug.xcconfig"; sourceTree = "<group>"; };
 		449A34F918184C79A7F7AD45 /* Pods_Project6.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project6.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D5F851655234321568C5F6 /* Pods-Project6.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project6.release.xcconfig"; path = "Pods/Target Support Files/Pods-Project6/Pods-Project6.release.xcconfig"; sourceTree = "<group>"; };
+		B70B4CE51EC6FAC9006CBE55 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		B727ADD81EC67AB10081F500 /* Project6-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Project6-Bridging-Header.h"; sourceTree = "<group>"; };
 		B727ADD91EC67AB20081F500 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		B727ADDA1EC67AB20081F500 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			children = (
 				B7733E9F1EC6A8E300D5B9BD /* newCollectionViewCell.swift */,
 				B7733EA11EC6A96700D5B9BD /* popularCollectionViewCell.swift */,
+				B70B4CE51EC6FAC9006CBE55 /* CategoryCollectionViewCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				B72A71F71EC677C100EA9BDF /* AppDelegate.swift in Sources */,
 				B727ADDB1EC67AB20081F500 /* SWRevealViewController.m in Sources */,
 				B727ADDD1EC67DB00081F500 /* HomeViewController.swift in Sources */,
+				B70B4CE61EC6FAC9006CBE55 /* CategoryCollectionViewCell.swift in Sources */,
 				B7733EA01EC6A8E300D5B9BD /* newCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

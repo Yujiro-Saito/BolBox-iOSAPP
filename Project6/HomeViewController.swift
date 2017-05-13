@@ -14,6 +14,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var menuItem: UIBarButtonItem!
     @IBOutlet weak var newCollection: UICollectionView!
     @IBOutlet weak var popularCollection: UICollectionView!
+    @IBOutlet weak var categoryCollection: UICollectionView!
+    
     
     var images = ["sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample"]
     
@@ -25,7 +27,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         newCollection.delegate = self
         popularCollection.dataSource = self
         popularCollection.delegate = self
-        
+        categoryCollection.dataSource = self
+        categoryCollection.delegate = self
         
         sideMenu()
 
@@ -63,6 +66,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             popularCell.cellImage.image = UIImage(named: images[indexPath.row])
             popularCell.cellTitle.text = "SmartMenu"
             return popularCell
+        } else if let categoryCell = categoryCollection?.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as? CategoryCollectionViewCell {
+            
+            categoryCell.cellImage.image = UIImage(named: images[indexPath.row])
+            categoryCell.cellTitle.text = "SmartMenu"
+            
+            
+            return categoryCell
+            
         }
         
        
@@ -77,6 +88,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             return images.count
             
         } else if collectionView == popularCollection {
+            return images.count
+        } else if collectionView == categoryCollection {
             return images.count
         }
         
