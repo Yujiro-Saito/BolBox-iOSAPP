@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
@@ -15,9 +16,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var newCollection: UICollectionView!
     @IBOutlet weak var popularCollection: UICollectionView!
     @IBOutlet weak var categoryCollection: UICollectionView!
-    
+    var posts = [Post]()
+    static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
     var images = ["sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample"]
+    
     
     
 
@@ -31,9 +34,49 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         categoryCollection.delegate = self
         
         sideMenu()
+        
+        FIRAuth.auth()!.signInAnonymously { (firUser, error) in
+            if error == nil {
+                print("LoginOKKKK")
+            } else {
+                print(error?.localizedDescription)
+            }
+        }
+        
+        
+        DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
+            
+            self.posts = []
+            
+            print(snapshot.value)
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        
+                        
+                        self.posts.append(post)
+                    }
+                }
+                
+                
+            }
+            self.posts.reverse()
+            self.newCollection.reloadData()
+            
+        })
+        
+        
 
     }
-
+    
+    
    //Functions
     
     func sideMenu() {
@@ -51,22 +94,57 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
-        if let newCell = newCollection?.dequeueReusableCell(withReuseIdentifier: "newCell", for: indexPath) as? newCollectionViewCell  {
+        if collectionView == newCollection {
             
-            newCell.celImage.image = UIImage(named: images[indexPath.row])
-            newCell.cellTitle.text = "SmartMenu"
+            if let newCell = newCollection.dequeueReusableCell(withReuseIdentifier: "newCell", for: indexPath) as? newCollectionViewCell  {
+                
+                let post = posts[indexPath.row]
+
+                
+                if let img = HomeViewController.imageCache.object(forKey: post.imageURL as NSString) {
+                    newCell.configureCell(post: post, img: img)
+                } else {
+                    newCell.configureCell(post: post)
+                }
+                
+                return newCell
+                
+            }
+            
+        }
+        
+        /*
+        if let newCell = newCollection.dequeueReusableCell(withReuseIdentifier: "newCell", for: indexPath) as? newCollectionViewCell  {
+            
+            let post = posts[indexPath.row]
+            
+            
+            //newCell.celImage.image = UIImage(named: images[indexPath.row])
+            //newCell.cellTitle.text = "SmartMenu"
+            
+            
+            if let img = HomeViewController.imageCache.object(forKey: post.imageURL as NSString) {
+                newCell.configureCell(post: post, img: img)
+            } else {
+                newCell.configureCell(post: post)
+            }
+            
             return newCell
-            
-        } else if let popularCell = popularCollection?.dequeueReusableCell(withReuseIdentifier: "PopularCell", for: indexPath) as? popularCollectionViewCell {
+ 
+        } */
+        
+        else if let popularCell = popularCollection.dequeueReusableCell(withReuseIdentifier: "PopularCell", for: indexPath) as? popularCollectionViewCell {
             
             
             popularCell.cellImage.image = UIImage(named: images[indexPath.row])
             popularCell.cellTitle.text = "SmartMenu"
             return popularCell
-        } else if let categoryCell = categoryCollection?.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as? CategoryCollectionViewCell {
+        } else if let categoryCell = categoryCollection.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as? CategoryCollectionViewCell {
             
             categoryCell.cellImage.image = UIImage(named: images[indexPath.row])
             categoryCell.cellTitle.text = "SmartMenu"
@@ -78,27 +156,31 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
        
         
-        return UICollectionViewCell()
+        return newCollectionViewCell()
         
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == newCollection {
-            return images.count
             
-        } else if collectionView == popularCollection {
+            
+            return posts.count
+            
+        } /*else if collectionView == popularCollection {
             return images.count
         } else if collectionView == categoryCollection {
             return images.count
         }
+        */
         
-        return 3
+        return images.count
         
     }
     
-    
-    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
     
     
 
