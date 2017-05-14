@@ -7,5 +7,10 @@ target 'Project6' do
 
   # Pods for Project6
   pod 'SlideMenuControllerSwift'
+  pod 'Firebase/Core'
+  pod 'Firebase/Database'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Storage'
+  
 
 end

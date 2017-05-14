@@ -14,6 +14,7 @@
 		B72A71FC1EC677C100EA9BDF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B72A71FA1EC677C100EA9BDF /* Main.storyboard */; };
 		B72A71FE1EC677C100EA9BDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B72A71FD1EC677C100EA9BDF /* Assets.xcassets */; };
 		B72A72011EC677C100EA9BDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B72A71FF1EC677C100EA9BDF /* LaunchScreen.storyboard */; };
+		B74892681EC7E365003ABE22 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B74892671EC7E365003ABE22 /* GoogleService-Info.plist */; };
 		B7733EA01EC6A8E300D5B9BD /* newCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7733E9F1EC6A8E300D5B9BD /* newCollectionViewCell.swift */; };
 		B7733EA21EC6A96700D5B9BD /* popularCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7733EA11EC6A96700D5B9BD /* popularCollectionViewCell.swift */; };
 		EA7BFCDE87B8944C82D87222 /* Pods_Project6.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 449A34F918184C79A7F7AD45 /* Pods_Project6.framework */; };
@@ -34,6 +35,7 @@
 		B72A71FD1EC677C100EA9BDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B72A72001EC677C100EA9BDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B72A72021EC677C100EA9BDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B74892671EC7E365003ABE22 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B7733E9F1EC6A8E300D5B9BD /* newCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newCollectionViewCell.swift; sourceTree = "<group>"; };
 		B7733EA11EC6A96700D5B9BD /* popularCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = popularCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,11 +94,20 @@
 				B7733EA71EC6A9BA00D5B9BD /* Data */,
 				B7733EA51EC6A99600D5B9BD /* Sidemenu */,
 				B7733EA31EC6A97300D5B9BD /* Cell */,
-				B72A72021EC677C100EA9BDF /* Info.plist */,
+				B74892691EC7E37D003ABE22 /* Docs */,
 				B72A71FD1EC677C100EA9BDF /* Assets.xcassets */,
 				B7733EA61EC6A9AB00D5B9BD /* View */,
 			);
 			path = Project6;
+			sourceTree = "<group>";
+		};
+		B74892691EC7E37D003ABE22 /* Docs */ = {
+			isa = PBXGroup;
+			children = (
+				B72A72021EC677C100EA9BDF /* Info.plist */,
+				B74892671EC7E365003ABE22 /* GoogleService-Info.plist */,
+			);
+			name = Docs;
 			sourceTree = "<group>";
 		};
 		B7733EA31EC6A97300D5B9BD /* Cell */ = {
@@ -209,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B72A72011EC677C100EA9BDF /* LaunchScreen.storyboard in Resources */,
+				B74892681EC7E365003ABE22 /* GoogleService-Info.plist in Resources */,
 				B72A71FE1EC677C100EA9BDF /* Assets.xcassets in Resources */,
 				B72A71FC1EC677C100EA9BDF /* Main.storyboard in Resources */,
 			);
@@ -410,6 +422,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Project6/Project6-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -427,6 +440,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Project6/Project6-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
