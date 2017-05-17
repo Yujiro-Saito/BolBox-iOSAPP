@@ -17,6 +17,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var popularCollection: UICollectionView!
     @IBOutlet weak var categoryCollection: UICollectionView!
     var posts = [Post]()
+    var popularPosts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
     var images = ["sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample"]
@@ -43,7 +44,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             }
         }
         
-        
+        //新着投稿
         DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
             
             self.posts = []
@@ -71,6 +72,62 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             self.newCollection.reloadData()
             
         })
+        
+        //人気投稿
+        DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
+            
+            self.popularPosts = []
+            
+            print(snapshot.value)
+            
+            var pvArray = [Int]()
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        //let allPvCount: Int = postDict["pvCount"] as! Int
+                        //print("それぞれ:\(allPvCount)")
+                        
+                        
+                        //pvArray.append(allPvCount)
+                            
+                       // print(pvArray)
+                        
+                        //pvArray.sort{$1 < $0}
+
+                       // print("成田: \(pvArray)")
+                        
+                        
+                    
+                        
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        
+                        
+                        self.popularPosts.sort(by: {$0.pvCount > $1.pvCount})
+                        
+                       
+                        
+            
+                        self.popularPosts.append(post)
+                    }
+                }
+                
+                
+            }
+            
+            
+            self.popularCollection.reloadData()
+            
+        })
+
+        
+        
+        
         
         
 
@@ -115,36 +172,30 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 return newCell
                 
             }
+
+        } else if collectionView == popularCollection {
+            
+            if let popularCell = popularCollection.dequeueReusableCell(withReuseIdentifier: "PopularCell", for: indexPath) as? popularCollectionViewCell {
+                
+                let post = posts[indexPath.row]
+                
+                if let img = HomeViewController.imageCache.object(forKey: post.imageURL as NSString) {
+                    
+                    popularCell.configureCell(post: post, img: img)
+                    
+                } else {
+                    
+                    popularCell.configureCell(post: post)
+                    
+                }
+                
+                return popularCell
+            }
             
         }
         
-        /*
-        if let newCell = newCollection.dequeueReusableCell(withReuseIdentifier: "newCell", for: indexPath) as? newCollectionViewCell  {
-            
-            let post = posts[indexPath.row]
-            
-            
-            //newCell.celImage.image = UIImage(named: images[indexPath.row])
-            //newCell.cellTitle.text = "SmartMenu"
-            
-            
-            if let img = HomeViewController.imageCache.object(forKey: post.imageURL as NSString) {
-                newCell.configureCell(post: post, img: img)
-            } else {
-                newCell.configureCell(post: post)
-            }
-            
-            return newCell
- 
-        } */
-        
-        else if let popularCell = popularCollection.dequeueReusableCell(withReuseIdentifier: "PopularCell", for: indexPath) as? popularCollectionViewCell {
-            
-            
-            popularCell.cellImage.image = UIImage(named: images[indexPath.row])
-            popularCell.cellTitle.text = "SmartMenu"
-            return popularCell
-        } else if let categoryCell = categoryCollection.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as? CategoryCollectionViewCell {
+      ///////
+         else if let categoryCell = categoryCollection.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as? CategoryCollectionViewCell {
             
             categoryCell.cellImage.image = UIImage(named: images[indexPath.row])
             categoryCell.cellTitle.text = "SmartMenu"
@@ -167,7 +218,16 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             
             return posts.count
             
-        } /*else if collectionView == popularCollection {
+        }
+        
+        else if collectionView == popularCollection {
+            
+            
+            return popularPosts.count
+            
+        }
+        
+        /*else if collectionView == popularCollection {
             return images.count
         } else if collectionView == categoryCollection {
             return images.count
