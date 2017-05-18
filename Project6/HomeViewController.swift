@@ -73,7 +73,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             
         })
 
-        
+        /*
         //人気投稿
         DataService.dataBase.REF_POST.queryOrdered(byChild: "pvCount").observe(.value, with: { (snapshot) in
             
@@ -126,8 +126,47 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             
         })
 
- 
-       
+ */
+        
+    
+        
+        //人気投稿
+        
+        
+        DataService.dataBase.REF_POST.queryOrdered(byChild: "pvCount").queryLimited(toLast: 10).observe(.value, with: { (snapshot) in
+            
+            self.popularPosts = []
+           
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                       
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        
+    
+                        
+                        self.popularPosts.sort(by: {$0.pvCount > $1.pvCount})
+                        
+                        self.popularPosts.append(post)
+                        
+                    }
+                }
+                
+                
+            }
+            
+            
+            self.popularCollection.reloadData()
+            
+        })
+        
         
 
     }
@@ -176,7 +215,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             
             if let popularCell = popularCollection.dequeueReusableCell(withReuseIdentifier: "PopularCell", for: indexPath) as? popularCollectionViewCell {
                 
-                let post = posts[indexPath.row]
+                let post = popularPosts[indexPath.row]
                 
                 if let img = HomeViewController.imageCache.object(forKey: post.imageURL as NSString) {
                     
@@ -187,6 +226,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                     popularCell.configureCell(post: post)
                     
                 }
+                
+                self.popularPosts.sort(by: {$0.pvCount > $1.pvCount})
                 
                 return popularCell
             }

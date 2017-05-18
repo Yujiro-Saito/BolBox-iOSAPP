@@ -301,7 +301,7 @@
                                                 </cells>
                                             </collectionView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.11552189089999999" green="0.11552189089999999" blue="0.11552189089999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="0cy-wp-nIv" secondAttribute="trailing" constant="16" id="1fS-wY-WLe"/>
                                             <constraint firstAttribute="trailing" secondItem="mx9-aA-e0W" secondAttribute="trailing" constant="16" id="9D0-aJ-UlD"/>
@@ -387,10 +387,10 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3RP-r5-3qr" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0np-Ma-Und">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0np-Ma-Und">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.1163354419990807" green="0.56715114116897092" blue="0.89504679568527923" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.11552189086294418" green="0.11552189086294418" blue="0.11552189086294418" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
