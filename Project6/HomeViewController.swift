@@ -72,9 +72,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             self.newCollection.reloadData()
             
         })
+
         
         //人気投稿
-        DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
+        DataService.dataBase.REF_POST.queryOrdered(byChild: "pvCount").observe(.value, with: { (snapshot) in
             
             self.popularPosts = []
             
@@ -125,10 +126,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             
         })
 
-        
-        
-        
-        
+ 
+       
         
 
     }
