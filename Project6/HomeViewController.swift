@@ -432,6 +432,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     
+    @IBAction func readPopularAll(_ sender: Any) {
+        
+        performSegue(withIdentifier: "readAll1", sender: nil)
+        
+        
+    }
+    
+    
     
     
     

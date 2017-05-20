@@ -21,6 +21,8 @@
 		B7508C231ECFD4800095C164 /* CategoryItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7508C221ECFD4800095C164 /* CategoryItemTableViewCell.swift */; };
 		B761B9ED1ED0420800DA653E /* newPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B761B9EC1ED0420800DA653E /* newPostsViewController.swift */; };
 		B761B9EF1ED0450700DA653E /* newPostsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B761B9EE1ED0450700DA653E /* newPostsListTableViewCell.swift */; };
+		B761B9F11ED069FA00DA653E /* PopularPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B761B9F01ED069FA00DA653E /* PopularPostsViewController.swift */; };
+		B761B9F31ED06BC100DA653E /* PopularPostsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B761B9F21ED06BC100DA653E /* PopularPostsListTableViewCell.swift */; };
 		B77083381EC7FB9D00302760 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77083371EC7FB9D00302760 /* Post.swift */; };
 		B770833A1EC8034E00302760 /* FIRData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77083391EC8034E00302760 /* FIRData.swift */; };
 		B7733EA01EC6A8E300D5B9BD /* newCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7733E9F1EC6A8E300D5B9BD /* newCollectionViewCell.swift */; };
@@ -50,6 +52,8 @@
 		B7508C221ECFD4800095C164 /* CategoryItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryItemTableViewCell.swift; sourceTree = "<group>"; };
 		B761B9EC1ED0420800DA653E /* newPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newPostsViewController.swift; sourceTree = "<group>"; };
 		B761B9EE1ED0450700DA653E /* newPostsListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newPostsListTableViewCell.swift; sourceTree = "<group>"; };
+		B761B9F01ED069FA00DA653E /* PopularPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularPostsViewController.swift; sourceTree = "<group>"; };
+		B761B9F21ED06BC100DA653E /* PopularPostsListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularPostsListTableViewCell.swift; sourceTree = "<group>"; };
 		B77083371EC7FB9D00302760 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		B77083391EC8034E00302760 /* FIRData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRData.swift; sourceTree = "<group>"; };
 		B7733E9F1EC6A8E300D5B9BD /* newCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -135,6 +139,7 @@
 				B70B4CE51EC6FAC9006CBE55 /* CategoryCollectionViewCell.swift */,
 				B7508C221ECFD4800095C164 /* CategoryItemTableViewCell.swift */,
 				B761B9EE1ED0450700DA653E /* newPostsListTableViewCell.swift */,
+				B761B9F21ED06BC100DA653E /* PopularPostsListTableViewCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -144,6 +149,7 @@
 			children = (
 				B727ADDC1EC67DB00081F500 /* HomeViewController.swift */,
 				B761B9EC1ED0420800DA653E /* newPostsViewController.swift */,
+				B761B9F01ED069FA00DA653E /* PopularPostsViewController.swift */,
 				B749F6F81ECF2B17005754F9 /* SlideViewController.swift */,
 				B7508C201ECFD2B50095C164 /* CategoryViewController.swift */,
 			);
@@ -306,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7733EA21EC6A96700D5B9BD /* popularCollectionViewCell.swift in Sources */,
+				B761B9F31ED06BC100DA653E /* PopularPostsListTableViewCell.swift in Sources */,
 				B72A71F71EC677C100EA9BDF /* AppDelegate.swift in Sources */,
 				B761B9EF1ED0450700DA653E /* newPostsListTableViewCell.swift in Sources */,
 				B727ADDB1EC67AB20081F500 /* SWRevealViewController.m in Sources */,
@@ -318,6 +325,7 @@
 				B77083381EC7FB9D00302760 /* Post.swift in Sources */,
 				B7508C211ECFD2B50095C164 /* CategoryViewController.swift in Sources */,
 				B7508C231ECFD4800095C164 /* CategoryItemTableViewCell.swift in Sources */,
+				B761B9F11ED069FA00DA653E /* PopularPostsViewController.swift in Sources */,
 				B7733EA01EC6A8E300D5B9BD /* newCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
