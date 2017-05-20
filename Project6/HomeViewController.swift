@@ -20,8 +20,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var popularPosts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
-    var images = ["sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample","sample"]
+    let categoryImages = ["game1","news","shopping","tech","travel2","food","entertainment"]
     
+    let categoryNames = ["ゲーム","メディア","ショッピング","テクノロジー","旅","食","エンターテイメント"]
     
     
 
@@ -237,8 +238,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       ///////
          else if let categoryCell = categoryCollection.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as? CategoryCollectionViewCell {
             
-            categoryCell.cellImage.image = UIImage(named: images[indexPath.row])
-            categoryCell.cellTitle.text = "SmartMenu"
+            categoryCell.cellImage.image = UIImage(named: categoryImages[indexPath.row])
+            categoryCell.cellTitle.text = categoryNames[indexPath.row]
             
             
             return categoryCell
@@ -267,14 +268,15 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             
         }
         
-        /*else if collectionView == popularCollection {
-            return images.count
-        } else if collectionView == categoryCollection {
-            return images.count
+        else if collectionView == categoryCollection {
+            
+            return categoryImages.count
+            
         }
-        */
         
-        return images.count
+        
+        
+        return categoryImages.count
         
     }
     
