@@ -25,6 +25,140 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     let categoryNames = ["ゲーム","メディア","ショッピング","テクノロジー","旅","食","エンターテイメント"]
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        //新着投稿
+        DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
+            
+            self.posts = []
+            
+            print(snapshot.value)
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        
+                        
+                        self.posts.append(post)
+                    }
+                }
+                
+                
+            }
+            self.posts.reverse()
+            self.newCollection.reloadData()
+            
+        })
+        
+        /*
+         //人気投稿
+         DataService.dataBase.REF_POST.queryOrdered(byChild: "pvCount").observe(.value, with: { (snapshot) in
+         
+         self.popularPosts = []
+         
+         print(snapshot.value)
+         
+         var pvArray = [Int]()
+         
+         if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+         
+         for snap in snapshot {
+         print("SNAP: \(snap)")
+         
+         if let postDict = snap.value as? Dictionary<String, AnyObject> {
+         
+         //let allPvCount: Int = postDict["pvCount"] as! Int
+         //print("それぞれ:\(allPvCount)")
+         
+         
+         //pvArray.append(allPvCount)
+         
+         // print(pvArray)
+         
+         //pvArray.sort{$1 < $0}
+         
+         // print("成田: \(pvArray)")
+         
+         
+         
+         
+         let key = snap.key
+         let post = Post(postKey: key, postData: postDict)
+         
+         
+         self.popularPosts.sort(by: {$0.pvCount > $1.pvCount})
+         
+         
+         
+         
+         self.popularPosts.append(post)
+         }
+         }
+         
+         
+         }
+         
+         
+         self.popularCollection.reloadData()
+         
+         })
+         
+         */
+        
+        
+        
+        //人気投稿
+        
+        
+        DataService.dataBase.REF_POST.queryOrdered(byChild: "pvCount").queryLimited(toLast: 10).observe(.value, with: { (snapshot) in
+            
+            self.popularPosts = []
+            
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        
+                        
+                        
+                        self.popularPosts.sort(by: {$0.pvCount > $1.pvCount})
+                        
+                        self.popularPosts.append(post)
+                        
+                    }
+                }
+                
+                
+            }
+            
+            
+            self.popularCollection.reloadData()
+            
+        })
+        
+        
+        
+        
+        
+        
+    }
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +179,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             }
         }
         
+        performSegue(withIdentifier: "categoryItems", sender: nil)
+        
+        /*
         //新着投稿
         DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
             
@@ -169,6 +306,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         })
         
         
+        performSegue(withIdentifier: "categoryItems", sender: nil)
+        
+        */
 
     }
     
