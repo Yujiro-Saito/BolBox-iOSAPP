@@ -29,7 +29,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         super.viewWillAppear(true)
         
         //新着投稿
-        DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
+        DataService.dataBase.REF_POST.queryLimited(toLast: 10).observe(.value, with: { (snapshot) in
             
             self.posts = []
             
@@ -117,7 +117,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         //人気投稿
         
         
-        DataService.dataBase.REF_POST.queryOrdered(byChild: "pvCount").queryLimited(toLast: 10).observe(.value, with: { (snapshot) in
+        DataService.dataBase.REF_POST.queryOrdered(byChild: "pvCount").queryLimited(toLast: 5).observe(.value, with: { (snapshot) in
             
             self.popularPosts = []
             
@@ -423,6 +423,19 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
+    
+    
+    @IBAction func readNewAll(_ sender: Any) {
+        
+        performSegue(withIdentifier: "readAll", sender: nil)
+        
+    }
+    
+    
+    
+    
+    
+    
     
     
 
