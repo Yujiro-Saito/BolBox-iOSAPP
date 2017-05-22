@@ -47,9 +47,8 @@ class PopularPostsViewController: UIViewController, UITableViewDelegate, UITable
                         
                         
                         
-                        self.posts.sort(by: {$0.pvCount > $1.pvCount})
-                        
                         self.posts.append(post)
+                        self.posts.sort(by: {$0.pvCount > $1.pvCount})
                         
                     }
                 }
