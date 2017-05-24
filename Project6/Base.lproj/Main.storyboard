@@ -430,6 +430,7 @@
                         <segue destination="g0k-Yk-Ijh" kind="show" identifier="categoryItems" id="4di-E9-BeS"/>
                         <segue destination="CQe-Lp-Td3" kind="show" identifier="readAll" id="I1B-eK-BSg"/>
                         <segue destination="wZc-MJ-E0h" kind="show" identifier="readAll1" id="Fd3-A4-fNX"/>
+                        <segue destination="5RP-oo-fV9" kind="show" id="yxJ-or-7wS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oaj-nU-pHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -516,6 +517,7 @@
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="popularPostsTable" destination="CM5-qH-93x" id="JoK-gE-f3i"/>
+                        <segue destination="5RP-oo-fV9" kind="show" id="7kh-et-BoX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rsr-da-h4D" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -543,7 +545,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="370"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AhP-2F-ayy" id="B5K-iI-PQh">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="369.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="370"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KdC-y0-G7C">
@@ -602,6 +604,7 @@
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="newPostsTable" destination="4pO-fH-QDq" id="wec-Ew-X8F"/>
+                        <segue destination="5RP-oo-fV9" kind="show" id="JFD-dD-b8Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8pG-KX-ITn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -629,7 +632,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="370"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HJx-j8-WVC" id="Ied-na-rdM">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="369.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="370"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BtY-XT-Cra">
@@ -708,11 +711,111 @@
                     <connections>
                         <outlet property="categoryItemTable" destination="lif-Lh-61c" id="Z0c-8L-vb5"/>
                         <outlet property="sections" destination="kyi-sp-fde" id="W0P-lS-Bya"/>
+                        <segue destination="5RP-oo-fV9" kind="show" id="h23-ru-mBL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Wl-k3-gyO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1708" y="499.70014992503752"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="R0j-5G-68i">
+            <objects>
+                <viewController id="5RP-oo-fV9" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Yxx-ua-3VN"/>
+                        <viewControllerLayoutGuide type="bottom" id="qcF-g0-1ah"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Q9Y-PI-agR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="liP-pW-oKz">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="78w-9t-i2Z">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TjK-K6-F4V">
+                                                <rect key="frame" x="41" y="166" width="292" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="akm-8w-aJq">
+                                                <rect key="frame" x="41" y="229" width="25" height="25"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wtD-sp-HXw">
+                                                <rect key="frame" x="70" y="224" width="45" height="35"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lgk-Zb-Pv5">
+                                                <rect key="frame" x="41" y="8" width="292" height="150"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="何ができるのか" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYk-Kk-NEn">
+                                                <rect key="frame" x="41" y="351" width="176" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7m-w3-2Kq">
+                                                <rect key="frame" x="41" y="625" width="292" height="223"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <string key="text">Copper mug snackwave glossier 3 wolf moon single-origin coffee direct trade. Kinfolk seitan art party cray pop-up, fingerstache marfa ramps sustainable tbh gochujang gastropub yuccie 3 wolf moon. Tote bag whatever ethical, gentrify chia pinterest gluten-free poke marfa cornhole small batch plaid coloring book hammock. Single-origin coffee tbh mumblecore, pop-up neutra retro microdosing mixtape. Lyft poke direct trade activated charcoal taxidermy skateboard. </string>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="okp-Ob-bG8" customClass="ImageSlideshow" customModule="ImageSlideshow">
+                                                <rect key="frame" x="112" y="425" width="150" height="150"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6mx-ue-yDd">
+                                                <rect key="frame" x="263" y="224" width="70" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.12294800465107443" green="0.62005614807537002" blue="0.73245161802030456" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                                <state key="normal" title="キープ">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="78w-9t-i2Z" secondAttribute="trailing" id="2C8-H6-T8P"/>
+                                    <constraint firstAttribute="bottom" secondItem="78w-9t-i2Z" secondAttribute="bottom" id="FSE-LY-fWn"/>
+                                    <constraint firstItem="78w-9t-i2Z" firstAttribute="top" secondItem="liP-pW-oKz" secondAttribute="top" id="S7T-9Z-PvF"/>
+                                    <constraint firstItem="78w-9t-i2Z" firstAttribute="leading" secondItem="liP-pW-oKz" secondAttribute="leading" id="whK-hV-F6i"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="liP-pW-oKz" firstAttribute="top" secondItem="Q9Y-PI-agR" secondAttribute="top" id="5Xb-Ud-ipf"/>
+                            <constraint firstItem="liP-pW-oKz" firstAttribute="leading" secondItem="Q9Y-PI-agR" secondAttribute="leading" id="8XO-e6-0VU"/>
+                            <constraint firstItem="78w-9t-i2Z" firstAttribute="width" secondItem="Q9Y-PI-agR" secondAttribute="width" id="Bs5-D6-TWc"/>
+                            <constraint firstAttribute="trailing" secondItem="liP-pW-oKz" secondAttribute="trailing" id="G5N-mE-zGl"/>
+                            <constraint firstItem="78w-9t-i2Z" firstAttribute="height" secondItem="Q9Y-PI-agR" secondAttribute="height" id="bKM-fV-1r1"/>
+                            <constraint firstItem="qcF-g0-1ah" firstAttribute="top" secondItem="liP-pW-oKz" secondAttribute="bottom" id="w0i-fA-XL2"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="m7W-Hb-6vT"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="1000"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xyC-If-oUL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3024.8000000000002" y="649.47526236881561"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="EPW-Nz-I5f">
@@ -760,4 +863,7 @@
         <image name="menu" width="64" height="64"/>
         <image name="star" width="64" height="64"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="yxJ-or-7wS"/>
+    </inferredMetricsTieBreakers>
 </document>
