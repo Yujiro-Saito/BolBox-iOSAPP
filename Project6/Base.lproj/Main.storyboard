@@ -439,6 +439,7 @@
                         <segue destination="CQe-Lp-Td3" kind="show" identifier="readAll" id="I1B-eK-BSg"/>
                         <segue destination="wZc-MJ-E0h" kind="show" identifier="readAll1" id="Fd3-A4-fNX"/>
                         <segue destination="5RP-oo-fV9" kind="show" identifier="detailPosts" id="yxJ-or-7wS"/>
+                        <segue destination="5RP-oo-fV9" kind="show" identifier="detailPopularPosts" id="kpe-HX-cmu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oaj-nU-pHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -592,15 +593,6 @@
                                                     <color key="textColor" red="0.41060754030000002" green="0.41781674800000002" blue="0.45140939299999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4tg-wb-mov">
-                                                    <rect key="frame" x="164" y="264" width="46" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="1" green="0.34424839439999999" blue="0.32050882520000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <connections>
-                                                        <segue destination="5RP-oo-fV9" kind="show" id="XqB-v8-Kww"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -915,6 +907,6 @@
         <image name="star" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yxJ-or-7wS"/>
+        <segue reference="kpe-HX-cmu"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -24,6 +24,7 @@ class DetailViewController: UIViewController {
     var categoryName: String?
     var whatContent: String?
     var imageURL: String?
+    static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
     
     
@@ -36,8 +37,12 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        /*
 
         let url = URL(string: imageURL!)
+
+        DetailViewController.imageCache.object(forKey: "DetailNewImage")
         
         DispatchQueue.main.async {
             do {
@@ -46,12 +51,17 @@ class DetailViewController: UIViewController {
                 
                 let img = UIImage(data: imgData)
                 self.detailImage.image = img
+                DetailViewController.imageCache.setObject(img!, forKey: "DetailNewImage")
                 
             } catch {
                 
                 print(error.localizedDescription)
             }
-                    }
+        
+        }
+        
+        
+        
         
         detailName.text = name
         detailStarNum.text = starNum
@@ -67,11 +77,51 @@ class DetailViewController: UIViewController {
         
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(DetailViewController.didTap))
         slideshow.addGestureRecognizer(recognizer)
-
+*/
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        let url = URL(string: imageURL!)
+        
+        DetailViewController.imageCache.object(forKey: "DetailNewImage")
+        
+        DispatchQueue.main.async {
+            do {
+                
+                let imgData: Data = try  NSData(contentsOf:url!,options: NSData.ReadingOptions.mappedIfSafe) as Data
+                
+                let img = UIImage(data: imgData)
+                self.detailImage.image = img
+                DetailViewController.imageCache.setObject(img!, forKey: "DetailNewImage")
+                
+            } catch {
+                
+                print(error.localizedDescription)
+            }
+            
+        }
+        
+        
+        
+        
+        detailName.text = name
+        detailStarNum.text = starNum
+        detailCategoryName.text = categoryName
+        detailWhatContent.text = whatContent
+        
+        self.slideshow.setImageInputs(alamofireSource)
+        self.slideshow.contentScaleMode = .scaleAspectFill
+        self.slideshow.slideshowInterval = 5
+        self.slideshow.zoomEnabled = true
+        self.slideshow.pageControlPosition = .hidden
+        self.slideshow.activityIndicator = DefaultActivityIndicator(style: .whiteLarge, color: .black)
+        
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(DetailViewController.didTap))
+        slideshow.addGestureRecognizer(recognizer)
         
         
         

@@ -18,6 +18,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var categoryCollection: UICollectionView!
     var posts = [Post]()
     var detailNewPosts: Post?
+    var detailPopularPosts: Post?
     var popularPosts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
@@ -246,6 +247,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         if (segue.identifier == "detailPosts") {
             
             let detailVc = (segue.destination as? DetailViewController)!
+        
             
             detailVc.name = detailNewPosts!.name
             detailVc.categoryName = detailNewPosts!.category
@@ -253,7 +255,19 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             detailVc.whatContent = detailNewPosts!.whatContent
             detailVc.imageURL = detailNewPosts!.imageURL
             
+        } else if (segue.identifier == "detailPopularPosts") {
+            
+            let detailPopVc = (segue.destination as? DetailViewController)!
+            
+            detailPopVc.name = detailPopularPosts!.name
+            detailPopVc.categoryName = detailPopularPosts!.category
+            detailPopVc.starNum = "\(detailPopularPosts!.pvCount)"
+            detailPopVc.whatContent = detailPopularPosts!.whatContent
+            detailPopVc.imageURL = detailPopularPosts!.imageURL
+            
+            
         }
+        
         
         
     }
@@ -267,7 +281,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
              detailNewPosts = self.posts[indexPath.row]
             
             if detailNewPosts != nil {
-                print("Movevinging")
+                print("New")
                 performSegue(withIdentifier: "detailPosts", sender: nil)
             }
             
@@ -278,6 +292,19 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             
             
         else if collectionView == popularCollection {
+            
+            
+            detailPopularPosts = self.popularPosts[indexPath.row]
+            
+            if detailPopularPosts != nil {
+                
+                print("Pop")
+                performSegue(withIdentifier: "detailPopularPosts", sender: nil)
+                
+            }
+            
+            
+            
         }
             
         else if collectionView == categoryCollection {
