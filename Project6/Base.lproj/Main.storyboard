@@ -21,11 +21,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gaA-B7-SJx">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.77635514736175537" green="0.91129022836685181" blue="0.97747153043746948" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="カテゴリー" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2YW-ka-nIO">
                                 <rect key="frame" x="0.0" y="87" width="105" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -84,13 +79,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Pv6-lf-Nbz"/>
                     <connections>
                         <outlet property="categoryTable" destination="Hcz-GQ-UOs" id="w7g-FJ-mmm"/>
+                        <segue destination="g0k-Yk-Ijh" kind="show" identifier="ToCategoryVC" id="RM5-hZ-E2Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fRa-3F-BEz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1274.4000000000001" y="500.59970014992507"/>
+            <point key="canvasLocation" x="-524" y="500"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="F0r-4X-9Iv">
@@ -444,7 +441,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oaj-nU-pHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="173.59999999999999" y="791.15442278860576"/>
+            <point key="canvasLocation" x="1112.8" y="791.15442278860576"/>
         </scene>
         <!--Popular Posts View Controller-->
         <scene sceneID="bcv-mL-VfB">
@@ -725,7 +722,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Wl-k3-gyO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1708" y="499.70014992503752"/>
+            <point key="canvasLocation" x="2647.1999999999998" y="499.70014992503752"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="R0j-5G-68i">
@@ -858,7 +855,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xyC-If-oUL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3600.8000000000002" y="769.11544227886066"/>
+            <point key="canvasLocation" x="4540" y="769.11544227886066"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="EPW-Nz-I5f">
@@ -874,7 +871,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="mCE-kK-nqB" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="99d-PW-229"/>
+                        <segue destination="wkT-Rp-ccf" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="99d-PW-229"/>
                         <segue destination="3RP-r5-3qr" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="DSB-PU-ATd"/>
                     </connections>
                 </viewController>
@@ -899,7 +896,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ok1-dQ-uIV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-631" y="501"/>
+            <point key="canvasLocation" x="308" y="500.59970014992507"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ckP-hy-O38">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wkT-Rp-ccf" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Vb-Xk-e5O">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="mCE-kK-nqB" kind="relationship" relationship="rootViewController" id="kuS-gO-O5o"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uCj-ad-kh9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1274.4000000000001" y="500.59970014992507"/>
         </scene>
     </scenes>
     <resources>
@@ -907,6 +922,7 @@
         <image name="star" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="RM5-hZ-E2Y"/>
         <segue reference="kpe-HX-cmu"/>
     </inferredMetricsTieBreakers>
 </document>

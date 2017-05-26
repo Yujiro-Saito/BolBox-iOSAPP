@@ -13,7 +13,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var categoryItemTable: UITableView!
     @IBOutlet weak var sections: UISegmentedControl!
-    
+    var selectedRowNum = Int()
 
     
     override func viewDidLoad() {
