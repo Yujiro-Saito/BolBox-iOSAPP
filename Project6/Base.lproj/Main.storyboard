@@ -149,7 +149,7 @@
                                                     <constraint firstAttribute="height" constant="50" id="sj6-wB-2kF"/>
                                                 </constraints>
                                             </view>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mx9-aA-e0W">
+                                            <collectionView clipsSubviews="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mx9-aA-e0W">
                                                 <rect key="frame" x="16" y="75" width="343" height="416"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -438,7 +438,7 @@
                         <segue destination="g0k-Yk-Ijh" kind="show" identifier="categoryItems" id="4di-E9-BeS"/>
                         <segue destination="CQe-Lp-Td3" kind="show" identifier="readAll" id="I1B-eK-BSg"/>
                         <segue destination="wZc-MJ-E0h" kind="show" identifier="readAll1" id="Fd3-A4-fNX"/>
-                        <segue destination="5RP-oo-fV9" kind="show" id="yxJ-or-7wS"/>
+                        <segue destination="5RP-oo-fV9" kind="show" identifier="detailPosts" id="yxJ-or-7wS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oaj-nU-pHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -738,7 +738,7 @@
         <!--Detail View Controller-->
         <scene sceneID="R0j-5G-68i">
             <objects>
-                <viewController id="5RP-oo-fV9" customClass="DetailViewController" customModule="Project6" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detailPosts" id="5RP-oo-fV9" customClass="DetailViewController" customModule="Project6" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Yxx-ua-3VN"/>
                         <viewControllerLayoutGuide type="bottom" id="qcF-g0-1ah"/>
@@ -753,50 +753,44 @@
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="78w-9t-i2Z">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="935"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wantedly" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TjK-K6-F4V">
-                                                <rect key="frame" x="41" y="166" width="292" height="50"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TjK-K6-F4V">
+                                                <rect key="frame" x="87" y="166" width="200" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="wantedly" translatesAutoresizingMaskIntoConstraints="NO" id="Lgk-Zb-Pv5" customClass="ImageDesign" customModule="Project6" customModuleProvider="target">
-                                                <rect key="frame" x="41" y="8" width="292" height="150"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lgk-Zb-Pv5">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="何ができるのか" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYk-Kk-NEn">
-                                                <rect key="frame" x="41" y="351" width="176" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
-                                                <color key="textColor" red="0.1229480047" green="0.62005614809999998" blue="0.73245161800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7m-w3-2Kq">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7m-w3-2Kq">
                                                 <rect key="frame" x="41" y="567" width="292" height="219"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <string key="text" base64-UTF8="YES">
-44Km44Kp44Oz44OG44OD44OJ44Oq44O85qCq5byP5Lya56S+44Gv44OT44K444ON44K5U05T44Gu44CM
-V2FudGVkbHnjgI3jgpID6YGL5Za244GX44Gm44GE44G+44GZ44CC44CM44K344K044OI44Gn44Kz44Kz
-44Ot44Kq44OJ44Or5Lq644KS5aKX44KE44GZ44CN44KS44OG44O844Oe44Gr44K144O844OT44K544KS
-5L2c44Gj44Gm44GK44KK44CB5Lq66ISI44KS5bqD44GS44CB566h55CG44GX44Gf44KK44CB6YGL5ZG9
-44Gu44OB44O844Og44KE44K344K044OI44Go5Ye65Lya44GI44KL5aC044KS5o+Q5L6b44GX44Gm44GE
-44G+44GZ44CCA
-</string>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="okp-Ob-bG8" customClass="ImageSlideshow" customModule="ImageSlideshow">
-                                                <rect key="frame" x="87" y="397" width="200" height="140"/>
+                                                <rect key="frame" x="48" y="397" width="278" height="140"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6mx-ue-yDd" customClass="ButtonDesign" customModule="Project6" customModuleProvider="target">
-                                                <rect key="frame" x="263" y="232" width="70" height="50"/>
+                                                <rect key="frame" x="263" y="213" width="70" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.12294800465107443" green="0.62005614807537002" blue="0.73245161802030456" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                                 <state key="normal" title="キープ">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bIi-vw-8Gl" customClass="ButtonDesign" customModule="Project6" customModuleProvider="target">
+                                                <rect key="frame" x="41" y="823" width="70" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.16620234804987455" green="0.57980606752089159" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                                <state key="normal" title="Tweet">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -810,32 +804,30 @@ V2FudGVkbHnjgI3jgpID6YGL5Za244GX44Gm44GE44G+44GZ44CC44CM44K344K044OI44Gn44Kz44Kz
                                                 </state>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="akm-8w-aJq">
-                                                <rect key="frame" x="41" y="245" width="25" height="25"/>
+                                                <rect key="frame" x="48" y="227" width="25" height="25"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="211" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wtD-sp-HXw">
-                                                <rect key="frame" x="70" y="240" width="45" height="35"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wtD-sp-HXw">
+                                                <rect key="frame" x="77" y="222" width="45" height="35"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ビジネス" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HvM-I1-bxi">
-                                                <rect key="frame" x="146" y="247" width="83" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HvM-I1-bxi">
+                                                <rect key="frame" x="130" y="229" width="83" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bIi-vw-8Gl" customClass="ButtonDesign" customModule="Project6" customModuleProvider="target">
-                                                <rect key="frame" x="41" y="823" width="70" height="50"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="何ができるのか" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYk-Kk-NEn">
+                                                <rect key="frame" x="48" y="341" width="176" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.16620234804987455" green="0.57980606752089159" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
-                                                <state key="normal" title="Tweet">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                            </button>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
+                                                <color key="textColor" red="0.1229480047" green="0.62005614809999998" blue="0.73245161800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -864,6 +856,11 @@ V2FudGVkbHnjgI3jgpID6YGL5Za244GX44Gm44GE44G+44GZ44CC44CM44K344K044OI44Gn44Kz44Kz
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
+                        <outlet property="detailCategoryName" destination="HvM-I1-bxi" id="xSU-0n-bnY"/>
+                        <outlet property="detailImage" destination="Lgk-Zb-Pv5" id="awq-Hk-o8d"/>
+                        <outlet property="detailName" destination="TjK-K6-F4V" id="p3e-Z8-ivR"/>
+                        <outlet property="detailStarNum" destination="wtD-sp-HXw" id="0Yr-7i-mNX"/>
+                        <outlet property="detailWhatContent" destination="p7m-w3-2Kq" id="4Uq-Xb-DsC"/>
                         <outlet property="slideshow" destination="okp-Ob-bG8" id="Nia-K0-G03"/>
                     </connections>
                 </viewController>
@@ -898,7 +895,7 @@ V2FudGVkbHnjgI3jgpID6YGL5Za244GX44Gm44GE44G+44GZ44CC44CM44K344K044OI44Gn44Kz44Kz
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3RP-r5-3qr" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0np-Ma-Und">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0np-Ma-Und">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.1229480047" green="0.62005614809999998" blue="0.73245161800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -916,9 +913,8 @@ V2FudGVkbHnjgI3jgpID6YGL5Za244GX44Gm44GE44G+44GZ44CC44CM44K344K044OI44Gn44Kz44Kz
     <resources>
         <image name="menu" width="64" height="64"/>
         <image name="star" width="64" height="64"/>
-        <image name="wantedly" width="300" height="168"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XqB-v8-Kww"/>
+        <segue reference="yxJ-or-7wS"/>
     </inferredMetricsTieBreakers>
 </document>

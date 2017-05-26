@@ -17,6 +17,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var popularCollection: UICollectionView!
     @IBOutlet weak var categoryCollection: UICollectionView!
     var posts = [Post]()
+    var detailNewPosts: Post?
     var popularPosts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
@@ -239,6 +240,52 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        if (segue.identifier == "detailPosts") {
+            
+            let detailVc = (segue.destination as? DetailViewController)!
+            
+            detailVc.name = detailNewPosts!.name
+            detailVc.categoryName = detailNewPosts!.category
+            detailVc.starNum = "\(detailNewPosts!.pvCount)"
+            detailVc.whatContent = detailNewPosts!.whatContent
+            detailVc.imageURL = detailNewPosts!.imageURL
+            
+        }
+        
+        
+    }
+
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        
+        if collectionView == newCollection {
+           
+             detailNewPosts = self.posts[indexPath.row]
+            
+            if detailNewPosts != nil {
+                print("Movevinging")
+                performSegue(withIdentifier: "detailPosts", sender: nil)
+            }
+            
+            
+        
+        }
+            
+            
+            
+        else if collectionView == popularCollection {
+        }
+            
+        else if collectionView == categoryCollection {
+        }
+    }
+    
+    
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -254,6 +301,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBAction func readPopularAll(_ sender: Any) {
         
         performSegue(withIdentifier: "readAll1", sender: nil)
+        
         
         
     }

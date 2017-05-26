@@ -11,7 +11,23 @@ import ImageSlideshow
 
 class DetailViewController: UIViewController {
     
+    //Outlet
     @IBOutlet weak var slideshow: ImageSlideshow!
+    @IBOutlet weak var detailImage: UIImageView!
+    @IBOutlet weak var detailName: UILabel!
+    @IBOutlet weak var detailStarNum: UILabel!
+    @IBOutlet weak var detailCategoryName: UILabel!
+    @IBOutlet weak var detailWhatContent: UILabel!
+    
+    var name: String?
+    var starNum: String?
+    var categoryName: String?
+    var whatContent: String?
+    var imageURL: String?
+    
+    
+    
+    
     let localSource = [ImageSource(imageString: "img1")!, ImageSource(imageString: "img2")!, ImageSource(imageString: "img3")!, ImageSource(imageString: "img4")!]
     
     let alamofireSource = [AlamofireSource(urlString: "https://images.unsplash.com/photo-1432679963831-2dab49187847?w=1080")!, AlamofireSource(urlString: "https://images.unsplash.com/photo-1447746249824-4be4e1b76d66?w=1080")!, AlamofireSource(urlString: "https://images.unsplash.com/photo-1463595373836-6e0b0a8ee322?w=1080")!]
@@ -20,6 +36,27 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let url = URL(string: imageURL!)
+        
+        DispatchQueue.main.async {
+            do {
+                
+                let imgData: Data = try  NSData(contentsOf:url!,options: NSData.ReadingOptions.mappedIfSafe) as Data
+                
+                let img = UIImage(data: imgData)
+                self.detailImage.image = img
+                
+            } catch {
+                
+                print(error.localizedDescription)
+            }
+                    }
+        
+        detailName.text = name
+        detailStarNum.text = starNum
+        detailCategoryName.text = categoryName
+        detailWhatContent.text = whatContent
         
         self.slideshow.setImageInputs(alamofireSource)
         self.slideshow.contentScaleMode = .scaleAspectFill
@@ -31,6 +68,13 @@ class DetailViewController: UIViewController {
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(DetailViewController.didTap))
         slideshow.addGestureRecognizer(recognizer)
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        
+        
     }
     
     func didTap() {
