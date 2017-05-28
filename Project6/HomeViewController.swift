@@ -113,6 +113,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        
+        
+        if (touch.view?.isDescendant(of: slideMenu))! {
+            return false
+            
+        }
+        
+        
         return true
     }
     
@@ -124,10 +132,15 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
         
         let trailingTapped = UITapGestureRecognizer(target: self, action: #selector(HomeViewController.tapTrailing(sender:)))
-        
         trailingTapped.numberOfTapsRequired = 1
         self.view.addGestureRecognizer(trailingTapped)
         
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(HomeViewController.swipes(sender:)))
+        
+        swipe.direction = .left
+        self.view.addGestureRecognizer(swipe)
+        
+    
         
         newCollection.dataSource = self
         newCollection.delegate = self
@@ -153,8 +166,20 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     
+    func swipes(sender: UISwipeGestureRecognizer) {
+        print("right Swipe")
+        
+        leadingConstraint.constant = -240
+        UIView.animate(withDuration: 0.2, animations: {
+            self.view.layoutIfNeeded()
+        })
+        
+    }
+    
+    
     func tapTrailing(sender: UITapGestureRecognizer) {
         print("single")
+        
         
         leadingConstraint.constant = -240
         UIView.animate(withDuration: 0.2, animations: {
