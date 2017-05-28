@@ -9,18 +9,24 @@
 import UIKit
 import Firebase
 
-class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate {
     
     //Properties
     @IBOutlet weak var menuItem: UIBarButtonItem!
     @IBOutlet weak var newCollection: UICollectionView!
     @IBOutlet weak var popularCollection: UICollectionView!
     @IBOutlet weak var categoryCollection: UICollectionView!
+    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var slideMenu: UIView!
+    
+    
     var posts = [Post]()
     var detailNewPosts: Post?
     var detailPopularPosts: Post?
     var popularPosts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
+    var menuOpened = false
     
     let categoryImages = ["game1","news","shopping","tech","travel2","food","entertainment"]
     
@@ -106,18 +112,29 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
     }
     
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return true
+    }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let trailingTapped = UITapGestureRecognizer(target: self, action: #selector(HomeViewController.tapTrailing(sender:)))
+        
+        trailingTapped.numberOfTapsRequired = 1
+        self.view.addGestureRecognizer(trailingTapped)
+        
         newCollection.dataSource = self
         newCollection.delegate = self
+        trailingTapped.delegate = self
         popularCollection.dataSource = self
         popularCollection.delegate = self
         categoryCollection.dataSource = self
         categoryCollection.delegate = self
-        
-        sideMenu()
+        slideMenu.layer.shadowOpacity = 1
+        slideMenu.layer.shadowRadius = 6
+        trailingTapped.cancelsTouchesInView = false
         
         FIRAuth.auth()!.signInAnonymously { (firUser, error) in
             if error == nil {
@@ -127,29 +144,56 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             }
         }
         
-        performSegue(withIdentifier: "categoryItems", sender: nil)
         
         
+ 
 
     }
     
     
-   //Functions
-    
-    func sideMenu() {
+    func tapTrailing(sender: UITapGestureRecognizer) {
+        print("single")
         
-        if revealViewController() != nil {
-            
-            menuItem.target = revealViewController()
-            menuItem.action = #selector(SWRevealViewController.revealToggle(_:))
-            revealViewController().rearViewRevealWidth = 275
-            revealViewController().rightViewRevealWidth = 160
-            
-            view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        leadingConstraint.constant = -240
+        trailingConstraint.constant = view.frame.size.width
+        UIView.animate(withDuration: 0.5, animations: {
+            self.view.layoutIfNeeded()
+        })
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    @IBAction func openSlide(_ sender: Any) {
+        
+        if (menuOpened) {
+            leadingConstraint.constant = -240
+            trailingConstraint.constant = view.frame.size.width
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.layoutIfNeeded()
+            })
+        } else {
+            leadingConstraint.constant = 0
+            trailingConstraint.constant = 240
+            UIView.animate(withDuration: 0.5, animations: { 
+                self.view.layoutIfNeeded()
+                
+                
+                
+            })
             
             
         }
+        
+        menuOpened = !menuOpened
+        
     }
+    
     
     
     
