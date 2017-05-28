@@ -27,8 +27,8 @@ class newCollectionViewCell: UICollectionViewCell {
         self.post = post
         self.cellTitle.text = "\(post.name)"
         self.starCount.text = "\(post.pvCount)"
-        self.whatContent.text = "\(post.whatContent)"
-        self.categoryName.text = "\(post.category)"
+        //self.whatContent.text = "\(post.whatContent)"
+        //self.categoryName.text = "\(post.category)"
         
         if img != nil {
             

@@ -15,9 +15,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var menuItem: UIBarButtonItem!
     @IBOutlet weak var newCollection: UICollectionView!
     @IBOutlet weak var popularCollection: UICollectionView!
-    @IBOutlet weak var categoryCollection: UICollectionView!
+    //@IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var slideMenu: UIView!
     
     
@@ -119,19 +119,19 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
         let trailingTapped = UITapGestureRecognizer(target: self, action: #selector(HomeViewController.tapTrailing(sender:)))
         
         trailingTapped.numberOfTapsRequired = 1
         self.view.addGestureRecognizer(trailingTapped)
         
+        
         newCollection.dataSource = self
         newCollection.delegate = self
         trailingTapped.delegate = self
         popularCollection.dataSource = self
         popularCollection.delegate = self
-        categoryCollection.dataSource = self
-        categoryCollection.delegate = self
         slideMenu.layer.shadowOpacity = 1
         slideMenu.layer.shadowRadius = 6
         trailingTapped.cancelsTouchesInView = false
@@ -155,8 +155,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         print("single")
         
         leadingConstraint.constant = -240
-        trailingConstraint.constant = view.frame.size.width
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             self.view.layoutIfNeeded()
         })
         
@@ -173,15 +172,15 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         if (menuOpened) {
             leadingConstraint.constant = -240
-            trailingConstraint.constant = view.frame.size.width
-            UIView.animate(withDuration: 0.5, animations: {
+            UIView.animate(withDuration: 0.2, animations: {
                 self.view.layoutIfNeeded()
             })
         } else {
+            slideMenu.frame.size.height = self.view.frame.size.height
             leadingConstraint.constant = 0
-            trailingConstraint.constant = 240
-            UIView.animate(withDuration: 0.5, animations: { 
+            UIView.animate(withDuration: 0.2, animations: {
                 self.view.layoutIfNeeded()
+                
                 
                 
                 
@@ -240,20 +239,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             
         }
         
-      ///////
-         else if let categoryCell = categoryCollection.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as? CategoryCollectionViewCell {
-            
-            categoryCell.cellImage.image = UIImage(named: categoryImages[indexPath.row])
-            categoryCell.cellTitle.text = categoryNames[indexPath.row]
-            
-            
-            return categoryCell
-            
-        }
-        
-       
-        
-        return newCollectionViewCell()
+             return newCollectionViewCell()
         
     }
     
@@ -273,13 +259,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             
         }
         
-        else if collectionView == categoryCollection {
-            
-            return categoryImages.count
-            
-        }
-        
-        
+               
         
         return categoryImages.count
         
@@ -351,9 +331,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             
         }
             
-        else if collectionView == categoryCollection {
-        }
-    }
+            }
     
     
     

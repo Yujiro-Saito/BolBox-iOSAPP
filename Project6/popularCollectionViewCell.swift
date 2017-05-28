@@ -27,8 +27,8 @@ class popularCollectionViewCell: UICollectionViewCell {
         self.post = post
         self.cellTitle.text = "\(post.name)"
         self.starCount.text = "\(post.pvCount)"
-        self.category.text = "\(post.category)"
-        self.whatContent.text = "\(post.whatContent)"
+        //self.category.text = "\(post.category)"
+        //self.whatContent.text = "\(post.whatContent)"
         
         if img != nil {
             
@@ -36,9 +36,7 @@ class popularCollectionViewCell: UICollectionViewCell {
             
         } else {
             
-            
             let ref = FIRStorage.storage().reference(forURL: post.imageURL)
-            
             ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
                 
                 if error != nil {
@@ -53,20 +51,7 @@ class popularCollectionViewCell: UICollectionViewCell {
                         }
                     }
                 }
-                
-                
             })
-            
-            
-            
         }
-        
-        
-        
     }
-    
-    
-    
-    
-    
 }
