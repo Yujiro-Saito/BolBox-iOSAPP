@@ -154,6 +154,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         slideMenu.layer.shadowOpacity = 1
         slideMenu.layer.shadowRadius = 6
         trailingTapped.cancelsTouchesInView = false
+        backgroundView.cancelsTouchesInView = false
         
         FIRAuth.auth()!.signInAnonymously { (firUser, error) in
             if error == nil {
