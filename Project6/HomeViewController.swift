@@ -15,10 +15,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var menuItem: UIBarButtonItem!
     @IBOutlet weak var newCollection: UICollectionView!
     @IBOutlet weak var popularCollection: UICollectionView!
-    //@IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var slideMenu: UIView!
+    @IBOutlet weak var backgroundView: UIView!
     
     
     var posts = [Post]()
@@ -135,6 +135,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         trailingTapped.numberOfTapsRequired = 1
         self.view.addGestureRecognizer(trailingTapped)
         
+        let backgroundView = UITapGestureRecognizer(target: self, action: #selector(HomeViewController.backgroundView(sender:)))
+        backgroundView.numberOfTapsRequired = 1
+        self.view.addGestureRecognizer(backgroundView)
+        
         let swipe = UISwipeGestureRecognizer(target: self, action: #selector(HomeViewController.swipes(sender:)))
         
         swipe.direction = .left
@@ -170,6 +174,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         print("right Swipe")
         
         leadingConstraint.constant = -240
+        trailingConstraint.constant = -375
         UIView.animate(withDuration: 0.2, animations: {
             self.view.layoutIfNeeded()
         })
@@ -182,10 +187,22 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         
         leadingConstraint.constant = -240
+        trailingConstraint.constant = -375
         UIView.animate(withDuration: 0.2, animations: {
             self.view.layoutIfNeeded()
         })
         
+        
+    }
+    
+    func backgroundView(sender: UITapGestureRecognizer) {
+        print("single")
+        
+        leadingConstraint.constant = -240
+        trailingConstraint.constant = -375
+        UIView.animate(withDuration: 0.2, animations: {
+            self.view.layoutIfNeeded()
+        })
         
     }
     
@@ -199,12 +216,16 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         if (menuOpened) {
             leadingConstraint.constant = -240
+            trailingConstraint.constant = -375
             UIView.animate(withDuration: 0.2, animations: {
                 self.view.layoutIfNeeded()
             })
         } else {
             slideMenu.frame.size.height = self.view.frame.size.height
             leadingConstraint.constant = 0
+            trailingConstraint.constant = 0
+            
+            
             UIView.animate(withDuration: 0.2, animations: {
                 self.view.layoutIfNeeded()
                 

@@ -259,8 +259,15 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4MV-na-0QW">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="667"/>
+                                    <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FsQ-1b-g5M">
+                                        <rect key="frame" x="375" y="0.0" width="375" height="667"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="375" id="BbF-4L-beL"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4MV-na-0QW">
+                                        <rect key="frame" x="-240" y="0.0" width="240" height="667"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="カテゴリー" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uS1-G6-XSf">
                                                 <rect key="frame" x="8" y="94" width="108" height="43"/>
@@ -278,7 +285,10 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="4MV-na-0QW" secondAttribute="bottom" id="7c4-n2-aEK"/>
+                                    <constraint firstAttribute="bottom" secondItem="FsQ-1b-g5M" secondAttribute="bottom" id="9vw-Or-eR2"/>
+                                    <constraint firstItem="FsQ-1b-g5M" firstAttribute="top" secondItem="Jbj-yp-okE" secondAttribute="top" id="GiR-QV-dQq"/>
                                     <constraint firstItem="4MV-na-0QW" firstAttribute="top" secondItem="Jbj-yp-okE" secondAttribute="top" id="KJW-1e-0Va"/>
+                                    <constraint firstAttribute="trailing" secondItem="FsQ-1b-g5M" secondAttribute="trailing" constant="-375" id="mdO-PD-YTT"/>
                                     <constraint firstItem="4MV-na-0QW" firstAttribute="leading" secondItem="Jbj-yp-okE" secondAttribute="leading" constant="-240" id="ytQ-dH-9XK"/>
                                 </constraints>
                             </view>
@@ -301,11 +311,13 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="IhQ-2Y-jan"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="backgroundView" destination="FsQ-1b-g5M" id="gnF-8s-zVr"/>
                         <outlet property="leadingConstraint" destination="ytQ-dH-9XK" id="7A6-tf-gi7"/>
                         <outlet property="menuItem" destination="DVY-JQ-m82" id="Pmm-HM-auX"/>
                         <outlet property="newCollection" destination="mx9-aA-e0W" id="dEK-7L-2Ph"/>
                         <outlet property="popularCollection" destination="I8i-vH-Sgp" id="eIa-FR-hKf"/>
                         <outlet property="slideMenu" destination="4MV-na-0QW" id="xqW-j8-DsH"/>
+                        <outlet property="trailingConstraint" destination="mdO-PD-YTT" id="whx-yL-atw"/>
                         <segue destination="g0k-Yk-Ijh" kind="show" identifier="categoryItems" id="4di-E9-BeS"/>
                         <segue destination="CQe-Lp-Td3" kind="show" identifier="readAll" id="I1B-eK-BSg"/>
                         <segue destination="wZc-MJ-E0h" kind="show" identifier="readAll1" id="Fd3-A4-fNX"/>
@@ -315,7 +327,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oaj-nU-pHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1791" y="1310"/>
+            <point key="canvasLocation" x="1789.5999999999999" y="1309.2953523238382"/>
         </scene>
         <!--Popular Posts View Controller-->
         <scene sceneID="bcv-mL-VfB">
