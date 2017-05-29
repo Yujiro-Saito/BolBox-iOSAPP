@@ -1,40 +1,37 @@
 //
-//  newPostsListTableViewCell.swift
+//  NewMoreReadCollectionViewCell.swift
 //  Project6
 //
-//  Created by  Yujiro Saito on 2017/05/20.
+//  Created by  Yujiro Saito on 2017/05/30.
 //  Copyright © 2017年 yujiro_saito. All rights reserved.
 //
 
 import UIKit
-import Firebase
+import FirebaseStorage
 
-class newPostsListTableViewCell: UITableViewCell {
+class NewMoreReadCollectionViewCell: UICollectionViewCell {
     
     
     @IBOutlet weak var itemImage: UIImageView!
-    @IBOutlet weak var itemName: UILabel!
     @IBOutlet weak var starNum: UILabel!
-    @IBOutlet weak var categoryName: UILabel!
-    @IBOutlet weak var itemWhatContent: UILabel!
+    @IBOutlet weak var itemTitle: UILabel!
     
     
     var post: Post!
+        
+    
     
     func configureCell(post: Post, img: UIImage? = nil) {
         
-        
         self.post = post
-        self.itemName.text = "\(post.name)"
+        
         self.starNum.text = "\(post.pvCount)"
-        self.itemWhatContent.text = "\(post.whatContent)"
-        self.categoryName.text = "\(post.category)"
+        self.itemTitle.text = "\(post.name)"
         
         if img != nil {
             
             self.itemImage.image = img
-            
-        }else {
+        } else {
             
             let ref = FIRStorage.storage().reference(forURL: post.imageURL)
             
@@ -48,7 +45,7 @@ class newPostsListTableViewCell: UITableViewCell {
                     if let imgData = data {
                         if let img = UIImage(data: imgData) {
                             self.itemImage.image = img
-                            newPostsViewController.imageCache.setObject(img, forKey: post.imageURL as NSString)
+                            NewMoreCollectionViewController.imageCache.setObject(img, forKey: post.imageURL as NSString)
                         }
                     }
                 }
@@ -56,17 +53,7 @@ class newPostsListTableViewCell: UITableViewCell {
                 
             })
             
-            
         }
-        
-        
     }
-    
-    
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
     
 }

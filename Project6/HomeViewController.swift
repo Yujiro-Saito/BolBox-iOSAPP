@@ -28,11 +28,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     var menuOpened = false
     
-    let categoryImages = ["game1","news","shopping","tech","travel2","food","entertainment"]
-    
-    let categoryNames = ["ゲーム","メディア","ショッピング","テクノロジー","旅","食","エンターテイメント"]
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
@@ -310,7 +305,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
                
         
-        return categoryImages.count
+        return 0
         
     }
     
@@ -391,7 +386,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     @IBAction func readNewAll(_ sender: Any) {
         
-        performSegue(withIdentifier: "readAll", sender: nil)
+        performSegue(withIdentifier: "readNewAll", sender: nil)
         
     }
     
