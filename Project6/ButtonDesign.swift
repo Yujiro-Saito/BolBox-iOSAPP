@@ -18,7 +18,7 @@ class ButtonDesign: UIButton {
         layer.cornerRadius = 5
         
         layer.borderColor = UIColor.white.cgColor
-        layer.borderWidth = 2.0
+        layer.borderWidth = 0.5
         
         
     }
