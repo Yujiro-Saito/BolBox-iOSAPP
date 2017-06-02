@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import AlamofireImage
 
 class DetailViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
@@ -56,40 +57,13 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         
        
         
-        let detailImageOne = URL(string: self.detailImageOne!)
-        let detailImageTwo = URL(string: self.detailImageTwo!)
-        let detailImageThree = URL(string: self.detailImageThree!)
-        
-        DispatchQueue.main.async {
-            do {
-                
-                let imageDataOne: Data = try NSData(contentsOf:detailImageOne!,options: NSData.ReadingOptions.mappedIfSafe) as Data
-                let imageDataTwo: Data = try NSData(contentsOf:detailImageTwo!,options: NSData.ReadingOptions.mappedIfSafe) as Data
-                let imageDataThree: Data = try NSData(contentsOf:detailImageThree!,options: NSData.ReadingOptions.mappedIfSafe) as Data
-                
-                
-                let imgOne = UIImage(data: imageDataOne)
-                let imgTwo = UIImage(data: imageDataTwo)
-                let imgThree = UIImage(data: imageDataThree)
-                
-                
-                
-                detailImage?.detailItemImageArray.append(imgOne!)
-                detailImage?.detailItemImageArray.append(imgTwo!)
-                detailImage?.detailItemImageArray.append(imgThree!)
-                
-                
-                detailImage?.detailItemImage.image = detailImage?.detailItemImageArray[indexPath.row]
-                
-            } catch {
-                
-                print(error.localizedDescription)
-            }
-            
-        }
+        detailImage?.detailItemImage.af_setImage(withURL: URL(string: self.detailImageOne!)!)
+        detailImage?.detailItemImage.af_setImage(withURL: URL(string: self.detailImageTwo!)!)
+        detailImage?.detailItemImage.af_setImage(withURL: URL(string: self.detailImageThree!)!)
         
         
         
+       
         return detailImage!
         
     }

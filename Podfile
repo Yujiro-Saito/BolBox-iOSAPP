@@ -13,6 +13,7 @@ target 'Project6' do
   pod 'Firebase/Storage'
   pod 'ImageSlideshow', '~> 1.3'
   pod "ImageSlideshow/Alamofire"
+  pod 'AlamofireImage', '~> 3.1'
   
 
 end

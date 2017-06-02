@@ -57,6 +57,7 @@ PODS:
   - SlideMenuControllerSwift (3.0.1)
 
 DEPENDENCIES:
+  - AlamofireImage (~> 3.1)
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -82,6 +83,6 @@ SPEC CHECKSUMS:
   ImageSlideshow: bef84bd0bda0bdf8ef6dfc6da42ed1703bea2070
   SlideMenuControllerSwift: 9a163b16d54afab734add42858cba7ef7c307755
 
-PODFILE CHECKSUM: baaf6e9d1ae9d487a0026e9815e4eb29a236610d
+PODFILE CHECKSUM: 4d2cc67d04a1e0aa7dbbc84ca61f3c0a3443c888
 
 COCOAPODS: 1.1.1
