@@ -84,36 +84,9 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
-        let mainImageurl = URL(string: imageURL!)
         
         
-        
-        
-        DetailViewController.imageCache.object(forKey: "DetailNewImage")
-        
-        
-        DispatchQueue.main.async {
-            do {
-                
-                let imgData: Data = try  NSData(contentsOf:mainImageurl!,options: NSData.ReadingOptions.mappedIfSafe) as Data
-                
-                let img = UIImage(data: imgData)
-                
-                
-                self.detailImage.image = img
-                
-                DetailViewController.imageCache.setObject(img!, forKey: "DetailNewImage")
-                
-            } catch {
-                
-                print(error.localizedDescription)
-            }
-            
-        }
-        
-        
-        
-        
+        detailImage.af_setImage(withURL: URL(string: imageURL!)!)
         
         detailName.text = name
         detailStarNum.text = starNum
