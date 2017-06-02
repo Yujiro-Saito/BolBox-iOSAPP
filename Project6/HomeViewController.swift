@@ -322,6 +322,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             detailVc.starNum = "\(detailNewPosts!.pvCount)"
             detailVc.whatContent = detailNewPosts!.whatContent
             detailVc.imageURL = detailNewPosts!.imageURL
+            detailVc.detailImageOne = detailNewPosts!.detailImageOne
+            detailVc.detailImageTwo = detailNewPosts!.detailImageTwo
+            detailVc.detailImageThree = detailNewPosts!.detailImageThree
             
         } else if (segue.identifier == "detailPopularPosts") {
             
@@ -332,6 +335,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             detailPopVc.starNum = "\(detailPopularPosts!.pvCount)"
             detailPopVc.whatContent = detailPopularPosts!.whatContent
             detailPopVc.imageURL = detailPopularPosts!.imageURL
+            detailPopVc.detailImageOne = detailPopularPosts!.detailImageOne
+            detailPopVc.detailImageTwo = detailPopularPosts!.detailImageTwo
+            detailPopVc.detailImageThree = detailPopularPosts!.detailImageThree
             
             
         }

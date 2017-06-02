@@ -20,6 +20,9 @@ class Post {
     private var _goodCount: Int!
     private var _keepCount: Int!
     private var _pvCount: Int!
+    private var _detailImageOne: String!
+    private var _detailImageTwo: String!
+    private var _detailImageThree: String!
     
     private var _postKey: String!
     private var _postRef: FIRDatabaseReference!
@@ -54,13 +57,26 @@ class Post {
         return _pvCount
     }
     
+    var detailImageOne: String {
+        return _detailImageOne
+    }
+    
+    var detailImageTwo: String {
+        return _detailImageTwo
+    }
+    
+    var detailImageThree: String {
+        return _detailImageThree
+    }
+    
+    
     var postKey: String {
         return _postKey
     }
     
     
     
-    init(name: String,  category: String, imageURL: String, whatContent: String, goodCount: Int, keepCount: Int, pvCount: Int) {
+    init(name: String,  category: String, imageURL: String, whatContent: String, goodCount: Int, keepCount: Int, pvCount: Int, detailImageOne: String, detailImageTwo: String, detailImageThree: String) {
         
         
         self._name = name
@@ -70,6 +86,9 @@ class Post {
         self._goodCount = goodCount
         self._keepCount = keepCount
         self._pvCount = pvCount
+        self._detailImageOne = detailImageOne
+        self._detailImageTwo = detailImageTwo
+        self._detailImageThree = detailImageThree
     }
     
     
@@ -106,6 +125,21 @@ class Post {
         if let pvCount = postData["pvCount"] as? Int {
             self._pvCount = pvCount
         }
+        
+        if let detailImageOne = postData["detailImageOne"] as? String {
+            self._detailImageOne = detailImageOne
+        }
+        
+        if let detailImageTwo = postData["detailImageTwo"] as? String {
+            self._detailImageTwo = detailImageTwo
+        }
+        
+        if let detailImageThree = postData["detailImageThree"] as? String {
+            self._detailImageThree = detailImageThree
+        }
+        
+        
+        
         
         _postRef = DataService.dataBase.REF_POST.child(_postKey)
         

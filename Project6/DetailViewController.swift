@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class DetailViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
@@ -24,10 +25,15 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     var categoryName: String?
     var whatContent: String?
     var imageURL: String?
+    var detailImageOne: String?
+    var detailImageTwo: String?
+    var detailImageThree: String?
+    
+    var detailImageBox = [String]()
+    
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
-    
-    
+    var posts = [Post]()
     
 
     override func viewDidLoad() {
@@ -39,11 +45,8 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         
         
-        
-        
-        
-        
     }
+    
     
     
     
@@ -51,9 +54,39 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         let detailImage = detailCollectionView.dequeueReusableCell(withReuseIdentifier: "DetailItems", for: indexPath) as? DetailCollectionViewCell
         
-        detailImage?.detailItemImage.image = UIImage(named: "wantedly")
+       
         
+        let detailImageOne = URL(string: self.detailImageOne!)
+        let detailImageTwo = URL(string: self.detailImageTwo!)
+        let detailImageThree = URL(string: self.detailImageThree!)
         
+        DispatchQueue.main.async {
+            do {
+                
+                let imageDataOne: Data = try NSData(contentsOf:detailImageOne!,options: NSData.ReadingOptions.mappedIfSafe) as Data
+                let imageDataTwo: Data = try NSData(contentsOf:detailImageTwo!,options: NSData.ReadingOptions.mappedIfSafe) as Data
+                let imageDataThree: Data = try NSData(contentsOf:detailImageThree!,options: NSData.ReadingOptions.mappedIfSafe) as Data
+                
+                
+                let imgOne = UIImage(data: imageDataOne)
+                let imgTwo = UIImage(data: imageDataTwo)
+                let imgThree = UIImage(data: imageDataThree)
+                
+                
+                
+                detailImage?.detailItemImageArray.append(imgOne!)
+                detailImage?.detailItemImageArray.append(imgTwo!)
+                detailImage?.detailItemImageArray.append(imgThree!)
+                
+                
+                detailImage?.detailItemImage.image = detailImage?.detailItemImageArray[indexPath.row]
+                
+            } catch {
+                
+                print(error.localizedDescription)
+            }
+            
+        }
         
         
         
@@ -74,25 +107,27 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     
     
-    
-    
-    
-    
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
-        let url = URL(string: imageURL!)
+        let mainImageurl = URL(string: imageURL!)
+        
+        
+        
         
         DetailViewController.imageCache.object(forKey: "DetailNewImage")
+        
         
         DispatchQueue.main.async {
             do {
                 
-                let imgData: Data = try  NSData(contentsOf:url!,options: NSData.ReadingOptions.mappedIfSafe) as Data
+                let imgData: Data = try  NSData(contentsOf:mainImageurl!,options: NSData.ReadingOptions.mappedIfSafe) as Data
                 
                 let img = UIImage(data: imgData)
+                
+                
                 self.detailImage.image = img
+                
                 DetailViewController.imageCache.setObject(img!, forKey: "DetailNewImage")
                 
             } catch {
@@ -101,6 +136,8 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
             }
             
         }
+        
+        
         
         
         

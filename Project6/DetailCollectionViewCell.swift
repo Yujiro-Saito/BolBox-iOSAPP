@@ -14,6 +14,11 @@ class DetailCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var detailItemImage: UIImageView!
     
     
+    var detailItemImageArray = [UIImage]()
+    
+    
+    
+    
     
     
 }
