@@ -13,7 +13,11 @@ class CategoryCollectionViewController: UICollectionViewController {
     
     
     
+    var selectedSegmentNum = 0
+    
+    
     @IBOutlet var categoryCollection: UICollectionView!
+    
     
     struct Storyboard {
         
@@ -25,6 +29,10 @@ class CategoryCollectionViewController: UICollectionViewController {
     
     //Property
     var posts = [Post]()
+    var popularPosts = [Post]()
+    var recommendedPosts = [Post]()
+    
+    
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
 
@@ -36,48 +44,114 @@ class CategoryCollectionViewController: UICollectionViewController {
         
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: itemWidth, height: itemWidth + Storyboard.titleHeightAdjustment)
-
+        
+        
        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+
+        
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
         
-        DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
+        if selectedSegmentNum == 0 {
             
-            self.posts = []
-            
-            print(snapshot.value)
-            
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+            DataService.dataBase.REF_POST.queryOrdered(byChild: "pvCount").observe(.value, with: { (snapshot) in
                 
-                for snap in snapshot {
-                    print("SNAP: \(snap)")
+                self.popularPosts = []
+                
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     
-                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                        
-                        let key = snap.key
-                        let post = Post(postKey: key, postData: postDict)
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
                         
                         
-                        self.posts.append(post)
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            
+                            
+                            self.popularPosts.append(post)
+                            self.popularPosts.sort(by: {$0.pvCount > $1.pvCount})
+                            
+                        }
                     }
+                    
+                    
                 }
                 
                 
-            }
-            self.posts.reverse()
+                self.collectionView?.reloadData()
+                
+            })
+            
             self.collectionView?.reloadData()
             
-        })
+ 
+            
+            
+        }
+        
+        /*
+        else if selectedSegmentNum == 1 {
+        
+            print("1")
+            
+            DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
+                
+                self.posts = []
+                
+                print(snapshot.value)
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
+                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            
+                            self.posts.append(post)
+                        }
+                    }
+                    
+                    
+                }
+                self.posts.reverse()
+                self.collectionView?.reloadData()
+                
+            })
+            
+            self.collectionView?.reloadData()
         
         
-        
-        
-        
-        
-        
+        } else if selectedSegmentNum == 2 {
+            
+            
+            print("2")
+            
+            
+            
+            
+            
+            
+        }
+        */
         
     }
 
@@ -89,7 +163,21 @@ class CategoryCollectionViewController: UICollectionViewController {
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return posts.count
+        
+        
+        if selectedSegmentNum == 0 {
+            return popularPosts.count
+            
+        } else if selectedSegmentNum == 1 {
+            return posts.count
+            
+        } else if selectedSegmentNum == 2 {
+            return recommendedPosts.count
+            
+        }
+        
+        return 2
+        
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -97,21 +185,112 @@ class CategoryCollectionViewController: UICollectionViewController {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Categories", for: indexPath) as? CategoryCollectionViewCell
         
-        let post = posts[indexPath.row]
         
-        if let img = CategoryCollectionViewController.imageCache.object(forKey: post.imageURL as NSString) {
+        
+        if selectedSegmentNum == 0 {
             
-            cell?.configureCell(post: post, img: img)
+            //print("選ばれた番号\(selectedSegmentNum)")
+            /*
+            DataService.dataBase.REF_POST.queryOrdered(byChild: "pvCount").observe(.value, with: { (snapshot) in
+                
+                self.popularPosts = []
+                
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
+                        
+                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            
+                            
+                            self.popularPosts.append(post)
+                            self.popularPosts.sort(by: {$0.pvCount > $1.pvCount})
+                            
+                        }
+                    }
+                    
+                    
+                }
+                
+                
+                self.collectionView?.reloadData()
+                
+            })
             
-            cell?.configureCell(post: post, img: img)
+            */
             
-        } else {
+            let post = popularPosts[indexPath.row]
             
-            cell?.configureCell(post: post)
+            if let img = CategoryCollectionViewController.imageCache.object(forKey: post.imageURL as NSString) {
+                
+                cell?.configureCell(post: post, img: img)
+                
+                cell?.configureCell(post: post, img: img)
+                
+            } else {
+                
+                cell?.configureCell(post: post)
+                
+            }
+            
+        }  else if selectedSegmentNum == 1 {
+            
+            print("選ばれた番号\(selectedSegmentNum)")
+            
+            
+            /*
+            
+            let post = posts[indexPath.row]
+            
+            if let img = CategoryCollectionViewController.imageCache.object(forKey: post.imageURL as NSString) {
+                
+                cell?.configureCell(post: post, img: img)
+                
+                cell?.configureCell(post: post, img: img)
+                
+            } else {
+                
+                cell?.configureCell(post: post)
+                
+            }
+*/
+        }
+        
+        else if selectedSegmentNum == 2 {
+            
+            
+            let post = recommendedPosts[indexPath.row]
+            
+            if let img = CategoryCollectionViewController.imageCache.object(forKey: post.imageURL as NSString) {
+                
+                cell?.configureCell(post: post, img: img)
+                
+                cell?.configureCell(post: post, img: img)
+                
+            } else {
+                
+                cell?.configureCell(post: post)
+                
+            }
+            
+            
             
         }
         
+        
+        
+        
+        
         return cell!
+        
+        
         
     }
     
@@ -119,11 +298,6 @@ class CategoryCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView
     {
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CategoryHeader", for: indexPath) as! CategoryHeaderCollectionReusableView
-        
-        
-        
-        
-        
         
         return headerView
     }

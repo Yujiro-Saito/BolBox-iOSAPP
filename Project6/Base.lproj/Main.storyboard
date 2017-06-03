@@ -392,7 +392,7 @@
                                 <rect key="frame" x="87.5" y="66" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="201" height="200"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wsU-Rl-k0i" customClass="ImageDesign" customModule="Project6" customModuleProvider="target">
@@ -700,7 +700,7 @@
         <scene sceneID="K0H-Ot-8rb">
             <objects>
                 <collectionViewController id="9vg-U9-DGo" customClass="CategoryCollectionViewController" customModule="Project6" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="aRE-Jb-D8J">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="aRE-Jb-D8J">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.12156862745098039" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -715,7 +715,7 @@
                                 <rect key="frame" x="87.5" y="66" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="201" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xio-Se-Bja" customClass="ImageDesign" customModule="Project6" customModuleProvider="target">
@@ -783,10 +783,13 @@
                                         <segment title="おすすめ"/>
                                     </segments>
                                     <color key="tintColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    <connections>
+                                        <action selector="segmentTapped:" destination="HmI-YD-Ydy" eventType="valueChanged" id="ao6-6c-7zR"/>
+                                    </connections>
                                 </segmentedControl>
                             </subviews>
                             <connections>
-                                <outlet property="categorySegment" destination="gTV-ls-URJ" id="mpF-4D-RUW"/>
+                                <outlet property="categorySegment" destination="gTV-ls-URJ" id="CDK-RC-nKB"/>
                             </connections>
                         </collectionReusableView>
                         <connections>
@@ -796,11 +799,30 @@
                     </collectionView>
                     <connections>
                         <outlet property="categoryCollection" destination="aRE-Jb-D8J" id="B5d-PC-X5y"/>
+                        <segue destination="7y9-B6-XCt" kind="show" id="yaY-yV-sah"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Db-K0-73a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3516" y="2059.5202398800602"/>
+        </scene>
+        <!--Test View Controller-->
+        <scene sceneID="njl-x3-L7Z">
+            <objects>
+                <viewController id="7y9-B6-XCt" customClass="testViewController" customModule="Project6" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8MO-Ne-nAn"/>
+                        <viewControllerLayoutGuide type="bottom" id="f4q-0Z-dSt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qny-ob-YN2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.25365863599999999" blue="0.15124483399999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MLw-Va-yTY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4622" y="2275"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="R0j-5G-68i">
