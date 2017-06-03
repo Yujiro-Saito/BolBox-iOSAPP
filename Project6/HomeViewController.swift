@@ -160,7 +160,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         
         
-        performSegue(withIdentifier: "categoryItems", sender: nil)
  
 
     }
