@@ -29,6 +29,8 @@
 		B770833A1EC8034E00302760 /* FIRData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77083391EC8034E00302760 /* FIRData.swift */; };
 		B7733EA01EC6A8E300D5B9BD /* newCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7733E9F1EC6A8E300D5B9BD /* newCollectionViewCell.swift */; };
 		B7733EA21EC6A96700D5B9BD /* popularCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7733EA11EC6A96700D5B9BD /* popularCollectionViewCell.swift */; };
+		B78053F71EE2C47B00F95BDF /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78053F61EE2C47B00F95BDF /* CategoryTableViewController.swift */; };
+		B78053F91EE2C63300F95BDF /* CategorysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78053F81EE2C63300F95BDF /* CategorysTableViewCell.swift */; };
 		B7DA001C1EDCBA8900CE5CC3 /* NewMoreCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DA001B1EDCBA8900CE5CC3 /* NewMoreCollectionViewController.swift */; };
 		B7DA001E1EDCBB8700CE5CC3 /* NewMoreReadCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DA001D1EDCBB8700CE5CC3 /* NewMoreReadCollectionViewCell.swift */; };
 		B7DB51661EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB51651EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift */; };
@@ -70,6 +72,8 @@
 		B77083391EC8034E00302760 /* FIRData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRData.swift; sourceTree = "<group>"; };
 		B7733E9F1EC6A8E300D5B9BD /* newCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newCollectionViewCell.swift; sourceTree = "<group>"; };
 		B7733EA11EC6A96700D5B9BD /* popularCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = popularCollectionViewCell.swift; sourceTree = "<group>"; };
+		B78053F61EE2C47B00F95BDF /* CategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
+		B78053F81EE2C63300F95BDF /* CategorysTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorysTableViewCell.swift; sourceTree = "<group>"; };
 		B7DA001B1EDCBA8900CE5CC3 /* NewMoreCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMoreCollectionViewController.swift; sourceTree = "<group>"; };
 		B7DA001D1EDCBB8700CE5CC3 /* NewMoreReadCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMoreReadCollectionViewCell.swift; sourceTree = "<group>"; };
 		B7DB51651EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -155,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				B7733E9F1EC6A8E300D5B9BD /* newCollectionViewCell.swift */,
+				B78053F81EE2C63300F95BDF /* CategorysTableViewCell.swift */,
 				B7DA001D1EDCBB8700CE5CC3 /* NewMoreReadCollectionViewCell.swift */,
 				B76C69DA1EE2514400BCFF5A /* CategoryCollectionViewCell.swift */,
 				B7FE1D6C1EDE2C850072A068 /* PopularMoreReadCollectionViewCell.swift */,
@@ -171,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				B727ADDC1EC67DB00081F500 /* HomeViewController.swift */,
+				B78053F61EE2C47B00F95BDF /* CategoryTableViewController.swift */,
 				B756C3D31ED547B200F1B46C /* DetailViewController.swift */,
 				B7DA001B1EDCBA8900CE5CC3 /* NewMoreCollectionViewController.swift */,
 				B7FE1D6A1EDE29D70072A068 /* PopularMoreReadCollectionViewController.swift */,
@@ -363,10 +369,12 @@
 				B7FE1D6F1EDE2F9A0072A068 /* SectionHeaderPopCollectionReusableView.swift in Sources */,
 				B770833A1EC8034E00302760 /* FIRData.swift in Sources */,
 				B7DA001E1EDCBB8700CE5CC3 /* NewMoreReadCollectionViewCell.swift in Sources */,
+				B78053F71EE2C47B00F95BDF /* CategoryTableViewController.swift in Sources */,
 				B7260C381EDEFAC200FC3913 /* DetailCollectionViewCell.swift in Sources */,
 				B727ADDD1EC67DB00081F500 /* HomeViewController.swift in Sources */,
 				B7E390271ED59E3C005D8BFC /* ButtonDesign.swift in Sources */,
 				B7508C1F1ECFBD2F0095C164 /* CategoryTableViewCell.swift in Sources */,
+				B78053F91EE2C63300F95BDF /* CategorysTableViewCell.swift in Sources */,
 				B7FE1D6D1EDE2C850072A068 /* PopularMoreReadCollectionViewCell.swift in Sources */,
 				B749F6F91ECF2B17005754F9 /* SlideViewController.swift in Sources */,
 				B77083381EC7FB9D00302760 /* Post.swift in Sources */,
