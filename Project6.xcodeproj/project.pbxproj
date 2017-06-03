@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B70B4CE61EC6FAC9006CBE55 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70B4CE51EC6FAC9006CBE55 /* CategoryCollectionViewCell.swift */; };
 		B7260C381EDEFAC200FC3913 /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7260C371EDEFAC200FC3913 /* DetailCollectionViewCell.swift */; };
 		B727ADDB1EC67AB20081F500 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B727ADDA1EC67AB20081F500 /* SWRevealViewController.m */; };
 		B727ADDD1EC67DB00081F500 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B727ADDC1EC67DB00081F500 /* HomeViewController.swift */; };
@@ -23,6 +22,9 @@
 		B756C3D41ED547B200F1B46C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B756C3D31ED547B200F1B46C /* DetailViewController.swift */; };
 		B761B9F11ED069FA00DA653E /* PopularPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B761B9F01ED069FA00DA653E /* PopularPostsViewController.swift */; };
 		B761B9F31ED06BC100DA653E /* PopularPostsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B761B9F21ED06BC100DA653E /* PopularPostsListTableViewCell.swift */; };
+		B76C69D91EE24EA200BCFF5A /* CategoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76C69D81EE24EA200BCFF5A /* CategoryCollectionViewController.swift */; };
+		B76C69DB1EE2514400BCFF5A /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76C69DA1EE2514400BCFF5A /* CategoryCollectionViewCell.swift */; };
+		B76C69DD1EE2542100BCFF5A /* CategoryHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76C69DC1EE2542100BCFF5A /* CategoryHeaderCollectionReusableView.swift */; };
 		B77083381EC7FB9D00302760 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77083371EC7FB9D00302760 /* Post.swift */; };
 		B770833A1EC8034E00302760 /* FIRData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77083391EC8034E00302760 /* FIRData.swift */; };
 		B7733EA01EC6A8E300D5B9BD /* newCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7733E9F1EC6A8E300D5B9BD /* newCollectionViewCell.swift */; };
@@ -42,7 +44,6 @@
 		063493BB14E15DFF892F2F2C /* Pods-Project6.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project6.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Project6/Pods-Project6.debug.xcconfig"; sourceTree = "<group>"; };
 		449A34F918184C79A7F7AD45 /* Pods_Project6.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project6.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D5F851655234321568C5F6 /* Pods-Project6.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project6.release.xcconfig"; path = "Pods/Target Support Files/Pods-Project6/Pods-Project6.release.xcconfig"; sourceTree = "<group>"; };
-		B70B4CE51EC6FAC9006CBE55 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		B7260C371EDEFAC200FC3913 /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		B727ADD81EC67AB10081F500 /* Project6-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Project6-Bridging-Header.h"; sourceTree = "<group>"; };
 		B727ADD91EC67AB20081F500 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -62,6 +63,9 @@
 		B756C3D31ED547B200F1B46C /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B761B9F01ED069FA00DA653E /* PopularPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularPostsViewController.swift; sourceTree = "<group>"; };
 		B761B9F21ED06BC100DA653E /* PopularPostsListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularPostsListTableViewCell.swift; sourceTree = "<group>"; };
+		B76C69D81EE24EA200BCFF5A /* CategoryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewController.swift; sourceTree = "<group>"; };
+		B76C69DA1EE2514400BCFF5A /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		B76C69DC1EE2542100BCFF5A /* CategoryHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		B77083371EC7FB9D00302760 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		B77083391EC8034E00302760 /* FIRData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRData.swift; sourceTree = "<group>"; };
 		B7733E9F1EC6A8E300D5B9BD /* newCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -152,10 +156,10 @@
 			children = (
 				B7733E9F1EC6A8E300D5B9BD /* newCollectionViewCell.swift */,
 				B7DA001D1EDCBB8700CE5CC3 /* NewMoreReadCollectionViewCell.swift */,
+				B76C69DA1EE2514400BCFF5A /* CategoryCollectionViewCell.swift */,
 				B7FE1D6C1EDE2C850072A068 /* PopularMoreReadCollectionViewCell.swift */,
 				B7733EA11EC6A96700D5B9BD /* popularCollectionViewCell.swift */,
 				B7508C1E1ECFBD2F0095C164 /* CategoryTableViewCell.swift */,
-				B70B4CE51EC6FAC9006CBE55 /* CategoryCollectionViewCell.swift */,
 				B7508C221ECFD4800095C164 /* CategoryItemTableViewCell.swift */,
 				B761B9F21ED06BC100DA653E /* PopularPostsListTableViewCell.swift */,
 				B7260C371EDEFAC200FC3913 /* DetailCollectionViewCell.swift */,
@@ -173,6 +177,7 @@
 				B761B9F01ED069FA00DA653E /* PopularPostsViewController.swift */,
 				B749F6F81ECF2B17005754F9 /* SlideViewController.swift */,
 				B7508C201ECFD2B50095C164 /* CategoryViewController.swift */,
+				B76C69D81EE24EA200BCFF5A /* CategoryCollectionViewController.swift */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -200,8 +205,8 @@
 			isa = PBXGroup;
 			children = (
 				B72A71F61EC677C100EA9BDF /* AppDelegate.swift */,
-				B77083371EC7FB9D00302760 /* Post.swift */,
 				B77083391EC8034E00302760 /* FIRData.swift */,
+				B77083371EC7FB9D00302760 /* Post.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -211,6 +216,7 @@
 			children = (
 				B7E390261ED59E3C005D8BFC /* ButtonDesign.swift */,
 				B7DB51651EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift */,
+				B76C69DC1EE2542100BCFF5A /* CategoryHeaderCollectionReusableView.swift */,
 				B7FE1D6E1EDE2F9A0072A068 /* SectionHeaderPopCollectionReusableView.swift */,
 				B7E3902A1ED5A13E005D8BFC /* ImageDesign.swift */,
 			);
@@ -344,11 +350,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7733EA21EC6A96700D5B9BD /* popularCollectionViewCell.swift in Sources */,
+				B76C69DB1EE2514400BCFF5A /* CategoryCollectionViewCell.swift in Sources */,
 				B7FE1D6B1EDE29D70072A068 /* PopularMoreReadCollectionViewController.swift in Sources */,
 				B756C3D41ED547B200F1B46C /* DetailViewController.swift in Sources */,
 				B7DB51661EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift in Sources */,
 				B761B9F31ED06BC100DA653E /* PopularPostsListTableViewCell.swift in Sources */,
+				B76C69D91EE24EA200BCFF5A /* CategoryCollectionViewController.swift in Sources */,
 				B72A71F71EC677C100EA9BDF /* AppDelegate.swift in Sources */,
+				B76C69DD1EE2542100BCFF5A /* CategoryHeaderCollectionReusableView.swift in Sources */,
 				B727ADDB1EC67AB20081F500 /* SWRevealViewController.m in Sources */,
 				B7DA001C1EDCBA8900CE5CC3 /* NewMoreCollectionViewController.swift in Sources */,
 				B7FE1D6F1EDE2F9A0072A068 /* SectionHeaderPopCollectionReusableView.swift in Sources */,
@@ -360,7 +369,6 @@
 				B7508C1F1ECFBD2F0095C164 /* CategoryTableViewCell.swift in Sources */,
 				B7FE1D6D1EDE2C850072A068 /* PopularMoreReadCollectionViewCell.swift in Sources */,
 				B749F6F91ECF2B17005754F9 /* SlideViewController.swift in Sources */,
-				B70B4CE61EC6FAC9006CBE55 /* CategoryCollectionViewCell.swift in Sources */,
 				B77083381EC7FB9D00302760 /* Post.swift in Sources */,
 				B7508C211ECFD2B50095C164 /* CategoryViewController.swift in Sources */,
 				B7508C231ECFD4800095C164 /* CategoryItemTableViewCell.swift in Sources */,
