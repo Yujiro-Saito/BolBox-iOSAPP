@@ -25,40 +25,51 @@ class CategoryTableViewController: UIViewController, UITableViewDataSource, UITa
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         
-        DataService.dataBase.REF_POST.queryLimited(toLast: 10).observe(.value, with: { (snapshot) in
+        //人気投稿
+        
+        
+        DataService.dataBase.REF_POST.queryOrdered(byChild: "pvCount").observe(.value, with: { (snapshot) in
             
             self.popularPosts = []
-            
-            print(snapshot.value)
             
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 
                 for snap in snapshot {
                     print("SNAP: \(snap)")
                     
+                    
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
                         
                         let key = snap.key
                         let post = Post(postKey: key, postData: postDict)
                         
                         
+                        
+                        
                         self.popularPosts.append(post)
+                        
+                        self.popularPosts.sort(by: {$0.pvCount > $1.pvCount})
+                        
                     }
                 }
                 
                 
             }
-            self.popularPosts.reverse()
+            
+            
             self.categoryTable.reloadData()
             
         })
 
+
         
     }
     
+        
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return popularPosts.count
