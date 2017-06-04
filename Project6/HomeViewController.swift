@@ -133,9 +133,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.view.addGestureRecognizer(trailingTapped)
         
         let backgroundView = UITapGestureRecognizer(target: self, action: #selector(HomeViewController.backgroundView(sender:)))
-        
         backgroundView.numberOfTapsRequired = 1
-        
         self.view.addGestureRecognizer(backgroundView)
         
         let swipe = UISwipeGestureRecognizer(target: self, action: #selector(HomeViewController.swipes(sender:)))
