@@ -20,6 +20,7 @@ class CategoryTableViewController: UIViewController, UITableViewDataSource, UITa
     var popularPosts = [Post]()
     var recommenedPosts = [Post]()
     var selectedSegment = 0
+    var indexValue = Int()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
 
     override func viewDidLoad() {
@@ -27,6 +28,8 @@ class CategoryTableViewController: UIViewController, UITableViewDataSource, UITa
         
         categoryTable.delegate = self
         categoryTable.dataSource = self
+        
+        print("インデックス番号\(indexValue)")
         
         
         

@@ -31,7 +31,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var menuOpened = false
     var displayName = ["ホーム", "ゲーム"," ガジェット","メディア","エンターテイメント","教育・キャリア"]
     var displayImages: [UIImage] = [#imageLiteral(resourceName: "wantedly"),#imageLiteral(resourceName: "wantedly"),#imageLiteral(resourceName: "wantedly"),#imageLiteral(resourceName: "wantedly"),#imageLiteral(resourceName: "wantedly"),#imageLiteral(resourceName: "wantedly")]
-    
+    var selectedIndexNum = Int()
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -352,6 +352,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             detailPopVc.detailImageThree = detailPopularPosts!.detailImageThree
             
             
+        } else if (segue.identifier == "ToCategoryVC") {
+            
+            let accessToCategoryVC = (segue.destination as? CategoryTableViewController)!
+            
+            accessToCategoryVC.indexValue = self.selectedIndexNum
+            
+            
         }
         
         
@@ -436,6 +443,43 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         
         return categoryCell!
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let indexNum = indexPath.row
+        
+        
+        switch indexNum {
+        case 0:
+            print("0")
+            
+        case 1:
+            print("1")
+            self.selectedIndexNum = 1
+            performSegue(withIdentifier: "ToCategoryVC", sender: nil)
+        case 2:
+            print("2")
+            self.selectedIndexNum = 2
+            performSegue(withIdentifier: "ToCategoryVC", sender: nil)
+        case 3:
+            print("3")
+            self.selectedIndexNum = 3
+            performSegue(withIdentifier: "ToCategoryVC", sender: nil)
+        case 4:
+            print("4")
+            self.selectedIndexNum = 4
+            performSegue(withIdentifier: "ToCategoryVC", sender: nil)
+        case 5:
+            print("5")
+            self.selectedIndexNum = 5
+            performSegue(withIdentifier: "ToCategoryVC", sender: nil)
+        default:
+            print("END")
+        }
+        
+        
     }
     
     
