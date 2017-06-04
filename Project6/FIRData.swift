@@ -25,6 +25,7 @@ class DataService {
     private var _REF_GADGET = DB_BASE.child("gadget")
     private var _REF_GAME = DB_BASE.child("game")
     private var _REF_ENTERTAINMENT = DB_BASE.child("entertainment")
+    
 
     
     

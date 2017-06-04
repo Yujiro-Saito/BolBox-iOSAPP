@@ -39,96 +39,166 @@ class CategoryTableViewController: UIViewController, UITableViewDataSource, UITa
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        //人気投稿
         
         
-        DataService.dataBase.REF_POST.queryOrdered(byChild: "pvCount").observe(.value, with: { (snapshot) in
+        if indexValue == 1 {
             
-            self.popularPosts = []
+            //人気投稿
             
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+            DataService.dataBase.REF_GAME.queryOrdered(byChild: "pvCount").observe(.value, with: { (snapshot) in
                 
-                for snap in snapshot {
-                    print("SNAP: \(snap)")
+                self.popularPosts = []
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     
-                    
-                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
                         
                         
-                        let key = snap.key
-                        let post = Post(postKey: key, postData: postDict)
-                        
-                        
-                        
-                        
-                        self.popularPosts.append(post)
-                        
-                        self.popularPosts.sort(by: {$0.pvCount > $1.pvCount})
-                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            
+                            
+                            
+                            self.popularPosts.append(post)
+                            
+                            self.popularPosts.sort(by: {$0.pvCount > $1.pvCount})
+                            
+                        }
                     }
+                    
+                    
                 }
                 
                 
-            }
-            
-            
-            self.categoryTable.reloadData()
-            
-        })
-        
-        
-        
-        //おすすめ
-        DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
-            
-            self.recommenedPosts = []
-            
-            print(snapshot.value)
-            
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                self.categoryTable.reloadData()
                 
-                for snap in snapshot {
-                    print("SNAP: \(snap)")
+            })
+            
+            //おすすめ
+            DataService.dataBase.REF_GAME.observe(.value, with: { (snapshot) in
+                
+                self.recommenedPosts = []
+                
+                print(snapshot.value)
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     
-                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
                         
-                        let key = snap.key
-                        let post = Post(postKey: key, postData: postDict)
-                        
-                        
-                        self.recommenedPosts.append(post)
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            
+                            self.recommenedPosts.append(post)
+                        }
                     }
+                    
+                    
+                }
+                self.recommenedPosts.reverse()
+                self.recommenedPosts.shuffle()
+                self.categoryTable.reloadData()
+                
+            })
+            
+            
+            
+            
+            
+        } else if indexValue == 2 {
+            
+            //人気投稿
+            
+            DataService.dataBase.REF_GADGET.queryOrdered(byChild: "pvCount").observe(.value, with: { (snapshot) in
+                
+                self.popularPosts = []
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
+                        
+                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            
+                            
+                            
+                            self.popularPosts.append(post)
+                            
+                            self.popularPosts.sort(by: {$0.pvCount > $1.pvCount})
+                            
+                        }
+                    }
+                    
+                    
                 }
                 
                 
-            }
-            self.recommenedPosts.reverse()
-            self.recommenedPosts.shuffle()
-            self.categoryTable.reloadData()
+                self.categoryTable.reloadData()
+                
+            })
             
-        })
-
-        
-        
-
-
-        
-    }
-    
-   
-
-    @IBAction func segmentedTapped(_ sender: Any) {
-        
-        
-        let segmentedNum = segmentedThree.selectedSegmentIndex
-        
-        switch segmentedNum {
-        case 0:
-            print("人気")
+            //おすすめ
+            DataService.dataBase.REF_GADGET.observe(.value, with: { (snapshot) in
+                
+                self.recommenedPosts = []
+                
+                print(snapshot.value)
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
+                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            
+                            self.recommenedPosts.append(post)
+                        }
+                    }
+                    
+                    
+                }
+                self.recommenedPosts.reverse()
+                self.recommenedPosts.shuffle()
+                self.categoryTable.reloadData()
+                
+            })
             
-            selectedSegment = 0
+
             
-            DataService.dataBase.REF_POST.queryOrdered(byChild: "pvCount").observe(.value, with: { (snapshot) in
+            
+            
+        } else if indexValue == 3 {
+            
+            
+            
+            
+            
+            
+            
+        } else if indexValue == 4 {
+            
+            
+            //人気投稿
+            
+            DataService.dataBase.REF_ENTERTAINMENT.queryOrdered(byChild: "pvCount").observe(.value, with: { (snapshot) in
                 
                 self.popularPosts = []
                 
@@ -163,50 +233,8 @@ class CategoryTableViewController: UIViewController, UITableViewDataSource, UITa
             })
             
             
-        case 1:
-            print("新着")
-            
-            selectedSegment = 1
-            
-            //新着投稿
-            DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
-                
-                self.posts = []
-                
-                print(snapshot.value)
-                
-                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                    
-                    for snap in snapshot {
-                        print("SNAP: \(snap)")
-                        
-                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                            
-                            let key = snap.key
-                            let post = Post(postKey: key, postData: postDict)
-                            
-                            
-                            self.posts.append(post)
-                        }
-                    }
-                    
-                    
-                }
-                self.posts.reverse()
-                self.categoryTable.reloadData()
-                
-            })
-            
-        case 2:
-            print("おすすめ")
-            
-            
-            
-            
-            selectedSegment = 2
-            
             //おすすめ
-            DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
+            DataService.dataBase.REF_ENTERTAINMENT.observe(.value, with: { (snapshot) in
                 
                 self.recommenedPosts = []
                 
@@ -234,7 +262,368 @@ class CategoryTableViewController: UIViewController, UITableViewDataSource, UITa
                 self.categoryTable.reloadData()
                 
             })
- 
+        } else if indexValue == 5 {
+            
+        }
+        
+        
+        
+        
+       
+
+        
+    }
+    
+   
+
+    @IBAction func segmentedTapped(_ sender: Any) {
+        
+        
+        let segmentedNum = segmentedThree.selectedSegmentIndex
+        
+        switch segmentedNum {
+        case 0:
+            
+            selectedSegment = 0
+            
+            //人気
+            if indexValue == 1 {
+                
+                DataService.dataBase.REF_GAME.queryOrdered(byChild: "pvCount").observe(.value, with: { (snapshot) in
+                    
+                    self.popularPosts = []
+                    
+                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                        
+                        for snap in snapshot {
+                            print("SNAP: \(snap)")
+                            
+                            
+                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                                
+                                
+                                let key = snap.key
+                                let post = Post(postKey: key, postData: postDict)
+                                
+                                
+                                
+                                
+                                self.popularPosts.append(post)
+                                
+                                self.popularPosts.sort(by: {$0.pvCount > $1.pvCount})
+                                
+                            }
+                        }
+                        
+                        
+                    }
+                    
+                    
+                    self.categoryTable.reloadData()
+                    
+                })
+                
+            } else if indexValue == 2 {
+                
+                DataService.dataBase.REF_GADGET.queryOrdered(byChild: "pvCount").observe(.value, with: { (snapshot) in
+                    
+                    self.popularPosts = []
+                    
+                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                        
+                        for snap in snapshot {
+                            print("SNAP: \(snap)")
+                            
+                            
+                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                                
+                                
+                                let key = snap.key
+                                let post = Post(postKey: key, postData: postDict)
+                                
+                                
+                                
+                                
+                                self.popularPosts.append(post)
+                                
+                                self.popularPosts.sort(by: {$0.pvCount > $1.pvCount})
+                                
+                            }
+                        }
+                        
+                        
+                    }
+                    
+                    
+                    self.categoryTable.reloadData()
+                    
+                })
+                
+            } else if indexValue == 3 {
+                
+                
+                
+            } else if indexValue == 4 {
+                DataService.dataBase.REF_ENTERTAINMENT.queryOrdered(byChild: "pvCount").observe(.value, with: { (snapshot) in
+                    
+                    self.popularPosts = []
+                    
+                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                        
+                        for snap in snapshot {
+                            print("SNAP: \(snap)")
+                            
+                            
+                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                                
+                                
+                                let key = snap.key
+                                let post = Post(postKey: key, postData: postDict)
+                                
+                                
+                                
+                                
+                                self.popularPosts.append(post)
+                                
+                                self.popularPosts.sort(by: {$0.pvCount > $1.pvCount})
+                                
+                            }
+                        }
+                        
+                        
+                    }
+                    
+                    
+                    self.categoryTable.reloadData()
+                    
+                })
+                
+                
+            } else if indexValue == 5 {
+                
+                
+                
+            }
+            
+            
+            
+            
+            
+        case 1:
+            
+            selectedSegment = 1
+            
+            //新着
+            
+            if indexValue == 1 {
+                
+                DataService.dataBase.REF_GAME.observe(.value, with: { (snapshot) in
+                    
+                    self.posts = []
+                    
+                    print(snapshot.value)
+                    
+                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                        
+                        for snap in snapshot {
+                            print("SNAP: \(snap)")
+                            
+                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                                
+                                let key = snap.key
+                                let post = Post(postKey: key, postData: postDict)
+                                
+                                
+                                self.posts.append(post)
+                            }
+                        }
+                        
+                        
+                    }
+                    self.posts.reverse()
+                    self.categoryTable.reloadData()
+                    
+                })
+                
+            } else if indexValue == 2 {
+                
+                DataService.dataBase.REF_GADGET.observe(.value, with: { (snapshot) in
+                    
+                    self.posts = []
+                    
+                    print(snapshot.value)
+                    
+                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                        
+                        for snap in snapshot {
+                            print("SNAP: \(snap)")
+                            
+                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                                
+                                let key = snap.key
+                                let post = Post(postKey: key, postData: postDict)
+                                
+                                
+                                self.posts.append(post)
+                            }
+                        }
+                        
+                        
+                    }
+                    self.posts.reverse()
+                    self.categoryTable.reloadData()
+                    
+                })
+                
+            } else if indexValue == 3 {
+                
+                
+                
+            } else if indexValue == 4 {
+                
+                DataService.dataBase.REF_ENTERTAINMENT.observe(.value, with: { (snapshot) in
+                    
+                    self.posts = []
+                    
+                    print(snapshot.value)
+                    
+                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                        
+                        for snap in snapshot {
+                            print("SNAP: \(snap)")
+                            
+                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                                
+                                let key = snap.key
+                                let post = Post(postKey: key, postData: postDict)
+                                
+                                
+                                self.posts.append(post)
+                            }
+                        }
+                        
+                        
+                    }
+                    self.posts.reverse()
+                    self.categoryTable.reloadData()
+                    
+                })
+                
+            } else if indexValue == 5 {
+                
+            }
+            
+            
+        case 2:
+            
+            selectedSegment = 2
+            
+            //おすすめ
+            
+            if indexValue == 1 {
+                
+                DataService.dataBase.REF_GAME.observe(.value, with: { (snapshot) in
+                    
+                    self.recommenedPosts = []
+                    
+                    print(snapshot.value)
+                    
+                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                        
+                        for snap in snapshot {
+                            print("SNAP: \(snap)")
+                            
+                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                                
+                                let key = snap.key
+                                let post = Post(postKey: key, postData: postDict)
+                                
+                                
+                                self.recommenedPosts.append(post)
+                            }
+                        }
+                        
+                        
+                    }
+                    self.recommenedPosts.reverse()
+                    self.recommenedPosts.shuffle()
+                    self.categoryTable.reloadData()
+                    
+                })
+
+                
+            } else if indexValue == 2 {
+                
+                DataService.dataBase.REF_GADGET.observe(.value, with: { (snapshot) in
+                    
+                    self.recommenedPosts = []
+                    
+                    print(snapshot.value)
+                    
+                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                        
+                        for snap in snapshot {
+                            print("SNAP: \(snap)")
+                            
+                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                                
+                                let key = snap.key
+                                let post = Post(postKey: key, postData: postDict)
+                                
+                                
+                                self.recommenedPosts.append(post)
+                            }
+                        }
+                        
+                        
+                    }
+                    self.recommenedPosts.reverse()
+                    self.recommenedPosts.shuffle()
+                    self.categoryTable.reloadData()
+                    
+                })
+
+                
+                
+            } else if indexValue == 3 {
+                
+            } else if indexValue == 4 {
+                
+                DataService.dataBase.REF_ENTERTAINMENT.observe(.value, with: { (snapshot) in
+                    
+                    self.recommenedPosts = []
+                    
+                    print(snapshot.value)
+                    
+                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                        
+                        for snap in snapshot {
+                            print("SNAP: \(snap)")
+                            
+                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                                
+                                let key = snap.key
+                                let post = Post(postKey: key, postData: postDict)
+                                
+                                
+                                self.recommenedPosts.append(post)
+                            }
+                        }
+                        
+                        
+                    }
+                    self.recommenedPosts.reverse()
+                    self.recommenedPosts.shuffle()
+                    self.categoryTable.reloadData()
+                    
+                })
+
+                
+            } else if indexValue == 5 {
+                
+            }
+            
+            
             
         default:
             print("ENDS")
