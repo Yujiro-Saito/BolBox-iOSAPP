@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate {
+class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, UITableViewDataSource, UITableViewDelegate {
     
     //Properties
     @IBOutlet weak var menuItem: UIBarButtonItem!
@@ -19,6 +19,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var slideMenu: UIView!
     @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var categoriesTable: UITableView!
+    
     
     
     var posts = [Post]()
@@ -27,6 +29,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var popularPosts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     var menuOpened = false
+    var displayName = ["ホーム", "ゲーム"," ガジェット","メディア","エンターテイメント","教育・キャリア"]
+    var displayImages: [UIImage] = [#imageLiteral(resourceName: "wantedly"),#imageLiteral(resourceName: "wantedly"),#imageLiteral(resourceName: "wantedly"),#imageLiteral(resourceName: "wantedly"),#imageLiteral(resourceName: "wantedly"),#imageLiteral(resourceName: "wantedly")]
     
     
     
@@ -147,7 +151,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.view.addGestureRecognizer(swipe)
         
     
-        
+        categoriesTable.delegate = self
+        categoriesTable.dataSource = self
         newCollection.dataSource = self
         newCollection.delegate = self
         trailingTapped.delegate = self
@@ -410,6 +415,27 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         
         
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return displayName.count
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let categoryCell = categoriesTable.dequeueReusableCell(withIdentifier: "CategoryDisplay", for: indexPath) as? CategoryDisplayTableViewCell
+        
+        categoryCell?.displayName.text = displayName[indexPath.row]
+        categoryCell?.displayImage.image = displayImages[indexPath.row]
+        
+        
+        
+        
+        return categoryCell!
     }
     
     
