@@ -28,8 +28,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     var menuOpened = false
     
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
+        
+
         
         //新着投稿
         DataService.dataBase.REF_POST.queryLimited(toLast: 10).observe(.value, with: { (snapshot) in
@@ -119,9 +124,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         return true
     }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         self.navigationController?.navigationBar.barTintColor = UIColor.black
     
@@ -146,6 +151,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         newCollection.dataSource = self
         newCollection.delegate = self
         trailingTapped.delegate = self
+        backgroundView.delegate = self
         popularCollection.dataSource = self
         popularCollection.delegate = self
         slideMenu.layer.shadowOpacity = 1
