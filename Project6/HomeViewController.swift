@@ -439,7 +439,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         categoryCell?.displayName.text = displayName[indexPath.row]
         categoryCell?.displayImage.image = displayImages[indexPath.row]
         
-        
+        categoryCell?.selectionStyle = UITableViewCellSelectionStyle.gray
         
         
         return categoryCell!
@@ -449,6 +449,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let indexNum = indexPath.row
+        
+        tableView.deselectRow(at: indexPath, animated: true)
         
         
         switch indexNum {

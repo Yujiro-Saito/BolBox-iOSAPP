@@ -289,6 +289,8 @@ class CategoryTableViewController: UIViewController, UITableViewDataSource, UITa
             //人気
             if indexValue == 1 {
                 
+                
+                
                 DataService.dataBase.REF_GAME.queryOrdered(byChild: "pvCount").observe(.value, with: { (snapshot) in
                     
                     self.popularPosts = []
