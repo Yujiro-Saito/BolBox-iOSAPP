@@ -9,17 +9,21 @@
 import UIKit
 import Firebase
 import AlamofireImage
+import ImageSlideshow
 
-class DetailViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class DetailViewController: UIViewController {
     
     //Outlet
     
-    @IBOutlet weak var detailCollectionView: UICollectionView!
     @IBOutlet weak var detailImage: UIImageView!
     @IBOutlet weak var detailName: UILabel!
     @IBOutlet weak var detailStarNum: UILabel!
     @IBOutlet weak var detailCategoryName: UILabel!
     @IBOutlet weak var detailWhatContent: UILabel!
+    
+    @IBOutlet weak var slideShow: ImageSlideshow!
+    
+    
     
     var name: String?
     var starNum: String?
@@ -31,17 +35,18 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     var detailImageThree: String?
     
     var detailImageBox = [String]()
+    var transScalable = CGAffineTransform()
     
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
     var posts = [Post]()
     
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        detailCollectionView.delegate = self
-        detailCollectionView.dataSource = self
         
         
         
@@ -49,35 +54,9 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     
-    
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let detailImage = detailCollectionView.dequeueReusableCell(withReuseIdentifier: "DetailItems", for: indexPath) as? DetailCollectionViewCell
-        
        
-        
-        detailImage?.detailItemImage.af_setImage(withURL: URL(string: self.detailImageOne!)!)
-        detailImage?.detailItemImage.af_setImage(withURL: URL(string: self.detailImageTwo!)!)
-        detailImage?.detailItemImage.af_setImage(withURL: URL(string: self.detailImageThree!)!)
-        
-        
-        
-       
-        return detailImage!
-        
-    }
     
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
-    }
-    
-    
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
     
     
     
@@ -95,10 +74,32 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         
         
+        let alamofireSource = [AlamofireSource(urlString: self.detailImageOne!)!, AlamofireSource(urlString: self.detailImageTwo!)!, AlamofireSource(urlString: self.detailImageThree!)!]
+        
+        
+        self.slideShow.setImageInputs(alamofireSource)
+        self.slideShow.contentScaleMode = .scaleAspectFill
+        self.slideShow.slideshowInterval = 5
+        self.slideShow.zoomEnabled = true
+        self.slideShow.pageControlPosition = .hidden
+        self.slideShow.activityIndicator = DefaultActivityIndicator()
+        self.slideShow.activityIndicator = DefaultActivityIndicator(style: .whiteLarge, color: barColor)
+        
+        
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(DetailViewController.didTap))
+        slideShow.addGestureRecognizer(recognizer)
         
         
     }
     
-   
+    
+    func didTap() {
+        let fullScreenController = slideShow.presentFullScreenController(from: self)
+        fullScreenController.slideshow.activityIndicator = DefaultActivityIndicator(style: .white, color: nil)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            }
+ 
 
 }
