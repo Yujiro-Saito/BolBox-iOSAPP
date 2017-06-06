@@ -13,8 +13,11 @@ import FirebaseStorage
 //DB アクセス
 let DB_BASE = FIRDatabase.database().reference()
 let STORAGE_BASE = FIRStorage.storage().reference()
+let barColor = UIColor.rgb(r: 31, g: 158, b: 187, alpha: 1)
 
 class DataService {
+    
+    
     
     
     static let dataBase = DataService()

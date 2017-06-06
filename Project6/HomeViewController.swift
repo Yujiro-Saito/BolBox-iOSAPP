@@ -133,6 +133,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         
         self.navigationController?.navigationBar.barTintColor = UIColor.black
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : barColor]
+        
+        self.title = "Project6"
+        
+        
     
         
         let trailingTapped = UITapGestureRecognizer(target: self, action: #selector(HomeViewController.tapTrailing(sender:)))

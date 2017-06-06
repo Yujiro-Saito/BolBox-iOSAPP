@@ -26,10 +26,9 @@ class CategoryTableViewController: UIViewController, UITableViewDataSource, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         categoryTable.delegate = self
         categoryTable.dataSource = self
-        
-        print("インデックス番号\(indexValue)")
         
         
         
@@ -42,6 +41,11 @@ class CategoryTableViewController: UIViewController, UITableViewDataSource, UITa
         
         
         if indexValue == 1 {
+            
+            
+            self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : barColor]
+            
+            self.title = "ゲーム"
             
             //人気投稿
             
@@ -115,6 +119,11 @@ class CategoryTableViewController: UIViewController, UITableViewDataSource, UITa
             
         } else if indexValue == 2 {
             
+            
+            self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : barColor]
+            
+            self.title = "ガジェット"
+            
             //人気投稿
             
             DataService.dataBase.REF_GADGET.queryOrdered(byChild: "pvCount").observe(.value, with: { (snapshot) in
@@ -187,13 +196,17 @@ class CategoryTableViewController: UIViewController, UITableViewDataSource, UITa
             
         } else if indexValue == 3 {
             
+            self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : barColor]
             
-            
-            
-            
+            self.title = "メディア"
             
             
         } else if indexValue == 4 {
+            
+            
+            self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : barColor]
+            
+            self.title = "エンターテインメント"
             
             
             //人気投稿
@@ -263,6 +276,12 @@ class CategoryTableViewController: UIViewController, UITableViewDataSource, UITa
                 
             })
         } else if indexValue == 5 {
+            
+            
+            self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : barColor]
+            
+            self.title = "教育・キャリア"
+            
             
         }
         
@@ -723,6 +742,12 @@ class CategoryTableViewController: UIViewController, UITableViewDataSource, UITa
 
    
 
+}
+
+extension UIColor {
+    class func rgb(r: Int, g: Int, b: Int, alpha: CGFloat) -> UIColor{
+        return UIColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: alpha)
+    }
 }
 
 
