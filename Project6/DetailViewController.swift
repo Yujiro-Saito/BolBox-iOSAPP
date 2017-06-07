@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import AlamofireImage
 import ImageSlideshow
+import SafariServices
 
 class DetailViewController: UIViewController {
     
@@ -33,6 +34,7 @@ class DetailViewController: UIViewController {
     var detailImageOne: String?
     var detailImageTwo: String?
     var detailImageThree: String?
+    var linkURL: String!
     
     var detailImageBox = [String]()
     var transScalable = CGAffineTransform()
@@ -47,7 +49,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+      
         
         
         
@@ -100,6 +102,43 @@ class DetailViewController: UIViewController {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             }
- 
+    
+    
+    
+    
+    
+    @IBAction func goSeeTapped(_ sender: Any) {
+        
+        do {
+            
+            print(linkURL)
+            let safariVC = SFSafariViewController(url: URL(string: linkURL!)!)
+            self.present(safariVC, animated: true, completion: nil)
+            
+        } catch {
+            
+            //alert
+            
+            
+            let alertController = UIAlertController(title: "エラー", message: "エラーが発生しました", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "Ok", style: .default) {
+                (action) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+            
+        }
 
-}
+            
+        }
+        
+        
+        
+    
+    }
+    
+  

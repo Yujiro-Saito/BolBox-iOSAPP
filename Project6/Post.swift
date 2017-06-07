@@ -23,6 +23,7 @@ class Post {
     private var _detailImageOne: String!
     private var _detailImageTwo: String!
     private var _detailImageThree: String!
+    private var _linkURL: String!
     
     private var _postKey: String!
     private var _postRef: FIRDatabaseReference!
@@ -69,6 +70,10 @@ class Post {
         return _detailImageThree
     }
     
+    var linkURL: String {
+        return _linkURL
+    }
+    
     
     var postKey: String {
         return _postKey
@@ -76,7 +81,7 @@ class Post {
     
     
     
-    init(name: String,  category: String, imageURL: String, whatContent: String, goodCount: Int, keepCount: Int, pvCount: Int, detailImageOne: String, detailImageTwo: String, detailImageThree: String) {
+    init(name: String,  category: String, imageURL: String, whatContent: String, goodCount: Int, keepCount: Int, pvCount: Int, detailImageOne: String, detailImageTwo: String, detailImageThree: String, linkURL: String) {
         
         
         self._name = name
@@ -89,6 +94,8 @@ class Post {
         self._detailImageOne = detailImageOne
         self._detailImageTwo = detailImageTwo
         self._detailImageThree = detailImageThree
+        self._linkURL = linkURL
+        
     }
     
     
@@ -138,7 +145,9 @@ class Post {
             self._detailImageThree = detailImageThree
         }
         
-        
+        if let linkURL = postData["linkURL"] as? String {
+            self._linkURL = linkURL
+        }
         
         
         _postRef = DataService.dataBase.REF_POST.child(_postKey)

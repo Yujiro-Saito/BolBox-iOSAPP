@@ -343,6 +343,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             detailVc.detailImageOne = detailNewPosts!.detailImageOne
             detailVc.detailImageTwo = detailNewPosts!.detailImageTwo
             detailVc.detailImageThree = detailNewPosts!.detailImageThree
+            detailVc.linkURL = detailNewPosts?.linkURL
             
         } else if (segue.identifier == "detailPopularPosts") {
             
@@ -356,6 +357,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             detailPopVc.detailImageOne = detailPopularPosts!.detailImageOne
             detailPopVc.detailImageTwo = detailPopularPosts!.detailImageTwo
             detailPopVc.detailImageThree = detailPopularPosts!.detailImageThree
+            detailPopVc.linkURL = detailPopularPosts!.linkURL
             
             
         } else if (segue.identifier == "ToCategoryVC") {
