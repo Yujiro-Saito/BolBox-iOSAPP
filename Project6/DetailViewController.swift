@@ -23,8 +23,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailWhatContent: UILabel!
     
     @IBOutlet weak var slideShow: ImageSlideshow!
+    @IBOutlet weak var keepButton: ButtonDesign!
     
-    
+   
     
     var name: String?
     var starNum: String?
@@ -35,6 +36,8 @@ class DetailViewController: UIViewController {
     var detailImageTwo: String?
     var detailImageThree: String?
     var linkURL: String!
+    var keepPushed: Bool?
+    var numberOfKeep: Int?
     
     var detailImageBox = [String]()
     var transScalable = CGAffineTransform()
@@ -48,9 +51,9 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("お気に入り数\(numberOfKeep)")
         
-      
-        
+      keepPushed = false
         
         
     }
@@ -135,10 +138,49 @@ class DetailViewController: UIViewController {
 
             
         }
+    
+    
+    
+    @IBAction func keepTapped(_ sender: Any) {
         
         
+        if self.keepPushed! == true {
+            
+            self.keepPushed = false
+            self.keepButton.backgroundColor = .red
+            
+        } else if self.keepPushed == false {
+            
+            self.keepPushed = true
+            self.keepButton.backgroundColor = barColor
+        }
+        
+    }
+    
+    
+    
         
     
     }
+
+
+extension DetailViewController {
+    
+    func like() {
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+}
+
+
+
+
     
   

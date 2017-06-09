@@ -34,14 +34,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var selectedIndexNum = Int()
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         
-        
-
-        
-        //新着投稿
-        DataService.dataBase.REF_POST.queryLimited(toLast: 10).observe(.value, with: { (snapshot) in
+        DataService.dataBase.REF_GAME.queryLimited(toLast: 3).observe(.value, with: { (snapshot) in
             
             self.posts = []
             
@@ -64,14 +62,71 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 
                 
             }
-            self.posts.reverse()
+            
+            self.newCollection.reloadData()
+            
+        })
+        
+        DataService.dataBase.REF_ENTERTAINMENT.queryLimited(toLast: 3).observe(.value, with: { (snapshot) in
+            
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        
+                        
+                        self.posts.append(post)
+                    }
+                }
+                
+                
+            }
+            
+            self.newCollection.reloadData()
+            
+        })
+        
+        DataService.dataBase.REF_GADGET.queryLimited(toLast: 3).observe(.value, with: { (snapshot) in
+            
+            
+            print(snapshot.value)
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        
+                        
+                        self.posts.append(post)
+                        
+                        
+                    }
+                }
+                
+                
+            }
+            
             self.newCollection.reloadData()
             
         })
         
         
         
+        self.newCollection.reloadData()
         
+        
+
         //人気投稿
         
         
@@ -110,8 +165,59 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         })
         
         
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         
         
+     
+        
+        
+        /*
+        //新着投稿
+        DataService.dataBase.REF_POST.queryLimited(toLast: 10).observe(.value, with: { (snapshot) in
+            
+            self.posts = []
+            
+            print(snapshot.value)
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        
+                        
+                        self.posts.append(post)
+                    }
+                }
+                
+                
+            }
+            self.posts.reverse()
+            self.newCollection.reloadData()
+            
+        })
+        
+ 
+        */
+       
+      
+        
+        
+    
+        
+        
+        
+        
+        
+ 
         
         
     }
@@ -344,6 +450,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             detailVc.detailImageTwo = detailNewPosts!.detailImageTwo
             detailVc.detailImageThree = detailNewPosts!.detailImageThree
             detailVc.linkURL = detailNewPosts?.linkURL
+            detailVc.numberOfKeep = detailNewPosts?.keepCount
+            
             
         } else if (segue.identifier == "detailPopularPosts") {
             
@@ -358,6 +466,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             detailPopVc.detailImageTwo = detailPopularPosts!.detailImageTwo
             detailPopVc.detailImageThree = detailPopularPosts!.detailImageThree
             detailPopVc.linkURL = detailPopularPosts!.linkURL
+            detailPopVc.numberOfKeep = detailPopularPosts?.keepCount
             
             
         } else if (segue.identifier == "ToCategoryVC") {
