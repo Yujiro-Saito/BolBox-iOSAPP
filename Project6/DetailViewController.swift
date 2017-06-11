@@ -26,9 +26,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var keepButton: ButtonDesign!
     
    
-    
+    var selectedSnap: FIRDataSnapshot!
     var name: String?
-    var starNum: String?
+    var starNum: Int?
     var categoryName: String?
     var whatContent: String?
     var imageURL: String?
@@ -38,6 +38,7 @@ class DetailViewController: UIViewController {
     var linkURL: String!
     var keepPushed: Bool?
     var numberOfKeep: Int?
+    
     
     var detailImageBox = [String]()
     var transScalable = CGAffineTransform()
@@ -73,7 +74,7 @@ class DetailViewController: UIViewController {
         detailImage.af_setImage(withURL: URL(string: imageURL!)!)
         
         detailName.text = name
-        detailStarNum.text = starNum
+        detailStarNum.text = String(starNum!)
         detailCategoryName.text = categoryName
         detailWhatContent.text = whatContent
         

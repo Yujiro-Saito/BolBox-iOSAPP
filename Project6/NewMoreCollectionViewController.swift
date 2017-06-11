@@ -39,7 +39,6 @@ class NewMoreCollectionViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        
         DataService.dataBase.REF_GAME.queryLimited(toLast: 4).observe(.value, with: { (snapshot) in
             
             self.posts = []
@@ -64,101 +63,72 @@ class NewMoreCollectionViewController: UICollectionViewController {
                 
             }
             
-            self.collectionView?.reloadData()
-            
-        })
-        
-        DataService.dataBase.REF_ENTERTAINMENT.queryLimited(toLast: 4).observe(.value, with: { (snapshot) in
             
             
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+            DataService.dataBase.REF_ENTERTAINMENT.queryLimited(toLast: 4).observe(.value, with: { (snapshot) in
                 
-                for snap in snapshot {
-                    print("SNAP: \(snap)")
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     
-                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
                         
-                        let key = snap.key
-                        let post = Post(postKey: key, postData: postDict)
-                        
-                        
-                        self.posts.append(post)
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            
+                            self.posts.append(post)
+                        }
                     }
+                    
+                    
                 }
                 
                 
-            }
-            
-            self.collectionView?.reloadData()
-            
-        })
-        
-        DataService.dataBase.REF_GADGET.queryLimited(toLast: 4).observe(.value, with: { (snapshot) in
             
             
-            print(snapshot.value)
-            
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+            DataService.dataBase.REF_GADGET.queryLimited(toLast: 4).observe(.value, with: { (snapshot) in
                 
-                for snap in snapshot {
-                    print("SNAP: \(snap)")
+                
+                print(snapshot.value)
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     
-                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
                         
-                        let key = snap.key
-                        let post = Post(postKey: key, postData: postDict)
-                        
-                        
-                        self.posts.append(post)
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            
+                            self.posts.append(post)
+                        }
                     }
+                    
+                    
                 }
                 
                 
-            }
+                self.collectionView?.reloadData()
+                
+                
+                
+            })
             
-            self.collectionView?.reloadData()
+            
+            })
+            
+           
+            
             
         })
         
         
-        
-        self.collectionView?.reloadData()
-
-        
-        
-        
-        
-        
-        /*
-        DataService.dataBase.REF_POST.queryLimited(toLast: 15).observe(.value, with: { (snapshot) in
-            
-            self.posts = []
-            
-            print(snapshot.value)
-            
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                
-                for snap in snapshot {
-                    print("SNAP: \(snap)")
-                    
-                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                        
-                        let key = snap.key
-                        let post = Post(postKey: key, postData: postDict)
-                        
-                        
-                        self.posts.append(post)
-                    }
-                }
-                
-                
-            }
-            self.posts.reverse()
-            self.collectionView?.reloadData()
-            
-        })
-        */
-        
+       
     }
 
     

@@ -32,14 +32,20 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var displayName = ["ホーム", "ゲーム"," ガジェット","メディア","エンターテイメント","教育・キャリア"]
     var displayImages: [UIImage] = [#imageLiteral(resourceName: "wantedly"),#imageLiteral(resourceName: "wantedly"),#imageLiteral(resourceName: "wantedly"),#imageLiteral(resourceName: "wantedly"),#imageLiteral(resourceName: "wantedly"),#imageLiteral(resourceName: "wantedly")]
     var selectedIndexNum = Int()
+    var ref = FIRDatabaseReference()
+    
+    
+   
     
     
     
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         
-        DataService.dataBase.REF_GAME.queryLimited(toLast: 3).observe(.value, with: { (snapshot) in
+        
+        DataService.dataBase.REF_GAME.queryLimited(toLast: 4).observe(.value, with: { (snapshot) in
             
             self.posts = []
             
@@ -63,70 +69,76 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 
             }
             
-            self.newCollection.reloadData()
-            
-        })
-        
-        DataService.dataBase.REF_ENTERTAINMENT.queryLimited(toLast: 3).observe(.value, with: { (snapshot) in
             
             
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+            DataService.dataBase.REF_ENTERTAINMENT.queryLimited(toLast: 4).observe(.value, with: { (snapshot) in
                 
-                for snap in snapshot {
-                    print("SNAP: \(snap)")
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     
-                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
                         
-                        let key = snap.key
-                        let post = Post(postKey: key, postData: postDict)
-                        
-                        
-                        self.posts.append(post)
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            
+                            self.posts.append(post)
+                        }
                     }
+                    
+                    
                 }
                 
                 
-            }
-            
-            self.newCollection.reloadData()
-            
-        })
-        
-        DataService.dataBase.REF_GADGET.queryLimited(toLast: 3).observe(.value, with: { (snapshot) in
-            
-            
-            print(snapshot.value)
-            
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 
-                for snap in snapshot {
-                    print("SNAP: \(snap)")
+                
+                DataService.dataBase.REF_GADGET.queryLimited(toLast: 4).observe(.value, with: { (snapshot) in
                     
-                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                    
+                    print(snapshot.value)
+                    
+                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                         
-                        let key = snap.key
-                        let post = Post(postKey: key, postData: postDict)
-                        
-                        
-                        self.posts.append(post)
+                        for snap in snapshot {
+                            print("SNAP: \(snap)")
+                            
+                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                                
+                                let key = snap.key
+                                let post = Post(postKey: key, postData: postDict)
+                                
+                                
+                                self.posts.append(post)
+                            }
+                        }
                         
                         
                     }
-                }
+                    
+                    
+                    
+                    
+                    self.newCollection.reloadData()
+                    
+                })
                 
                 
-            }
+            })
             
-            self.newCollection.reloadData()
+            
+            
             
         })
         
         
         
-        self.newCollection.reloadData()
         
         
-
+        
+        
         //人気投稿
         
         
@@ -164,62 +176,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             
         })
         
+
         
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
-        
-     
-        
-        
-        /*
-        //新着投稿
-        DataService.dataBase.REF_POST.queryLimited(toLast: 10).observe(.value, with: { (snapshot) in
-            
-            self.posts = []
-            
-            print(snapshot.value)
-            
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                
-                for snap in snapshot {
-                    print("SNAP: \(snap)")
-                    
-                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                        
-                        let key = snap.key
-                        let post = Post(postKey: key, postData: postDict)
-                        
-                        
-                        self.posts.append(post)
-                    }
-                }
-                
-                
-            }
-            self.posts.reverse()
-            self.newCollection.reloadData()
-            
-        })
-        
- 
-        */
-       
-      
-        
-        
-    
-        
-        
-        
-        
-        
- 
-        
-        
+               
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
@@ -438,12 +397,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         if (segue.identifier == "detailPosts") {
             
-            let detailVc = (segue.destination as? DetailViewController)!
-        
+            let detailVc = (segue.destination as? DetailViewController)!        
             
             detailVc.name = detailNewPosts!.name
             detailVc.categoryName = detailNewPosts!.category
-            detailVc.starNum = "\(detailNewPosts!.pvCount)"
+            detailVc.starNum = detailNewPosts!.pvCount
+            //detailVc.starNum = "\(detailNewPosts!.pvCount)"
             detailVc.whatContent = detailNewPosts!.whatContent
             detailVc.imageURL = detailNewPosts!.imageURL
             detailVc.detailImageOne = detailNewPosts!.detailImageOne
@@ -459,7 +418,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             
             detailPopVc.name = detailPopularPosts!.name
             detailPopVc.categoryName = detailPopularPosts!.category
-            detailPopVc.starNum = "\(detailPopularPosts!.pvCount)"
+            detailPopVc.starNum = detailPopularPosts!.pvCount
             detailPopVc.whatContent = detailPopularPosts!.whatContent
             detailPopVc.imageURL = detailPopularPosts!.imageURL
             detailPopVc.detailImageOne = detailPopularPosts!.detailImageOne
@@ -481,14 +440,32 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         
     }
-
+    
+    
+    var selectedSnap: FIRDataSnapshot!
+    var contentArray: [FIRDataSnapshot] = []
+    
+    func didSelectRow(selectedIndexPath indexPath: IndexPath) {
+        //ルートからのchildをユーザーのIDに指定
+        self.selectedSnap = contentArray[indexPath.row]
+    }
+  
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         
         if collectionView == newCollection {
-           
-             detailNewPosts = self.posts[indexPath.row]
+            
+            
+            detailNewPosts = self.posts[indexPath.row]
+            
+            var numberOfPageViews = detailNewPosts?.pvCount
+            
+            print("ページビューカウント\(numberOfPageViews!)")
+            
+            
+            
+            
             
             if detailNewPosts != nil {
                 print("New")
@@ -601,12 +578,25 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
     }
     
-    
-    
-    
-    
-    
-    
-    
+    }
 
+
+
+extension HomeViewController {
+    
+    func pageView() {
+        
+        
+        
+        
+    }
+    
+    
+    
 }
+
+
+
+
+
+
