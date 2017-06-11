@@ -35,44 +35,17 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var ref = FIRDatabaseReference()
     
     
-   
-    
-    
-    
-    
-    
+ 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        
-        DataService.dataBase.REF_GAME.queryLimited(toLast: 4).observe(.value, with: { (snapshot) in
+        do {
             
-            self.posts = []
-            
-            print(snapshot.value)
-            
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+            DataService.dataBase.REF_GAME.queryLimited(toLast: 4).observe(.value, with: { (snapshot) in
                 
-                for snap in snapshot {
-                    print("SNAP: \(snap)")
-                    
-                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                        
-                        let key = snap.key
-                        let post = Post(postKey: key, postData: postDict)
-                        
-                        
-                        self.posts.append(post)
-                    }
-                }
+                self.posts = []
                 
-                
-            }
-            
-            
-            
-            DataService.dataBase.REF_ENTERTAINMENT.queryLimited(toLast: 4).observe(.value, with: { (snapshot) in
-                
+                print(snapshot.value)
                 
                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     
@@ -94,11 +67,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 
                 
                 
-                
-                DataService.dataBase.REF_GADGET.queryLimited(toLast: 4).observe(.value, with: { (snapshot) in
+                DataService.dataBase.REF_ENTERTAINMENT.queryLimited(toLast: 4).observe(.value, with: { (snapshot) in
                     
-                    
-                    print(snapshot.value)
                     
                     if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                         
@@ -121,64 +91,161 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                     
                     
                     
-                    self.newCollection.reloadData()
+                    DataService.dataBase.REF_GADGET.queryLimited(toLast: 4).observe(.value, with: { (snapshot) in
+                        
+                        
+                        print(snapshot.value)
+                        
+                        if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                            
+                            for snap in snapshot {
+                                print("SNAP: \(snap)")
+                                
+                                if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                                    
+                                    let key = snap.key
+                                    let post = Post(postKey: key, postData: postDict)
+                                    
+                                    
+                                    self.posts.append(post)
+                                }
+                            }
+                            
+                            
+                        }
+                        
+                        
+                        
+                        
+                        self.newCollection.reloadData()
+                        
+                        
+                    })
+                    
                     
                 })
+                
+                
                 
                 
             })
             
             
+
             
+        } catch {
             
-        })
-        
-        
-        
-        
-        
-        
-        
-        //人気投稿
-        
-        
-        DataService.dataBase.REF_POST.queryOrdered(byChild: "pvCount").queryLimited(toLast: 5).observe(.value, with: { (snapshot) in
+            print("読み込みに失敗しました")
             
-            self.popularPosts = []
+        }
+        
+        
+        do {
             
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+            DataService.dataBase.REF_GAME.queryOrdered(byChild: "pvCount").queryLimited(toLast: 4).observe(.value, with: { (snapshot) in
                 
-                for snap in snapshot {
-                    print("SNAP: \(snap)")
+                self.popularPosts = []
+                
+                print(snapshot.value)
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     
-                    
-                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
                         
-                        
-                        let key = snap.key
-                        let post = Post(postKey: key, postData: postDict)
-                        
-                        
-                        
-                        
-                        self.popularPosts.append(post)
-                        
-                        self.popularPosts.sort(by: {$0.pvCount > $1.pvCount})
-                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            
+                            self.popularPosts.append(post)
+                            
+                            
+                        }
                     }
+                    
+                    
                 }
                 
                 
-            }
-            
-            
-            self.popularCollection.reloadData()
-            
-        })
-        
+                
+                DataService.dataBase.REF_ENTERTAINMENT.queryOrdered(byChild: "pvCount").queryLimited(toLast: 4).observe(.value, with: { (snapshot) in
+                    
+                    
+                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                        
+                        for snap in snapshot {
+                            print("SNAP: \(snap)")
+                            
+                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                                
+                                let key = snap.key
+                                let post = Post(postKey: key, postData: postDict)
+                                
+                                
+                                self.popularPosts.append(post)
+                            }
+                        }
+                        
+                        
+                    }
+                    
+                    
+                    
+                    
+                    DataService.dataBase.REF_GADGET.queryOrdered(byChild: "pvCount").queryLimited(toLast: 4).observe(.value, with: { (snapshot) in
+                        
+                        
+                        print(snapshot.value)
+                        
+                        if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                            
+                            for snap in snapshot {
+                                print("SNAP: \(snap)")
+                                
+                                if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                                    
+                                    let key = snap.key
+                                    let post = Post(postKey: key, postData: postDict)
+                                    
+                                    
+                                    self.popularPosts.append(post)
+                                }
+                            }
+                            
+                            
+                        }
+                        
+                        
+                        
+                        self.popularPosts.sort(by: {$0.pvCount > $1.pvCount})
+                        self.popularCollection.reloadData()
+                        
+                        
+                    })
+                    
+                    
+                })
+                
+                
+                
+                
+            })
 
+            
+        } catch {
+            print("読み込みに失敗しました")
+        }
         
-               
+        
+        
+        
+     
+        
+        
+        
+        
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
