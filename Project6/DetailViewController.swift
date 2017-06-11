@@ -160,6 +160,27 @@ class DetailViewController: UIViewController {
     
     
     
+    @IBAction func shareButtonDidTap(_ sender: Any) {
+        
+        print("シェア")
+        
+        let text = "sample text"
+        let sampleUrl = URL(string: "http://www.apple.com/")!
+        let image = detailImage.image!
+        let items = [text, sampleUrl, image] as [Any]
+        
+        let activityVc = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        
+        self.present(activityVc, animated: true, completion: nil)
+        
+        
+        
+        
+        
+    }
+    
+    
+    
         
     
     }

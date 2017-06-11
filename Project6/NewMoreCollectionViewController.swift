@@ -22,6 +22,7 @@ class NewMoreCollectionViewController: UICollectionViewController {
     //Property
     var posts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
+    var detailNewPosts: Post?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -170,6 +171,74 @@ class NewMoreCollectionViewController: UICollectionViewController {
         
         return headerView
     }
+    
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        
+        detailNewPosts = self.posts[indexPath.row]
+        
+        if detailNewPosts != nil {
+            performSegue(withIdentifier: "detailNewGo", sender: nil)
+        }
+        
+        
+    }
+    
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        if (segue.identifier == "detailNewGo") {
+            
+            let detailVc = (segue.destination as? DetailViewController)!
+            
+            detailVc.name = detailNewPosts?.name
+            detailVc.categoryName = detailNewPosts?.category
+            detailVc.starNum = detailNewPosts?.pvCount
+            detailVc.whatContent = detailNewPosts?.whatContent
+            detailVc.imageURL = detailNewPosts?.imageURL
+            detailVc.detailImageOne = detailNewPosts?.detailImageOne
+            detailVc.detailImageTwo = detailNewPosts?.detailImageTwo
+            detailVc.detailImageThree = detailNewPosts?.detailImageThree
+            detailVc.linkURL = detailNewPosts?.linkURL
+            detailVc.numberOfKeep = detailNewPosts?.keepCount
+            
+            
+            
+        } else {
+            print("error")
+        }
+        
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     
 

@@ -21,6 +21,9 @@ class CategoryTableViewController: UIViewController, UITableViewDataSource, UITa
     var recommenedPosts = [Post]()
     var selectedSegment = 0
     var indexValue = Int()
+    var detailPosts: Post?
+    
+    
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
 
     override func viewDidLoad() {
@@ -738,6 +741,67 @@ class CategoryTableViewController: UIViewController, UITableViewDataSource, UITa
 
         
     }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        print("あれ")
+        
+        
+        switch selectedSegment {
+        case 0:
+            
+            detailPosts = self.popularPosts[indexPath.row]
+            performSegue(withIdentifier: "CategoryDetailGo", sender: nil)
+            
+        case 1:
+            
+            detailPosts = self.posts[indexPath.row]
+            performSegue(withIdentifier: "CategoryDetailGo", sender: nil)
+            
+        case 2:
+            
+            detailPosts = self.recommenedPosts[indexPath.row]
+            performSegue(withIdentifier: "CategoryDetailGo", sender: nil)
+            
+        default:
+            print("error")
+        }
+        
+        
+        
+        
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        
+        if (segue.identifier == "CategoryDetailGo") {
+            
+            let detailVc = (segue.destination as? DetailViewController)!
+        
+            
+            detailVc.name = detailPosts?.name
+            detailVc.categoryName = detailPosts?.category
+            detailVc.starNum = detailPosts?.pvCount
+            detailVc.whatContent = detailPosts?.whatContent
+            detailVc.imageURL = detailPosts?.imageURL
+            detailVc.detailImageOne = detailPosts?.detailImageOne
+            detailVc.detailImageTwo = detailPosts?.detailImageTwo
+            detailVc.detailImageThree = detailPosts?.detailImageThree
+            detailVc.linkURL = detailPosts?.linkURL
+            detailVc.numberOfKeep = detailPosts?.keepCount
+            
+            
+        }
+        else {
+            print("error")
+        }
+    }
+    
     
 
    

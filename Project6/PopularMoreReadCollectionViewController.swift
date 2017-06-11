@@ -25,6 +25,8 @@ class PopularMoreReadCollectionViewController: UICollectionViewController {
     
     //Property
     var posts = [Post]()
+    var popularMorePosts: Post?
+    
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
     
@@ -187,6 +189,59 @@ class PopularMoreReadCollectionViewController: UICollectionViewController {
         headerView.sectionTitle.text = "人気"
         
         return headerView
+    }
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        popularMorePosts = posts[indexPath.row]
+        
+        if popularMorePosts != nil {
+            
+            performSegue(withIdentifier: "detailPopularGo", sender: nil)
+            
+        }
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        if (segue.identifier == "detailPopularGo") {
+            
+            
+            let detailVc = (segue.destination as? DetailViewController)!
+            
+            
+            detailVc.name = popularMorePosts?.name
+            detailVc.categoryName = popularMorePosts?.category
+            detailVc.starNum = popularMorePosts?.pvCount
+            detailVc.whatContent = popularMorePosts?.whatContent
+            detailVc.imageURL = popularMorePosts?.imageURL
+            detailVc.detailImageOne = popularMorePosts?.detailImageOne
+            detailVc.detailImageTwo = popularMorePosts?.detailImageTwo
+            detailVc.detailImageThree = popularMorePosts?.detailImageThree
+            detailVc.linkURL = popularMorePosts?.linkURL
+            detailVc.numberOfKeep = popularMorePosts?.keepCount
+            
+            
+            
+        } else {
+            print("error")
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
     
     

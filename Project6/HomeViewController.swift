@@ -508,16 +508,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
     }
     
-    
-    var selectedSnap: FIRDataSnapshot!
-    var contentArray: [FIRDataSnapshot] = []
-    
-    func didSelectRow(selectedIndexPath indexPath: IndexPath) {
-        //ルートからのchildをユーザーのIDに指定
-        self.selectedSnap = contentArray[indexPath.row]
-    }
-  
-    
+   
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         
@@ -529,8 +520,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             var numberOfPageViews = detailNewPosts?.pvCount
             
             print("ページビューカウント\(numberOfPageViews!)")
-            
-            
             
             
             
