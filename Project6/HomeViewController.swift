@@ -57,9 +57,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                             let key = snap.key
                             let post = Post(postKey: key, postData: postDict)
                             
-                            
                             self.posts.append(post)
                         }
+                        
+                        
                     }
                     
                     
@@ -191,9 +192,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                         
                     }
                     
-                    
-                    
-                    
                     DataService.dataBase.REF_GADGET.queryOrdered(byChild: "pvCount").queryLimited(toLast: 4).observe(.value, with: { (snapshot) in
                         
                         
@@ -222,7 +220,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                         self.popularPosts.sort(by: {$0.pvCount > $1.pvCount})
                         self.popularCollection.reloadData()
                         
-                        
                     })
                     
                     
@@ -237,13 +234,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         } catch {
             print("読み込みに失敗しました")
         }
-        
-        
-        
-        
-     
-        
-        
         
         
     }
@@ -302,15 +292,17 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         trailingTapped.cancelsTouchesInView = false
         backgroundView.cancelsTouchesInView = false
         
+        
+        /*
         FIRAuth.auth()!.signInAnonymously { (firUser, error) in
             if error == nil {
-                print("LoginOKKKK")
+                print("Login")
             } else {
                 print(error?.localizedDescription)
             }
         }
         
-        
+       */
  
 
     }
@@ -469,7 +461,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             detailVc.name = detailNewPosts!.name
             detailVc.categoryName = detailNewPosts!.category
             detailVc.starNum = detailNewPosts!.pvCount
-            //detailVc.starNum = "\(detailNewPosts!.pvCount)"
             detailVc.whatContent = detailNewPosts!.whatContent
             detailVc.imageURL = detailNewPosts!.imageURL
             detailVc.detailImageOne = detailNewPosts!.detailImageOne

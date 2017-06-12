@@ -54,6 +54,7 @@ PODS:
     - AlamofireImage (~> 3.0)
     - ImageSlideshow/Core
   - ImageSlideshow/Core (1.3.1)
+  - Pastel (0.3.0)
   - SlideMenuControllerSwift (3.0.1)
 
 DEPENDENCIES:
@@ -64,6 +65,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - ImageSlideshow (~> 1.3)
   - ImageSlideshow/Alamofire
+  - Pastel
   - SlideMenuControllerSwift
 
 SPEC CHECKSUMS:
@@ -81,8 +83,9 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
   ImageSlideshow: bef84bd0bda0bdf8ef6dfc6da42ed1703bea2070
+  Pastel: 738740c84f2b15bbcd96ebe99c4e6c2f5dd42262
   SlideMenuControllerSwift: 9a163b16d54afab734add42858cba7ef7c307755
 
-PODFILE CHECKSUM: 4d2cc67d04a1e0aa7dbbc84ca61f3c0a3443c888
+PODFILE CHECKSUM: f96c5b24cbaf626bcd4bbd157d4581affbc40091
 
 COCOAPODS: 1.1.1

@@ -34,6 +34,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pastel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Project6.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,17 +62,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>3E7B00A51DF846342223C45B0DC0373C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9EFE4C70245EE2857D336B8B9FA4E825</key>
+		<key>8E1D092BF86FB8C0ABE055E421219B71</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B37E213ABA98CA92B3794F00F63BB69B</key>
+		<key>9269EFFFCEF7EF1352412D8485092218</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9EFE4C70245EE2857D336B8B9FA4E825</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -78,11 +93,6 @@
 			<true/>
 		</dict>
 		<key>C2F3D02B448872659134FB61138D84BA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D80A37EF8A4DD2D049807C5B62E27B22</key>
 		<dict>
 			<key>primary</key>
 			<true/>
