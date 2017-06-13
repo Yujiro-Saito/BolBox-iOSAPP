@@ -659,10 +659,11 @@ class CategoryTableViewController: UIViewController, UITableViewDataSource, UITa
         
     }
     
-        
+    
+    
+            
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         
         if selectedSegment == 0 {
             return popularPosts.count
@@ -673,17 +674,31 @@ class CategoryTableViewController: UIViewController, UITableViewDataSource, UITa
         }
         
         return 0
+
+       
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        
         return 1
-    }
+        
+            }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = categoryTable.dequeueReusableCell(withIdentifier: "CategoryItems", for: indexPath) as?  CategorysTableViewCell
         
+        cell?.layer.borderColor = UIColor.black.cgColor
+        cell?.layer.borderWidth = 5
+        cell?.clipsToBounds = true
+        
+        
+        
         if selectedSegment == 0 {
+            
+            cell?.layer.borderColor = UIColor.gray.cgColor
+            cell?.layer.borderWidth = 5
+            cell?.clipsToBounds = true
             
             let post = popularPosts[indexPath.row]
             
@@ -704,6 +719,10 @@ class CategoryTableViewController: UIViewController, UITableViewDataSource, UITa
         
         } else if selectedSegment == 1 {
             
+            cell?.layer.borderColor = UIColor.gray.cgColor
+            cell?.layer.borderWidth = 5
+            cell?.clipsToBounds = true
+            
             
             let post = posts[indexPath.row]
             
@@ -717,6 +736,10 @@ class CategoryTableViewController: UIViewController, UITableViewDataSource, UITa
             return cell!
             
         } else if selectedSegment == 2 {
+            
+            cell?.layer.borderColor = UIColor.gray.cgColor
+            cell?.layer.borderWidth = 5
+            cell?.clipsToBounds = true
             
             let post = recommenedPosts[indexPath.row]
             
@@ -746,7 +769,6 @@ class CategoryTableViewController: UIViewController, UITableViewDataSource, UITa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
-        print("あれ")
         
         
         switch selectedSegment {
@@ -772,6 +794,17 @@ class CategoryTableViewController: UIViewController, UITableViewDataSource, UITa
         
         
         
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
     }
     
     
@@ -801,6 +834,8 @@ class CategoryTableViewController: UIViewController, UITableViewDataSource, UITa
             print("error")
         }
     }
+    
+    
     
     
 

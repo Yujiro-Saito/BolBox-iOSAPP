@@ -30,9 +30,9 @@ class CategorysTableViewCell: UITableViewCell {
         
         
         self.post = post
-        self.itemName.text = "\(post.name)"
+        //self.itemName.text = "\(post.name)"
         self.itemStarNum.text = "\(post.pvCount)"
-        self.itemWhatContent.text = "\(post.whatContent)"
+        //self.itemWhatContent.text = "\(post.whatContent)"
         
         if img != nil {
             
