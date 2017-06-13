@@ -22,6 +22,9 @@
 		B770833A1EC8034E00302760 /* FIRData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77083391EC8034E00302760 /* FIRData.swift */; };
 		B7733EA01EC6A8E300D5B9BD /* newCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7733E9F1EC6A8E300D5B9BD /* newCollectionViewCell.swift */; };
 		B7733EA21EC6A96700D5B9BD /* popularCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7733EA11EC6A96700D5B9BD /* popularCollectionViewCell.swift */; };
+		B77B554C1EEF6C8C00262589 /* SignUpField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77B554B1EEF6C8C00262589 /* SignUpField.swift */; };
+		B77B554E1EEF6E4900262589 /* RegisterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77B554D1EEF6E4900262589 /* RegisterButton.swift */; };
+		B77B55501EEF6F1600262589 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77B554F1EEF6F1600262589 /* SignUpViewController.swift */; };
 		B77CEDED1EE3DB8F005D4215 /* CategoryDisplayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77CEDEC1EE3DB8F005D4215 /* CategoryDisplayTableViewCell.swift */; };
 		B78053F71EE2C47B00F95BDF /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78053F61EE2C47B00F95BDF /* CategoryTableViewController.swift */; };
 		B78053F91EE2C63300F95BDF /* CategorysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78053F81EE2C63300F95BDF /* CategorysTableViewCell.swift */; };
@@ -60,6 +63,9 @@
 		B77083391EC8034E00302760 /* FIRData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRData.swift; sourceTree = "<group>"; };
 		B7733E9F1EC6A8E300D5B9BD /* newCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newCollectionViewCell.swift; sourceTree = "<group>"; };
 		B7733EA11EC6A96700D5B9BD /* popularCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = popularCollectionViewCell.swift; sourceTree = "<group>"; };
+		B77B554B1EEF6C8C00262589 /* SignUpField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpField.swift; sourceTree = "<group>"; };
+		B77B554D1EEF6E4900262589 /* RegisterButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterButton.swift; sourceTree = "<group>"; };
+		B77B554F1EEF6F1600262589 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		B77CEDEC1EE3DB8F005D4215 /* CategoryDisplayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryDisplayTableViewCell.swift; sourceTree = "<group>"; };
 		B78053F61EE2C47B00F95BDF /* CategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		B78053F81EE2C63300F95BDF /* CategorysTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorysTableViewCell.swift; sourceTree = "<group>"; };
@@ -69,6 +75,7 @@
 		B7DB51651EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		B7E390261ED59E3C005D8BFC /* ButtonDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonDesign.swift; sourceTree = "<group>"; };
 		B7E3902A1ED5A13E005D8BFC /* ImageDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDesign.swift; sourceTree = "<group>"; };
+		B7EBAC261EEFB6E200C46D42 /* Project6.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Project6.entitlements; sourceTree = "<group>"; };
 		B7FE1D6A1EDE29D70072A068 /* PopularMoreReadCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularMoreReadCollectionViewController.swift; sourceTree = "<group>"; };
 		B7FE1D6C1EDE2C850072A068 /* PopularMoreReadCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularMoreReadCollectionViewCell.swift; sourceTree = "<group>"; };
 		B7FE1D6E1EDE2F9A0072A068 /* SectionHeaderPopCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderPopCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -124,6 +131,7 @@
 		B72A71F51EC677C100EA9BDF /* Project6 */ = {
 			isa = PBXGroup;
 			children = (
+				B7EBAC261EEFB6E200C46D42 /* Project6.entitlements */,
 				B7733EA41EC6A98100D5B9BD /* View Controller */,
 				B7733EA71EC6A9BA00D5B9BD /* Data */,
 				B7733EA51EC6A99600D5B9BD /* Sidemenu */,
@@ -168,6 +176,7 @@
 				B756C3D31ED547B200F1B46C /* DetailViewController.swift */,
 				B7DA001B1EDCBA8900CE5CC3 /* NewMoreCollectionViewController.swift */,
 				B7FE1D6A1EDE29D70072A068 /* PopularMoreReadCollectionViewController.swift */,
+				B77B554F1EEF6F1600262589 /* SignUpViewController.swift */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -177,7 +186,6 @@
 			children = (
 				B727ADDA1EC67AB20081F500 /* SWRevealViewController.m */,
 				B727ADD91EC67AB20081F500 /* SWRevealViewController.h */,
-				B727ADD81EC67AB10081F500 /* Project6-Bridging-Header.h */,
 			);
 			name = Sidemenu;
 			sourceTree = "<group>";
@@ -195,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				B72A71F61EC677C100EA9BDF /* AppDelegate.swift */,
+				B727ADD81EC67AB10081F500 /* Project6-Bridging-Header.h */,
 				B77083391EC8034E00302760 /* FIRData.swift */,
 				B77083371EC7FB9D00302760 /* Post.swift */,
 			);
@@ -206,10 +215,12 @@
 			children = (
 				B7E390261ED59E3C005D8BFC /* ButtonDesign.swift */,
 				B7D58C9D1EEE0D9100126406 /* signUpButtonDesign.swift */,
+				B77B554D1EEF6E4900262589 /* RegisterButton.swift */,
 				B71ACDA71EED8620005DCD80 /* SignInUpViewDesign.swift */,
 				B7DB51651EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift */,
 				B7FE1D6E1EDE2F9A0072A068 /* SectionHeaderPopCollectionReusableView.swift */,
 				B7E3902A1ED5A13E005D8BFC /* ImageDesign.swift */,
+				B77B554B1EEF6C8C00262589 /* SignUpField.swift */,
 			);
 			name = "UI Design";
 			sourceTree = "<group>";
@@ -252,6 +263,11 @@
 						DevelopmentTeam = N7JAVHJ5S7;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -346,6 +362,7 @@
 				B71ACDA81EED8620005DCD80 /* SignInUpViewDesign.swift in Sources */,
 				B756C3D41ED547B200F1B46C /* DetailViewController.swift in Sources */,
 				B7DB51661EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift in Sources */,
+				B77B554C1EEF6C8C00262589 /* SignUpField.swift in Sources */,
 				B7D58C9E1EEE0D9100126406 /* signUpButtonDesign.swift in Sources */,
 				B72A71F71EC677C100EA9BDF /* AppDelegate.swift in Sources */,
 				B727ADDB1EC67AB20081F500 /* SWRevealViewController.m in Sources */,
@@ -358,10 +375,12 @@
 				B7260C381EDEFAC200FC3913 /* DetailCollectionViewCell.swift in Sources */,
 				B727ADDD1EC67DB00081F500 /* HomeViewController.swift in Sources */,
 				B7E390271ED59E3C005D8BFC /* ButtonDesign.swift in Sources */,
+				B77B554E1EEF6E4900262589 /* RegisterButton.swift in Sources */,
 				B78053F91EE2C63300F95BDF /* CategorysTableViewCell.swift in Sources */,
 				B7FE1D6D1EDE2C850072A068 /* PopularMoreReadCollectionViewCell.swift in Sources */,
 				B77083381EC7FB9D00302760 /* Post.swift in Sources */,
 				B7E3902B1ED5A13E005D8BFC /* ImageDesign.swift in Sources */,
+				B77B55501EEF6F1600262589 /* SignUpViewController.swift in Sources */,
 				B7733EA01EC6A8E300D5B9BD /* newCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,6 +509,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Project6/Project6.entitlements;
 				DEVELOPMENT_TEAM = N7JAVHJ5S7;
 				INFOPLIST_FILE = Project6/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -509,6 +529,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Project6/Project6.entitlements;
 				DEVELOPMENT_TEAM = N7JAVHJ5S7;
 				INFOPLIST_FILE = Project6/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

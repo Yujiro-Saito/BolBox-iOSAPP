@@ -7,14 +7,23 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseAuth
 
-class SignInandUpViewController: UIViewController {
+class SignInandUpViewController: UIViewController,GIDSignInUIDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        GIDSignIn.sharedInstance().uiDelegate = self
+        
+       
 
     }
+    
+    
+     
+    
     
     
     @IBAction func registerButtonDidTap(_ sender: Any) {
@@ -22,22 +31,26 @@ class SignInandUpViewController: UIViewController {
         let actionSheet = UIAlertController(title: "登録", message: "方法", preferredStyle: UIAlertControllerStyle.actionSheet)
         let action1 = UIAlertAction(title: "Twitter", style: UIAlertActionStyle.default, handler: {
             (action: UIAlertAction!) in
-            print("アクション１をタップした時の処理")
         })
         
         let action2 = UIAlertAction(title: "Google", style: UIAlertActionStyle.default, handler: {
             (action: UIAlertAction!) in
-            print("アクション２をタップした時の処理")
+            
+            GIDSignIn.sharedInstance().uiDelegate = self
+            GIDSignIn.sharedInstance().signIn()
+            
+            
         })
         
         let action3 = UIAlertAction(title: "メールアドレス", style: UIAlertActionStyle.default, handler: {
             (action: UIAlertAction!) in
-            print("アクション３をタップした時の処理")
+            
+            self.performSegue(withIdentifier: "EmailSignUp", sender: nil)
+            
         })
         
         let action4 = UIAlertAction(title: "電話番号", style: UIAlertActionStyle.default, handler: {
             (action: UIAlertAction!) in
-            print("アクション4をタップした時の処理")
         })
 
         
@@ -45,7 +58,6 @@ class SignInandUpViewController: UIViewController {
         
         let cancel = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler: {
             (action: UIAlertAction!) in
-            print("キャンセルをタップした時の処理")
         })
         
         actionSheet.addAction(action1)

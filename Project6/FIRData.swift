@@ -30,12 +30,14 @@ class DataService {
     private var _REF_GADGET = DB_BASE.child("gadget")
     private var _REF_GAME = DB_BASE.child("game")
     private var _REF_ENTERTAINMENT = DB_BASE.child("entertainment")
-    
+    private var _REF_USER = DB_BASE.child("users")
 
     
     
     //Storage REF
     private var _REF_POST_IMAGES = STORAGE_BASE.child("post-pics")
+    private var _REF_USER_IMAGES = STORAGE_BASE.child("user-pics")
+    
     
     //Properties
     
@@ -62,8 +64,16 @@ class DataService {
         return _REF_ENTERTAINMENT
     }
     
+    var REF_USER: FIRDatabaseReference {
+        return _REF_USER
+    }
     
-   
+    
+    func createDataBaseUser(uid: String, userData: Dictionary<String, String>, userName: Dictionary<String, String>, photoURL: Dictionary<String, String>) {
+        REF_USER.child(uid).updateChildValues(userData)
+        REF_USER.child(uid).updateChildValues(userName)
+        REF_USER.child(uid).updateChildValues(photoURL)
+    }
     
     
     

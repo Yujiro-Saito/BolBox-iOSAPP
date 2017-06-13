@@ -15,6 +15,8 @@ target 'Project6' do
   pod "ImageSlideshow/Alamofire"
   pod 'AlamofireImage', '~> 3.1'
   pod "Pastel"
+  pod 'TwitterKit'
+  pod 'GoogleSignIn'
   
 
 end

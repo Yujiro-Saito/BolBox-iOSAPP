@@ -9,13 +9,20 @@
 import UIKit
 
 class SignUpField: UITextField {
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+        
+        self.leftViewMode = .always
+        self.layer.cornerRadius = 5
+        self.clearButtonMode = .always
+        self.returnKeyType = .done
+        
+        
+        
     }
-    */
 
+    
 }
