@@ -39,6 +39,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        FIRAuth.auth()!.signInAnonymously { (firUser, error) in
+            if error == nil {
+                print("Login")
+            } else {
+                print(error?.localizedDescription)
+            }
+        }
+        
         do {
             
             DataService.dataBase.REF_GAME.queryLimited(toLast: 4).observe(.value, with: { (snapshot) in
@@ -293,16 +301,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         backgroundView.cancelsTouchesInView = false
         
         
-        /*
-        FIRAuth.auth()!.signInAnonymously { (firUser, error) in
-            if error == nil {
-                print("Login")
-            } else {
-                print(error?.localizedDescription)
-            }
-        }
         
-       */
+        
+        
+       
  
 
     }
