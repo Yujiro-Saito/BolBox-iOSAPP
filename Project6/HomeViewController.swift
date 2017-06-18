@@ -38,26 +38,77 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
  
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(true)
         
-        let user = FIRAuth.auth()?.currentUser
         
-        if let user = user {
-            let changeRequest = user.profileChangeRequest()
+        if UserDefaults.standard.object(forKey: "Pop") != nil {
             
-            changeRequest.displayName = self.displayUserName
             
-            changeRequest.commitChanges { error in
-                if let error = error {
-                    // An error happened.
-                    print(error.localizedDescription)
-                } else {
-                    print("プロフィールの登録完了")
-                    print(user.displayName!)
-                    print(user.email!)
+            let alertViewControler = UIAlertController(title: "登録を完了しました", message: "ありがとうございます!", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            
+            alertViewControler.addAction(okAction)
+            self.present(alertViewControler, animated: true, completion: nil)
+            
+            
+            let userDefaults = UserDefaults.standard
+            userDefaults.removeObject(forKey: "Pop")
+            
+            
+        }
+        
+        
+        
+        if UserDefaults.standard.object(forKey: "OnceRegi") != nil {
+            
+            
+            let alertViewControler = UIAlertController(title: "登録を完了しました", message: "ありがとうございます!", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            
+            alertViewControler.addAction(okAction)
+            self.present(alertViewControler, animated: true, completion: nil)
+            
+            
+            let userDefaults = UserDefaults.standard
+            userDefaults.removeObject(forKey: "OnceRegi")
+            
+            //ユーザー登録時のユーザーネーム、アドレスの登録
+            let user = FIRAuth.auth()?.currentUser
+            
+            if let user = user {
+                let changeRequest = user.profileChangeRequest()
+                
+                changeRequest.displayName = self.displayUserName
+                
+                changeRequest.commitChanges { error in
+                    if let error = error {
+                        // An error happened.
+                        print(error.localizedDescription)
+                    } else {
+                        print("プロフィールの登録完了")
+                        print(user.displayName!)
+                        print(user.email!)
+                    }
                 }
             }
+            
         }
+        
+        
+        if UserDefaults.standard.object(forKey: "register") == nil {
+        
+            //登録画面に戻る
+            self.performSegue(withIdentifier: "backtoLogin", sender: nil)
+            
+        } else if UserDefaults.standard.object(forKey: "register") != nil {
+            print("全部ok")
+            
+        }
+
+        
+        
+        
         
                 
         
@@ -650,6 +701,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         
     }
+    
+    
+    @IBAction func profileMenuDidTap(_ sender: Any) {
+        print("OK")
+    }
+    
+    
     
     }
 

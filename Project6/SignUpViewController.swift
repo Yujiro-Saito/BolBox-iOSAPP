@@ -66,8 +66,6 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
         
         homeVc.displayUserName = userNameField.text
         
-        
-        
     }
     
         
@@ -103,8 +101,8 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
                     
                     
                     
-                    UserDefaults.standard.set("check", forKey: "check")
-                    
+                    UserDefaults.standard.set("register", forKey: "register")
+                    UserDefaults.standard.set("OnceRegi", forKey: "OnceRegi")
                     
                     
                     if let user = user {
