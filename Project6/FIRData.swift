@@ -10,12 +10,14 @@ import Foundation
 import Firebase
 import FirebaseStorage
 
+
 //DB アクセス
 let DB_BASE = FIRDatabase.database().reference()
 let STORAGE_BASE = FIRStorage.storage().reference()
 let REF = FIRDatabaseReference()
 
 let barColor = UIColor.rgb(r: 31, g: 158, b: 187, alpha: 1)
+let KEY_UID = "uid"
 
 class DataService {
     
@@ -69,10 +71,11 @@ class DataService {
     }
     
     
-    func createDataBaseUser(uid: String, userData: Dictionary<String, String>, userName: Dictionary<String, String>, photoURL: Dictionary<String, String>) {
+    func createDataBaseUser(uid: String, userData: Dictionary<String, String>, userName: Dictionary<String, Any>, photoURL: Dictionary<String, Any>, userEmail: Dictionary<String, Any>) {
         REF_USER.child(uid).updateChildValues(userData)
         REF_USER.child(uid).updateChildValues(userName)
         REF_USER.child(uid).updateChildValues(photoURL)
+        REF_USER.child(uid).updateChildValues(userEmail)
     }
     
     

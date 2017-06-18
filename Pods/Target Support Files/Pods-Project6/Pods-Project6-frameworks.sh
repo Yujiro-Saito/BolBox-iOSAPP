@@ -92,6 +92,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/ImageSlideshow/ImageSlideshow.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Pastel/Pastel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SlideMenuControllerSwift/SlideMenuControllerSwift.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftKeychainWrapper/SwiftKeychainWrapper.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
@@ -102,4 +103,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/ImageSlideshow/ImageSlideshow.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Pastel/Pastel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SlideMenuControllerSwift/SlideMenuControllerSwift.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftKeychainWrapper/SwiftKeychainWrapper.framework"
 fi

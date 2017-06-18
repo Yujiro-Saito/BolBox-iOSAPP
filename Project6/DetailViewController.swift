@@ -40,6 +40,7 @@ class DetailViewController: UIViewController {
     var numberOfKeep: Int?
     
     
+    
     var detailImageBox = [String]()
     var transScalable = CGAffineTransform()
     
@@ -52,9 +53,10 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("お気に入り数\(numberOfKeep)")
         
-      keepPushed = false
+        keepPushed = false
+        
+        
         
         
     }

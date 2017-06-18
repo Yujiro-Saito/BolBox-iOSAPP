@@ -34,19 +34,43 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var selectedIndexNum = Int()
     var ref = FIRDatabaseReference()
     
+    var displayUserName: String?
     
  
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        let user = FIRAuth.auth()?.currentUser
+        
+        if let user = user {
+            let changeRequest = user.profileChangeRequest()
+            
+            changeRequest.displayName = self.displayUserName
+            
+            changeRequest.commitChanges { error in
+                if let error = error {
+                    // An error happened.
+                    print(error.localizedDescription)
+                } else {
+                    print("プロフィールの登録完了")
+                    print(user.displayName!)
+                    print(user.email!)
+                }
+            }
+        }
+        
+                
+        
+        /*
         FIRAuth.auth()!.signInAnonymously { (firUser, error) in
             if error == nil {
                 print("Login")
             } else {
                 print(error?.localizedDescription)
             }
+ 
         }
-        
+        */
         do {
             
             DataService.dataBase.REF_GAME.queryLimited(toLast: 4).observe(.value, with: { (snapshot) in

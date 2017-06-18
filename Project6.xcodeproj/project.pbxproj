@@ -34,6 +34,7 @@
 		B7DB51661EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB51651EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift */; };
 		B7E390271ED59E3C005D8BFC /* ButtonDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E390261ED59E3C005D8BFC /* ButtonDesign.swift */; };
 		B7E3902B1ED5A13E005D8BFC /* ImageDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E3902A1ED5A13E005D8BFC /* ImageDesign.swift */; };
+		B7FB80951EF5592000EA0CEE /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FB80941EF5592000EA0CEE /* ProfileImage.swift */; };
 		B7FE1D6B1EDE29D70072A068 /* PopularMoreReadCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FE1D6A1EDE29D70072A068 /* PopularMoreReadCollectionViewController.swift */; };
 		B7FE1D6D1EDE2C850072A068 /* PopularMoreReadCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FE1D6C1EDE2C850072A068 /* PopularMoreReadCollectionViewCell.swift */; };
 		B7FE1D6F1EDE2F9A0072A068 /* SectionHeaderPopCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FE1D6E1EDE2F9A0072A068 /* SectionHeaderPopCollectionReusableView.swift */; };
@@ -76,6 +77,7 @@
 		B7E390261ED59E3C005D8BFC /* ButtonDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonDesign.swift; sourceTree = "<group>"; };
 		B7E3902A1ED5A13E005D8BFC /* ImageDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDesign.swift; sourceTree = "<group>"; };
 		B7EBAC261EEFB6E200C46D42 /* Project6.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Project6.entitlements; sourceTree = "<group>"; };
+		B7FB80941EF5592000EA0CEE /* ProfileImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		B7FE1D6A1EDE29D70072A068 /* PopularMoreReadCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularMoreReadCollectionViewController.swift; sourceTree = "<group>"; };
 		B7FE1D6C1EDE2C850072A068 /* PopularMoreReadCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularMoreReadCollectionViewCell.swift; sourceTree = "<group>"; };
 		B7FE1D6E1EDE2F9A0072A068 /* SectionHeaderPopCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderPopCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -171,11 +173,11 @@
 			isa = PBXGroup;
 			children = (
 				B727ADDC1EC67DB00081F500 /* HomeViewController.swift */,
-				B71EEA3C1EED7D2A00CCF1D1 /* SignInandUpViewController.swift */,
 				B78053F61EE2C47B00F95BDF /* CategoryTableViewController.swift */,
 				B756C3D31ED547B200F1B46C /* DetailViewController.swift */,
 				B7DA001B1EDCBA8900CE5CC3 /* NewMoreCollectionViewController.swift */,
 				B7FE1D6A1EDE29D70072A068 /* PopularMoreReadCollectionViewController.swift */,
+				B71EEA3C1EED7D2A00CCF1D1 /* SignInandUpViewController.swift */,
 				B77B554F1EEF6F1600262589 /* SignUpViewController.swift */,
 			);
 			name = "View Controller";
@@ -214,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				B7E390261ED59E3C005D8BFC /* ButtonDesign.swift */,
+				B7FB80941EF5592000EA0CEE /* ProfileImage.swift */,
 				B7D58C9D1EEE0D9100126406 /* signUpButtonDesign.swift */,
 				B77B554D1EEF6E4900262589 /* RegisterButton.swift */,
 				B71ACDA71EED8620005DCD80 /* SignInUpViewDesign.swift */,
@@ -369,6 +372,7 @@
 				B7DA001C1EDCBA8900CE5CC3 /* NewMoreCollectionViewController.swift in Sources */,
 				B7FE1D6F1EDE2F9A0072A068 /* SectionHeaderPopCollectionReusableView.swift in Sources */,
 				B770833A1EC8034E00302760 /* FIRData.swift in Sources */,
+				B7FB80951EF5592000EA0CEE /* ProfileImage.swift in Sources */,
 				B7DA001E1EDCBB8700CE5CC3 /* NewMoreReadCollectionViewCell.swift in Sources */,
 				B71EEA3D1EED7D2A00CCF1D1 /* SignInandUpViewController.swift in Sources */,
 				B78053F71EE2C47B00F95BDF /* CategoryTableViewController.swift in Sources */,

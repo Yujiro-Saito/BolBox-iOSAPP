@@ -8,12 +8,14 @@
 
 import UIKit
 import Firebase
+import SwiftKeychainWrapper
 
 class SignUpViewController: UIViewController , UITextFieldDelegate{
     
     
     @IBOutlet weak var emailField: SignUpField!
     @IBOutlet weak var passwordField: SignUpField!
+    @IBOutlet weak var userNameField: SignUpField!
     
     
     
@@ -23,14 +25,17 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
         
         emailField.delegate = self
         passwordField.delegate = self
+        userNameField.delegate = self
         
-        self.emailField.becomeFirstResponder()
+        self.userNameField.becomeFirstResponder()
 
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         emailField.resignFirstResponder()
         passwordField.resignFirstResponder()
+        userNameField.resignFirstResponder()
+        
         return true
     }
     
@@ -54,13 +59,26 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
     }
     
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        let homeVc = (segue.destination as? HomeViewController)!
+        
+        homeVc.displayUserName = userNameField.text
+        
+        
+        
+    }
+    
+        
     
     
     @IBAction func registerDidTap(_ sender: Any) {
         
         showIndicator()
         
-        if emailField.text == nil || passwordField.text == nil{
+        if emailField.text == nil || passwordField.text == nil || userNameField == nil {
+            
             DispatchQueue.main.async {
                 
                 self.indicator.stopAnimating()
@@ -82,8 +100,6 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
                 
                 if error == nil{
                     
-                    //成功
-                    print("登録完了しました")
                     
                     
                     
@@ -91,10 +107,42 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
                     
                     
                     
+                    if let user = user {
+                        
+                        
+                        
+                        
+                        let userData = ["provider" : user.providerID]
+                        let name = ["userName" : user.displayName]
+                        let email = ["email" : user.email]
+                        let photoUrl = ["photoURL" : user.photoURL]
+                        
+                        print("データ: \(userData)")
+                        print("名前: \(name)")
+                        print("Eメール: \(email)")
+                        print("画像URL: \(photoUrl)")
+                        
+                        self.completeSignUp(id: user.uid, userData: userData, userName: name, userEmail: email, photoURL: photoUrl)
+                        
+                       
+                        
+                    }
+                    
+                    DispatchQueue.main.async {
+                        
+                        self.indicator.stopAnimating()
+                    }
+                    
                     user?.sendEmailVerification(completion: { (error) in
                         
                         if error == nil {
                             //Send Email
+                            let alertViewControler = UIAlertController(title: "認証メールを送信しました!", message: "アカウントの認証をお願いします", preferredStyle: .alert)
+                            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                            
+                            alertViewControler.addAction(okAction)
+                            self.present(alertViewControler, animated: true, completion: nil)
+
                             
                             
                         } else {
@@ -105,29 +153,11 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
                         
                         
                         
+                        
+                        
                     })
-                    
-                    
-                    
-                    if let user = user {
-                        let userData = ["provider" : user.providerID]
-                        let userName = ["userName" : ""]
-                        let userPhotoURl = ["photoURL" : ""]
-                        
-                        print("データ: \(userData)")
-                        print("名前: \(userName)")
-                        print("画像URL: \(userPhotoURl)")
-                        
-                        self.completeSignUp(id: user.uid, userData: userData, userName: userName, photoURL: userPhotoURl)
-                        
-                    }
-                    
-                    DispatchQueue.main.async {
-                        
-                        self.indicator.stopAnimating()
-                    }
-                    
-                    self.performSegue(withIdentifier: "ToFeed", sender: nil)
+
+                    self.performSegue(withIdentifier: "registerGoGo", sender: nil)
                     
                     
                 }else{
@@ -181,9 +211,12 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
     
     
     
-    func completeSignUp(id: String, userData: Dictionary<String,String>,userName: Dictionary<String, String>, photoURL: Dictionary<String, String>) {
+    func completeSignUp(id: String, userData: Dictionary<String,String>,userName: Dictionary<String,Any>,userEmail: Dictionary<String,Any>, photoURL: Dictionary<String,Any>) {
         
-        DataService.dataBase.createDataBaseUser(uid: id, userData: userData, userName: userName, photoURL: photoURL)
+        DataService.dataBase.createDataBaseUser(uid: id, userData: userData, userName: userName, photoURL: photoURL, userEmail: userEmail)
+        
+        let keychainResult = KeychainWrapper.standard.set(id, forKey: KEY_UID)
+        print("Data saved to keychain \(keychainResult)")
         
         
     }

@@ -68,6 +68,7 @@ PODS:
   - ImageSlideshow/Core (1.3.1)
   - Pastel (0.3.0)
   - SlideMenuControllerSwift (3.0.1)
+  - SwiftKeychainWrapper (3.0.1)
   - TwitterCore (2.8.0):
     - Fabric
   - TwitterKit (2.8.1):
@@ -84,6 +85,7 @@ DEPENDENCIES:
   - ImageSlideshow/Alamofire
   - Pastel
   - SlideMenuControllerSwift
+  - SwiftKeychainWrapper
   - TwitterKit
 
 SPEC CHECKSUMS:
@@ -106,9 +108,10 @@ SPEC CHECKSUMS:
   ImageSlideshow: bef84bd0bda0bdf8ef6dfc6da42ed1703bea2070
   Pastel: 738740c84f2b15bbcd96ebe99c4e6c2f5dd42262
   SlideMenuControllerSwift: 9a163b16d54afab734add42858cba7ef7c307755
+  SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
 
-PODFILE CHECKSUM: 7e15b8e0223b6fe685cab51dc539c4c23037a815
+PODFILE CHECKSUM: 6adc053ac49913f6f74e5c345074811152736c82
 
 COCOAPODS: 1.1.1

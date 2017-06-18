@@ -17,6 +17,7 @@ target 'Project6' do
   pod "Pastel"
   pod 'TwitterKit'
   pod 'GoogleSignIn'
+  pod 'SwiftKeychainWrapper'
   
 
 end
