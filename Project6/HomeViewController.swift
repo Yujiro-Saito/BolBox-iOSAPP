@@ -42,10 +42,21 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         super.viewWillAppear(true)
         
         
-        if UserDefaults.standard.object(forKey: "Pop") != nil {
+        if UserDefaults.standard.object(forKey: "AutoLogin") != nil {
+            
+            print("自動ログイン")
+            
+        } else {
+            //登録画面に戻る
+            self.performSegue(withIdentifier: "backtoLogin", sender: nil)
+        }
+        
+        
+        if UserDefaults.standard.object(forKey: "GoogleRegister") != nil {
             
             
-            let alertViewControler = UIAlertController(title: "登録を完了しました", message: "ありがとうございます!", preferredStyle: .alert)
+            
+            let alertViewControler = UIAlertController(title: "Welcome!", message: "ありがとうございます", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             
             alertViewControler.addAction(okAction)
@@ -53,14 +64,15 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             
             
             let userDefaults = UserDefaults.standard
-            userDefaults.removeObject(forKey: "Pop")
+            userDefaults.removeObject(forKey: "GoogleRegister")
             
             
         }
         
         
         
-        if UserDefaults.standard.object(forKey: "OnceRegi") != nil {
+        
+        if UserDefaults.standard.object(forKey: "EmailRegister") != nil {
             
             
             let alertViewControler = UIAlertController(title: "登録を完了しました", message: "ありがとうございます!", preferredStyle: .alert)
@@ -71,7 +83,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             
             
             let userDefaults = UserDefaults.standard
-            userDefaults.removeObject(forKey: "OnceRegi")
+            userDefaults.removeObject(forKey: "EmailRegister")
             
             //ユーザー登録時のユーザーネーム、アドレスの登録
             let user = FIRAuth.auth()?.currentUser
@@ -96,16 +108,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         
         
-        if UserDefaults.standard.object(forKey: "register") == nil {
-        
-            //登録画面に戻る
-            self.performSegue(withIdentifier: "backtoLogin", sender: nil)
-            
-        } else if UserDefaults.standard.object(forKey: "register") != nil {
-            print("全部ok")
-            
-        }
-
         
         
         

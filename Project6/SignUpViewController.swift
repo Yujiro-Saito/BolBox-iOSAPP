@@ -101,9 +101,9 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
                     
                     
                     
-                    UserDefaults.standard.set("register", forKey: "register")
-                    UserDefaults.standard.set("OnceRegi", forKey: "OnceRegi")
                     
+                    UserDefaults.standard.set("EmailRegister", forKey: "EmailRegister")
+                    UserDefaults.standard.set("AutoLogin", forKey: "AutoLogin")
                     
                     if let user = user {
                         

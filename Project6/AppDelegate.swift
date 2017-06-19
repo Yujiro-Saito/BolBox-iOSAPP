@@ -13,6 +13,8 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
 
     var window: UIWindow?
+    var googleSuccessful = Bool()
+    
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
@@ -30,6 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         
+        
+
+        
         return GIDSignIn.sharedInstance().handle(url,
                                                     sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
                                                     annotation: [:])
@@ -46,6 +51,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
             print(error.localizedDescription)
             return
         }
+        //////////
+        self.googleSuccessful = true
+        print("AppDelegate真偽判定\(self.googleSuccessful)")
         
         guard let authentication = user.authentication else { return }
         let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken,
@@ -57,7 +65,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
                 // ...
                 return
             } else {
+                
                 print("Sign In successfully")
+                
+                
+                
             }
     }
         
