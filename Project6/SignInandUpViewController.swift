@@ -98,14 +98,8 @@ class SignInandUpViewController: UIViewController,GIDSignInUIDelegate {
             
             
             
-            
-            
             GIDSignIn.sharedInstance().uiDelegate = self
             GIDSignIn.sharedInstance().signIn()
-            
-            
-            
-            
             
             
         })
@@ -148,7 +142,7 @@ class SignInandUpViewController: UIViewController,GIDSignInUIDelegate {
         }
  
  */
-        
+        UserDefaults.standard.set("AutoLogin", forKey: "AutoLogin")
         performSegue(withIdentifier: "ToHomeView", sender: nil)
         
     }

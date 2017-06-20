@@ -706,12 +706,29 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     
     @IBAction func profileMenuDidTap(_ sender: Any) {
-        print("OK")
+        
+        print("SS")
+        
+        
+            if FIRAuth.auth()?.currentUser != nil {
+                print("ユーザー情報")
+                let user = FIRAuth.auth()?.currentUser
+                let userName = user?.displayName
+                let userEmail = user?.email
+                
+                print("名前\(userName)")
+                print("メール\(userEmail)")
+                
+                performSegue(withIdentifier: "ToProfile", sender: nil)
+           
+            } else {
+                //ユーザー登録のポップアップを表示する
+                
+        }
+    
     }
     
-    
-    
-    }
+}
 
 
 
