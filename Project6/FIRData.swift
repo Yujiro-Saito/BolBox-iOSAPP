@@ -78,6 +78,11 @@ class DataService {
         REF_USER.child(uid).updateChildValues(userEmail)
     }
     
+    func loginUserDatabase(uid: String, userData: Dictionary<String, String>) {
+        REF_USER.child(uid).updateChildValues(userData)
+    }
+
+    
     
     
     

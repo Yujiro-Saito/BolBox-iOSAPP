@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B702E72F1EF8A442003C89E4 /* EmailLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B702E72E1EF8A442003C89E4 /* EmailLoginViewController.swift */; };
 		B71ACDA81EED8620005DCD80 /* SignInUpViewDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71ACDA71EED8620005DCD80 /* SignInUpViewDesign.swift */; };
 		B71EEA3D1EED7D2A00CCF1D1 /* SignInandUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71EEA3C1EED7D2A00CCF1D1 /* SignInandUpViewController.swift */; };
 		B7260C381EDEFAC200FC3913 /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7260C371EDEFAC200FC3913 /* DetailCollectionViewCell.swift */; };
@@ -45,6 +46,7 @@
 		063493BB14E15DFF892F2F2C /* Pods-Project6.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project6.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Project6/Pods-Project6.debug.xcconfig"; sourceTree = "<group>"; };
 		449A34F918184C79A7F7AD45 /* Pods_Project6.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project6.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D5F851655234321568C5F6 /* Pods-Project6.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project6.release.xcconfig"; path = "Pods/Target Support Files/Pods-Project6/Pods-Project6.release.xcconfig"; sourceTree = "<group>"; };
+		B702E72E1EF8A442003C89E4 /* EmailLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailLoginViewController.swift; sourceTree = "<group>"; };
 		B71ACDA71EED8620005DCD80 /* SignInUpViewDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInUpViewDesign.swift; sourceTree = "<group>"; };
 		B71EEA3C1EED7D2A00CCF1D1 /* SignInandUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInandUpViewController.swift; sourceTree = "<group>"; };
 		B7260C371EDEFAC200FC3913 /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				B78053F61EE2C47B00F95BDF /* CategoryTableViewController.swift */,
 				B756C3D31ED547B200F1B46C /* DetailViewController.swift */,
 				B7DA001B1EDCBA8900CE5CC3 /* NewMoreCollectionViewController.swift */,
+				B702E72E1EF8A442003C89E4 /* EmailLoginViewController.swift */,
 				B7FE1D6A1EDE29D70072A068 /* PopularMoreReadCollectionViewController.swift */,
 				B71EEA3C1EED7D2A00CCF1D1 /* SignInandUpViewController.swift */,
 				B77B554F1EEF6F1600262589 /* SignUpViewController.swift */,
@@ -360,6 +363,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B77CEDED1EE3DB8F005D4215 /* CategoryDisplayTableViewCell.swift in Sources */,
+				B702E72F1EF8A442003C89E4 /* EmailLoginViewController.swift in Sources */,
 				B7733EA21EC6A96700D5B9BD /* popularCollectionViewCell.swift in Sources */,
 				B7FE1D6B1EDE29D70072A068 /* PopularMoreReadCollectionViewController.swift in Sources */,
 				B71ACDA81EED8620005DCD80 /* SignInUpViewDesign.swift in Sources */,

@@ -113,7 +113,7 @@ class SignInandUpViewController: UIViewController,GIDSignInUIDelegate {
         let email = UIAlertAction(title: "メールアドレス", style: UIAlertActionStyle.default, handler: {
             (action: UIAlertAction!) in
             
-            //self.performSegue(withIdentifier: "EmailSignUp", sender: nil)
+            self.performSegue(withIdentifier: "emailLogin", sender: nil)
             
             
         })
