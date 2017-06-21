@@ -2,6 +2,11 @@ PODS:
   - Alamofire (4.4.0)
   - AlamofireImage (3.2.0):
     - Alamofire (~> 4.1)
+  - DKImagePickerController (3.5.3):
+    - DKImagePickerController/Camera (= 3.5.3)
+    - DKImagePickerController/ImageManager (= 3.5.3)
+  - DKImagePickerController/Camera (3.5.3)
+  - DKImagePickerController/ImageManager (3.5.3)
   - Fabric (1.6.11)
   - Firebase/Auth (3.11.1):
     - Firebase/Core
@@ -76,6 +81,7 @@ PODS:
 
 DEPENDENCIES:
   - AlamofireImage (~> 3.1)
+  - DKImagePickerController
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -91,6 +97,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
+  DKImagePickerController: 274b66ad6e79cd98d2688685c8e370c05d021557
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   Firebase: 53b2343db1ebfa3eb16bdb4318b8bb65360b2220
   FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
@@ -112,6 +119,6 @@ SPEC CHECKSUMS:
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
 
-PODFILE CHECKSUM: 6adc053ac49913f6f74e5c345074811152736c82
+PODFILE CHECKSUM: 6aa412e87129e10cd648a7f1f19324e8e5a7aa44
 
 COCOAPODS: 1.1.1

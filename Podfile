@@ -18,6 +18,7 @@ target 'Project6' do
   pod 'TwitterKit'
   pod 'GoogleSignIn'
   pod 'SwiftKeychainWrapper'
+  pod 'DKImagePickerController'
   
 
 end
