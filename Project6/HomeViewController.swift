@@ -707,9 +707,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     @IBAction func profileMenuDidTap(_ sender: Any) {
         
-        print("SS")
-        
-        
             if FIRAuth.auth()?.currentUser != nil {
                 print("ユーザー情報")
                 let user = FIRAuth.auth()?.currentUser

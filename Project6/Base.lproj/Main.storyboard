@@ -333,13 +333,13 @@
                         <segue destination="3bf-cc-VJb" kind="show" identifier="readNewAll" id="lzz-4G-ILc"/>
                         <segue destination="Yuk-qe-yxT" kind="show" identifier="readAll1" id="oVN-Z6-r8a"/>
                         <segue destination="3DC-y7-hMP" kind="show" identifier="ToCategoryVC" id="YmA-6l-YrZ"/>
-                        <segue destination="o3q-Mq-hHb" kind="show" identifier="backtoLogin" id="p62-cB-OVR"/>
-                        <segue destination="g7b-JG-ffv" kind="show" identifier="ToProfile" id="VOi-Ji-zMy"/>
+                        <segue destination="o3q-Mq-hHb" kind="presentation" identifier="backtoLogin" id="p62-cB-OVR"/>
+                        <segue destination="g7b-JG-ffv" kind="show" identifier="ToProfile" id="pbn-46-ObH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oaj-nU-pHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1415" y="1848"/>
+            <point key="canvasLocation" x="1367" y="1973"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="o6w-ph-Wgi">
@@ -359,10 +359,10 @@
             </objects>
             <point key="canvasLocation" x="-1196" y="2569"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="IDX-3D-DYj">
             <objects>
-                <viewController id="g7b-JG-ffv" sceneMemberID="viewController">
+                <viewController id="g7b-JG-ffv" customClass="ProfileViewController" customModule="Project6" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wms-k1-nRo"/>
                         <viewControllerLayoutGuide type="bottom" id="kx4-Nh-dOh"/>
@@ -370,18 +370,128 @@
                     <view key="view" contentMode="scaleToFill" id="Sen-dA-3ZR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="wantedly" translatesAutoresizingMaskIntoConstraints="NO" id="T1C-HJ-Jc1" customClass="ProfileImage" customModule="Project6" customModuleProvider="target">
+                                <rect key="frame" x="259" y="111" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wantedly" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQa-cM-WEd">
+                                <rect key="frame" x="16" y="111" width="214" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dES-3c-Gsh">
+                                <rect key="frame" x="284" y="251" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="add"/>
+                                <connections>
+                                    <action selector="addButtonDidTap:" destination="g7b-JG-ffv" eventType="touchUpInside" id="TAK-2f-y0m"/>
+                                    <segue destination="X0E-Jo-YFH" kind="show" id="zzT-je-HIe"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="profileImage" destination="T1C-HJ-Jc1" id="Q9D-3y-N8j"/>
+                        <outlet property="profileName" destination="eQa-cM-WEd" id="WgT-d5-y4t"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YzL-E7-SiR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1913" y="2794"/>
+            <point key="canvasLocation" x="996" y="3123"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="GAS-OF-lR9">
+            <objects>
+                <viewController id="X0E-Jo-YFH" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="e12-US-KT1"/>
+                        <viewControllerLayoutGuide type="bottom" id="1LP-Oe-lkA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="K97-Jv-1YM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="URL" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fX3-yB-yII" customClass="SignUpField" customModule="Project6" customModuleProvider="target">
+                                <rect key="frame" x="64" y="313" width="246" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="プロダクト名" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XdI-ba-EO8" customClass="SignUpField" customModule="Project6" customModuleProvider="target">
+                                <rect key="frame" x="64" y="230" width="246" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ko-cc-fpt" customClass="RegisterButton" customModule="Project6" customModuleProvider="target">
+                                <rect key="frame" x="64" y="437" width="246" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <state key="normal" title="続ける">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="プロダクト情報" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PpT-D8-vqm">
+                                <rect key="frame" x="64" y="127" width="246" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
+                                <color key="textColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="ipz-vN-3c9" kind="show" id="Gcc-vm-gxP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FES-9u-W3B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2181.5999999999999" y="3122.7886056971515"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="bSY-9r-4Ou">
+            <objects>
+                <viewController id="ipz-vN-3c9" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vvC-1G-43u"/>
+                        <viewControllerLayoutGuide type="bottom" id="ggn-bq-06T"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2E2-PR-agL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="プロダクト画像" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WTK-Ko-cuT">
+                                <rect key="frame" x="64" y="121" width="246" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
+                                <color key="textColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ShI-ko-msa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2977" y="3126"/>
         </scene>
         <!--Popular More Read Collection View Controller-->
         <scene sceneID="sSx-l7-vqJ">
             <objects>
                 <collectionViewController id="Yuk-qe-yxT" customClass="PopularMoreReadCollectionViewController" customModule="Project6" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="Tzo-LA-Ktc">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Tzo-LA-Ktc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -495,7 +605,7 @@
         <scene sceneID="Whl-Ps-mQU">
             <objects>
                 <collectionViewController id="3bf-cc-VJb" customClass="NewMoreCollectionViewController" customModule="Project6" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="Ec6-FN-th5">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Ec6-FN-th5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -976,7 +1086,7 @@
                     <connections>
                         <outlet property="emailField" destination="0Sw-YN-Mfs" id="j97-nJ-Ydk"/>
                         <outlet property="passwordField" destination="aiy-KU-CLP" id="NVa-W9-VXU"/>
-                        <segue destination="EFV-Vz-idr" kind="show" identifier="TotoGoHome" id="Hf4-LM-Wcs"/>
+                        <segue destination="EFV-Vz-idr" kind="presentation" identifier="TotoGoHome" id="Hf4-LM-Wcs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GEf-hf-5lX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1039,7 +1149,7 @@
                         <outlet property="passwordField" destination="PdU-TT-RHv" id="Ldo-X4-8RK"/>
                         <outlet property="userNameField" destination="jrk-Ov-IWa" id="jGY-Gl-WqO"/>
                         <segue destination="Z1C-yV-H4z" kind="presentation" identifier="" id="Dnb-bg-S8m"/>
-                        <segue destination="EFV-Vz-idr" kind="show" identifier="registerGoGo" id="iSG-LR-gDC"/>
+                        <segue destination="EFV-Vz-idr" kind="presentation" identifier="registerGoGo" id="iSG-LR-gDC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eaK-Th-v7A" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1051,7 +1161,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Z1C-yV-H4z" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="F7h-jq-6UN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="F7h-jq-6UN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1066,6 +1176,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="add" width="64" height="64"/>
         <image name="food" width="2194" height="1237"/>
         <image name="menu" width="64" height="64"/>
         <image name="profile" width="64" height="64"/>
@@ -1073,8 +1184,8 @@
         <image name="wantedly" width="300" height="168"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Hf4-LM-Wcs"/>
+        <segue reference="7Ft-kC-vUF"/>
         <segue reference="Dnb-bg-S8m"/>
-        <segue reference="yxJ-or-7wS"/>
+        <segue reference="kpe-HX-cmu"/>
     </inferredMetricsTieBreakers>
 </document>

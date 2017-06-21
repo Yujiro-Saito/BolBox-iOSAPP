@@ -29,6 +29,7 @@
 		B77CEDED1EE3DB8F005D4215 /* CategoryDisplayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77CEDEC1EE3DB8F005D4215 /* CategoryDisplayTableViewCell.swift */; };
 		B78053F71EE2C47B00F95BDF /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78053F61EE2C47B00F95BDF /* CategoryTableViewController.swift */; };
 		B78053F91EE2C63300F95BDF /* CategorysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78053F81EE2C63300F95BDF /* CategorysTableViewCell.swift */; };
+		B7A63B661EF9185E007808D6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A63B651EF9185E007808D6 /* ProfileViewController.swift */; };
 		B7D58C9E1EEE0D9100126406 /* signUpButtonDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D58C9D1EEE0D9100126406 /* signUpButtonDesign.swift */; };
 		B7DA001C1EDCBA8900CE5CC3 /* NewMoreCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DA001B1EDCBA8900CE5CC3 /* NewMoreCollectionViewController.swift */; };
 		B7DA001E1EDCBB8700CE5CC3 /* NewMoreReadCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DA001D1EDCBB8700CE5CC3 /* NewMoreReadCollectionViewCell.swift */; };
@@ -72,6 +73,7 @@
 		B77CEDEC1EE3DB8F005D4215 /* CategoryDisplayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryDisplayTableViewCell.swift; sourceTree = "<group>"; };
 		B78053F61EE2C47B00F95BDF /* CategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		B78053F81EE2C63300F95BDF /* CategorysTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorysTableViewCell.swift; sourceTree = "<group>"; };
+		B7A63B651EF9185E007808D6 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		B7D58C9D1EEE0D9100126406 /* signUpButtonDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signUpButtonDesign.swift; sourceTree = "<group>"; };
 		B7DA001B1EDCBA8900CE5CC3 /* NewMoreCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMoreCollectionViewController.swift; sourceTree = "<group>"; };
 		B7DA001D1EDCBB8700CE5CC3 /* NewMoreReadCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMoreReadCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				B7FE1D6A1EDE29D70072A068 /* PopularMoreReadCollectionViewController.swift */,
 				B71EEA3C1EED7D2A00CCF1D1 /* SignInandUpViewController.swift */,
 				B77B554F1EEF6F1600262589 /* SignUpViewController.swift */,
+				B7A63B651EF9185E007808D6 /* ProfileViewController.swift */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				B727ADDB1EC67AB20081F500 /* SWRevealViewController.m in Sources */,
 				B7DA001C1EDCBA8900CE5CC3 /* NewMoreCollectionViewController.swift in Sources */,
 				B7FE1D6F1EDE2F9A0072A068 /* SectionHeaderPopCollectionReusableView.swift in Sources */,
+				B7A63B661EF9185E007808D6 /* ProfileViewController.swift in Sources */,
 				B770833A1EC8034E00302760 /* FIRData.swift in Sources */,
 				B7FB80951EF5592000EA0CEE /* ProfileImage.swift in Sources */,
 				B7DA001E1EDCBB8700CE5CC3 /* NewMoreReadCollectionViewCell.swift in Sources */,
