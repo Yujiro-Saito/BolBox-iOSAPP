@@ -57,8 +57,6 @@ class DetailViewController: UIViewController {
         keepPushed = false
         
         
-        
-        
     }
     
     

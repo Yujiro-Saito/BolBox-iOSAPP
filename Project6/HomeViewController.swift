@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import AlamofireImage
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, UITableViewDataSource, UITableViewDelegate {
     
@@ -21,7 +22,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var categoriesTable: UITableView!
     
-    
+    var initialURL = URL(string: "")
     
     var posts = [Post]()
     var detailNewPosts: Post?
@@ -92,6 +93,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 let changeRequest = user.profileChangeRequest()
                 
                 changeRequest.displayName = self.displayUserName
+                changeRequest.photoURL = self.initialURL
                 
                 changeRequest.commitChanges { error in
                     if let error = error {
@@ -343,8 +345,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : barColor]
         
-        self.title = "Project6"
+        //self.title = "Project6"
         
+        self.navigationItem.titleView = UIImageView(image:UIImage(named:"penguin"))
         
     
         

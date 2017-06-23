@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ProfileViewController: UIViewController {
     
@@ -22,13 +23,47 @@ class ProfileViewController: UIViewController {
     }
     
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        
+        if FIRAuth.auth()?.currentUser != nil {
+            // User is signed in.
+
+            let user = FIRAuth.auth()?.currentUser
+            
+            let userName = user?.displayName
+            let photoURL = user?.photoURL
+            
+            print(photoURL)
+            
+            self.profileName.text = userName
+            
+            if photoURL == nil {
+            profileImage.image = UIImage(named: "drop")
+            } else {
+             profileImage.af_setImage(withURL: photoURL!)
+            }
+
+            
+            
+        } else {
+            // No user is signed in.
+            print("ユーザーがいません")
+        }
+        
+        
+    }
+    
+    
+    
+    
     
     
     
     @IBAction func addButtonDidTap(_ sender: Any) {
         
         print("Add Button did tap")
-        
         
         
     }

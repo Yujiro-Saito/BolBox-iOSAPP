@@ -43,7 +43,72 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
         
     }
 
-    @IBAction func buttonDIdTap(_ sender: Any) {
+    
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return detailImageBox.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cellItem = detailImageCollection.dequeueReusableCell(withReuseIdentifier: "detailImagesAye", for: indexPath) as? PostDetailPhotosCollectionViewCell
+        
+        cellItem?.detailImage.image = detailImageBox[indexPath.row]
+        
+        return cellItem!
+        
+        
+    }
+    
+    
+   
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if info[UIImagePickerControllerOriginalImage] != nil {
+            
+            if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+                
+                self.mainImageBox = image
+                
+                self.mainImagePhoto.image = self.mainImageBox
+                
+               // self.mainImagePhoto.image = image
+                
+                
+            }
+            
+            
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func ToKeepOn(_ sender: Any) {
+        performSegue(withIdentifier: "Story", sender: nil)
+        
+        
+    }
+    
+    
+    @IBAction func mainPhotoDidTap(_ sender: Any) {
+        
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.delegate = self
+            imagePickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            imagePickerController.allowsEditing = true
+            self.present(imagePickerController, animated: true, completion: nil)
+        } else {
+            print("カメラロール許可をしていない時の処理")
+        }
+    }
+    
+    @IBAction func detailPhotoDidTap(_ sender: Any) {
         
         
         pickerController.maxSelectableCount = 3
@@ -74,68 +139,6 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
         self.present(pickerController, animated: true) {}
         
         self.detailImageCollection.reloadData()
-        
-    }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return detailImageBox.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cellItem = detailImageCollection.dequeueReusableCell(withReuseIdentifier: "detailImagesAye", for: indexPath) as? PostDetailPhotosCollectionViewCell
-        
-        cellItem?.detailImage.image = detailImageBox[indexPath.row]
-        
-        return cellItem!
-        
-        
-    }
-    
-    
-    
-    @IBAction func mainPhotoPick(_ sender: Any) {
-       
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            let imagePickerController = UIImagePickerController()
-            imagePickerController.delegate = self
-            imagePickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
-            imagePickerController.allowsEditing = true
-            self.present(imagePickerController, animated: true, completion: nil)
-        } else {
-            print("カメラロール許可をしていない時の処理")
-        }
-    }
-    
-   
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if info[UIImagePickerControllerOriginalImage] != nil {
-            
-            if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-                
-                self.mainImageBox = image
-                
-                self.mainImagePhoto.image = self.mainImageBox
-                
-               // self.mainImagePhoto.image = image
-                
-                
-            }
-            
-            
-        }
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    
-    @IBAction func ToKeepOn(_ sender: Any) {
-        performSegue(withIdentifier: "Story", sender: nil)
         
         
     }
