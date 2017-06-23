@@ -188,22 +188,6 @@ class DetailViewController: UIViewController {
     }
 
 
-extension DetailViewController {
-    
-    func like() {
-        
-        
-        
-    }
-    
-    
-    
-    
-    
-    
-}
-
-
 
 
     
