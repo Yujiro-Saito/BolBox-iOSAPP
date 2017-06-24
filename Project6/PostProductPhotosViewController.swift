@@ -21,6 +21,13 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
     var detailImage = UIImage()
     
     
+    //データ引き継ぎ用
+    
+    var productName = String()
+    var productURL = String()
+    var productCategory = String()
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
@@ -36,11 +43,34 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         detailImageCollection.delegate = self
         detailImageCollection.dataSource = self
         
         
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "Story") {
+            
+            let postStory = (segue.destination as? StoryViewController)!
+            
+            //detailImageBoxの引き継ぎ
+            
+            postStory.detailImages = self.detailImageBox
+            
+            //detailImageの引き継ぎ
+            
+            postStory.detailOne = self.detailImage
+            
+            //名前、URL、カテゴリーの引き継ぎ
+            postStory.name = self.productName
+            postStory.url = self.productURL
+            postStory.categoryTitle = self.productCategory
+            
+        }
     }
 
     
@@ -76,8 +106,6 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
                 self.mainImageBox = image
                 
                 self.mainImagePhoto.image = self.mainImageBox
-                
-               // self.mainImagePhoto.image = image
                 
                 
             }

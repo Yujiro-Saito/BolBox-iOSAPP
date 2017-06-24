@@ -42,13 +42,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         super.viewWillAppear(true)
         
-        
+        //ログインしているか確認
         if UserDefaults.standard.object(forKey: "AutoLogin") != nil {
             
             print("自動ログイン")
             
         } else {
-            //登録画面に戻る
+            //ログインしていなければ登録画面に戻る
             self.performSegue(withIdentifier: "backtoLogin", sender: nil)
         }
         
@@ -325,6 +325,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
     }
     
+    
+    //サイドメニューのタップ
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         
         
@@ -389,7 +391,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 
     }
     
-    
+    //サイドメニューのスワイプ
     func swipes(sender: UISwipeGestureRecognizer) {
         print("right Swipe")
         
@@ -431,7 +433,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     
     
-    
+    //サイドメニューの開く動作
     @IBAction func openSlide(_ sender: Any) {
         
         if (menuOpened) {

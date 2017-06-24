@@ -14,6 +14,15 @@ class StoryViewController: UIViewController,UITextViewDelegate {
     @IBOutlet weak var storyText: UITextView!
     
     
+    //データ引き継ぎ用
+    
+    var detailImages = [UIImage]()
+    var detailOne = UIImage()
+    var name = String()
+    var url = String()
+    var categoryTitle = String()
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +32,16 @@ class StoryViewController: UIViewController,UITextViewDelegate {
         
         storyText.text = ""
         storyText.becomeFirstResponder()
+        
+        
+        
+        
+        
+        
+        print("投稿データの詳細データ")
+        print(name)
+        print(categoryTitle)
+        print(detailImages)
         
         
 
