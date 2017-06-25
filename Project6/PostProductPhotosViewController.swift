@@ -58,7 +58,7 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
             
             //detailImageBoxの引き継ぎ
             
-            postStory.detailImages = self.detailImageBox
+            postStory.detailImages = self.detailImageBox as! [UIImage]
             
             //detailImageの引き継ぎ
             
