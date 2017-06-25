@@ -343,7 +343,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         super.viewDidLoad()
         
         
-        self.navigationController?.navigationBar.barTintColor = UIColor.black
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : barColor]
         

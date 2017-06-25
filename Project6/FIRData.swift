@@ -23,7 +23,6 @@ class DataService {
     
     
     
-    
     static let dataBase = DataService()
     
     //DB REF
@@ -42,6 +41,10 @@ class DataService {
     
     
     //Properties
+    
+    var REF_BASE: FIRDatabaseReference {
+        return _REF_BASE
+    }
     
     var REF_POST: FIRDatabaseReference {
         return _REF_POSTS

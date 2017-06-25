@@ -18,7 +18,7 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
     
     let pickerController = DKImagePickerController()
     var detailImageBox = [UIImage]()
-    var detailImage = UIImage()
+    var detailImage: UIImage? = UIImage()
     
     
     //データ引き継ぎ用
@@ -32,10 +32,9 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
         super.viewDidAppear(true)
         
         
-        print(detailImageBox)
         self.detailImageCollection.reloadData()
         
-        print(mainImageBox)
+        print(detailImage!)
         
         
     }
@@ -63,7 +62,10 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
             
             //detailImageの引き継ぎ
             
-            postStory.detailOne = self.detailImage
+            //postStory.detailOne = self.detailImage!
+            postStory.detailOne = self.mainImagePhoto.image!
+            
+            
             
             //名前、URL、カテゴリーの引き継ぎ
             postStory.name = self.productName
@@ -117,7 +119,23 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
     
     
     @IBAction func ToKeepOn(_ sender: Any) {
-        performSegue(withIdentifier: "Story", sender: nil)
+        
+        
+        if detailImageBox != [] {
+            
+            performSegue(withIdentifier: "Story", sender: nil)
+            
+        } else {
+            
+            let alertViewControler = UIAlertController(title: "エラーがあります", message: "写真を登録して下さい", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            
+            alertViewControler.addAction(okAction)
+            self.present(alertViewControler, animated: true, completion: nil)
+            
+        }
+        
+        
         
         
     }
@@ -154,7 +172,7 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
                     
                     imageBox = image!
                     
-                    self.detailImageBox.append(imageBox)
+                    self.detailImageBox.append(imageBox!)
                     
                     
                 })

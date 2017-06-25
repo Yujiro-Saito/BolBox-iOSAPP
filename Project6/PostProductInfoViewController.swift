@@ -65,8 +65,22 @@ class PostProductInfoViewController: UIViewController,UIPickerViewDelegate, UIPi
     
     @IBAction func continueButtonDidTap(_ sender: Any) {
         
+        if productNameField.text != "" && urlField.text != "" && categoryField.text != "" {
+            
+            performSegue(withIdentifier: "ToContinue", sender: nil)
+            
+        } else {
+            
+            let alertViewControler = UIAlertController(title: "エラーがあります", message: "フィールドを埋めてください", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            
+            alertViewControler.addAction(okAction)
+            self.present(alertViewControler, animated: true, completion: nil)
+            
+        }
         
-        performSegue(withIdentifier: "ToContinue", sender: nil)
+        
+        
         
         
     }
