@@ -19,24 +19,127 @@ class BaseViewController: UIViewController, UINavigationBarDelegate, UITableView
     
     var newPosts = [Post]()
     var popularPosts = [Post]()
-    
+    var displayUserName: String?
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
+    var initialURL = URL(string: "")
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+
         
         baseNavBar.delegate = self
         baseTable.delegate = self
         baseTable.dataSource = self
         
         
+
         
+        /*FIRAuth.auth()!.signInAnonymously { (firUser, error) in
+            if error == nil {
+                print("Login")
+            } else {
+                print(error?.localizedDescription)
+            }
+            
+        }
+        */
         self.baseNavBar.frame = CGRect(x: 0,y: 0, width: UIScreen.main.bounds.size.width, height: 55)
 
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        //ログインしているか確認
+        if UserDefaults.standard.object(forKey: "AutoLogin") != nil {
+            
+            print("自動ログイン")
+            
+        } else {
+            //ログインしていなければ登録画面に戻る
+            self.performSegue(withIdentifier: "backtoRegister", sender: nil)
+        }
+        
+        
+        if UserDefaults.standard.object(forKey: "GoogleRegister") != nil {
+            
+            
+            
+            let alertViewControler = UIAlertController(title: "Welcome!", message: "ありがとうございます", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            
+            alertViewControler.addAction(okAction)
+            self.present(alertViewControler, animated: true, completion: nil)
+            
+            
+            let userDefaults = UserDefaults.standard
+            userDefaults.removeObject(forKey: "GoogleRegister")
+            
+            
+        }
+        
+        
+        
+        
+        if UserDefaults.standard.object(forKey: "EmailRegister") != nil {
+            
+            
+            let alertViewControler = UIAlertController(title: "登録を完了しました", message: "ありがとうございます!", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            
+            alertViewControler.addAction(okAction)
+            self.present(alertViewControler, animated: true, completion: nil)
+            
+            
+            let userDefaults = UserDefaults.standard
+            userDefaults.removeObject(forKey: "EmailRegister")
+            
+            //ユーザー登録時のユーザーネーム、アドレスの登録
+            let user = FIRAuth.auth()?.currentUser
+            
+            if let user = user {
+                let changeRequest = user.profileChangeRequest()
+                
+                changeRequest.displayName = self.displayUserName
+                changeRequest.photoURL = self.initialURL
+                
+                changeRequest.commitChanges { error in
+                    if let error = error {
+                        // An error happened.
+                        print(error.localizedDescription)
+                    } else {
+                        print("プロフィールの登録完了")
+                        print(user.displayName!)
+                        print(user.email!)
+                    }
+                }
+            }
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+       
         
        
             //新着投稿の取得
@@ -74,7 +177,6 @@ class BaseViewController: UIViewController, UINavigationBarDelegate, UITableView
             baseTable.reloadData()
 
         } else if segmentNum == 1 {
-            print("があああああああああああああ")
             
                 DataService.dataBase.REF_POST.queryOrdered(byChild: "pvCount").queryLimited(toLast: 15).observe(.value, with: { (snapshot) in
                     
@@ -124,7 +226,6 @@ class BaseViewController: UIViewController, UINavigationBarDelegate, UITableView
         //新着の読み込み
         if segmentNum == 0 {
             
-            print("ビヨーーーーーン")
             do {
                 
                 DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
@@ -168,7 +269,6 @@ class BaseViewController: UIViewController, UINavigationBarDelegate, UITableView
             //人気の読み込み
         } else if segmentNum == 1 {
             
-            print("があああああああああああああ")
             do {
                 DataService.dataBase.REF_POST.queryOrdered(byChild: "pvCount").queryLimited(toLast: 15).observe(.value, with: { (snapshot) in
                     
@@ -288,7 +388,14 @@ class BaseViewController: UIViewController, UINavigationBarDelegate, UITableView
     }
     
     
+    @IBAction func dataDelete(_ sender: Any) {
+        print("delete")
+       
+    }
+    
+    
     
 
    
 }
+
