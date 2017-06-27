@@ -405,10 +405,10 @@
             </objects>
             <point key="canvasLocation" x="1366" y="5768"/>
         </scene>
-        <!--View Controller-->
+        <!--Account View Controller-->
         <scene sceneID="Mhf-sC-LUb">
             <objects>
-                <viewController id="LR8-dZ-54r" sceneMemberID="viewController">
+                <viewController id="LR8-dZ-54r" customClass="AccountViewController" customModule="Project6" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CAf-1n-QAs"/>
                         <viewControllerLayoutGuide type="bottom" id="iFo-kF-30Q"/>
@@ -416,13 +416,45 @@
                     <view key="view" contentMode="scaleToFill" id="ZtH-GX-Wvz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8l6-DI-YOd" customClass="ProfileImage" customModule="Project6" customModuleProvider="target">
+                                <rect key="frame" x="259" y="174" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DzD-KM-fGU">
+                                <rect key="frame" x="16" y="174" width="214" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yWv-zL-LM7">
+                                <rect key="frame" x="284" y="314" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="add"/>
+                            </button>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gnG-7c-HlF">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="プロフィール" id="DUV-hV-eMb">
+                                        <barButtonItem key="rightBarButtonItem" title="編集" id="cF7-vf-dcE"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="contacts" id="RO5-PP-NAx"/>
+                    <connections>
+                        <outlet property="profileImage" destination="8l6-DI-YOd" id="lcn-zP-wAG"/>
+                        <outlet property="profileName" destination="DzD-KM-fGU" id="F4a-Cu-tlR"/>
+                        <outlet property="profileNavBar" destination="gnG-7c-HlF" id="NND-Ca-Uuz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rlu-Lr-uuP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2874" y="5228"/>
+            <point key="canvasLocation" x="3044" y="4817"/>
         </scene>
         <!--Base View Controller-->
         <scene sceneID="sFI-Wc-b3i">
@@ -539,7 +571,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mov-sb-FtR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1151" y="3635"/>
+            <point key="canvasLocation" x="1916" y="3954"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="bDi-UJ-dsh">
@@ -558,7 +590,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PyT-h2-bjU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2950" y="4371"/>
+            <point key="canvasLocation" x="2998" y="3954"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Yvr-YY-oSh">
