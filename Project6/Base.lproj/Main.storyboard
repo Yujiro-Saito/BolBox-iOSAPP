@@ -369,7 +369,6 @@
                                 <state key="normal" image="add"/>
                                 <connections>
                                     <action selector="addButtonDidTap:" destination="g7b-JG-ffv" eventType="touchUpInside" id="TAK-2f-y0m"/>
-                                    <segue destination="X0E-Jo-YFH" kind="show" id="zzT-je-HIe"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -432,13 +431,16 @@
                                 <rect key="frame" x="284" y="314" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="add"/>
+                                <connections>
+                                    <segue destination="nB8-r0-FeG" kind="show" id="BqH-x6-Mrh"/>
+                                </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gnG-7c-HlF">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="プロフィール" id="DUV-hV-eMb">
-                                        <barButtonItem key="rightBarButtonItem" title="編集" id="cF7-vf-dcE"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="cF7-vf-dcE"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -477,7 +479,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UDG-I9-8AU" id="xWU-iO-OVK">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BpU-6n-toe">
@@ -670,6 +672,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="jqF-Ab-dkD">
+                        <barButtonItem key="leftBarButtonItem" title="戻る" id="2gd-wM-FxF">
+                            <connections>
+                                <segue destination="nB8-r0-FeG" kind="show" id="ROV-If-9yk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="categoryField" destination="QH1-sF-3wn" id="WXy-0M-hea"/>
                         <outlet property="productNameField" destination="XdI-ba-EO8" id="Gb1-sF-AaT"/>
@@ -679,7 +688,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FES-9u-W3B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2181.5999999999999" y="3122.7886056971515"/>
+            <point key="canvasLocation" x="5272.8000000000002" y="5669.4152923538231"/>
         </scene>
         <!--Post Product Photos View Controller-->
         <scene sceneID="bSY-9r-4Ou">
@@ -781,7 +790,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ShI-ko-msa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3044" y="3122.7886056971515"/>
+            <point key="canvasLocation" x="5004" y="4825"/>
         </scene>
         <!--Story View Controller-->
         <scene sceneID="mD8-kI-Tif">
@@ -838,7 +847,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MYK-1O-oS7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3932" y="3122.7886056971515"/>
+            <point key="canvasLocation" x="6033" y="4817"/>
         </scene>
         <!--Popular More Read Collection View Controller-->
         <scene sceneID="sSx-l7-vqJ">
@@ -1100,7 +1109,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="400"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gf7-wr-SqC" id="d0z-Yo-bFE">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="399.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rII-SO-nZt">
@@ -1526,6 +1535,24 @@
             </objects>
             <point key="canvasLocation" x="292" y="1700"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="72h-Oj-PdB">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nB8-r0-FeG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="aZl-XM-GjA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="X0E-Jo-YFH" kind="relationship" relationship="rootViewController" id="n6A-UX-gmQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OFC-Lv-vtH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4274" y="5669"/>
+        </scene>
     </scenes>
     <resources>
         <image name="AddPhoto" width="64" height="64"/>
@@ -1540,6 +1567,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="MJw-h2-vqT"/>
+        <segue reference="ROV-If-9yk"/>
         <segue reference="yxJ-or-7wS"/>
     </inferredMetricsTieBreakers>
 </document>

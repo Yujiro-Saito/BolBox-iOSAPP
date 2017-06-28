@@ -15,7 +15,7 @@ class PostProductInfoViewController: UIViewController,UIPickerViewDelegate, UIPi
     @IBOutlet weak var productNameField: SignUpField!
     @IBOutlet weak var urlField: SignUpField!
     let selectPicker = UIPickerView()
-    var categoryBox = ["テクノロジー", "デザイン・アート", "教育・キャリア", "買い物", "ゲーム"]
+    var categoryBox = ["カテゴリーを選択してください","メディア","トラベル","テクノロジー", "デザイン・アート", "教育・キャリア", "ショッピング", "アプリ"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
