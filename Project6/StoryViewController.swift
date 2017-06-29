@@ -24,6 +24,9 @@ class StoryViewController: UIViewController,UITextViewDelegate {
     var name = String()
     var url = String()
     var categoryTitle = String()
+    var mainBool = false
+    var firstBool = false
+    var secondBool = false
     
 
     override func viewDidLoad() {
@@ -102,47 +105,42 @@ class StoryViewController: UIViewController,UITextViewDelegate {
         
      //カテゴリー別の投稿
         //テクノロジー
-        else  if categoryTitle == "テクノロジー" {
-            print("テクノロジー投稿開始")
+        else  if categoryTitle == "メディア" {
+            print("メディア投稿開始")
             
             
             let ref = FIRDatabase.database().reference()
             let uid = FIRAuth.auth()?.currentUser?.uid
             
-            do {
+            
                 
-                
-                var techPost: Dictionary<String, AnyObject> = [
+                var mediaPost: Dictionary<String, AnyObject> = [
                     
-                    "categoryName" : categoryTitle as AnyObject,
-                    "productName" : self.name as AnyObject,
+                    "category" : categoryTitle as AnyObject,
+                    "name" : self.name as AnyObject,
                     "linkURL" : self.url as AnyObject,
-                    "pageViews" : 0 as AnyObject,
-                    "story" : storyText.text as AnyObject,
+                    "pvCount" : 0 as AnyObject,
+                    "whatContent" : storyText.text as AnyObject,
                     "userID" : uid as AnyObject
                 ]
-                
-                
-                
-                
-                
-                
+
                 
                 //詳細画像一枚のとき
                 if detailImages.count == 1 {
                     
+                    
                     //メイン写真投稿
-                    let imgData = UIImageJPEGRepresentation(detailOne, 0.2)
+                    let mainImgData = UIImageJPEGRepresentation(detailOne, 0.2)
                     
                     
                     let metaData = FIRStorageMetadata()
                     metaData.contentType = "image/jpeg"
-                    let imgUid = NSUUID().uuidString
+                    let mainImgUid = NSUUID().uuidString
                     
                     
                     
                     
-                    DataService.dataBase.REF_POST_IMAGES.child(imgUid).put(imgData!, metadata: metaData) {
+                    DataService.dataBase.REF_POST_IMAGES.child(mainImgUid).put(mainImgData!, metadata: metaData) {
                         (metaData, error) in
                         
                         if error != nil {
@@ -150,16 +148,15 @@ class StoryViewController: UIViewController,UITextViewDelegate {
                         } else {
                             print("画像のアップロードに成功しました")
                             //DBへ画像のURL飛ばす
-                            let downloadURL = metaData?.downloadURL()?.absoluteString
+                            let firstDownloadURL = metaData?.downloadURL()?.absoluteString
                             
+                            //メイン画像を追加
+                            mediaPost["imageURL"] = firstDownloadURL as AnyObject
                             
-                            techPost["mainURL"] = downloadURL as AnyObject
-                            
-                            print(techPost)
                         }
                     }
                     
-                    //詳細画像一枚目のとき
+                    //詳細画像一枚追加処理
                     let oneUID = NSUUID().uuidString
                     let oneImgData = UIImageJPEGRepresentation(detailImages[0]!, 0.2)
                     
@@ -176,16 +173,16 @@ class StoryViewController: UIViewController,UITextViewDelegate {
                             let oneDownloadURL = metaData?.downloadURL()?.absoluteString
                             
                             
-                            techPost["imageOne"] = oneDownloadURL as AnyObject
+                            mediaPost["detailImageOne"] = oneDownloadURL as AnyObject
                             
-                            print(techPost)
+                            print(mediaPost)
                             
                             //詳細画像が一枚の場合
                             if self.detailImages.count == 1 {
-                                let firebasePost = DataService.dataBase.REF_ENTERTAINMENT.childByAutoId()
+                                let firebasePost = DataService.dataBase.REF_POST.childByAutoId()
                                 
-                                firebasePost.setValue(techPost)
-                                print("一枚の投稿を完了しました")
+                                firebasePost.setValue(mediaPost)
+                                print("一枚の場合の投稿を完了しました")
                             }
                             
                         }
@@ -195,109 +192,157 @@ class StoryViewController: UIViewController,UITextViewDelegate {
               
                 
                 
+                
                 //詳細画像二枚のとき
                 
                 
                 if detailImages.count == 2 {
                     
-                    //メイン写真投稿
-                    let imgData = UIImageJPEGRepresentation(detailOne, 0.2)
+                
+                        print("投稿開始")
+                    
+                   //let queue = DispatchQueue.main
                     
                     
+                        print("直列処理")
+                        
+                        let ref = FIRDatabase.database().reference()
+                        let uid = FIRAuth.auth()?.currentUser?.uid
+                    
+                    
+                    //メイン写真投稿処理
+                    let mainImgData = UIImageJPEGRepresentation(self.detailOne, 0.2)
                     let metaData = FIRStorageMetadata()
                     metaData.contentType = "image/jpeg"
-                    let imgUid = NSUUID().uuidString
+                    let secondImgUid = NSUUID().uuidString
                     
-                    
-                    
-                    
-                    DataService.dataBase.REF_POST_IMAGES.child(imgUid).put(imgData!, metadata: metaData) {
-                        (metaData, error) in
-                        
-                        if error != nil {
-                            print("画像のアップロードに失敗しました")
-                        } else {
-                            print("画像のアップロードに成功しました")
-                            //DBへ画像のURL飛ばす
-                            let downloadURL = metaData?.downloadURL()?.absoluteString
+                    DispatchQueue.global().async {
+                        DataService.dataBase.REF_POST_IMAGES.child(secondImgUid).put(mainImgData!, metadata: metaData) {
+                            (metaData, error) in
                             
-                            
-                            techPost["mainURL"] = downloadURL as AnyObject
-                            
-                            print(techPost)
-                        }
-                    }
-
-                    
-                    //一枚目の投稿
-                    let oneUID = NSUUID().uuidString
-                    let oneImgData = UIImageJPEGRepresentation(detailImages[0]!, 0.2)
-                    
-                    
-                    
-                    DataService.dataBase.REF_POST_IMAGES.child(oneUID).put(oneImgData!, metadata: metaData) {
-                        (metaData, error) in
-                        
-                        if error != nil {
-                            print("画像のアップロードに失敗しました")
-                        } else {
-                            print("画像のアップロードに成功しました")
-                            //DBへ画像のURL飛ばす
-                            let oneDownloadURL = metaData?.downloadURL()?.absoluteString
-                            
-                            
-                            techPost["imageOne"] = oneDownloadURL as AnyObject
-                            
-                            print(techPost)
+                            if error != nil {
+                                print("画像のアップロードに失敗しました")
+                            } else {
                                 
-                            
+                                self.mainBool = true
+                                
+                                print("画像のアップロードに成功しました")
+                                //DBへ画像のURL飛ばす
+                                let mainDownloadURL = metaData?.downloadURL()?.absoluteString
+                                
+                                //メイン画像を追加
+                                mediaPost["imageURL"] = mainDownloadURL as AnyObject
+                                print("メインを追加")
+                                print(mediaPost)
+                            }
                         }
                     }
                     
+                    wait( { return self.mainBool == true } ) {
+                        // 取得しました
+                        print("メイン")
+                    }
+                    
+                        
+                        
+                    
+                        
+                        //一枚目の投稿
+                        let onesUID = NSUUID().uuidString
+                        let onesImgData = UIImageJPEGRepresentation(self.detailImages[0]!, 0.2)
+                    
+                    DispatchQueue.global().async {
+                        DataService.dataBase.REF_POST_IMAGES.child(onesUID).put(onesImgData!, metadata: metaData) {
+                            (metaData, error) in
+                            
+                            if error != nil {
+                                print("画像のアップロードに失敗しました")
+                            } else {
+                                self.firstBool = true
+                                print("画像のアップロードに成功しました")
+                                //DBへ画像のURL飛ばす
+                                let oneDownloadURL = metaData?.downloadURL()?.absoluteString
+                                
+                                //一枚目を追加
+                                mediaPost["detailImageOne"] = oneDownloadURL as AnyObject
+                                print("一枚目を追加")
+                                print(mediaPost)
+                                
+                                
+                            }
+                        }
+                    }
+                        
+                    // dataを取得するまで待ちます
+                    wait( { return self.firstBool == true } ) {
+                        // 取得しました
+                        print("finish1")
+                    }
                     
                     //二枚目の投稿
                     let twoUID = NSUUID().uuidString
-                    let twoImgData = UIImageJPEGRepresentation(detailImages[1]!, 0.2)
-                    
-                    
-                    DataService.dataBase.REF_POST_IMAGES.child(twoUID).put(twoImgData!, metadata: metaData) {
-                        (metaData, error) in
-                        
-                        if error != nil {
-                            print("画像のアップロードに失敗しました")
-                        } else {
-                            print("画像のアップロードに成功しました")
-                            //DBへ画像のURL飛ばす
-                            let twoDownloadURL = metaData?.downloadURL()?.absoluteString
-                            
-                            
-                            techPost["imageTwo"] = twoDownloadURL as AnyObject
-                            
-                            
-                            print(techPost)
-                            
-                            //DBに投稿
-                            let firebasePost = DataService.dataBase.REF_ENTERTAINMENT.childByAutoId()
-                            
-                            firebasePost.setValue(techPost)
-                            print("2枚の投稿を完了しました")
+                    let twoImgData = UIImageJPEGRepresentation(self.detailImages[1]!, 0.2)
 
+                    
+                    DispatchQueue.global().async {
+                        
+                        
+                        DataService.dataBase.REF_POST_IMAGES.child(twoUID).put(twoImgData!, metadata: metaData) {
+                            (metaData, error) in
+                            
+                            if error != nil {
+                                print("画像のアップロードに失敗しました")
+                            } else {
+                            
+                                self.secondBool = true
+                                print("画像のアップロードに成功しました")
+                                //DBへ画像のURL飛ばす
+                                let twoDownloadURL = metaData?.downloadURL()?.absoluteString
+                                
+                                //二枚目を追加
+                                mediaPost["detailImageTwo"] = twoDownloadURL as AnyObject
+                                
+                                print("二枚目を追加")
+                                print(mediaPost)
+                                
+                                //DBに投稿
+                                let firebasePost = DataService.dataBase.REF_POST.childByAutoId()
+                                
+                                firebasePost.setValue(mediaPost)
+                                print(mediaPost)
+                                print("2枚の場合投稿を完了しました")
+                                
+                                
+                            }
                             
                             
                             
                         }
+
                     }
                     
+                    wait( { return self.secondBool == true } ) {
+                        // 取得しました
+                        print("finish")
+                    }
+                        
+                    
+                    
+                        
+                }
+                    
+                    
+                    
+                        
+                   
                     
                     
                     
                     
                     
                     
-                    
-                    
-                    //詳細画像三枚目
-                } else if detailImages.count == 3 {
+                    //詳細画像が三枚の場合
+                 else if detailImages.count == 3 {
                     
                     //二枚目追加
                     let twoUID = NSUUID().uuidString
@@ -317,13 +362,13 @@ class StoryViewController: UIViewController,UITextViewDelegate {
                             let twoDownloadURL = metaData?.downloadURL()?.absoluteString
                             
                             
-                            techPost["imageTwo"] = twoDownloadURL as AnyObject
+                            mediaPost["imageTwo"] = twoDownloadURL as AnyObject
                             
                             
-                            print(techPost)
+                            print(mediaPost)
                             
                             
-                            
+                        
                             
                         }
                     }
@@ -345,15 +390,15 @@ class StoryViewController: UIViewController,UITextViewDelegate {
                             let threeDownloadURL = metaData?.downloadURL()?.absoluteString
                             
                             
-                            techPost["imageThree"] = threeDownloadURL as AnyObject
+                            mediaPost["imageThree"] = threeDownloadURL as AnyObject
                             
                             
-                            print(techPost)
+                            print(mediaPost)
                             
                             //DBに投稿
                             let firebasePost = DataService.dataBase.REF_ENTERTAINMENT.childByAutoId()
                             
-                            firebasePost.setValue(techPost)
+                            firebasePost.setValue(mediaPost)
                             print("3枚の投稿を完了しました")
                             
                         }
@@ -370,60 +415,44 @@ class StoryViewController: UIViewController,UITextViewDelegate {
                 
                 
                 
-            } catch {
-                print(error.localizedDescription)
-            }
-        } else if categoryTitle == "メディア" {
-            do {
-                
-                
-                
-                
-                
-            } catch {
-                
-            }
-        } else if categoryTitle == "キャリア・教育" {
-            do {
-                
-                
-                
-                
-                
-            } catch {
-                
-            }
-        }else if categoryTitle == "ショッピング" {
-            do {
-                
-                
-                
-                
-                
-            } catch {
-                
-            }
-        }else if categoryTitle == "ゲーム・エンターテインメント" {
-            do {
-                
-                
-                
-                
-                
-            } catch {
-                
-            }
-        }
-        
-        
-        
-        
+          
         
         
     }
     
     
     
-    
-
 }
+    
+    
+    
+    
+    
+    
+    func wait(_ waitContinuation: @escaping (()->Bool), compleation: @escaping (()->Void)) {
+        var wait = waitContinuation()
+        // 0.01秒周期で待機条件をクリアするまで待ちます。
+        let semaphore = DispatchSemaphore(value: 0)
+        DispatchQueue.global().async {
+            while wait {
+                DispatchQueue.main.async {
+                    wait = waitContinuation()
+                    semaphore.signal()
+                }
+                semaphore.wait()
+                Thread.sleep(forTimeInterval: 0.01)
+            }
+            // 待機条件をクリアしたので通過後の処理を行います。
+            DispatchQueue.main.async {
+                compleation()
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+}
+

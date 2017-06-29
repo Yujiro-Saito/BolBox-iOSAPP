@@ -291,12 +291,33 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                                 
                                 if let postDict = snap.value as? Dictionary<String, AnyObject> {
                                     
-                                    let key = snap.key
-                                    let post = Post(postKey: key, postData: postDict)
+                                    let category = postDict["category"] as! String
                                     
+                                    //print("おおおおおおおおおおおおおおおおお\(cate)")
                                     
-                                    self.popularPosts.append(post)
-                                }
+                                   // if cate == "ショッピング" {
+                                        let key = snap.key
+                                        let post = Post(postKey: key, postData: postDict)
+                                        
+                                        
+                                        self.popularPosts.append(post)
+                                        
+                                        
+                                        //見本
+                                        /*let categoryTag = postDict["category"] as! String
+                                        
+                                        print("おおおおおおおおおおおおおおおおお\(categoryTag)")
+                                        
+                                        if categoryTag == "ショッピング" {
+                                            let key = snap.key
+                                            let post = Post(postKey: key, postData: postDict)
+                                            
+                                            self.newPosts.append(post)
+                                            self.baseTable.reloadData()
+                                            */
+                                    //}
+                                   
+                                   }
                             }
                             
                             
@@ -746,7 +767,6 @@ extension HomeViewController {
     
     
 }
-
 
 
 

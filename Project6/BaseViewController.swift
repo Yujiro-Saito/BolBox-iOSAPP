@@ -246,6 +246,8 @@ class BaseViewController: UIViewController, UINavigationBarDelegate, UITableView
                                 
                                 self.newPosts.append(post)
                                 self.baseTable.reloadData()
+
+                                
                             }
                             
                             
