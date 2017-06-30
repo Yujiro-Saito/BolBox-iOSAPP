@@ -57,7 +57,13 @@ class StoryViewController: UIViewController,UITextViewDelegate {
     }
     
     
+    
     @IBAction func PostButtonDidTap(_ sender: Any) {
+        
+        self.mainBool = false
+        self.firstBool = false
+        self.secondBool = false
+        
         
         if self.storyText.text == "" {
             
@@ -70,42 +76,10 @@ class StoryViewController: UIViewController,UITextViewDelegate {
             
         }
         
-        /*
-        else {
-            
-            print("投稿開始")
-            
-            
-            let ref = FIRDatabase.database().reference()
-            
-            //プロフィールへの登録
-            
-            do {
-                
-                let uid = FIRAuth.auth()?.currentUser?.uid
-                
-                
-               ref.child((FIRAuth.auth()?.currentUser?.uid)!).childByAutoId().setValue(["categoryName": categoryTitle as AnyObject,"productName": self.name,  "linkURL" : self.url, "categoryName" : self.categoryTitle ,  "storyContent" : storyText.text,  "pageViews" : 0,  "userID" : uid!])
-                
-                
-                
-            } catch {
-                
-                print(error.localizedDescription)
-                
-                return
-            }
-            
-            
- 
-            
-            
-        }
-        */
         
-     //カテゴリー別の投稿
-        //テクノロジー
-        else  if categoryTitle == "メディア" {
+        //カテゴリー別の投稿
+            
+        else  if storyText.text != "" {
             print("メディア投稿開始")
             
             
@@ -201,11 +175,7 @@ class StoryViewController: UIViewController,UITextViewDelegate {
                 
                         print("投稿開始")
                     
-                   //let queue = DispatchQueue.main
                     
-                    
-                        print("直列処理")
-                        
                         let ref = FIRDatabase.database().reference()
                         let uid = FIRAuth.auth()?.currentUser?.uid
                     
@@ -238,10 +208,8 @@ class StoryViewController: UIViewController,UITextViewDelegate {
                         }
                     }
                     
-                    wait( { return self.mainBool == true } ) {
-                        // 取得しました
-                        print("メイン")
-                    }
+                    
+                    
                     
                         
                         
@@ -272,12 +240,10 @@ class StoryViewController: UIViewController,UITextViewDelegate {
                             }
                         }
                     }
+                    
+                    
+                    
                         
-                    // dataを取得するまで待ちます
-                    wait( { return self.firstBool == true } ) {
-                        // 取得しました
-                        print("finish1")
-                    }
                     
                     //二枚目の投稿
                     let twoUID = NSUUID().uuidString
@@ -304,31 +270,73 @@ class StoryViewController: UIViewController,UITextViewDelegate {
                                 
                                 print("二枚目を追加")
                                 print(mediaPost)
+
+                            }
+                        }
+
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    //非同期処理の完了を待ってから投稿
+                    
+                    
+                    wait( {self.mainBool == false} ) {
+                        // 取得しました
+                        
+                        self.wait( {self.firstBool == false} ) {
+                            
+                            self.wait( {self.secondBool == false} ) {
                                 
-                                //DBに投稿
-                                let firebasePost = DataService.dataBase.REF_POST.childByAutoId()
+                                print("三段階確認")
+                                print(self.mainBool)
+                                print(self.firstBool)
+                                print(self.secondBool)
                                 
-                                firebasePost.setValue(mediaPost)
-                                print(mediaPost)
-                                print("2枚の場合投稿を完了しました")
+                                 //DBに投稿
+                                 let firebasePost = DataService.dataBase.REF_POST.childByAutoId()
                                 
+                                 firebasePost.setValue(mediaPost)
+                                 print(mediaPost)
+                                 print("2枚の場合投稿を完了しました")
                                 
                             }
                             
                             
                             
+                            
                         }
-
+                        
                     }
                     
-                    wait( { return self.secondBool == true } ) {
-                        // 取得しました
-                        print("finish")
+                    
+                    
+                    wait( {(self.secondBool == false) && (self.firstBool == false) && (self.secondBool == false)} ) {
+                        
+                        
+                        print("全ての処理がおわたらしい")
+                        print(self.mainBool)
+                        print(self.firstBool)
+                        print(self.secondBool)
+                        
+                        //let firebasePost = DataService.dataBase.REF_POST.childByAutoId()
+    
+                        //firebasePost.setValue(mediaPost)
+                        
                     }
+                    
+                    
+                    
+                    
+                 
+                    
                         
                     
                     
-                        
                 }
                     
                     
@@ -445,6 +453,9 @@ class StoryViewController: UIViewController,UITextViewDelegate {
             // 待機条件をクリアしたので通過後の処理を行います。
             DispatchQueue.main.async {
                 compleation()
+                
+                
+                
             }
         }
     }
