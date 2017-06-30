@@ -27,6 +27,7 @@ class StoryViewController: UIViewController,UITextViewDelegate {
     var mainBool = false
     var firstBool = false
     var secondBool = false
+    var thirdBool = false
     
 
     override func viewDidLoad() {
@@ -63,7 +64,7 @@ class StoryViewController: UIViewController,UITextViewDelegate {
         self.mainBool = false
         self.firstBool = false
         self.secondBool = false
-        
+        self.thirdBool = false
         
         if self.storyText.text == "" {
             
@@ -73,6 +74,18 @@ class StoryViewController: UIViewController,UITextViewDelegate {
             alertViewController.addAction(okAction)
             
             self.present(alertViewController, animated:true, completion:nil)
+            
+        } else if storyText.text != "メディア" ||  storyText.text != "トラベル" || storyText.text != "テクノロジー" ||  storyText.text != "デザイン・アート" ||  storyText.text != "教育・キャリア" ||  storyText.text != "ショッピング" ||  storyText.text != "アプリ"  {
+            
+            print("タグが正しくない")
+            
+            let alertViewControler = UIAlertController(title: "エラーがあります", message: "カテゴリーが正しくありません", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            
+            alertViewControler.addAction(okAction)
+            self.present(alertViewControler, animated: true, completion: nil)
+            
+            
             
         }
         
@@ -111,56 +124,89 @@ class StoryViewController: UIViewController,UITextViewDelegate {
                     metaData.contentType = "image/jpeg"
                     let mainImgUid = NSUUID().uuidString
                     
-                    
-                    
-                    
-                    DataService.dataBase.REF_POST_IMAGES.child(mainImgUid).put(mainImgData!, metadata: metaData) {
-                        (metaData, error) in
+                    DispatchQueue.global().async {
                         
-                        if error != nil {
-                            print("画像のアップロードに失敗しました")
-                        } else {
-                            print("画像のアップロードに成功しました")
-                            //DBへ画像のURL飛ばす
-                            let firstDownloadURL = metaData?.downloadURL()?.absoluteString
+                        DataService.dataBase.REF_POST_IMAGES.child(mainImgUid).put(mainImgData!, metadata: metaData) {
+                            (metaData, error) in
                             
-                            //メイン画像を追加
-                            mediaPost["imageURL"] = firstDownloadURL as AnyObject
-                            
+                            if error != nil {
+                                print("画像のアップロードに失敗しました")
+                            } else {
+                                self.mainBool = true
+                                print("画像のアップロードに成功しました")
+                                //DBへ画像のURL飛ばす
+                                let firstDownloadURL = metaData?.downloadURL()?.absoluteString
+                                
+                                //メイン画像を追加
+                                mediaPost["imageURL"] = firstDownloadURL as AnyObject
+                                
+                            }
                         }
+                        
                     }
+                    
+                    
+                    
+                   
                     
                     //詳細画像一枚追加処理
                     let oneUID = NSUUID().uuidString
                     let oneImgData = UIImageJPEGRepresentation(detailImages[0]!, 0.2)
                     
-                    
-                    
-                    DataService.dataBase.REF_POST_IMAGES.child(oneUID).put(oneImgData!, metadata: metaData) {
-                        (metaData, error) in
+                    DispatchQueue.global().async {
                         
-                        if error != nil {
-                            print("画像のアップロードに失敗しました")
-                        } else {
-                            print("画像のアップロードに成功しました")
-                            //DBへ画像のURL飛ばす
-                            let oneDownloadURL = metaData?.downloadURL()?.absoluteString
+                        DataService.dataBase.REF_POST_IMAGES.child(oneUID).put(oneImgData!, metadata: metaData) {
+                            (metaData, error) in
+                            
+                            if error != nil {
+                                print("画像のアップロードに失敗しました")
+                            } else {
+                                print("画像のアップロードに成功しました")
+                                self.firstBool = true
+                                //DBへ画像のURL飛ばす
+                                let oneDownloadURL = metaData?.downloadURL()?.absoluteString
+                                
+                                
+                                mediaPost["detailImageOne"] = oneDownloadURL as AnyObject
+                                
+                                print(mediaPost)
+                                
+                            }
+                        }
+
+                    }
+                  
+                    
+                    //非同期処理の完了を待ってから投稿
+                    wait( {self.mainBool == false} ) {
+                        
+                        self.wait( {self.firstBool == false} ) {
                             
                             
-                            mediaPost["detailImageOne"] = oneDownloadURL as AnyObject
+                                
+                                print("二段階確認")
+                                print(self.mainBool)
+                                print(self.firstBool)
                             
-                            print(mediaPost)
-                            
-                            //詳細画像が一枚の場合
-                            if self.detailImages.count == 1 {
+                                //DBに投稿
                                 let firebasePost = DataService.dataBase.REF_POST.childByAutoId()
                                 
                                 firebasePost.setValue(mediaPost)
-                                print("一枚の場合の投稿を完了しました")
-                            }
+                                print(mediaPost)
+                                print("1枚の場合投稿を完了しました")
+                                
+                            
+                            
+                            
                             
                         }
+                        
                     }
+ 
+                    
+                    
+                    
+                    
                 }
                 
               
@@ -315,27 +361,6 @@ class StoryViewController: UIViewController,UITextViewDelegate {
                     
                     
                     
-                    wait( {(self.secondBool == false) && (self.firstBool == false) && (self.secondBool == false)} ) {
-                        
-                        
-                        print("全ての処理がおわたらしい")
-                        print(self.mainBool)
-                        print(self.firstBool)
-                        print(self.secondBool)
-                        
-                        //let firebasePost = DataService.dataBase.REF_POST.childByAutoId()
-    
-                        //firebasePost.setValue(mediaPost)
-                        
-                    }
-                    
-                    
-                    
-                    
-                 
-                    
-                        
-                    
                     
                 }
                     
@@ -352,81 +377,191 @@ class StoryViewController: UIViewController,UITextViewDelegate {
                     //詳細画像が三枚の場合
                  else if detailImages.count == 3 {
                     
-                    //二枚目追加
-                    let twoUID = NSUUID().uuidString
-                    let twoImgData = UIImageJPEGRepresentation(detailImages[1]!, 0.2)
+                    print("投稿開始")
+                    
+                    
+                    let ref = FIRDatabase.database().reference()
+                    let uid = FIRAuth.auth()?.currentUser?.uid
+                    
+                    
+                    //メイン写真投稿処理
+                    let mainImgData = UIImageJPEGRepresentation(self.detailOne, 0.2)
                     let metaData = FIRStorageMetadata()
                     metaData.contentType = "image/jpeg"
+                    let secondImgUid = NSUUID().uuidString
                     
-                    
-                    DataService.dataBase.REF_POST_IMAGES.child(twoUID).put(twoImgData!, metadata: metaData) {
-                        (metaData, error) in
-                        
-                        if error != nil {
-                            print("画像のアップロードに失敗しました")
-                        } else {
-                            print("画像のアップロードに成功しました")
-                            //DBへ画像のURL飛ばす
-                            let twoDownloadURL = metaData?.downloadURL()?.absoluteString
+                    DispatchQueue.global().async {
+                        DataService.dataBase.REF_POST_IMAGES.child(secondImgUid).put(mainImgData!, metadata: metaData) {
+                            (metaData, error) in
                             
-                            
-                            mediaPost["imageTwo"] = twoDownloadURL as AnyObject
-                            
-                            
-                            print(mediaPost)
-                            
-                            
-                        
-                            
+                            if error != nil {
+                                print("画像のアップロードに失敗しました")
+                            } else {
+                                
+                                self.mainBool = true
+                                
+                                print("画像のアップロードに成功しました")
+                                //DBへ画像のURL飛ばす
+                                let mainDownloadURL = metaData?.downloadURL()?.absoluteString
+                                
+                                //メイン画像を追加
+                                mediaPost["imageURL"] = mainDownloadURL as AnyObject
+                                print("メインを追加")
+                                print(mediaPost)
+                            }
                         }
                     }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    //一枚目の投稿
+                    let onesUID = NSUUID().uuidString
+                    let onesImgData = UIImageJPEGRepresentation(self.detailImages[0]!, 0.2)
+                    
+                    DispatchQueue.global().async {
+                        DataService.dataBase.REF_POST_IMAGES.child(onesUID).put(onesImgData!, metadata: metaData) {
+                            (metaData, error) in
+                            
+                            if error != nil {
+                                print("画像のアップロードに失敗しました")
+                            } else {
+                                self.firstBool = true
+                                print("画像のアップロードに成功しました")
+                                //DBへ画像のURL飛ばす
+                                let oneDownloadURL = metaData?.downloadURL()?.absoluteString
+                                
+                                //一枚目を追加
+                                mediaPost["detailImageOne"] = oneDownloadURL as AnyObject
+                                print("一枚目を追加")
+                                print(mediaPost)
+                                
+                                
+                            }
+                        }
+                    }
+                    
+                    
+                    
+                    
+                    
+                    //二枚目の投稿
+                    let twoUID = NSUUID().uuidString
+                    let twoImgData = UIImageJPEGRepresentation(self.detailImages[1]!, 0.2)
+                    
+                    
+                    DispatchQueue.global().async {
+                        
+                        
+                        DataService.dataBase.REF_POST_IMAGES.child(twoUID).put(twoImgData!, metadata: metaData) {
+                            (metaData, error) in
+                            
+                            if error != nil {
+                                print("画像のアップロードに失敗しました")
+                            } else {
+                                
+                                self.secondBool = true
+                                print("画像のアップロードに成功しました")
+                                //DBへ画像のURL飛ばす
+                                let twoDownloadURL = metaData?.downloadURL()?.absoluteString
+                                
+                                //二枚目を追加
+                                mediaPost["detailImageTwo"] = twoDownloadURL as AnyObject
+                                
+                                print("二枚目を追加")
+                                print(mediaPost)
+                                
+                            }
+                        }
+                        
+                    }
+                    
                     
                     
                     //三枚目追加
                     let threeUID = NSUUID().uuidString
                     let threeImgData = UIImageJPEGRepresentation(self.detailImages[2]!, 0.2)
                     
-                    
-                    DataService.dataBase.REF_POST_IMAGES.child(threeUID).put(threeImgData!, metadata: metaData) {
-                        (metaData, error) in
+                     DispatchQueue.global().async {
                         
-                        if error != nil {
-                            print("画像のアップロードに失敗しました")
-                        } else {
-                            print("画像のアップロードに成功しました")
-                            //DBへ画像のURL飛ばす
-                            let threeDownloadURL = metaData?.downloadURL()?.absoluteString
+                        DataService.dataBase.REF_POST_IMAGES.child(threeUID).put(threeImgData!, metadata: metaData) {
+                            (metaData, error) in
+                            
+                            if error != nil {
+                                
+                                print("画像のアップロードに失敗しました")
+                            } else {
+                                print("画像のアップロードに成功しました")
+                                self.thirdBool = true
+                                //DBへ画像のURL飛ばす
+                                let threeDownloadURL = metaData?.downloadURL()?.absoluteString
+                                
+                                
+                                mediaPost["imageThree"] = threeDownloadURL as AnyObject
+                                
+                                
+                                print(mediaPost)
+                                
+                                //DBに投稿
+                                let firebasePost = DataService.dataBase.REF_ENTERTAINMENT.childByAutoId()
+                                
+                                firebasePost.setValue(mediaPost)
+                                print("3枚の投稿を完了しました")
+                                
+                            }
+                        }
+                    }
+                    
+                    
+                    //非同期処理の完了を待ってから投稿
+                    
+                    wait( {self.mainBool == false} ) {
+                        // 取得しました
+                        
+                        self.wait( {self.firstBool == false} ) {
+                            
+                            self.wait( {self.secondBool == false} ) {
+                                
+                                self.wait( {self.thirdBool == false} ) {
+                                
+                                    print("4段階確認")
+                                    print(self.mainBool)
+                                    print(self.firstBool)
+                                    print(self.secondBool)
+                                    print(self.thirdBool)
+                                    
+                                    //DBに投稿
+                                    let firebasePost = DataService.dataBase.REF_POST.childByAutoId()
+                                    
+                                    firebasePost.setValue(mediaPost)
+                                    print(mediaPost)
+                                    print("3枚の場合投稿を完了しました")
+                                
+                                }
+                                
+                                
+                            }
                             
                             
-                            mediaPost["imageThree"] = threeDownloadURL as AnyObject
                             
-                            
-                            print(mediaPost)
-                            
-                            //DBに投稿
-                            let firebasePost = DataService.dataBase.REF_ENTERTAINMENT.childByAutoId()
-                            
-                            firebasePost.setValue(mediaPost)
-                            print("3枚の投稿を完了しました")
                             
                         }
+                        
                     }
                     
                     
                     
                     
-                    
+                   
                     
                 }
-                
-                
-                
-                
-                
-          
-        
-        
-    }
+            
+            
+               }
     
     
     
