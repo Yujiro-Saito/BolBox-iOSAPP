@@ -104,70 +104,7 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
         
         
         
-        /*
-        if FIRAuth.auth()?.currentUser != nil {
-            // User is signed in.
-            
-            
-            let user = FIRAuth.auth()?.currentUser
-            
-            let userName = user?.displayName
-            let photoURL = user?.photoURL
-            let uid = user?.uid
-            print("ユーザー情報")
-            print(userName)
-            print(uid)
-            
-            self.profileName.text = userName
-            
-            if photoURL == nil {
-                profileImage.image = UIImage(named: "drop")
-            } else {
-                profileImage.af_setImage(withURL: photoURL!)
-            }
-            
-            //
-            DataService.dataBase.REF_POST.child((FIRAuth.auth()?.currentUser?.uid)!).observe(.value, with: { (snapshot) in
-                
-                self.userPosts = []
-                print(snapshot.value)
-                
-                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                    
-                    for snap in snapshot {
-                        print("SNAP: \(snap)")
-                        
-                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                            
-                            let key = snap.key
-                            let post = Post(postKey: key, postData: postDict)
-                            
-                            self.userPosts.append(post)
-                            self.profilePostTable.reloadData()
-                        }
-                        
-                        
-                    }
-                    
-                    
-                }
-                
-                
-                
-                
-                
-                
-                
-                
-            })
-            
-            
-        } else {
-            // No user is signed in.
-            print("ユーザーがいません")
-        }
-*/
-    }
+           }
     
     
     
@@ -203,5 +140,12 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
         
         return cell
     }
+    
+    
+    
+    
+    
+    
+    
 
 }
