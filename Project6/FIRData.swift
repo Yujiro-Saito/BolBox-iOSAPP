@@ -75,10 +75,10 @@ class DataService {
     
     
     func createDataBaseUser(uid: String, userData: Dictionary<String, String>, userName: Dictionary<String, Any>, photoURL: Dictionary<String, Any>, userEmail: Dictionary<String, Any>) {
-        REF_USER.child(uid).updateChildValues(userData)
-        REF_USER.child(uid).updateChildValues(userName)
-        REF_USER.child(uid).updateChildValues(photoURL)
-        REF_USER.child(uid).updateChildValues(userEmail)
+        REF_USER.child(uid).setValue(userData)
+        REF_USER.child(uid).setValue(userName)
+        REF_USER.child(uid).setValue(photoURL)
+        REF_USER.child(uid).setValue(userEmail)
     }
     
     func loginUserDatabase(uid: String, userData: Dictionary<String, String>) {

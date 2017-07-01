@@ -15,10 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
     var window: UIWindow?
     var googleSuccessful = Bool()
     
-    
+    override init() {
+        super.init()
+        FIRApp.configure()
+    }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
-        FIRApp.configure()
         UINavigationBar.appearance().tintColor = barColor
         
         

@@ -102,7 +102,7 @@ class BaseViewController: UIViewController, UINavigationBarDelegate, UITableView
             if let user = user {
                 let changeRequest = user.profileChangeRequest()
                 
-                changeRequest.displayName = self.displayUserName
+                changeRequest.displayName = "ゲスト"
                 changeRequest.photoURL = self.initialURL
                 
                 changeRequest.commitChanges { error in

@@ -75,7 +75,7 @@ class StoryViewController: UIViewController,UITextViewDelegate {
             
             self.present(alertViewController, animated:true, completion:nil)
             
-        } else if storyText.text != "メディア" ||  storyText.text != "トラベル" || storyText.text != "テクノロジー" ||  storyText.text != "デザイン・アート" ||  storyText.text != "教育・キャリア" ||  storyText.text != "ショッピング" ||  storyText.text != "アプリ"  {
+        } /*else if storyText.text != "メディア" ||  storyText.text != "トラベル" || storyText.text != "テクノロジー" ||  storyText.text != "デザイン・アート" ||  storyText.text != "教育・キャリア" ||  storyText.text != "ショッピング" ||  storyText.text != "アプリ"  {
             
             print("タグが正しくない")
             
@@ -89,8 +89,7 @@ class StoryViewController: UIViewController,UITextViewDelegate {
             
         }
         
-        
-        //カテゴリー別の投稿
+        */
             
         else  if storyText.text != "" {
             print("メディア投稿開始")

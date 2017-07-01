@@ -58,18 +58,18 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
         self.view.endEditing(true)
     }
     
-    
+    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         
-        let homeVc = (segue.destination as? HomeViewController)!
+        let tabVC = (segue.destination as? TabbarViewController)!
         
-        homeVc.displayUserName = userNameField.text
+        tabVC.displayUserName = userNameField.text!
         
     }
     
         
-    
+    */
     
     @IBAction func registerDidTap(_ sender: Any) {
         
@@ -113,7 +113,7 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
                         let userData = ["provider" : user.providerID]
                         let name = ["userName" : user.displayName]
                         let email = ["email" : user.email]
-                        let photoUrl = ["photoURL" : user.photoURL]
+                        let photoUrl = ["photoURL" : ""]
                         
                         print("データ: \(userData)")
                         print("名前: \(name)")
