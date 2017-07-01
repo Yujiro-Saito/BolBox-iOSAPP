@@ -9,32 +9,24 @@
 import UIKit
 import Firebase
 
-class BaseViewController: UIViewController, UINavigationBarDelegate, UITableViewDataSource, UITableViewDelegate  {
+class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionViewDelegate, UICollectionViewDataSource {
     
     
-    @IBOutlet weak var basedSegment: UISegmentedControl!
     @IBOutlet weak var baseNavBar: UINavigationBar!
-    @IBOutlet weak var baseTable: UITableView!
+    @IBOutlet weak var topCollectionTable: UICollectionView!
     
     
-    var newPosts = [Post]()
-    var popularPosts = [Post]()
     var displayUserName: String?
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     var initialURL = URL(string: "")
+    var topPosts = [Post]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-
-        
         baseNavBar.delegate = self
-        baseTable.delegate = self
-        baseTable.dataSource = self
-        
-        
-
+        topCollectionTable.delegate = self
+        topCollectionTable.dataSource = self
         
         /*FIRAuth.auth()!.signInAnonymously { (firUser, error) in
             if error == nil {
@@ -47,6 +39,42 @@ class BaseViewController: UIViewController, UINavigationBarDelegate, UITableView
         */
         self.baseNavBar.frame = CGRect(x: 0,y: 0, width: UIScreen.main.bounds.size.width, height: 55)
 
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
+            
+            self.topPosts = []
+            
+            print(snapshot.value)
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        
+                        self.topPosts.append(post)
+                        self.topCollectionTable.reloadData()
+                    }
+                    
+                    
+                }
+                
+                
+            }
+            
+        })
+        
+        topCollectionTable.reloadData()
+        
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -120,284 +148,58 @@ class BaseViewController: UIViewController, UINavigationBarDelegate, UITableView
         }
         
         
+    }
+    
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let topCell = topCollectionTable.dequeueReusableCell(withReuseIdentifier: "topCell", for: indexPath) as? newCollectionViewCell
         
         
+        let post = topPosts[indexPath.row]
         
         
+        if let img = BaseViewController.imageCache.object(forKey: post.imageURL as NSString) {
+            topCell?.configureCell(post: post, img: img)
+        } else {
+            topCell?.configureCell(post: post)
+        }
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        return topCell!
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-       
-        
-       
-            //新着投稿の取得
-        let segmentNum = basedSegment.selectedSegmentIndex
-        
-        if segmentNum == 0 {
-            DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
-                
-                self.newPosts = []
-                
-                print(snapshot.value)
-                
-                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                    
-                    for snap in snapshot {
-                        print("SNAP: \(snap)")
-                        
-                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                            
-                            let key = snap.key
-                            let post = Post(postKey: key, postData: postDict)
-                            
-                            self.newPosts.append(post)
-                            self.baseTable.reloadData()
-                        }
-                        
-                        
-                    }
-                    
-                    
-                }
-                
-            })
-            
-            baseTable.reloadData()
-
-        } else if segmentNum == 1 {
-            
-                DataService.dataBase.REF_POST.queryOrdered(byChild: "pvCount").queryLimited(toLast: 15).observe(.value, with: { (snapshot) in
-                    
-                    self.popularPosts = []
-                    
-                    print(snapshot.value)
-                    
-                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                        
-                        for snap in snapshot {
-                            print("SNAP: \(snap)")
-                            
-                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                                
-                                let key = snap.key
-                                let post = Post(postKey: key, postData: postDict)
-                                
-                                
-                                self.popularPosts.append(post)
-                                
-                                self.popularPosts.sort(by: {$0.pvCount > $1.pvCount})
-                                self.baseTable.reloadData()
-                                
-                            }
-                        }
-                    }
-                    
-                })
-                baseTable.reloadData()
-                
-            
-            
-            
-        }
-        }
-        
-
-
-   
-    
-    
-    //セグメントタップ
-    @IBAction func baseSegmentDidTap(_ sender: Any) {
-       
-       let segmentNum = basedSegment.selectedSegmentIndex
-        
-        //新着の読み込み
-        if segmentNum == 0 {
-            
-            do {
-                
-                DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
-                    
-                    self.newPosts = []
-                    
-                    print(snapshot.value)
-                    
-                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                        
-                        for snap in snapshot {
-                            print("SNAP: \(snap)")
-                            
-                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                                
-                                let key = snap.key
-                                let post = Post(postKey: key, postData: postDict)
-                                
-                                self.newPosts.append(post)
-                                self.baseTable.reloadData()
-
-                                
-                            }
-                            
-                            
-                        }
-                        
-                        
-                    }
-                    
-                })
-                baseTable.reloadData()
-                
-                
-                
-                
-                
-            } catch {
-                print(error.localizedDescription)
-            }
-            
-            
-            //人気の読み込み
-        } else if segmentNum == 1 {
-            
-            do {
-                DataService.dataBase.REF_POST.queryOrdered(byChild: "pvCount").queryLimited(toLast: 15).observe(.value, with: { (snapshot) in
-                    
-                    self.popularPosts = []
-                    
-                    print(snapshot.value)
-                    
-                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                        
-                        for snap in snapshot {
-                            print("SNAP: \(snap)")
-                            
-                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                                
-                                let key = snap.key
-                                let post = Post(postKey: key, postData: postDict)
-                                
-                                
-                                self.popularPosts.append(post)
-                                
-                                self.popularPosts.sort(by: {$0.pvCount > $1.pvCount})
-                                self.baseTable.reloadData()
-                                
-                            }
-                        }
-                    }
-                    
-                })
-                baseTable.reloadData()
-                
-            } catch {
-                print(error.localizedDescription)
-            }
-            
-            
-            
-        }
-        
-        
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return topPosts.count
     }
     
-//テーブルビュー関連
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let segmentNum = basedSegment.selectedSegmentIndex
-        
-        if segmentNum == 0 {
-            return newPosts.count
-        } else if segmentNum == 1 {
-            return popularPosts.count
-        }
-        
-        return 5
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let segmentNum = basedSegment.selectedSegmentIndex
-        
-        let cell = baseTable.dequeueReusableCell(withIdentifier: "baseCell", for: indexPath) as? BaseTableViewCell
-        
-        cell?.layer.borderColor = UIColor.clear.cgColor
-        cell?.layer.borderWidth = 5
-        cell?.clipsToBounds = true
-        
-        
-        if segmentNum == 0 {
-            //新着投稿
-            let post = newPosts[indexPath.row]
-            
-            if let img = BaseViewController.imageCache.object(forKey: post.imageURL as NSString) {
-                
-                cell?.configureCell(post: post, img: img)
-            } else {
-                cell?.configureCell(post: post)
-            }
-            
-            return cell!
-            
-        } else if segmentNum == 1 {
-            //人気投稿
-            let post = popularPosts[indexPath.row]
-            
-            if let img = BaseViewController.imageCache.object(forKey: post.imageURL as NSString) {
-                
-                cell?.configureCell(post: post, img: img)
-            } else {
-                cell?.configureCell(post: post)
-            }
-            
-            self.popularPosts.sort(by: {$0.pvCount > $1.pvCount})
-            return cell!
-            
-            
-        }
-        
-        
-        return cell!
-        
-        
-        
-    }
-    
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 5
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        headerView.backgroundColor = UIColor.clear
-        return headerView
-    }
-    
-    
-    @IBAction func dataDelete(_ sender: Any) {
-        print("delete")
-       
-    }
     
     
     
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
    
 }
 

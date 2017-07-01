@@ -13,10 +13,8 @@ class newCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var celImage: UIImageView!
     @IBOutlet weak var cellTitle: UILabel!
-    @IBOutlet weak var star: UIImageView!
-    @IBOutlet weak var starCount: UILabel!
     @IBOutlet weak var whatContent: UILabel!
-    @IBOutlet weak var categoryName: UILabel!
+    @IBOutlet weak var kindLabel: UILabel!
     
     
     var post: Post!
@@ -26,9 +24,8 @@ class newCollectionViewCell: UICollectionViewCell {
         
         self.post = post
         self.cellTitle.text = "\(post.name)"
-        self.starCount.text = "\(post.pvCount)"
-        //self.whatContent.text = "\(post.whatContent)"
-        //self.categoryName.text = "\(post.category)"
+        self.whatContent.text = "\(post.whatContent)"
+        self.kindLabel.text = "\(post.category)"
         
         if img != nil {
             
@@ -49,7 +46,7 @@ class newCollectionViewCell: UICollectionViewCell {
                     if let imgData = data {
                         if let img = UIImage(data: imgData) {
                             self.celImage.image = img
-                            HomeViewController.imageCache.setObject(img, forKey: post.imageURL as NSString)
+                            BaseViewController.imageCache.setObject(img, forKey: post.imageURL as NSString)
                         }
                     }
                 }
