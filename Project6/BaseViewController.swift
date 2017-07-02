@@ -43,7 +43,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
+        DataService.dataBase.REF_TOP.observe(.value, with: { (snapshot) in
             
             self.topPosts = []
             
