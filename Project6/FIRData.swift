@@ -29,9 +29,7 @@ class DataService {
     private var _REF_BASE = DB_BASE
     private var _REF_POSTS = DB_BASE.child("posts")
     private var _REF_TOP = DB_BASE.child("topReccomend")
-    private var _REF_GADGET = DB_BASE.child("gadget")
-    private var _REF_GAME = DB_BASE.child("game")
-    private var _REF_ENTERTAINMENT = DB_BASE.child("entertainment")
+    private var _REF_FIRST = DB_BASE.child("first")
     private var _REF_USER = DB_BASE.child("users")
 
     
@@ -59,21 +57,14 @@ class DataService {
         return _REF_POST_IMAGES
     }
     
-    var REF_GADGET: FIRDatabaseReference {
+    var REF_FIRST: FIRDatabaseReference {
         
-        return _REF_GADGET
+        return _REF_FIRST
         
     }
     
     
-    var REF_GAME: FIRDatabaseReference {
-        return _REF_GAME
-    }
-    
-    var REF_ENTERTAINMENT: FIRDatabaseReference {
-        return _REF_ENTERTAINMENT
-    }
-    
+   
     var REF_USER: FIRDatabaseReference {
         return _REF_USER
     }

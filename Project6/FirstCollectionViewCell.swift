@@ -1,46 +1,42 @@
 //
-//  CategorysTableViewCell.swift
+//  FirstCollectionViewCell.swift
 //  Project6
 //
-//  Created by  Yujiro Saito on 2017/06/03.
+//  Created by  Yujiro Saito on 2017/07/02.
 //  Copyright © 2017年 yujiro_saito. All rights reserved.
 //
-/*
+
 import UIKit
 import FirebaseStorage
 
-
-class CategorysTableViewCell: UITableViewCell {
+class FirstCollectionViewCell: UICollectionViewCell {
     
     
-    @IBOutlet weak var itemName: UILabel!
-    @IBOutlet weak var itemStarNum: UILabel!
-    @IBOutlet weak var itemWhatContent: UILabel!
-    @IBOutlet weak var itemImage: UIImageView!
-    
+    @IBOutlet weak var firstImage: UIImageView!
+    @IBOutlet weak var firstName: UILabel!
+    @IBOutlet weak var firstContent: UILabel!
     
     var post: Post!
     
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
+    
     
     func configureCell(post: Post, img: UIImage? = nil) {
         
         
         self.post = post
-        //self.itemName.text = "\(post.name)"
-        self.itemStarNum.text = "\(post.pvCount)"
-        //self.itemWhatContent.text = "\(post.whatContent)"
+        self.firstName.text = "\(post.name)"
+        self.firstContent.text = "\(post.whatContent)"
+        //self.kindLabel.text = "\(post.category)"
         
         if img != nil {
             
-            self.itemImage.image = img
+            self.firstImage.image = img
             
         } else {
             
+            
             let ref = FIRStorage.storage().reference(forURL: post.imageURL)
+            
             ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
                 
                 if error != nil {
@@ -50,14 +46,23 @@ class CategorysTableViewCell: UITableViewCell {
                     print("SUCCESS")
                     if let imgData = data {
                         if let img = UIImage(data: imgData) {
-                            self.itemImage.image = img
-                            CategoryTableViewController.imageCache.setObject(img, forKey: post.imageURL as NSString)
+                            self.firstImage.image = img
+                            BaseViewController.imageCache.setObject(img, forKey: post.imageURL as NSString)
                         }
                     }
                 }
+                
+                
             })
+            
+            
+            
         }
+        
+        
+        
     }
 
+    
+    
 }
-*/

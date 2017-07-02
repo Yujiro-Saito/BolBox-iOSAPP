@@ -9,8 +9,8 @@
 import UIKit
 import Firebase
 
-class CategoryTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
+class CategoryTableViewController: UIViewController/*, UITableViewDataSource, UITableViewDelegate*/ {
+    /*
     
     @IBOutlet weak var segmentedThree: UISegmentedControl!
     
@@ -842,6 +842,8 @@ class CategoryTableViewController: UIViewController, UITableViewDataSource, UITa
    
 
 }
+ */
+}
 
 extension UIColor {
     class func rgb(r: Int, g: Int, b: Int, alpha: CGFloat) -> UIColor{
@@ -860,6 +862,7 @@ extension Array
         }
     }
 }
+
 
 
 

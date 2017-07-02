@@ -506,7 +506,7 @@ class StoryViewController: UIViewController,UITextViewDelegate {
                                 print(mediaPost)
                                 
                                 //DBに投稿
-                                let firebasePost = DataService.dataBase.REF_ENTERTAINMENT.childByAutoId()
+                                let firebasePost = DataService.dataBase.REF_POST.childByAutoId()
                                 
                                 firebasePost.setValue(mediaPost)
                                 print("3枚の投稿を完了しました")

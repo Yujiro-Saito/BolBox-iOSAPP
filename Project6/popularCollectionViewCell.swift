@@ -5,7 +5,7 @@
 //  Created by  Yujiro Saito on 2017/05/13.
 //  Copyright © 2017年 yujiro_saito. All rights reserved.
 //
-
+/*
 import UIKit
 import FirebaseStorage
 
@@ -55,3 +55,4 @@ class popularCollectionViewCell: UICollectionViewCell {
         }
     }
 }
+*/
