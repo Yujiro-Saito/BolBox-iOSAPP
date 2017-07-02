@@ -15,6 +15,8 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     @IBOutlet weak var baseNavBar: UINavigationBar!
     @IBOutlet weak var topCollectionTable: UICollectionView!
     @IBOutlet weak var firstCollection: UICollectionView!
+    @IBOutlet weak var secondCollection: UICollectionView!
+    @IBOutlet weak var thirdCollection: UICollectionView!
     
     
     //プロパティ
@@ -22,13 +24,15 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     var initialURL = URL(string: "")
     
-    
     //コレクションビュー用の配列
     var topPosts = [Post]()
     var firstPosts = [Post]()
+    var secondPosts = [Post]()
+    var thirdPosts = [Post]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         //DELEGATE
         baseNavBar.delegate = self
@@ -36,6 +40,11 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
         topCollectionTable.dataSource = self
         firstCollection.delegate = self
         firstCollection.dataSource = self
+        secondCollection.delegate = self
+        secondCollection.dataSource = self
+        thirdCollection.delegate = self
+        thirdCollection.dataSource = self
+        
         
         //バーの高さ
         self.baseNavBar.frame = CGRect(x: 0,y: 0, width: UIScreen.main.bounds.size.width, height: 60)
@@ -92,6 +101,69 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
                         
                         self.firstPosts.append(post)
                         self.firstCollection.reloadData()
+                    }
+                    
+                    
+                }
+                
+                
+            }
+            
+        })
+        
+        
+        
+        //Secondのデータ読み込み
+        DataService.dataBase.REF_SECOND.observe(.value, with: { (snapshot) in
+            
+            self.secondPosts = []
+            
+            print(snapshot.value)
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        
+                        self.secondPosts.append(post)
+                        self.secondCollection.reloadData()
+                    }
+                    
+                    
+                }
+                
+                
+            }
+            
+        })
+        
+        
+        
+        
+        //Thirdのデータ読み込み
+        DataService.dataBase.REF_THIRD.observe(.value, with: { (snapshot) in
+            
+            self.thirdPosts = []
+            
+            print(snapshot.value)
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        
+                        self.thirdPosts.append(post)
+                        self.thirdCollection.reloadData()
                     }
                     
                     
@@ -217,9 +289,57 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
                 firstCell?.configureCell(post: post, img: img)
             } else {
                 firstCell?.configureCell(post: post)
+                
+                
             }
             
             return firstCell!
+            
+            
+            
+            
+        } else if collectionView == secondCollection {
+            
+            //2番目の記事のセル
+            
+            let secondCell = secondCollection.dequeueReusableCell(withReuseIdentifier: "secondCell", for: indexPath) as? SecondCollectionViewCell
+            
+            let post = secondPosts[indexPath.row]
+            
+            
+            if let img = BaseViewController.imageCache.object(forKey: post.imageURL as NSString) {
+                secondCell?.configureCell(post: post, img: img)
+            } else {
+                secondCell?.configureCell(post: post)
+                
+                
+            }
+            
+            return secondCell!
+            
+
+        } else if collectionView == thirdCollection {
+            
+            //3番目の記事のセル
+            
+            let thirdCell = thirdCollection.dequeueReusableCell(withReuseIdentifier: "thirdCell", for: indexPath) as? ThirdCollectionViewCell
+            
+            let post = thirdPosts[indexPath.row]
+            
+            
+            if let img = BaseViewController.imageCache.object(forKey: post.imageURL as NSString) {
+                thirdCell?.configureCell(post: post, img: img)
+            } else {
+                thirdCell?.configureCell(post: post)
+                
+                
+            }
+            
+            return thirdCell!
+            
+            
+            
+            
             
             
             
@@ -238,6 +358,10 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             return topPosts.count
         } else if collectionView == firstCollection {
             return firstPosts.count
+        } else if collectionView == secondCollection {
+            return secondPosts.count
+        } else if collectionView == thirdCollection {
+            return thirdPosts.count
         }
         
         return 1
@@ -252,23 +376,5 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
    
 }
-

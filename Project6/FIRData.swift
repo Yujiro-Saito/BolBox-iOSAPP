@@ -30,6 +30,8 @@ class DataService {
     private var _REF_POSTS = DB_BASE.child("posts")
     private var _REF_TOP = DB_BASE.child("topReccomend")
     private var _REF_FIRST = DB_BASE.child("first")
+    private var _REF_SECOND = DB_BASE.child("second")
+    private var _REF_THIRD = DB_BASE.child("third")
     private var _REF_USER = DB_BASE.child("users")
 
     
@@ -63,6 +65,17 @@ class DataService {
         
     }
     
+    var REF_SECOND: FIRDatabaseReference {
+        
+        return _REF_SECOND
+        
+    }
+    
+    var REF_THIRD: FIRDatabaseReference {
+        
+        return _REF_THIRD
+        
+    }
     
    
     var REF_USER: FIRDatabaseReference {

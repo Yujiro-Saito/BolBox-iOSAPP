@@ -42,9 +42,10 @@
 		B7DA001E1EDCBB8700CE5CC3 /* NewMoreReadCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DA001D1EDCBB8700CE5CC3 /* NewMoreReadCollectionViewCell.swift */; };
 		B7DB51661EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB51651EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift */; };
 		B7E0F8721F08B5E900AD2A5B /* FirstCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E0F8711F08B5E900AD2A5B /* FirstCollectionViewCell.swift */; };
-		B7E0F8751F08B9AF00AD2A5B /* FirstCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E0F8741F08B9AF00AD2A5B /* FirstCollectionReusableView.swift */; };
 		B7E390271ED59E3C005D8BFC /* ButtonDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E390261ED59E3C005D8BFC /* ButtonDesign.swift */; };
 		B7E3902B1ED5A13E005D8BFC /* ImageDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E3902A1ED5A13E005D8BFC /* ImageDesign.swift */; };
+		B7EE00BC1F08C76F0015AA3B /* SecondCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE00BB1F08C76F0015AA3B /* SecondCollectionViewCell.swift */; };
+		B7EE00BE1F08D0090015AA3B /* ThirdCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE00BD1F08D0090015AA3B /* ThirdCollectionViewCell.swift */; };
 		B7F5CEE31EFCA99200E42B3B /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F5CEE21EFCA99200E42B3B /* StoryViewController.swift */; };
 		B7F9B9631F0698DD0006AD38 /* ProfilePostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F9B9621F0698DD0006AD38 /* ProfilePostsTableViewCell.swift */; };
 		B7FB80951EF5592000EA0CEE /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FB80941EF5592000EA0CEE /* ProfileImage.swift */; };
@@ -97,10 +98,11 @@
 		B7DA001D1EDCBB8700CE5CC3 /* NewMoreReadCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMoreReadCollectionViewCell.swift; sourceTree = "<group>"; };
 		B7DB51651EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		B7E0F8711F08B5E900AD2A5B /* FirstCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstCollectionViewCell.swift; sourceTree = "<group>"; };
-		B7E0F8741F08B9AF00AD2A5B /* FirstCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstCollectionReusableView.swift; sourceTree = "<group>"; };
 		B7E390261ED59E3C005D8BFC /* ButtonDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonDesign.swift; sourceTree = "<group>"; };
 		B7E3902A1ED5A13E005D8BFC /* ImageDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDesign.swift; sourceTree = "<group>"; };
 		B7EBAC261EEFB6E200C46D42 /* Project6.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Project6.entitlements; sourceTree = "<group>"; };
+		B7EE00BB1F08C76F0015AA3B /* SecondCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondCollectionViewCell.swift; sourceTree = "<group>"; };
+		B7EE00BD1F08D0090015AA3B /* ThirdCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdCollectionViewCell.swift; sourceTree = "<group>"; };
 		B7F5CEE21EFCA99200E42B3B /* StoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
 		B7F9B9621F0698DD0006AD38 /* ProfilePostsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePostsTableViewCell.swift; sourceTree = "<group>"; };
 		B7FB80941EF5592000EA0CEE /* ProfileImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
@@ -160,7 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				B7EBAC261EEFB6E200C46D42 /* Project6.entitlements */,
-				B7E0F8731F08B99500AD2A5B /* SectionHeader */,
 				B7733EA41EC6A98100D5B9BD /* View Controller */,
 				B7733EA71EC6A9BA00D5B9BD /* Data */,
 				B7733EA51EC6A99600D5B9BD /* Sidemenu */,
@@ -196,6 +197,8 @@
 				B725A8E11F01BEB5006AC9DF /* BaseTableViewCell.swift */,
 				B7F9B9621F0698DD0006AD38 /* ProfilePostsTableViewCell.swift */,
 				B7E0F8711F08B5E900AD2A5B /* FirstCollectionViewCell.swift */,
+				B7EE00BB1F08C76F0015AA3B /* SecondCollectionViewCell.swift */,
+				B7EE00BD1F08D0090015AA3B /* ThirdCollectionViewCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -249,14 +252,6 @@
 				B77083371EC7FB9D00302760 /* Post.swift */,
 			);
 			name = Data;
-			sourceTree = "<group>";
-		};
-		B7E0F8731F08B99500AD2A5B /* SectionHeader */ = {
-			isa = PBXGroup;
-			children = (
-				B7E0F8741F08B9AF00AD2A5B /* FirstCollectionReusableView.swift */,
-			);
-			name = SectionHeader;
 			sourceTree = "<group>";
 		};
 		B7E390251ED59E1A005D8BFC /* UI Design */ = {
@@ -418,13 +413,13 @@
 				B7066E321F07E39A002FD738 /* PreviousViewController.swift in Sources */,
 				B756C3D41ED547B200F1B46C /* DetailViewController.swift in Sources */,
 				B7DB51661EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift in Sources */,
+				B7EE00BC1F08C76F0015AA3B /* SecondCollectionViewCell.swift in Sources */,
 				B77B554C1EEF6C8C00262589 /* SignUpField.swift in Sources */,
 				B7D58C9E1EEE0D9100126406 /* signUpButtonDesign.swift in Sources */,
 				B72A71F71EC677C100EA9BDF /* AppDelegate.swift in Sources */,
 				B727ADDB1EC67AB20081F500 /* SWRevealViewController.m in Sources */,
 				B7DA001C1EDCBA8900CE5CC3 /* NewMoreCollectionViewController.swift in Sources */,
 				B7FE1D6F1EDE2F9A0072A068 /* SectionHeaderPopCollectionReusableView.swift in Sources */,
-				B7E0F8751F08B9AF00AD2A5B /* FirstCollectionReusableView.swift in Sources */,
 				B7A63B661EF9185E007808D6 /* ProfileViewController.swift in Sources */,
 				B770833A1EC8034E00302760 /* FIRData.swift in Sources */,
 				B7FB80951EF5592000EA0CEE /* ProfileImage.swift in Sources */,
@@ -437,6 +432,7 @@
 				B727ADDD1EC67DB00081F500 /* HomeViewController.swift in Sources */,
 				B7E390271ED59E3C005D8BFC /* ButtonDesign.swift in Sources */,
 				B7060DF31F021EED003E51C7 /* AccountViewController.swift in Sources */,
+				B7EE00BE1F08D0090015AA3B /* ThirdCollectionViewCell.swift in Sources */,
 				B77B554E1EEF6E4900262589 /* RegisterButton.swift in Sources */,
 				B78053F91EE2C63300F95BDF /* CategorysTableViewCell.swift in Sources */,
 				B7FE1D6D1EDE2C850072A068 /* PopularMoreReadCollectionViewCell.swift in Sources */,

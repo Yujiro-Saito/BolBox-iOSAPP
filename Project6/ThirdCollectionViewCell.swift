@@ -1,5 +1,5 @@
 //
-//  FirstCollectionViewCell.swift
+//  ThirdCollectionViewCell.swift
 //  Project6
 //
 //  Created by  Yujiro Saito on 2017/07/02.
@@ -9,12 +9,14 @@
 import UIKit
 import FirebaseStorage
 
-class FirstCollectionViewCell: UICollectionViewCell {
+
+class ThirdCollectionViewCell: UICollectionViewCell {
     
     
-    @IBOutlet weak var firstImage: UIImageView!
-    @IBOutlet weak var firstName: UILabel!
-    @IBOutlet weak var firstContent: UILabel!
+    
+    @IBOutlet weak var cellImage: UIImageView!
+    @IBOutlet weak var cellContent: UILabel!
+    @IBOutlet weak var cellTitle: UILabel!
     
     var post: Post!
     
@@ -33,13 +35,12 @@ class FirstCollectionViewCell: UICollectionViewCell {
         
         
         self.post = post
-        self.firstName.text = "\(post.name)"
-        self.firstContent.text = "\(post.whatContent)"
-        //self.kindLabel.text = "\(post.category)"
+        self.cellTitle.text = "\(post.name)"
+        self.cellContent.text = "\(post.whatContent)"
         
         if img != nil {
             
-            self.firstImage.image = img
+            self.cellImage.image = img
             
         } else {
             
@@ -55,7 +56,7 @@ class FirstCollectionViewCell: UICollectionViewCell {
                     print("SUCCESS")
                     if let imgData = data {
                         if let img = UIImage(data: imgData) {
-                            self.firstImage.image = img
+                            self.cellImage.image = img
                             BaseViewController.imageCache.setObject(img, forKey: post.imageURL as NSString)
                         }
                     }
@@ -71,7 +72,8 @@ class FirstCollectionViewCell: UICollectionViewCell {
         
         
     }
-
+    
+    
     
     
 }
