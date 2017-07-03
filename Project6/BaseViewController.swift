@@ -17,6 +17,12 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     @IBOutlet weak var firstCollection: UICollectionView!
     @IBOutlet weak var secondCollection: UICollectionView!
     @IBOutlet weak var thirdCollection: UICollectionView!
+    @IBOutlet weak var fourthCollection: UICollectionView!
+    @IBOutlet weak var fifthCollection: UICollectionView!
+    
+    
+    
+    
     
     
     //プロパティ
@@ -29,6 +35,8 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     var firstPosts = [Post]()
     var secondPosts = [Post]()
     var thirdPosts = [Post]()
+    var fourthPosts = [Post]()
+    var fifthPosts = [Post]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +52,10 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
         secondCollection.dataSource = self
         thirdCollection.delegate = self
         thirdCollection.dataSource = self
+        fourthCollection.delegate = self
+        fourthCollection.dataSource = self
+        fifthCollection.delegate = self
+        fifthCollection.dataSource = self
         
         
         //バーの高さ
@@ -173,6 +185,78 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             }
             
         })
+        
+        
+        
+        ////Fourthのデータ読み込み
+        
+        DataService.dataBase.REF_FOURTH.observe(.value, with: { (snapshot) in
+            
+            self.fourthPosts = []
+            
+            print(snapshot.value)
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        
+                        self.fourthPosts.append(post)
+                        self.fourthCollection.reloadData()
+                    }
+                    
+                    
+                }
+                
+                
+            }
+            
+        })
+        
+        
+        
+        
+        
+        ////Fifthのデータ読み込み
+        
+        DataService.dataBase.REF_FIFTH.observe(.value, with: { (snapshot) in
+            
+            self.fifthPosts = []
+            
+            print(snapshot.value)
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        
+                        self.fifthPosts.append(post)
+                        self.fifthCollection.reloadData()
+                    }
+                    
+                    
+                }
+                
+                
+            }
+            
+        })
+
+        
+        
+        
+        
+        
         
         
         
@@ -337,10 +421,52 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             
             return thirdCell!
             
+           
+            
+        } else if collectionView == fourthCollection {
+            
+            
+            //4番目の記事のセル
+            
+            let fourthCell = fourthCollection.dequeueReusableCell(withReuseIdentifier: "fourthCell", for: indexPath) as? FourthCollectionViewCell
+            
+            
+            let post = fourthPosts[indexPath.row]
+            
+            
+            if let img = BaseViewController.imageCache.object(forKey: post.imageURL as NSString) {
+                fourthCell?.configureCell(post: post, img: img)
+            } else {
+                fourthCell?.configureCell(post: post)
+                
+                
+            }
             
             
             
+            return fourthCell!
             
+        } else if collectionView == fifthCollection {
+            
+            
+            //5番目の記事のセル
+            let fifthCell = fifthCollection.dequeueReusableCell(withReuseIdentifier: "fifthCell", for: indexPath) as? FifthCollectionViewCell
+            
+            
+            let post = fifthPosts[indexPath.row]
+            
+            
+            if let img = BaseViewController.imageCache.object(forKey: post.imageURL as NSString) {
+                fifthCell?.configureCell(post: post, img: img)
+            } else {
+                fifthCell?.configureCell(post: post)
+                
+                
+            }
+            
+            
+            
+            return fifthCell!
             
             
             
@@ -362,6 +488,10 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             return secondPosts.count
         } else if collectionView == thirdCollection {
             return thirdPosts.count
+        } else if collectionView == fourthCollection {
+            return fourthPosts.count
+        } else if collectionView == fifthCollection {
+            return fifthPosts.count
         }
         
         return 1

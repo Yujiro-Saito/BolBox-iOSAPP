@@ -1,0 +1,90 @@
+//
+//  FourthCollectionViewCell.swift
+//  Project6
+//
+//  Created by  Yujiro Saito on 2017/07/03.
+//  Copyright © 2017年 yujiro_saito. All rights reserved.
+//
+
+import UIKit
+import FirebaseStorage
+
+class FourthCollectionViewCell: UICollectionViewCell {
+    
+    
+    @IBOutlet weak var cellImage: UIImageView!
+    
+    @IBOutlet weak var cellContent: UILabel!
+    
+    
+    @IBOutlet weak var cellTitle: UILabel!
+    
+    var post: Post!
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.layer.cornerRadius = 3.0
+        layer.shadowRadius = 10
+        layer.shadowOpacity = 0.4
+        layer.shadowOffset = CGSize(width: 5, height: 10)
+        
+        self.clipsToBounds = false
+    }
+    
+    
+    
+    
+    func configureCell(post: Post, img: UIImage? = nil) {
+        
+        
+        self.post = post
+        self.cellTitle.text = "\(post.name)"
+        self.cellContent.text = "\(post.whatContent)"
+        
+        if img != nil {
+            
+            self.cellImage.image = img
+            
+        } else {
+            
+            
+            let ref = FIRStorage.storage().reference(forURL: post.imageURL)
+            
+            ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                
+                if error != nil {
+                    print("エラーがあります")
+                    print(error?.localizedDescription)
+                } else {
+                    print("SUCCESS")
+                    if let imgData = data {
+                        if let img = UIImage(data: imgData) {
+                            self.cellImage.image = img
+                            BaseViewController.imageCache.setObject(img, forKey: post.imageURL as NSString)
+                        }
+                    }
+                }
+                
+                
+            })
+            
+            
+            
+        }
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}

@@ -32,6 +32,8 @@ class DataService {
     private var _REF_FIRST = DB_BASE.child("first")
     private var _REF_SECOND = DB_BASE.child("second")
     private var _REF_THIRD = DB_BASE.child("third")
+    private var _REF_FOURTH = DB_BASE.child("fourth")
+    private var _REF_FIFTH = DB_BASE.child("fifth")
     private var _REF_USER = DB_BASE.child("users")
 
     
@@ -74,6 +76,18 @@ class DataService {
     var REF_THIRD: FIRDatabaseReference {
         
         return _REF_THIRD
+        
+    }
+    
+    var REF_FOURTH: FIRDatabaseReference {
+        
+        return _REF_FOURTH
+        
+    }
+    
+    var REF_FIFTH: FIRDatabaseReference {
+        
+        return _REF_FIFTH
         
     }
     
