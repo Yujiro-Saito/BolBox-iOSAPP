@@ -1,21 +1,19 @@
 //
-//  FifthCollectionViewCell.swift
+//  PurposeCollectionViewCell.swift
 //  Project6
 //
-//  Created by  Yujiro Saito on 2017/07/03.
+//  Created by  Yujiro Saito on 2017/07/04.
 //  Copyright © 2017年 yujiro_saito. All rights reserved.
 //
 
 import UIKit
 import FirebaseStorage
 
-class FifthCollectionViewCell: UICollectionViewCell {
+class PurposeCollectionViewCell: UICollectionViewCell {
     
     
     @IBOutlet weak var cellImage: UIImageView!
-    @IBOutlet weak var cellContent: UILabel!
     @IBOutlet weak var cellTitle: UILabel!
-    
     
     var post: Post!
     
@@ -29,12 +27,12 @@ class FifthCollectionViewCell: UICollectionViewCell {
         self.clipsToBounds = false
     }
     
+    
     func configureCell(post: Post, img: UIImage? = nil) {
         
         
         self.post = post
         self.cellTitle.text = "\(post.name)"
-        self.cellContent.text = "\(post.whatContent)"
         
         if img != nil {
             
@@ -66,14 +64,16 @@ class FifthCollectionViewCell: UICollectionViewCell {
             
             
         }
+        
+        
+        
+        
+        
+        
+        
+    }
 
     
-    
-    
-    
-    
-    
-    }
     
     
     

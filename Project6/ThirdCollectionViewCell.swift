@@ -23,10 +23,9 @@ class ThirdCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.layer.cornerRadius = 3.0
         layer.shadowRadius = 10
-        layer.shadowOpacity = 0.4
-        layer.shadowOffset = CGSize(width: 5, height: 10)
+        layer.shadowOpacity = 0.2
+        layer.shadowOffset = CGSize(width: 2, height: 2)
         
         self.clipsToBounds = false
     }

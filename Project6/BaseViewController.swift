@@ -19,6 +19,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     @IBOutlet weak var thirdCollection: UICollectionView!
     @IBOutlet weak var fourthCollection: UICollectionView!
     @IBOutlet weak var fifthCollection: UICollectionView!
+    @IBOutlet weak var purposeCollection: UICollectionView!
     
     
     
@@ -37,6 +38,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     var thirdPosts = [Post]()
     var fourthPosts = [Post]()
     var fifthPosts = [Post]()
+    var purposePosts = [Post]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +58,8 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
         fourthCollection.dataSource = self
         fifthCollection.delegate = self
         fifthCollection.dataSource = self
+        purposeCollection.delegate = self
+        purposeCollection.dataSource = self
         
         
         //バーの高さ
@@ -254,7 +258,34 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
 
         
         
-        
+        //Purposeのデータ読み込み
+        DataService.dataBase.REF_PURPOSE.observe(.value, with: { (snapshot) in
+            
+            self.purposePosts = []
+            
+            print(snapshot.value)
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        
+                        self.purposePosts.append(post)
+                        self.purposeCollection.reloadData()
+                    }
+                    
+                    
+                }
+                
+                
+            }
+            
+        })
         
         
         
@@ -470,6 +501,32 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             
             
             
+        } else if collectionView == purposeCollection {
+            
+            let purposeCell = purposeCollection.dequeueReusableCell(withReuseIdentifier: "purposeCell", for: indexPath) as? PurposeCollectionViewCell
+            
+            
+            let post = purposePosts[indexPath.row]
+            
+            
+            if let img = BaseViewController.imageCache.object(forKey: post.imageURL as NSString) {
+                purposeCell?.configureCell(post: post, img: img)
+            } else {
+                purposeCell?.configureCell(post: post)
+                
+                
+            }
+            
+            
+            
+            return purposeCell!
+
+            
+            
+            
+            
+            
+            
         }
         
         
@@ -492,6 +549,8 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             return fourthPosts.count
         } else if collectionView == fifthCollection {
             return fifthPosts.count
+        } else if collectionView == purposeCollection {
+            return purposePosts.count
         }
         
         return 1
