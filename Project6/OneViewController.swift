@@ -12,7 +12,7 @@ import XLPagerTabStrip
 class OneViewController: UIViewController, IndicatorInfoProvider {
 
     //ここがボタンのタイトルに利用されます
-    var itemInfo: IndicatorInfo = "First"
+    var itemInfo: IndicatorInfo = "メディア"
     
     override func viewDidLoad() {
         super.viewDidLoad()

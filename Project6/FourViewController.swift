@@ -12,7 +12,7 @@ import XLPagerTabStrip
 class FourViewController: UIViewController, IndicatorInfoProvider {
     
     //ここがボタンのタイトルに利用されます
-    var itemInfo: IndicatorInfo = "four"
+    var itemInfo: IndicatorInfo = "トラベル"
     
     override func viewDidLoad() {
         super.viewDidLoad()

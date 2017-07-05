@@ -12,7 +12,7 @@ import XLPagerTabStrip
 class TwoViewController: UIViewController, IndicatorInfoProvider {
     
     //ここがボタンのタイトルに利用されます
-    var itemInfo: IndicatorInfo = "swcond"
+    var itemInfo: IndicatorInfo = "アプリ"
     
     override func viewDidLoad() {
         super.viewDidLoad()

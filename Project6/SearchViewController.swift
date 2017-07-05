@@ -10,21 +10,36 @@ import UIKit
 import XLPagerTabStrip
 
 
-class SearchViewController: ButtonBarPagerTabStripViewController {
+class SearchViewController: ButtonBarPagerTabStripViewController,UINavigationBarDelegate {
+    
+    
+    @IBOutlet weak var searchNavBar: UINavigationBar!
+    
 
     override func viewDidLoad() {
         
         //バーの色
-        settings.style.buttonBarBackgroundColor = UIColor(red: 73/255, green: 72/255, blue: 62/255, alpha: 1)
+        settings.style.buttonBarBackgroundColor = UIColor(red: 31/255, green: 158/255, blue: 187/255, alpha: 1)
         //ボタンの色
-        settings.style.buttonBarItemBackgroundColor = UIColor(red: 73/255, green: 72/255, blue: 62/255, alpha: 1)
+        settings.style.buttonBarItemBackgroundColor = UIColor(red: 31/255, green: 158/255, blue: 187/255, alpha: 1)
         //セルの文字色
         settings.style.buttonBarItemTitleColor = UIColor.white
         //セレクトバーの色
-        settings.style.selectedBarBackgroundColor = UIColor(red: 254/255, green: 0, blue: 124/255, alpha: 1)
+        settings.style.selectedBarBackgroundColor = UIColor(red: 201/255, green: 202/255, blue: 207/255, alpha: 1)
+        
+        //Font size
+        settings.style.buttonBarItemFont = UIFont.systemFont(ofSize: 14)
+        
+        //Selected bar line height
+        settings.style.selectedBarHeight = 5
+        
         
         
         super.viewDidLoad()
+        
+        searchNavBar.delegate = self
+        //バーの高さ
+        self.searchNavBar.frame = CGRect(x: 0,y: 0, width: UIScreen.main.bounds.size.width, height: 60)
 
     }
 
