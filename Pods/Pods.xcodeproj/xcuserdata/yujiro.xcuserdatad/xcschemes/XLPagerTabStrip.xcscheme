@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'D91CD76B5DFECAE417F4984DB75BF004'
-               BlueprintName = 'SlideMenuControllerSwift'
+               BlueprintIdentifier = '3BA29D96E8887D9AEA3A3899D56BF4D4'
+               BlueprintName = 'XLPagerTabStrip'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SlideMenuControllerSwift.framework'>
+               BuildableName = 'XLPagerTabStrip.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

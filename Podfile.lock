@@ -78,6 +78,7 @@ PODS:
     - Fabric
   - TwitterKit (2.8.1):
     - TwitterCore (>= 2.8)
+  - XLPagerTabStrip (7.0.0)
 
 DEPENDENCIES:
   - AlamofireImage (~> 3.1)
@@ -93,6 +94,7 @@ DEPENDENCIES:
   - SlideMenuControllerSwift
   - SwiftKeychainWrapper
   - TwitterKit
+  - XLPagerTabStrip
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
@@ -118,7 +120,8 @@ SPEC CHECKSUMS:
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
+  XLPagerTabStrip: 9be80a66c6b7d60306b2c0a6004965016d68f813
 
-PODFILE CHECKSUM: 6aa412e87129e10cd648a7f1f19324e8e5a7aa44
+PODFILE CHECKSUM: 5196b05d511348b4abeef835ad76040a6190605f
 
 COCOAPODS: 1.1.1

@@ -19,6 +19,7 @@ target 'Project6' do
   pod 'GoogleSignIn'
   pod 'SwiftKeychainWrapper'
   pod 'DKImagePickerController'
+  pod 'XLPagerTabStrip'
   
 
 end
