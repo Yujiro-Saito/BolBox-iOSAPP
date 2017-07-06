@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B70112881F0D2A5E00B3B553 /* OneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70112871F0D2A5E00B3B553 /* OneTableViewCell.swift */; };
 		B702E72F1EF8A442003C89E4 /* EmailLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B702E72E1EF8A442003C89E4 /* EmailLoginViewController.swift */; };
 		B7060DF31F021EED003E51C7 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7060DF21F021EED003E51C7 /* AccountViewController.swift */; };
 		B7066E321F07E39A002FD738 /* PreviousViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7066E311F07E39A002FD738 /* PreviousViewController.swift */; };
@@ -69,6 +70,7 @@
 		063493BB14E15DFF892F2F2C /* Pods-Project6.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project6.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Project6/Pods-Project6.debug.xcconfig"; sourceTree = "<group>"; };
 		449A34F918184C79A7F7AD45 /* Pods_Project6.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project6.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D5F851655234321568C5F6 /* Pods-Project6.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project6.release.xcconfig"; path = "Pods/Target Support Files/Pods-Project6/Pods-Project6.release.xcconfig"; sourceTree = "<group>"; };
+		B70112871F0D2A5E00B3B553 /* OneTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneTableViewCell.swift; sourceTree = "<group>"; };
 		B702E72E1EF8A442003C89E4 /* EmailLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailLoginViewController.swift; sourceTree = "<group>"; };
 		B7060DF21F021EED003E51C7 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		B7066E311F07E39A002FD738 /* PreviousViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviousViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +162,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B70112861F0D2A3500B3B553 /* CategoryCell */ = {
+			isa = PBXGroup;
+			children = (
+				B70112871F0D2A5E00B3B553 /* OneTableViewCell.swift */,
+			);
+			name = CategoryCell;
+			sourceTree = "<group>";
+		};
 		B72A71EA1EC677C100EA9BDF = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				B7EBAC261EEFB6E200C46D42 /* Project6.entitlements */,
+				B70112861F0D2A3500B3B553 /* CategoryCell */,
 				B771C5FF1F0CA0D8005D4BF2 /* CategoryViewController */,
 				B7733EA41EC6A98100D5B9BD /* View Controller */,
 				B7733EA71EC6A9BA00D5B9BD /* Data */,
@@ -457,6 +468,7 @@
 				B7EE00BC1F08C76F0015AA3B /* SecondCollectionViewCell.swift in Sources */,
 				B771C6071F0CA1E6005D4BF2 /* ThreeViewController.swift in Sources */,
 				B77B554C1EEF6C8C00262589 /* SignUpField.swift in Sources */,
+				B70112881F0D2A5E00B3B553 /* OneTableViewCell.swift in Sources */,
 				B7D58C9E1EEE0D9100126406 /* signUpButtonDesign.swift in Sources */,
 				B7F816361F0B145C00D317FB /* PurposeCollectionViewCell.swift in Sources */,
 				B72A71F71EC677C100EA9BDF /* AppDelegate.swift in Sources */,

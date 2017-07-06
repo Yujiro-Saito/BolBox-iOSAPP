@@ -40,6 +40,8 @@ class SearchViewController: ButtonBarPagerTabStripViewController,UINavigationBar
         searchNavBar.delegate = self
         //バーの高さ
         self.searchNavBar.frame = CGRect(x: 0,y: 0, width: UIScreen.main.bounds.size.width, height: 60)
+        
+        self.view.bringSubview(toFront: searchNavBar)
 
     }
 

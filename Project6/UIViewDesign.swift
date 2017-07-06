@@ -14,6 +14,10 @@ class UIViewDesign: UIView {
         super.awakeFromNib()
         
         self.layer.cornerRadius = 3
+        
+       
+        
+        
     }
 
 }
