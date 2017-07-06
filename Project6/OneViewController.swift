@@ -41,6 +41,7 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
         //カテゴリーメディアのデータ読み込み
         DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
             
+            self.mediaPosts = []
             
             print(snapshot.value)
             
