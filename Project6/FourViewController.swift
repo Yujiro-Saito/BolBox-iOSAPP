@@ -8,19 +8,143 @@
 
 import UIKit
 import XLPagerTabStrip
+import Firebase
 
-class FourViewController: UIViewController, IndicatorInfoProvider {
+
+
+class FourViewController: UIViewController, IndicatorInfoProvider,UITableViewDelegate, UITableViewDataSource {
+    
+    
+    
+    
+    @IBOutlet weak var fourTable: UITableView!
+    var travelPosts = [Post]()
+    static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
     //ここがボタンのタイトルに利用されます
     var itemInfo: IndicatorInfo = "トラベル"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        fourTable.delegate = self
+        fourTable.dataSource = self
+        
+        self.fourTable.backgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
+        
+        
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        
+        //トラベルのデータ読み込み
+        DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
+            
+            self.travelPosts = []
+            
+            print(snapshot.value)
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        let categoryTag = postDict["category"] as! String
+                        
+                        
+                        if categoryTag == "トラベル" {
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            self.travelPosts.append(post)
+                            self.fourTable.reloadData()
+                            
+                        }
+                        
+                    }
+                }
+                
+                
+            }
+            
+            
+            
+            self.fourTable.reloadData()
+            
+        })
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
     
     //必須
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return itemInfo
     }
+    
+    
+    
+    
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return travelPosts.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
+        
+        let travelCell = fourTable.dequeueReusableCell(withIdentifier: "travelPosts", for: indexPath) as? FourTableViewCell
+        
+        travelCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
+        travelCell?.layer.borderWidth = 10
+        travelCell?.clipsToBounds = true
+        
+        let post = travelPosts[indexPath.row]
+        
+        if let img = FourViewController.imageCache.object(forKey: post.imageURL as NSString) {
+            
+            travelCell?.configureCell(post: post, img: img)
+            
+        }
+        else {
+            
+            travelCell?.configureCell(post: post)
+            
+        }
+        
+        
+        return travelCell!
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
     
 }

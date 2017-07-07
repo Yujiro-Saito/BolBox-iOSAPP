@@ -22,6 +22,10 @@
 		B72A71FC1EC677C100EA9BDF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B72A71FA1EC677C100EA9BDF /* Main.storyboard */; };
 		B72A71FE1EC677C100EA9BDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B72A71FD1EC677C100EA9BDF /* Assets.xcassets */; };
 		B72A72011EC677C100EA9BDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B72A71FF1EC677C100EA9BDF /* LaunchScreen.storyboard */; };
+		B7482CE01F0F0C1400E98EF1 /* TwoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7482CDF1F0F0C1400E98EF1 /* TwoTableViewCell.swift */; };
+		B7482CE21F0F141E00E98EF1 /* ThreeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7482CE11F0F141E00E98EF1 /* ThreeTableViewCell.swift */; };
+		B7482CE41F0F1B2A00E98EF1 /* FourTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7482CE31F0F1B2A00E98EF1 /* FourTableViewCell.swift */; };
+		B7482CE61F0F23F500E98EF1 /* FiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7482CE51F0F23F500E98EF1 /* FiveTableViewCell.swift */; };
 		B74892681EC7E365003ABE22 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B74892671EC7E365003ABE22 /* GoogleService-Info.plist */; };
 		B756C3D41ED547B200F1B46C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B756C3D31ED547B200F1B46C /* DetailViewController.swift */; };
 		B77083381EC7FB9D00302760 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77083371EC7FB9D00302760 /* Post.swift */; };
@@ -89,6 +93,10 @@
 		B72A71FD1EC677C100EA9BDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B72A72001EC677C100EA9BDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B72A72021EC677C100EA9BDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B7482CDF1F0F0C1400E98EF1 /* TwoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoTableViewCell.swift; sourceTree = "<group>"; };
+		B7482CE11F0F141E00E98EF1 /* ThreeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeTableViewCell.swift; sourceTree = "<group>"; };
+		B7482CE31F0F1B2A00E98EF1 /* FourTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourTableViewCell.swift; sourceTree = "<group>"; };
+		B7482CE51F0F23F500E98EF1 /* FiveTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiveTableViewCell.swift; sourceTree = "<group>"; };
 		B74892671EC7E365003ABE22 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B756C3D31ED547B200F1B46C /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B77083371EC7FB9D00302760 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -166,6 +174,10 @@
 			isa = PBXGroup;
 			children = (
 				B70112871F0D2A5E00B3B553 /* OneTableViewCell.swift */,
+				B7482CDF1F0F0C1400E98EF1 /* TwoTableViewCell.swift */,
+				B7482CE11F0F141E00E98EF1 /* ThreeTableViewCell.swift */,
+				B7482CE31F0F1B2A00E98EF1 /* FourTableViewCell.swift */,
+				B7482CE51F0F23F500E98EF1 /* FiveTableViewCell.swift */,
 			);
 			name = CategoryCell;
 			sourceTree = "<group>";
@@ -464,6 +476,7 @@
 				B756C3D41ED547B200F1B46C /* DetailViewController.swift in Sources */,
 				B771C6051F0CA1DB005D4BF2 /* TwoViewController.swift in Sources */,
 				B771C6091F0CA1ED005D4BF2 /* FourViewController.swift in Sources */,
+				B7482CE21F0F141E00E98EF1 /* ThreeTableViewCell.swift in Sources */,
 				B7DB51661EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift in Sources */,
 				B7EE00BC1F08C76F0015AA3B /* SecondCollectionViewCell.swift in Sources */,
 				B771C6071F0CA1E6005D4BF2 /* ThreeViewController.swift in Sources */,
@@ -474,6 +487,7 @@
 				B72A71F71EC677C100EA9BDF /* AppDelegate.swift in Sources */,
 				B727ADDB1EC67AB20081F500 /* SWRevealViewController.m in Sources */,
 				B7DA001C1EDCBA8900CE5CC3 /* NewMoreCollectionViewController.swift in Sources */,
+				B7482CE01F0F0C1400E98EF1 /* TwoTableViewCell.swift in Sources */,
 				B7FE1D6F1EDE2F9A0072A068 /* SectionHeaderPopCollectionReusableView.swift in Sources */,
 				B7A63B661EF9185E007808D6 /* ProfileViewController.swift in Sources */,
 				B770833A1EC8034E00302760 /* FIRData.swift in Sources */,
@@ -495,10 +509,12 @@
 				B78053F91EE2C63300F95BDF /* CategorysTableViewCell.swift in Sources */,
 				B7FE1D6D1EDE2C850072A068 /* PopularMoreReadCollectionViewCell.swift in Sources */,
 				B77083381EC7FB9D00302760 /* Post.swift in Sources */,
+				B7482CE61F0F23F500E98EF1 /* FiveTableViewCell.swift in Sources */,
 				B771C6031F0CA1D3005D4BF2 /* OneViewController.swift in Sources */,
 				B7B4CAD41EFA81330038F176 /* PostProductInfoViewController.swift in Sources */,
 				B7E3902B1ED5A13E005D8BFC /* ImageDesign.swift in Sources */,
 				B7F5CEE31EFCA99200E42B3B /* StoryViewController.swift in Sources */,
+				B7482CE41F0F1B2A00E98EF1 /* FourTableViewCell.swift in Sources */,
 				B77B55501EEF6F1600262589 /* SignUpViewController.swift in Sources */,
 				B7733EA01EC6A8E300D5B9BD /* newCollectionViewCell.swift in Sources */,
 				B7C8F4C11F09B20900FBA696 /* FifthCollectionViewCell.swift in Sources */,
