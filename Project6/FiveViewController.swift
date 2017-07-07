@@ -46,7 +46,9 @@ class FiveViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
             
             self.shoppinglPosts = []
             
+            
             print(snapshot.value)
+            
             
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 
@@ -140,7 +142,36 @@ class FiveViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
     
     
     
+    //詳細画面遷移時のデータ引き継ぎ
     
+    var detailPosts: Post?
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        let detailVc = (segue.destination as? InDetailViewController)!
+        
+        detailVc.name = detailPosts?.name
+        detailVc.numLikes = detailPosts?.pvCount
+        detailVc.whatContent = detailPosts?.whatContent
+        detailVc.imageURL = detailPosts?.imageURL
+        detailVc.linkURL = detailPosts?.linkURL
+        
+        
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        detailPosts = self.shoppinglPosts[indexPath.row]
+        
+        performSegue(withIdentifier: "ToDetailFive", sender: nil)
+        
+        
+        
+        
+        
+    }
     
     
     

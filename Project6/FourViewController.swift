@@ -141,6 +141,36 @@ class FourViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
     }
     
     
+    //詳細画面遷移時のデータ引き継ぎ
+    
+    var detailPosts: Post?
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        let detailVc = (segue.destination as? InDetailViewController)!
+        
+        detailVc.name = detailPosts?.name
+        detailVc.numLikes = detailPosts?.pvCount
+        detailVc.whatContent = detailPosts?.whatContent
+        detailVc.imageURL = detailPosts?.imageURL
+        detailVc.linkURL = detailPosts?.linkURL
+        
+        
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        detailPosts = self.travelPosts[indexPath.row]
+        
+        performSegue(withIdentifier: "ToDetailFour", sender: nil)
+        
+        
+        
+        
+        
+    }
     
     
     

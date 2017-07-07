@@ -11,6 +11,7 @@
 		B702E72F1EF8A442003C89E4 /* EmailLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B702E72E1EF8A442003C89E4 /* EmailLoginViewController.swift */; };
 		B7060DF31F021EED003E51C7 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7060DF21F021EED003E51C7 /* AccountViewController.swift */; };
 		B7066E321F07E39A002FD738 /* PreviousViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7066E311F07E39A002FD738 /* PreviousViewController.swift */; };
+		B70B98BE1F0F64750036B79D /* InDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70B98BD1F0F64750036B79D /* InDetailViewController.swift */; };
 		B71ACDA81EED8620005DCD80 /* SignInUpViewDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71ACDA71EED8620005DCD80 /* SignInUpViewDesign.swift */; };
 		B71EEA3D1EED7D2A00CCF1D1 /* SignInandUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71EEA3C1EED7D2A00CCF1D1 /* SignInandUpViewController.swift */; };
 		B725A8E01F01AB4B006AC9DF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B725A8DF1F01AB4B006AC9DF /* BaseViewController.swift */; };
@@ -78,6 +79,7 @@
 		B702E72E1EF8A442003C89E4 /* EmailLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailLoginViewController.swift; sourceTree = "<group>"; };
 		B7060DF21F021EED003E51C7 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		B7066E311F07E39A002FD738 /* PreviousViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviousViewController.swift; sourceTree = "<group>"; };
+		B70B98BD1F0F64750036B79D /* InDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InDetailViewController.swift; sourceTree = "<group>"; };
 		B71ACDA71EED8620005DCD80 /* SignInUpViewDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInUpViewDesign.swift; sourceTree = "<group>"; };
 		B71EEA3C1EED7D2A00CCF1D1 /* SignInandUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInandUpViewController.swift; sourceTree = "<group>"; };
 		B725A8DF1F01AB4B006AC9DF /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 				B725A8DF1F01AB4B006AC9DF /* BaseViewController.swift */,
 				B7066E311F07E39A002FD738 /* PreviousViewController.swift */,
 				B7060DF21F021EED003E51C7 /* AccountViewController.swift */,
+				B70B98BD1F0F64750036B79D /* InDetailViewController.swift */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				B7EE00BC1F08C76F0015AA3B /* SecondCollectionViewCell.swift in Sources */,
 				B771C6071F0CA1E6005D4BF2 /* ThreeViewController.swift in Sources */,
 				B77B554C1EEF6C8C00262589 /* SignUpField.swift in Sources */,
+				B70B98BE1F0F64750036B79D /* InDetailViewController.swift in Sources */,
 				B70112881F0D2A5E00B3B553 /* OneTableViewCell.swift in Sources */,
 				B7D58C9E1EEE0D9100126406 /* signUpButtonDesign.swift in Sources */,
 				B7F816361F0B145C00D317FB /* PurposeCollectionViewCell.swift in Sources */,

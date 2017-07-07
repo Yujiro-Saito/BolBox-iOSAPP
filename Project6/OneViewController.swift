@@ -54,7 +54,6 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
                         
                         let categoryTag = postDict["category"] as! String
                         
-                        print("おおおおおおおおおおおおおおおおお\(categoryTag)")
                         
                         if categoryTag == "メディア" {
                             let key = snap.key
@@ -124,6 +123,40 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
         
         
         return mediaCell!
+        
+        
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        detailPosts = self.mediaPosts[indexPath.row]
+        
+        performSegue(withIdentifier: "ToDetailOne", sender: nil)
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    //詳細画面遷移時のデータ引き継ぎ
+    
+    var detailPosts: Post?
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        let detailVc = (segue.destination as? InDetailViewController)!
+        
+        detailVc.name = detailPosts?.name
+        detailVc.numLikes = detailPosts?.pvCount
+        detailVc.whatContent = detailPosts?.whatContent
+        detailVc.imageURL = detailPosts?.imageURL
+        detailVc.linkURL = detailPosts?.linkURL
+        
         
         
     }
