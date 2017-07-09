@@ -27,7 +27,7 @@ class OneTableViewCell: UITableViewCell {
     var category: String!
     var linkURL: String!
     var imageURL: String!
-    var pvCount: Int!
+    var pvCount = Int()
     
     
     
@@ -91,15 +91,28 @@ class OneTableViewCell: UITableViewCell {
     //いいねが押された時
     @IBAction func likeButtonDidTap(_ sender: Any) {
         
+        self.likesButton.isEnabled = false
+        
+        self.pvCount += 1
+        
         
         print(self.postID)
+        print(self.pvCount)
+        
+        var currentUserName = FIRAuth.auth()?.currentUser?.displayName
         
         
         //DBを更新
         let data = ["pvCount": self.pvCount]
+        let peoples = currentUserName
+        //let peoples = ["lovers": currentUserName]
+        
+        
         DataService.dataBase.REF_BASE.child("posts/-\(self.postID)").updateChildValues(data)
+        DataService.dataBase.REF_BASE.child("posts/-\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(peoples)
         
         
+        self.likesButton.isEnabled = true
         
         
 } 
