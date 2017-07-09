@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseStorage
 
 class OneTableViewCell: UITableViewCell {
@@ -19,6 +20,15 @@ class OneTableViewCell: UITableViewCell {
     @IBOutlet weak var numsOfLikes: UILabel!
     @IBOutlet weak var oneContent: UILabel!
     @IBOutlet weak var onebgCard: UIView!
+    @IBOutlet weak var likesButton: UIButton!
+    
+    
+    var postID = String()
+    var category: String!
+    var linkURL: String!
+    var imageURL: String!
+    var pvCount: Int!
+    
     
     
     override func awakeFromNib() {
@@ -36,12 +46,6 @@ class OneTableViewCell: UITableViewCell {
         
         onebgCard.layer.cornerRadius = 3.0
         onebgCard.layer.masksToBounds = false
-        
-        
-        
-        
-        
-
         
         
     }
@@ -84,5 +88,26 @@ class OneTableViewCell: UITableViewCell {
     }
     
     
-    
+    //いいねが押された時
+    @IBAction func likeButtonDidTap(_ sender: Any) {
+        
+        
+        print(self.postID)
+        
+        
+        //DBを更新
+        let data = ["pvCount": self.pvCount]
+        DataService.dataBase.REF_BASE.child("posts/-\(self.postID)").updateChildValues(data)
+        
+        
+        
+        
+} 
+ 
+
 }
+
+
+
+
+

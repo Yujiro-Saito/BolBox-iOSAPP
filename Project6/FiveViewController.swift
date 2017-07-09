@@ -152,7 +152,7 @@ class FiveViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
         let detailVc = (segue.destination as? InDetailViewController)!
         
         detailVc.name = detailPosts?.name
-        detailVc.numLikes = detailPosts?.pvCount
+        detailVc.numLikes = (detailPosts?.pvCount)!
         detailVc.whatContent = detailPosts?.whatContent
         detailVc.imageURL = detailPosts?.imageURL
         detailVc.linkURL = detailPosts?.linkURL

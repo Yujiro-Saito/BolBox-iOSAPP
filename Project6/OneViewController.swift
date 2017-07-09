@@ -108,9 +108,20 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
         mediaCell?.layer.borderWidth = 10
         mediaCell?.clipsToBounds = true
         
+        mediaCell?.postID = self.mediaPosts[indexPath.row].postID
+        mediaCell?.category = self.mediaPosts[indexPath.row].category
+        mediaCell?.pvCount = self.mediaPosts[indexPath.row].pvCount
+        mediaCell?.imageURL = self.mediaPosts[indexPath.row].imageURL
+        mediaCell?.linkURL = self.mediaPosts[indexPath.row].linkURL
+        
+        
+        
+        
         let post = mediaPosts[indexPath.row]
         
         if let img = OneViewController.imageCache.object(forKey: post.imageURL as NSString) {
+            
+            
             
             mediaCell?.configureCell(post: post, img: img)
             
@@ -152,7 +163,7 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
         let detailVc = (segue.destination as? InDetailViewController)!
         
         detailVc.name = detailPosts?.name
-        detailVc.numLikes = detailPosts?.pvCount
+        detailVc.numLikes = (detailPosts?.pvCount)!
         detailVc.whatContent = detailPosts?.whatContent
         detailVc.imageURL = detailPosts?.imageURL
         detailVc.linkURL = detailPosts?.linkURL

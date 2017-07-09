@@ -24,6 +24,7 @@ class Post {
     private var _detailImageTwo: String!
     private var _detailImageThree: String!
     private var _linkURL: String!
+    private var _postID: String!
     
     private var _postKey: String!
     private var _postRef: FIRDatabaseReference!
@@ -58,6 +59,10 @@ class Post {
         return _pvCount
     }
     
+    var postID: String {
+        return _postID
+    }
+    
     var detailImageOne: String {
         return _detailImageOne
     }
@@ -81,7 +86,7 @@ class Post {
     
     
     
-    init(name: String,  category: String, imageURL: String, whatContent: String, goodCount: Int, keepCount: Int, pvCount: Int, detailImageOne: String, detailImageTwo: String, detailImageThree: String, linkURL: String) {
+    init(name: String,  category: String, imageURL: String, whatContent: String, goodCount: Int, keepCount: Int, pvCount: Int, detailImageOne: String, detailImageTwo: String, detailImageThree: String, linkURL: String, postID: String) {
         
         
         self._name = name
@@ -95,6 +100,7 @@ class Post {
         self._detailImageTwo = detailImageTwo
         self._detailImageThree = detailImageThree
         self._linkURL = linkURL
+        self._postID = postID
         
     }
     
@@ -147,6 +153,10 @@ class Post {
         
         if let linkURL = postData["linkURL"] as? String {
             self._linkURL = linkURL
+        }
+        
+        if let postID = postData["postID"] as? String {
+            self._postID = postID
         }
         
         

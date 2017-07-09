@@ -586,6 +586,16 @@
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vOr-BF-Ofq" customClass="UIViewDesign" customModule="Project6" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="343" height="330"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="woh-AZ-Grc">
+                                                            <rect key="frame" x="262" y="281" width="25" height="25"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <state key="normal" image="like"/>
+                                                            <connections>
+                                                                <action selector="likeButtonDidTap:" destination="ta5-9f-JAX" eventType="touchUpInside" id="bI0-BT-sHv"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
                                                 </view>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nIe-yO-q2F">
                                                     <rect key="frame" x="0.0" y="0.0" width="343" height="175"/>
@@ -631,15 +641,12 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="like" translatesAutoresizingMaskIntoConstraints="NO" id="NHE-O2-U5i" customClass="ProfileImage" customModule="Project6" customModuleProvider="target">
-                                                    <rect key="frame" x="268" y="282" width="25" height="25"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
+                                            <outlet property="likesButton" destination="woh-AZ-Grc" id="ynw-xV-dJp"/>
                                             <outlet property="numsOfLikes" destination="8S7-7F-4JK" id="Nxj-h6-eQ4"/>
                                             <outlet property="oneContent" destination="Nxj-yT-ADa" id="xDu-0R-8vO"/>
                                             <outlet property="oneImage" destination="nIe-yO-q2F" id="aCs-k9-TCz"/>
@@ -1018,6 +1025,9 @@
                                         <rect key="frame" x="334" y="256" width="25" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="likes"/>
+                                        <connections>
+                                            <action selector="likeButtonDidTap:" destination="MIK-fG-rdI" eventType="touchUpInside" id="25Z-Ru-Chg"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nq2-F5-hbu">
                                         <rect key="frame" x="230" y="256" width="86" height="25"/>
@@ -37872,9 +37882,9 @@ AAAAAAAQDwA
         <image name="water" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ROV-If-9yk"/>
-        <segue reference="MJw-h2-vqT"/>
         <segue reference="xqt-sR-QNm"/>
-        <segue reference="83C-BM-jFi"/>
+        <segue reference="MJw-h2-vqT"/>
+        <segue reference="GPj-rp-ng9"/>
+        <segue reference="ROV-If-9yk"/>
     </inferredMetricsTieBreakers>
 </document>
