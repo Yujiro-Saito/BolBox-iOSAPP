@@ -119,6 +119,28 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
         
         let post = mediaPosts[indexPath.row]
         
+        //DBにアクセスしていいね押しているか確認
+        DataService.dataBase.REF_BASE.child("posts/-\(self.mediaPosts[indexPath.row].postID)/peopleWhoLike").observe(.value, with: { (snapshot) in
+            
+            
+            print(snapshot)
+            
+           if let postDict = snapshot.value as? Dictionary<String, AnyObject> {
+            
+            print(postDict)
+            
+           
+            
+            }
+            
+            
+            
+            
+            
+            
+                        })
+        
+        
         if let img = OneViewController.imageCache.object(forKey: post.imageURL as NSString) {
             
             

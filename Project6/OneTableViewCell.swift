@@ -105,7 +105,6 @@ class OneTableViewCell: UITableViewCell {
         //DBを更新
         let data = ["pvCount": self.pvCount]
         let peoples = currentUserName
-        //let peoples = ["lovers": currentUserName]
         
         
         DataService.dataBase.REF_BASE.child("posts/-\(self.postID)").updateChildValues(data)

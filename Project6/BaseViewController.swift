@@ -562,6 +562,85 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
         return 1
     }
     
+    //詳細画面遷移時のデータ引き継ぎ
+    
+    var detailPosts: Post?
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        let detailVc = (segue.destination as? InDetailViewController)!
+        
+        detailVc.name = detailPosts?.name
+        detailVc.numLikes = (detailPosts?.pvCount)!
+        detailVc.whatContent = detailPosts?.whatContent
+        detailVc.imageURL = detailPosts?.imageURL
+        detailVc.linkURL = detailPosts?.linkURL
+        
+        
+        
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        
+        if collectionView == topCollectionTable {
+            
+            detailPosts = self.topPosts[indexPath.row]
+            
+            performSegue(withIdentifier: "topPosts", sender: nil)
+            
+            
+        } else if collectionView == purposeCollection {
+            
+            detailPosts = self.purposePosts[indexPath.row]
+            
+            performSegue(withIdentifier: "topPosts", sender: nil)
+            
+        } else if collectionView == firstCollection {
+            
+            detailPosts = self.firstPosts[indexPath.row]
+            
+            performSegue(withIdentifier: "topPosts", sender: nil)
+            
+            
+            
+        } else if collectionView == secondCollection {
+            
+            detailPosts = self.secondPosts[indexPath.row]
+            
+            performSegue(withIdentifier: "topPosts", sender: nil)
+            
+            
+        } else if collectionView == thirdCollection {
+            
+            
+            detailPosts = self.thirdPosts[indexPath.row]
+            performSegue(withIdentifier: "topPosts", sender: nil)
+            
+        } else if collectionView == fourthCollection {
+            
+            detailPosts = self.fourthPosts[indexPath.row]
+            performSegue(withIdentifier: "topPosts", sender: nil)
+            
+            
+        } else if collectionView == fifthCollection {
+            
+            detailPosts = self.fifthPosts[indexPath.row]
+            performSegue(withIdentifier: "topPosts", sender: nil)
+            
+        }
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    
     
     
     
