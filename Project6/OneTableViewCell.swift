@@ -103,12 +103,21 @@ class OneTableViewCell: UITableViewCell {
         
         
         //DBを更新
-        let data = ["pvCount": self.pvCount]
+        let likesCount = ["pvCount": self.pvCount]
+        let userImageURL = ["imageURL" : self.imageURL]
+        let userName = [postID : currentUserName]
         let peoples = currentUserName
         
         
-        DataService.dataBase.REF_BASE.child("posts/-\(self.postID)").updateChildValues(data)
-        DataService.dataBase.REF_BASE.child("posts/-\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(peoples)
+        //いいね数を更新
+        DataService.dataBase.REF_BASE.child("posts/-\(self.postID)").updateChildValues(likesCount)
+        //いいねを押した人の一覧に追加
+        //DataService.dataBase.REF_BASE.child("posts/-\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(peoples)
+        //いいねを押した人　そのImageURLを投稿
+        //DataService.dataBase.REF_BASE.child("posts/-\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(userImageURL)
+        
+        DataService.dataBase.REF_BASE.child("posts/-\(self.postID)/peopleWhoLike/userNameBox/\(currentUserName!)").setValue(peoples)
+        
         
         
         self.likesButton.isEnabled = true

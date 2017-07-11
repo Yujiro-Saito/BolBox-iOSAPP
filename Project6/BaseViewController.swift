@@ -568,14 +568,21 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        if segue.identifier == "topPosts" {
+            let detailVc = (segue.destination as? InDetailViewController)!
+            
+            detailVc.name = detailPosts?.name
+            detailVc.numLikes = (detailPosts?.pvCount)!
+            detailVc.whatContent = detailPosts?.whatContent
+            detailVc.imageURL = detailPosts?.imageURL
+            detailVc.linkURL = detailPosts?.linkURL
+        } else if segue.identifier == "backtoRegister" {
+            
+            print("ログイン画面に戻る")
+            
+        }
         
-        let detailVc = (segue.destination as? InDetailViewController)!
         
-        detailVc.name = detailPosts?.name
-        detailVc.numLikes = (detailPosts?.pvCount)!
-        detailVc.whatContent = detailPosts?.whatContent
-        detailVc.imageURL = detailPosts?.imageURL
-        detailVc.linkURL = detailPosts?.linkURL
         
         
         

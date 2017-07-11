@@ -105,6 +105,16 @@ class ThreeViewController: UIViewController, IndicatorInfoProvider,UITableViewDe
         educationCell?.layer.borderWidth = 10
         educationCell?.clipsToBounds = true
         
+        educationCell?.postID = self.educationPosts[indexPath.row].postID
+        educationCell?.category = self.educationPosts[indexPath.row].category
+        educationCell?.pvCount = self.educationPosts[indexPath.row].pvCount
+        educationCell?.imageURL = self.educationPosts[indexPath.row].imageURL
+        educationCell?.linkURL = self.educationPosts[indexPath.row].linkURL
+        
+        
+        
+        
+        
         let post = educationPosts[indexPath.row]
         
         if let img = ThreeViewController.imageCache.object(forKey: post.imageURL as NSString) {

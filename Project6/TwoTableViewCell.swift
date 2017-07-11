@@ -8,7 +8,7 @@
 
 import UIKit
 import FirebaseStorage
-
+import Firebase
 
 class TwoTableViewCell: UITableViewCell {
     
@@ -20,6 +20,47 @@ class TwoTableViewCell: UITableViewCell {
     @IBOutlet weak var cellUserImage: ProfileImage!
     @IBOutlet weak var cellUserName: UILabel!
     @IBOutlet weak var cellNumLikes: UILabel!
+    @IBOutlet weak var likeButton: UIButton!
+    
+    var postID = String()
+    var category: String!
+    var linkURL: String!
+    var imageURL: String!
+    var pvCount = Int()
+    
+    
+    
+    @IBAction func likeButtonDidTap(_ sender: Any) {
+        
+        
+        self.likeButton.isEnabled = false
+        
+        self.pvCount += 1
+        
+        
+        print(self.postID)
+        print(self.pvCount)
+        
+        var currentUserName = FIRAuth.auth()?.currentUser?.displayName
+        
+        
+        //DBを更新
+        let data = ["pvCount": self.pvCount]
+        let peoples = currentUserName
+        
+        
+        DataService.dataBase.REF_BASE.child("posts/-\(self.postID)").updateChildValues(data)
+        DataService.dataBase.REF_BASE.child("posts/-\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(peoples)
+        
+        
+        self.likeButton.isEnabled = true
+
+        
+        
+        
+        
+        
+    }
     
     
 
@@ -80,6 +121,9 @@ class TwoTableViewCell: UITableViewCell {
         }
         
     }
+    
+    
+    
     
     
     

@@ -12,11 +12,13 @@ import Firebase
 
 class TwoViewController: UIViewController, IndicatorInfoProvider,UITableViewDataSource,UITableViewDelegate {
     
+    
     @IBOutlet weak var twoTable: UITableView!
     var itemInfo: IndicatorInfo = "アプリ"
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     var appPosts = [Post]()
     
+    @IBOutlet weak var likingButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -101,6 +103,19 @@ class TwoViewController: UIViewController, IndicatorInfoProvider,UITableViewData
         postCell?.layer.borderWidth = 10
         postCell?.clipsToBounds = true
         
+        postCell?.postID = self.appPosts[indexPath.row].postID
+        postCell?.category = self.appPosts[indexPath.row].category
+        postCell?.pvCount = self.appPosts[indexPath.row].pvCount
+        postCell?.imageURL = self.appPosts[indexPath.row].imageURL
+        postCell?.linkURL = self.appPosts[indexPath.row].linkURL
+        
+        
+        
+        
+        
+        
+        
+        
         let post = appPosts[indexPath.row]
         
         if let img = TwoViewController.imageCache.object(forKey: post.imageURL as NSString) {
@@ -150,6 +165,16 @@ class TwoViewController: UIViewController, IndicatorInfoProvider,UITableViewData
         
         
     }
+    
+    
+    
+    
+    @IBAction func likeButtonDdTap(_ sender: Any) {
+    }
+    
+    
+    
+    
 
         
         

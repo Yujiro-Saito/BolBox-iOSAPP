@@ -121,6 +121,18 @@ class FourViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
         travelCell?.layer.borderWidth = 10
         travelCell?.clipsToBounds = true
         
+        
+        travelCell?.postID = self.travelPosts[indexPath.row].postID
+        travelCell?.category = self.travelPosts[indexPath.row].category
+        travelCell?.pvCount = self.travelPosts[indexPath.row].pvCount
+        travelCell?.imageURL = self.travelPosts[indexPath.row].imageURL
+        travelCell?.linkURL = self.travelPosts[indexPath.row].linkURL
+        
+        
+        
+        
+        
+        
         let post = travelPosts[indexPath.row]
         
         if let img = FourViewController.imageCache.object(forKey: post.imageURL as NSString) {

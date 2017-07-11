@@ -21,16 +21,15 @@ class FiveViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
     var shoppinglPosts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        
-        
         fiveTable.delegate = self
         fiveTable.dataSource = self
-        
         
         self.fiveTable.backgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
         
@@ -118,6 +117,16 @@ class FiveViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
         shoppingCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
         shoppingCell?.layer.borderWidth = 10
         shoppingCell?.clipsToBounds = true
+        
+        
+        
+        shoppingCell?.postID = self.shoppinglPosts[indexPath.row].postID
+        shoppingCell?.category = self.shoppinglPosts[indexPath.row].category
+        shoppingCell?.pvCount = self.shoppinglPosts[indexPath.row].pvCount
+        shoppingCell?.imageURL = self.shoppinglPosts[indexPath.row].imageURL
+        shoppingCell?.linkURL = self.shoppinglPosts[indexPath.row].linkURL
+        
+        
         
         let post = shoppinglPosts[indexPath.row]
         
