@@ -26,6 +26,7 @@ class Post {
     private var _linkURL: String!
     private var _postID: String!
     private var _peopleWhoLike: String!
+    private var _userID: String!
     
     private var _postKey: String!
     private var _postRef: FIRDatabaseReference!
@@ -90,7 +91,12 @@ class Post {
     }
     
     
-    init(name: String,  category: String, imageURL: String, whatContent: String, goodCount: Int, keepCount: Int, pvCount: Int, detailImageOne: String, detailImageTwo: String, detailImageThree: String, linkURL: String, postID: String, peopleWhoLike: String) {
+    var userID: String {
+        return _userID
+    }
+    
+    
+    init(name: String,  category: String, imageURL: String, whatContent: String, goodCount: Int, keepCount: Int, pvCount: Int, detailImageOne: String, detailImageTwo: String, detailImageThree: String, linkURL: String, postID: String, peopleWhoLike: String, userID: String) {
         
         
         self._name = name
@@ -106,6 +112,7 @@ class Post {
         self._linkURL = linkURL
         self._postID = postID
         self._peopleWhoLike = peopleWhoLike
+        self._userID = userID
         
     }
     
@@ -168,6 +175,9 @@ class Post {
             self._peopleWhoLike = peopleWhoLike
         }
         
+        if let userID = postData["userID"] as? String {
+            self._userID = userID
+        }
         
         _postRef = DataService.dataBase.REF_POST.child(_postKey)
         

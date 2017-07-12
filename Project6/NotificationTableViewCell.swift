@@ -13,6 +13,7 @@ class NotificationTableViewCell: UITableViewCell {
     
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userImage: ProfileImage!
+    @IBOutlet weak var title: UILabel!
     
     
     

@@ -27,7 +27,7 @@ class TwoTableViewCell: UITableViewCell {
     var linkURL: String!
     var imageURL: String!
     var pvCount = Int()
-    
+    var userID = String()
     
     
     @IBAction func likeButtonDidTap(_ sender: Any) {
@@ -45,12 +45,20 @@ class TwoTableViewCell: UITableViewCell {
         
         
         //DBを更新
-        let data = ["pvCount": self.pvCount]
+        let likesCount = ["pvCount": self.pvCount]
+        let userImageURL = ["imageURL" : self.imageURL]
+        let userName = [postID : currentUserName]
         let peoples = currentUserName
+        let userData = ["imageURL" : self.imageURL, postID : currentUserName, "userID" : self.userID, "postName" : cellTitle.text]
         
+        //いいね数を更新
+        DataService.dataBase.REF_BASE.child("posts/-\(self.postID)").updateChildValues(likesCount)
+        //いいねを押した人の一覧に追加
+        //DataService.dataBase.REF_BASE.child("posts/-\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(peoples)
+        //いいねを押した人　そのImageURLを投稿
+        //DataService.dataBase.REF_BASE.child("posts/-\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(userImageURL)
         
-        DataService.dataBase.REF_BASE.child("posts/-\(self.postID)").updateChildValues(data)
-        DataService.dataBase.REF_BASE.child("posts/-\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(peoples)
+        DataService.dataBase.REF_BASE.child("posts/-\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(userData)
         
         
         self.likeButton.isEnabled = true

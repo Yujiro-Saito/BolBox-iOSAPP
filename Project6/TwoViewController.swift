@@ -49,7 +49,6 @@ class TwoViewController: UIViewController, IndicatorInfoProvider,UITableViewData
                         
                         let categoryTag = postDict["category"] as! String
                         
-                        print("おおおおおおおおおおおおおおおおお\(categoryTag)")
                         
                         if categoryTag == "アプリ" {
                             let key = snap.key
@@ -108,7 +107,7 @@ class TwoViewController: UIViewController, IndicatorInfoProvider,UITableViewData
         postCell?.pvCount = self.appPosts[indexPath.row].pvCount
         postCell?.imageURL = self.appPosts[indexPath.row].imageURL
         postCell?.linkURL = self.appPosts[indexPath.row].linkURL
-        
+        postCell?.userID = self.appPosts[indexPath.row].userID
         
         
         

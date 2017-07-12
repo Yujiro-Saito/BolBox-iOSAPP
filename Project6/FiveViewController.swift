@@ -119,7 +119,7 @@ class FiveViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
         shoppingCell?.clipsToBounds = true
         
         
-        
+        shoppingCell?.userID = self.shoppinglPosts[indexPath.row].userID
         shoppingCell?.postID = self.shoppinglPosts[indexPath.row].postID
         shoppingCell?.category = self.shoppinglPosts[indexPath.row].category
         shoppingCell?.pvCount = self.shoppinglPosts[indexPath.row].pvCount

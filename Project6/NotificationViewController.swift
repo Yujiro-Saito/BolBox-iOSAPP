@@ -19,8 +19,8 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
     
     
     var firstUserNameBox = [String]()
-    var currentPosts = [String]()
     var userImageURLBox = [String]()
+    var userPostTitleBox = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +34,8 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         self.navBar.frame = CGRect(x: 0,y: 0, width: UIScreen.main.bounds.size.width, height: 60)
         
         self.view.bringSubview(toFront: navBar)
+        
+        self.notificationTable.backgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
 
     }
     
@@ -69,11 +71,25 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
                                 
                                 print("ユーザー画像URLの取得\(namevalue)")
                                 
+                               
+                                let userImageURL = namevalue["imageURL"] as! String
+                                
+                                 let userPostTitle = namevalue["postName"] as! String
                                 
                                 
                                 self.firstUserNameBox.append(nameKey)
+                                self.userImageURLBox.append(userImageURL)
+                                self.userPostTitleBox.append(userPostTitle)
+                                
+                                
+                                self.firstUserNameBox.reverse()
+                                self.userImageURLBox.reverse()
+                                self.userPostTitleBox.reverse()
+                                
+                                self.notificationTable.reloadData()
                                 
                                 print(self.firstUserNameBox)
+                                print(self.userImageURLBox)
                                 
                             }
                             
@@ -148,7 +164,7 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
                 
             
             
-            self.notificationTable.reloadData()
+            //self.notificationTable.reloadData()
             
             
             
@@ -177,7 +193,17 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         let notiCell = notificationTable.dequeueReusableCell(withIdentifier: "notification", for: indexPath) as? NotificationTableViewCell
         
         
+        notiCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
+        notiCell?.layer.borderWidth = 10
+        notiCell?.clipsToBounds = true
+        
+        
+        
         notiCell?.userName.text = firstUserNameBox[indexPath.row]
+        notiCell?.userImage.af_setImage(withURL: URL(string: userImageURLBox[indexPath.row])!)
+        notiCell?.title.text = userPostTitleBox[indexPath.row]
+        
+        
         
         /*
         //いいね件数別

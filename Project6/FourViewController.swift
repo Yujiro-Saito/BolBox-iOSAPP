@@ -121,7 +121,7 @@ class FourViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
         travelCell?.layer.borderWidth = 10
         travelCell?.clipsToBounds = true
         
-        
+        travelCell?.userID = self.travelPosts[indexPath.row].userID
         travelCell?.postID = self.travelPosts[indexPath.row].postID
         travelCell?.category = self.travelPosts[indexPath.row].category
         travelCell?.pvCount = self.travelPosts[indexPath.row].pvCount

@@ -38,7 +38,7 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        //カテゴリーメディアのデータ読み込み
+        //メディアのデータ読み込み
         DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
             
             self.mediaPosts = []
@@ -86,6 +86,7 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
     
     //必須
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        
         return itemInfo
     }
     
@@ -113,7 +114,7 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
         mediaCell?.pvCount = self.mediaPosts[indexPath.row].pvCount
         mediaCell?.imageURL = self.mediaPosts[indexPath.row].imageURL
         mediaCell?.linkURL = self.mediaPosts[indexPath.row].linkURL
-        
+        mediaCell?.userID = self.mediaPosts[indexPath.row].userID
         
         
         

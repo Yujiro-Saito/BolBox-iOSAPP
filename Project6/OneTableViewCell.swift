@@ -28,6 +28,7 @@ class OneTableViewCell: UITableViewCell {
     var linkURL: String!
     var imageURL: String!
     var pvCount = Int()
+    var userID = String()
     
     
     
@@ -107,7 +108,7 @@ class OneTableViewCell: UITableViewCell {
         let userImageURL = ["imageURL" : self.imageURL]
         let userName = [postID : currentUserName]
         let peoples = currentUserName
-        
+        let userData = ["imageURL" : self.imageURL, postID : currentUserName, "userID" : self.userID, "postName" : oneTItle.text]
         
         //いいね数を更新
         DataService.dataBase.REF_BASE.child("posts/-\(self.postID)").updateChildValues(likesCount)
@@ -116,7 +117,7 @@ class OneTableViewCell: UITableViewCell {
         //いいねを押した人　そのImageURLを投稿
         //DataService.dataBase.REF_BASE.child("posts/-\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(userImageURL)
         
-        DataService.dataBase.REF_BASE.child("posts/-\(self.postID)/peopleWhoLike/userNameBox/\(currentUserName!)").setValue(peoples)
+        DataService.dataBase.REF_BASE.child("posts/-\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(userData)
         
         
         

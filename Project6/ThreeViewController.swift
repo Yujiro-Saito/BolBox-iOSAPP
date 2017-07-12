@@ -105,6 +105,7 @@ class ThreeViewController: UIViewController, IndicatorInfoProvider,UITableViewDe
         educationCell?.layer.borderWidth = 10
         educationCell?.clipsToBounds = true
         
+        educationCell?.userID = self.educationPosts[indexPath.row].userID
         educationCell?.postID = self.educationPosts[indexPath.row].postID
         educationCell?.category = self.educationPosts[indexPath.row].category
         educationCell?.pvCount = self.educationPosts[indexPath.row].pvCount
