@@ -653,3 +653,22 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     
    
 }
+
+
+extension UIColor {
+    class func rgb(r: Int, g: Int, b: Int, alpha: CGFloat) -> UIColor{
+        return UIColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: alpha)
+    }
+}
+
+
+extension Array
+{
+    mutating func shuffle()
+    {
+        for _ in 0..<10
+        {
+            sort { (_,_) in arc4random() < arc4random() }
+        }
+    }
+}

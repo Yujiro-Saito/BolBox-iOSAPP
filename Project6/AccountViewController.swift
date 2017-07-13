@@ -33,6 +33,10 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
         profileNavBar.delegate = self
         
         self.profileNavBar.frame = CGRect(x: 0,y: 0, width: UIScreen.main.bounds.size.width, height: 55)
+        
+        
+        
+        self.profilePostTable.backgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
 
     }
     
@@ -126,6 +130,10 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
         
         
         let cell = profilePostTable.dequeueReusableCell(withIdentifier: "profilePosts", for: indexPath) as! ProfilePostsTableViewCell
+        
+        cell.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
+        cell.layer.borderWidth = 10
+        cell.clipsToBounds = true
         
         let post = userPosts[indexPath.row]
         
