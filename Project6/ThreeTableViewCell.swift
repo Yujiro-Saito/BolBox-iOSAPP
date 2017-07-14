@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseStorage
 import Firebase
+import AlamofireImage
 
 
 class ThreeTableViewCell: UITableViewCell {
@@ -32,6 +33,8 @@ class ThreeTableViewCell: UITableViewCell {
     var imageURL: String!
     var pvCount = Int()
     var userID = String()
+    var userImageURL = String()
+    var userProfileName = String()
 
 
     
@@ -86,6 +89,9 @@ class ThreeTableViewCell: UITableViewCell {
         
         
         self.post = post
+        
+        self.cellUserImage.af_setImage(withURL: URL(string: userImageURL)!)
+        self.cellUserName.text = self.userProfileName
         
         self.cellTitle.text = "\(post.name)"
         self.cellNumLikes.text = "\(post.pvCount)"

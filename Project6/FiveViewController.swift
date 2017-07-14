@@ -118,6 +118,9 @@ class FiveViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
         shoppingCell?.layer.borderWidth = 10
         shoppingCell?.clipsToBounds = true
         
+        shoppingCell?.userImageURL = self.shoppinglPosts[indexPath.row].userProfileImage
+        shoppingCell?.userProfileName = self.shoppinglPosts[indexPath.row].userProfileName
+        
         
         shoppingCell?.userID = self.shoppinglPosts[indexPath.row].userID
         shoppingCell?.postID = self.shoppinglPosts[indexPath.row].postID

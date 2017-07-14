@@ -102,6 +102,10 @@ class TwoViewController: UIViewController, IndicatorInfoProvider,UITableViewData
         postCell?.layer.borderWidth = 10
         postCell?.clipsToBounds = true
         
+        
+        postCell?.userImageURL = self.appPosts[indexPath.row].userProfileImage
+        postCell?.userProfileName = self.appPosts[indexPath.row].userProfileName
+        
         postCell?.postID = self.appPosts[indexPath.row].postID
         postCell?.category = self.appPosts[indexPath.row].category
         postCell?.pvCount = self.appPosts[indexPath.row].pvCount

@@ -105,6 +105,10 @@ class ThreeViewController: UIViewController, IndicatorInfoProvider,UITableViewDe
         educationCell?.layer.borderWidth = 10
         educationCell?.clipsToBounds = true
         
+        
+        educationCell?.userImageURL = self.educationPosts[indexPath.row].userProfileImage
+        educationCell?.userProfileName = self.educationPosts[indexPath.row].userProfileName
+        
         educationCell?.userID = self.educationPosts[indexPath.row].userID
         educationCell?.postID = self.educationPosts[indexPath.row].postID
         educationCell?.category = self.educationPosts[indexPath.row].category
