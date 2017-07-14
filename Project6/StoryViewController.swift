@@ -28,7 +28,11 @@ class StoryViewController: UIViewController,UITextViewDelegate {
     var firstBool = false
     var secondBool = false
     var thirdBool = false
+    var profileBool = false
     
+    
+    //プロフィール画像
+    var profileImage = UIImageView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +49,6 @@ class StoryViewController: UIViewController,UITextViewDelegate {
         print(name)
         print(categoryTitle)
         print(detailImages)
-        
         
         
         
@@ -66,6 +69,11 @@ class StoryViewController: UIViewController,UITextViewDelegate {
         self.secondBool = false
         self.thirdBool = false
         
+        let user = FIRAuth.auth()?.currentUser
+        
+        let photoURL = user?.photoURL
+        let userName = user!.displayName
+        
         if self.storyText.text == "" {
             
             let alertViewController = UIAlertController(title: "ストーリが空です", message:"思いを伝えよう", preferredStyle: .alert)
@@ -75,22 +83,7 @@ class StoryViewController: UIViewController,UITextViewDelegate {
             
             self.present(alertViewController, animated:true, completion:nil)
             
-        } /*else if storyText.text != "メディア" ||  storyText.text != "トラベル" || storyText.text != "テクノロジー" ||  storyText.text != "デザイン・アート" ||  storyText.text != "教育・キャリア" ||  storyText.text != "ショッピング" ||  storyText.text != "アプリ"  {
-            
-            print("タグが正しくない")
-            
-            let alertViewControler = UIAlertController(title: "エラーがあります", message: "カテゴリーが正しくありません", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            
-            alertViewControler.addAction(okAction)
-            self.present(alertViewControler, animated: true, completion: nil)
-            
-            
-            
         }
-        
-        */
-            
         else  if storyText.text != "" {
             print("メディア投稿開始")
             
@@ -98,8 +91,7 @@ class StoryViewController: UIViewController,UITextViewDelegate {
             let ref = FIRDatabase.database().reference()
             let uid = FIRAuth.auth()?.currentUser?.uid
             
-            
-                
+                            
                 var mediaPost: Dictionary<String, AnyObject> = [
                     
                     "category" : categoryTitle as AnyObject,
@@ -107,12 +99,53 @@ class StoryViewController: UIViewController,UITextViewDelegate {
                     "linkURL" : self.url as AnyObject,
                     "pvCount" : 0 as AnyObject,
                     "whatContent" : storyText.text as AnyObject,
-                    "userID" : uid as AnyObject
+                    "userID" : uid as AnyObject,
+                    "userName" : userName! as AnyObject
                 ]
+            
+            
+            
+            
 
                 
                 //詳細画像一枚のとき
                 if detailImages.count == 1 {
+                    
+                    //ユーザープロフィール画像
+                    if photoURL == nil {
+                        profileImage.image = UIImage(named: "drop")
+                        self.profileBool = true
+                    } else {
+                        
+                        profileImage.af_setImage(withURL: photoURL!)
+                        
+                        let profileImgData = UIImageJPEGRepresentation(profileImage.image!, 0.2)
+                        let metaData = FIRStorageMetadata()
+                        metaData.contentType = "image/jpeg"
+                        let proImgUid = NSUUID().uuidString
+                        
+                        
+                        DispatchQueue.global().async {
+                            
+                            DataService.dataBase.REF_POST_IMAGES.child(proImgUid).put(profileImgData!, metadata: metaData) {
+                                (metaData, error) in
+                                
+                                if error != nil {
+                                    print("画像のアップロードに失敗しました")
+                                } else {
+                                    
+                                    print("画像のアップロードに成功しました")
+                                    //DBへ画像のURL飛ばす
+                                    let proDownloadURL = metaData?.downloadURL()?.absoluteString
+                                    
+                                    mediaPost["userProfileImage"] = proDownloadURL as AnyObject
+                                    self.profileBool = true
+                                }
+                            }
+                            
+                        }
+                    }
+                    
                     
                     
                     //メイン写真投稿
@@ -143,6 +176,12 @@ class StoryViewController: UIViewController,UITextViewDelegate {
                         }
                         
                     }
+                    
+                    
+                    
+                
+                    
+                    
                     
                     
                     
@@ -182,17 +221,23 @@ class StoryViewController: UIViewController,UITextViewDelegate {
                         self.wait( {self.firstBool == false} ) {
                             
                             
+                            self.wait( {self.profileBool == false} ) {
                                 
                                 print("二段階確認")
                                 print(self.mainBool)
                                 print(self.firstBool)
-                            
+                                
                                 //DBに投稿
                                 let firebasePost = DataService.dataBase.REF_POST.childByAutoId()
                                 
                                 firebasePost.setValue(mediaPost)
                                 print(mediaPost)
                                 print("1枚の場合投稿を完了しました")
+                                
+                            }
+                            
+                                
+                            
                                 
                             
                             

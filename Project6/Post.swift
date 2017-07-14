@@ -27,6 +27,9 @@ class Post {
     private var _postID: String!
     private var _peopleWhoLike: String!
     private var _userID: String!
+    private var _userProfileImage: String!
+    private var _userProfileName: String!
+    
     
     private var _postKey: String!
     private var _postRef: FIRDatabaseReference!
@@ -95,8 +98,20 @@ class Post {
         return _userID
     }
     
+    var userProfileImage: String {
+        return _userProfileImage
+    }
     
-    init(name: String,  category: String, imageURL: String, whatContent: String, goodCount: Int, keepCount: Int, pvCount: Int, detailImageOne: String, detailImageTwo: String, detailImageThree: String, linkURL: String, postID: String, peopleWhoLike: String, userID: String) {
+    var userProfileName: String {
+        return _userProfileName
+    }
+    
+
+    
+    
+    init(name: String,  category: String, imageURL: String, whatContent: String, goodCount: Int, keepCount: Int, pvCount: Int, detailImageOne: String, detailImageTwo: String, detailImageThree: String, linkURL: String, postID: String, peopleWhoLike: String, userID: String,userProfileImage: String,userProfileName: String
+        )
+    {
         
         
         self._name = name
@@ -113,6 +128,8 @@ class Post {
         self._postID = postID
         self._peopleWhoLike = peopleWhoLike
         self._userID = userID
+        self._userProfileImage = userProfileImage
+        self._userProfileName = userProfileName
         
     }
     
@@ -179,13 +196,22 @@ class Post {
             self._userID = userID
         }
         
+        if let userProfileImage = postData["userProfileImage"] as? String {
+            self._userProfileImage = userProfileImage
+        }
+        
+        if let userProfileName = postData["userName"] as? String {
+            self._userProfileName = userProfileName
+        }
+        
+        
+        
         _postRef = DataService.dataBase.REF_POST.child(_postKey)
         
         
         
 }
     
-
     
     
     

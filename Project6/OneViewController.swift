@@ -109,6 +109,9 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
         mediaCell?.layer.borderWidth = 10
         mediaCell?.clipsToBounds = true
         
+        mediaCell?.userImageURL = self.mediaPosts[indexPath.row].userProfileImage
+        mediaCell?.userProfileName = self.mediaPosts[indexPath.row].userProfileName
+        
         mediaCell?.postID = self.mediaPosts[indexPath.row].postID
         mediaCell?.category = self.mediaPosts[indexPath.row].category
         mediaCell?.pvCount = self.mediaPosts[indexPath.row].pvCount

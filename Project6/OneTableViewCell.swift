@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseStorage
+import AlamofireImage
 
 class OneTableViewCell: UITableViewCell {
     
@@ -29,7 +30,8 @@ class OneTableViewCell: UITableViewCell {
     var imageURL: String!
     var pvCount = Int()
     var userID = String()
-    
+    var userImageURL = String()
+    var userProfileName = String()
     
     
     override func awakeFromNib() {
@@ -59,9 +61,13 @@ class OneTableViewCell: UITableViewCell {
         
         self.post = post
         
+        self.userImage.af_setImage(withURL: URL(string: userImageURL)!)
+        self.userName.text = self.userProfileName
+        
         self.oneTItle.text = "\(post.name)"
         self.numsOfLikes.text = "\(post.pvCount)"
         self.oneContent.text = "\(post.whatContent)"
+        
         
         if img != nil {
             

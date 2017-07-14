@@ -372,6 +372,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     
     
     
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
