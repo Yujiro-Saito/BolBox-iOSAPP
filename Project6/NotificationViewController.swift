@@ -74,6 +74,7 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
                                 
                                 print("ユーザー画像URLの取得\(namevalue)")
                                 
+                                
                                
                                 let userImageURL = namevalue["imageURL"] as! String
                                 
@@ -101,47 +102,7 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
                             
                             
                             
-                            /*
                             
-                            
-                            
-                            
-                            for (nameKey,namevalue) in peopleWhoLike {
-                                print("キーは\(nameKey)、値は\(namevalue)")
-                                
-                                self.firstUserNameBox.append(nameKey)
-                                
-                                print(self.firstUserNameBox)
-                            }
- 
- */
-                            
-                            /*
-                            //いいねをつけている人の名前を取得
-                            if let userName = peopleWhoLike["userNameBox"] as? Dictionary<String,AnyObject> {
-                                
-                                
-                                let firstUserNames: String = userName["userName"] as! String
-                                
-                                //ユーザーネームの配列に追加
-                                self.firstUserNameBox.append(firstUserNames)
-                                self.notificationTable.reloadData()
- 
-                            }
-                            //画像の配列
-                            
-                            //いいねをつけている人の画像URLを取得
-                            if let userImageURL = peopleWhoLike["imageURL"] as? Dictionary<String,AnyObject> {
-                                
-                                let userImageURL: String = userImageURL["userImageURL"] as! String
-                                
-                                self.userImageURLBox.append(userImageURL)
-                                self.notificationTable.reloadData()
-                                
-                            }
-                            
-                            */
-                           
                             
                         }
  

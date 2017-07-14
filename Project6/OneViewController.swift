@@ -20,6 +20,8 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
     var itemInfo: IndicatorInfo = "メディア"
     var mediaPosts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
+    var likingNameBox = [String]()
+    let currentUserName = FIRAuth.auth()?.currentUser?.displayName
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,8 +104,12 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
+        let currentUserName = FIRAuth.auth()?.currentUser?.displayName
+        
         
         let mediaCell = oneTable.dequeueReusableCell(withIdentifier: "mediaPost", for: indexPath) as? OneTableViewCell
+        
+        
         
         mediaCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
         mediaCell?.layer.borderWidth = 10
@@ -120,29 +126,41 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
         mediaCell?.userID = self.mediaPosts[indexPath.row].userID
         
         
+        if self.mediaPosts[indexPath.row].peopleWhoLike != nil {
+            mediaCell?.peopleWhoLike = self.mediaPosts[indexPath.row].peopleWhoLike
+        }
+        
+        
+        
+
+          //POSTIDにPEOPLEWHOLIKEに自分のdisplaynameがあれば
+         print("持ってますね---------------")
+         print(mediaPosts[indexPath.row].peopleWhoLike)
+        
+        let likingDictionary = mediaPosts[indexPath.row].peopleWhoLike
+        
+        for (nameKey,namevalue) in likingDictionary {
+            
+            print("キーは\(nameKey)、値は\(namevalue)")
+            
+            if nameKey == currentUserName {
+                 mediaCell?.likesButton.isEnabled = false
+                mediaCell?.likesButton.imageView?.image = UIImage(named: "like")
+            }
+        
+        
+        }
+        
+        
+
+        
+        
+        
+        
+    
         
         let post = mediaPosts[indexPath.row]
         
-        //DBにアクセスしていいね押しているか確認
-        DataService.dataBase.REF_BASE.child("posts/-\(self.mediaPosts[indexPath.row].postID)/peopleWhoLike").observe(.value, with: { (snapshot) in
-            
-            
-            print(snapshot)
-            
-           if let postDict = snapshot.value as? Dictionary<String, AnyObject> {
-            
-            print(postDict)
-            
-           
-            
-            }
-            
-            
-            
-            
-            
-            
-                        })
         
         
         if let img = OneViewController.imageCache.object(forKey: post.imageURL as NSString) {
@@ -157,6 +175,12 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
             mediaCell?.configureCell(post: post)
             
         }
+        
+        
+        
+
+        
+        
         
         
         return mediaCell!
@@ -193,7 +217,8 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
         detailVc.whatContent = detailPosts?.whatContent
         detailVc.imageURL = detailPosts?.imageURL
         detailVc.linkURL = detailPosts?.linkURL
-        
+        detailVc.userName = detailPosts?.userProfileName
+        detailVc.userImageURL = detailPosts?.userProfileImage
         
         
     }

@@ -32,6 +32,8 @@ class InDetailViewController: UIViewController {
     var whatContent: String?
     var imageURL: String?
     var linkURL: String?
+    var userName: String!
+    var userImageURL: String!
     
     
     
@@ -44,10 +46,15 @@ class InDetailViewController: UIViewController {
         
         //画像の読み込み
         postImage.af_setImage(withURL: URL(string: imageURL!)!)
+        postUserImage.af_setImage(withURL: URL(string: userImageURL)!)
+        
         
         //その他データ
         postTitle.text = name
         postContent.text = whatContent
+        
+        postUserName.text = userName
+        
         
         
     

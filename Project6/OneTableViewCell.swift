@@ -32,17 +32,18 @@ class OneTableViewCell: UITableViewCell {
     var userID = String()
     var userImageURL = String()
     var userProfileName = String()
+    var peopleWhoLike = Dictionary<String, AnyObject>()
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         
+        
         self.layer.shadowColor = UIColor(red: 255.0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.7).cgColor
         
-        
-        
 
+      
         
         onebgCard.backgroundColor = UIColor.white
         contentView.backgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
@@ -98,7 +99,6 @@ class OneTableViewCell: UITableViewCell {
     //いいねが押された時
     @IBAction func likeButtonDidTap(_ sender: Any) {
         
-        self.likesButton.isEnabled = false
         
         self.pvCount += 1
         
@@ -118,16 +118,13 @@ class OneTableViewCell: UITableViewCell {
         
         //いいね数を更新
         DataService.dataBase.REF_BASE.child("posts/-\(self.postID)").updateChildValues(likesCount)
-        //いいねを押した人の一覧に追加
-        //DataService.dataBase.REF_BASE.child("posts/-\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(peoples)
-        //いいねを押した人　そのImageURLを投稿
-        //DataService.dataBase.REF_BASE.child("posts/-\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(userImageURL)
         
         DataService.dataBase.REF_BASE.child("posts/-\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(userData)
         
+        self.likesButton.imageView?.image = UIImage(named: "like")
+        self.likesButton.isEnabled = false
         
         
-        self.likesButton.isEnabled = true
         
         
 } 

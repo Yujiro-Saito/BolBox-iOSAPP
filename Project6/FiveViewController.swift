@@ -168,6 +168,8 @@ class FiveViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
         detailVc.whatContent = detailPosts?.whatContent
         detailVc.imageURL = detailPosts?.imageURL
         detailVc.linkURL = detailPosts?.linkURL
+        detailVc.userName = detailPosts?.userProfileName
+        detailVc.userImageURL = detailPosts?.userProfileImage
         
         
         
