@@ -110,7 +110,7 @@ class FiveViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
+        let currentUserName = FIRAuth.auth()?.currentUser?.displayName
         
         let shoppingCell = fiveTable.dequeueReusableCell(withIdentifier: "shoppingPosts", for: indexPath) as? FiveTableViewCell
         
@@ -129,6 +129,30 @@ class FiveViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
         shoppingCell?.imageURL = self.shoppinglPosts[indexPath.row].imageURL
         shoppingCell?.linkURL = self.shoppinglPosts[indexPath.row].linkURL
         
+        if self.shoppinglPosts[indexPath.row].peopleWhoLike != nil {
+            shoppingCell?.peopleWhoLike = self.shoppinglPosts[indexPath.row].peopleWhoLike as Dictionary<String, AnyObject>
+        }
+        
+        let likingDictionary = shoppinglPosts[indexPath.row].peopleWhoLike
+        
+        for (nameKey,namevalue) in likingDictionary {
+            
+            print("キーは\(nameKey)、値は\(namevalue)")
+            
+            
+            if nameKey == currentUserName {
+                
+                
+                shoppingCell?.emptyLike.isHidden = true
+                shoppingCell?.emptyLike.isEnabled = false
+                
+                shoppingCell?.likeButton.isHidden = false
+                shoppingCell?.likeButton.isEnabled = true
+                
+            }
+            
+            
+        }
         
         
         let post = shoppinglPosts[indexPath.row]

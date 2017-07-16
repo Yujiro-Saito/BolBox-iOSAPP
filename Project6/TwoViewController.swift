@@ -96,6 +96,9 @@ class TwoViewController: UIViewController, IndicatorInfoProvider,UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
+        let currentUserName = FIRAuth.auth()?.currentUser?.displayName
+        
+        
         let postCell = twoTable.dequeueReusableCell(withIdentifier: "appPost", for: indexPath) as? TwoTableViewCell
         
         postCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
@@ -113,10 +116,33 @@ class TwoViewController: UIViewController, IndicatorInfoProvider,UITableViewData
         postCell?.linkURL = self.appPosts[indexPath.row].linkURL
         postCell?.userID = self.appPosts[indexPath.row].userID
         
+        if self.appPosts[indexPath.row].peopleWhoLike != nil {
+            postCell?.peopleWhoLike = self.appPosts[indexPath.row].peopleWhoLike as Dictionary<String, AnyObject>
+        }
+
         
         
+        let likingDictionary = appPosts[indexPath.row].peopleWhoLike
         
-        
+        for (nameKey,namevalue) in likingDictionary {
+            
+            print("キーは\(nameKey)、値は\(namevalue)")
+            
+            
+            if nameKey == currentUserName {
+                
+                
+                postCell?.dislikeButton.isHidden = true
+                postCell?.dislikeButton.isEnabled = false
+                
+                postCell?.likeButton.isHidden = false
+                postCell?.likeButton.isEnabled = true
+                
+            }
+            
+            
+        }
+
         
         
         let post = appPosts[indexPath.row]
@@ -173,9 +199,6 @@ class TwoViewController: UIViewController, IndicatorInfoProvider,UITableViewData
     
     
     
-    
-    @IBAction func likeButtonDdTap(_ sender: Any) {
-    }
     
     
     

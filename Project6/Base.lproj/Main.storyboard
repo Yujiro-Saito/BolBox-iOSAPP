@@ -592,6 +592,14 @@
                                                                 <action selector="likeButtonDidTap:" destination="4bS-Wz-Izu" eventType="touchUpInside" id="Gbx-bh-e79"/>
                                                             </connections>
                                                         </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c6J-nO-Byb">
+                                                            <rect key="frame" x="268" y="277" width="25" height="25"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <state key="normal" image="likes"/>
+                                                            <connections>
+                                                                <action selector="addLikeDidTap:" destination="4bS-Wz-Izu" eventType="touchUpInside" id="NEV-Tf-KCn"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                 </view>
                                             </subviews>
@@ -605,6 +613,7 @@
                                             <outlet property="cellTitle" destination="Hi1-6k-ZhE" id="82U-h1-8eP"/>
                                             <outlet property="cellUserImage" destination="LCX-J1-gyG" id="ydH-pB-iTa"/>
                                             <outlet property="cellUserName" destination="0UM-Wc-2FJ" id="GPn-DH-39G"/>
+                                            <outlet property="emptyLike" destination="c6J-nO-Byb" id="y0E-Jq-62e"/>
                                             <outlet property="likeButton" destination="t5q-HG-GZf" id="Flm-bM-vgU"/>
                                         </connections>
                                     </tableViewCell>
@@ -702,6 +711,14 @@
                                                                 <action selector="likeButtonDidTap:" destination="nO6-Ul-E6T" eventType="touchUpInside" id="Dki-6O-WE3"/>
                                                             </connections>
                                                         </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBd-bc-KP6">
+                                                            <rect key="frame" x="268" y="277" width="25" height="25"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <state key="normal" image="likes"/>
+                                                            <connections>
+                                                                <action selector="addLikeDidTap:" destination="nO6-Ul-E6T" eventType="touchUpInside" id="GHc-sJ-Rn9"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                 </view>
                                             </subviews>
@@ -715,6 +732,7 @@
                                             <outlet property="cellTitle" destination="bXt-c4-bjz" id="4uM-ka-PmD"/>
                                             <outlet property="cellUserImage" destination="8c1-GS-zhH" id="fIZ-Gv-dVb"/>
                                             <outlet property="cellUserName" destination="iUy-e6-jbO" id="ssO-ry-E6X"/>
+                                            <outlet property="emptyLike" destination="BBd-bc-KP6" id="4U8-zR-A5W"/>
                                             <outlet property="likeButton" destination="J2C-pS-vff" id="Zzr-jo-5Yx"/>
                                         </connections>
                                     </tableViewCell>
@@ -730,7 +748,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iHm-Ay-tfN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4924" y="6768"/>
+            <point key="canvasLocation" x="4905" y="6768"/>
         </scene>
         <!--Two View Controller-->
         <scene sceneID="FUy-e5-q7W">
@@ -804,8 +822,16 @@
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWb-pE-TNE">
+                                                            <rect key="frame" x="235" y="277" width="25" height="25"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <state key="normal" image="likes"/>
+                                                            <connections>
+                                                                <action selector="addLikes:" destination="uMV-VM-mvX" eventType="touchUpInside" id="0pQ-HV-0lY"/>
+                                                            </connections>
+                                                        </button>
                                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hd5-Mq-Ikz">
-                                                            <rect key="frame" x="268" y="277" width="25" height="25"/>
+                                                            <rect key="frame" x="235" y="277" width="25" height="25"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <state key="normal" image="like"/>
                                                             <connections>
@@ -826,6 +852,7 @@
                                             <outlet property="cellTitle" destination="EM6-zz-C3d" id="Tnv-90-W3h"/>
                                             <outlet property="cellUserImage" destination="aqp-tb-V96" id="313-LO-uET"/>
                                             <outlet property="cellUserName" destination="Hol-ch-Ga3" id="x0j-CH-EIn"/>
+                                            <outlet property="dislikeButton" destination="eWb-pE-TNE" id="l5M-x2-d0W"/>
                                             <outlet property="likeButton" destination="hd5-Mq-Ikz" id="GGB-91-qGJ"/>
                                         </connections>
                                     </tableViewCell>
@@ -1004,6 +1031,14 @@
                                                                 <action selector="likeButtonDiTap:" destination="6RU-rX-MTu" eventType="touchUpInside" id="tHu-0K-vEQ"/>
                                                             </connections>
                                                         </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EcL-jB-P4A">
+                                                            <rect key="frame" x="268" y="277" width="25" height="25"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <state key="normal" image="likes"/>
+                                                            <connections>
+                                                                <action selector="dislikeButtonDidTap:" destination="6RU-rX-MTu" eventType="touchUpInside" id="0EJ-2y-gRU"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                 </view>
                                             </subviews>
@@ -1017,6 +1052,7 @@
                                             <outlet property="cellTitle" destination="jAN-8a-EIq" id="8VC-YZ-kAx"/>
                                             <outlet property="cellUserImage" destination="EC2-Z3-NUW" id="xaH-QM-ibs"/>
                                             <outlet property="cellUserName" destination="yua-ew-PwA" id="mBh-He-aMM"/>
+                                            <outlet property="dislikeButton" destination="EcL-jB-P4A" id="uJB-P1-Ksk"/>
                                             <outlet property="likeButton" destination="RSw-Zw-PQs" id="joo-pO-FBh"/>
                                         </connections>
                                     </tableViewCell>
@@ -37574,8 +37610,8 @@ AAAAAAAQDwA
         <image name="water" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nRe-NO-8Bd"/>
         <segue reference="2Sx-Sb-Xdr"/>
-        <segue reference="GPj-rp-ng9"/>
+        <segue reference="nRe-NO-8Bd"/>
+        <segue reference="83C-BM-jFi"/>
     </inferredMetricsTieBreakers>
 </document>

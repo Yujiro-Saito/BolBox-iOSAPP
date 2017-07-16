@@ -113,7 +113,7 @@ class FourViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
+        let currentUserName = FIRAuth.auth()?.currentUser?.displayName
         
         let travelCell = fourTable.dequeueReusableCell(withIdentifier: "travelPosts", for: indexPath) as? FourTableViewCell
         
@@ -133,8 +133,30 @@ class FourViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
         travelCell?.linkURL = self.travelPosts[indexPath.row].linkURL
         
         
+        if self.travelPosts[indexPath.row].peopleWhoLike != nil {
+            travelCell?.peopleWhoLike = self.travelPosts[indexPath.row].peopleWhoLike as Dictionary<String, AnyObject>
+        }
+
+        let likingDictionary = travelPosts[indexPath.row].peopleWhoLike
         
-        
+        for (nameKey,namevalue) in likingDictionary {
+            
+            print("キーは\(nameKey)、値は\(namevalue)")
+            
+            
+            if nameKey == currentUserName {
+                
+                
+                travelCell?.emptyLike.isHidden = true
+                travelCell?.emptyLike.isEnabled = false
+                
+                travelCell?.likeButton.isHidden = false
+                travelCell?.likeButton.isEnabled = true
+                
+            }
+            
+            
+        }
         
         
         let post = travelPosts[indexPath.row]

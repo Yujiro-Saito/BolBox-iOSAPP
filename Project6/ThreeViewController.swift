@@ -97,7 +97,7 @@ class ThreeViewController: UIViewController, IndicatorInfoProvider,UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
+        let currentUserName = FIRAuth.auth()?.currentUser?.displayName
         
         let educationCell = threeTable.dequeueReusableCell(withIdentifier: "educationPosts", for: indexPath) as? ThreeTableViewCell
         
@@ -117,7 +117,32 @@ class ThreeViewController: UIViewController, IndicatorInfoProvider,UITableViewDe
         educationCell?.linkURL = self.educationPosts[indexPath.row].linkURL
         
         
+        if self.educationPosts[indexPath.row].peopleWhoLike != nil {
+            educationCell?.peopleWhoLike = self.educationPosts[indexPath.row].peopleWhoLike as Dictionary<String, AnyObject>
+        }
         
+        
+        
+        let likingDictionary = educationPosts[indexPath.row].peopleWhoLike
+        
+        for (nameKey,namevalue) in likingDictionary {
+            
+            print("キーは\(nameKey)、値は\(namevalue)")
+            
+            
+            if nameKey == currentUserName {
+                
+                
+                educationCell?.dislikeButton.isHidden = true
+                educationCell?.dislikeButton.isEnabled = false
+                
+                educationCell?.likeButton.isHidden = false
+                educationCell?.likeButton.isEnabled = true
+                
+            }
+            
+            
+        }
         
         
         let post = educationPosts[indexPath.row]
@@ -172,21 +197,8 @@ class ThreeViewController: UIViewController, IndicatorInfoProvider,UITableViewDe
         
         
         
-        
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+  
 }

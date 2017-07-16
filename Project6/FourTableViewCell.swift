@@ -24,6 +24,9 @@ class FourTableViewCell: UITableViewCell {
     @IBOutlet weak var cellNumLikes: UILabel!
     
     @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var emptyLike: UIButton!
+    var peopleWhoLike = Dictionary<String, AnyObject>()
+    var dbCheck = false
     
     
     var postID = String()
@@ -36,11 +39,12 @@ class FourTableViewCell: UITableViewCell {
     var userProfileName = String()
     
 
-    
-    
-    @IBAction func likeButtonDidTap(_ sender: Any) {
+    @IBAction func addLikeDidTap(_ sender: Any) {
         
-        self.likeButton.isEnabled = false
+        
+        //+処理
+        
+        
         
         self.pvCount += 1
         
@@ -60,15 +64,95 @@ class FourTableViewCell: UITableViewCell {
         
         //いいね数を更新
         DataService.dataBase.REF_BASE.child("posts/-\(self.postID)").updateChildValues(likesCount)
-        //いいねを押した人の一覧に追加
-        //DataService.dataBase.REF_BASE.child("posts/-\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(peoples)
-        //いいねを押した人　そのImageURLを投稿
-        //DataService.dataBase.REF_BASE.child("posts/-\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(userImageURL)
+        
         
         DataService.dataBase.REF_BASE.child("posts/-\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(userData)
         
         
         self.likeButton.isEnabled = true
+        self.likeButton.isHidden = false
+        
+        self.emptyLike.isHidden = true
+        self.emptyLike.isEnabled = false
+        
+        
+        
+        
+    }
+    
+    
+    func wait(_ waitContinuation: @escaping (()->Bool), compleation: @escaping (()->Void)) {
+        var wait = waitContinuation()
+        // 0.01秒周期で待機条件をクリアするまで待ちます。
+        let semaphore = DispatchSemaphore(value: 0)
+        DispatchQueue.global().async {
+            while wait {
+                DispatchQueue.main.async {
+                    wait = waitContinuation()
+                    semaphore.signal()
+                }
+                semaphore.wait()
+                Thread.sleep(forTimeInterval: 0.01)
+            }
+            // 待機条件をクリアしたので通過後の処理を行います。
+            DispatchQueue.main.async {
+                compleation()
+                
+                
+                
+            }
+        }
+    }
+    
+    
+    @IBAction func likeButtonDidTap(_ sender: Any) {
+        
+        
+        // -処理
+        
+        //データを削除
+        var currentUserName = FIRAuth.auth()?.currentUser?.displayName
+        
+        self.pvCount -= 1
+        
+        
+        //DBを更新
+        let likesCount = ["pvCount": self.pvCount]
+        let userImageURL = ["imageURL" : self.imageURL]
+        let userName = [postID : currentUserName]
+        let peoples = currentUserName
+        let userData = ["imageURL" : self.imageURL, postID : currentUserName, "userID" : self.userID, "postName" : cellTitle.text]
+        
+        
+        DispatchQueue.global().async {
+            
+            //いいねのデータを削除
+            DataService.dataBase.REF_BASE.child("posts/-\(self.postID)").updateChildValues(likesCount)
+            
+            DataService.dataBase.REF_BASE.child("posts/-\(self.postID)/peopleWhoLike/\(currentUserName!)").removeValue()
+            
+            self.dbCheck = true
+            
+            
+            
+            
+            
+        }
+        
+        //DB削除を確認後の処理
+        
+        self.wait( {self.dbCheck == false} ) {
+            
+            self.emptyLike.isHidden = false
+            self.emptyLike.isEnabled = true
+            
+            
+            self.likeButton.isHidden = true
+            self.likeButton.isEnabled = false
+            
+            self.dbCheck = false
+            
+        }
         
         
         
@@ -80,6 +164,10 @@ class FourTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        
+        self.likeButton.isHidden = true
+        self.likeButton.isEnabled = false
     }
     
     var post: Post!
