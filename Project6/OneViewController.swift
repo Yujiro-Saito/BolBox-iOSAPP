@@ -127,14 +127,12 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
         
         
         if self.mediaPosts[indexPath.row].peopleWhoLike != nil {
-            mediaCell?.peopleWhoLike = self.mediaPosts[indexPath.row].peopleWhoLike
+            mediaCell?.peopleWhoLike = self.mediaPosts[indexPath.row].peopleWhoLike as Dictionary<String, AnyObject>
         }
         
         
         
 
-          //POSTIDにPEOPLEWHOLIKEに自分のdisplaynameがあれば
-         print("持ってますね---------------")
          print(mediaPosts[indexPath.row].peopleWhoLike)
         
         let likingDictionary = mediaPosts[indexPath.row].peopleWhoLike
@@ -143,9 +141,19 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
             
             print("キーは\(nameKey)、値は\(namevalue)")
             
+            
             if nameKey == currentUserName {
-                 mediaCell?.likesButton.isEnabled = false
-                mediaCell?.likesButton.imageView?.image = UIImage(named: "like")
+                
+                
+                mediaCell?.likesButton.isHidden = true
+                mediaCell?.likesButton.isEnabled = false
+                
+                mediaCell?.unLikeButton.isHidden = false
+                mediaCell?.unLikeButton.isEnabled = true
+                
+                
+
+                
             }
         
         
@@ -226,8 +234,7 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
     
     
     
-    
-    
+        
     
     
     

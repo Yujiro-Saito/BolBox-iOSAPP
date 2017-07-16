@@ -25,10 +25,12 @@ class Post {
     private var _detailImageThree: String!
     private var _linkURL: String!
     private var _postID: String!
-    private var _peopleWhoLike : Dictionary<String, AnyObject>!
+    private var _peopleWhoLike = Dictionary<String,AnyObject?>()
     private var _userID: String!
     private var _userProfileImage: String!
     private var _userProfileName: String!
+    
+    
     
     
     private var _postKey: String!
@@ -89,8 +91,9 @@ class Post {
         return _postKey
     }
     
-    var peopleWhoLike: Dictionary<String, AnyObject> {
-        return _peopleWhoLike
+    
+    var peopleWhoLike : Dictionary<String, AnyObject?> {
+     return _peopleWhoLike
     }
     
     
@@ -109,7 +112,7 @@ class Post {
 
     
     
-    init(name: String,  category: String, imageURL: String, whatContent: String, goodCount: Int, keepCount: Int, pvCount: Int, detailImageOne: String, detailImageTwo: String, detailImageThree: String, linkURL: String, postID: String, peopleWhoLike: Dictionary<String, AnyObject>, userID: String,userProfileImage: String,userProfileName: String
+    init?(name: String,  category: String, imageURL: String, whatContent: String, goodCount: Int, keepCount: Int, pvCount: Int, detailImageOne: String, detailImageTwo: String, detailImageThree: String, linkURL: String, postID: String, peopleWhoLike: Dictionary<String, AnyObject?>,userID: String,userProfileImage: String,userProfileName: String
         )
     {
         
@@ -135,7 +138,7 @@ class Post {
     
     
     
-    init(postKey: String, postData: Dictionary<String, AnyObject>) {
+    init(postKey: String, postData: Dictionary<String, AnyObject?>) {
         
         self._postKey = postKey
         
@@ -188,7 +191,9 @@ class Post {
             self._postID = postID
         }
         
-        if let peopleWhoLike = postData["peopleWhoLike"] as? Dictionary<String, AnyObject> {
+      
+        
+        if let peopleWhoLike = postData["peopleWhoLike"] as? Dictionary<String, AnyObject?>! {
             self._peopleWhoLike = peopleWhoLike
         }
         

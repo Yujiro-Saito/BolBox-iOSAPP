@@ -22,6 +22,8 @@ class OneTableViewCell: UITableViewCell {
     @IBOutlet weak var oneContent: UILabel!
     @IBOutlet weak var onebgCard: UIView!
     @IBOutlet weak var likesButton: UIButton!
+    @IBOutlet weak var unLikeButton: UIButton!
+    
     
     
     var postID = String()
@@ -33,12 +35,14 @@ class OneTableViewCell: UITableViewCell {
     var userImageURL = String()
     var userProfileName = String()
     var peopleWhoLike = Dictionary<String, AnyObject>()
+    var dbCheck = false
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
+        self.unLikeButton.isHidden = true
+        self.unLikeButton.isEnabled = false
         
         self.layer.shadowColor = UIColor(red: 255.0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.7).cgColor
         
@@ -103,8 +107,6 @@ class OneTableViewCell: UITableViewCell {
         self.pvCount += 1
         
         
-        print(self.postID)
-        print(self.pvCount)
         
         var currentUserName = FIRAuth.auth()?.currentUser?.displayName
         
@@ -121,13 +123,96 @@ class OneTableViewCell: UITableViewCell {
         
         DataService.dataBase.REF_BASE.child("posts/-\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(userData)
         
-        self.likesButton.imageView?.image = UIImage(named: "like")
+        self.likesButton.isHidden = true
         self.likesButton.isEnabled = false
         
+        self.unLikeButton.isHidden = false
+        self.unLikeButton.isEnabled = true
         
         
         
-} 
+}
+    
+    
+    //いいねが取り消されたとき
+    @IBAction func dislikeDidTap(_ sender: Any) {
+        
+        var currentUserName = FIRAuth.auth()?.currentUser?.displayName
+        
+        self.pvCount -= 1
+        
+        //DBを更新
+        let likesCount = ["pvCount": self.pvCount]
+        let userImageURL = ["imageURL" : self.imageURL]
+        let userName = [postID : currentUserName]
+        let peoples = currentUserName
+        let userData = ["imageURL" : self.imageURL, postID : currentUserName, "userID" : self.userID, "postName" : oneTItle.text]
+        
+        
+        
+        DispatchQueue.global().async {
+            
+            //いいねのデータを削除
+            DataService.dataBase.REF_BASE.child("posts/-\(self.postID)").updateChildValues(likesCount)
+            
+            DataService.dataBase.REF_BASE.child("posts/-\(self.postID)/peopleWhoLike/\(currentUserName!)").removeValue()
+            
+            self.dbCheck = true
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        //DB削除を確認後の処理
+        
+        self.wait( {self.dbCheck == false} ) {
+            
+            self.likesButton.isHidden = false
+            self.likesButton.isEnabled = true
+            
+            
+            self.unLikeButton.isHidden = true
+            self.unLikeButton.isEnabled = false
+            
+            self.dbCheck = false
+            
+        }
+        
+        
+        
+        
+        
+    }
+    
+    func wait(_ waitContinuation: @escaping (()->Bool), compleation: @escaping (()->Void)) {
+        var wait = waitContinuation()
+        // 0.01秒周期で待機条件をクリアするまで待ちます。
+        let semaphore = DispatchSemaphore(value: 0)
+        DispatchQueue.global().async {
+            while wait {
+                DispatchQueue.main.async {
+                    wait = waitContinuation()
+                    semaphore.signal()
+                }
+                semaphore.wait()
+                Thread.sleep(forTimeInterval: 0.01)
+            }
+            // 待機条件をクリアしたので通過後の処理を行います。
+            DispatchQueue.main.async {
+                compleation()
+                
+                
+                
+            }
+        }
+    }
+
+    
  
 
 }
