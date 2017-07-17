@@ -15,7 +15,7 @@ class PostProductInfoViewController: UIViewController,UIPickerViewDelegate, UIPi
     @IBOutlet weak var productNameField: SignUpField!
     @IBOutlet weak var urlField: SignUpField!
     let selectPicker = UIPickerView()
-    var categoryBox = ["カテゴリーを選択してください","メディア","トラベル","テクノロジー", "デザイン・アート", "教育・キャリア", "ショッピング", "アプリ"]
+    var categoryBox = ["カテゴリーを選択してください","メディア","アプリ","教育・キャリア","トラベル", "ショッピング"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class PostProductInfoViewController: UIViewController,UIPickerViewDelegate, UIPi
         
         productNameField.delegate = self
         categoryField.delegate = self
-        urlField.delegate = self
+        urlField?.delegate = self
         
         let vi = UIView(frame: selectPicker.bounds)
         vi.backgroundColor = UIColor.white
@@ -65,13 +65,13 @@ class PostProductInfoViewController: UIViewController,UIPickerViewDelegate, UIPi
     
     @IBAction func continueButtonDidTap(_ sender: Any) {
         
-        if productNameField.text != "" && urlField.text != "" && categoryField.text != "" {
+        if productNameField.text != "" /*&& urlField.text != ""*/ && categoryField.text != "" {
             
             performSegue(withIdentifier: "ToContinue", sender: nil)
             
         } else {
             
-            let alertViewControler = UIAlertController(title: "エラーがあります", message: "フィールドを埋めてください", preferredStyle: .alert)
+            let alertViewControler = UIAlertController(title: "エラーがあります", message: "必要なフィールドを埋めてください", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             
             alertViewControler.addAction(okAction)
@@ -86,6 +86,9 @@ class PostProductInfoViewController: UIViewController,UIPickerViewDelegate, UIPi
     }
     
     
+    @IBAction func backButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -95,7 +98,7 @@ class PostProductInfoViewController: UIViewController,UIPickerViewDelegate, UIPi
             
             
             postImageArea.productName = productNameField.text!
-            postImageArea.productURL = urlField.text!
+            postImageArea.productURL = (urlField?.text)!
             postImageArea.productCategory = categoryField.text!
             
             
@@ -119,7 +122,6 @@ class PostProductInfoViewController: UIViewController,UIPickerViewDelegate, UIPi
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("tapped")
         self.categoryField.text = categoryBox[row]
         
     }
@@ -127,7 +129,7 @@ class PostProductInfoViewController: UIViewController,UIPickerViewDelegate, UIPi
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         categoryField.resignFirstResponder()
         productNameField.resignFirstResponder()
-        urlField.resignFirstResponder()
+        urlField?.resignFirstResponder()
         
         return true
     }

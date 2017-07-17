@@ -24,6 +24,7 @@ class StoryViewController: UIViewController,UITextViewDelegate {
     var name = String()
     var url = String()
     var categoryTitle = String()
+    var usageText = String()
     var mainBool = false
     var firstBool = false
     var secondBool = false
@@ -44,16 +45,7 @@ class StoryViewController: UIViewController,UITextViewDelegate {
         storyText.becomeFirstResponder()
         
       
-        
-        print("投稿データの詳細データ")
-        print(name)
-        print(categoryTitle)
-        print(detailImages)
-        
-        
-        
-
-    }
+            }
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

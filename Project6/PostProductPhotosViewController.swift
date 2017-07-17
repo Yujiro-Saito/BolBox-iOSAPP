@@ -7,60 +7,55 @@
 //
 
 import UIKit
-import DKImagePickerController
+import Firebase
+import AlamofireImage
 
-class PostProductPhotosViewController: UIViewController, UIImagePickerControllerDelegate,UICollectionViewDataSource, UICollectionViewDelegate,UINavigationControllerDelegate {
+class PostProductPhotosViewController: UIViewController, UIImagePickerControllerDelegate ,UINavigationControllerDelegate,UITextViewDelegate {
     
     @IBOutlet weak var mainImagePhoto: ImageDesign!
-    @IBOutlet weak var detailImageCollection: UICollectionView!
     var myImagePicker: UIImagePickerController!
     var mainImageBox = UIImage()
+    @IBOutlet weak var usageTextBox: UITextView!
     
-    let pickerController = DKImagePickerController()
-    var detailImageBox = [UIImage]()
-    var detailImage: UIImage? = UIImage()
     
     
     //データ引き継ぎ用
     
     var productName = String()
-    var productURL = String()
+    var productURL: String?
     var productCategory = String()
     
+    var mainBool = false
+    var profileBool = false
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        
-        
-        self.detailImageCollection.reloadData()
-        
-        print(detailImage!)
-        
-        
-    }
+    
+    //プロフィール画像
+    var profileImage = UIImageView()
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        usageTextBox.delegate = self
         
         
-        detailImageCollection.delegate = self
-        detailImageCollection.dataSource = self
+        
         
         
         
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "Story") {
             
             let postStory = (segue.destination as? StoryViewController)!
             
-            //detailImageBoxの引き継ぎ
             
-            postStory.detailImages = self.detailImageBox as! [UIImage]
-            
-            //detailImageの引き継ぎ
             
             //postStory.detailOne = self.detailImage!
             postStory.detailOne = self.mainImagePhoto.image!
@@ -69,33 +64,14 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
             
             //名前、URL、カテゴリーの引き継ぎ
             postStory.name = self.productName
-            postStory.url = self.productURL
+            postStory.url = self.productURL!
             postStory.categoryTitle = self.productCategory
+            postStory.usageText = self.usageTextBox.text
             
         }
     }
 
     
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return detailImageBox.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cellItem = detailImageCollection.dequeueReusableCell(withReuseIdentifier: "detailImagesAye", for: indexPath) as? PostDetailPhotosCollectionViewCell
-        
-        cellItem?.detailImage.image = detailImageBox[indexPath.row]
-        
-        return cellItem!
-        
-        
-    }
     
     
    
@@ -118,16 +94,255 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
     }
     
     
+    
     @IBAction func ToKeepOn(_ sender: Any) {
         
         
-        if detailImageBox != [] {
+        if mainImagePhoto.image != nil && usageTextBox.text != "" {
             
-            performSegue(withIdentifier: "Story", sender: nil)
+            //投稿開始
+            
+            let user = FIRAuth.auth()?.currentUser
+            let photoURL = user?.photoURL
+            let userName = user!.displayName
+            
+            
+            let ref = FIRDatabase.database().reference()
+            let uid = FIRAuth.auth()?.currentUser?.uid
+            
+            if productURL == nil || productURL == "" {
+                
+                var post: Dictionary<String, AnyObject> = [
+                    
+                    "category" : productCategory as AnyObject,
+                    "name" : self.productName as AnyObject,
+                    "linkURL" : "" as AnyObject,
+                    "pvCount" : 0 as AnyObject,
+                    "whatContent" : usageTextBox.text as AnyObject,
+                    "userID" : uid as AnyObject,
+                    "userName" : userName as AnyObject
+                ]
+                
+                //ユーザープロフィール画像
+                if photoURL == nil {
+                    profileImage.image = UIImage(named: "drop")
+                    self.profileBool = true
+                } else {
+                    
+                    profileImage.af_setImage(withURL: photoURL!)
+                    
+                    let profileImgData = UIImageJPEGRepresentation(profileImage.image!, 0.2)
+                    let metaData = FIRStorageMetadata()
+                    metaData.contentType = "image/jpeg"
+                    let proImgUid = NSUUID().uuidString
+                    
+                    
+                    DispatchQueue.global().async {
+                        
+                        DataService.dataBase.REF_POST_IMAGES.child(proImgUid).put(profileImgData!, metadata: metaData) {
+                            (metaData, error) in
+                            
+                            if error != nil {
+                                print("画像のアップロードに失敗しました")
+                            } else {
+                                
+                                print("画像のアップロードに成功しました")
+                                //DBへ画像のURL飛ばす
+                                let proDownloadURL = metaData?.downloadURL()?.absoluteString
+                                
+                                post["userProfileImage"] = proDownloadURL as AnyObject
+                                self.profileBool = true
+                            }
+                        }
+                        
+                    }
+                }
+                
+                
+                //メイン写真投稿
+                let mainImgData = UIImageJPEGRepresentation(mainImagePhoto.image!, 0.2)
+                
+                
+                let metaData = FIRStorageMetadata()
+                metaData.contentType = "image/jpeg"
+                let mainImgUid = NSUUID().uuidString
+                
+                DispatchQueue.global().async {
+                    
+                    DataService.dataBase.REF_POST_IMAGES.child(mainImgUid).put(mainImgData!, metadata: metaData) {
+                        (metaData, error) in
+                        
+                        if error != nil {
+                            print("画像のアップロードに失敗しました")
+                        } else {
+                            self.mainBool = true
+                            print("画像のアップロードに成功しました")
+                            //DBへ画像のURL飛ばす
+                            let firstDownloadURL = metaData?.downloadURL()?.absoluteString
+                            
+                            //メイン画像を追加
+                            post["imageURL"] = firstDownloadURL as AnyObject
+                            
+                        }
+                    }
+                    
+                }
+                
+                
+                //非同期処理の完了を待ってから投稿
+                wait( {self.profileBool == false} ) {
+                    
+                    self.wait( {self.mainBool == false} ) {
+                        
+                        print(self.mainBool)
+                        print(self.profileBool)
+                        
+                        //DBに投稿
+                        let firebasePost = DataService.dataBase.REF_POST.childByAutoId()
+                        let key = firebasePost.key
+                        
+                        //postIDを追加
+                        post["postID"] = key as AnyObject
+                        
+                        print(post)
+                        firebasePost.setValue(post)
+                        
+                        
+                        
+                        
+                        
+                        print("投稿を完了しました")
+                        
+                        self.performSegue(withIdentifier: "Done", sender: nil)
+                        
+                    }
+                    
+                    
+                }
+                
+                
+                
+                
+                
+                
+            } else {
+                
+                var post: Dictionary<String, AnyObject> = [
+                    
+                    "category" : productCategory as AnyObject,
+                    "name" : self.productName as AnyObject,
+                    "linkURL" : self.productURL as AnyObject,
+                    "pvCount" : 0 as AnyObject,
+                    "whatContent" : usageTextBox.text as AnyObject,
+                    "userID" : uid as AnyObject,
+                    "userName" : userName as AnyObject
+                ]
+                
+                //ユーザープロフィール画像
+                if photoURL == nil {
+                    profileImage.image = UIImage(named: "drop")
+                    self.profileBool = true
+                } else {
+                    
+                    profileImage.af_setImage(withURL: photoURL!)
+                    
+                    let profileImgData = UIImageJPEGRepresentation(profileImage.image!, 0.2)
+                    let metaData = FIRStorageMetadata()
+                    metaData.contentType = "image/jpeg"
+                    let proImgUid = NSUUID().uuidString
+                    
+                    
+                    DispatchQueue.global().async {
+                        
+                        DataService.dataBase.REF_POST_IMAGES.child(proImgUid).put(profileImgData!, metadata: metaData) {
+                            (metaData, error) in
+                            
+                            if error != nil {
+                                print("画像のアップロードに失敗しました")
+                            } else {
+                                
+                                print("画像のアップロードに成功しました")
+                                //DBへ画像のURL飛ばす
+                                let proDownloadURL = metaData?.downloadURL()?.absoluteString
+                                
+                                post["userProfileImage"] = proDownloadURL as AnyObject
+                                self.profileBool = true
+                            }
+                        }
+                        
+                    }
+                }
+                
+                
+                //メイン写真投稿
+                let mainImgData = UIImageJPEGRepresentation(mainImagePhoto.image!, 0.2)
+                
+                
+                let metaData = FIRStorageMetadata()
+                metaData.contentType = "image/jpeg"
+                let mainImgUid = NSUUID().uuidString
+                
+                DispatchQueue.global().async {
+                    
+                    DataService.dataBase.REF_POST_IMAGES.child(mainImgUid).put(mainImgData!, metadata: metaData) {
+                        (metaData, error) in
+                        
+                        if error != nil {
+                            print("画像のアップロードに失敗しました")
+                        } else {
+                            self.mainBool = true
+                            print("画像のアップロードに成功しました")
+                            //DBへ画像のURL飛ばす
+                            let firstDownloadURL = metaData?.downloadURL()?.absoluteString
+                            
+                            //メイン画像を追加
+                            post["imageURL"] = firstDownloadURL as AnyObject
+                            
+                        }
+                    }
+                    
+                }
+                
+                
+                //非同期処理の完了を待ってから投稿
+                wait( {self.profileBool == false} ) {
+                    
+                    self.wait( {self.mainBool == false} ) {
+                        
+                        print(self.mainBool)
+                        print(self.profileBool)
+                        
+                        //DBに投稿
+                        let firebasePost = DataService.dataBase.REF_POST.childByAutoId()
+                        let key = firebasePost.key
+                        
+                        //postIDを追加
+                        post["postID"] = key as AnyObject
+                        
+                        print(post)
+                        
+                        firebasePost.setValue(post)
+                        print("投稿を完了しました")
+                        
+                        self.performSegue(withIdentifier: "Done", sender: nil)
+                        
+                    }
+                    
+                    
+                }
+            }
+            
+            
+            
+            
+            
+            
+            
+            
             
         } else {
             
-            let alertViewControler = UIAlertController(title: "エラーがあります", message: "写真を登録して下さい", preferredStyle: .alert)
+            let alertViewControler = UIAlertController(title: "エラーがあります", message: "必要なフィールドを埋めてください", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             
             alertViewControler.addAction(okAction)
@@ -143,6 +358,9 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
     
     @IBAction func mainPhotoDidTap(_ sender: Any) {
         
+        
+        
+        
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let imagePickerController = UIImagePickerController()
             imagePickerController.delegate = self
@@ -154,39 +372,28 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
         }
     }
     
-    @IBAction func detailPhotoDidTap(_ sender: Any) {
-        
-        
-        pickerController.maxSelectableCount = 3
-        
-        pickerController.didSelectAssets = { [unowned self] (assets: [DKAsset]) in
-            
-            self.detailImageBox = []
-            
-            //選択された画像の取り出し
-            for asset in assets {
-                asset.fetchFullScreenImage(true, completeBlock: { (image, info) in
-                    
-                    
-                    var imageBox = self.detailImage
-                    
-                    imageBox = image!
-                    
-                    self.detailImageBox.append(imageBox!)
-                    
-                    
-                })
+    
+    func wait(_ waitContinuation: @escaping (()->Bool), compleation: @escaping (()->Void)) {
+        var wait = waitContinuation()
+        // 0.01秒周期で待機条件をクリアするまで待ちます。
+        let semaphore = DispatchSemaphore(value: 0)
+        DispatchQueue.global().async {
+            while wait {
+                DispatchQueue.main.async {
+                    wait = waitContinuation()
+                    semaphore.signal()
+                }
+                semaphore.wait()
+                Thread.sleep(forTimeInterval: 0.01)
+            }
+            // 待機条件をクリアしたので通過後の処理を行います。
+            DispatchQueue.main.async {
+                compleation()
+                
+                
                 
             }
-            
-            
         }
-        
-        self.present(pickerController, animated: true) {}
-        
-        self.detailImageCollection.reloadData()
-        
-        
     }
     
 

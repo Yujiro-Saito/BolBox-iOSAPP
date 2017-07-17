@@ -18,6 +18,7 @@ class SearchViewController: ButtonBarPagerTabStripViewController,UINavigationBar
 
     override func viewDidLoad() {
         
+        
         //バーの色
         settings.style.buttonBarBackgroundColor = UIColor(red: 31/255, green: 158/255, blue: 187/255, alpha: 1)
         //ボタンの色
