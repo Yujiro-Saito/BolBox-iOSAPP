@@ -34,8 +34,36 @@ class InDetailViewController: UIViewController {
     var linkURL: String?
     var userName: String!
     var userImageURL: String!
+    var userID: String!
     
     
+    //データ飛ばすよう　ユーザーページ
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        if segue.identifier == "userData" {
+            let userProfileVc = (segue.destination as? UserProfileViewController)!
+            
+            userProfileVc.userName = self.userName
+            userProfileVc.userImageURL = self.userImageURL
+            userProfileVc.userID = self.userID
+
+        } else if segue.identifier == "webview" {
+            
+            
+            let webviewVc = (segue.destination as? WebViewController)!
+            
+            
+            webviewVc.postUrl = self.linkURL
+            
+            
+        }
+        
+        
+        
+    }
+
     
 
     override func viewDidLoad() {
@@ -64,14 +92,16 @@ class InDetailViewController: UIViewController {
     
     
     
-    
-    @IBAction func likeButtonDidTap(_ sender: Any) {
+    @IBAction func goSeeButtonDidTap(_ sender: Any) {
         
-      
-        
+        performSegue(withIdentifier: "webview", sender: nil)
         
     }
     
+    
+    @IBAction func userProfileButtonDidTap(_ sender: Any) {
+        performSegue(withIdentifier: "userData", sender: nil)
+    }
     
 
     @IBAction func backButtonDidTap(_ sender: Any) {

@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import AlamofireImage
 
 
 class AccountViewController: UIViewController,UINavigationBarDelegate, UITableViewDelegate, UITableViewDataSource {
@@ -22,9 +23,6 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
     
-    
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,6 +60,12 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
                 profileImage.af_setImage(withURL: photoURL!)
             }
             
+            
+            
+            
+            
+            
+            
             DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "userID").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
                 
                 self.userPosts = []
@@ -79,6 +83,8 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
                             
                             self.userPosts.append(post)
                             self.profilePostTable.reloadData()
+                            
+
                         }
                         
                         
@@ -150,6 +156,47 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
     }
     
     
+    @IBAction func actionButtonDidTap(_ sender: Any) {
+        
+        
+        let actionSheet = UIAlertController(title: "選択", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        actionSheet.view.tintColor = UIColor.darkGray
+        
+        
+        let edit = UIAlertAction(title: "プロフィールを編集", style: UIAlertActionStyle.default, handler: {
+            (action: UIAlertAction!) in
+            
+            
+            self.performSegue(withIdentifier: "goEdit", sender: nil)
+            
+            
+        })
+        
+        let logout = UIAlertAction(title: "ログアウト", style: UIAlertActionStyle.default, handler: {
+            (action: UIAlertAction!) in
+            
+            
+            
+        })
+        
+        
+        let cancel = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler: {
+            (action: UIAlertAction!) in
+        })
+        
+        actionSheet.addAction(edit)
+        actionSheet.addAction(logout)
+        actionSheet.addAction(cancel)
+        
+        self.present(actionSheet, animated: true, completion: nil)
+        
+        
+        
+        
+        
+        
+    }
     
     
     
@@ -157,3 +204,5 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
     
 
 }
+
+

@@ -195,6 +195,7 @@ class FourViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
         detailVc.linkURL = detailPosts?.linkURL
         detailVc.userName = detailPosts?.userProfileName
         detailVc.userImageURL = detailPosts?.userProfileImage
+        detailVc.userID = detailPosts?.userID
         
         
         

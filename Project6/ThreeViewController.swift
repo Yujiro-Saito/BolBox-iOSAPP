@@ -183,7 +183,7 @@ class ThreeViewController: UIViewController, IndicatorInfoProvider,UITableViewDe
         detailVc.linkURL = detailPosts?.linkURL
         detailVc.userName = detailPosts?.userProfileName
         detailVc.userImageURL = detailPosts?.userProfileImage
-        
+        detailVc.userID = detailPosts?.userID
         
         
     }

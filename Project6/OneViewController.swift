@@ -227,6 +227,7 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
         detailVc.linkURL = detailPosts?.linkURL
         detailVc.userName = detailPosts?.userProfileName
         detailVc.userImageURL = detailPosts?.userProfileImage
+        detailVc.userID = detailPosts?.userID
         
         
     }

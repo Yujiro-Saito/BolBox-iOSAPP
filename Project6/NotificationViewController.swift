@@ -161,44 +161,18 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         notiCell?.layer.borderWidth = 10
         notiCell?.clipsToBounds = true
         
-        
-        
-        notiCell?.userName.text = firstUserNameBox[indexPath.row]
-        notiCell?.userImage.af_setImage(withURL: URL(string: userImageURLBox[indexPath.row])!)
-        notiCell?.title.text = userPostTitleBox[indexPath.row]
-        
-        
-        
-        /*
-        //いいね件数別
-        if userImageURLBox.count == 1 {
-            //notiCell?.firstImage.af_setImage(withURL: URL(string: userImageURLBox[0])!)
-            
-            notiCell?.userName.text = post
-            
-            
-            
-            
-            return notiCell!
-            
-        } else if userImageURLBox.count == 2 {
-            //notiCell?.firstImage.af_setImage(withURL: URL(string: userImageURLBox[0])!)
-            //notiCell?.secondImage.af_setImage(withURL: URL(string: userImageURLBox[1])!)
-            notiCell?.userName.text = firstUserNameBox[0]
-            
-            return notiCell!
-        } else if userImageURLBox.count >= 3 {
-            
-           // notiCell?.firstImage.af_setImage(withURL: URL(string: userImageURLBox[0])!)
-           // notiCell?.secondImage.af_setImage(withURL: URL(string: userImageURLBox[1])!)
-           // notiCell?.secondImage.af_setImage(withURL: URL(string: userImageURLBox[2])!)
-            notiCell?.userName.text = firstUserNameBox[0]
-            return notiCell!
- 
+        if firstUserNameBox.count >= 1 {
+            notiCell?.userName.text = firstUserNameBox[indexPath.row]
+            notiCell?.userImage.af_setImage(withURL: URL(string: userImageURLBox[indexPath.row])!)
+            notiCell?.title.text = userPostTitleBox[indexPath.row]
         }
         
         
-        */
+        
+        
+        
+        
+       
  
         
         return notiCell!
