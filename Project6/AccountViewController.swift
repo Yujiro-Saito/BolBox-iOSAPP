@@ -176,6 +176,18 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
         let logout = UIAlertAction(title: "ログアウト", style: UIAlertActionStyle.default, handler: {
             (action: UIAlertAction!) in
             
+            do {
+                try FIRAuth.auth()?.signOut()
+                
+                
+                let appDomain = Bundle.main.bundleIdentifier
+                UserDefaults.standard.removePersistentDomain(forName: appDomain!)
+                
+                self.performSegue(withIdentifier: "logout", sender: nil)
+            } catch let error as NSError {
+                print("\(error.localizedDescription)")
+            }
+            
             
             
         })

@@ -13,7 +13,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
 
     var window: UIWindow?
-    var googleSuccessful = Bool()
+    var googleSuccessful = false
     
     override init() {
         super.init()

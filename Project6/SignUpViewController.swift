@@ -58,18 +58,7 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
         self.view.endEditing(true)
     }
     
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        
-        let tabVC = (segue.destination as? TabbarViewController)!
-        
-        tabVC.displayUserName = userNameField.text!
-        
-    }
-    
-        
-    */
+   
     
     @IBAction func registerDidTap(_ sender: Any) {
         

@@ -25,12 +25,20 @@ class SignInandUpViewController: UIViewController,GIDSignInUIDelegate {
         
         print("真偽判定")
         
-        if appDelegateAccess.googleSuccessful == true {
-            googleLogin()
-        } else {
-            print("登録の未完了")
+        //trueになるまで待機すれば
+        
+        self.wait( {self.appDelegateAccess.googleSuccessful == false} ) {
+            
+            //登録完了してtrueになったら
+            print("登録完了")
+            
+            self.appDelegateAccess.googleSuccessful = false
+            
+            self.googleLogin()
+            
+            
         }
-       
+        
         
         
         
@@ -45,6 +53,29 @@ class SignInandUpViewController: UIViewController,GIDSignInUIDelegate {
     }
     
     
+    
+    func wait(_ waitContinuation: @escaping (()->Bool), compleation: @escaping (()->Void)) {
+        var wait = waitContinuation()
+        // 0.01秒周期で待機条件をクリアするまで待ちます。
+        let semaphore = DispatchSemaphore(value: 0)
+        DispatchQueue.global().async {
+            while wait {
+                DispatchQueue.main.async {
+                    wait = waitContinuation()
+                    semaphore.signal()
+                }
+                semaphore.wait()
+                Thread.sleep(forTimeInterval: 0.01)
+            }
+            // 待機条件をクリアしたので通過後の処理を行います。
+            DispatchQueue.main.async {
+                compleation()
+                
+                
+                
+            }
+        }
+    }
     
     
     
