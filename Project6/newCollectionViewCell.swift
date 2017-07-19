@@ -14,7 +14,7 @@ class newCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var celImage: UIImageView!
     @IBOutlet weak var cellTitle: UILabel!
     @IBOutlet weak var whatContent: UILabel!
-    @IBOutlet weak var kindLabel: UILabel!
+    @IBOutlet weak var attentionLabel: UILabel!
     
     
     var post: Post!
@@ -25,7 +25,6 @@ class newCollectionViewCell: UICollectionViewCell {
         self.post = post
         self.cellTitle.text = "\(post.name)"
         self.whatContent.text = "\(post.whatContent)"
-        self.kindLabel.text = "\(post.category)"
         
         if img != nil {
             

@@ -879,7 +879,7 @@
                         <viewControllerLayoutGuide type="bottom" id="NQy-fT-QUW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5yt-0k-JDd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="83F-9D-E4A">
@@ -951,7 +951,7 @@
                         <viewControllerLayoutGuide type="bottom" id="FiS-L8-88k"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TsI-E2-xLR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YV8-pl-Klm">
@@ -1168,7 +1168,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Vf-2d-4gA">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="951"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mx5-52-r3E">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
@@ -1600,7 +1600,7 @@
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="注目" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVU-6J-HHp">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVU-6J-HHp">
                                                                     <rect key="frame" x="89" y="13" width="197" height="35"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
@@ -1616,20 +1616,12 @@
                                                                     <color key="highlightedColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <color key="shadowColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </label>
-                                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="募集" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCc-UR-Nzf">
-                                                                    <rect key="frame" x="311" y="173" width="56" height="33"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <color key="backgroundColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
-                                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
                                                             </subviews>
                                                         </view>
                                                         <connections>
+                                                            <outlet property="attentionLabel" destination="fVU-6J-HHp" id="Rzg-i0-dfX"/>
                                                             <outlet property="celImage" destination="6jn-nl-cNn" id="DIG-1l-ZcH"/>
                                                             <outlet property="cellTitle" destination="b7N-If-CmJ" id="Yt3-bU-G29"/>
-                                                            <outlet property="kindLabel" destination="hCc-UR-Nzf" id="hQp-Qb-iY8"/>
                                                             <outlet property="whatContent" destination="jqg-fi-Wn9" id="vlE-LH-CHg"/>
                                                         </connections>
                                                     </collectionViewCell>
@@ -2587,11 +2579,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Hca-fe-OPm"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2lq-DX-903">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XOA-8o-di1" customClass="SignInUpViewDesign" customModule="Project6" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="951"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1851"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t7j-0R-kQv">
@@ -2664,7 +2656,7 @@
                         <viewControllerLayoutGuide type="bottom" id="mMg-sY-6u6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="94Z-SE-e1c">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="メールアドレス" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Sw-YN-Mfs" customClass="SignUpField" customModule="Project6" customModuleProvider="target">
@@ -2718,7 +2710,7 @@
                         <viewControllerLayoutGuide type="bottom" id="PsN-oc-cB7"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="viu-60-MLQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="メールアドレス" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nmt-Wy-XIF" customClass="SignUpField" customModule="Project6" customModuleProvider="target">
@@ -37887,8 +37879,8 @@ AAAAAAAQDwA
         <image name="wantedly" width="300" height="168"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ufe-L3-6S3"/>
         <segue reference="wqP-AI-2so"/>
-        <segue reference="GBd-kR-lEf"/>
+        <segue reference="f75-nR-suJ"/>
+        <segue reference="Rbq-EQ-Pxa"/>
     </inferredMetricsTieBreakers>
 </document>

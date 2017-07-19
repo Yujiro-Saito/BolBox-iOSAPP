@@ -383,6 +383,10 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             
             let post = topPosts[indexPath.row]
             
+            //topCell?.attentionLabel.text = "注目\(indexPath.row -= 1)"
+            topCell?.attentionLabel.text = "注目\(indexPath.row + 1)"
+            
+            
             
             if let img = BaseViewController.imageCache.object(forKey: post.imageURL as NSString) {
                 topCell?.configureCell(post: post, img: img)

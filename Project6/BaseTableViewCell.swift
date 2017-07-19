@@ -20,6 +20,7 @@ class BaseTableViewCell: UITableViewCell {
     @IBOutlet weak var postFavourNum: UILabel!
     @IBOutlet weak var backgroundCardView: UIView!
     
+    
     var post: Post!
     
 
