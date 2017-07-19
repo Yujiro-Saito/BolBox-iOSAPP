@@ -133,6 +133,22 @@ class FourViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
         travelCell?.linkURL = self.travelPosts[indexPath.row].linkURL
         
         
+        let post = travelPosts[indexPath.row]
+        
+        travelCell?.cellImage.af_setImage(withURL: URL(string: travelPosts[indexPath.row].imageURL)!)
+        
+        if let img = FourViewController.imageCache.object(forKey: post.imageURL as NSString) {
+            
+            travelCell?.configureCell(post: post, img: img)
+            
+        }
+        else {
+            
+            travelCell?.configureCell(post: post)
+            
+        }
+        
+        
         if self.travelPosts[indexPath.row].peopleWhoLike != nil {
             travelCell?.peopleWhoLike = self.travelPosts[indexPath.row].peopleWhoLike as Dictionary<String, AnyObject>
         }
@@ -159,18 +175,7 @@ class FourViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
         }
         
         
-        let post = travelPosts[indexPath.row]
         
-        if let img = FourViewController.imageCache.object(forKey: post.imageURL as NSString) {
-            
-            travelCell?.configureCell(post: post, img: img)
-            
-        }
-        else {
-            
-            travelCell?.configureCell(post: post)
-            
-        }
         
         
         return travelCell!

@@ -129,6 +129,21 @@ class FiveViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
         shoppingCell?.imageURL = self.shoppinglPosts[indexPath.row].imageURL
         shoppingCell?.linkURL = self.shoppinglPosts[indexPath.row].linkURL
         
+        let post = shoppinglPosts[indexPath.row]
+        
+        shoppingCell?.cellImage.af_setImage(withURL: URL(string: shoppinglPosts[indexPath.row].imageURL)!)
+        
+        if let img = FiveViewController.imageCache.object(forKey: post.imageURL as NSString) {
+            
+            shoppingCell?.configureCell(post: post, img: img)
+            
+        }
+        else {
+            
+            shoppingCell?.configureCell(post: post)
+            
+        }
+        
         if self.shoppinglPosts[indexPath.row].peopleWhoLike != nil {
             shoppingCell?.peopleWhoLike = self.shoppinglPosts[indexPath.row].peopleWhoLike as Dictionary<String, AnyObject>
         }
@@ -155,18 +170,7 @@ class FiveViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
         }
         
         
-        let post = shoppinglPosts[indexPath.row]
         
-        if let img = FiveViewController.imageCache.object(forKey: post.imageURL as NSString) {
-            
-            shoppingCell?.configureCell(post: post, img: img)
-            
-        }
-        else {
-            
-            shoppingCell?.configureCell(post: post)
-            
-        }
         
         
         return shoppingCell!

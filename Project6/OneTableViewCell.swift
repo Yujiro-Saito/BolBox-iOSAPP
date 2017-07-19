@@ -79,6 +79,11 @@ class OneTableViewCell: UITableViewCell {
             self.oneImage.image = img
             
         } else {
+            
+            let imageURLs = post.imageURL
+            
+            
+            
             let ref = FIRStorage.storage().reference(forURL: post.imageURL)
             ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
                 
@@ -96,7 +101,7 @@ class OneTableViewCell: UITableViewCell {
                 }
             })
         }
-        
+ 
     }
     
     

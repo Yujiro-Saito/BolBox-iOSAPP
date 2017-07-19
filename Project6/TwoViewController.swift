@@ -116,6 +116,21 @@ class TwoViewController: UIViewController, IndicatorInfoProvider,UITableViewData
         postCell?.linkURL = self.appPosts[indexPath.row].linkURL
         postCell?.userID = self.appPosts[indexPath.row].userID
         
+        postCell?.cellImage.af_setImage(withURL: URL(string: appPosts[indexPath.row].imageURL)!)
+        
+        let post = appPosts[indexPath.row]
+        
+        if let img = TwoViewController.imageCache.object(forKey: post.imageURL as NSString) {
+            
+            postCell?.configureCell(post: post, img: img)
+            
+        }
+        else {
+            
+            postCell?.configureCell(post: post)
+            
+        }
+        
         if self.appPosts[indexPath.row].peopleWhoLike != nil {
             postCell?.peopleWhoLike = self.appPosts[indexPath.row].peopleWhoLike as Dictionary<String, AnyObject>
         }
@@ -145,18 +160,9 @@ class TwoViewController: UIViewController, IndicatorInfoProvider,UITableViewData
 
         
         
-        let post = appPosts[indexPath.row]
         
-        if let img = TwoViewController.imageCache.object(forKey: post.imageURL as NSString) {
-            
-            postCell?.configureCell(post: post, img: img)
-            
-        }
-        else {
-            
-            postCell?.configureCell(post: post)
-            
-        }
+        
+       
         
         
         return postCell!

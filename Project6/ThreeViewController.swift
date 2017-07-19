@@ -116,6 +116,21 @@ class ThreeViewController: UIViewController, IndicatorInfoProvider,UITableViewDe
         educationCell?.imageURL = self.educationPosts[indexPath.row].imageURL
         educationCell?.linkURL = self.educationPosts[indexPath.row].linkURL
         
+        let post = educationPosts[indexPath.row]
+        
+        educationCell?.cellImage.af_setImage(withURL: URL(string: educationPosts[indexPath.row].imageURL)!)
+        
+        if let img = ThreeViewController.imageCache.object(forKey: post.imageURL as NSString) {
+            
+            educationCell?.configureCell(post: post, img: img)
+            
+        }
+        else {
+            
+            educationCell?.configureCell(post: post)
+            
+        }
+        
         
         if self.educationPosts[indexPath.row].peopleWhoLike != nil {
             educationCell?.peopleWhoLike = self.educationPosts[indexPath.row].peopleWhoLike as Dictionary<String, AnyObject>
@@ -145,18 +160,7 @@ class ThreeViewController: UIViewController, IndicatorInfoProvider,UITableViewDe
         }
         
         
-        let post = educationPosts[indexPath.row]
         
-        if let img = ThreeViewController.imageCache.object(forKey: post.imageURL as NSString) {
-            
-            educationCell?.configureCell(post: post, img: img)
-            
-        }
-        else {
-            
-            educationCell?.configureCell(post: post)
-            
-        }
         
         
         return educationCell!

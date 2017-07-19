@@ -125,6 +125,29 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
         mediaCell?.linkURL = self.mediaPosts[indexPath.row].linkURL
         mediaCell?.userID = self.mediaPosts[indexPath.row].userID
         
+        let post = mediaPosts[indexPath.row]
+        
+        //
+        mediaCell?.oneImage.af_setImage(withURL: URL(string: mediaPosts[indexPath.row].imageURL)!)
+        
+        
+        
+        if let img = OneViewController.imageCache.object(forKey: post.imageURL as NSString) {
+            
+            
+            
+            mediaCell?.configureCell(post: post, img: img)
+            
+        }
+        else {
+            
+            mediaCell?.configureCell(post: post)
+            
+        }
+        
+        
+        
+        
         
         if self.mediaPosts[indexPath.row].peopleWhoLike != nil {
             mediaCell?.peopleWhoLike = self.mediaPosts[indexPath.row].peopleWhoLike as Dictionary<String, AnyObject>
@@ -167,22 +190,6 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
         
     
         
-        let post = mediaPosts[indexPath.row]
-        
-        
-        
-        if let img = OneViewController.imageCache.object(forKey: post.imageURL as NSString) {
-            
-            
-            
-            mediaCell?.configureCell(post: post, img: img)
-            
-        }
-        else {
-            
-            mediaCell?.configureCell(post: post)
-            
-        }
         
         
         
