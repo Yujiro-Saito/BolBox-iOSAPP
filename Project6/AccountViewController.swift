@@ -20,7 +20,9 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
     @IBOutlet weak var profileImage: ProfileImage!
     
     var userPosts = [Post]()
+    var detailPosts: Post?
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
+    var deleteCheck = false
     
     
     override func viewDidLoad() {
@@ -117,7 +119,104 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
            }
     
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        
+        detailPosts = self.userPosts[indexPath.row]
+        
+        performSegue(withIdentifier: "ToDetail", sender: nil)
+        
+    }
     
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "ToDetail" {
+            
+            let detailVc = (segue.destination as? InDetailViewController)!
+            
+            detailVc.name = detailPosts?.name
+            detailVc.numLikes = (detailPosts?.pvCount)!
+            detailVc.whatContent = detailPosts?.whatContent
+            detailVc.imageURL = detailPosts?.imageURL
+            detailVc.linkURL = detailPosts?.linkURL
+            detailVc.userName = detailPosts?.userProfileName
+            detailVc.userImageURL = detailPosts?.userProfileImage
+            detailVc.userID = detailPosts?.userID
+            
+            
+        }
+        
+        
+        
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let deleteButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "削除") { (action, index) -> Void in
+            
+            
+            
+            let postID = self.userPosts[indexPath.row].postID
+            
+            
+            
+            
+            let alertViewControler = UIAlertController(title: "確認", message: "本当に削除しますか？", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler:{
+                // ボタンが押された時の処理を書く（クロージャ実装）
+                (action: UIAlertAction!) -> Void in
+                
+                self.deleteCheck = true
+                
+            })
+            
+            let cancel = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler: {
+                (action: UIAlertAction!) in
+                
+                self.profilePostTable.isEditing = false
+            })
+
+            
+            
+            alertViewControler.addAction(okAction)
+            alertViewControler.addAction(cancel)
+            
+            
+            self.present(alertViewControler, animated: true, completion: nil)
+            
+            
+    
+            
+            self.wait( {self.deleteCheck == false} ) {
+                
+                //DBの削除
+                DispatchQueue.global().async {
+                    
+                    DataService.dataBase.REF_BASE.child("posts/-\(String(describing: postID))").removeValue()
+                    
+                }
+                
+                self.userPosts.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                
+                
+                
+            }
+
+                
+                self.deleteCheck = false
+                
+            }
+            
+            deleteButton.backgroundColor = UIColor.rgb(r: 31, g: 158, b: 187, alpha: 1)
+            
+        
+        
+        return [deleteButton]
+    }
     
    
     
@@ -161,7 +260,7 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
         
         let actionSheet = UIAlertController(title: "選択", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
         
-        actionSheet.view.tintColor = UIColor.darkGray
+        actionSheet.view.tintColor = UIColor.rgb(r: 31, g: 158, b: 187, alpha: 1)
         
         
         let edit = UIAlertAction(title: "プロフィールを編集", style: UIAlertActionStyle.default, handler: {
@@ -172,6 +271,8 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
             
             
         })
+        
+        
         
         let logout = UIAlertAction(title: "ログアウト", style: UIAlertActionStyle.default, handler: {
             (action: UIAlertAction!) in
@@ -210,6 +311,29 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
         
     }
     
+    
+    func wait(_ waitContinuation: @escaping (()->Bool), compleation: @escaping (()->Void)) {
+        var wait = waitContinuation()
+        // 0.01秒周期で待機条件をクリアするまで待ちます。
+        let semaphore = DispatchSemaphore(value: 0)
+        DispatchQueue.global().async {
+            while wait {
+                DispatchQueue.main.async {
+                    wait = waitContinuation()
+                    semaphore.signal()
+                }
+                semaphore.wait()
+                Thread.sleep(forTimeInterval: 0.01)
+            }
+            // 待機条件をクリアしたので通過後の処理を行います。
+            DispatchQueue.main.async {
+                compleation()
+                
+                
+                
+            }
+        }
+    }
     
     
     
