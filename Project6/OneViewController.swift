@@ -132,7 +132,7 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
         
         
         
-        if let img = OneViewController.imageCache.object(forKey: post.imageURL as NSString) {
+        if let img = OneViewController.imageCache.object(forKey: post.imageURL as! NSString) {
             
             
             

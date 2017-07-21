@@ -133,7 +133,7 @@ class FiveViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
         
         shoppingCell?.cellImage.af_setImage(withURL: URL(string: shoppinglPosts[indexPath.row].imageURL)!)
         
-        if let img = FiveViewController.imageCache.object(forKey: post.imageURL as NSString) {
+        if let img = FiveViewController.imageCache.object(forKey: post.imageURL as! NSString) {
             
             shoppingCell?.configureCell(post: post, img: img)
             

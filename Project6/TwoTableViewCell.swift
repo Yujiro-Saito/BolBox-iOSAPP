@@ -185,7 +185,7 @@ class TwoTableViewCell: UITableViewCell {
                     if let imgData = data {
                         if let img = UIImage(data: imgData) {
                             self.cellImage.image = img
-                            TwoViewController.imageCache.setObject(img, forKey: post.imageURL as NSString)
+                            TwoViewController.imageCache.setObject(img, forKey: post.imageURL as! NSString)
                         }
                     }
                 }

@@ -95,7 +95,7 @@ class OneTableViewCell: UITableViewCell {
                     if let imgData = data {
                         if let img = UIImage(data: imgData) {
                             self.oneImage.image = img
-                            OneViewController.imageCache.setObject(img, forKey: post.imageURL as NSString)
+                            OneViewController.imageCache.setObject(img, forKey: post.imageURL as! NSString)
                         }
                     }
                 }

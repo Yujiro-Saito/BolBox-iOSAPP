@@ -32,8 +32,8 @@ class InDetailViewController: UIViewController {
     var whatContent: String?
     var imageURL: String?
     var linkURL: String?
-    var userName: String!
-    var userImageURL: String!
+    var userName: String?
+    var userImageURL: String?
     var userID: String!
     
     
@@ -72,20 +72,19 @@ class InDetailViewController: UIViewController {
         
         cardView.layer.cornerRadius = 15
         
-        //画像の読み込み
+        if userImageURL != nil && userName != nil {
+            
+            
+            //画像の読み込み
+            postUserImage.af_setImage(withURL: URL(string: userImageURL!)!)
+        }
+        
         postImage.af_setImage(withURL: URL(string: imageURL!)!)
-        postUserImage.af_setImage(withURL: URL(string: userImageURL)!)
-        
-        
+        postUserName.text = userName
+
         //その他データ
         postTitle.text = name
         postContent.text = whatContent
-        
-        postUserName.text = userName
-        
-        
-        
-    
         
 
     }

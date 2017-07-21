@@ -120,7 +120,7 @@ class TwoViewController: UIViewController, IndicatorInfoProvider,UITableViewData
         
         let post = appPosts[indexPath.row]
         
-        if let img = TwoViewController.imageCache.object(forKey: post.imageURL as NSString) {
+        if let img = TwoViewController.imageCache.object(forKey: post.imageURL as! NSString) {
             
             postCell?.configureCell(post: post, img: img)
             

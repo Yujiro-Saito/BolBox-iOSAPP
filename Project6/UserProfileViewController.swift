@@ -140,7 +140,7 @@ class UserProfileViewController: UIViewController,UITableViewDelegate,UITableVie
         
         let post = userprofilePosts[indexPath.row]
         
-        if let img = UserProfileViewController.imageCache.object(forKey: post.imageURL as NSString) {
+        if let img = UserProfileViewController.imageCache.object(forKey: post.imageURL as! NSString) {
             
             cell.configureCell(post: post, img: img)
             

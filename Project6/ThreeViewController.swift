@@ -120,7 +120,7 @@ class ThreeViewController: UIViewController, IndicatorInfoProvider,UITableViewDe
         
         educationCell?.cellImage.af_setImage(withURL: URL(string: educationPosts[indexPath.row].imageURL)!)
         
-        if let img = ThreeViewController.imageCache.object(forKey: post.imageURL as NSString) {
+        if let img = ThreeViewController.imageCache.object(forKey: post.imageURL as! NSString) {
             
             educationCell?.configureCell(post: post, img: img)
             

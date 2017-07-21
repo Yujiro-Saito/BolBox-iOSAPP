@@ -30,6 +30,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     var displayUserName: String?
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     var initialURL = URL(string: "")
+    var selectedIndex = Int()
     
     //コレクションビュー用の配列
     var topPosts = [Post]()
@@ -388,7 +389,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             
             
             
-            if let img = BaseViewController.imageCache.object(forKey: post.imageURL as NSString) {
+            if let img = BaseViewController.imageCache.object(forKey: post.imageURL as! NSString) {
                 topCell?.configureCell(post: post, img: img)
             } else {
                 topCell?.configureCell(post: post)
@@ -405,7 +406,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             let post = firstPosts[indexPath.row]
             
             
-            if let img = BaseViewController.imageCache.object(forKey: post.imageURL as NSString) {
+            if let img = BaseViewController.imageCache.object(forKey: post.imageURL as! NSString) {
                 firstCell?.configureCell(post: post, img: img)
             } else {
                 firstCell?.configureCell(post: post)
@@ -427,7 +428,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             let post = secondPosts[indexPath.row]
             
             
-            if let img = BaseViewController.imageCache.object(forKey: post.imageURL as NSString) {
+            if let img = BaseViewController.imageCache.object(forKey: post.imageURL as! NSString) {
                 secondCell?.configureCell(post: post, img: img)
             } else {
                 secondCell?.configureCell(post: post)
@@ -447,7 +448,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             let post = thirdPosts[indexPath.row]
             
             
-            if let img = BaseViewController.imageCache.object(forKey: post.imageURL as NSString) {
+            if let img = BaseViewController.imageCache.object(forKey: post.imageURL as! NSString) {
                 thirdCell?.configureCell(post: post, img: img)
             } else {
                 thirdCell?.configureCell(post: post)
@@ -470,7 +471,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             let post = fourthPosts[indexPath.row]
             
             
-            if let img = BaseViewController.imageCache.object(forKey: post.imageURL as NSString) {
+            if let img = BaseViewController.imageCache.object(forKey: post.imageURL as! NSString) {
                 fourthCell?.configureCell(post: post, img: img)
             } else {
                 fourthCell?.configureCell(post: post)
@@ -492,7 +493,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             let post = fifthPosts[indexPath.row]
             
             
-            if let img = BaseViewController.imageCache.object(forKey: post.imageURL as NSString) {
+            if let img = BaseViewController.imageCache.object(forKey: post.imageURL as! NSString) {
                 fifthCell?.configureCell(post: post, img: img)
             } else {
                 fifthCell?.configureCell(post: post)
@@ -514,7 +515,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             let post = purposePosts[indexPath.row]
             
             
-            if let img = BaseViewController.imageCache.object(forKey: post.imageURL as NSString) {
+            if let img = BaseViewController.imageCache.object(forKey: post.imageURL as! NSString) {
                 purposeCell?.configureCell(post: post, img: img)
             } else {
                 purposeCell?.configureCell(post: post)
@@ -585,13 +586,23 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             
             print("ログイン画面に戻る")
             
+        } else if segue.identifier == "ToFeature" {
+            
+            let featureVC = (segue.destination as? FeatureViewController)!
+            
+            
+            featureVC.selectedNum = self.selectedIndex
+            
+            
+            
         }
         
         
         
         
-        
     }
+    
+    
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -606,9 +617,13 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             
         } else if collectionView == purposeCollection {
             
-            detailPosts = self.purposePosts[indexPath.row]
+            //選ばれた番号　0,1,2のどれか
+            selectedIndex = indexPath.row
             
-            performSegue(withIdentifier: "topPosts", sender: nil)
+            //多分いらない
+            //detailPosts = self.purposePosts[indexPath.row]
+            
+            performSegue(withIdentifier: "ToFeature", sender: nil)
             
         } else if collectionView == firstCollection {
             

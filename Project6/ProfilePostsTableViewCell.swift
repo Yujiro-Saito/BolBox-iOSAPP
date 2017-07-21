@@ -56,7 +56,7 @@ class ProfilePostsTableViewCell: UITableViewCell {
                         if let imgData = data {
                             if let img = UIImage(data: imgData) {
                                 self.profileImage.image = img
-                                AccountViewController.imageCache.setObject(img, forKey: post.imageURL as NSString)
+                                AccountViewController.imageCache.setObject(img, forKey: post.imageURL as! NSString)
                             }
                         }
                     }

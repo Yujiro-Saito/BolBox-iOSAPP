@@ -242,7 +242,7 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
         
         let post = userPosts[indexPath.row]
         
-        if let img = AccountViewController.imageCache.object(forKey: post.imageURL as NSString) {
+        if let img = AccountViewController.imageCache.object(forKey: post.imageURL as! NSString) {
             
             cell.configureCell(post: post, img: img)
             

@@ -57,6 +57,8 @@
 		B7E390271ED59E3C005D8BFC /* ButtonDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E390261ED59E3C005D8BFC /* ButtonDesign.swift */; };
 		B7E3902B1ED5A13E005D8BFC /* ImageDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E3902A1ED5A13E005D8BFC /* ImageDesign.swift */; };
 		B7E91B2F1F1C5E6500D8C522 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E91B2E1F1C5E6500D8C522 /* EditViewController.swift */; };
+		B7E9D62D1F2096F4001115F6 /* FeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E9D62C1F2096F4001115F6 /* FeatureViewController.swift */; };
+		B7E9D62F1F20A14B001115F6 /* FeatureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E9D62E1F20A14B001115F6 /* FeatureTableViewCell.swift */; };
 		B7EE00BC1F08C76F0015AA3B /* SecondCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE00BB1F08C76F0015AA3B /* SecondCollectionViewCell.swift */; };
 		B7EE00BE1F08D0090015AA3B /* ThirdCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE00BD1F08D0090015AA3B /* ThirdCollectionViewCell.swift */; };
 		B7F1789A1F09A78800F00CE7 /* FourthCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F178991F09A78800F00CE7 /* FourthCollectionViewCell.swift */; };
@@ -131,6 +133,8 @@
 		B7E390261ED59E3C005D8BFC /* ButtonDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonDesign.swift; sourceTree = "<group>"; };
 		B7E3902A1ED5A13E005D8BFC /* ImageDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDesign.swift; sourceTree = "<group>"; };
 		B7E91B2E1F1C5E6500D8C522 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		B7E9D62C1F2096F4001115F6 /* FeatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureViewController.swift; sourceTree = "<group>"; };
+		B7E9D62E1F20A14B001115F6 /* FeatureTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureTableViewCell.swift; sourceTree = "<group>"; };
 		B7EBAC261EEFB6E200C46D42 /* Project6.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Project6.entitlements; sourceTree = "<group>"; };
 		B7EE00BB1F08C76F0015AA3B /* SecondCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondCollectionViewCell.swift; sourceTree = "<group>"; };
 		B7EE00BD1F08D0090015AA3B /* ThirdCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -267,6 +271,7 @@
 				B7F816351F0B145C00D317FB /* PurposeCollectionViewCell.swift */,
 				B711059C1F13A3C800706FED /* NotificationTableViewCell.swift */,
 				B7F628EC1F1B838B003257CE /* UserProfileTableViewCell.swift */,
+				B7E9D62E1F20A14B001115F6 /* FeatureTableViewCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -290,6 +295,7 @@
 				B7F628EA1F1B7B71003257CE /* UserProfileViewController.swift */,
 				B7FE38651F1BAFF900DE1E7F /* WebViewController.swift */,
 				B7E91B2E1F1C5E6500D8C522 /* EditViewController.swift */,
+				B7E9D62C1F2096F4001115F6 /* FeatureViewController.swift */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -488,6 +494,7 @@
 				B7482CE21F0F141E00E98EF1 /* ThreeTableViewCell.swift in Sources */,
 				B7DB51661EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift in Sources */,
 				B7EE00BC1F08C76F0015AA3B /* SecondCollectionViewCell.swift in Sources */,
+				B7E9D62D1F2096F4001115F6 /* FeatureViewController.swift in Sources */,
 				B711059D1F13A3C800706FED /* NotificationTableViewCell.swift in Sources */,
 				B771C6071F0CA1E6005D4BF2 /* ThreeViewController.swift in Sources */,
 				B77B554C1EEF6C8C00262589 /* SignUpField.swift in Sources */,
@@ -526,6 +533,7 @@
 				B7B4CAD41EFA81330038F176 /* PostProductInfoViewController.swift in Sources */,
 				B7E3902B1ED5A13E005D8BFC /* ImageDesign.swift in Sources */,
 				B7F5CEE31EFCA99200E42B3B /* StoryViewController.swift in Sources */,
+				B7E9D62F1F20A14B001115F6 /* FeatureTableViewCell.swift in Sources */,
 				B7482CE41F0F1B2A00E98EF1 /* FourTableViewCell.swift in Sources */,
 				B77B55501EEF6F1600262589 /* SignUpViewController.swift in Sources */,
 				B7733EA01EC6A8E300D5B9BD /* newCollectionViewCell.swift in Sources */,

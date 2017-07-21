@@ -58,7 +58,7 @@ class FirstCollectionViewCell: UICollectionViewCell {
                     if let imgData = data {
                         if let img = UIImage(data: imgData) {
                             self.firstImage.image = img
-                            BaseViewController.imageCache.setObject(img, forKey: post.imageURL as NSString)
+                            BaseViewController.imageCache.setObject(img, forKey: post.imageURL as! NSString)
                         }
                     }
                 }

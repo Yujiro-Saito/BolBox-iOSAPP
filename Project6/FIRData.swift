@@ -36,6 +36,10 @@ class DataService {
     private var _REF_FIFTH = DB_BASE.child("fifth")
     private var _REF_PURPOSE = DB_BASE.child("purpose")
     private var _REF_USER = DB_BASE.child("users")
+    private var _REF_FEATUREONE = DB_BASE.child("featureOne")
+    private var _REF_FEATURETWO = DB_BASE.child("featureTwo")
+    private var _REF_FEATURETHREE = DB_BASE.child("featureThree")
+    
 
     
     
@@ -102,6 +106,19 @@ class DataService {
     var REF_USER: FIRDatabaseReference {
         return _REF_USER
     }
+    
+    var REF_FEATUREONE: FIRDatabaseReference {
+        return _REF_FEATUREONE
+    }
+    
+    var REF_FEATURETWO: FIRDatabaseReference {
+        return _REF_FEATURETWO
+    }
+    
+    var REF_FEATURETHREE: FIRDatabaseReference {
+        return _REF_FEATURETHREE
+    }
+
     
     
     func createDataBaseUser(uid: String, userData: Dictionary<String, String>, userName: Dictionary<String, Any>, photoURL: Dictionary<String, Any>, userEmail: Dictionary<String, Any>) {

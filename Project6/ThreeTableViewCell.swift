@@ -201,7 +201,7 @@ class ThreeTableViewCell: UITableViewCell {
                     if let imgData = data {
                         if let img = UIImage(data: imgData) {
                             self.cellImage.image = img
-                            ThreeViewController.imageCache.setObject(img, forKey: post.imageURL as NSString)
+                            ThreeViewController.imageCache.setObject(img, forKey: post.imageURL as! NSString)
                         }
                     }
                 }

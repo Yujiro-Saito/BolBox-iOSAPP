@@ -137,7 +137,7 @@ class FourViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
         
         travelCell?.cellImage.af_setImage(withURL: URL(string: travelPosts[indexPath.row].imageURL)!)
         
-        if let img = FourViewController.imageCache.object(forKey: post.imageURL as NSString) {
+        if let img = FourViewController.imageCache.object(forKey: post.imageURL as! NSString) {
             
             travelCell?.configureCell(post: post, img: img)
             
