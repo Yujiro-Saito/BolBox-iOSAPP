@@ -26,6 +26,7 @@ class UserProfileViewController: UIViewController,UITableViewDelegate,UITableVie
     //データ受け継ぎ用
     
     var userName: String!
+    var userDesc: String!
     var userImageURL: String!
     var userID: String!
     
@@ -57,12 +58,13 @@ class UserProfileViewController: UIViewController,UITableViewDelegate,UITableVie
         
         
         
-        
-        
-        
         //ユーザー投稿を配列に取得
         
         DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "userID").queryEqual(toValue: userID).observe(.value, with: { (snapshot) in
+        
+         //DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
+            
+            //valueのuserIDがUserIDと一致していれば
             
             self.userprofilePosts = []
             
@@ -81,7 +83,6 @@ class UserProfileViewController: UIViewController,UITableViewDelegate,UITableVie
                         
                         
                         self.userprofilePosts.append(post)
-                        
                     }
                     
                     
@@ -91,7 +92,7 @@ class UserProfileViewController: UIViewController,UITableViewDelegate,UITableVie
             }
             
             
-            
+        self.userprofilePosts.reverse()
         self.userTable.reloadData()
             
             
@@ -119,12 +120,12 @@ class UserProfileViewController: UIViewController,UITableViewDelegate,UITableVie
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return userprofilePosts.count
+        return 1
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return userprofilePosts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

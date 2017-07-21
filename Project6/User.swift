@@ -12,7 +12,7 @@ import FirebaseDatabase
 
 struct User {
     
-    var userDesc: String!
+    var userDesc: String?
     var ref: FIRDatabaseReference?
     var key: String?
     
@@ -22,7 +22,11 @@ struct User {
     init(snapshot: FIRDataSnapshot) {
         key = snapshot.key
         ref = snapshot.ref
-        userDesc = (snapshot.value! as! NSDictionary)["profileDesc"] as! String
+        
+        if userDesc != nil && userDesc != "" {
+            userDesc = (snapshot.value! as! NSDictionary)["profileDesc"] as? String
+        }
+      
         
     }
     
