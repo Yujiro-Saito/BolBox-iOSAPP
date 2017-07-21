@@ -62,7 +62,7 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
                             let post = Post(postKey: key, postData: postDict)
                             
                             self.mediaPosts.append(post)
-                            self.oneTable.reloadData()
+                            
                         
                         }
                             
@@ -73,7 +73,7 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
             }
             
             
-            
+            self.mediaPosts.reverse()
             self.oneTable.reloadData()
             
         })

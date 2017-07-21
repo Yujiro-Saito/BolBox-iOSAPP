@@ -56,7 +56,6 @@ class ThreeViewController: UIViewController, IndicatorInfoProvider,UITableViewDe
                             let post = Post(postKey: key, postData: postDict)
                             
                             self.educationPosts.append(post)
-                            self.threeTable.reloadData()
                             
                         }
                         
@@ -67,6 +66,7 @@ class ThreeViewController: UIViewController, IndicatorInfoProvider,UITableViewDe
             }
             
             
+            self.educationPosts.reverse()
             
             self.threeTable.reloadData()
             

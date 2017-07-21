@@ -64,7 +64,6 @@ class FiveViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
                             let post = Post(postKey: key, postData: postDict)
                             
                             self.shoppinglPosts.append(post)
-                            self.fiveTable.reloadData()
                             
                         }
                         
@@ -75,7 +74,7 @@ class FiveViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
             }
             
             
-            
+            self.shoppinglPosts.reverse()
             self.fiveTable.reloadData()
             
         })

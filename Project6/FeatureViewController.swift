@@ -173,6 +173,46 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     
+    var detailPosts: Post?
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        if segue.identifier == "DetailsWin" {
+            
+            let detailVc = (segue.destination as? InDetailViewController)!
+            
+            detailVc.name = detailPosts?.name
+            detailVc.numLikes = (detailPosts?.pvCount)!
+            detailVc.whatContent = detailPosts?.whatContent
+            detailVc.imageURL = detailPosts?.imageURL
+            detailVc.linkURL = detailPosts?.linkURL
+        }
+        
+        
+        
+        
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if self.selectedNum == 0 {
+            detailPosts = self.featureOnePosts[indexPath.row]
+            performSegue(withIdentifier: "DetailsWin", sender: nil)
+        } else if self.selectedNum == 1 {
+            detailPosts = self.featureTwoPosts[indexPath.row]
+            performSegue(withIdentifier: "DetailsWin", sender: nil)
+        } else if self.selectedNum == 2 {
+            detailPosts = self.featureThreePosts[indexPath.row]
+            performSegue(withIdentifier: "DetailsWin", sender: nil)
+        }
+        
+        
+        
+    }
+    
+    
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -336,24 +376,6 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
             return featureThreeCell!
 
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             
             
             

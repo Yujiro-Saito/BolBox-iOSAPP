@@ -200,6 +200,7 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
                         //DBに投稿
                         let firebasePost = DataService.dataBase.REF_POST.childByAutoId()
                         let key = firebasePost.key
+                        print(key)
                         let postKey = "\(key.substring(from: key.index(after: key.startIndex)))"
                         print(postKey)
                         

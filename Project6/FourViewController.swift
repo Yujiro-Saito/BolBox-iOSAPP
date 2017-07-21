@@ -64,7 +64,6 @@ class FourViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
                             let post = Post(postKey: key, postData: postDict)
                             
                             self.travelPosts.append(post)
-                            self.fourTable.reloadData()
                             
                         }
                         
@@ -75,7 +74,7 @@ class FourViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
             }
             
             
-            
+            self.travelPosts.reverse()
             self.fourTable.reloadData()
             
         })

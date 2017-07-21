@@ -63,10 +63,10 @@ class FiveTableViewCell: UITableViewCell {
         let userData = ["imageURL" : self.imageURL, postID : currentUserName, "userID" : self.userID, "postName" : cellTitle.text]
         
         //いいね数を更新
-        DataService.dataBase.REF_BASE.child("posts/-\(self.postID)").updateChildValues(likesCount)
+        DataService.dataBase.REF_BASE.child("posts/\(self.postID)").updateChildValues(likesCount)
         
         
-        DataService.dataBase.REF_BASE.child("posts/-\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(userData)
+        DataService.dataBase.REF_BASE.child("posts/\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(userData)
         
         
         self.likeButton.isEnabled = true
@@ -125,9 +125,9 @@ class FiveTableViewCell: UITableViewCell {
         DispatchQueue.global().async {
             
             //いいねのデータを削除
-            DataService.dataBase.REF_BASE.child("posts/-\(self.postID)").updateChildValues(likesCount)
+            DataService.dataBase.REF_BASE.child("posts/\(self.postID)").updateChildValues(likesCount)
             
-            DataService.dataBase.REF_BASE.child("posts/-\(self.postID)/peopleWhoLike/\(currentUserName!)").removeValue()
+            DataService.dataBase.REF_BASE.child("posts/\(self.postID)/peopleWhoLike/\(currentUserName!)").removeValue()
             
             self.dbCheck = true
             

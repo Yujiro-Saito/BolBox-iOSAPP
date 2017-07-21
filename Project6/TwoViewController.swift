@@ -55,7 +55,7 @@ class TwoViewController: UIViewController, IndicatorInfoProvider,UITableViewData
                             let post = Post(postKey: key, postData: postDict)
                             
                             self.appPosts.append(post)
-                            self.twoTable.reloadData()
+                
                             
                         }
                         
@@ -65,7 +65,7 @@ class TwoViewController: UIViewController, IndicatorInfoProvider,UITableViewData
                 
             }
             
-            
+             self.appPosts.reverse()
             
             self.twoTable.reloadData()
             
