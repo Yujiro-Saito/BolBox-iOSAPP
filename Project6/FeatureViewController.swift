@@ -74,12 +74,82 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
         } else if selectedNum == 1 {
             //二つ目の記事を読み込み
             
+            DataService.dataBase.REF_FEATURETWO.observe(.value, with: { (snapshot) in
+                
+                self.featureTwoPosts = []
+                
+                print(snapshot.value)
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
+                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            self.featureTwoPosts.append(post)
+                            self.featureTable.reloadData()
+                            
+                            
+                            
+                        }
+                    }
+                    
+                    
+                }
+                
+                
+                
+                self.featureTable.reloadData()
+                
+            })
+
+            
+            
+            
+            
             
             
         } else if selectedNum == 2 {
             //三つ目の記事を読み込み
             
-            
+            DataService.dataBase.REF_FEATURETHREE.observe(.value, with: { (snapshot) in
+                
+                self.featureThreePosts = []
+                
+                print(snapshot.value)
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
+                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            self.featureThreePosts.append(post)
+                            self.featureTable.reloadData()
+                            
+                            
+                            
+                        }
+                    }
+                    
+                    
+                }
+                
+                
+                
+                self.featureTable.reloadData()
+                
+            })
             
             
             
@@ -151,7 +221,7 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
             
             
-            
+            return featureOneCell!
             
             
             
@@ -161,6 +231,138 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
         }
         
         
+        else if selectedNum == 1 {
+            
+            
+            let currentUserName = FIRAuth.auth()?.currentUser?.displayName
+            
+            
+            let featureTwoeCell = featureTable.dequeueReusableCell(withIdentifier: "FeatureCell", for: indexPath) as? FeatureTableViewCell
+            
+            
+            
+            featureTwoeCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
+            featureTwoeCell?.layer.borderWidth = 10
+            featureTwoeCell?.clipsToBounds = true
+            
+            
+            
+            
+            featureTwoeCell?.linkURL = self.featureTwoPosts[indexPath.row].linkURL
+            featureTwoeCell?.imageURL = self.featureTwoPosts[indexPath.row].imageURL
+            featureTwoeCell?.pvCount = self.featureTwoPosts[indexPath.row].pvCount
+            
+            let post = featureTwoPosts[indexPath.row]
+            
+            //
+            featureTwoeCell?.featureImage.af_setImage(withURL: URL(string: featureTwoPosts[indexPath.row].imageURL)!)
+            
+            
+            
+            if let img = FeatureViewController.imageCache.object(forKey: post.imageURL as! NSString) {
+                
+                
+                
+                featureTwoeCell?.configureCell(post: post, img: img)
+                
+            }
+            else {
+                
+                featureTwoeCell?.configureCell(post: post)
+                
+            }
+            
+            
+            
+            
+            return featureTwoeCell!
+            
+
+            
+            
+            
+         
+            
+            
+            
+            
+            
+        }
+        
+        
+        else if self.selectedNum == 2 {
+            
+            
+            let currentUserName = FIRAuth.auth()?.currentUser?.displayName
+            
+            
+            let featureThreeCell = featureTable.dequeueReusableCell(withIdentifier: "FeatureCell", for: indexPath) as? FeatureTableViewCell
+            
+            
+            
+            featureThreeCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
+            featureThreeCell?.layer.borderWidth = 10
+            featureThreeCell?.clipsToBounds = true
+            
+            
+            
+            
+            featureThreeCell?.linkURL = self.featureThreePosts[indexPath.row].linkURL
+            featureThreeCell?.imageURL = self.featureThreePosts[indexPath.row].imageURL
+            featureThreeCell?.pvCount = self.featureThreePosts[indexPath.row].pvCount
+            
+            let post = featureThreePosts[indexPath.row]
+            
+            //
+            featureThreeCell?.featureImage.af_setImage(withURL: URL(string: featureThreePosts[indexPath.row].imageURL)!)
+            
+            
+            
+            if let img = FeatureViewController.imageCache.object(forKey: post.imageURL as! NSString) {
+                
+                
+                
+                featureThreeCell?.configureCell(post: post, img: img)
+                
+            }
+            else {
+                
+                featureThreeCell?.configureCell(post: post)
+                
+            }
+            
+            
+            
+            
+            return featureThreeCell!
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        }
         
         
         
@@ -198,6 +400,17 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    
+    @IBAction func backButton(_ sender: Any) {
+        
+        
+        self.dismiss(animated: true, completion: nil)
+        
+        
+        
+        
     }
 
  
