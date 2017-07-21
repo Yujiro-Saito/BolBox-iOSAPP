@@ -10,8 +10,10 @@ import UIKit
 import Firebase
 import AlamofireImage
 
-class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UINavigationBarDelegate {
     
+    
+    @IBOutlet weak var editNav: UINavigationBar!
     @IBOutlet weak var nameField: SignUpField!
     @IBOutlet weak var userDesc: SignUpField!
     @IBOutlet weak var userImage: ProfileImage!
@@ -26,6 +28,8 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
         
         nameField.delegate = self
         userDesc.delegate = self
+        editNav.delegate = self
+        
         
         self.cardView.layer.cornerRadius = 15
         
@@ -40,15 +44,40 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
             
             self.nameField.text = userName
             
+            
             if photoURL == nil {
                 userImage.image = UIImage(named: "drop")
             } else {
                 userImage.af_setImage(withURL: photoURL!)
             }
+            
+            let userRef = DataService.dataBase.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)")
+            
+            
+            userRef.observe(.value, with: { (snapshot) in
+                
+                //UserName取得
+                let user = User(snapshot: snapshot)
+                
+                if user.userDesc == "" {
+                    self.userDesc.text = ""
+                } else if user.userDesc == nil {
+                    self.userDesc.text = ""
+                } else {
+                    self.userDesc.text = user.userDesc
+                }
+                
+                
+                
+            })
 
         
 
     }
+        
+        //バーの高さ
+        self.editNav.frame = CGRect(x: 0,y: 0, width: UIScreen.main.bounds.size.width, height: 60)
+        
         
     }
     
@@ -88,8 +117,14 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
     }
     
     
-    
     @IBAction func cancelButtonDidTap(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    
+    @IBAction func saveButtonDidTap(_ sender: Any) {
         
         let metaData = FIRStorageMetadata()
         metaData.contentType = "image/jpeg"
@@ -122,7 +157,7 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
                         
                         
                         //DBを更新
-                        let userData = ["userName" : FIRAuth.auth()?.currentUser?.displayName, "email" : FIRAuth.auth()?.currentUser?.email,"userImageURL" : userPhotoURL]
+                        let userData = ["profileDesc" : self.userDesc.text!, "userName" : FIRAuth.auth()?.currentUser?.displayName, "email" : FIRAuth.auth()?.currentUser?.email,"userImageURL" : userPhotoURL]
                         
                         //DBに追記
                         DataService.dataBase.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)").updateChildValues(userData)
@@ -139,10 +174,10 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
             
         }
         
-        
-        
-
     }
+    
+    
+    
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

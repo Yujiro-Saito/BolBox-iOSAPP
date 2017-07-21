@@ -15,6 +15,7 @@
 		B711059D1F13A3C800706FED /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B711059C1F13A3C800706FED /* NotificationTableViewCell.swift */; };
 		B71ACDA81EED8620005DCD80 /* SignInUpViewDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71ACDA71EED8620005DCD80 /* SignInUpViewDesign.swift */; };
 		B71EEA3D1EED7D2A00CCF1D1 /* SignInandUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71EEA3C1EED7D2A00CCF1D1 /* SignInandUpViewController.swift */; };
+		B725810E1F22706900CF8E56 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B725810D1F22706900CF8E56 /* User.swift */; };
 		B725A8E01F01AB4B006AC9DF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B725A8DF1F01AB4B006AC9DF /* BaseViewController.swift */; };
 		B725A8E21F01BEB5006AC9DF /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B725A8E11F01BEB5006AC9DF /* BaseTableViewCell.swift */; };
 		B7260C381EDEFAC200FC3913 /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7260C371EDEFAC200FC3913 /* DetailCollectionViewCell.swift */; };
@@ -87,6 +88,7 @@
 		B711059C1F13A3C800706FED /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		B71ACDA71EED8620005DCD80 /* SignInUpViewDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInUpViewDesign.swift; sourceTree = "<group>"; };
 		B71EEA3C1EED7D2A00CCF1D1 /* SignInandUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInandUpViewController.swift; sourceTree = "<group>"; };
+		B725810D1F22706900CF8E56 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B725A8DF1F01AB4B006AC9DF /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		B725A8E11F01BEB5006AC9DF /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		B7260C371EDEFAC200FC3913 /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				B727ADD81EC67AB10081F500 /* Project6-Bridging-Header.h */,
 				B77083391EC8034E00302760 /* FIRData.swift */,
 				B77083371EC7FB9D00302760 /* Post.swift */,
+				B725810D1F22706900CF8E56 /* User.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				B771C60B1F0CA1F7005D4BF2 /* FiveViewController.swift in Sources */,
 				B77CEDED1EE3DB8F005D4215 /* CategoryDisplayTableViewCell.swift in Sources */,
 				B702E72F1EF8A442003C89E4 /* EmailLoginViewController.swift in Sources */,
+				B725810E1F22706900CF8E56 /* User.swift in Sources */,
 				B7F628ED1F1B838B003257CE /* UserProfileTableViewCell.swift in Sources */,
 				B7F9B9631F0698DD0006AD38 /* ProfilePostsTableViewCell.swift in Sources */,
 				B7733EA21EC6A96700D5B9BD /* popularCollectionViewCell.swift in Sources */,

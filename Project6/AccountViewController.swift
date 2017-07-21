@@ -18,6 +18,9 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
     @IBOutlet weak var profileNavBar: UINavigationBar!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileImage: ProfileImage!
+    @IBOutlet weak var profileDesc: UILabel!
+    
+    
     
     var userPosts = [Post]()
     var detailPosts: Post?
@@ -32,7 +35,8 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
         profilePostTable.dataSource = self
         profileNavBar.delegate = self
         
-        self.profileNavBar.frame = CGRect(x: 0,y: 0, width: UIScreen.main.bounds.size.width, height: 55)
+        //バーの高さ
+        self.profileNavBar.frame = CGRect(x: 0,y: 0, width: UIScreen.main.bounds.size.width, height: 60)
         
         
         
@@ -55,6 +59,7 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
             let uid = user?.uid
             
             self.profileName.text = userName
+            
 
             if photoURL == nil {
                 profileImage.image = UIImage(named: "drop")
@@ -63,9 +68,25 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
             }
             
             
+            let userRef = DataService.dataBase.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)")
             
             
-            
+            userRef.observe(.value, with: { (snapshot) in
+                
+                //UserName取得
+                let user = User(snapshot: snapshot)
+                
+                if user.userDesc == "" {
+                    self.profileDesc.text = ""
+                } else if user.userDesc == nil {
+                    self.profileDesc.text = ""
+                } else {
+                    self.profileDesc.text = user.userDesc
+                }
+                
+                
+                
+            })
             
             
             DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "userID").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
@@ -84,7 +105,7 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
                             let post = Post(postKey: key, postData: postDict)
                             
                             self.userPosts.append(post)
-                            self.profilePostTable.reloadData()
+                            
                             
 
                         }
@@ -96,7 +117,8 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
                 }
                 
                 
-                
+                self.userPosts.reverse()
+                self.profilePostTable.reloadData()
                 
                 
                 
@@ -236,7 +258,7 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
         
         let cell = profilePostTable.dequeueReusableCell(withIdentifier: "profilePosts", for: indexPath) as! ProfilePostsTableViewCell
         
-        cell.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
+        cell.layer.borderColor = UIColor.white.cgColor
         cell.layer.borderWidth = 10
         cell.clipsToBounds = true
         
