@@ -18,6 +18,7 @@ class UserProfileViewController: UIViewController,UITableViewDelegate,UITableVie
     @IBOutlet weak var userDescription: UILabel!
     @IBOutlet weak var profileNavBar: UINavigationBar!
     
+    
     @IBOutlet weak var userTable: UITableView!
     
     var userprofilePosts = [Post]()
@@ -26,7 +27,6 @@ class UserProfileViewController: UIViewController,UITableViewDelegate,UITableVie
     //データ受け継ぎ用
     
     var userName: String!
-    var userDesc: String!
     var userImageURL: String!
     var userID: String!
     
@@ -55,16 +55,33 @@ class UserProfileViewController: UIViewController,UITableViewDelegate,UITableVie
         //ユーザーデータ
         self.userProfileName.text = self.userName
         self.userProfileImage.af_setImage(withURL: URL(string: userImageURL)!)
+
+        let userRef = DataService.dataBase.REF_BASE.child("users/\(userID)")
         
         
+        userRef.observe(.value, with: { (snapshot) in
+            
+            //UserName取得
+            let user = User(snapshot: snapshot)
+            
+            if user.userDesc == "" {
+                self.userDescription.text = ""
+            } else if user.userDesc == nil {
+                self.userDescription.text = ""
+            } else {
+                self.userDescription.text = user.userDesc
+            }
+            
+            
+            
+        })
+
         
         //ユーザー投稿を配列に取得
         
         DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "userID").queryEqual(toValue: userID).observe(.value, with: { (snapshot) in
         
-         //DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
             
-            //valueのuserIDがUserIDと一致していれば
             
             self.userprofilePosts = []
             
@@ -106,6 +123,8 @@ class UserProfileViewController: UIViewController,UITableViewDelegate,UITableVie
         
         
         
+        
+        
     }
     
     
@@ -134,7 +153,7 @@ class UserProfileViewController: UIViewController,UITableViewDelegate,UITableVie
         let cell = userTable.dequeueReusableCell(withIdentifier: "userprofiletable", for: indexPath) as! UserProfileTableViewCell
         
         
-        cell.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
+        cell.layer.borderColor = UIColor.white.cgColor
         cell.layer.borderWidth = 10
         cell.clipsToBounds = true
         

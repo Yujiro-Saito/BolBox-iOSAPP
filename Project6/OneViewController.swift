@@ -221,6 +221,7 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
     //詳細画面遷移時のデータ引き継ぎ
     
     var detailPosts: Post?
+    var userPosts: User?
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -235,6 +236,8 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
         detailVc.userName = detailPosts?.userProfileName
         detailVc.userImageURL = detailPosts?.userProfileImage
         detailVc.userID = detailPosts?.userID
+        detailVc.userDescription = userPosts?.userDesc
+        
         
         
     }

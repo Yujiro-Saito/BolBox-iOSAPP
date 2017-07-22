@@ -25,6 +25,7 @@ class InDetailViewController: UIViewController {
     let snapshot = FIRDataSnapshot()
     
     
+    
     //データ受け継ぎ用
     
     var name: String?
@@ -35,6 +36,7 @@ class InDetailViewController: UIViewController {
     var userName: String?
     var userImageURL: String?
     var userID: String!
+    var userDescription: String?
     
     
     //データ飛ばすよう　ユーザーページ
