@@ -98,7 +98,10 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
     @IBAction func ToKeepOn(_ sender: Any) {
         
         
+        
         if mainImagePhoto.image != nil && usageTextBox.text != "" {
+            
+            showIndicator()
             
             //投稿開始
             
@@ -201,7 +204,8 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
                         let firebasePost = DataService.dataBase.REF_POST.childByAutoId()
                         let key = firebasePost.key
                         print(key)
-                        let postKey = "\(key.substring(from: key.index(after: key.startIndex)))"
+                        //let postKey = "\(key.substring(from: key.index(after: key.startIndex)))"
+                        let postKey = "\(key)"
                         print(postKey)
                         
                         //postIDを追加
@@ -318,14 +322,20 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
                         //DBに投稿
                         let firebasePost = DataService.dataBase.REF_POST.childByAutoId()
                         let key = firebasePost.key
+                        let keyvalue = ("\(key)")
                         
                         //postIDを追加
-                        post["postID"] = key as AnyObject
+                        post["postID"] = keyvalue as AnyObject
                         
                         print(post)
                         
                         firebasePost.setValue(post)
                         print("投稿を完了しました")
+                        
+                        DispatchQueue.main.async {
+                            
+                            self.indicator.stopAnimating()
+                        }
                         
                         self.performSegue(withIdentifier: "Done", sender: nil)
                         
@@ -398,6 +408,35 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
             }
         }
     }
+    
+    
+    
+    
+    
+    
+    let indicator = UIActivityIndicatorView()
+    
+    func showIndicator() {
+        
+        indicator.activityIndicatorViewStyle = .whiteLarge
+        
+        indicator.center = self.view.center
+        
+        indicator.color = UIColor.rgb(r: 31, g: 158, b: 187, alpha: 1)
+        
+        indicator.hidesWhenStopped = true
+        
+        self.view.addSubview(indicator)
+        
+        self.view.bringSubview(toFront: indicator)
+        
+        indicator.startAnimating()
+        
+        
+        
+        
+    }
+
     
 
 

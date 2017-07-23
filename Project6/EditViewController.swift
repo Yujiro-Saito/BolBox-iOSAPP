@@ -126,6 +126,8 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
     
     @IBAction func saveButtonDidTap(_ sender: Any) {
         
+        showIndicator()
+        
         let metaData = FIRStorageMetadata()
         metaData.contentType = "image/jpeg"
         let userUID = NSUUID().uuidString
@@ -161,6 +163,12 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
                         
                         //DBに追記
                         DataService.dataBase.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)").updateChildValues(userData)
+                        
+                        
+                        DispatchQueue.main.async {
+                            
+                            self.indicator.stopAnimating()
+                        }
                         
                         
                         
@@ -209,6 +217,31 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
     
     
     
+    
+    
+    
+    let indicator = UIActivityIndicatorView()
+    
+    func showIndicator() {
+        
+        indicator.activityIndicatorViewStyle = .whiteLarge
+        
+        indicator.center = self.view.center
+        
+        indicator.color = UIColor.rgb(r: 31, g: 158, b: 187, alpha: 1)
+        
+        indicator.hidesWhenStopped = true
+        
+        self.view.addSubview(indicator)
+        
+        self.view.bringSubview(toFront: indicator)
+        
+        indicator.startAnimating()
+        
+        
+        
+        
+    }
     
 
    

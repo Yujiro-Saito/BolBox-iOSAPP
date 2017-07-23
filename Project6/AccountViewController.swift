@@ -191,6 +191,7 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
                 // ボタンが押された時の処理を書く（クロージャ実装）
                 (action: UIAlertAction!) -> Void in
                 
+                
                 self.deleteCheck = true
                 
             })
@@ -217,7 +218,7 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
                 //DBの削除
                 DispatchQueue.global().async {
                     
-                    DataService.dataBase.REF_BASE.child("posts/-\(String(describing: postID))").removeValue()
+                    DataService.dataBase.REF_BASE.child("posts/\(String(describing: postID))").removeValue()
                     
                 }
                 

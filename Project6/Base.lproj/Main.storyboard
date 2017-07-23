@@ -411,7 +411,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="330"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ta5-9f-JAX" id="1pc-zG-Tch">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="329.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="330"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vOr-BF-Ofq" customClass="UIViewDesign" customModule="Project6" customModuleProvider="target">
@@ -531,7 +531,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="330"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4bS-Wz-Izu" id="Sz6-ua-l88">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="329.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="330"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TxE-va-sAv">
@@ -650,7 +650,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="330"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nO6-Ul-E6T" id="vpU-I1-CwA">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="329.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="330"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9c2-Z7-cKn">
@@ -769,7 +769,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="330"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uMV-VM-mvX" id="QUs-qe-PZd">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="329.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="330"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5a7-1b-UWa">
@@ -877,7 +877,7 @@
                         <viewControllerLayoutGuide type="bottom" id="NQy-fT-QUW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5yt-0k-JDd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="83F-9D-E4A">
@@ -949,7 +949,7 @@
                         <viewControllerLayoutGuide type="bottom" id="FiS-L8-88k"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TsI-E2-xLR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YV8-pl-Klm">
@@ -1054,7 +1054,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="330"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6RU-rX-MTu" id="sfa-sG-TT5">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="329.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="330"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PIg-VN-9bW">
@@ -1165,7 +1165,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Vf-2d-4gA">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="951"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mx5-52-r3E">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
@@ -2061,7 +2061,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="330"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Mt-Xf-p58" id="B0x-51-7hF">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="329.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="330"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M0T-TO-LKC">
@@ -2388,8 +2388,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="投稿が完了しました！" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VfU-Lq-CI0">
+                                <rect key="frame" x="16" y="165" width="343" height="305"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tid-dF-91W" customClass="RegisterButton" customModule="Project6" customModuleProvider="target">
-                                <rect key="frame" x="42" y="653" width="292" height="49"/>
+                                <rect key="frame" x="41" y="509" width="292" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
@@ -2400,14 +2408,6 @@
                                     <segue destination="QLh-cT-mN4" kind="show" id="wqP-AI-2so"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="投稿が完了しました！" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VfU-Lq-CI0">
-                                <rect key="frame" x="16" y="165" width="343" height="305"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -37765,7 +37765,7 @@ AAAAAAAQDwA
         <image name="wantedly" width="300" height="168"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GPj-rp-ng9"/>
+        <segue reference="Ufe-L3-6S3"/>
         <segue reference="wqP-AI-2so"/>
         <segue reference="GBd-kR-lEf"/>
     </inferredMetricsTieBreakers>
