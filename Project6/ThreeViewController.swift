@@ -28,7 +28,62 @@ class ThreeViewController: UIViewController, IndicatorInfoProvider,UITableViewDe
         threeTable.dataSource = self
         
         self.threeTable.backgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
+        
+        self.threeTable.refreshControl = UIRefreshControl()
+        self.threeTable.refreshControl?.addTarget(self, action: #selector(ThreeViewController.refresh), for: .valueChanged)
+        
     }
+    
+    func refresh() {
+        
+        
+        //教育・キャリアの読み込み
+        DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
+            
+            self.educationPosts = []
+            
+            print(snapshot.value)
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        let categoryTag = postDict["category"] as! String
+                        
+                        
+                        if categoryTag == "教育・キャリア" {
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            self.educationPosts.append(post)
+                            
+                        }
+                        
+                    }
+                }
+                
+                
+            }
+            
+            
+            self.educationPosts.reverse()
+            
+            self.threeTable.reloadData()
+            
+        })
+        
+        self.threeTable.refreshControl?.endRefreshing()
+        
+        
+        
+    }
+
+    
+    
+    
     
     
     override func viewWillAppear(_ animated: Bool) {

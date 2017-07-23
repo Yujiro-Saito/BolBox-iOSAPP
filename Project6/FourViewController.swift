@@ -34,6 +34,53 @@ class FourViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
         self.fourTable.backgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
         
         
+        self.fourTable.refreshControl = UIRefreshControl()
+        self.fourTable.refreshControl?.addTarget(self, action: #selector(FourViewController.refresh), for: .valueChanged)
+        
+    }
+    
+    func refresh() {
+        
+        
+        //トラベルのデータ読み込み
+        DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
+            
+            self.travelPosts = []
+            
+            print(snapshot.value)
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        let categoryTag = postDict["category"] as! String
+                        
+                        
+                        if categoryTag == "トラベル" {
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            self.travelPosts.append(post)
+                            
+                        }
+                        
+                    }
+                }
+                
+                
+            }
+            
+            
+            self.travelPosts.reverse()
+            self.fourTable.reloadData()
+            
+        })
+        
+        self.fourTable.refreshControl?.endRefreshing()
+        
         
         
     }

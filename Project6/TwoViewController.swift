@@ -28,7 +28,65 @@ class TwoViewController: UIViewController, IndicatorInfoProvider,UITableViewData
         
         self.twoTable.backgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
         
+        
+        self.twoTable.refreshControl = UIRefreshControl()
+        self.twoTable.refreshControl?.addTarget(self, action: #selector(TwoViewController.refresh), for: .valueChanged)
     }
+    
+    
+    
+    
+    func refresh() {
+        
+        
+        //アプリデータの読み込み
+        DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
+            
+            self.appPosts = []
+            
+            print(snapshot.value)
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        let categoryTag = postDict["category"] as! String
+                        
+                        
+                        if categoryTag == "アプリ" {
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            self.appPosts.append(post)
+                            
+                            
+                        }
+                        
+                    }
+                }
+                
+                
+            }
+            
+            self.appPosts.reverse()
+            
+            self.twoTable.reloadData()
+            
+        })
+        
+        
+        self.twoTable.refreshControl?.endRefreshing()
+        
+        
+        
+    }
+    
+    
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)

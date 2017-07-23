@@ -1165,7 +1165,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Vf-2d-4gA">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="951"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mx5-52-r3E">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
@@ -1298,6 +1298,7 @@
                         <outlet property="userProfileImage" destination="dF3-fX-4Lh" id="QIb-VO-vgm"/>
                         <outlet property="userProfileName" destination="7RC-bV-aMe" id="7tI-HA-uy9"/>
                         <outlet property="userTable" destination="DL5-M0-GJX" id="Lse-ob-FKw"/>
+                        <segue destination="MIK-fG-rdI" kind="show" identifier="TotoDetail" id="jod-eB-na4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8GS-QX-Bdp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -37765,7 +37766,7 @@ AAAAAAAQDwA
         <image name="wantedly" width="300" height="168"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ufe-L3-6S3"/>
+        <segue reference="jod-eB-na4"/>
         <segue reference="wqP-AI-2so"/>
         <segue reference="GBd-kR-lEf"/>
     </inferredMetricsTieBreakers>

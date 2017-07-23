@@ -174,6 +174,48 @@ class UserProfileViewController: UIViewController,UITableViewDelegate,UITableVie
     
     
     
+    var detailPosts: Post?
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        detailPosts = self.userprofilePosts[indexPath.row]
+        
+        performSegue(withIdentifier: "TotoDetail", sender: nil)
+        
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "TotoDetail" {
+            
+            let detailVc = (segue.destination as? InDetailViewController)!
+            
+            detailVc.name = detailPosts?.name
+            detailVc.numLikes = (detailPosts?.pvCount)!
+            detailVc.whatContent = detailPosts?.whatContent
+            detailVc.imageURL = detailPosts?.imageURL
+            detailVc.linkURL = detailPosts?.linkURL
+            detailVc.userName = detailPosts?.userProfileName
+            detailVc.userImageURL = detailPosts?.userProfileImage
+            detailVc.userID = detailPosts?.userID
+            
+            
+        }
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
    
 
