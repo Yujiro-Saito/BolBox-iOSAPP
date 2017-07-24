@@ -18,7 +18,6 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
     @IBOutlet weak var profileNavBar: UINavigationBar!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileImage: ProfileImage!
-    @IBOutlet weak var profileDesc: UILabel!
     
     
     
@@ -68,26 +67,7 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
             }
             
             
-            let userRef = DataService.dataBase.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)")
-            
-            
-            userRef.observe(.value, with: { (snapshot) in
-                
-                //UserName取得
-                let user = User(snapshot: snapshot)
-                
-                if user.userDesc == "" {
-                    self.profileDesc.text = ""
-                } else if user.userDesc == nil {
-                    self.profileDesc.text = ""
-                } else {
-                    self.profileDesc.text = user.userDesc
-                }
-                
-                
-                
-            })
-            
+                        
             
             DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "userID").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
                 

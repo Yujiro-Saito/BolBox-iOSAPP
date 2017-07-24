@@ -15,7 +15,6 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
     
     @IBOutlet weak var editNav: UINavigationBar!
     @IBOutlet weak var nameField: SignUpField!
-    @IBOutlet weak var userDesc: SignUpField!
     @IBOutlet weak var userImage: ProfileImage!
     @IBOutlet weak var cardView: UIView!
     var myImagePicker: UIImagePickerController!
@@ -27,7 +26,6 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
         
         
         nameField.delegate = self
-        userDesc.delegate = self
         editNav.delegate = self
         
         
@@ -51,25 +49,7 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
                 userImage.af_setImage(withURL: photoURL!)
             }
             
-            let userRef = DataService.dataBase.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)")
             
-            
-            userRef.observe(.value, with: { (snapshot) in
-                
-                //UserName取得
-                let user = User(snapshot: snapshot)
-                
-                if user.userDesc == "" {
-                    self.userDesc.text = ""
-                } else if user.userDesc == nil {
-                    self.userDesc.text = ""
-                } else {
-                    self.userDesc.text = user.userDesc
-                }
-                
-                
-                
-            })
 
         
 
@@ -159,7 +139,7 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
                         
                         
                         //DBを更新
-                        let userData = ["profileDesc" : self.userDesc.text!, "userName" : FIRAuth.auth()?.currentUser?.displayName, "email" : FIRAuth.auth()?.currentUser?.email,"userImageURL" : userPhotoURL]
+                        let userData = ["userName" : FIRAuth.auth()?.currentUser?.displayName, "email" : FIRAuth.auth()?.currentUser?.email,"userImageURL" : userPhotoURL]
                         
                         //DBに追記
                         DataService.dataBase.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)").updateChildValues(userData)
@@ -190,7 +170,7 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         nameField.resignFirstResponder()
-        userDesc.resignFirstResponder()
+        
         
         return true
     }
