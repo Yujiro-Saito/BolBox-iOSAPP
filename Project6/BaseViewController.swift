@@ -693,7 +693,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     
     @IBAction func twoReadMore(_ sender: Any) {
         
-        numReadMore = 2
+        self.numReadMore = 2
         
         performSegue(withIdentifier: "ReadMoreIndex", sender: nil)
     }
@@ -702,14 +702,14 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     
     @IBAction func threeReadMore(_ sender: Any) {
         
-        numReadMore = 3
+        self.numReadMore = 3
         
         performSegue(withIdentifier: "ReadMoreIndex", sender: nil)
     }
     
     @IBAction func fourReadMore(_ sender: Any) {
         
-        numReadMore = 4
+        self.numReadMore = 4
         
         performSegue(withIdentifier: "ReadMoreIndex", sender: nil)
     }
@@ -717,7 +717,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     @IBAction func fiveReadMore(_ sender: Any) {
         
         
-        numReadMore = 5
+        self.numReadMore = 5
         
         performSegue(withIdentifier: "ReadMoreIndex", sender: nil)
     }

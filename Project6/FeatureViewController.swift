@@ -43,7 +43,7 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             //データOne読み込み
             
             //メディアのデータ読み込み
-            DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
+            DataService.dataBase.REF_FIRST.observe(.value, with: { (snapshot) in
                 
                 self.readMorePosts = []
                 
@@ -56,17 +56,13 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
                         
                         if let postDict = snap.value as? Dictionary<String, AnyObject> {
                             
-                            let categoryTag = postDict["category"] as! String
                             
-                                                        
-                            if categoryTag == "メディア" {
                                 let key = snap.key
                                 let post = Post(postKey: key, postData: postDict)
                                 
                                 self.readMorePosts.append(post)
                                 
                                 
-                            }
                             
                         }
                     }
@@ -82,11 +78,169 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
         } else if readMoreNum == 2 {
             
+            
+            //データOne読み込み
+            
+            //メディアのデータ読み込み
+            DataService.dataBase.REF_SECOND.observe(.value, with: { (snapshot) in
+                
+                self.readMorePosts = []
+                
+                print(snapshot.value)
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
+                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            self.readMorePosts.append(post)
+                            
+                            
+                            
+                        }
+                    }
+                    
+                    
+                }
+                
+                
+                self.readMorePosts.reverse()
+                self.featureTable.reloadData()
+                
+            })
+            
+            
+            
+            
+            
         } else if readMoreNum == 3 {
+            
+            DataService.dataBase.REF_THIRD.observe(.value, with: { (snapshot) in
+                
+                self.readMorePosts = []
+                
+                print(snapshot.value)
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
+                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            self.readMorePosts.append(post)
+                            
+                            
+                            
+                        }
+                    }
+                    
+                    
+                }
+                
+                
+                self.readMorePosts.reverse()
+                self.featureTable.reloadData()
+                
+            })
+
+            
+            
+            
+            
+            
+            
             
         } else if readMoreNum == 4 {
             
+            DataService.dataBase.REF_FOURTH.observe(.value, with: { (snapshot) in
+                
+                self.readMorePosts = []
+                
+                print(snapshot.value)
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
+                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            self.readMorePosts.append(post)
+                            
+                            
+                            
+                        }
+                    }
+                    
+                    
+                }
+                
+                
+                self.readMorePosts.reverse()
+                self.featureTable.reloadData()
+                
+            })
+            
+            
+            
+            
+            
         } else if readMoreNum == 5 {
+            
+            
+            DataService.dataBase.REF_FIFTH.observe(.value, with: { (snapshot) in
+                
+                self.readMorePosts = []
+                
+                print(snapshot.value)
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
+                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            self.readMorePosts.append(post)
+                            
+                            
+                            
+                        }
+                    }
+                    
+                    
+                }
+                
+                
+                self.readMorePosts.reverse()
+                self.featureTable.reloadData()
+                
+            })
+            
+            
+            
+            
+            
+            
             
         }
         
@@ -326,13 +480,188 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
             
             
-        } else if readMoreNum == 1 {
-            
         } else if readMoreNum == 2 {
+            
+            
+            let currentUserName = FIRAuth.auth()?.currentUser?.displayName
+            
+            
+            let readMoreCell = featureTable.dequeueReusableCell(withIdentifier: "FeatureCell", for: indexPath) as? FeatureTableViewCell
+            
+            
+            
+            readMoreCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
+            readMoreCell?.layer.borderWidth = 10
+            readMoreCell?.clipsToBounds = true
+            
+            
+            
+            
+            readMoreCell?.linkURL = self.readMorePosts[indexPath.row].linkURL
+            readMoreCell?.imageURL = self.readMorePosts[indexPath.row].imageURL
+            readMoreCell?.pvCount = self.readMorePosts[indexPath.row].pvCount
+            
+            let post = readMorePosts[indexPath.row]
+            
+            //
+            readMoreCell?.featureImage.af_setImage(withURL: URL(string: readMorePosts[indexPath.row].imageURL)!)
+            
+            
+            
+            if let img = FeatureViewController.imageCache.object(forKey: post.imageURL as! NSString) {
+                
+                
+                
+                readMoreCell?.configureCell(post: post, img: img)
+                
+            }
+            else {
+                
+                readMoreCell?.configureCell(post: post)
+                
+            }
+            
+            
+            
+            
+            return readMoreCell!
+            
             
         } else if readMoreNum == 3 {
             
+            let currentUserName = FIRAuth.auth()?.currentUser?.displayName
+            
+            
+            let readMoreCell = featureTable.dequeueReusableCell(withIdentifier: "FeatureCell", for: indexPath) as? FeatureTableViewCell
+            
+            
+            
+            readMoreCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
+            readMoreCell?.layer.borderWidth = 10
+            readMoreCell?.clipsToBounds = true
+            
+            
+            
+            
+            readMoreCell?.linkURL = self.readMorePosts[indexPath.row].linkURL
+            readMoreCell?.imageURL = self.readMorePosts[indexPath.row].imageURL
+            readMoreCell?.pvCount = self.readMorePosts[indexPath.row].pvCount
+            
+            let post = readMorePosts[indexPath.row]
+            
+            //
+            readMoreCell?.featureImage.af_setImage(withURL: URL(string: readMorePosts[indexPath.row].imageURL)!)
+            
+            
+            
+            if let img = FeatureViewController.imageCache.object(forKey: post.imageURL as! NSString) {
+                
+                
+                
+                readMoreCell?.configureCell(post: post, img: img)
+                
+            }
+            else {
+                
+                readMoreCell?.configureCell(post: post)
+                
+            }
+            
+            
+            
+            
+            return readMoreCell!
+            
         } else if readMoreNum == 4 {
+            
+            
+            let currentUserName = FIRAuth.auth()?.currentUser?.displayName
+            
+            
+            let readMoreCell = featureTable.dequeueReusableCell(withIdentifier: "FeatureCell", for: indexPath) as? FeatureTableViewCell
+            
+            
+            
+            readMoreCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
+            readMoreCell?.layer.borderWidth = 10
+            readMoreCell?.clipsToBounds = true
+            
+            
+            
+            
+            readMoreCell?.linkURL = self.readMorePosts[indexPath.row].linkURL
+            readMoreCell?.imageURL = self.readMorePosts[indexPath.row].imageURL
+            readMoreCell?.pvCount = self.readMorePosts[indexPath.row].pvCount
+            
+            let post = readMorePosts[indexPath.row]
+            
+            //
+            readMoreCell?.featureImage.af_setImage(withURL: URL(string: readMorePosts[indexPath.row].imageURL)!)
+            
+            
+            
+            if let img = FeatureViewController.imageCache.object(forKey: post.imageURL as! NSString) {
+                
+                
+                
+                readMoreCell?.configureCell(post: post, img: img)
+                
+            }
+            else {
+                
+                readMoreCell?.configureCell(post: post)
+                
+            }
+            
+            
+            
+            
+            return readMoreCell!
+            
+        } else if readMoreNum == 5 {
+            
+            let currentUserName = FIRAuth.auth()?.currentUser?.displayName
+            
+            
+            let readMoreCell = featureTable.dequeueReusableCell(withIdentifier: "FeatureCell", for: indexPath) as? FeatureTableViewCell
+            
+            
+            
+            readMoreCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
+            readMoreCell?.layer.borderWidth = 10
+            readMoreCell?.clipsToBounds = true
+            
+            
+            
+            
+            readMoreCell?.linkURL = self.readMorePosts[indexPath.row].linkURL
+            readMoreCell?.imageURL = self.readMorePosts[indexPath.row].imageURL
+            readMoreCell?.pvCount = self.readMorePosts[indexPath.row].pvCount
+            
+            let post = readMorePosts[indexPath.row]
+            
+            //
+            readMoreCell?.featureImage.af_setImage(withURL: URL(string: readMorePosts[indexPath.row].imageURL)!)
+            
+            
+            
+            if let img = FeatureViewController.imageCache.object(forKey: post.imageURL as! NSString) {
+                
+                
+                
+                readMoreCell?.configureCell(post: post, img: img)
+                
+            }
+            else {
+                
+                readMoreCell?.configureCell(post: post)
+                
+            }
+            
+            
+            
+            
+            return readMoreCell!
             
         }
         
@@ -519,6 +848,21 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             return self.readMorePosts.count
         }
         
+        else if readMoreNum == 2 {
+            return self.readMorePosts.count
+        }
+            
+        else if readMoreNum == 3 {
+            return self.readMorePosts.count
+        }
+        
+        else if readMoreNum == 4 {
+            return self.readMorePosts.count
+        }
+            
+        else if readMoreNum == 5 {
+            return self.readMorePosts.count
+        }
         
         else if selectedNum == 0 {
             
