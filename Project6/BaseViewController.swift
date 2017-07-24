@@ -31,6 +31,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     var initialURL = URL(string: "")
     var selectedIndex = Int()
+    var numReadMore = Int()
     
     //コレクションビュー用の配列
     var topPosts = [Post]()
@@ -595,7 +596,21 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             
             
             
+        } else if segue.identifier == "ReadMoreIndex" {
+            
+            
+            let featureVC = (segue.destination as? FeatureViewController)!
+            
+            
+            featureVC.readMoreNum = self.numReadMore
+            
+            
+            
+            
+            
         }
+        
+        
         
         
         
@@ -620,8 +635,6 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             //選ばれた番号　0,1,2のどれか
             selectedIndex = indexPath.row
             
-            //多分いらない
-            //detailPosts = self.purposePosts[indexPath.row]
             
             performSegue(withIdentifier: "ToFeature", sender: nil)
             
@@ -664,6 +677,52 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
         
         
     }
+    
+    
+   
+    
+    @IBAction func oneReadMore(_ sender: Any) {
+        
+        
+        self.numReadMore = 1
+        
+        performSegue(withIdentifier: "ReadMoreIndex", sender: nil)
+        
+    }
+    
+    
+    @IBAction func twoReadMore(_ sender: Any) {
+        
+        numReadMore = 2
+        
+        performSegue(withIdentifier: "ReadMoreIndex", sender: nil)
+    }
+   
+    
+    
+    @IBAction func threeReadMore(_ sender: Any) {
+        
+        numReadMore = 3
+        
+        performSegue(withIdentifier: "ReadMoreIndex", sender: nil)
+    }
+    
+    @IBAction func fourReadMore(_ sender: Any) {
+        
+        numReadMore = 4
+        
+        performSegue(withIdentifier: "ReadMoreIndex", sender: nil)
+    }
+    
+    @IBAction func fiveReadMore(_ sender: Any) {
+        
+        
+        numReadMore = 5
+        
+        performSegue(withIdentifier: "ReadMoreIndex", sender: nil)
+    }
+    
+    
     
     
     

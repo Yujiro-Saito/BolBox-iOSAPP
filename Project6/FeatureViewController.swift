@@ -19,12 +19,15 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     //データ引き継ぎ用
     var selectedNum: Int!
+    var readMoreNum: Int!
     
     
     //データ管理用
     var featureOnePosts = [Post]()
     var featureTwoPosts = [Post]()
     var featureThreePosts = [Post]()
+    var readMorePosts = [Post]()
+    
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
     
@@ -33,7 +36,62 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
         super.viewWillAppear(true)
         
         
-        if selectedNum == 0 {
+        print(readMoreNum)
+        
+        
+        if readMoreNum == 1 {
+            //データOne読み込み
+            
+            //メディアのデータ読み込み
+            DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
+                
+                self.readMorePosts = []
+                
+                print(snapshot.value)
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
+                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            let categoryTag = postDict["category"] as! String
+                            
+                                                        
+                            if categoryTag == "メディア" {
+                                let key = snap.key
+                                let post = Post(postKey: key, postData: postDict)
+                                
+                                self.readMorePosts.append(post)
+                                
+                                
+                            }
+                            
+                        }
+                    }
+                    
+                    
+                }
+                
+                
+                self.readMorePosts.reverse()
+                self.featureTable.reloadData()
+                
+            })
+            
+        } else if readMoreNum == 2 {
+            
+        } else if readMoreNum == 3 {
+            
+        } else if readMoreNum == 4 {
+            
+        } else if readMoreNum == 5 {
+            
+        }
+        
+        
+        else if selectedNum == 0 {
             //一つ目の記事を読み込み
             
             DataService.dataBase.REF_FEATUREONE.observe(.value, with: { (snapshot) in
@@ -216,6 +274,69 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+        
+        
+        
+        
+        if readMoreNum == 1 {
+            
+            let currentUserName = FIRAuth.auth()?.currentUser?.displayName
+            
+            
+            let readMoreCell = featureTable.dequeueReusableCell(withIdentifier: "FeatureCell", for: indexPath) as? FeatureTableViewCell
+            
+            
+            
+            readMoreCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
+            readMoreCell?.layer.borderWidth = 10
+            readMoreCell?.clipsToBounds = true
+            
+            
+            
+            
+            readMoreCell?.linkURL = self.readMorePosts[indexPath.row].linkURL
+            readMoreCell?.imageURL = self.readMorePosts[indexPath.row].imageURL
+            readMoreCell?.pvCount = self.readMorePosts[indexPath.row].pvCount
+            
+            let post = readMorePosts[indexPath.row]
+            
+            //
+            readMoreCell?.featureImage.af_setImage(withURL: URL(string: readMorePosts[indexPath.row].imageURL)!)
+            
+            
+            
+            if let img = FeatureViewController.imageCache.object(forKey: post.imageURL as! NSString) {
+                
+                
+                
+                readMoreCell?.configureCell(post: post, img: img)
+                
+            }
+            else {
+                
+                readMoreCell?.configureCell(post: post)
+                
+            }
+            
+            
+            
+            
+            return readMoreCell!
+            
+            
+            
+        } else if readMoreNum == 1 {
+            
+        } else if readMoreNum == 2 {
+            
+        } else if readMoreNum == 3 {
+            
+        } else if readMoreNum == 4 {
+            
+        }
+        
+        
         
         
         if selectedNum == 0 {
@@ -394,7 +515,12 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         
-        if selectedNum == 0 {
+        if readMoreNum == 1 {
+            return self.readMorePosts.count
+        }
+        
+        
+        else if selectedNum == 0 {
             
             return self.featureOnePosts.count
             
@@ -434,6 +560,30 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
  
 

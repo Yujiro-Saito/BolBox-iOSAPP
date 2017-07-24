@@ -508,7 +508,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zQw-qw-k3L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2209" y="6728"/>
+            <point key="canvasLocation" x="2209" y="6768"/>
         </scene>
         <!--Four View Controller-->
         <scene sceneID="g7V-dH-Lu8">
@@ -877,7 +877,7 @@
                         <viewControllerLayoutGuide type="bottom" id="NQy-fT-QUW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5yt-0k-JDd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="83F-9D-E4A">
@@ -949,7 +949,7 @@
                         <viewControllerLayoutGuide type="bottom" id="FiS-L8-88k"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TsI-E2-xLR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YV8-pl-Klm">
@@ -1945,6 +1945,56 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yDc-cF-dFC">
+                                                <rect key="frame" x="267" y="599" width="100" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="もっと見る">
+                                                    <color key="titleColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="oneReadMore:" destination="gqg-o5-jD6" eventType="touchUpInside" id="eFm-bt-rby"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODP-ff-KoL">
+                                                <rect key="frame" x="267" y="908" width="100" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="もっと見る">
+                                                    <color key="titleColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="twoReadMore:" destination="gqg-o5-jD6" eventType="touchUpInside" id="bsY-Vm-Vf0"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQL-hT-0NG">
+                                                <rect key="frame" x="267" y="1225" width="100" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="もっと見る">
+                                                    <color key="titleColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="threeReadMore:" destination="gqg-o5-jD6" eventType="touchUpInside" id="SGd-H2-xjh"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5sP-3L-v1p">
+                                                <rect key="frame" x="267" y="1534" width="100" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="もっと見る">
+                                                    <color key="titleColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="fourReadMore:" destination="gqg-o5-jD6" eventType="touchUpInside" id="Xi9-7s-fsA"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bb-rb-cfi">
+                                                <rect key="frame" x="267" y="1856" width="100" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="もっと見る">
+                                                    <color key="titleColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="fiveReadMore:" destination="gqg-o5-jD6" eventType="touchUpInside" id="ayc-FG-5xf"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -1984,11 +2034,12 @@
                         <segue destination="o3q-Mq-hHb" kind="show" identifier="backtoRegister" id="f75-nR-suJ"/>
                         <segue destination="MIK-fG-rdI" kind="showDetail" identifier="topPosts" id="Rbq-EQ-Pxa"/>
                         <segue destination="shX-bm-2Po" kind="show" identifier="ToFeature" id="oZS-9M-YCS"/>
+                        <segue destination="shX-bm-2Po" kind="show" identifier="ReadMoreIndex" id="tEs-cJ-o5z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mov-sb-FtR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2466.4000000000001" y="9872.5637181409311"/>
+            <point key="canvasLocation" x="-2542" y="9648"/>
         </scene>
         <!--Feature View Controller-->
         <scene sceneID="lCd-om-5e2">
@@ -2089,7 +2140,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oMV-dk-QIV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1366" y="7703"/>
+            <point key="canvasLocation" x="-678" y="8837"/>
         </scene>
         <!--Notification View Controller-->
         <scene sceneID="bDi-UJ-dsh">
@@ -37739,8 +37790,9 @@ AAAAAAAQDwA
         <image name="wantedly" width="300" height="168"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wqP-AI-2so"/>
+        <segue reference="jod-eB-na4"/>
         <segue reference="f75-nR-suJ"/>
-        <segue reference="Rbq-EQ-Pxa"/>
+        <segue reference="wqP-AI-2so"/>
+        <segue reference="tEs-cJ-o5z"/>
     </inferredMetricsTieBreakers>
 </document>
