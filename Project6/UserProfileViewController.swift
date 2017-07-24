@@ -46,7 +46,14 @@ class UserProfileViewController: UIViewController,UITableViewDelegate,UITableVie
         
         
         self.userTable.backgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
+        
+        self.userTable.refreshControl = UIRefreshControl()
+        self.userTable.refreshControl?.addTarget(self, action: #selector(UserProfileViewController.refresh), for: .valueChanged)
 
+    }
+    
+    func refresh()  {
+        self.userTable.refreshControl?.endRefreshing()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,25 +63,7 @@ class UserProfileViewController: UIViewController,UITableViewDelegate,UITableVie
         self.userProfileName.text = self.userName
         self.userProfileImage.af_setImage(withURL: URL(string: userImageURL)!)
 
-        let userRef = DataService.dataBase.REF_BASE.child("users/\(userID)")
         
-        
-        userRef.observe(.value, with: { (snapshot) in
-            
-            //UserName取得
-            let user = User(snapshot: snapshot)
-            
-            if user.userDesc == "" {
-                self.userDescription.text = ""
-            } else if user.userDesc == nil {
-                self.userDescription.text = ""
-            } else {
-                self.userDescription.text = user.userDesc
-            }
-            
-            
-            
-        })
 
         
         //ユーザー投稿を配列に取得

@@ -878,7 +878,7 @@
                         <viewControllerLayoutGuide type="bottom" id="NQy-fT-QUW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5yt-0k-JDd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="83F-9D-E4A">
@@ -950,7 +950,7 @@
                         <viewControllerLayoutGuide type="bottom" id="FiS-L8-88k"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TsI-E2-xLR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YV8-pl-Klm">
@@ -965,19 +965,12 @@
                                             <action selector="backButtonDidTap:" destination="MIK-fG-rdI" eventType="touchUpInside" id="dT1-1g-iMn"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3q2-4C-crx">
-                                        <rect key="frame" x="26" y="123" width="144" height="101"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pYO-q5-qvs" customClass="ImageDesign" customModule="Project6" customModuleProvider="target">
-                                        <rect key="frame" x="187" y="123" width="172" height="101"/>
+                                        <rect key="frame" x="26" y="73" width="333" height="190"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nq2-F5-hbu">
-                                        <rect key="frame" x="230" y="261" width="129" height="39"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nq2-F5-hbu" customClass="RegisterButton" customModule="Project6" customModuleProvider="target">
+                                        <rect key="frame" x="229" y="301" width="130" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -1000,7 +993,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jJ-2v-4yj">
-                                        <rect key="frame" x="8" y="320" width="359" height="144"/>
+                                        <rect key="frame" x="8" y="377" width="359" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                         <color key="textColor" patternImage="label:8jJ-2v-4yj:patternImage" colorSpace="pattern"/>
@@ -1014,6 +1007,21 @@
                                             <segue destination="B89-8B-hyD" kind="show" identifier="userData" id="YrY-mZ-fsp"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePb-8y-yy0">
+                                        <rect key="frame" x="26" y="358" width="169" height="2"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3q2-4C-crx">
+                                        <rect key="frame" x="26" y="301" width="169" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -2141,7 +2149,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oMV-dk-QIV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1416.8" y="6767.7661169415296"/>
+            <point key="canvasLocation" x="1231" y="6768"/>
         </scene>
         <!--Notification View Controller-->
         <scene sceneID="bDi-UJ-dsh">
@@ -2228,7 +2236,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PyT-h2-bjU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5518" y="7459"/>
+            <point key="canvasLocation" x="6022" y="3569"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Yvr-YY-oSh">
@@ -2491,11 +2499,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Hca-fe-OPm"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2lq-DX-903">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="2200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XOA-8o-di1" customClass="SignInUpViewDesign" customModule="Project6" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="2151"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="951"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t7j-0R-kQv">
@@ -2568,7 +2576,7 @@
                         <viewControllerLayoutGuide type="bottom" id="mMg-sY-6u6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="94Z-SE-e1c">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="2200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="メールアドレス" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Sw-YN-Mfs" customClass="SignUpField" customModule="Project6" customModuleProvider="target">
@@ -2622,7 +2630,7 @@
                         <viewControllerLayoutGuide type="bottom" id="PsN-oc-cB7"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="viu-60-MLQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="2200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="メールアドレス" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nmt-Wy-XIF" customClass="SignUpField" customModule="Project6" customModuleProvider="target">
@@ -37791,9 +37799,9 @@ AAAAAAAQDwA
         <image name="wantedly" width="300" height="168"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="otp-AY-99o"/>
+        <segue reference="uPa-V9-bqT"/>
+        <segue reference="GBd-kR-lEf"/>
         <segue reference="tEs-cJ-o5z"/>
-        <segue reference="wqP-AI-2so"/>
-        <segue reference="f75-nR-suJ"/>
+        <segue reference="Ufe-L3-6S3"/>
     </inferredMetricsTieBreakers>
 </document>
