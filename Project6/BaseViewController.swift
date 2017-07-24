@@ -302,7 +302,8 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
         super.viewDidAppear(true)
         
         //ログインしているか確認
-        if UserDefaults.standard.object(forKey: "AutoLogin") != nil {
+        if UserDefaults.standard.object(forKey: "AutoLogin") != nil || UserDefaults.standard.object(forKey: "GuestUser") != nil
+        {
             
             print("自動ログイン")
             
@@ -329,6 +330,31 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             
         }
         
+        if UserDefaults.standard.object(forKey: "GuestUser") != nil {
+            
+            //ユーザー登録時のユーザーネーム、アドレスの登録
+            let user = FIRAuth.auth()?.currentUser
+            
+            if let user = user {
+                let changeRequest = user.profileChangeRequest()
+                
+                changeRequest.displayName = "ゲスト"
+                changeRequest.photoURL = self.initialURL
+                
+                changeRequest.commitChanges { error in
+                    if let error = error {
+                        // An error happened.
+                        print(error.localizedDescription)
+                    } else {
+                        print("プロフィールの登録完了")
+                        print(user.displayName!)
+                        
+                    }
+                }
+            }
+            
+        }
+
         
         
         

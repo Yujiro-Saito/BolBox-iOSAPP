@@ -18,6 +18,7 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
     @IBOutlet weak var profileNavBar: UINavigationBar!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileImage: ProfileImage!
+    @IBOutlet weak var nonRegisterView: UIView!
     
     
     
@@ -34,6 +35,8 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
         profilePostTable.dataSource = self
         profileNavBar.delegate = self
         
+        self.nonRegisterView.isHidden = true
+        
         //バーの高さ
         self.profileNavBar.frame = CGRect(x: 0,y: 0, width: UIScreen.main.bounds.size.width, height: 60)
         
@@ -48,71 +51,89 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
-        if FIRAuth.auth()?.currentUser != nil {
-            print("ユーザーあり")
+        if UserDefaults.standard.object(forKey: "AutoLogin") != nil  {
             
-            let user = FIRAuth.auth()?.currentUser
-            
-            let userName = user?.displayName
-            let photoURL = user?.photoURL
-            let uid = user?.uid
-            
-            self.profileName.text = userName
-            
-
-            if photoURL == nil {
-                profileImage.image = UIImage(named: "drop")
-            } else {
-                profileImage.af_setImage(withURL: photoURL!)
-            }
-            
-            
-                        
-            
-            DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "userID").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
+            if FIRAuth.auth()?.currentUser != nil {
                 
-                self.userPosts = []
-                print(snapshot.value)
                 
-                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                let user = FIRAuth.auth()?.currentUser
+                
+                let userName = user?.displayName
+                let photoURL = user?.photoURL
+                let uid = user?.uid
+                
+                print("ユーザーあり")
+                print(userName)
+                print(photoURL)
+                print(uid)
+                
+                self.profileName.text = userName
+                
+                
+                if photoURL == nil {
+                    profileImage.image = UIImage(named: "drop")
+                } else {
+                    profileImage.af_setImage(withURL: photoURL!)
+                }
+                
+                
+                
+                
+                DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "userID").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
                     
-                    for snap in snapshot {
-                        print("SNAP: \(snap)")
+                    self.userPosts = []
+                    print(snapshot.value)
+                    
+                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                         
-                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        for snap in snapshot {
+                            print("SNAP: \(snap)")
                             
-                            let key = snap.key
-                            let post = Post(postKey: key, postData: postDict)
+                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                                
+                                let key = snap.key
+                                let post = Post(postKey: key, postData: postDict)
+                                
+                                self.userPosts.append(post)
+                                
+                                
+                                
+                            }
                             
-                            self.userPosts.append(post)
                             
-                            
-
                         }
                         
                         
                     }
                     
                     
-                }
+                    self.userPosts.reverse()
+                    self.profilePostTable.reloadData()
+                    
+                    
+                    
+                    
+                    
+                })
                 
                 
-                self.userPosts.reverse()
-                self.profilePostTable.reloadData()
                 
                 
                 
                 
-                
-            })
+            }
             
             
             
-            
-            
-            
-        } else {
+        }
+        
+        
+         else if UserDefaults.standard.object(forKey: "GuestUser") != nil  {
             print("ユーザーなし")
+            self.nonRegisterView.isHidden = false
+            
+            
+            
         }
         
         
@@ -270,7 +291,22 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
             (action: UIAlertAction!) in
             
             
-            self.performSegue(withIdentifier: "goEdit", sender: nil)
+            //ゲストユーザーの場合
+            if UserDefaults.standard.object(forKey: "GuestUser") != nil  {
+                
+                let alertViewControler = UIAlertController(title: "登録をお願いします", message: "登録をすると投稿ができます", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                
+                alertViewControler.addAction(okAction)
+                self.present(alertViewControler, animated: true, completion: nil)
+                
+                
+            } else if UserDefaults.standard.object(forKey: "AutoLogin") != nil {
+                self.performSegue(withIdentifier: "goEdit", sender: nil)
+            }
+            
+            
+            
             
             
         })
@@ -313,6 +349,29 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
         
         
     }
+    
+    
+    @IBAction func postButtonDidTap(_ sender: Any) {
+        
+        //ゲストユーザーの場合
+        if UserDefaults.standard.object(forKey: "GuestUser") != nil  {
+            
+            let alertViewControler = UIAlertController(title: "登録をお願いします", message: "登録をすると投稿ができます", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            
+            alertViewControler.addAction(okAction)
+            self.present(alertViewControler, animated: true, completion: nil)
+            
+            
+        } else if UserDefaults.standard.object(forKey: "AutoLogin") != nil {
+            performSegue(withIdentifier: "ToPostsss", sender: nil)
+        }
+        
+        
+        
+    }
+    
+    
     
     
     func wait(_ waitContinuation: @escaping (()->Bool), compleation: @escaping (()->Void)) {

@@ -163,18 +163,21 @@ class SignInandUpViewController: UIViewController,GIDSignInUIDelegate {
         
     @IBAction func signInAnonymously(_ sender: Any) {
         
-        /*
+        
         FIRAuth.auth()!.signInAnonymously { (firUser, error) in
             if error == nil {
-                print("スキップしました")
+                print("スキップ登録")
+                UserDefaults.standard.set("GuestUser", forKey: "GuestUser")
+                //UserDefaults.standard.set("AutoLogin", forKey: "AutoLogin")
+                
+                self.performSegue(withIdentifier: "ToHomeView", sender: nil)
             } else {
                 print(error?.localizedDescription)
             }
         }
  
- */
-        UserDefaults.standard.set("AutoLogin", forKey: "AutoLogin")
-        performSegue(withIdentifier: "ToHomeView", sender: nil)
+ 
+        
         
     }
     

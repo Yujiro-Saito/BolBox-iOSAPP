@@ -388,7 +388,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5cW-Zi-Tm5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2209" y="5807"/>
+            <point key="canvasLocation" x="2209" y="5760"/>
         </scene>
         <!--One View Controller-->
         <scene sceneID="zoq-wz-EGF">
@@ -1203,7 +1203,7 @@
                                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VWL-LO-OOR">
                                                                 <rect key="frame" x="16" y="7" width="83" height="30"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <state key="normal" title="Button">
+                                                                <state key="normal" title="戻る">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
                                                                 <connections>
@@ -1303,7 +1303,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8GS-QX-Bdp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4401" y="8425"/>
+            <point key="canvasLocation" x="3998" y="7773"/>
         </scene>
         <!--Account View Controller-->
         <scene sceneID="Mhf-sC-LUb">
@@ -1335,7 +1335,7 @@
                                                         <barButtonItem key="leftBarButtonItem" image="AddPlus" id="qGv-wH-nhz">
                                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <connections>
-                                                                <segue destination="X0E-Jo-YFH" kind="show" id="Kfx-UX-DNP"/>
+                                                                <action selector="postButtonDidTap:" destination="LR8-dZ-54r" id="tjn-Dh-16M"/>
                                                             </connections>
                                                         </barButtonItem>
                                                         <barButtonItem key="rightBarButtonItem" image="Action" id="Nui-2H-JJg">
@@ -1412,6 +1412,21 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1PJ-vd-xMC">
+                                                <rect key="frame" x="0.0" y="60" width="375" height="890"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mlb-9c-c8g">
+                                                        <rect key="frame" x="96" y="140" width="182" height="132"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                        <state key="normal" title="登録をする">
+                                                            <color key="titleColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -1440,6 +1455,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
+                        <outlet property="nonRegisterView" destination="1PJ-vd-xMC" id="7av-dq-rNI"/>
                         <outlet property="profileImage" destination="8l6-DI-YOd" id="lcn-zP-wAG"/>
                         <outlet property="profileName" destination="DzD-KM-fGU" id="F4a-Cu-tlR"/>
                         <outlet property="profileNavBar" destination="gnG-7c-HlF" id="NND-Ca-Uuz"/>
@@ -1447,11 +1463,12 @@
                         <segue destination="BHm-3X-9rX" kind="showDetail" identifier="goEdit" id="b9j-Nh-nIr"/>
                         <segue destination="o3q-Mq-hHb" kind="show" identifier="logout" id="GBd-kR-lEf"/>
                         <segue destination="MIK-fG-rdI" kind="show" identifier="ToDetail" id="Ufe-L3-6S3"/>
+                        <segue destination="X0E-Jo-YFH" kind="show" identifier="ToPostsss" id="pPb-LC-54J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rlu-Lr-uuP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5348" y="3719"/>
+            <point key="canvasLocation" x="3044" y="5908.2458770614694"/>
         </scene>
         <!--Edit View Controller-->
         <scene sceneID="TFz-EM-VJj">
@@ -37799,9 +37816,9 @@ AAAAAAAQDwA
         <image name="wantedly" width="300" height="168"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uPa-V9-bqT"/>
-        <segue reference="GBd-kR-lEf"/>
         <segue reference="tEs-cJ-o5z"/>
+        <segue reference="IlS-KR-O67"/>
+        <segue reference="GBd-kR-lEf"/>
         <segue reference="Ufe-L3-6S3"/>
     </inferredMetricsTieBreakers>
 </document>
