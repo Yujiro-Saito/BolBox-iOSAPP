@@ -19,7 +19,7 @@ class Post {
     private var _whatContent: String!
     private var _goodCount: Int!
     private var _keepCount: Int!
-    private var _pvCount: Int!
+    private var _pvCount: Int?
     private var _detailImageOne: String!
     private var _detailImageTwo: String!
     private var _detailImageThree: String!
@@ -63,7 +63,7 @@ class Post {
     }
     
     var pvCount: Int {
-        return _pvCount
+        return _pvCount!
     }
     
     var postID: String {
@@ -112,7 +112,7 @@ class Post {
 
     
     
-    init?(name: String,  category: String, imageURL: String, whatContent: String, goodCount: Int, keepCount: Int, pvCount: Int, detailImageOne: String, detailImageTwo: String, detailImageThree: String, linkURL: String, postID: String, peopleWhoLike: Dictionary<String, AnyObject?>,userID: String,userProfileImage: String,userProfileName: String
+    init?(name: String,  category: String, imageURL: String, whatContent: String, goodCount: Int, keepCount: Int, pvCount: Int?, detailImageOne: String, detailImageTwo: String, detailImageThree: String, linkURL: String, postID: String, peopleWhoLike: Dictionary<String, AnyObject?>,userID: String,userProfileImage: String,userProfileName: String
         )
     {
         
@@ -167,7 +167,7 @@ class Post {
             self._keepCount = keepCount
         }
         
-        if let pvCount = postData["pvCount"] as? Int {
+        if let pvCount = postData["pvCount"] as? Int? {
             self._pvCount = pvCount
         }
         

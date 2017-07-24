@@ -19,7 +19,7 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     //データ引き継ぎ用
     var selectedNum: Int!
-    var readMoreNum: Int!
+    var readMoreNum = 0
     
     
     //データ管理用
@@ -381,6 +381,20 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
         //バーの高さ
         self.featureNavbar.frame = CGRect(x: 0,y: 0, width: UIScreen.main.bounds.size.width, height: 60)
         
+        self.featureTable.refreshControl = UIRefreshControl()
+        self.featureTable.refreshControl?.addTarget(self, action: #selector(FeatureViewController.refresh), for: .valueChanged)
+        
+        
+    }
+    
+    func refresh() {
+        
+        
+        
+        
+        self.featureTable.refreshControl?.endRefreshing()
+        
+        
         
     }
     
@@ -406,10 +420,44 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
     }
     
+    //
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if self.selectedNum == 0 {
+        if self.readMoreNum == 1 {
+            
+            detailPosts = self.readMorePosts[indexPath.row]
+            performSegue(withIdentifier: "DetailsWin", sender: nil)
+            
+            
+            
+        } else if self.readMoreNum == 2 {
+            
+            
+            detailPosts = self.readMorePosts[indexPath.row]
+            performSegue(withIdentifier: "DetailsWin", sender: nil)
+            
+            
+        } else if self.readMoreNum == 3 {
+            
+            detailPosts = self.readMorePosts[indexPath.row]
+            performSegue(withIdentifier: "DetailsWin", sender: nil)
+            
+        } else if self.readMoreNum == 4 {
+            
+            detailPosts = self.readMorePosts[indexPath.row]
+            performSegue(withIdentifier: "DetailsWin", sender: nil)
+            
+        } else if self.readMoreNum == 5 {
+            
+            detailPosts = self.readMorePosts[indexPath.row]
+            performSegue(withIdentifier: "DetailsWin", sender: nil)
+            
+        }
+            
+            
+            
+        else if self.selectedNum == 0 {
             detailPosts = self.featureOnePosts[indexPath.row]
             performSegue(withIdentifier: "DetailsWin", sender: nil)
         } else if self.selectedNum == 1 {
@@ -419,6 +467,8 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             detailPosts = self.featureThreePosts[indexPath.row]
             performSegue(withIdentifier: "DetailsWin", sender: nil)
         }
+        
+        
         
         
         
