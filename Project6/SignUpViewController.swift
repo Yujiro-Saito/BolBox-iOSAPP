@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import SwiftKeychainWrapper
 
-class SignUpViewController: UIViewController , UITextFieldDelegate{
+class SignUpViewController: UIViewController , UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     
     
     @IBOutlet weak var emailField: SignUpField!
@@ -19,7 +19,7 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
     @IBOutlet weak var userImage: ProfileImage!
     
     
-    
+    var mainImageBox = UIImage()
     var initialURL = URL(string: "")
 
     override func viewDidLoad() {
@@ -157,24 +157,7 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
                         
                                     
                                     
-                                    
-                                    
-                                    
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
+                     
                         let userData = ["provider" : user.providerID]
                         let name = ["userName" : user.displayName]
                         let email = ["email" : user.email]
@@ -249,6 +232,48 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
         
         
     }
+    
+    var myImagePicker: UIImagePickerController!
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if info[UIImagePickerControllerOriginalImage] != nil {
+            
+            if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+                
+                self.mainImageBox = image
+                
+                self.userImage.image = self.mainImageBox
+                
+                
+            }
+            
+            
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func profileImageButtonDidTap(_ sender: Any) {
+        
+        //////
+        
+        
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.delegate = self
+            imagePickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            imagePickerController.allowsEditing = true
+            self.present(imagePickerController, animated: true, completion: nil)
+            
+            
+            
+        } else {
+            print("カメラロール許可をしていない時の処理")
+        }
+        
+         
+        
+    }
+    
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

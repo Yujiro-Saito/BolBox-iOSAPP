@@ -20,6 +20,7 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
     var myImagePicker: UIImagePickerController!
     var mainImageBox = UIImage()
     
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
