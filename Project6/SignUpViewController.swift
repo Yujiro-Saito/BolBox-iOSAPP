@@ -16,6 +16,8 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
     @IBOutlet weak var emailField: SignUpField!
     @IBOutlet weak var passwordField: SignUpField!
     @IBOutlet weak var userNameField: SignUpField!
+    @IBOutlet weak var userImage: ProfileImage!
+    
     
     
     var initialURL = URL(string: "")
@@ -103,23 +105,68 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
                         
                         
                         
-                        let changeRequest = user.profileChangeRequest()
+                        //プロフィール画像と名前の投稿
+                        let metaData = FIRStorageMetadata()
+                        metaData.contentType = "image/jpeg"
+                        let userUID = NSUUID().uuidString
+                        let userImgData = UIImageJPEGRepresentation(self.userImage.image!, 0.2)
                         
-                        changeRequest.displayName = self.userNameField.text
-                        changeRequest.photoURL = self.initialURL
-                        
-                        changeRequest.commitChanges { error in
-                            if let error = error {
-                                // An error happened.
-                                print(error.localizedDescription)
-                            } else {
-                                print("プロフィールの登録完了")
-                                print(user.displayName!)
-                                print(user.email!)
+                        DispatchQueue.global().async {
+                            
+                            DataService.dataBase.REF_POST_IMAGES.child(userUID).put(userImgData!, metadata: metaData) {
+                                (metaData, error) in
                                 
-                                
+                                if error != nil {
+                                    print("画像のアップロードに失敗しました")
+                                } else {
+                                    print("画像のアップロードに成功しました")
+                                    //DBへ画像のURL飛ばす
+                                    let userDownloadURL = metaData?.downloadURL()?.absoluteString
+                                    
+                                    let userPhotoURL = String(describing: FIRAuth.auth()?.currentUser?.photoURL)
+                                    
+                                    
+                                    let changeRequest = user.profileChangeRequest()
+                                    
+                                    changeRequest.displayName = self.userNameField.text
+                                    changeRequest.photoURL = URL(string: userDownloadURL!)
+                                    
+                                    changeRequest.commitChanges { error in
+                                        if let error = error {
+                                            // An error happened.
+                                            print(error.localizedDescription)
+                                        } else {
+                                            print("プロフィールの登録完了")
+                                            print(user.displayName!)
+                                            print(user.email!)
+                                            print(user.photoURL!)
+                                            
+                                            
+                                            let userData = ["userName" : FIRAuth.auth()?.currentUser?.displayName, "email" : FIRAuth.auth()?.currentUser?.email,"userImageURL" : userPhotoURL]
+                                            
+                                            //DBに追記
+                                            DataService.dataBase.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)").setValue(userData)
+                                            
+                                            
+                                        }
+                                    }
+                                    
+                                }
                             }
                         }
+                        
+                                    
+                                    
+                                    
+                                    
+                                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                         
                         
                         
