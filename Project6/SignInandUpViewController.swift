@@ -18,12 +18,13 @@ class SignInandUpViewController: UIViewController,GIDSignInUIDelegate {
     let appDelegateAccess = UIApplication.shared.delegate as! AppDelegate
     
     
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
         GIDSignIn.sharedInstance().uiDelegate = self
         
-        print("真偽判定")
+        
         
         //trueになるまで待機すれば
         
@@ -36,6 +37,7 @@ class SignInandUpViewController: UIViewController,GIDSignInUIDelegate {
             
             self.googleLogin()
             
+            self.performSegue(withIdentifier: "ToHomeView", sender: nil)
             
         }
         
@@ -56,13 +58,13 @@ class SignInandUpViewController: UIViewController,GIDSignInUIDelegate {
         }
         
         
-        UserDefaults.standard.set("GoogleRegister", forKey: "GoogleRegister")
+        //UserDefaults.standard.set("GoogleRegister", forKey: "GoogleRegister")
         UserDefaults.standard.set("AutoLogin", forKey: "AutoLogin")
         
         
         
         
-        self.performSegue(withIdentifier: "ToHomeView", sender: nil)
+        
     }
     
     

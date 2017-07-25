@@ -54,8 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
             return
         }
         //////////
-        self.googleSuccessful = true
-        print("AppDelegate真偽判定\(self.googleSuccessful)")
+        
         
         guard let authentication = user.authentication else { return }
         let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken,
@@ -69,7 +68,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
             } else {
                 
                 print("Sign In successfully")
-                
+                self.googleSuccessful = true
+                print("AppDelegate真偽判定\(self.googleSuccessful)")
                 
                 
             }

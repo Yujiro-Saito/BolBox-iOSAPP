@@ -50,6 +50,7 @@ class EmailLoginViewController: UIViewController,UITextFieldDelegate {
                     
                     UserDefaults.standard.set("AutoLogin", forKey: "AutoLogin")
                     
+                    
                     DispatchQueue.main.async {
                         
                         self.indicator.stopAnimating()

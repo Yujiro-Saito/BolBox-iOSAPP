@@ -312,6 +312,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
         }
         
         
+        /*
         if UserDefaults.standard.object(forKey: "GoogleRegister") != nil {
             
             
@@ -327,7 +328,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             userDefaults.removeObject(forKey: "GoogleRegister")
             
             
-        }
+        }*/
         
         if UserDefaults.standard.object(forKey: "GuestUser") != nil {
             
