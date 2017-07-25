@@ -50,27 +50,7 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
     }
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "Story") {
-            
-            let postStory = (segue.destination as? StoryViewController)!
-            
-            
-            
-            //postStory.detailOne = self.detailImage!
-            postStory.detailOne = self.mainImagePhoto.image!
-            
-            
-            
-            //名前、URL、カテゴリーの引き継ぎ
-            postStory.name = self.productName
-            postStory.url = self.productURL!
-            postStory.categoryTitle = self.productCategory
-            postStory.usageText = self.usageTextBox.text
-            
-        }
-    }
-
+    
     
     
     

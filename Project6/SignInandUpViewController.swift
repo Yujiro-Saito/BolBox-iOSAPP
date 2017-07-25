@@ -47,8 +47,21 @@ class SignInandUpViewController: UIViewController,GIDSignInUIDelegate {
     
     func googleLogin() {
         
+        
+        
+        //GuestUserの削除
+        if UserDefaults.standard.object(forKey: "GuestUser") != nil {
+            let userDefaults = UserDefaults.standard
+            userDefaults.removeObject(forKey: "GuestUser")
+        }
+        
+        
         UserDefaults.standard.set("GoogleRegister", forKey: "GoogleRegister")
         UserDefaults.standard.set("AutoLogin", forKey: "AutoLogin")
+        
+        
+        
+        
         self.performSegue(withIdentifier: "ToHomeView", sender: nil)
     }
     
@@ -159,6 +172,15 @@ class SignInandUpViewController: UIViewController,GIDSignInUIDelegate {
         
     }
     
+    
+    
+    @IBAction func goBackButtonDidTap(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+        
+        
+        
+    }
         
         
     @IBAction func signInAnonymously(_ sender: Any) {

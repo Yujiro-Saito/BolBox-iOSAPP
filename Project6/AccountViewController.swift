@@ -21,6 +21,8 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
     @IBOutlet weak var nonRegisterView: UIView!
     
     
+    var realUserName: String?
+    var initialURL = URL(string: "")
     
     var userPosts = [Post]()
     var detailPosts: Post?
@@ -43,7 +45,68 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
         
         
         self.profilePostTable.backgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
-
+        
+        
+        /*
+        if UserDefaults.standard.object(forKey: "EmailRegister") != nil {
+            
+            
+            let alertViewControler = UIAlertController(title: "登録を完了しました", message: "ありがとうございます!", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            
+            alertViewControler.addAction(okAction)
+            self.present(alertViewControler, animated: true, completion: nil)
+            
+            
+            let userDefaults = UserDefaults.standard
+            userDefaults.removeObject(forKey: "EmailRegister")
+            
+            //ユーザー登録時のユーザーネーム、アドレスの登録
+            let user = FIRAuth.auth()?.currentUser
+            
+            if let user = user {
+                let changeRequest = user.profileChangeRequest()
+                
+                changeRequest.displayName = self.realUserName
+                changeRequest.photoURL = self.initialURL
+                
+                changeRequest.commitChanges { error in
+                    if let error = error {
+                        // An error happened.
+                        print(error.localizedDescription)
+                    } else {
+                        print("プロフィールの登録完了")
+                        print(user.displayName!)
+                        print(user.email!)
+                        
+                        
+                        //プロフィール登録
+                        let user = FIRAuth.auth()?.currentUser
+                        
+                        let userName = user?.displayName
+                        let photoURL = user?.photoURL
+                        let uid = user?.uid
+                        
+                        print("ユーザーあり")
+                        print(userName)
+                        print(photoURL)
+                        print(uid)
+                        
+                        self.profileName.text = userName
+                        
+                        
+                        if photoURL == nil {
+                            self.profileImage.image = UIImage(named: "drop")
+                        } else {
+                            self.profileImage.af_setImage(withURL: photoURL!)
+                        }
+                        
+                    }
+                }
+            }
+            
+        }
+*/
     }
     
     

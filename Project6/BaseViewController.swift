@@ -25,7 +25,6 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     
     
     
-    
     //プロパティ
     var displayUserName: String?
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
@@ -317,7 +316,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             
             
             
-            let alertViewControler = UIAlertController(title: "Welcome!", message: "ありがとうございます", preferredStyle: .alert)
+            let alertViewControler = UIAlertController(title: "Welcome!", message: "登録ありがとうございます", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             
             alertViewControler.addAction(okAction)
@@ -331,6 +330,10 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
         }
         
         if UserDefaults.standard.object(forKey: "GuestUser") != nil {
+            
+            print("ゲストユーザー")
+            
+            
             
             //ユーザー登録時のユーザーネーム、アドレスの登録
             let user = FIRAuth.auth()?.currentUser
@@ -361,6 +364,8 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
         if UserDefaults.standard.object(forKey: "EmailRegister") != nil {
             
             
+            
+            
             let alertViewControler = UIAlertController(title: "登録を完了しました", message: "ありがとうございます!", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             
@@ -368,16 +373,19 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             self.present(alertViewControler, animated: true, completion: nil)
             
             
+            
             let userDefaults = UserDefaults.standard
             userDefaults.removeObject(forKey: "EmailRegister")
             
+            
+            /*
             //ユーザー登録時のユーザーネーム、アドレスの登録
             let user = FIRAuth.auth()?.currentUser
             
             if let user = user {
                 let changeRequest = user.profileChangeRequest()
                 
-                changeRequest.displayName = "ゲスト"
+                changeRequest.displayName = "ゲストユーザー"
                 changeRequest.photoURL = self.initialURL
                 
                 changeRequest.commitChanges { error in
@@ -388,13 +396,22 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
                         print("プロフィールの登録完了")
                         print(user.displayName!)
                         print(user.email!)
+                        
+                        //
+                        DispatchQueue.main.async {
+                            
+                            self.indicator.stopAnimating()
+                        }
+                        
+                        
                     }
                 }
             }
+            */
             
         }
         
-        
+ 
     }
     
     
@@ -750,6 +767,29 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     
     
     
+    
+    let indicator = UIActivityIndicatorView()
+    
+    func showIndicator() {
+        
+        indicator.activityIndicatorViewStyle = .whiteLarge
+        
+        indicator.center = self.view.center
+        
+        indicator.color = UIColor.rgb(r: 31, g: 158, b: 187, alpha: 1)
+        
+        indicator.hidesWhenStopped = true
+        
+        self.view.addSubview(indicator)
+        
+        self.view.bringSubview(toFront: indicator)
+        
+        indicator.startAnimating()
+        
+        
+        
+        
+    }
     
     
     

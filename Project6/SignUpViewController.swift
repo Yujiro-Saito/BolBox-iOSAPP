@@ -18,7 +18,7 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
     @IBOutlet weak var userNameField: SignUpField!
     
     
-    
+    var initialURL = URL(string: "")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,7 +87,11 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
                 
                 if error == nil{
                     
-                    
+                    //GuestUserの削除
+                    if UserDefaults.standard.object(forKey: "GuestUser") != nil {
+                        let userDefaults = UserDefaults.standard
+                        userDefaults.removeObject(forKey: "GuestUser")
+                    }
                     
                     
                     
@@ -95,6 +99,31 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
                     UserDefaults.standard.set("AutoLogin", forKey: "AutoLogin")
                     
                     if let user = user {
+                        
+                        
+                        
+                        
+                        let changeRequest = user.profileChangeRequest()
+                        
+                        changeRequest.displayName = self.userNameField.text
+                        changeRequest.photoURL = self.initialURL
+                        
+                        changeRequest.commitChanges { error in
+                            if let error = error {
+                                // An error happened.
+                                print(error.localizedDescription)
+                            } else {
+                                print("プロフィールの登録完了")
+                                print(user.displayName!)
+                                print(user.email!)
+                                
+                                
+                            }
+                        }
+                        
+                        
+                        
+                        
                         
                         
                         
@@ -172,6 +201,22 @@ class SignUpViewController: UIViewController , UITextFieldDelegate{
         
         
         
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        if segue.identifier == "RealUserDone" {
+            
+            let accountVc = (segue.destination as? AccountViewController)!
+            
+            accountVc.realUserName = self.userNameField.text
+            
+            
+            
+            
+        }
     }
     
     
