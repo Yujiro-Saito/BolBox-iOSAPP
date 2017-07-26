@@ -860,7 +860,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Vf-2d-4gA">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="951"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mx5-52-r3E">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
@@ -1103,10 +1103,10 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mlb-9c-c8g">
-                                                        <rect key="frame" x="96" y="140" width="182" height="132"/>
+                                                        <rect key="frame" x="78" y="150" width="218" height="132"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                        <state key="normal" title="登録をする">
+                                                        <state key="normal" title="登録・ログインをする">
                                                             <color key="titleColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
@@ -1157,7 +1157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rlu-Lr-uuP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-12126" y="8941"/>
+            <point key="canvasLocation" x="-12127.200000000001" y="8940.6296851574225"/>
         </scene>
         <!--Edit View Controller-->
         <scene sceneID="TFz-EM-VJj">
@@ -1279,28 +1279,28 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="y1b-tk-Ett">
-                                                    <size key="itemSize" width="375" height="300"/>
+                                                    <size key="itemSize" width="376" height="300"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="topCell" id="aek-hT-VY4" customClass="newCollectionViewCell" customModule="Project6" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="376" height="300"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="376" height="300"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.94999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6jn-nl-cNn">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="376" height="300"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 </imageView>
                                                                 <visualEffectView opaque="NO" clipsSubviews="YES" alpha="0.20000000000000001" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XPv-ZS-Z60">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="376" height="300"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="A9T-Xv-gXr">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="376" height="300"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     </view>
                                                                     <color key="backgroundColor" red="0.18823529411764706" green="0.21568627450980393" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1734,7 +1734,7 @@
                             <constraint firstAttribute="bottom" secondItem="ac2-gI-EY4" secondAttribute="bottom" id="llV-ls-qVE"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" selectedImage="Rectangle 5 Copy" systemItem="recents" id="Dkl-P5-vvo"/>
+                    <tabBarItem key="tabBarItem" systemItem="recents" id="Dkl-P5-vvo"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="2200"/>
                     <connections>
@@ -1754,7 +1754,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mov-sb-FtR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2542" y="9648"/>
+            <point key="canvasLocation" x="-2543.1999999999998" y="9647.676161919042"/>
         </scene>
         <!--Feature View Controller-->
         <scene sceneID="lCd-om-5e2">
@@ -1932,22 +1932,23 @@
                         </subviews>
                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" systemItem="history" id="nb4-W0-fJA">
+                    <tabBarItem key="tabBarItem" title="" badgeValue="5" systemItem="history" id="nb4-W0-fJA">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <connections>
                         <outlet property="navBar" destination="2SZ-MM-ktG" id="0nY-0Q-f0o"/>
                         <outlet property="notificationTable" destination="lZz-8L-HCK" id="rGU-L7-A75"/>
+                        <outlet property="tabItem" destination="nb4-W0-fJA" id="fh7-xq-5bq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PyT-h2-bjU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6022" y="3569"/>
+            <point key="canvasLocation" x="-3631" y="9035"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab View Controller-->
         <scene sceneID="Yvr-YY-oSh">
             <objects>
-                <tabBarController id="QLh-cT-mN4" sceneMemberID="viewController">
+                <tabBarController id="QLh-cT-mN4" customClass="TabViewController" customModule="Project6" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="rcG-Np-2Ay">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2165,11 +2166,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Hca-fe-OPm"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2lq-DX-903">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="2200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XOA-8o-di1" customClass="SignInUpViewDesign" customModule="Project6" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="951"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="2151"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="More" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ASj-gk-CIp">
@@ -2241,7 +2242,7 @@
                         <viewControllerLayoutGuide type="bottom" id="mMg-sY-6u6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="94Z-SE-e1c">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="2200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="メールアドレス" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Sw-YN-Mfs" customClass="SignUpField" customModule="Project6" customModuleProvider="target">
@@ -2303,7 +2304,7 @@
                         <viewControllerLayoutGuide type="bottom" id="PsN-oc-cB7"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="viu-60-MLQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="2200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="メールアドレス" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nmt-Wy-XIF" customClass="SignUpField" customModule="Project6" customModuleProvider="target">
@@ -2389,7 +2390,6 @@
         <image name="AddPhoto" width="64" height="64"/>
         <image name="AddPlus" width="32" height="32"/>
         <image name="Fill 91 Copy" width="34" height="34"/>
-        <image name="Rectangle 5 Copy" width="30" height="34"/>
         <image name="closes" width="64" height="64"/>
         <image name="colo" width="4472" height="2981"/>
         <image name="label:1eB-gA-gRT:patternImage" width="512" height="512">
@@ -37497,8 +37497,8 @@ AAAAAAAQDwA
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="uPa-V9-bqT"/>
-        <segue reference="GBd-kR-lEf"/>
+        <segue reference="f75-nR-suJ"/>
+        <segue reference="Rbq-EQ-Pxa"/>
         <segue reference="tEs-cJ-o5z"/>
-        <segue reference="otp-AY-99o"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -35,8 +35,13 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
         self.oneTable.refreshControl?.addTarget(self, action: #selector(OneViewController.refresh), for: .valueChanged)
         
         
+        
+       
 
     }
+    
+    
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)

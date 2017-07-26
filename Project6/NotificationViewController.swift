@@ -21,6 +21,9 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
     var firstUserNameBox = [String]()
     var userImageURLBox = [String]()
     var userPostTitleBox = [String]()
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +31,9 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         navBar.delegate = self
         notificationTable.delegate = self
         notificationTable.dataSource = self
+        
+        
+        
         
         
         //バーの高さ
@@ -39,7 +45,8 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         
         self.notificationTable.refreshControl = UIRefreshControl()
         self.notificationTable.refreshControl?.addTarget(self, action: #selector(NotificationViewController.refresh), for: .valueChanged)
-       
+        
+        
 
     }
     
@@ -144,8 +151,14 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         
     }
 
+    
+    
+    @IBOutlet weak var tabItem: UITabBarItem!
+    
+    
+    
 
-
+/////////////////////------------
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return firstUserNameBox.count
@@ -162,6 +175,12 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         notiCell?.clipsToBounds = true
         
         if firstUserNameBox.count >= 1 {
+            
+            //通知数を伝える
+            
+            
+            self.tabItem.badgeValue = String(self.firstUserNameBox.count)
+            
             notiCell?.userName.text = firstUserNameBox[indexPath.row]
             notiCell?.userImage.af_setImage(withURL: URL(string: userImageURLBox[indexPath.row])!)
             notiCell?.title.text = userPostTitleBox[indexPath.row]
@@ -172,10 +191,12 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         
         
         
-       
  
         
         return notiCell!
+        
+        
+       
         
         
     }
