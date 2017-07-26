@@ -300,65 +300,27 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
-        //ログインしているか確認
-        if UserDefaults.standard.object(forKey: "AutoLogin") != nil || UserDefaults.standard.object(forKey: "GuestUser") != nil
-        {
-            
-            print("自動ログイン")
-            
-        } else {
-            //ログインしていなければ登録画面に戻る
-            self.performSegue(withIdentifier: "backtoRegister", sender: nil)
-        }
+        //デフォルトではゲストユーザー
         
         
-        /*
-        if UserDefaults.standard.object(forKey: "GoogleRegister") != nil {
+        if UserDefaults.standard.object(forKey: "AutoLogin") == nil {
             
-            
-            
-            let alertViewControler = UIAlertController(title: "Welcome!", message: "登録ありがとうございます", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            
-            alertViewControler.addAction(okAction)
-            self.present(alertViewControler, animated: true, completion: nil)
-            
-            
-            let userDefaults = UserDefaults.standard
-            userDefaults.removeObject(forKey: "GoogleRegister")
-            
-            
-        }*/
-        
-        if UserDefaults.standard.object(forKey: "GuestUser") != nil {
-            
-            print("ゲストユーザー")
-            
-            
-            
-            //ユーザー登録時のユーザーネーム、アドレスの登録
-            let user = FIRAuth.auth()?.currentUser
-            
-            if let user = user {
-                let changeRequest = user.profileChangeRequest()
+            if UserDefaults.standard.object(forKey: "GuestUser") == nil {
                 
-                changeRequest.displayName = "ゲスト"
-                changeRequest.photoURL = self.initialURL
-                
-                changeRequest.commitChanges { error in
-                    if let error = error {
-                        // An error happened.
-                        print(error.localizedDescription)
-                    } else {
-                        print("プロフィールの登録完了")
-                        print(user.displayName!)
-                        
-                    }
-                }
+                UserDefaults.standard.set("GuestUser", forKey: "GuestUser")
             }
             
+            
+            
+            
+            
         }
-
+        
+        
+        
+        
+        
+        
         
         
         
@@ -379,36 +341,6 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             userDefaults.removeObject(forKey: "EmailRegister")
             
             
-            /*
-            //ユーザー登録時のユーザーネーム、アドレスの登録
-            let user = FIRAuth.auth()?.currentUser
-            
-            if let user = user {
-                let changeRequest = user.profileChangeRequest()
-                
-                changeRequest.displayName = "ゲストユーザー"
-                changeRequest.photoURL = self.initialURL
-                
-                changeRequest.commitChanges { error in
-                    if let error = error {
-                        // An error happened.
-                        print(error.localizedDescription)
-                    } else {
-                        print("プロフィールの登録完了")
-                        print(user.displayName!)
-                        print(user.email!)
-                        
-                        //
-                        DispatchQueue.main.async {
-                            
-                            self.indicator.stopAnimating()
-                        }
-                        
-                        
-                    }
-                }
-            }
-            */
             
         }
         

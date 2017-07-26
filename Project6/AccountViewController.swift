@@ -47,66 +47,7 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
         self.profilePostTable.backgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
         
         
-        /*
-        if UserDefaults.standard.object(forKey: "EmailRegister") != nil {
-            
-            
-            let alertViewControler = UIAlertController(title: "登録を完了しました", message: "ありがとうございます!", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            
-            alertViewControler.addAction(okAction)
-            self.present(alertViewControler, animated: true, completion: nil)
-            
-            
-            let userDefaults = UserDefaults.standard
-            userDefaults.removeObject(forKey: "EmailRegister")
-            
-            //ユーザー登録時のユーザーネーム、アドレスの登録
-            let user = FIRAuth.auth()?.currentUser
-            
-            if let user = user {
-                let changeRequest = user.profileChangeRequest()
-                
-                changeRequest.displayName = self.realUserName
-                changeRequest.photoURL = self.initialURL
-                
-                changeRequest.commitChanges { error in
-                    if let error = error {
-                        // An error happened.
-                        print(error.localizedDescription)
-                    } else {
-                        print("プロフィールの登録完了")
-                        print(user.displayName!)
-                        print(user.email!)
-                        
-                        
-                        //プロフィール登録
-                        let user = FIRAuth.auth()?.currentUser
-                        
-                        let userName = user?.displayName
-                        let photoURL = user?.photoURL
-                        let uid = user?.uid
-                        
-                        print("ユーザーあり")
-                        print(userName)
-                        print(photoURL)
-                        print(uid)
-                        
-                        self.profileName.text = userName
-                        
-                        
-                        if photoURL == nil {
-                            self.profileImage.image = UIImage(named: "drop")
-                        } else {
-                            self.profileImage.af_setImage(withURL: photoURL!)
-                        }
-                        
-                    }
-                }
-            }
-            
-        }
-*/
+       
     }
     
     
@@ -114,51 +55,58 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
-        if UserDefaults.standard.object(forKey: "AutoLogin") != nil  {
+        
+        
             
-            if FIRAuth.auth()?.currentUser != nil {
+            //ユーザーデータ読み込み
+            if UserDefaults.standard.object(forKey: "AutoLogin") != nil  {
                 
-                
-                let user = FIRAuth.auth()?.currentUser
-                
-                let userName = user?.displayName
-                let photoURL = user?.photoURL
-                let uid = user?.uid
-                
-                print("ユーザーあり")
-                print(userName)
-                print(photoURL)
-                print(uid)
-                
-                self.profileName.text = userName
-                
-                
-                if photoURL == nil {
-                    profileImage.image = UIImage(named: "drop")
-                } else {
-                    profileImage.af_setImage(withURL: photoURL!)
-                }
-                
-                
-                
-                
-                DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "userID").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
+                if FIRAuth.auth()?.currentUser != nil {
                     
-                    self.userPosts = []
-                    print(snapshot.value)
                     
-                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    let user = FIRAuth.auth()?.currentUser
+                    
+                    let userName = user?.displayName
+                    let photoURL = user?.photoURL
+                    let uid = user?.uid
+                    
+                    print("ユーザーあり")
+                    print(userName)
+                    print(photoURL)
+                    print(uid)
+                    
+                    self.profileName.text = userName
+                    
+                    
+                    if photoURL == nil {
+                        profileImage.image = UIImage(named: "drop")
+                    } else {
+                        profileImage.af_setImage(withURL: photoURL!)
+                    }
+                    
+                    
+                    
+                    
+                    DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "userID").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
                         
-                        for snap in snapshot {
-                            print("SNAP: \(snap)")
+                        self.userPosts = []
+                        print(snapshot.value)
+                        
+                        if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                             
-                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            for snap in snapshot {
+                                print("SNAP: \(snap)")
                                 
-                                let key = snap.key
-                                let post = Post(postKey: key, postData: postDict)
-                                
-                                self.userPosts.append(post)
-                                
+                                if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                                    
+                                    let key = snap.key
+                                    let post = Post(postKey: key, postData: postDict)
+                                    
+                                    self.userPosts.append(post)
+                                    
+                                    
+                                    
+                                }
                                 
                                 
                             }
@@ -167,39 +115,30 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
                         }
                         
                         
-                    }
+                        self.userPosts.reverse()
+                        self.profilePostTable.reloadData()
+                        
+                        
+                        
+                        
+                    })
                     
                     
-                    self.userPosts.reverse()
-                    self.profilePostTable.reloadData()
                     
-                    
-                    
-                    
-                    
-                })
-                
-                
-                
-                
-                
-                
-            }
-            
-            
+                }
+           
             
         }
-        
-        
-         else if UserDefaults.standard.object(forKey: "GuestUser") != nil  {
-            print("ユーザーなし")
+            
+            
+            
+            else if UserDefaults.standard.object(forKey: "GuestUser") != nil {
+            
+            print("ゲストユーザー")
+            
             self.nonRegisterView.isHidden = false
             
-            
-            
         }
-        
-        
         
         
            }

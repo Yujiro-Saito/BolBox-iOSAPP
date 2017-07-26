@@ -29,7 +29,7 @@ class SignUpViewController: UIViewController , UITextFieldDelegate,UIImagePicker
         passwordField.delegate = self
         userNameField.delegate = self
         
-        self.userNameField.becomeFirstResponder()
+        //self.userNameField.becomeFirstResponder()
 
     }
     
@@ -61,6 +61,14 @@ class SignUpViewController: UIViewController , UITextFieldDelegate,UIImagePicker
     }
     
    
+    @IBAction func backButton(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    
+    
     
     @IBAction func registerDidTap(_ sender: Any) {
         

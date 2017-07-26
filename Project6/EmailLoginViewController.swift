@@ -28,6 +28,12 @@ class EmailLoginViewController: UIViewController,UITextFieldDelegate {
         self.emailField.becomeFirstResponder()
 
     }
+    
+    
+    @IBAction func backButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 
    
     @IBAction func loginButtonDidTap(_ sender: Any) {
@@ -47,6 +53,8 @@ class EmailLoginViewController: UIViewController,UITextFieldDelegate {
                     
                     let userData = ["provider" : user.providerID]
                     self.completeLogin(id: user.uid, userData: userData)
+                    
+                    
                     
                     UserDefaults.standard.set("AutoLogin", forKey: "AutoLogin")
                     
