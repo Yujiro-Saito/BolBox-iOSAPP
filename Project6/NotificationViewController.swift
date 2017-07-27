@@ -189,36 +189,6 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
             }
             
             
-                //通知の設定
-            else if UserDefaults.standard.object(forKey: "previousCounts") != nil {
-                
-                print("通知数の検証をします")
-                //前回数値を取得
-                let previousNum = UserDefaults.standard.integer(forKey: "previousCounts")
-                print(previousNum)
-                print(currentCounts)
-               
-                //今回と比較 大きければ、バッジに表示とpreviousの更新
-                if currentCounts > previousNum {
-                    print("最終")
-                    let currentNum = currentCounts - previousNum
-                    print(currentNum)
-                    self.tabItem.badgeValue = String(currentNum)
-                    
-                    let userDefaults = UserDefaults.standard
-                    
-                    userDefaults.removeObject(forKey: "previousCounts")
-                    
-                    UserDefaults.standard.set(self.firstUserNameBox.count, forKey: "previousCounts")
-                    print("通知数が更新されました")
-                    
-                    
-                }
-                
-                
-                
-                
-            }
             
             
             
@@ -266,6 +236,7 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         
         let notiCell = notificationTable.dequeueReusableCell(withIdentifier: "notification", for: indexPath) as? NotificationTableViewCell
         
+        let currentCounts = self.firstUserNameBox.count
         
         notiCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
         notiCell?.layer.borderWidth = 10
@@ -274,7 +245,35 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         if firstUserNameBox.count >= 1 {
             
             
-            
+            if UserDefaults.standard.object(forKey: "previousCounts") != nil {
+                
+                print("通知数の検証をします")
+                //前回数値を取得
+                let previousNum = UserDefaults.standard.integer(forKey: "previousCounts")
+                print(previousNum)
+                print(currentCounts)
+                
+                //今回と比較 大きければ、バッジに表示とpreviousの更新
+                if currentCounts > previousNum {
+                    print("最終")
+                    let currentNum = currentCounts - previousNum
+                    print(currentNum)
+                    self.tabItem.badgeValue = String(currentNum)
+                    
+                    let userDefaults = UserDefaults.standard
+                    
+                    userDefaults.removeObject(forKey: "previousCounts")
+                    
+                    UserDefaults.standard.set(self.firstUserNameBox.count, forKey: "previousCounts")
+                    print("通知数が更新されました")
+                    
+                    
+                }
+                
+                
+                
+                
+            }
             
             
             
