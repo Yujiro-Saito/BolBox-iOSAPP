@@ -16,7 +16,7 @@ class ThreeViewController: UIViewController, IndicatorInfoProvider,UITableViewDe
     
     @IBOutlet weak var threeTable: UITableView!
     
-    var itemInfo: IndicatorInfo = "教育・キャリア"
+    var itemInfo: IndicatorInfo = "ゲーム"
     var educationPosts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
@@ -54,7 +54,7 @@ class ThreeViewController: UIViewController, IndicatorInfoProvider,UITableViewDe
                         let categoryTag = postDict["category"] as! String
                         
                         
-                        if categoryTag == "教育・キャリア" {
+                        if categoryTag == "ゲーム" {
                             let key = snap.key
                             let post = Post(postKey: key, postData: postDict)
                             
@@ -106,7 +106,7 @@ class ThreeViewController: UIViewController, IndicatorInfoProvider,UITableViewDe
                         let categoryTag = postDict["category"] as! String
                         
                         
-                        if categoryTag == "教育・キャリア" {
+                        if categoryTag == "ゲーム" {
                             let key = snap.key
                             let post = Post(postKey: key, postData: postDict)
                             

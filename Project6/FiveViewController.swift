@@ -17,7 +17,7 @@ class FiveViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
     
     @IBOutlet weak var fiveTable: UITableView!
     
-    var itemInfo: IndicatorInfo = "ショッピング"
+    var itemInfo: IndicatorInfo = "教育・キャリア"
     var shoppinglPosts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
@@ -61,7 +61,7 @@ class FiveViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
                         let categoryTag = postDict["category"] as! String
                         
                         
-                        if categoryTag == "ショッピング" {
+                        if categoryTag == "教育・キャリア" {
                             let key = snap.key
                             let post = Post(postKey: key, postData: postDict)
                             
@@ -114,7 +114,7 @@ class FiveViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
                         let categoryTag = postDict["category"] as! String
                         
                         
-                        if categoryTag == "ショッピング" {
+                        if categoryTag == "教育・キャリア" {
                             let key = snap.key
                             let post = Post(postKey: key, postData: postDict)
                             

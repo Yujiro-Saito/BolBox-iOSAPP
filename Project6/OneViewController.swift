@@ -17,7 +17,7 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
     
     
     @IBOutlet weak var oneTable: UITableView!
-    var itemInfo: IndicatorInfo = "メディア"
+    var itemInfo: IndicatorInfo = "アプリ"
     var mediaPosts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     var likingNameBox = [String]()
@@ -63,7 +63,7 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
                         let categoryTag = postDict["category"] as! String
                         
                         
-                        if categoryTag == "メディア" {
+                        if categoryTag == "アプリ" {
                             let key = snap.key
                             let post = Post(postKey: key, postData: postDict)
                             
@@ -112,7 +112,7 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
                         let categoryTag = postDict["category"] as! String
                         
                         
-                        if categoryTag == "メディア" {
+                        if categoryTag == "アプリ" {
                             let key = snap.key
                             let post = Post(postKey: key, postData: postDict)
                             

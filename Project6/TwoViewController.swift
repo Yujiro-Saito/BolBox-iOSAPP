@@ -14,7 +14,7 @@ class TwoViewController: UIViewController, IndicatorInfoProvider,UITableViewData
     
     
     @IBOutlet weak var twoTable: UITableView!
-    var itemInfo: IndicatorInfo = "アプリ"
+    var itemInfo: IndicatorInfo = "メディア"
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     var appPosts = [Post]()
     
@@ -56,7 +56,7 @@ class TwoViewController: UIViewController, IndicatorInfoProvider,UITableViewData
                         let categoryTag = postDict["category"] as! String
                         
                         
-                        if categoryTag == "アプリ" {
+                        if categoryTag == "メディア" {
                             let key = snap.key
                             let post = Post(postKey: key, postData: postDict)
                             
@@ -108,7 +108,7 @@ class TwoViewController: UIViewController, IndicatorInfoProvider,UITableViewData
                         let categoryTag = postDict["category"] as! String
                         
                         
-                        if categoryTag == "アプリ" {
+                        if categoryTag == "メディア" {
                             let key = snap.key
                             let post = Post(postKey: key, postData: postDict)
                             

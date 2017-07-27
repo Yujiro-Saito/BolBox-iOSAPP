@@ -22,7 +22,7 @@ class FourViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
     //ここがボタンのタイトルに利用されます
-    var itemInfo: IndicatorInfo = "トラベル"
+    var itemInfo: IndicatorInfo = "エンタメ"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +59,7 @@ class FourViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
                         let categoryTag = postDict["category"] as! String
                         
                         
-                        if categoryTag == "トラベル" {
+                        if categoryTag == "エンタメ" {
                             let key = snap.key
                             let post = Post(postKey: key, postData: postDict)
                             
@@ -106,7 +106,7 @@ class FourViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
                         let categoryTag = postDict["category"] as! String
                         
                         
-                        if categoryTag == "トラベル" {
+                        if categoryTag == "エンタメ" {
                             let key = snap.key
                             let post = Post(postKey: key, postData: postDict)
                             

@@ -15,7 +15,7 @@ class PostProductInfoViewController: UIViewController,UIPickerViewDelegate, UIPi
     @IBOutlet weak var productNameField: SignUpField!
     @IBOutlet weak var urlField: SignUpField!
     let selectPicker = UIPickerView()
-    var categoryBox = ["カテゴリーを選択してください","メディア","アプリ","教育・キャリア","トラベル", "ショッピング"]
+    var categoryBox = ["カテゴリーを選択してください","アプリ","メディア","ゲーム","エンタメ", "教育・キャリア"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,11 +65,13 @@ class PostProductInfoViewController: UIViewController,UIPickerViewDelegate, UIPi
     
     @IBAction func continueButtonDidTap(_ sender: Any) {
         
-        if productNameField.text != "" /*&& urlField.text != ""*/ && categoryField.text != "" {
+           if productNameField.text == "" && categoryField.text == "" && categoryField.text == "アプリ" || categoryField.text == "メディア" || categoryField.text == "ゲーム" || categoryField.text == "エンタメ" || categoryField.text == "教育・キャリア"  {
             
             performSegue(withIdentifier: "ToContinue", sender: nil)
             
-        } else {
+           }
+           
+           else  {
             
             let alertViewControler = UIAlertController(title: "エラーがあります", message: "必要なフィールドを埋めてください", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
