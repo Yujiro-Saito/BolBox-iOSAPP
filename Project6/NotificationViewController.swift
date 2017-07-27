@@ -27,7 +27,6 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
     var userPostTitleBox = [String]()
     
     
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +36,7 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         notificationTable.dataSource = self
         
         
-        
+        self.tabItem.badgeColor = UIColor.rgb(r: 31, g: 158, b: 187, alpha: 1)
         
         
         //バーの高さ
@@ -231,6 +230,7 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         return firstUserNameBox.count
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
@@ -277,6 +277,11 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
             
             
             
+            
+            
+            
+            
+            
             notiCell?.userName.text = firstUserNameBox[indexPath.row]
             notiCell?.userImage.af_setImage(withURL: URL(string: userImageURLBox[indexPath.row])!)
             notiCell?.title.text = userPostTitleBox[indexPath.row]
@@ -286,7 +291,7 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         
         
         
-        
+       
  
         
         return notiCell!
