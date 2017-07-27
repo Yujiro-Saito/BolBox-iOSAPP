@@ -16,6 +16,10 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
     
     @IBOutlet weak var notificationTable: UITableView!
     @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var guestUserView: UIView!
+    @IBOutlet weak var tabItem: UITabBarItem!
+    
+    
     
     
     var firstUserNameBox = [String]()
@@ -47,118 +51,211 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         self.notificationTable.refreshControl?.addTarget(self, action: #selector(NotificationViewController.refresh), for: .valueChanged)
         
         
+        
+        
+        
 
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-       
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         
-        //ユーザの投稿を取得
-        DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "userID").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
+        
+        self.guestUserView.isHidden = true
+        
+        let currentCounts = self.firstUserNameBox.count
+        
+        
+        
+        
+        //ユーザーデータの読み込みと通知設定
+        
+        
+        if UserDefaults.standard.object(forKey: "AutoLogin") != nil  {
             
-            self.firstUserNameBox = []
-            print(snapshot.value)
             
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+            
+            
+            if FIRAuth.auth()?.currentUser != nil {
                 
-                //繰り返し
-                for snap in snapshot {
-                    print("SNAP: \(snap)")
+                //ユーザの投稿を取得
+                DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "userID").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
                     
-                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                    self.firstUserNameBox = []
+                    print(snapshot.value)
+                    
+                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                         
-                        
-                        //投稿にいいねをつけている人がいる場合
-                        if let peopleWhoLike = postDict["peopleWhoLike"] as? Dictionary<String, AnyObject> {
+                        //繰り返し
+                        for snap in snapshot {
+                            print("SNAP: \(snap)")
                             
-                            print(peopleWhoLike)
-                            
-                        
-                            
-                            for (nameKey,namevalue) in peopleWhoLike {
-                                print("キーは\(nameKey)、値は\(namevalue)")
+                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
                                 
                                 
-                                print("ユーザー画像URLの取得\(namevalue)")
+                                //投稿にいいねをつけている人がいる場合
+                                if let peopleWhoLike = postDict["peopleWhoLike"] as? Dictionary<String, AnyObject> {
+                                    
+                                    print(peopleWhoLike)
+                                    
+                                    
+                                    
+                                    for (nameKey,namevalue) in peopleWhoLike {
+                                        print("キーは\(nameKey)、値は\(namevalue)")
+                                        
+                                        
+                                        print("ユーザー画像URLの取得\(namevalue)")
+                                        
+                                        
+                                        
+                                        let userImageURL = namevalue["imageURL"] as! String
+                                        
+                                        let userPostTitle = namevalue["postName"] as! String
+                                        
+                                        
+                                        self.firstUserNameBox.append(nameKey)
+                                        self.userImageURLBox.append(userImageURL)
+                                        self.userPostTitleBox.append(userPostTitle)
+                                        
+                                        
+                                        self.firstUserNameBox.reverse()
+                                        self.userImageURLBox.reverse()
+                                        self.userPostTitleBox.reverse()
+                                        
+                                        self.notificationTable.reloadData()
+                                        
+                                        print(self.firstUserNameBox)
+                                        print(self.userImageURLBox)
+                                        
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                }
                                 
                                 
-                               
-                                let userImageURL = namevalue["imageURL"] as! String
-                                
-                                 let userPostTitle = namevalue["postName"] as! String
                                 
                                 
-                                self.firstUserNameBox.append(nameKey)
-                                self.userImageURLBox.append(userImageURL)
-                                self.userPostTitleBox.append(userPostTitle)
                                 
                                 
-                                self.firstUserNameBox.reverse()
-                                self.userImageURLBox.reverse()
-                                self.userPostTitleBox.reverse()
                                 
-                                self.notificationTable.reloadData()
                                 
-                                print(self.firstUserNameBox)
-                                print(self.userImageURLBox)
+                                
+                                
                                 
                             }
                             
                             
                             
-                            
-                            
-                            
-                            
-                            
                         }
- 
- 
- 
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        }
-                        
                         
                         
                     }
                     
                     
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                })
+                
+                
+                
+                
+            }
+            
+            ////初回時通知数を登録
+            
+            if UserDefaults.standard.object(forKey: "previousCounts") == nil  {
+                
+                print("初回いいね数を登録しました")
+                UserDefaults.standard.set(self.firstUserNameBox.count, forKey: "previousCounts")
+                
+                
+                
+            }
+            
+            
+                //通知の設定
+            else if UserDefaults.standard.object(forKey: "previousCounts") != nil {
+                
+                print("通知数の検証をします")
+                //前回数値を取得
+                let previousNum = UserDefaults.standard.integer(forKey: "previousCounts")
+                print(previousNum)
+                print(currentCounts)
+               
+                //今回と比較 大きければ、バッジに表示とpreviousの更新
+                if currentCounts > previousNum {
+                    print("最終")
+                    let currentNum = currentCounts - previousNum
+                    print(currentNum)
+                    self.tabItem.badgeValue = String(currentNum)
+                    
+                    let userDefaults = UserDefaults.standard
+                    
+                    userDefaults.removeObject(forKey: "previousCounts")
+                    
+                    UserDefaults.standard.set(self.firstUserNameBox.count, forKey: "previousCounts")
+                    print("通知数が更新されました")
+                    
+                    
                 }
                 
                 
+                
+                
+            }
             
             
             
             
             
+        }
+        
+        
+        
+        
             
+            //ゲストユーザーの場合
+        
+        else if UserDefaults.standard.object(forKey: "GuestUser") != nil {
             
- 
+            print("ゲストユーザー")
             
+            self.guestUserView.isHidden = false
             
-        })
+        }
+
+        
+        
+        
         
         
         
         
     }
+    
+    
+    
+    
+    
+    
+    
 
-    
-    
-    @IBOutlet weak var tabItem: UITabBarItem!
-    
-    
-    
-
-/////////////////////------------
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return firstUserNameBox.count
@@ -176,10 +273,10 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         
         if firstUserNameBox.count >= 1 {
             
-            //通知数を伝える
             
             
-            self.tabItem.badgeValue = String(self.firstUserNameBox.count)
+            
+            
             
             notiCell?.userName.text = firstUserNameBox[indexPath.row]
             notiCell?.userImage.af_setImage(withURL: URL(string: userImageURLBox[indexPath.row])!)

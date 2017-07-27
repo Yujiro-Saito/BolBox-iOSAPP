@@ -18,8 +18,7 @@ class TabViewController: UITabBarController {
         
        /////////////////--------------
         
-        //最初通知にこっそり移動
-        //画面白
+        
         self.selectedIndex = 2
         
         

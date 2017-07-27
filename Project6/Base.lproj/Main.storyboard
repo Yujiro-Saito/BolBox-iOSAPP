@@ -1929,21 +1929,27 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PKx-ha-5JJ">
+                                <rect key="frame" x="0.0" y="60" width="375" height="558"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" badgeValue="5" systemItem="history" id="nb4-W0-fJA">
+                    <tabBarItem key="tabBarItem" title="" systemItem="history" id="nb4-W0-fJA">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="guestUserView" destination="PKx-ha-5JJ" id="ibo-N7-VkP"/>
                         <outlet property="navBar" destination="2SZ-MM-ktG" id="0nY-0Q-f0o"/>
                         <outlet property="notificationTable" destination="lZz-8L-HCK" id="rGU-L7-A75"/>
-                        <outlet property="tabItem" destination="nb4-W0-fJA" id="fh7-xq-5bq"/>
+                        <outlet property="tabItem" destination="nb4-W0-fJA" id="LJm-xE-e1h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PyT-h2-bjU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3631" y="9035"/>
+            <point key="canvasLocation" x="-3631.1999999999998" y="9034.632683658172"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="Yvr-YY-oSh">
