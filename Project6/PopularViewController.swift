@@ -57,7 +57,7 @@ class PopularViewController: UIViewController, IndicatorInfoProvider,UITableView
                         
                         self.posts.append(post)
                         
-                        
+                        self.popularTable.reloadData()
                         
                     }
                 }
