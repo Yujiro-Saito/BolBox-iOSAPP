@@ -48,13 +48,15 @@ class SearchViewController: ButtonBarPagerTabStripViewController,UINavigationBar
 
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         //管理されるViewControllerを返す処理
+        let popularVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popular")
         let oneVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "one")
         let twoVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "two")
         let threeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "three")
         let fourVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "four")
         let fiveVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "five")
         
-        let childViewControllers:[UIViewController] = [oneVC, twoVC, threeVC,fourVC,fiveVC]
+        
+        let childViewControllers:[UIViewController] = [popularVC, oneVC, twoVC, threeVC,fourVC,fiveVC]
         return childViewControllers
     }
 

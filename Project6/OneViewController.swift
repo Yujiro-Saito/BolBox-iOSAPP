@@ -9,6 +9,7 @@
 import UIKit
 import XLPagerTabStrip
 import Firebase
+import AlamofireImage
 
 class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDelegate, UITableViewDataSource {
 
@@ -46,7 +47,8 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        //メディアのデータ読み込み
+        
+        
         DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
             
             self.mediaPosts = []
@@ -85,10 +87,8 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
         })
         
         
-        
-        
-        
-        
+ 
+       
         
     }
     

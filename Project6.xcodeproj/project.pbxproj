@@ -56,6 +56,8 @@
 		B7E0F8721F08B5E900AD2A5B /* FirstCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E0F8711F08B5E900AD2A5B /* FirstCollectionViewCell.swift */; };
 		B7E390271ED59E3C005D8BFC /* ButtonDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E390261ED59E3C005D8BFC /* ButtonDesign.swift */; };
 		B7E3902B1ED5A13E005D8BFC /* ImageDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E3902A1ED5A13E005D8BFC /* ImageDesign.swift */; };
+		B7E712161F2A6A29004E9112 /* PopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E712151F2A6A29004E9112 /* PopularViewController.swift */; };
+		B7E712181F2A6D07004E9112 /* PopularTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E712171F2A6D07004E9112 /* PopularTableViewCell.swift */; };
 		B7E91B2F1F1C5E6500D8C522 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E91B2E1F1C5E6500D8C522 /* EditViewController.swift */; };
 		B7E9D62D1F2096F4001115F6 /* FeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E9D62C1F2096F4001115F6 /* FeatureViewController.swift */; };
 		B7E9D62F1F20A14B001115F6 /* FeatureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E9D62E1F20A14B001115F6 /* FeatureTableViewCell.swift */; };
@@ -130,6 +132,8 @@
 		B7E0F8711F08B5E900AD2A5B /* FirstCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstCollectionViewCell.swift; sourceTree = "<group>"; };
 		B7E390261ED59E3C005D8BFC /* ButtonDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonDesign.swift; sourceTree = "<group>"; };
 		B7E3902A1ED5A13E005D8BFC /* ImageDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDesign.swift; sourceTree = "<group>"; };
+		B7E712151F2A6A29004E9112 /* PopularViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularViewController.swift; sourceTree = "<group>"; };
+		B7E712171F2A6D07004E9112 /* PopularTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularTableViewCell.swift; sourceTree = "<group>"; };
 		B7E91B2E1F1C5E6500D8C522 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		B7E9D62C1F2096F4001115F6 /* FeatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureViewController.swift; sourceTree = "<group>"; };
 		B7E9D62E1F20A14B001115F6 /* FeatureTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureTableViewCell.swift; sourceTree = "<group>"; };
@@ -184,6 +188,7 @@
 				B7482CE11F0F141E00E98EF1 /* ThreeTableViewCell.swift */,
 				B7482CE31F0F1B2A00E98EF1 /* FourTableViewCell.swift */,
 				B7482CE51F0F23F500E98EF1 /* FiveTableViewCell.swift */,
+				B7E712171F2A6D07004E9112 /* PopularTableViewCell.swift */,
 			);
 			name = CategoryCell;
 			sourceTree = "<group>";
@@ -242,6 +247,7 @@
 				B771C6061F0CA1E6005D4BF2 /* ThreeViewController.swift */,
 				B771C6081F0CA1ED005D4BF2 /* FourViewController.swift */,
 				B771C60A1F0CA1F7005D4BF2 /* FiveViewController.swift */,
+				B7E712151F2A6A29004E9112 /* PopularViewController.swift */,
 			);
 			name = CategoryViewController;
 			sourceTree = "<group>";
@@ -507,6 +513,7 @@
 				B7B4CAD61EFA81570038F176 /* PostProductPhotosViewController.swift in Sources */,
 				B71EEA3D1EED7D2A00CCF1D1 /* SignInandUpViewController.swift in Sources */,
 				B7E0F8721F08B5E900AD2A5B /* FirstCollectionViewCell.swift in Sources */,
+				B7E712161F2A6A29004E9112 /* PopularViewController.swift in Sources */,
 				B7260C381EDEFAC200FC3913 /* DetailCollectionViewCell.swift in Sources */,
 				B77EC8801F0B1E7F00EDDBD5 /* UIViewDesign.swift in Sources */,
 				B7E390271ED59E3C005D8BFC /* ButtonDesign.swift in Sources */,
@@ -515,6 +522,7 @@
 				B7E91B2F1F1C5E6500D8C522 /* EditViewController.swift in Sources */,
 				B7EE00BE1F08D0090015AA3B /* ThirdCollectionViewCell.swift in Sources */,
 				B77B554E1EEF6E4900262589 /* RegisterButton.swift in Sources */,
+				B7E712181F2A6D07004E9112 /* PopularTableViewCell.swift in Sources */,
 				B771C6011F0CA0FD005D4BF2 /* SearchViewController.swift in Sources */,
 				B78053F91EE2C63300F95BDF /* CategorysTableViewCell.swift in Sources */,
 				B7FE1D6D1EDE2C850072A068 /* PopularMoreReadCollectionViewCell.swift in Sources */,
