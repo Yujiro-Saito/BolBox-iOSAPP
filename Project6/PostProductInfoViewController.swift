@@ -7,18 +7,56 @@
 //
 
 import UIKit
+import SkyFloatingLabelTextField
 
 class PostProductInfoViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
     
-    @IBOutlet weak var categoryField: SignUpField!
-    @IBOutlet weak var productNameField: SignUpField!
-    @IBOutlet weak var urlField: SignUpField!
+    
+    @IBOutlet weak var productNameField: SkyFloatingLabelTextField!
+    @IBOutlet weak var urlField: SkyFloatingLabelTextField!
+    @IBOutlet weak var categoryField: SkyFloatingLabelTextField!
+    
+    
     let selectPicker = UIPickerView()
     var categoryBox = ["カテゴリーを選択してください","アプリ","メディア","ゲーム","エンタメ", "教育・キャリア"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //名前テキスト
+        productNameField.placeholder = "紹介する物の名前"
+        productNameField.title = "名前"
+        productNameField.tintColor = barColor
+        productNameField.textColor = UIColor.darkGray
+        productNameField.lineColor = UIColor.lightGray
+        productNameField.selectedTitleColor = barColor
+        productNameField.selectedLineColor = barColor
+        productNameField.lineHeight = 1.0 // bottom line height in points
+        productNameField.selectedLineHeight = 2.0
+        
+        //URLテキスト
+        urlField.placeholder = "URL(あれば)"
+        urlField.title = "URL"
+        urlField.tintColor = barColor
+        urlField.textColor = UIColor.darkGray
+        urlField.lineColor = UIColor.lightGray
+        urlField.selectedTitleColor = barColor
+        urlField.selectedLineColor = barColor
+        urlField.lineHeight = 1.0 // bottom line height in points
+        urlField.selectedLineHeight = 2.0
+        
+        //カテゴリテキスト
+        categoryField.placeholder = "カテゴリーを選択してください"
+        categoryField.title = "カテゴリー"
+        categoryField.tintColor = barColor
+        categoryField.textColor = UIColor.darkGray
+        categoryField.lineColor = UIColor.lightGray
+        categoryField.selectedTitleColor = barColor
+        categoryField.selectedLineColor = barColor
+        categoryField.lineHeight = 1.0 // bottom line height in points
+        categoryField.selectedLineHeight = 2.0
+        
         
         selectPicker.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: selectPicker.bounds.size.height)
         selectPicker.delegate   = self

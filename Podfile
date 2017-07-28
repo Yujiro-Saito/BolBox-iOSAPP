@@ -20,6 +20,8 @@ target 'Project6' do
   pod 'SwiftKeychainWrapper'
   pod 'DKImagePickerController'
   pod 'XLPagerTabStrip'
+  pod 'SkyFloatingLabelTextField', '~> 3.0'
+
   
 
 end

@@ -9,14 +9,16 @@
 import UIKit
 import Firebase
 import AlamofireImage
+import SkyFloatingLabelTextField
 
 class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UINavigationBarDelegate {
     
     
     @IBOutlet weak var editNav: UINavigationBar!
-    @IBOutlet weak var nameField: SignUpField!
     @IBOutlet weak var userImage: ProfileImage!
     @IBOutlet weak var cardView: UIView!
+    @IBOutlet weak var nameField: SkyFloatingLabelTextField!
+    
     var myImagePicker: UIImagePickerController!
     var mainImageBox = UIImage()
     
@@ -28,6 +30,20 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
         
         nameField.delegate = self
         editNav.delegate = self
+        
+        
+        
+        nameField.title = "ユーザー名"
+        nameField.tintColor = barColor
+        nameField.textColor = UIColor.darkGray
+        nameField.lineColor = UIColor.lightGray
+        nameField.selectedTitleColor = barColor
+        nameField.selectedLineColor = barColor
+        nameField.lineHeight = 1.0 // bottom line height in points
+        nameField.selectedLineHeight = 2.0
+        
+        
+        
         
         
         self.cardView.layer.cornerRadius = 15

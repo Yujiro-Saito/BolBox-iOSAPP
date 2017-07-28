@@ -9,14 +9,19 @@
 import UIKit
 import Firebase
 import SwiftKeychainWrapper
+import SkyFloatingLabelTextField
 
 class SignUpViewController: UIViewController , UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     
     
-    @IBOutlet weak var emailField: SignUpField!
-    @IBOutlet weak var passwordField: SignUpField!
-    @IBOutlet weak var userNameField: SignUpField!
+    
     @IBOutlet weak var userImage: ProfileImage!
+    @IBOutlet weak var userNameField: SkyFloatingLabelTextField!
+    @IBOutlet weak var emailField: SkyFloatingLabelTextField!
+    @IBOutlet weak var passwordField: SkyFloatingLabelTextField!
+    
+    
+    
     
     
     var mainImageBox = UIImage()
@@ -29,7 +34,43 @@ class SignUpViewController: UIViewController , UITextFieldDelegate,UIImagePicker
         passwordField.delegate = self
         userNameField.delegate = self
         
-        //self.userNameField.becomeFirstResponder()
+        //ユーザー名
+        userNameField.placeholder = "ユーザー名"
+        userNameField.title = "ユーザー名"
+        userNameField.tintColor = barColor
+        userNameField.textColor = UIColor.darkGray
+        userNameField.lineColor = UIColor.lightGray
+        userNameField.selectedTitleColor = barColor
+        userNameField.selectedLineColor = barColor
+        userNameField.lineHeight = 1.0 // bottom line height in points
+        userNameField.selectedLineHeight = 2.0
+        
+        
+        //メールアドレス
+        emailField.placeholder = "メールアドレス"
+        emailField.title = "メールアドレス"
+        emailField.tintColor = barColor
+        emailField.textColor = UIColor.darkGray
+        emailField.lineColor = UIColor.lightGray
+        emailField.selectedTitleColor = barColor
+        emailField.selectedLineColor = barColor
+        emailField.lineHeight = 1.0 // bottom line height in points
+        emailField.selectedLineHeight = 2.0
+        
+        
+        
+        //パスワード
+        passwordField.placeholder = "パスワード"
+        passwordField.title = "パスワード"
+        passwordField.tintColor = barColor
+        passwordField.textColor = UIColor.darkGray
+        passwordField.lineColor = UIColor.lightGray
+        passwordField.selectedTitleColor = barColor
+        passwordField.selectedLineColor = barColor
+        passwordField.lineHeight = 1.0 // bottom line height in points
+        passwordField.selectedLineHeight = 2.0
+
+        
 
     }
     

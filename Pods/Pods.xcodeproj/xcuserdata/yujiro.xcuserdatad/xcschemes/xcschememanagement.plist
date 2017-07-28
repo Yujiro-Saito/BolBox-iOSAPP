@@ -54,6 +54,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SkyFloatingLabelTextField.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SlideMenuControllerSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -82,27 +87,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1C502B6F4FD757141E0A63152B0C3A70</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>23B2342792BD81EB627696E1DF6C3B37</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3BA29D96E8887D9AEA3A3899D56BF4D4</key>
+		<key>41D3BEE8C423D3634C8D8A198F597003</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5F17839E2C6A29062ED21B17E6CDDBC7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>637474B89A7FA1FF04BD2FCE2314EBA9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>681BE6E3D02A43F9BA63777AC435C8FD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7D5294A5B78877DC63F20585E778C2C6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,12 +132,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>BA72420E150F82BD8F02FA52A3D5EE3E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C2F3D02B448872659134FB61138D84BA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C3D0B9FE99350F2C0F20FC084BE063B0</key>
+		<key>C48AF946AA02F48D594B4E11D3B5EBD8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -142,7 +152,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D91CD76B5DFECAE417F4984DB75BF004</key>
+		<key>E0F066011F74916C9EBAE30A43067084</key>
 		<dict>
 			<key>primary</key>
 			<true/>

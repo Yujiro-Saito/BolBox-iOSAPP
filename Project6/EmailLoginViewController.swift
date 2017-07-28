@@ -9,13 +9,15 @@
 import UIKit
 import Firebase
 import SwiftKeychainWrapper
+import SkyFloatingLabelTextField
 
 class EmailLoginViewController: UIViewController,UITextFieldDelegate {
     
     
-    @IBOutlet weak var emailField: SignUpField!
-    @IBOutlet weak var passwordField: SignUpField!
     
+    
+    @IBOutlet weak var emailField: SkyFloatingLabelTextField!
+    @IBOutlet weak var passwordField: SkyFloatingLabelTextField!
     
     
 
@@ -25,7 +27,42 @@ class EmailLoginViewController: UIViewController,UITextFieldDelegate {
         emailField.delegate = self
         passwordField.delegate = self
         
-        self.emailField.becomeFirstResponder()
+        
+        //メールアドレス
+        emailField.placeholder = "メールアドレス"
+        emailField.title = "メールアドレス"
+        emailField.tintColor = barColor
+        emailField.textColor = UIColor.darkGray
+        emailField.lineColor = UIColor.lightGray
+        emailField.selectedTitleColor = barColor
+        emailField.selectedLineColor = barColor
+        emailField.lineHeight = 1.0 // bottom line height in points
+        emailField.selectedLineHeight = 2.0
+        
+        
+        //パスワード
+        passwordField.placeholder = "パスワード"
+        passwordField.title = "パスワード"
+        passwordField.tintColor = barColor
+        passwordField.textColor = UIColor.darkGray
+        passwordField.lineColor = UIColor.lightGray
+        passwordField.selectedTitleColor = barColor
+        passwordField.selectedLineColor = barColor
+        passwordField.lineHeight = 1.0 // bottom line height in points
+        passwordField.selectedLineHeight = 2.0
+
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
     }
     
