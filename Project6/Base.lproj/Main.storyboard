@@ -1035,12 +1035,26 @@
                                                 <items>
                                                     <navigationItem id="4gW-eF-eFl">
                                                         <barButtonItem key="leftBarButtonItem" style="plain" id="vgL-aG-S5J">
-                                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VWL-LO-OOR">
+                                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VWL-LO-OOR" customClass="ZFRippleButton" customModule="Project6" customModuleProvider="target">
                                                                 <rect key="frame" x="16" y="7" width="83" height="30"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="40" maxY="0.0"/>
                                                                 <state key="normal" title="戻る">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="rippleBackgroundColor">
+                                                                        <color key="value" red="0.10613358000000001" green="0.55784231139999996" blue="0.66427004020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="rippleColor">
+                                                                        <color key="value" red="0.088537827969999996" green="0.46535834009999999" blue="0.55414155030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="trackTouchLocation" value="YES"/>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonCornerRadius">
+                                                                        <real key="value" value="4"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="backButtonDidTap:" destination="B89-8B-hyD" eventType="touchUpInside" id="bM1-t2-BWL"/>
                                                                 </connections>
@@ -1167,10 +1181,10 @@
                                                 </textAttributes>
                                                 <items>
                                                     <navigationItem title="プロフィール" id="DUV-hV-eMb">
-                                                        <barButtonItem key="leftBarButtonItem" image="AddPlus" id="qGv-wH-nhz">
+                                                        <barButtonItem key="leftBarButtonItem" image="AddPlus" id="ewK-qW-W62">
                                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <connections>
-                                                                <action selector="postButtonDidTap:" destination="LR8-dZ-54r" id="tjn-Dh-16M"/>
+                                                                <action selector="postButtonDidTap:" destination="LR8-dZ-54r" id="fQa-8s-cpm"/>
                                                             </connections>
                                                         </barButtonItem>
                                                         <barButtonItem key="rightBarButtonItem" image="Action" id="Nui-2H-JJg">
@@ -1306,7 +1320,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rlu-Lr-uuP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-12127.200000000001" y="8940.6296851574225"/>
+            <point key="canvasLocation" x="2900" y="5662"/>
         </scene>
         <!--Edit View Controller-->
         <scene sceneID="TFz-EM-VJj">
@@ -1352,22 +1366,49 @@
                                         <items>
                                             <navigationItem title="編集" id="tgR-7d-26z">
                                                 <barButtonItem key="leftBarButtonItem" style="plain" id="qR2-xs-eVu">
-                                                    <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fHJ-jh-KHE">
+                                                    <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fHJ-jh-KHE" customClass="ZFRippleButton" customModule="Project6" customModuleProvider="target">
                                                         <rect key="frame" x="16" y="7" width="83" height="30"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <state key="normal" title="キャンセル">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="buttonCornerRadius">
+                                                                <real key="value" value="4"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="trackTouchLocation" value="YES"/>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="rippleBackgroundColor">
+                                                                <color key="value" red="0.10613358000000001" green="0.55784231139999996" blue="0.66427004020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="rippleColor">
+                                                                <color key="value" red="0.088537827969999996" green="0.46535834009999999" blue="0.55414155030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="cancelButtonDidTap:" destination="BHm-3X-9rX" eventType="touchUpInside" id="MBX-yP-aha"/>
                                                         </connections>
                                                     </button>
                                                 </barButtonItem>
                                                 <barButtonItem key="rightBarButtonItem" style="plain" id="E8D-bh-opK">
-                                                    <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kFU-Nh-cyi">
+                                                    <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kFU-Nh-cyi" customClass="ZFRippleButton" customModule="Project6" customModuleProvider="target">
                                                         <rect key="frame" x="319" y="2" width="40" height="40"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <state key="normal" title="保存"/>
+                                                        <state key="normal" title="保存">
+                                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="buttonCornerRadius">
+                                                                <real key="value" value="4"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="trackTouchLocation" value="YES"/>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="rippleBackgroundColor">
+                                                                <color key="value" red="0.10613358000000001" green="0.55784231139999996" blue="0.66427004020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="rippleColor">
+                                                                <color key="value" red="0.088537827969999996" green="0.46535834009999999" blue="0.55414155030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="saveButtonDidTap:" destination="BHm-3X-9rX" eventType="touchUpInside" id="azf-7k-zlY"/>
                                                         </connections>
@@ -1391,7 +1432,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7uP-Mm-F0M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4095" y="4799"/>
+            <point key="canvasLocation" x="6006" y="7575"/>
         </scene>
         <!--Base View Controller-->
         <scene sceneID="sFI-Wc-b3i">
@@ -1991,12 +2032,26 @@
                                 <items>
                                     <navigationItem id="guG-Bd-kD5">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="R2E-JX-bU3">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="i3W-Cr-nle">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="i3W-Cr-nle" customClass="ZFRippleButton" customModule="Project6" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="7" width="83" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="40" maxY="0.0"/>
                                                 <state key="normal" title="戻る">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="rippleBackgroundColor">
+                                                        <color key="value" red="0.10613358000000001" green="0.55784231139999996" blue="0.66427004020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="rippleColor">
+                                                        <color key="value" red="0.088537827969999996" green="0.46535834009999999" blue="0.55414155030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonCornerRadius">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="trackTouchLocation" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="backButton:" destination="shX-bm-2Po" eventType="touchUpInside" id="zck-FU-nlI"/>
                                                 </connections>
@@ -2068,7 +2123,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oMV-dk-QIV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1199" y="6748"/>
+            <point key="canvasLocation" x="5046" y="7575"/>
         </scene>
         <!--Notification View Controller-->
         <scene sceneID="bDi-UJ-dsh">
@@ -2589,7 +2644,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eaK-Th-v7A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10108" y="9879.7601199400306"/>
+            <point key="canvasLocation" x="-10950" y="8941"/>
         </scene>
     </scenes>
     <resources>
@@ -37703,9 +37758,9 @@ AAAAAAAQDwA
         <image name="likes" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="otp-AY-99o"/>
-        <segue reference="tEs-cJ-o5z"/>
-        <segue reference="GeS-jA-VfY"/>
+        <segue reference="uPa-V9-bqT"/>
         <segue reference="f75-nR-suJ"/>
+        <segue reference="tEs-cJ-o5z"/>
+        <segue reference="Rbq-EQ-Pxa"/>
     </inferredMetricsTieBreakers>
 </document>
