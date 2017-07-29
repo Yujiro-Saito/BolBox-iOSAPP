@@ -21,6 +21,7 @@ target 'Project6' do
   pod 'DKImagePickerController'
   pod 'XLPagerTabStrip'
   pod 'SkyFloatingLabelTextField', '~> 3.0'
+  pod 'ZFRippleButton', '~> 0.6'
 
   
 

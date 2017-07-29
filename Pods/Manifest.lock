@@ -80,6 +80,7 @@ PODS:
   - TwitterKit (2.8.1):
     - TwitterCore (>= 2.8)
   - XLPagerTabStrip (7.0.0)
+  - ZFRippleButton (0.6)
 
 DEPENDENCIES:
   - AlamofireImage (~> 3.1)
@@ -97,6 +98,7 @@ DEPENDENCIES:
   - SwiftKeychainWrapper
   - TwitterKit
   - XLPagerTabStrip
+  - ZFRippleButton (~> 0.6)
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
@@ -124,7 +126,8 @@ SPEC CHECKSUMS:
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
   XLPagerTabStrip: 9be80a66c6b7d60306b2c0a6004965016d68f813
+  ZFRippleButton: 62ea35e209757704dea697d66489fe69c13d7b77
 
-PODFILE CHECKSUM: cdabee744423705a313e6a40bc84ed36572964eb
+PODFILE CHECKSUM: 8c979579571f8d00ea8c1f1db459e97dded72923
 
 COCOAPODS: 1.1.1

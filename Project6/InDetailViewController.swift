@@ -13,6 +13,7 @@ import AlamofireImage
 class InDetailViewController: UIViewController {
     
     
+    @IBOutlet weak var userToButton: ZFRippleButton!
     @IBOutlet weak var detailNavBar: UINavigationBar!
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var postImage: UIImageView!
@@ -20,10 +21,10 @@ class InDetailViewController: UIViewController {
     @IBOutlet weak var postContent: UILabel!
     @IBOutlet weak var postUserName: UILabel!
     @IBOutlet weak var postUserImage: ProfileImage!
+    
     private let postsRef = FIRDatabase.database().reference().child("posts")
     var ref = FIRDatabaseReference()
     let snapshot = FIRDataSnapshot()
-    
     
     
     //データ受け継ぎ用
@@ -37,6 +38,7 @@ class InDetailViewController: UIViewController {
     var userImageURL: String?
     var userID: String!
     var userDescription: String?
+    
     
     
     //データ飛ばすよう　ユーザーページ
@@ -74,23 +76,41 @@ class InDetailViewController: UIViewController {
         
         cardView.layer.cornerRadius = 15
         
+        
+        
         if userImageURL != nil && userName != nil {
+            
+            
             
             
             //画像の読み込み
             postUserImage.af_setImage(withURL: URL(string: userImageURL!)!)
+            
+            
+            
+        } else if userImageURL == nil && userName == nil {
+            //メディア記事の場合
+            self.userToButton.isHidden = true
+            self.userToButton.isEnabled = false
+            
+            self.postUserName.isHidden = true
+            self.postUserImage.isHidden = true
+            
+            
+            
         }
         
         postImage.af_setImage(withURL: URL(string: imageURL!)!)
         postUserName.text = userName
-
+        
         //その他データ
         postTitle.text = name
         postContent.text = whatContent
         
+        
+        
 
     }
-    
     
     
     @IBAction func goSeeButtonDidTap(_ sender: Any) {

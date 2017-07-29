@@ -28,6 +28,7 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var featureThreePosts = [Post]()
     var readMorePosts = [Post]()
     
+    
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
     
@@ -391,9 +392,7 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         
         
-        
         self.featureTable.refreshControl?.endRefreshing()
-        
         
         
     }
@@ -414,6 +413,7 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             detailVc.imageURL = detailPosts?.imageURL
             detailVc.linkURL = detailPosts?.linkURL
         }
+        
         
         
         

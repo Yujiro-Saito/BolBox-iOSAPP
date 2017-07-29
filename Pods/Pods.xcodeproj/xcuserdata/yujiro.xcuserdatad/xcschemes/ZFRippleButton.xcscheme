@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'B4CA0A465E184575ED31FDB2386E2941'
-               BlueprintName = 'XLPagerTabStrip-XLPagerTabStrip'
+               BlueprintIdentifier = '3714B81645348205BA11964AAD50D05E'
+               BlueprintName = 'ZFRippleButton'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'XLPagerTabStrip.bundle'>
+               BuildableName = 'ZFRippleButton.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
