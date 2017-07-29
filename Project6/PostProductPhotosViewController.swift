@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import AlamofireImage
 import RSKPlaceholderTextView
+import OnOffButton
 
 class PostProductPhotosViewController: UIViewController, UIImagePickerControllerDelegate ,UINavigationControllerDelegate,UITextViewDelegate {
     
@@ -18,6 +19,11 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
     var mainImageBox = UIImage()
     
     @IBOutlet weak var usageTextBox: RSKPlaceholderTextView!
+    @IBOutlet weak var introLabel: UILabel!
+    @IBOutlet weak var introImage: UIButton!
+    @IBOutlet weak var postButton: ZFRippleButton!
+    @IBOutlet weak var backButton: UIButton!
+    
     
     
     //データ引き継ぎ用
@@ -40,6 +46,13 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
         usageTextBox.delegate = self
         
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        //チェックボタン待機
+        self.onButton.isHidden = true
+        self.onButton.checked = false
         
         
         
@@ -204,7 +217,33 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
                         
                         print("投稿を完了しました")
                         
-                        self.performSegue(withIdentifier: "Done", sender: nil)
+                        //チェック以外のUIを隠す
+                        self.mainImagePhoto.isHidden = true
+                        self.usageTextBox.isHidden = true
+                        self.introLabel.isHidden = true
+                        self.introImage.isHidden = true
+                        self.postButton.isHidden = true
+                        self.backButton.isHidden = true
+                        
+                        
+                        //チェックつける
+                        self.onButton.isHidden = false
+                        self.onButton.checked = true
+                        
+                        
+                        
+                        //チェックを確認してから遷移
+                        self.wait( {self.onButton.checked == false} ) {
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 7.0) {
+                                self.performSegue(withIdentifier: "Done", sender: nil)
+                            }
+                            
+                            
+                            
+                            
+                        }
+                        
                         
                     }
                     
@@ -314,14 +353,44 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
                         print(post)
                         
                         firebasePost.setValue(post)
-                        print("投稿を完了しました")
                         
                         DispatchQueue.main.async {
                             
                             self.indicator.stopAnimating()
                         }
+
                         
-                        self.performSegue(withIdentifier: "Done", sender: nil)
+                        
+                        //チェック以外のUIを隠す
+                        self.mainImagePhoto.isHidden = true
+                        self.usageTextBox.isHidden = true
+                        self.introLabel.isHidden = true
+                        self.introImage.isHidden = true
+                        self.postButton.isHidden = true
+                        self.backButton.isHidden = true
+                        
+                        
+                        //チェックつける
+                        self.onButton.isHidden = false
+                        self.onButton.checked = true
+                        
+                        
+                        //チェックを確認してから遷移
+                        self.wait( {self.onButton.checked == false} ) {
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                self.performSegue(withIdentifier: "Done", sender: nil)
+                            }
+                            
+                            
+                            
+                            
+                        }
+                        
+                        
+                        
+                        
+                        
                         
                     }
                     
@@ -351,6 +420,13 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
         
         
     }
+    
+    
+    @IBOutlet weak var onButton: OnOffButton!
+    
+    
+    
+    
     
     
     @IBAction func mainPhotoDidTap(_ sender: Any) {

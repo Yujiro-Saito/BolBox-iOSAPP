@@ -2411,11 +2411,34 @@
                                 <rect key="frame" x="98" y="127" width="180" height="180"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SlH-xl-C5m" customClass="OnOffButton" customModule="Project6" customModuleProvider="target">
+                                <rect key="frame" x="137" y="283" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
+                                        <color key="value" red="0.10686858439999999" green="0.56170552370000004" blue="0.66887029399999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="ringAlpha">
+                                        <real key="value" value="0.29999999999999999"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="hUg-Pl-dMr" id="0Mc-2K-S1R"/>
+                        <outlet property="introImage" destination="q7U-d6-2le" id="saL-NT-6mP"/>
+                        <outlet property="introLabel" destination="oD0-YB-Ccw" id="jwK-Ej-xbh"/>
                         <outlet property="mainImagePhoto" destination="D8n-WI-xkd" id="p6D-NK-G0a"/>
+                        <outlet property="onButton" destination="SlH-xl-C5m" id="mn9-Lx-RLC"/>
+                        <outlet property="postButton" destination="fP4-Fj-LjO" id="KgK-yv-b8P"/>
                         <outlet property="usageTextBox" destination="cMa-q5-55Q" id="lyc-rf-Yxu"/>
                         <segue destination="QLh-cT-mN4" kind="show" identifier="Done" id="GeS-jA-VfY"/>
                     </connections>

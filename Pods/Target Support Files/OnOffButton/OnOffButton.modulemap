@@ -1,0 +1,6 @@
+framework module OnOffButton {
+  umbrella header "OnOffButton-umbrella.h"
+
+  export *
+  module * { export * }
+}

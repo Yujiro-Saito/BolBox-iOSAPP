@@ -23,6 +23,7 @@ target 'Project6' do
   pod 'SkyFloatingLabelTextField', '~> 3.0'
   pod 'ZFRippleButton', '~> 0.6'
   pod 'RSKPlaceholderTextView'
+  pod 'OnOffButton'
 
   
 

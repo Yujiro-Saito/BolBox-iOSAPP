@@ -21,6 +21,7 @@
 		B725A8E21F01BEB5006AC9DF /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B725A8E11F01BEB5006AC9DF /* BaseTableViewCell.swift */; };
 		B7260C381EDEFAC200FC3913 /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7260C371EDEFAC200FC3913 /* DetailCollectionViewCell.swift */; };
 		B727ADDB1EC67AB20081F500 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B727ADDA1EC67AB20081F500 /* SWRevealViewController.m */; };
+		B72811071F2C6C0700AF9B76 /* OnOffButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72811061F2C6C0700AF9B76 /* OnOffButton.swift */; };
 		B72A71F71EC677C100EA9BDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A71F61EC677C100EA9BDF /* AppDelegate.swift */; };
 		B72A71FC1EC677C100EA9BDF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B72A71FA1EC677C100EA9BDF /* Main.storyboard */; };
 		B72A71FE1EC677C100EA9BDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B72A71FD1EC677C100EA9BDF /* Assets.xcassets */; };
@@ -96,6 +97,7 @@
 		B727ADD81EC67AB10081F500 /* Project6-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Project6-Bridging-Header.h"; sourceTree = "<group>"; };
 		B727ADD91EC67AB20081F500 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		B727ADDA1EC67AB20081F500 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		B72811061F2C6C0700AF9B76 /* OnOffButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnOffButton.swift; path = "../../OnOffButton-master/Sources/OnOffButton.swift"; sourceTree = "<group>"; };
 		B72A71F31EC677C100EA9BDF /* Project6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project6.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B72A71F61EC677C100EA9BDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B72A71FB1EC677C100EA9BDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 		B7E390251ED59E1A005D8BFC /* UI Design */ = {
 			isa = PBXGroup;
 			children = (
+				B72811061F2C6C0700AF9B76 /* OnOffButton.swift */,
 				B70C88B11F2B7C0F001EDA73 /* ZFRippleButton.swift */,
 				B7E390261ED59E3C005D8BFC /* ButtonDesign.swift */,
 				B7FB80941EF5592000EA0CEE /* ProfileImage.swift */,
@@ -489,6 +492,7 @@
 				B7F628ED1F1B838B003257CE /* UserProfileTableViewCell.swift in Sources */,
 				B7F9B9631F0698DD0006AD38 /* ProfilePostsTableViewCell.swift in Sources */,
 				B7733EA21EC6A96700D5B9BD /* popularCollectionViewCell.swift in Sources */,
+				B72811071F2C6C0700AF9B76 /* OnOffButton.swift in Sources */,
 				B725A8E21F01BEB5006AC9DF /* BaseTableViewCell.swift in Sources */,
 				B725A8E01F01AB4B006AC9DF /* BaseViewController.swift in Sources */,
 				B7F628EB1F1B7B71003257CE /* UserProfileViewController.swift in Sources */,
