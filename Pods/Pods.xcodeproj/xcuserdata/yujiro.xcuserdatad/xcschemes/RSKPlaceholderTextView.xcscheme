@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '5FB96D4CBC8053C3475F0E16200B7596'
-               BlueprintName = 'SkyFloatingLabelTextField'
+               BlueprintIdentifier = '3B7310398C2F5F23205F300681921C19'
+               BlueprintName = 'RSKPlaceholderTextView'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SkyFloatingLabelTextField.framework'>
+               BuildableName = 'RSKPlaceholderTextView.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

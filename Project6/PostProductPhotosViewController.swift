@@ -9,14 +9,15 @@
 import UIKit
 import Firebase
 import AlamofireImage
+import RSKPlaceholderTextView
 
 class PostProductPhotosViewController: UIViewController, UIImagePickerControllerDelegate ,UINavigationControllerDelegate,UITextViewDelegate {
     
     @IBOutlet weak var mainImagePhoto: ImageDesign!
     var myImagePicker: UIImagePickerController!
     var mainImageBox = UIImage()
-    @IBOutlet weak var usageTextBox: UITextView!
     
+    @IBOutlet weak var usageTextBox: RSKPlaceholderTextView!
     
     
     //データ引き継ぎ用

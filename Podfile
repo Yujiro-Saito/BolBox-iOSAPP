@@ -22,6 +22,7 @@ target 'Project6' do
   pod 'XLPagerTabStrip'
   pod 'SkyFloatingLabelTextField', '~> 3.0'
   pod 'ZFRippleButton', '~> 0.6'
+  pod 'RSKPlaceholderTextView'
 
   
 

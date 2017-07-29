@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import AlamofireImage
 
+
 class UserProfileViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UINavigationBarDelegate {
     
     
