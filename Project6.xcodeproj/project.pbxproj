@@ -12,7 +12,6 @@
 		B7060DF31F021EED003E51C7 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7060DF21F021EED003E51C7 /* AccountViewController.swift */; };
 		B70B28BF1F11F29C00825004 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70B28BE1F11F29C00825004 /* NotificationViewController.swift */; };
 		B70B98BE1F0F64750036B79D /* InDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70B98BD1F0F64750036B79D /* InDetailViewController.swift */; };
-		B70C88B21F2B7C10001EDA73 /* ZFRippleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70C88B11F2B7C0F001EDA73 /* ZFRippleButton.swift */; };
 		B711059D1F13A3C800706FED /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B711059C1F13A3C800706FED /* NotificationTableViewCell.swift */; };
 		B71ACDA81EED8620005DCD80 /* SignInUpViewDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71ACDA71EED8620005DCD80 /* SignInUpViewDesign.swift */; };
 		B71EEA3D1EED7D2A00CCF1D1 /* SignInandUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71EEA3C1EED7D2A00CCF1D1 /* SignInandUpViewController.swift */; };
@@ -26,6 +25,7 @@
 		B72A71FC1EC677C100EA9BDF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B72A71FA1EC677C100EA9BDF /* Main.storyboard */; };
 		B72A71FE1EC677C100EA9BDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B72A71FD1EC677C100EA9BDF /* Assets.xcassets */; };
 		B72A72011EC677C100EA9BDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B72A71FF1EC677C100EA9BDF /* LaunchScreen.storyboard */; };
+		B73E3B4C1F2D7E89002220D3 /* VisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73E3B4B1F2D7E89002220D3 /* VisualEffect.swift */; };
 		B7482CE01F0F0C1400E98EF1 /* TwoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7482CDF1F0F0C1400E98EF1 /* TwoTableViewCell.swift */; };
 		B7482CE21F0F141E00E98EF1 /* ThreeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7482CE11F0F141E00E98EF1 /* ThreeTableViewCell.swift */; };
 		B7482CE41F0F1B2A00E98EF1 /* FourTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7482CE31F0F1B2A00E98EF1 /* FourTableViewCell.swift */; };
@@ -48,6 +48,7 @@
 		B77EC8801F0B1E7F00EDDBD5 /* UIViewDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77EC87F1F0B1E7F00EDDBD5 /* UIViewDesign.swift */; };
 		B77EEC601F28B6E500089A67 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77EEC5F1F28B6E500089A67 /* TabViewController.swift */; };
 		B78053F91EE2C63300F95BDF /* CategorysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78053F81EE2C63300F95BDF /* CategorysTableViewCell.swift */; };
+		B78DE1561F2D72E700E1A3A1 /* ZFRippleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78DE1551F2D72E700E1A3A1 /* ZFRippleButton.swift */; };
 		B7B4CAD41EFA81330038F176 /* PostProductInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CAD31EFA81330038F176 /* PostProductInfoViewController.swift */; };
 		B7B4CAD61EFA81570038F176 /* PostProductPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CAD51EFA81570038F176 /* PostProductPhotosViewController.swift */; };
 		B7B4CAD81EFAACE20038F176 /* PostDetailPhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CAD71EFAACE20038F176 /* PostDetailPhotosCollectionViewCell.swift */; };
@@ -86,7 +87,6 @@
 		B7060DF21F021EED003E51C7 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		B70B28BE1F11F29C00825004 /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		B70B98BD1F0F64750036B79D /* InDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InDetailViewController.swift; sourceTree = "<group>"; };
-		B70C88B11F2B7C0F001EDA73 /* ZFRippleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZFRippleButton.swift; path = "../../ZFRippleButton-master/Classes/ZFRippleButton.swift"; sourceTree = "<group>"; };
 		B711059C1F13A3C800706FED /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		B71ACDA71EED8620005DCD80 /* SignInUpViewDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInUpViewDesign.swift; sourceTree = "<group>"; };
 		B71EEA3C1EED7D2A00CCF1D1 /* SignInandUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInandUpViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +104,7 @@
 		B72A71FD1EC677C100EA9BDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B72A72001EC677C100EA9BDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B72A72021EC677C100EA9BDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B73E3B4B1F2D7E89002220D3 /* VisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffect.swift; sourceTree = "<group>"; };
 		B7482CDF1F0F0C1400E98EF1 /* TwoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoTableViewCell.swift; sourceTree = "<group>"; };
 		B7482CE11F0F141E00E98EF1 /* ThreeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeTableViewCell.swift; sourceTree = "<group>"; };
 		B7482CE31F0F1B2A00E98EF1 /* FourTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourTableViewCell.swift; sourceTree = "<group>"; };
@@ -126,6 +127,7 @@
 		B77EC87F1F0B1E7F00EDDBD5 /* UIViewDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewDesign.swift; sourceTree = "<group>"; };
 		B77EEC5F1F28B6E500089A67 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		B78053F81EE2C63300F95BDF /* CategorysTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorysTableViewCell.swift; sourceTree = "<group>"; };
+		B78DE1551F2D72E700E1A3A1 /* ZFRippleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFRippleButton.swift; sourceTree = "<group>"; };
 		B7B4CAD31EFA81330038F176 /* PostProductInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostProductInfoViewController.swift; sourceTree = "<group>"; };
 		B7B4CAD51EFA81570038F176 /* PostProductPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostProductPhotosViewController.swift; sourceTree = "<group>"; };
 		B7B4CAD71EFAACE20038F176 /* PostDetailPhotosCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailPhotosCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -336,9 +338,10 @@
 		B7E390251ED59E1A005D8BFC /* UI Design */ = {
 			isa = PBXGroup;
 			children = (
+				B78DE1551F2D72E700E1A3A1 /* ZFRippleButton.swift */,
 				B72811061F2C6C0700AF9B76 /* OnOffButton.swift */,
-				B70C88B11F2B7C0F001EDA73 /* ZFRippleButton.swift */,
 				B7E390261ED59E3C005D8BFC /* ButtonDesign.swift */,
+				B73E3B4B1F2D7E89002220D3 /* VisualEffect.swift */,
 				B7FB80941EF5592000EA0CEE /* ProfileImage.swift */,
 				B7D58C9D1EEE0D9100126406 /* signUpButtonDesign.swift */,
 				B77B554D1EEF6E4900262589 /* RegisterButton.swift */,
@@ -488,7 +491,6 @@
 				B77CEDED1EE3DB8F005D4215 /* CategoryDisplayTableViewCell.swift in Sources */,
 				B702E72F1EF8A442003C89E4 /* EmailLoginViewController.swift in Sources */,
 				B725810E1F22706900CF8E56 /* User.swift in Sources */,
-				B70C88B21F2B7C10001EDA73 /* ZFRippleButton.swift in Sources */,
 				B7F628ED1F1B838B003257CE /* UserProfileTableViewCell.swift in Sources */,
 				B7F9B9631F0698DD0006AD38 /* ProfilePostsTableViewCell.swift in Sources */,
 				B7733EA21EC6A96700D5B9BD /* popularCollectionViewCell.swift in Sources */,
@@ -530,11 +532,13 @@
 				B7E91B2F1F1C5E6500D8C522 /* EditViewController.swift in Sources */,
 				B7EE00BE1F08D0090015AA3B /* ThirdCollectionViewCell.swift in Sources */,
 				B77B554E1EEF6E4900262589 /* RegisterButton.swift in Sources */,
+				B73E3B4C1F2D7E89002220D3 /* VisualEffect.swift in Sources */,
 				B7E712181F2A6D07004E9112 /* PopularTableViewCell.swift in Sources */,
 				B771C6011F0CA0FD005D4BF2 /* SearchViewController.swift in Sources */,
 				B78053F91EE2C63300F95BDF /* CategorysTableViewCell.swift in Sources */,
 				B7FE1D6D1EDE2C850072A068 /* PopularMoreReadCollectionViewCell.swift in Sources */,
 				B77083381EC7FB9D00302760 /* Post.swift in Sources */,
+				B78DE1561F2D72E700E1A3A1 /* ZFRippleButton.swift in Sources */,
 				B7482CE61F0F23F500E98EF1 /* FiveTableViewCell.swift in Sources */,
 				B7FE38661F1BAFF900DE1E7F /* WebViewController.swift in Sources */,
 				B771C6031F0CA1D3005D4BF2 /* OneViewController.swift in Sources */,
