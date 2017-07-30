@@ -24,6 +24,7 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
     var likingNameBox = [String]()
     let currentUserName = FIRAuth.auth()?.currentUser?.displayName
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,16 +32,10 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
         oneTable.dataSource = self
         
         self.oneTable.backgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
-        
         self.oneTable.refreshControl = UIRefreshControl()
         self.oneTable.refreshControl?.addTarget(self, action: #selector(OneViewController.refresh), for: .valueChanged)
         
-        
-        
-       
-
     }
-    
     
 
     
@@ -234,19 +229,6 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
         
         
         }
-        
-        
-
-        
-        
-        
-        
-    
-        
-        
-        
-        
-
         
         
         

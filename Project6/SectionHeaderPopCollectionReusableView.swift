@@ -9,6 +9,7 @@
 import UIKit
 
 class SectionHeaderPopCollectionReusableView: UICollectionReusableView {
+    
     @IBOutlet weak var sectionTitle: UILabel!
-        
+    
 }

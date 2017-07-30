@@ -21,6 +21,8 @@ class InDetailViewController: UIViewController {
     @IBOutlet weak var postContent: UILabel!
     @IBOutlet weak var postUserName: UILabel!
     @IBOutlet weak var postUserImage: ProfileImage!
+    @IBOutlet weak var goseeButton: ZFRippleButton!
+    
     
     private let postsRef = FIRDatabase.database().reference().child("posts")
     var ref = FIRDatabaseReference()
@@ -69,6 +71,7 @@ class InDetailViewController: UIViewController {
     }
 
     
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,6 +113,19 @@ class InDetailViewController: UIViewController {
         
         
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        if self.linkURL == "" {
+            self.goseeButton.isHidden = true
+        }
+        
+        
+        
+        
+        
     }
     
     
