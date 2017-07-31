@@ -113,10 +113,11 @@ class OneTableViewCell: UITableViewCell {
         
         
         
-        var currentUserName = FIRAuth.auth()?.currentUser?.displayName
+        let currentUserName = FIRAuth.auth()?.currentUser?.displayName
         
         //DBを更新
         let likesCount = ["pvCount": self.pvCount]
+        
         let userImageURL = ["imageURL" : self.imageURL]
         let userName = [postID : currentUserName]
         let peoples = currentUserName

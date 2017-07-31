@@ -56,8 +56,16 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
         super.viewDidAppear(true)
         
         
+        /*
         
+        if (self.profilePostTable.contentSize.height < self.view.frame.size.height) {
+            self.profilePostTable.isScrollEnabled = false
+        }
+        else  {
             
+            self.profilePostTable.isScrollEnabled = true
+        }
+          */  
             //ユーザーデータ読み込み
             if UserDefaults.standard.object(forKey: "AutoLogin") != nil  {
                 

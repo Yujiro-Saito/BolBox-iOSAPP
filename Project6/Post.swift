@@ -20,6 +20,7 @@ class Post {
     private var _goodCount: Int!
     private var _keepCount: Int!
     private var _pvCount: Int?
+    private var _readCount: Int?
     private var _detailImageOne: String!
     private var _detailImageTwo: String!
     private var _detailImageThree: String!
@@ -64,6 +65,10 @@ class Post {
     
     var pvCount: Int {
         return _pvCount!
+    }
+    
+    var readCount: Int {
+        return _readCount!
     }
     
     var postID: String {
@@ -112,7 +117,7 @@ class Post {
 
     
     
-    init?(name: String,  category: String, imageURL: String, whatContent: String, goodCount: Int, keepCount: Int, pvCount: Int?, detailImageOne: String, detailImageTwo: String, detailImageThree: String, linkURL: String, postID: String, peopleWhoLike: Dictionary<String, AnyObject?>,userID: String,userProfileImage: String,userProfileName: String
+    init?(name: String,  category: String, imageURL: String, whatContent: String, goodCount: Int, keepCount: Int, pvCount: Int?,readCount: Int?, detailImageOne: String, detailImageTwo: String, detailImageThree: String, linkURL: String, postID: String, peopleWhoLike: Dictionary<String, AnyObject?>,userID: String,userProfileImage: String,userProfileName: String
         )
     {
         
@@ -124,6 +129,7 @@ class Post {
         self._goodCount = goodCount
         self._keepCount = keepCount
         self._pvCount = pvCount
+        self._readCount = readCount
         self._detailImageOne = detailImageOne
         self._detailImageTwo = detailImageTwo
         self._detailImageThree = detailImageThree
@@ -170,6 +176,11 @@ class Post {
         if let pvCount = postData["pvCount"] as? Int? {
             self._pvCount = pvCount
         }
+        
+        if let readCount = postData["readCount"] as? Int? {
+            self._readCount = readCount
+        }
+
         
         if let detailImageOne = postData["detailImageOne"] as? String {
             self._detailImageOne = detailImageOne

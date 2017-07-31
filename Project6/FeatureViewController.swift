@@ -20,6 +20,7 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
     //データ引き継ぎ用
     var selectedNum: Int!
     var readMoreNum = 0
+    var readCount = Int()
     
     
     //データ管理用
@@ -27,6 +28,8 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var featureTwoPosts = [Post]()
     var featureThreePosts = [Post]()
     var readMorePosts = [Post]()
+    
+    var separateID = String()
     
     
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
@@ -60,7 +63,17 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
                             
                                 let key = snap.key
                                 let post = Post(postKey: key, postData: postDict)
-                                
+                            
+                            /*
+                            let postIdentification = postDict["postID"] as! String
+                            self.separateID = postIdentification
+                            
+                            print(postDict["readCount"] as! Int)
+                            let readNum = postDict["readCount"] as! Int
+                            self.readCount = readNum
+                            */
+                            
+                            
                                 self.readMorePosts.append(post)
                                 
                                 
@@ -247,7 +260,7 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         
         else if selectedNum == 0 {
-            //一つ目の記事を読み込み
+            //特集一つ目の記事を読み込み
             
             DataService.dataBase.REF_FEATUREONE.observe(.value, with: { (snapshot) in
                 
@@ -427,6 +440,22 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
         if self.readMoreNum == 1 {
             
             detailPosts = self.readMorePosts[indexPath.row]
+            
+            //IDの設定、pv数
+            self.separateID = self.readMorePosts[indexPath.row].postID
+            self.readCount = self.readMorePosts[indexPath.row].readCount
+
+            
+            print("ああああああああああああああああ")
+            print(self.separateID)
+            print(self.readCount)
+            
+            self.readCount += 1
+            
+            let readAmount = ["readCount": self.readCount]
+            DataService.dataBase.REF_BASE.child("first/\(separateID)").updateChildValues(readAmount)
+            
+            
             performSegue(withIdentifier: "DetailsWin", sender: nil)
             
             
@@ -485,6 +514,17 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         if readMoreNum == 1 {
             
+            
+            //PostID-PV数用
+            //let postIdentification = self.readMorePosts[indexPath.row].postID
+            //self.separateID = postIdentification
+            
+            //PostID-PV数用
+            //let readNum = self.readMorePosts[indexPath.row].readCount
+            //self.readCount = readNum
+            
+            
+            
             let currentUserName = FIRAuth.auth()?.currentUser?.displayName
             
             
@@ -497,11 +537,12 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             readMoreCell?.clipsToBounds = true
             
             
-            
+            readMoreCell?.cellType = 1
             
             readMoreCell?.linkURL = self.readMorePosts[indexPath.row].linkURL
             readMoreCell?.imageURL = self.readMorePosts[indexPath.row].imageURL
             readMoreCell?.pvCount = self.readMorePosts[indexPath.row].pvCount
+            readMoreCell?.postID = self.readMorePosts[indexPath.row].postID
             
             let post = readMorePosts[indexPath.row]
             
@@ -520,6 +561,45 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             else {
                 
                 readMoreCell?.configureCell(post: post)
+                
+            }
+            
+            
+            
+            
+            
+            
+            
+            if self.readMorePosts[indexPath.row].peopleWhoLike != nil {
+                readMoreCell?.peopleWhoLike = self.readMorePosts[indexPath.row].peopleWhoLike as Dictionary<String, AnyObject>
+            }
+            
+            
+            
+            
+            print(readMorePosts[indexPath.row].peopleWhoLike)
+            
+            let likingDictionary = readMorePosts[indexPath.row].peopleWhoLike
+            
+            for (nameKey,namevalue) in likingDictionary {
+                
+                print("キーは\(nameKey)、値は\(namevalue)")
+                
+                
+                if nameKey == currentUserName {
+                    
+                    
+                    readMoreCell?.likesButton.isHidden = true
+                    readMoreCell?.likesButton.isEnabled = false
+                    
+                    readMoreCell?.unLikeButton.isHidden = false
+                    readMoreCell?.unLikeButton.isEnabled = true
+                    
+                    
+                    
+                    
+                }
+                
                 
             }
             
@@ -550,6 +630,7 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             readMoreCell?.linkURL = self.readMorePosts[indexPath.row].linkURL
             readMoreCell?.imageURL = self.readMorePosts[indexPath.row].imageURL
             readMoreCell?.pvCount = self.readMorePosts[indexPath.row].pvCount
+            readMoreCell?.postID = self.readMorePosts[indexPath.row].postID
             
             let post = readMorePosts[indexPath.row]
             
@@ -571,6 +652,42 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 
             }
             
+            
+            
+            
+            if self.readMorePosts[indexPath.row].peopleWhoLike != nil {
+                readMoreCell?.peopleWhoLike = self.readMorePosts[indexPath.row].peopleWhoLike as Dictionary<String, AnyObject>
+            }
+            
+            
+            
+            
+            print(readMorePosts[indexPath.row].peopleWhoLike)
+            
+            let likingDictionary = readMorePosts[indexPath.row].peopleWhoLike
+            
+            for (nameKey,namevalue) in likingDictionary {
+                
+                print("キーは\(nameKey)、値は\(namevalue)")
+                
+                
+                if nameKey == currentUserName {
+                    
+                    
+                    readMoreCell?.likesButton.isHidden = true
+                    readMoreCell?.likesButton.isEnabled = false
+                    
+                    readMoreCell?.unLikeButton.isHidden = false
+                    readMoreCell?.unLikeButton.isEnabled = true
+                    
+                    
+                    
+                    
+                    
+                }
+                
+                
+            }
             
             
             
@@ -596,6 +713,7 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             readMoreCell?.linkURL = self.readMorePosts[indexPath.row].linkURL
             readMoreCell?.imageURL = self.readMorePosts[indexPath.row].imageURL
             readMoreCell?.pvCount = self.readMorePosts[indexPath.row].pvCount
+            readMoreCell?.postID = self.readMorePosts[indexPath.row].postID
             
             let post = readMorePosts[indexPath.row]
             
@@ -617,7 +735,38 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 
             }
             
+            if self.readMorePosts[indexPath.row].peopleWhoLike != nil {
+                readMoreCell?.peopleWhoLike = self.readMorePosts[indexPath.row].peopleWhoLike as Dictionary<String, AnyObject>
+            }
             
+            
+            
+            
+            print(readMorePosts[indexPath.row].peopleWhoLike)
+            
+            let likingDictionary = readMorePosts[indexPath.row].peopleWhoLike
+            
+            for (nameKey,namevalue) in likingDictionary {
+                
+                print("キーは\(nameKey)、値は\(namevalue)")
+                
+                
+                if nameKey == currentUserName {
+                    
+                    
+                    readMoreCell?.likesButton.isHidden = true
+                    readMoreCell?.likesButton.isEnabled = false
+                    
+                    readMoreCell?.unLikeButton.isHidden = false
+                    readMoreCell?.unLikeButton.isEnabled = true
+                    
+                    
+                    
+                    
+                }
+                
+                
+            }
             
             
             return readMoreCell!
@@ -642,6 +791,7 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             readMoreCell?.linkURL = self.readMorePosts[indexPath.row].linkURL
             readMoreCell?.imageURL = self.readMorePosts[indexPath.row].imageURL
             readMoreCell?.pvCount = self.readMorePosts[indexPath.row].pvCount
+            readMoreCell?.postID = self.readMorePosts[indexPath.row].postID
             
             let post = readMorePosts[indexPath.row]
             
@@ -664,7 +814,38 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             }
             
             
+            if self.readMorePosts[indexPath.row].peopleWhoLike != nil {
+                readMoreCell?.peopleWhoLike = self.readMorePosts[indexPath.row].peopleWhoLike as Dictionary<String, AnyObject>
+            }
             
+            
+            
+            
+            print(readMorePosts[indexPath.row].peopleWhoLike)
+            
+            let likingDictionary = readMorePosts[indexPath.row].peopleWhoLike
+            
+            for (nameKey,namevalue) in likingDictionary {
+                
+                print("キーは\(nameKey)、値は\(namevalue)")
+                
+                
+                if nameKey == currentUserName {
+                    
+                    
+                    readMoreCell?.likesButton.isHidden = true
+                    readMoreCell?.likesButton.isEnabled = false
+                    
+                    readMoreCell?.unLikeButton.isHidden = false
+                    readMoreCell?.unLikeButton.isEnabled = true
+                    
+                    
+                    
+                    
+                }
+                
+                
+            }
             
             return readMoreCell!
             
@@ -687,6 +868,7 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             readMoreCell?.linkURL = self.readMorePosts[indexPath.row].linkURL
             readMoreCell?.imageURL = self.readMorePosts[indexPath.row].imageURL
             readMoreCell?.pvCount = self.readMorePosts[indexPath.row].pvCount
+            readMoreCell?.postID = self.readMorePosts[indexPath.row].postID
             
             let post = readMorePosts[indexPath.row]
             
@@ -708,7 +890,38 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 
             }
             
+            if self.readMorePosts[indexPath.row].peopleWhoLike != nil {
+                readMoreCell?.peopleWhoLike = self.readMorePosts[indexPath.row].peopleWhoLike as Dictionary<String, AnyObject>
+            }
             
+            
+            
+            
+            print(readMorePosts[indexPath.row].peopleWhoLike)
+            
+            let likingDictionary = readMorePosts[indexPath.row].peopleWhoLike
+            
+            for (nameKey,namevalue) in likingDictionary {
+                
+                print("キーは\(nameKey)、値は\(namevalue)")
+                
+                
+                if nameKey == currentUserName {
+                    
+                    
+                    readMoreCell?.likesButton.isHidden = true
+                    readMoreCell?.likesButton.isEnabled = false
+                    
+                    readMoreCell?.unLikeButton.isHidden = false
+                    readMoreCell?.unLikeButton.isEnabled = true
+                    
+                    
+                    
+                    
+                }
+                
+                
+            }
             
             
             return readMoreCell!
@@ -737,6 +950,7 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
            featureOneCell?.linkURL = self.featureOnePosts[indexPath.row].linkURL
            featureOneCell?.imageURL = self.featureOnePosts[indexPath.row].imageURL
             featureOneCell?.pvCount = self.featureOnePosts[indexPath.row].pvCount
+            featureOneCell?.postID = "featureOneOne"
             
             let post = featureOnePosts[indexPath.row]
             
@@ -758,6 +972,38 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 
             }
             
+            
+            if self.featureOnePosts[indexPath.row].peopleWhoLike != nil {
+                featureOneCell?.peopleWhoLike = self.featureOnePosts[indexPath.row].peopleWhoLike as Dictionary<String, AnyObject>
+            }
+            
+            
+            
+            
+            
+            let likingDictionary = featureOnePosts[indexPath.row].peopleWhoLike
+            
+            for (nameKey,namevalue) in likingDictionary {
+                
+                print("キーは\(nameKey)、値は\(namevalue)")
+                
+                
+                if nameKey == currentUserName {
+                    
+                    
+                    featureOneCell?.likesButton.isHidden = true
+                    featureOneCell?.likesButton.isEnabled = false
+                    
+                    featureOneCell?.unLikeButton.isHidden = false
+                    featureOneCell?.unLikeButton.isEnabled = true
+                    
+                    
+                    
+                    
+                }
+                
+                
+            }
             
             
             
@@ -791,6 +1037,7 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             featureTwoeCell?.linkURL = self.featureTwoPosts[indexPath.row].linkURL
             featureTwoeCell?.imageURL = self.featureTwoPosts[indexPath.row].imageURL
             featureTwoeCell?.pvCount = self.featureTwoPosts[indexPath.row].pvCount
+            featureTwoeCell?.postID = self.featureTwoPosts[indexPath.row].postID
             
             let post = featureTwoPosts[indexPath.row]
             
@@ -813,6 +1060,39 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             }
             
             
+            
+            if self.featureTwoPosts[indexPath.row].peopleWhoLike != nil {
+                featureTwoeCell?.peopleWhoLike = self.featureTwoPosts[indexPath.row].peopleWhoLike as Dictionary<String, AnyObject>
+            }
+            
+            
+            
+            
+            print(featureTwoPosts[indexPath.row].peopleWhoLike)
+            
+            let likingDictionary = featureTwoPosts[indexPath.row].peopleWhoLike
+            
+            for (nameKey,namevalue) in likingDictionary {
+                
+                print("キーは\(nameKey)、値は\(namevalue)")
+                
+                
+                if nameKey == currentUserName {
+                    
+                    
+                    featureTwoeCell?.likesButton.isHidden = true
+                    featureTwoeCell?.likesButton.isEnabled = false
+                    
+                    featureTwoeCell?.unLikeButton.isHidden = false
+                    featureTwoeCell?.unLikeButton.isEnabled = true
+                    
+                    
+                    
+                    
+                }
+                
+                
+            }
             
             
             return featureTwoeCell!
@@ -850,6 +1130,7 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             featureThreeCell?.linkURL = self.featureThreePosts[indexPath.row].linkURL
             featureThreeCell?.imageURL = self.featureThreePosts[indexPath.row].imageURL
             featureThreeCell?.pvCount = self.featureThreePosts[indexPath.row].pvCount
+            featureThreeCell?.postID = self.featureThreePosts[indexPath.row].postID
             
             let post = featureThreePosts[indexPath.row]
             
@@ -874,6 +1155,45 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
             
             
+            
+            
+            
+            
+            if self.featureThreePosts[indexPath.row].peopleWhoLike != nil {
+                featureThreeCell?.peopleWhoLike = self.featureThreePosts[indexPath.row].peopleWhoLike as Dictionary<String, AnyObject>
+            }
+            
+            
+            
+            
+            print(featureThreePosts[indexPath.row].peopleWhoLike)
+            
+            let likingDictionary = featureThreePosts[indexPath.row].peopleWhoLike
+            
+            for (nameKey,namevalue) in likingDictionary {
+                
+                print("キーは\(nameKey)、値は\(namevalue)")
+                
+                
+                if nameKey == currentUserName {
+                    
+                    
+                    featureThreeCell?.likesButton.isHidden = true
+                    featureThreeCell?.likesButton.isEnabled = false
+                    
+                    featureThreeCell?.unLikeButton.isHidden = false
+                    featureThreeCell?.unLikeButton.isEnabled = true
+                    
+                    
+                    
+                    
+                }
+                
+                
+            }
+            
+            
+            
             return featureThreeCell!
 
             
@@ -885,6 +1205,18 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
             
         }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
