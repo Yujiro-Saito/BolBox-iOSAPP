@@ -50,22 +50,19 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
        
     }
     
+    @IBAction func postDataDidTap(_ sender: Any) {
+        
+        
+        
+        performSegue(withIdentifier: "postData", sender: nil)
+        
+    }
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
         
-        /*
-        
-        if (self.profilePostTable.contentSize.height < self.view.frame.size.height) {
-            self.profilePostTable.isScrollEnabled = false
-        }
-        else  {
-            
-            self.profilePostTable.isScrollEnabled = true
-        }
-          */  
             //ユーザーデータ読み込み
             if UserDefaults.standard.object(forKey: "AutoLogin") != nil  {
                 
@@ -154,8 +151,7 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        
-        
+      
         detailPosts = self.userPosts[indexPath.row]
         
         performSegue(withIdentifier: "ToDetail", sender: nil)
@@ -178,6 +174,19 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
             detailVc.userName = detailPosts?.userProfileName
             detailVc.userImageURL = detailPosts?.userProfileImage
             detailVc.userID = detailPosts?.userID
+            
+            
+        } else if segue.identifier == "postData" {
+            
+            let index = IndexPath()
+            
+            let selectedPost = self.userPosts[index.row]
+            
+            let postDataVc = (segue.destination as? PostDataViewController)!
+            
+            postDataVc.pageViewCount = selectedPost.readCount
+            postDataVc.likesCount = selectedPost.pvCount
+            
             
             
         }
