@@ -100,7 +100,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
         })
         
         //Firstのデータ読み込み
-        DataService.dataBase.REF_FIRST.observe(.value, with: { (snapshot) in
+        DataService.dataBase.REF_FIRST.queryLimited(toLast: 3).observe(.value, with: { (snapshot) in
             
             self.firstPosts = []
             
@@ -131,7 +131,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
         
         
         //Secondのデータ読み込み
-        DataService.dataBase.REF_SECOND.observe(.value, with: { (snapshot) in
+        DataService.dataBase.REF_SECOND.queryLimited(toLast: 3).observe(.value, with: { (snapshot) in
             
             self.secondPosts = []
             
@@ -163,7 +163,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
         
         
         //Thirdのデータ読み込み
-        DataService.dataBase.REF_THIRD.observe(.value, with: { (snapshot) in
+        DataService.dataBase.REF_THIRD.queryLimited(toLast: 3).observe(.value, with: { (snapshot) in
             
             self.thirdPosts = []
             
@@ -195,7 +195,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
         
         ////Fourthのデータ読み込み
         
-        DataService.dataBase.REF_FOURTH.observe(.value, with: { (snapshot) in
+        DataService.dataBase.REF_FOURTH.queryLimited(toLast: 3).observe(.value, with: { (snapshot) in
             
             self.fourthPosts = []
             
@@ -229,7 +229,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
         
         ////Fifthのデータ読み込み
         
-        DataService.dataBase.REF_FIFTH.observe(.value, with: { (snapshot) in
+        DataService.dataBase.REF_FIFTH.queryLimited(toLast: 3).observe(.value, with: { (snapshot) in
             
             self.fifthPosts = []
             
@@ -603,6 +603,24 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             
             detailPosts = self.topPosts[indexPath.row]
             
+            
+            //IDの設定、pv数
+            let separateID = self.topPosts[indexPath.row].postID
+            var readCount = self.topPosts[indexPath.row].readCount
+            
+            
+            print(separateID)
+            print(readCount)
+            
+            readCount += 1
+            
+            let readAmount = ["readCount": readCount]
+            
+            DataService.dataBase.REF_BASE.child("topReccomend/\(separateID)").updateChildValues(readAmount)
+            
+            
+            
+            
             performSegue(withIdentifier: "topPosts", sender: nil)
             
             
@@ -618,6 +636,23 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             
             detailPosts = self.firstPosts[indexPath.row]
             
+            
+            //IDの設定、pv数
+            let separateID = self.firstPosts[indexPath.row].postID
+            var readCount = self.firstPosts[indexPath.row].readCount
+            
+            
+            print(separateID)
+            print(readCount)
+            
+            readCount += 1
+            
+            let readAmount = ["readCount": readCount]
+            
+            DataService.dataBase.REF_BASE.child("first/\(separateID)").updateChildValues(readAmount)
+            
+            
+            
             performSegue(withIdentifier: "topPosts", sender: nil)
             
             
@@ -626,6 +661,20 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             
             detailPosts = self.secondPosts[indexPath.row]
             
+            //IDの設定、pv数
+            let separateID = self.secondPosts[indexPath.row].postID
+            var readCount = self.secondPosts[indexPath.row].readCount
+            
+            
+            print(separateID)
+            print(readCount)
+            
+            readCount += 1
+            
+            let readAmount = ["readCount": readCount]
+            
+            DataService.dataBase.REF_BASE.child("second/\(separateID)").updateChildValues(readAmount)
+            
             performSegue(withIdentifier: "topPosts", sender: nil)
             
             
@@ -633,17 +682,66 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             
             
             detailPosts = self.thirdPosts[indexPath.row]
+            
+            //IDの設定、pv数
+            let separateID = self.thirdPosts[indexPath.row].postID
+            var readCount = self.thirdPosts[indexPath.row].readCount
+            
+            
+            print(separateID)
+            print(readCount)
+            
+            readCount += 1
+            
+            let readAmount = ["readCount": readCount]
+            
+            DataService.dataBase.REF_BASE.child("third/\(separateID)").updateChildValues(readAmount)
+            
+            
+            
             performSegue(withIdentifier: "topPosts", sender: nil)
             
         } else if collectionView == fourthCollection {
             
             detailPosts = self.fourthPosts[indexPath.row]
+            
+            //IDの設定、pv数
+            let separateID = self.fourthPosts[indexPath.row].postID
+            var readCount = self.fourthPosts[indexPath.row].readCount
+            
+            
+            print(separateID)
+            print(readCount)
+            
+            readCount += 1
+            
+            let readAmount = ["readCount": readCount]
+            
+            DataService.dataBase.REF_BASE.child("fourth/\(separateID)").updateChildValues(readAmount)
+            
+            
             performSegue(withIdentifier: "topPosts", sender: nil)
             
             
         } else if collectionView == fifthCollection {
             
             detailPosts = self.fifthPosts[indexPath.row]
+            
+            //IDの設定、pv数
+            let separateID = self.fifthPosts[indexPath.row].postID
+            var readCount = self.fifthPosts[indexPath.row].readCount
+            
+            
+            print(separateID)
+            print(readCount)
+            
+            readCount += 1
+            
+            let readAmount = ["readCount": readCount]
+            
+            DataService.dataBase.REF_BASE.child("fifth/\(separateID)").updateChildValues(readAmount)
+            
+            
             performSegue(withIdentifier: "topPosts", sender: nil)
             
         }

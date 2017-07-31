@@ -29,8 +29,57 @@ class PopularViewController: UIViewController, IndicatorInfoProvider,UITableView
         popularTable.delegate = self
         popularTable.dataSource = self
         
+        self.popularTable.refreshControl = UIRefreshControl()
+        self.popularTable.refreshControl?.addTarget(self, action: #selector(PopularViewController.refresh), for: .valueChanged)
+        
 
     }
+    
+    
+    func refresh() {
+        
+        DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "pvCount").observe(.value, with: { (snapshot) in
+            
+            self.posts = []
+            
+            print(snapshot.value)
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        let likes = postDict["pvCount"] as! Int
+                        
+                        
+                        
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        
+                        self.posts.append(post)
+                        
+                        self.popularTable.reloadData()
+                        
+                    }
+                }
+                
+                
+            }
+            
+            
+            self.posts.reverse()
+            self.popularTable.reloadData()
+            
+        })
+        
+        
+        self.popularTable.refreshControl?.endRefreshing()
+        
+        
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
