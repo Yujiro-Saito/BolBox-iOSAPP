@@ -99,7 +99,7 @@ class FeatureTableViewCell: UITableViewCell {
         
         
         
-        //
+        //read1
         if self.cellType == 1 {
             //もっと読むの1
             
@@ -129,8 +129,220 @@ class FeatureTableViewCell: UITableViewCell {
             self.unLikeButton.isEnabled = true
         }
         
+        //read2
+        
+        else if self.cellType == 2 {
+            
+            
+            
+            self.pvCount += 1
+            
+            
+            //DB いいね数
+            let likesCount = ["pvCount": self.pvCount]
+            
+            let userData = [ "userName" : currentUserName]
+            
+            
+            
+            //いいね数を更新
+            DataService.dataBase.REF_BASE.child("second/\(self.postID)").updateChildValues(likesCount)
+            
+            //いいねつけた人登録
+            DataService.dataBase.REF_BASE.child("second/\(self.postID)/peopleWhoLike/\(self.currentUserName!)").setValue(userData)
+            
+            
+            
+            self.likesButton.isHidden = true
+            self.likesButton.isEnabled = false
+            
+            self.unLikeButton.isHidden = false
+            self.unLikeButton.isEnabled = true
+            
+            
+            
+        } else if self.cellType == 3 {
+            
+            
+            self.pvCount += 1
+            
+            
+            //DB いいね数
+            let likesCount = ["pvCount": self.pvCount]
+            
+            let userData = [ "userName" : currentUserName]
+            
+            
+            
+            //いいね数を更新
+            DataService.dataBase.REF_BASE.child("third/\(self.postID)").updateChildValues(likesCount)
+            
+            //いいねつけた人登録
+            DataService.dataBase.REF_BASE.child("third/\(self.postID)/peopleWhoLike/\(self.currentUserName!)").setValue(userData)
+            
+            
+            
+            self.likesButton.isHidden = true
+            self.likesButton.isEnabled = false
+            
+            self.unLikeButton.isHidden = false
+            self.unLikeButton.isEnabled = true
+            
+            
+        }
         
         
+        else if self.cellType == 4 {
+            
+            
+            self.pvCount += 1
+            
+            
+            //DB いいね数
+            let likesCount = ["pvCount": self.pvCount]
+            
+            let userData = [ "userName" : currentUserName]
+            
+            
+            
+            //いいね数を更新
+            DataService.dataBase.REF_BASE.child("fourth/\(self.postID)").updateChildValues(likesCount)
+            
+            //いいねつけた人登録
+            DataService.dataBase.REF_BASE.child("fourth/\(self.postID)/peopleWhoLike/\(self.currentUserName!)").setValue(userData)
+            
+            
+            
+            self.likesButton.isHidden = true
+            self.likesButton.isEnabled = false
+            
+            self.unLikeButton.isHidden = false
+            self.unLikeButton.isEnabled = true
+            
+            
+        }
+        
+        else if self.cellType == 5 {
+            
+            
+            self.pvCount += 1
+            
+            
+            //DB いいね数
+            let likesCount = ["pvCount": self.pvCount]
+            
+            let userData = [ "userName" : currentUserName]
+            
+            
+            
+            //いいね数を更新
+            DataService.dataBase.REF_BASE.child("fifth/\(self.postID)").updateChildValues(likesCount)
+            
+            //いいねつけた人登録
+            DataService.dataBase.REF_BASE.child("fifth/\(self.postID)/peopleWhoLike/\(self.currentUserName!)").setValue(userData)
+            
+            
+            
+            self.likesButton.isHidden = true
+            self.likesButton.isEnabled = false
+            
+            self.unLikeButton.isHidden = false
+            self.unLikeButton.isEnabled = true
+            
+            
+        }
+        
+        else if self.cellType == 6 {
+            
+            
+            self.pvCount += 1
+            
+            
+            //DB いいね数
+            let likesCount = ["pvCount": self.pvCount]
+            
+            let userData = [ "userName" : currentUserName]
+            
+            
+            
+            //いいね数を更新
+            DataService.dataBase.REF_BASE.child("featureOne/\(self.postID)").updateChildValues(likesCount)
+            
+            //いいねつけた人登録
+            DataService.dataBase.REF_BASE.child("featureOne/\(self.postID)/peopleWhoLike/\(self.currentUserName!)").setValue(userData)
+            
+            
+            
+            self.likesButton.isHidden = true
+            self.likesButton.isEnabled = false
+            
+            self.unLikeButton.isHidden = false
+            self.unLikeButton.isEnabled = true
+            
+            
+        }
+        
+        else if self.cellType == 7 {
+            
+            
+            self.pvCount += 1
+            
+            
+            //DB いいね数
+            let likesCount = ["pvCount": self.pvCount]
+            
+            let userData = [ "userName" : currentUserName]
+            
+            
+            
+            //いいね数を更新
+            DataService.dataBase.REF_BASE.child("featureTwo/\(self.postID)").updateChildValues(likesCount)
+            
+            //いいねつけた人登録
+            DataService.dataBase.REF_BASE.child("featureTwo/\(self.postID)/peopleWhoLike/\(self.currentUserName!)").setValue(userData)
+            
+            
+            
+            self.likesButton.isHidden = true
+            self.likesButton.isEnabled = false
+            
+            self.unLikeButton.isHidden = false
+            self.unLikeButton.isEnabled = true
+            
+            
+        }
+        
+        
+        else if self.cellType == 8 {
+            
+            
+            self.pvCount += 1
+            
+            
+            //DB いいね数
+            let likesCount = ["pvCount": self.pvCount]
+            
+            let userData = [ "userName" : currentUserName]
+            
+            
+            
+            //いいね数を更新
+            DataService.dataBase.REF_BASE.child("featureThree/\(self.postID)").updateChildValues(likesCount)
+            
+            //いいねつけた人登録
+            DataService.dataBase.REF_BASE.child("featureThree/\(self.postID)/peopleWhoLike/\(self.currentUserName!)").setValue(userData)
+            
+            
+            
+            self.likesButton.isHidden = true
+            self.likesButton.isEnabled = false
+            
+            self.unLikeButton.isHidden = false
+            self.unLikeButton.isEnabled = true
+            
+            
+        }
+
         
         
         
@@ -189,8 +401,329 @@ class FeatureTableViewCell: UITableViewCell {
             }
             
             
+        } else if self.cellType == 2 {
+            
+            self.pvCount -= 1
+            
+            //DBを更新
+            let likesCount = ["pvCount": self.pvCount]
+            let userData = [ "userName" : currentUserName]
+            
+            
+            DispatchQueue.global().async {
+                
+                //いいねのデータを削除
+                DataService.dataBase.REF_BASE.child("second/\(self.postID)").updateChildValues(likesCount)
+                
+                DataService.dataBase.REF_BASE.child("second/\(self.postID)/peopleWhoLike/\(self.currentUserName!)").removeValue()
+                
+                
+                self.dbCheck = true
+                
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            //DB削除を確認後の処理
+            
+            self.wait( {self.dbCheck == false} ) {
+                
+                self.likesButton.isHidden = false
+                self.likesButton.isEnabled = true
+                
+                
+                self.unLikeButton.isHidden = true
+                self.unLikeButton.isEnabled = false
+                
+                self.dbCheck = false
+                
+            }
         }
         
+        
+        else if self.cellType == 3 {
+            
+            self.pvCount -= 1
+            
+            //DBを更新
+            let likesCount = ["pvCount": self.pvCount]
+            let userData = [ "userName" : currentUserName]
+            
+            
+            DispatchQueue.global().async {
+                
+                //いいねのデータを削除
+                DataService.dataBase.REF_BASE.child("third/\(self.postID)").updateChildValues(likesCount)
+                
+                DataService.dataBase.REF_BASE.child("third/\(self.postID)/peopleWhoLike/\(self.currentUserName!)").removeValue()
+                
+                
+                self.dbCheck = true
+                
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            //DB削除を確認後の処理
+            
+            self.wait( {self.dbCheck == false} ) {
+                
+                self.likesButton.isHidden = false
+                self.likesButton.isEnabled = true
+                
+                
+                self.unLikeButton.isHidden = true
+                self.unLikeButton.isEnabled = false
+                
+                self.dbCheck = false
+                
+            }
+        }
+        
+        
+        else if self.cellType == 4 {
+            
+            self.pvCount -= 1
+            
+            //DBを更新
+            let likesCount = ["pvCount": self.pvCount]
+            let userData = [ "userName" : currentUserName]
+            
+            
+            DispatchQueue.global().async {
+                
+                //いいねのデータを削除
+                DataService.dataBase.REF_BASE.child("fourth/\(self.postID)").updateChildValues(likesCount)
+                
+                DataService.dataBase.REF_BASE.child("fourth/\(self.postID)/peopleWhoLike/\(self.currentUserName!)").removeValue()
+                
+                
+                self.dbCheck = true
+                
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            //DB削除を確認後の処理
+            
+            self.wait( {self.dbCheck == false} ) {
+                
+                self.likesButton.isHidden = false
+                self.likesButton.isEnabled = true
+                
+                
+                self.unLikeButton.isHidden = true
+                self.unLikeButton.isEnabled = false
+                
+                self.dbCheck = false
+                
+            }
+        }
+        
+        
+        
+        else if self.cellType == 5 {
+            
+            self.pvCount -= 1
+            
+            //DBを更新
+            let likesCount = ["pvCount": self.pvCount]
+            let userData = [ "userName" : currentUserName]
+            
+            
+            DispatchQueue.global().async {
+                
+                //いいねのデータを削除
+                DataService.dataBase.REF_BASE.child("fifth/\(self.postID)").updateChildValues(likesCount)
+                
+                DataService.dataBase.REF_BASE.child("fifth/\(self.postID)/peopleWhoLike/\(self.currentUserName!)").removeValue()
+                
+                
+                self.dbCheck = true
+                
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            //DB削除を確認後の処理
+            
+            self.wait( {self.dbCheck == false} ) {
+                
+                self.likesButton.isHidden = false
+                self.likesButton.isEnabled = true
+                
+                
+                self.unLikeButton.isHidden = true
+                self.unLikeButton.isEnabled = false
+                
+                self.dbCheck = false
+                
+            }
+        }
+        
+        
+        
+        else if self.cellType == 6 {
+            
+            self.pvCount -= 1
+            
+            //DBを更新
+            let likesCount = ["pvCount": self.pvCount]
+            let userData = [ "userName" : currentUserName]
+            
+            
+            DispatchQueue.global().async {
+                
+                //いいねのデータを削除
+                DataService.dataBase.REF_BASE.child("featureOne/\(self.postID)").updateChildValues(likesCount)
+                
+                DataService.dataBase.REF_BASE.child("featureOne/\(self.postID)/peopleWhoLike/\(self.currentUserName!)").removeValue()
+                
+                
+                self.dbCheck = true
+                
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            //DB削除を確認後の処理
+            
+            self.wait( {self.dbCheck == false} ) {
+                
+                self.likesButton.isHidden = false
+                self.likesButton.isEnabled = true
+                
+                
+                self.unLikeButton.isHidden = true
+                self.unLikeButton.isEnabled = false
+                
+                self.dbCheck = false
+                
+            }
+        }
+
+        
+        
+        else if self.cellType == 7 {
+            
+            self.pvCount -= 1
+            
+            //DBを更新
+            let likesCount = ["pvCount": self.pvCount]
+            let userData = [ "userName" : currentUserName]
+            
+            
+            DispatchQueue.global().async {
+                
+                //いいねのデータを削除
+                DataService.dataBase.REF_BASE.child("featureTwo/\(self.postID)").updateChildValues(likesCount)
+                
+                DataService.dataBase.REF_BASE.child("featureTwo/\(self.postID)/peopleWhoLike/\(self.currentUserName!)").removeValue()
+                
+                
+                self.dbCheck = true
+                
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            //DB削除を確認後の処理
+            
+            self.wait( {self.dbCheck == false} ) {
+                
+                self.likesButton.isHidden = false
+                self.likesButton.isEnabled = true
+                
+                
+                self.unLikeButton.isHidden = true
+                self.unLikeButton.isEnabled = false
+                
+                self.dbCheck = false
+                
+            }
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        else if self.cellType == 8 {
+            
+            self.pvCount -= 1
+            
+            //DBを更新
+            let likesCount = ["pvCount": self.pvCount]
+            let userData = [ "userName" : currentUserName]
+            
+            
+            DispatchQueue.global().async {
+                
+                //いいねのデータを削除
+                DataService.dataBase.REF_BASE.child("featureThree/\(self.postID)").updateChildValues(likesCount)
+                
+                DataService.dataBase.REF_BASE.child("featureThree/\(self.postID)/peopleWhoLike/\(self.currentUserName!)").removeValue()
+                
+                
+                self.dbCheck = true
+                
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            //DB削除を確認後の処理
+            
+            self.wait( {self.dbCheck == false} ) {
+                
+                self.likesButton.isHidden = false
+                self.likesButton.isEnabled = true
+                
+                
+                self.unLikeButton.isHidden = true
+                self.unLikeButton.isEnabled = false
+                
+                self.dbCheck = false
+                
+            }
+        }
         
         
         

@@ -64,14 +64,6 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
                                 let key = snap.key
                                 let post = Post(postKey: key, postData: postDict)
                             
-                            /*
-                            let postIdentification = postDict["postID"] as! String
-                            self.separateID = postIdentification
-                            
-                            print(postDict["readCount"] as! Int)
-                            let readNum = postDict["readCount"] as! Int
-                            self.readCount = readNum
-                            */
                             
                             
                                 self.readMorePosts.append(post)
@@ -446,7 +438,6 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             self.readCount = self.readMorePosts[indexPath.row].readCount
 
             
-            print("ああああああああああああああああ")
             print(self.separateID)
             print(self.readCount)
             
@@ -464,22 +455,91 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
             
             detailPosts = self.readMorePosts[indexPath.row]
+            
+            
+            
+            //IDの設定、pv数
+            self.separateID = self.readMorePosts[indexPath.row].postID
+            self.readCount = self.readMorePosts[indexPath.row].readCount
+            
+            
+            print(self.separateID)
+            print(self.readCount)
+            
+            self.readCount += 1
+            
+            let readAmount = ["readCount": self.readCount]
+            DataService.dataBase.REF_BASE.child("second/\(separateID)").updateChildValues(readAmount)
+            
+            
+            
             performSegue(withIdentifier: "DetailsWin", sender: nil)
             
             
         } else if self.readMoreNum == 3 {
             
             detailPosts = self.readMorePosts[indexPath.row]
+            
+            //IDの設定、pv数
+            self.separateID = self.readMorePosts[indexPath.row].postID
+            self.readCount = self.readMorePosts[indexPath.row].readCount
+            
+            
+            print(self.separateID)
+            print(self.readCount)
+            
+            self.readCount += 1
+            
+            let readAmount = ["readCount": self.readCount]
+            DataService.dataBase.REF_BASE.child("third/\(separateID)").updateChildValues(readAmount)
+            
+            
+            
             performSegue(withIdentifier: "DetailsWin", sender: nil)
             
         } else if self.readMoreNum == 4 {
             
             detailPosts = self.readMorePosts[indexPath.row]
+            
+            //IDの設定、pv数
+            self.separateID = self.readMorePosts[indexPath.row].postID
+            self.readCount = self.readMorePosts[indexPath.row].readCount
+            
+            
+            print(self.separateID)
+            print(self.readCount)
+            
+            self.readCount += 1
+            
+            let readAmount = ["readCount": self.readCount]
+            DataService.dataBase.REF_BASE.child("fourth/\(separateID)").updateChildValues(readAmount)
+            
+            
             performSegue(withIdentifier: "DetailsWin", sender: nil)
             
         } else if self.readMoreNum == 5 {
             
             detailPosts = self.readMorePosts[indexPath.row]
+            
+            //IDの設定、pv数
+            self.separateID = self.readMorePosts[indexPath.row].postID
+            self.readCount = self.readMorePosts[indexPath.row].readCount
+            
+            
+            print(self.separateID)
+            print(self.readCount)
+            
+            self.readCount += 1
+            
+            let readAmount = ["readCount": self.readCount]
+            DataService.dataBase.REF_BASE.child("fifth/\(separateID)").updateChildValues(readAmount)
+            
+            
+            
+            
+            
+            
+            
             performSegue(withIdentifier: "DetailsWin", sender: nil)
             
         }
@@ -488,12 +548,70 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
         else if self.selectedNum == 0 {
             detailPosts = self.featureOnePosts[indexPath.row]
+            
+            
+            //IDの設定、pv数
+            self.separateID = self.featureOnePosts[indexPath.row].postID
+            self.readCount = self.featureOnePosts[indexPath.row].readCount
+            
+            
+            print(self.separateID)
+            print(self.readCount)
+            
+            self.readCount += 1
+            
+            let readAmount = ["readCount": self.readCount]
+            DataService.dataBase.REF_BASE.child("featureOne/\(separateID)").updateChildValues(readAmount)
+            
+            
+            
+            
+            
+            
+            
             performSegue(withIdentifier: "DetailsWin", sender: nil)
         } else if self.selectedNum == 1 {
             detailPosts = self.featureTwoPosts[indexPath.row]
+            
+            
+            //IDの設定、pv数
+            self.separateID = self.featureTwoPosts[indexPath.row].postID
+            self.readCount = self.featureTwoPosts[indexPath.row].readCount
+            
+            
+            print(self.separateID)
+            print(self.readCount)
+            
+            self.readCount += 1
+            
+            let readAmount = ["readCount": self.readCount]
+            DataService.dataBase.REF_BASE.child("featureTwo/\(separateID)").updateChildValues(readAmount)
+            
+
+            
+            
             performSegue(withIdentifier: "DetailsWin", sender: nil)
         } else if self.selectedNum == 2 {
+            
+            
             detailPosts = self.featureThreePosts[indexPath.row]
+            
+            
+            
+            
+            //IDの設定、pv数
+            self.separateID = self.featureThreePosts[indexPath.row].postID
+            self.readCount = self.featureThreePosts[indexPath.row].readCount
+            
+            
+            print(self.separateID)
+            print(self.readCount)
+            
+            self.readCount += 1
+            
+            let readAmount = ["readCount": self.readCount]
+            DataService.dataBase.REF_BASE.child("featureThree/\(separateID)").updateChildValues(readAmount)
+            
             performSegue(withIdentifier: "DetailsWin", sender: nil)
         }
         
@@ -515,13 +633,6 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
         if readMoreNum == 1 {
             
             
-            //PostID-PV数用
-            //let postIdentification = self.readMorePosts[indexPath.row].postID
-            //self.separateID = postIdentification
-            
-            //PostID-PV数用
-            //let readNum = self.readMorePosts[indexPath.row].readCount
-            //self.readCount = readNum
             
             
             
@@ -624,8 +735,8 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             readMoreCell?.layer.borderWidth = 10
             readMoreCell?.clipsToBounds = true
             
-            
-            
+            //
+            readMoreCell?.cellType = 2
             
             readMoreCell?.linkURL = self.readMorePosts[indexPath.row].linkURL
             readMoreCell?.imageURL = self.readMorePosts[indexPath.row].imageURL
@@ -707,8 +818,8 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             readMoreCell?.layer.borderWidth = 10
             readMoreCell?.clipsToBounds = true
             
-            
-            
+            //
+            readMoreCell?.cellType = 3
             
             readMoreCell?.linkURL = self.readMorePosts[indexPath.row].linkURL
             readMoreCell?.imageURL = self.readMorePosts[indexPath.row].imageURL
@@ -786,7 +897,8 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             readMoreCell?.clipsToBounds = true
             
             
-            
+            //
+            readMoreCell?.cellType = 4
             
             readMoreCell?.linkURL = self.readMorePosts[indexPath.row].linkURL
             readMoreCell?.imageURL = self.readMorePosts[indexPath.row].imageURL
@@ -863,7 +975,8 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             readMoreCell?.clipsToBounds = true
             
             
-            
+            //
+            readMoreCell?.cellType = 5
             
             readMoreCell?.linkURL = self.readMorePosts[indexPath.row].linkURL
             readMoreCell?.imageURL = self.readMorePosts[indexPath.row].imageURL
@@ -945,12 +1058,13 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             featureOneCell?.clipsToBounds = true
             
             
-            
+            //
+            featureOneCell?.cellType = 6
             
            featureOneCell?.linkURL = self.featureOnePosts[indexPath.row].linkURL
            featureOneCell?.imageURL = self.featureOnePosts[indexPath.row].imageURL
             featureOneCell?.pvCount = self.featureOnePosts[indexPath.row].pvCount
-            featureOneCell?.postID = "featureOneOne"
+            featureOneCell?.postID = self.featureOnePosts[indexPath.row].postID
             
             let post = featureOnePosts[indexPath.row]
             
@@ -1031,7 +1145,8 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             featureTwoeCell?.layer.borderWidth = 10
             featureTwoeCell?.clipsToBounds = true
             
-            
+            //
+            featureTwoeCell?.cellType = 7
             
             
             featureTwoeCell?.linkURL = self.featureTwoPosts[indexPath.row].linkURL
@@ -1125,7 +1240,9 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             featureThreeCell?.clipsToBounds = true
             
             
-            
+            //
+            featureThreeCell?.cellType = 8
+
             
             featureThreeCell?.linkURL = self.featureThreePosts[indexPath.row].linkURL
             featureThreeCell?.imageURL = self.featureThreePosts[indexPath.row].imageURL
