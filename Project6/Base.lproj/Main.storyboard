@@ -65,7 +65,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" selectedImage="Fill 91 Copy" systemItem="search" id="87D-zP-uBj"/>
+                    <tabBarItem key="tabBarItem" title="" image="Search" id="87D-zP-uBj"/>
                     <connections>
                         <outlet property="buttonBarView" destination="P8s-bd-N60" id="WOf-8M-xvp"/>
                         <outlet property="containerView" destination="1WV-B3-8Ht" id="EWa-Cj-lC6"/>
@@ -450,7 +450,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="330" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YSs-po-OO3">
                                 <rect key="frame" x="16" y="106" width="343" height="495"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="popularCell" id="eX9-hw-A6F" customClass="PopularTableViewCell" customModule="Project6" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="330"/>
@@ -524,6 +524,7 @@
                                                             </connections>
                                                         </button>
                                                     </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -683,7 +684,7 @@
                         <viewControllerLayoutGuide type="bottom" id="NQy-fT-QUW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5yt-0k-JDd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="83F-9D-E4A">
@@ -709,9 +710,10 @@
                                                 </connections>
                                             </button>
                                         </barButtonItem>
-                                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8AD-O2-FF4">
-                                            <rect key="frame" x="112.5" y="7" width="150" height="30"/>
+                                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8AD-O2-FF4">
+                                            <rect key="frame" x="172" y="12" width="31" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <state key="normal" title="進む">
                                                 <color key="titleColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
@@ -755,7 +757,7 @@
                         <viewControllerLayoutGuide type="bottom" id="FiS-L8-88k"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TsI-E2-xLR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YV8-pl-Klm">
@@ -1313,7 +1315,7 @@
                             <constraint firstItem="zWz-QA-Ejj" firstAttribute="leading" secondItem="ZtH-GX-Wvz" secondAttribute="leading" id="bFC-gM-ENJ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="contacts" id="RO5-PP-NAx"/>
+                    <tabBarItem key="tabBarItem" image="Profile" id="RO5-PP-NAx"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
@@ -1322,6 +1324,7 @@
                         <outlet property="profileName" destination="DzD-KM-fGU" id="F4a-Cu-tlR"/>
                         <outlet property="profileNavBar" destination="gnG-7c-HlF" id="NND-Ca-Uuz"/>
                         <outlet property="profilePostTable" destination="V0V-EZ-yuc" id="ADU-7f-SvS"/>
+                        <outlet property="scroller" destination="zWz-QA-Ejj" id="GAI-OV-H9i"/>
                         <segue destination="BHm-3X-9rX" kind="showDetail" identifier="goEdit" id="b9j-Nh-nIr"/>
                         <segue destination="o3q-Mq-hHb" kind="show" identifier="logout" id="GBd-kR-lEf"/>
                         <segue destination="MIK-fG-rdI" kind="show" identifier="ToDetail" id="Ufe-L3-6S3"/>
@@ -1998,11 +2001,14 @@
                             <constraint firstAttribute="bottom" secondItem="ac2-gI-EY4" secondAttribute="bottom" id="llV-ls-qVE"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="recents" id="Dkl-P5-vvo"/>
+                    <tabBarItem key="tabBarItem" image="Home" id="Dkl-P5-vvo">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-10"/>
+                    </tabBarItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="2200"/>
                     <connections>
                         <outlet property="baseNavBar" destination="t6i-7P-ULK" id="t9s-rk-p3W"/>
+                        <outlet property="baseTab" destination="Dkl-P5-vvo" id="Acr-SS-QWl"/>
                         <outlet property="fifthCollection" destination="0x7-ve-Pcg" id="zKp-Zx-cYs"/>
                         <outlet property="firstCollection" destination="7j5-Dh-dSk" id="jEo-7b-HtG"/>
                         <outlet property="fourthCollection" destination="UBe-qc-t5m" id="Bap-au-25Y"/>
@@ -2241,7 +2247,8 @@
                         </subviews>
                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" systemItem="history" id="nb4-W0-fJA">
+                    <tabBarItem key="tabBarItem" title="" image="notification" id="nb4-W0-fJA">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-5"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <connections>
@@ -2492,11 +2499,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Hca-fe-OPm"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2lq-DX-903">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="2200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XOA-8o-di1" customClass="SignInUpViewDesign" customModule="Project6" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="2151"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="951"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="More" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ASj-gk-CIp">
@@ -2568,7 +2575,7 @@
                         <viewControllerLayoutGuide type="bottom" id="mMg-sY-6u6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="94Z-SE-e1c">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="2200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Sw-YN-Mfs" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
@@ -2628,7 +2635,7 @@
                         <viewControllerLayoutGuide type="bottom" id="PsN-oc-cB7"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="viu-60-MLQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="2200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nmt-Wy-XIF" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
@@ -2710,7 +2717,9 @@
         <image name="Action" width="5" height="21"/>
         <image name="AddPhoto" width="64" height="64"/>
         <image name="AddPlus" width="32" height="32"/>
-        <image name="Fill 91 Copy" width="34" height="34"/>
+        <image name="Home" width="30" height="34"/>
+        <image name="Profile" width="34" height="34"/>
+        <image name="Search" width="34" height="34"/>
         <image name="closes" width="64" height="64"/>
         <image name="colo" width="4472" height="2981"/>
         <image name="label:1eB-gA-gRT:patternImage" width="512" height="512">
@@ -37815,11 +37824,12 @@ AAAAAAAQDwA
         </image>
         <image name="like" width="64" height="64"/>
         <image name="likes" width="64" height="64"/>
+        <image name="notification" width="21" height="34"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uPa-V9-bqT"/>
-        <segue reference="f75-nR-suJ"/>
+        <segue reference="Ufe-L3-6S3"/>
+        <segue reference="GeS-jA-VfY"/>
         <segue reference="tEs-cJ-o5z"/>
-        <segue reference="otp-AY-99o"/>
+        <segue reference="eDQ-uE-kWy"/>
     </inferredMetricsTieBreakers>
 </document>

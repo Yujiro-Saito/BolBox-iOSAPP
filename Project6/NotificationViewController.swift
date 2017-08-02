@@ -36,7 +36,8 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         notificationTable.dataSource = self
         
         
-        self.tabItem.badgeColor = UIColor.rgb(r: 31, g: 158, b: 187, alpha: 1)
+        //self.tabItem.badgeColor = UIColor.rgb(r: 31, g: 158, b: 187, alpha: 1)
+        self.tabItem.badgeColor = UIColor.red
         
         
         //バーの高さ

@@ -22,6 +22,10 @@ class TabViewController: UITabBarController {
         self.selectedIndex = 0
         
         
+        
+        tabBar.tintColor = barColor
+        
+        
        
         
         

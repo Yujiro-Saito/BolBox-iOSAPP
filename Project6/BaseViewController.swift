@@ -21,8 +21,9 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     @IBOutlet weak var fifthCollection: UICollectionView!
     @IBOutlet weak var purposeCollection: UICollectionView!
     
+    @IBOutlet weak var baseTab: UITabBarItem!
     
-    
+        
     
     
     //プロパティ
@@ -299,6 +300,8 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        
+        
         
         //デフォルトではゲストユーザー
         

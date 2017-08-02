@@ -279,7 +279,6 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
     
     
     
-    
         
     
     

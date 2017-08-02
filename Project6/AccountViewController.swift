@@ -11,7 +11,7 @@ import Firebase
 import AlamofireImage
 
 
-class AccountViewController: UIViewController,UINavigationBarDelegate, UITableViewDelegate, UITableViewDataSource {
+class AccountViewController: UIViewController,UINavigationBarDelegate, UITableViewDelegate, UITableViewDataSource,UIScrollViewDelegate {
     
     
     @IBOutlet weak var profilePostTable: UITableView!
@@ -19,6 +19,8 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileImage: ProfileImage!
     @IBOutlet weak var nonRegisterView: UIView!
+    
+    @IBOutlet weak var scroller: UIScrollView!
     
     
     var realUserName: String?
@@ -30,12 +32,44 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
     var deleteCheck = false
     
     
+    
+    
+    
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        
+        if self.scroller.isAtBottom == true {
+            print("一番下")
+            //テーブルビューのスクロール許可
+            self.profilePostTable.isScrollEnabled = true
+            
+            
+            
+        } else {
+            print("下ではない")
+            //テーブルビューのスクロール許可しない
+            self.profilePostTable.isScrollEnabled = false
+        }
+        
+    }
+    
+    
+    
+    
+    
+ 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        scroller.delegate = self
         
         profilePostTable.delegate = self
         profilePostTable.dataSource = self
         profileNavBar.delegate = self
+        
+        self.profilePostTable.isScrollEnabled = false
         
         self.nonRegisterView.isHidden = true
         
@@ -255,6 +289,7 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
    
     
     
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -411,6 +446,32 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
     
     
 
+}
+
+
+extension UIScrollView {
+    
+    var isAtTop: Bool {
+        return contentOffset.y <= verticalOffsetForTop
+    }
+    
+    var isAtBottom: Bool {
+        return contentOffset.y >= verticalOffsetForBottom
+    }
+    
+    var verticalOffsetForTop: CGFloat {
+        let topInset = contentInset.top
+        return -topInset
+    }
+    
+    var verticalOffsetForBottom: CGFloat {
+        let scrollViewHeight = bounds.height
+        let scrollContentSizeHeight = contentSize.height
+        let bottomInset = contentInset.bottom
+        let scrollViewBottomOffset = scrollContentSizeHeight + bottomInset - scrollViewHeight
+        return scrollViewBottomOffset
+    }
+    
 }
 
 
