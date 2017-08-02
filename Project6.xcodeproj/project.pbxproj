@@ -49,7 +49,6 @@
 		B77EEC601F28B6E500089A67 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77EEC5F1F28B6E500089A67 /* TabViewController.swift */; };
 		B78053F91EE2C63300F95BDF /* CategorysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78053F81EE2C63300F95BDF /* CategorysTableViewCell.swift */; };
 		B78DE1561F2D72E700E1A3A1 /* ZFRippleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78DE1551F2D72E700E1A3A1 /* ZFRippleButton.swift */; };
-		B7B2FE371F2F24CD002D78F2 /* PostDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B2FE361F2F24CD002D78F2 /* PostDataViewController.swift */; };
 		B7B4CAD41EFA81330038F176 /* PostProductInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CAD31EFA81330038F176 /* PostProductInfoViewController.swift */; };
 		B7B4CAD61EFA81570038F176 /* PostProductPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CAD51EFA81570038F176 /* PostProductPhotosViewController.swift */; };
 		B7B4CAD81EFAACE20038F176 /* PostDetailPhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CAD71EFAACE20038F176 /* PostDetailPhotosCollectionViewCell.swift */; };
@@ -129,7 +128,6 @@
 		B77EEC5F1F28B6E500089A67 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		B78053F81EE2C63300F95BDF /* CategorysTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorysTableViewCell.swift; sourceTree = "<group>"; };
 		B78DE1551F2D72E700E1A3A1 /* ZFRippleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFRippleButton.swift; sourceTree = "<group>"; };
-		B7B2FE361F2F24CD002D78F2 /* PostDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDataViewController.swift; sourceTree = "<group>"; };
 		B7B4CAD31EFA81330038F176 /* PostProductInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostProductInfoViewController.swift; sourceTree = "<group>"; };
 		B7B4CAD51EFA81570038F176 /* PostProductPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostProductPhotosViewController.swift; sourceTree = "<group>"; };
 		B7B4CAD71EFAACE20038F176 /* PostDetailPhotosCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailPhotosCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -303,7 +301,6 @@
 				B7FE38651F1BAFF900DE1E7F /* WebViewController.swift */,
 				B7E91B2E1F1C5E6500D8C522 /* EditViewController.swift */,
 				B7E9D62C1F2096F4001115F6 /* FeatureViewController.swift */,
-				B7B2FE361F2F24CD002D78F2 /* PostDataViewController.swift */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -547,7 +544,6 @@
 				B771C6031F0CA1D3005D4BF2 /* OneViewController.swift in Sources */,
 				B7B4CAD41EFA81330038F176 /* PostProductInfoViewController.swift in Sources */,
 				B7E3902B1ED5A13E005D8BFC /* ImageDesign.swift in Sources */,
-				B7B2FE371F2F24CD002D78F2 /* PostDataViewController.swift in Sources */,
 				B7E9D62F1F20A14B001115F6 /* FeatureTableViewCell.swift in Sources */,
 				B7482CE41F0F1B2A00E98EF1 /* FourTableViewCell.swift in Sources */,
 				B77B55501EEF6F1600262589 /* SignUpViewController.swift in Sources */,

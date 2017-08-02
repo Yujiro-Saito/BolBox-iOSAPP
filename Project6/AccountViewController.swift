@@ -32,25 +32,26 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
     var deleteCheck = false
     
     
+   
     
-    
-    
-    
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if self.scroller.isAtBottom == true {
-            print("一番下")
             //テーブルビューのスクロール許可
             self.profilePostTable.isScrollEnabled = true
             
             
             
         } else {
-            print("下ではない")
             //テーブルビューのスクロール許可しない
-            self.profilePostTable.isScrollEnabled = false
+            if profilePostTable.isAtTop == false {
+                self.profilePostTable.isScrollEnabled = true
+            } else {
+                self.profilePostTable.isScrollEnabled = false
+            }
+            
+            
         }
-        
+
     }
     
     
@@ -210,20 +211,7 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
             detailVc.userID = detailPosts?.userID
             
             
-        } else if segue.identifier == "postData" {
-            
-            let index = IndexPath()
-            
-            let selectedPost = self.userPosts[index.row]
-            
-            let postDataVc = (segue.destination as? PostDataViewController)!
-            
-            postDataVc.pageViewCount = selectedPost.readCount
-            postDataVc.likesCount = selectedPost.pvCount
-            
-            
-            
-        }
+        } 
         
         
         
