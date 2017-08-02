@@ -1166,58 +1166,6 @@
             </objects>
             <point key="canvasLocation" x="4342" y="7714"/>
         </scene>
-        <!--Post Data View Controller-->
-        <scene sceneID="8fw-pc-gbM">
-            <objects>
-                <viewController id="Xr4-Yw-hUu" customClass="PostDataViewController" customModule="Project6" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="rQu-sa-ctz"/>
-                        <viewControllerLayoutGuide type="bottom" id="DSS-b7-UEU"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="BUj-Td-wBD">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="投稿を読まれた回数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCB-cw-PMM">
-                                <rect key="frame" x="81" y="20" width="213" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
-                                <color key="textColor" red="0.33879282994923854" green="0.33879282994923854" blue="0.33879282994923854" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="いいね数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZg-lX-VMX">
-                                <rect key="frame" x="81" y="293" width="213" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
-                                <color key="textColor" red="0.33879282989999998" green="0.33879282989999998" blue="0.33879282989999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="32" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gV-C7-PcW">
-                                <rect key="frame" x="81" y="124" width="213" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
-                                <color key="textColor" red="0.33879282989999998" green="0.33879282989999998" blue="0.33879282989999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d62-q3-ERg">
-                                <rect key="frame" x="81" y="381" width="213" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
-                                <color key="textColor" red="0.33879282989999998" green="0.33879282989999998" blue="0.33879282989999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="likesCountLabel" destination="d62-q3-ERg" id="n6d-Hr-66d"/>
-                        <outlet property="pageViewLabel" destination="2gV-C7-PcW" id="23V-RJ-PHj"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gsg-Rr-Uv8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2872.8000000000002" y="4492.8035982008996"/>
-        </scene>
         <!--Account View Controller-->
         <scene sceneID="Mhf-sC-LUb">
             <objects>
@@ -1294,15 +1242,6 @@
                                                                     <rect key="frame" x="294" y="65" width="20" height="20"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 </imageView>
-                                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mXk-UK-gAB">
-                                                                    <rect key="frame" x="164" y="60" width="46" height="30"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <color key="backgroundColor" red="1" green="0.32532777619999997" blue="0.22654914200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <state key="normal" title="Button"/>
-                                                                    <connections>
-                                                                        <action selector="postDataDidTap:" destination="LR8-dZ-54r" eventType="touchUpInside" id="hq8-G8-Edp"/>
-                                                                    </connections>
-                                                                </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKt-yF-ITl">
                                                                     <rect key="frame" x="130" y="98" width="214" height="44"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1390,7 +1329,6 @@
                         <segue destination="o3q-Mq-hHb" kind="show" identifier="logout" id="GBd-kR-lEf"/>
                         <segue destination="MIK-fG-rdI" kind="show" identifier="ToDetail" id="Ufe-L3-6S3"/>
                         <segue destination="X0E-Jo-YFH" kind="show" identifier="ToPostsss" id="pPb-LC-54J"/>
-                        <segue destination="Xr4-Yw-hUu" kind="showDetail" identifier="postData" id="LNQ-06-Pvy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rlu-Lr-uuP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -37890,7 +37828,6 @@ AAAAAAAQDwA
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Ufe-L3-6S3"/>
-
         <segue reference="uPa-V9-bqT"/>
         <segue reference="eDQ-uE-kWy"/>
         <segue reference="tEs-cJ-o5z"/>
