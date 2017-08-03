@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionViewDelegate, UICollectionViewDataSource {
+class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     //Outlet
     @IBOutlet weak var baseNavBar: UINavigationBar!
@@ -62,6 +62,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
         fifthCollection.dataSource = self
         purposeCollection.delegate = self
         purposeCollection.dataSource = self
+        
         
         
         //バーの高さ
@@ -352,6 +353,20 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     
     
     
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        
+        //セルサイズを可変にする
+        if collectionView == self.topCollectionTable {
+            return CGSize(width: self.view.frame.size.width, height: 300)
+        } else if collectionView == self.purposeCollection {
+            return CGSize(width: 180, height: 102)
+        } else {
+            return CGSize(width: 181, height: 221)
+        }
+    }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
