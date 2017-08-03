@@ -11,13 +11,17 @@ import Firebase
 import AlamofireImage
 
 
-class UserProfileViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UINavigationBarDelegate {
+class UserProfileViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UINavigationBarDelegate,UIScrollViewDelegate {
     
     
     @IBOutlet weak var userProfileImage: ProfileImage!
     @IBOutlet weak var userProfileName: UILabel!
     @IBOutlet weak var userDescription: UILabel!
     @IBOutlet weak var profileNavBar: UINavigationBar!
+    
+    @IBOutlet weak var scrollers: UIScrollView!
+    
+    
     
     
     @IBOutlet weak var userTable: UITableView!
@@ -36,7 +40,7 @@ class UserProfileViewController: UIViewController,UITableViewDelegate,UITableVie
         super.viewDidLoad()
         
         print(userID)
-        
+        scrollers.delegate = self
         userTable.delegate = self
         userTable.dataSource = self
         
@@ -116,6 +120,29 @@ class UserProfileViewController: UIViewController,UITableViewDelegate,UITableVie
         
         
     }
+    
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if self.scrollers.isAtBottom == true {
+            //テーブルビューのスクロール許可
+            self.userTable.isScrollEnabled = true
+            
+            
+            
+        } else {
+            //テーブルビューのスクロール許可しない
+            if scrollers.isAtTop == false {
+                self.userTable.isScrollEnabled = true
+            } else {
+                self.userTable.isScrollEnabled = false
+            }
+            
+            
+        }
+        
+    }
+
+    
     
     
     @IBAction func backButtonDidTap(_ sender: Any) {
