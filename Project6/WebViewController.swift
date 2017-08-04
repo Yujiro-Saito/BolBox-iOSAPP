@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class WebViewController: UIViewController,UIWebViewDelegate,UINavigationBarDelegate {
 
@@ -16,6 +17,16 @@ class WebViewController: UIViewController,UIWebViewDelegate,UINavigationBarDeleg
     @IBOutlet weak var navBar: UINavigationBar!
     
     var postUrl: String?
+    
+    
+    
+    
+    @IBAction func downButtonDidTap(_ sender: Any) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        self.webView.stopLoading()
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     
     
     
@@ -38,6 +49,7 @@ class WebViewController: UIViewController,UIWebViewDelegate,UINavigationBarDeleg
         webView.delegate = self
         navBar.delegate = self
         
+       safariButton.isEnabled = false
         
         
         // インスタンスをビューに追加する
@@ -54,10 +66,11 @@ class WebViewController: UIViewController,UIWebViewDelegate,UINavigationBarDeleg
             
             let encodedURL = postUrl?.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
             
-            guard let url = URL(string: encodedURL!) else {
+            guard var url = URL(string: encodedURL!) else {
                 print("無効なURL")
                 return
             }
+            
             
             let request: URLRequest? = URLRequest(url: url)
             
@@ -83,9 +96,11 @@ class WebViewController: UIViewController,UIWebViewDelegate,UINavigationBarDeleg
     
     
     @IBAction func close(_ sender: Any) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        self.webView.stopLoading()
-        self.dismiss(animated: true, completion: nil)
+        //safari
+        //Webviewが使えるとsafariも可能
+        
+        let safariVC = SFSafariViewController(url: NSURL(string: self.postUrl!)! as URL)
+        self.present(safariVC, animated: true, completion: nil)
         
     }
     
@@ -109,6 +124,7 @@ class WebViewController: UIViewController,UIWebViewDelegate,UINavigationBarDeleg
     func webViewDidStartLoad(_ webView: UIWebView) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         print("indicator on")
+        safariButton.isEnabled = false
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
             
@@ -140,11 +156,16 @@ class WebViewController: UIViewController,UIWebViewDelegate,UINavigationBarDeleg
         
     }
     
+    
+    
+    @IBOutlet weak var safariButton: UIButton!
+    
     // ロード完了でインジケータ非表示
     func webViewDidFinishLoad(_ webView: UIWebView) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         print("indicator off")
         
+        safariButton.isEnabled = true
         
         
         

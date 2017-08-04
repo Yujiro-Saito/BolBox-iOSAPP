@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -1038,41 +1039,54 @@
                                 <items>
                                     <navigationItem id="9mh-ou-jWe">
                                         <nil key="title"/>
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="Y0p-ax-NZ0">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5BL-YC-wcY">
-                                                <rect key="frame" x="16" y="7" width="83" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="戻る">
-                                                    <color key="titleColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="goBack:" destination="byG-I2-haO" eventType="touchUpInside" id="Jem-4J-45u"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8AD-O2-FF4">
-                                            <rect key="frame" x="172" y="12" width="31" height="20"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <state key="normal" title="進む">
-                                                <color key="titleColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="goForward:" destination="byG-I2-haO" eventType="touchUpInside" id="xwp-Na-Q7T"/>
-                                            </connections>
-                                        </button>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="kKg-G0-90T">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HcU-Z0-RiZ">
-                                                <rect key="frame" x="276" y="7" width="83" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="閉じる">
-                                                    <color key="titleColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="close:" destination="byG-I2-haO" eventType="touchUpInside" id="iYw-sk-ZYO"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
+                                        <leftBarButtonItems>
+                                            <barButtonItem style="plain" id="Y0p-ax-NZ0">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5BL-YC-wcY">
+                                                    <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="戻る">
+                                                        <color key="titleColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="goBack:" destination="byG-I2-haO" eventType="touchUpInside" id="Jem-4J-45u"/>
+                                                    </connections>
+                                                </button>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" id="d4D-7K-Sr1">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QDj-XT-eKJ">
+                                                    <rect key="frame" x="107" y="7" width="83" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="進む"/>
+                                                    <connections>
+                                                        <action selector="goForward:" destination="byG-I2-haO" eventType="touchUpInside" id="Li6-zP-Qgi"/>
+                                                    </connections>
+                                                </button>
+                                            </barButtonItem>
+                                        </leftBarButtonItems>
+                                        <rightBarButtonItems>
+                                            <barButtonItem style="plain" id="kKg-G0-90T">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HcU-Z0-RiZ">
+                                                    <rect key="frame" x="319" y="2" width="40" height="40"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="safari">
+                                                        <color key="titleColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="close:" destination="byG-I2-haO" eventType="touchUpInside" id="iYw-sk-ZYO"/>
+                                                    </connections>
+                                                </button>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" id="NeO-5q-4nX">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="iOv-5V-Clm">
+                                                    <rect key="frame" x="228" y="7" width="83" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="閉じる"/>
+                                                    <connections>
+                                                        <action selector="downButtonDidTap:" destination="byG-I2-haO" eventType="touchUpInside" id="25r-yo-d6v"/>
+                                                    </connections>
+                                                </button>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -1092,12 +1106,13 @@
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="navBar" destination="AXd-z1-6vI" id="Xby-BE-qzo"/>
+                        <outlet property="safariButton" destination="HcU-Z0-RiZ" id="zmX-f1-RPW"/>
                         <outlet property="webView" destination="83F-9D-E4A" id="Qxm-9I-EuF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2SE-MZ-JUx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2085.5999999999999" y="8758.4707646176921"/>
+            <point key="canvasLocation" x="1934" y="8673"/>
         </scene>
         <!--In Detail View Controller-->
         <scene sceneID="ICJ-Wj-wsT">
@@ -39078,6 +39093,7 @@ AAAAAAAQDwA
         <image name="like" width="64" height="64"/>
         <image name="likes" width="64" height="64"/>
         <image name="notification" width="21" height="34"/>
+        <image name="safari" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="tEs-cJ-o5z"/>
