@@ -32,7 +32,7 @@ class WebViewController: UIViewController,UIWebViewDelegate,UINavigationBarDeleg
         super.viewDidLoad()
         
         
-        print(postUrl!)
+        print(postUrl)
         
         // Delegate設定
         webView.delegate = self
@@ -52,12 +52,18 @@ class WebViewController: UIViewController,UIWebViewDelegate,UINavigationBarDeleg
             
         } else {
             
+            let encodedURL = postUrl?.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
             
-            let url: URL? = URL(string: postUrl!)!
+            guard let url = URL(string: encodedURL!) else {
+                print("無効なURL")
+                return
+            }
             
-            let request: URLRequest? = URLRequest(url: url!)
+            let request: URLRequest? = URLRequest(url: url)
             
              webView.loadRequest(request!)
+            
+            
             
            
         }

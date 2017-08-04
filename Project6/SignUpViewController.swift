@@ -37,9 +37,7 @@ class SignUpViewController: UIViewController , UITextFieldDelegate,UIImagePicker
         
         
         
-        print("テストあああああああああああああああああああああああああああああ")
-        print(self.email)
-        print(self.password)
+       
         
         
         //ユーザー名

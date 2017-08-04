@@ -61,7 +61,7 @@ class InDetailViewController: UIViewController {
             let webviewVc = (segue.destination as? WebViewController)!
             
             
-            webviewVc.postUrl = self.linkURL
+            webviewVc.postUrl = self.linkURL!
             
             
         }

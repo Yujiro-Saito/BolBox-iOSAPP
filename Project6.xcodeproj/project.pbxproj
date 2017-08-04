@@ -26,6 +26,7 @@
 		B72A71FE1EC677C100EA9BDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B72A71FD1EC677C100EA9BDF /* Assets.xcassets */; };
 		B72A72011EC677C100EA9BDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B72A71FF1EC677C100EA9BDF /* LaunchScreen.storyboard */; };
 		B73D62681F33EEBB009B230C /* EmailPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73D62671F33EEBB009B230C /* EmailPasswordViewController.swift */; };
+		B73D626A1F33F894009B230C /* PostFinalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73D62691F33F894009B230C /* PostFinalViewController.swift */; };
 		B73E3B4C1F2D7E89002220D3 /* VisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73E3B4B1F2D7E89002220D3 /* VisualEffect.swift */; };
 		B7482CE01F0F0C1400E98EF1 /* TwoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7482CDF1F0F0C1400E98EF1 /* TwoTableViewCell.swift */; };
 		B7482CE21F0F141E00E98EF1 /* ThreeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7482CE11F0F141E00E98EF1 /* ThreeTableViewCell.swift */; };
@@ -106,6 +107,7 @@
 		B72A72001EC677C100EA9BDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B72A72021EC677C100EA9BDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B73D62671F33EEBB009B230C /* EmailPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailPasswordViewController.swift; sourceTree = "<group>"; };
+		B73D62691F33F894009B230C /* PostFinalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostFinalViewController.swift; sourceTree = "<group>"; };
 		B73E3B4B1F2D7E89002220D3 /* VisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffect.swift; sourceTree = "<group>"; };
 		B7482CDF1F0F0C1400E98EF1 /* TwoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoTableViewCell.swift; sourceTree = "<group>"; };
 		B7482CE11F0F141E00E98EF1 /* ThreeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeTableViewCell.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				B73D62671F33EEBB009B230C /* EmailPasswordViewController.swift */,
 				B7B4CAD31EFA81330038F176 /* PostProductInfoViewController.swift */,
 				B7B4CAD51EFA81570038F176 /* PostProductPhotosViewController.swift */,
+				B73D62691F33F894009B230C /* PostFinalViewController.swift */,
 				B725A8DF1F01AB4B006AC9DF /* BaseViewController.swift */,
 				B7060DF21F021EED003E51C7 /* AccountViewController.swift */,
 				B70B98BD1F0F64750036B79D /* InDetailViewController.swift */,
@@ -494,6 +497,7 @@
 				B77CEDED1EE3DB8F005D4215 /* CategoryDisplayTableViewCell.swift in Sources */,
 				B702E72F1EF8A442003C89E4 /* EmailLoginViewController.swift in Sources */,
 				B725810E1F22706900CF8E56 /* User.swift in Sources */,
+				B73D626A1F33F894009B230C /* PostFinalViewController.swift in Sources */,
 				B7F628ED1F1B838B003257CE /* UserProfileTableViewCell.swift in Sources */,
 				B7F9B9631F0698DD0006AD38 /* ProfilePostsTableViewCell.swift in Sources */,
 				B7733EA21EC6A96700D5B9BD /* popularCollectionViewCell.swift in Sources */,

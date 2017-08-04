@@ -15,13 +15,15 @@ class PostProductInfoViewController: UIViewController,UIPickerViewDelegate, UIPi
     @IBOutlet weak var scrolling: UIScrollView!
     
     @IBOutlet weak var productNameField: SkyFloatingLabelTextField!
-    @IBOutlet weak var urlField: SkyFloatingLabelTextField!
+   // @IBOutlet weak var urlField: SkyFloatingLabelTextField!
     @IBOutlet weak var categoryField: SkyFloatingLabelTextField!
     
     
     let selectPicker = UIPickerView()
     var categoryBox = ["カテゴリーを選択してください","アプリ","メディア","ゲーム","エンタメ", "教育・キャリア"]
-
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,16 +38,8 @@ class PostProductInfoViewController: UIViewController,UIPickerViewDelegate, UIPi
         productNameField.lineHeight = 1.0 // bottom line height in points
         productNameField.selectedLineHeight = 2.0
         
-        //URLテキスト
-        urlField.placeholder = "URL(あれば)"
-        urlField.title = "URL"
-        urlField.tintColor = barColor
-        urlField.textColor = UIColor.darkGray
-        urlField.lineColor = UIColor.lightGray
-        urlField.selectedTitleColor = barColor
-        urlField.selectedLineColor = barColor
-        urlField.lineHeight = 1.0 // bottom line height in points
-        urlField.selectedLineHeight = 2.0
+        
+        
         
         //カテゴリテキスト
         categoryField.placeholder = "カテゴリーを選択してください"
@@ -65,7 +59,6 @@ class PostProductInfoViewController: UIViewController,UIPickerViewDelegate, UIPi
         
         productNameField.delegate = self
         categoryField.delegate = self
-        urlField?.delegate = self
         
         let vi = UIView(frame: selectPicker.bounds)
         vi.backgroundColor = UIColor.white
@@ -139,6 +132,11 @@ class PostProductInfoViewController: UIViewController,UIPickerViewDelegate, UIPi
     
     
     @IBAction func backButton(_ sender: Any) {
+        
+        
+        
+        
+        
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -150,7 +148,6 @@ class PostProductInfoViewController: UIViewController,UIPickerViewDelegate, UIPi
             
             
             postImageArea.productName = productNameField.text!
-            postImageArea.productURL = (urlField?.text)!
             postImageArea.productCategory = categoryField.text!
             
             
@@ -181,7 +178,6 @@ class PostProductInfoViewController: UIViewController,UIPickerViewDelegate, UIPi
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         categoryField.resignFirstResponder()
         productNameField.resignFirstResponder()
-        urlField?.resignFirstResponder()
         
         return true
     }
