@@ -49,9 +49,70 @@ class SignInandUpViewController: UIViewController,GIDSignInUIDelegate {
     //ゲストとして使用
     @IBAction func userAsGuestButtonDidTap(_ sender: Any) {
         
-        UserDefaults.standard.set("GuestUser", forKey: "GuestUser")
+        //インディケーター
+        showIndicator()
         
-        self.performSegue(withIdentifier: "ToHomeView", sender: nil)
+        FIRAuth.auth()?.signInAnonymously() { (user, error) in
+            if error == nil {
+                
+                let changeRequest = user?.profileChangeRequest()
+                
+                changeRequest?.displayName = "ゲスト"
+                
+                changeRequest?.commitChanges { error in
+                    if let error = error {
+                      
+                        print(error.localizedDescription)
+                        
+                        DispatchQueue.main.async {
+                            
+                            self.indicator.stopAnimating()
+                        }
+                        
+                        
+                        
+                    } else {
+                        
+                        //成功 ホーム画面に移動
+                        
+                        DispatchQueue.main.async {
+                            
+                            self.indicator.stopAnimating()
+                        }
+                        
+                        
+                            UserDefaults.standard.set("GuestUser", forKey: "GuestUser")
+                            
+                            self.performSegue(withIdentifier: "ToHomeView", sender: nil)
+                        
+                        
+                       
+
+                    }
+                }
+                
+                            }
+            
+            else {
+                
+                DispatchQueue.main.async {
+                    
+                    self.indicator.stopAnimating()
+                }
+                
+                //ゲスト認証失敗の時
+                let alertViewControler = UIAlertController(title: "エラーがあります", message: "ゲスト認証に失敗しました", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                
+                alertViewControler.addAction(okAction)
+                self.present(alertViewControler, animated: true, completion: nil)
+                
+                
+                
+            }
+        }
+        
+        
         
     }
 
@@ -67,7 +128,6 @@ class SignInandUpViewController: UIViewController,GIDSignInUIDelegate {
         }
         
         
-        //UserDefaults.standard.set("GoogleRegister", forKey: "GoogleRegister")
         UserDefaults.standard.set("AutoLogin", forKey: "AutoLogin")
         
         
@@ -192,7 +252,35 @@ class SignInandUpViewController: UIViewController,GIDSignInUIDelegate {
         
         
     }
+    
+   
+    
+    
+    let indicator = UIActivityIndicatorView()
+    
+    func showIndicator() {
         
+        indicator.activityIndicatorViewStyle = .whiteLarge
+        
+        indicator.center = self.view.center
+        
+        indicator.color = UIColor.darkGray
+        
+        indicator.hidesWhenStopped = true
+        
+        self.view.addSubview(indicator)
+        
+        self.view.bringSubview(toFront: indicator)
+        
+        indicator.startAnimating()
+        
+        
+    }
+
+    
+    
+    
+
         
     
     

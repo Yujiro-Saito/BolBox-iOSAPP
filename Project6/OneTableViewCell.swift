@@ -154,9 +154,9 @@ class OneTableViewCell: UITableViewCell {
         let userData = ["imageURL" : self.imageURL, postID : currentUserName, "userID" : self.userID, "postName" : oneTItle.text]
         
         
-        
         DispatchQueue.global().async {
-            
+
+        
             //いいねのデータを削除
             DataService.dataBase.REF_BASE.child("posts/\(self.postID)").updateChildValues(likesCount)
             
@@ -164,9 +164,8 @@ class OneTableViewCell: UITableViewCell {
             
             self.dbCheck = true
             
+        
         }
-        
-        
         
         
         

@@ -1127,7 +1127,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mw4-IV-JZX">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="687"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CJo-x5-Jos">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="736"/>
@@ -1611,7 +1611,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="80s-xq-Iqs">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="80s-xq-Iqs" customClass="ImageDesign" customModule="Project6" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="122" height="150"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="122" id="eqK-qX-EX6"/>
@@ -1787,7 +1787,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jxR-3s-qTi">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jxR-3s-qTi" customClass="ImageDesign" customModule="Project6" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="122" height="150"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="122" id="Wee-iZ-ofp"/>
@@ -39096,9 +39096,9 @@ AAAAAAAQDwA
         <image name="safari" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tEs-cJ-o5z"/>
         <segue reference="rb3-Ka-dpu"/>
         <segue reference="eDQ-uE-kWy"/>
-        <segue reference="Ufe-L3-6S3"/>
+        <segue reference="tEs-cJ-o5z"/>
+        <segue reference="jod-eB-na4"/>
     </inferredMetricsTieBreakers>
 </document>

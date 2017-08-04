@@ -41,6 +41,12 @@ class FeatureTableViewCell: UITableViewCell {
         
         
         
+        
+        print(postID)
+        print(currentUserName!)
+        
+        
+        
     }
     
     

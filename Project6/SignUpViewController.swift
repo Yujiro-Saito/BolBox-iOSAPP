@@ -30,8 +30,6 @@ class SignUpViewController: UIViewController , UITextFieldDelegate,UIImagePicker
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //emailField.delegate = self
-        //passwordField.delegate = self
         userNameField.delegate = self
         
         
