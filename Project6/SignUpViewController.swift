@@ -17,10 +17,10 @@ class SignUpViewController: UIViewController , UITextFieldDelegate,UIImagePicker
     
     @IBOutlet weak var userImage: ProfileImage!
     @IBOutlet weak var userNameField: SkyFloatingLabelTextField!
-    @IBOutlet weak var emailField: SkyFloatingLabelTextField!
-    @IBOutlet weak var passwordField: SkyFloatingLabelTextField!
-    
-    
+   
+    //データ引き継ぎ
+    var email = String()
+    var password = String()
     
     
     
@@ -30,9 +30,17 @@ class SignUpViewController: UIViewController , UITextFieldDelegate,UIImagePicker
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        emailField.delegate = self
-        passwordField.delegate = self
+        //emailField.delegate = self
+        //passwordField.delegate = self
         userNameField.delegate = self
+        
+        
+        
+        
+        print("テストあああああああああああああああああああああああああああああ")
+        print(self.email)
+        print(self.password)
+        
         
         //ユーザー名
         userNameField.placeholder = "ユーザー名"
@@ -46,37 +54,11 @@ class SignUpViewController: UIViewController , UITextFieldDelegate,UIImagePicker
         userNameField.selectedLineHeight = 2.0
         
         
-        //メールアドレス
-        emailField.placeholder = "メールアドレス"
-        emailField.title = "メールアドレス"
-        emailField.tintColor = barColor
-        emailField.textColor = UIColor.darkGray
-        emailField.lineColor = UIColor.lightGray
-        emailField.selectedTitleColor = barColor
-        emailField.selectedLineColor = barColor
-        emailField.lineHeight = 1.0 // bottom line height in points
-        emailField.selectedLineHeight = 2.0
-        
-        
-        
-        //パスワード
-        passwordField.placeholder = "パスワード"
-        passwordField.title = "パスワード"
-        passwordField.tintColor = barColor
-        passwordField.textColor = UIColor.darkGray
-        passwordField.lineColor = UIColor.lightGray
-        passwordField.selectedTitleColor = barColor
-        passwordField.selectedLineColor = barColor
-        passwordField.lineHeight = 1.0 // bottom line height in points
-        passwordField.selectedLineHeight = 2.0
-
-        
 
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        emailField.resignFirstResponder()
-        passwordField.resignFirstResponder()
+        
         userNameField.resignFirstResponder()
         
         return true
@@ -115,7 +97,7 @@ class SignUpViewController: UIViewController , UITextFieldDelegate,UIImagePicker
         
         showIndicator()
         
-        if emailField.text == nil || passwordField.text == nil || userNameField == nil {
+        if self.email == nil || self.password == nil || userNameField.text == nil {
             
             DispatchQueue.main.async {
                 
@@ -133,7 +115,7 @@ class SignUpViewController: UIViewController , UITextFieldDelegate,UIImagePicker
         } else {
             
             //新規ユーザー登録
-            FIRAuth.auth()?.createUser(withEmail: emailField.text!, password:passwordField.text! , completion: { (user, error) in
+            FIRAuth.auth()?.createUser(withEmail: self.email, password: self.password , completion: { (user, error) in
                 
                 
                 if error == nil{

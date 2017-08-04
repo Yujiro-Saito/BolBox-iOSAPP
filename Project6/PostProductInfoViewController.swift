@@ -12,6 +12,7 @@ import SkyFloatingLabelTextField
 class PostProductInfoViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
     
+    @IBOutlet weak var scrolling: UIScrollView!
     
     @IBOutlet weak var productNameField: SkyFloatingLabelTextField!
     @IBOutlet weak var urlField: SkyFloatingLabelTextField!
@@ -204,6 +205,10 @@ class PostProductInfoViewController: UIViewController,UIPickerViewDelegate, UIPi
         self.view.endEditing(true)
     }
     
+    
+    
+   
+  
   
 
 }
