@@ -19,6 +19,7 @@ class PopularViewController: UIViewController, IndicatorInfoProvider,UITableView
     
     var itemInfo: IndicatorInfo = "人気"
     var posts = [Post]()
+    
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     var likingNameBox = [String]()
     let currentUserName = FIRAuth.auth()?.currentUser?.displayName
@@ -106,7 +107,7 @@ class PopularViewController: UIViewController, IndicatorInfoProvider,UITableView
                         
                         self.posts.append(post)
                         
-                        self.popularTable.reloadData()
+                        //self.popularTable.reloadData()
                         
                     }
                 }
