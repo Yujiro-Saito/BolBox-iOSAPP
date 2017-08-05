@@ -312,6 +312,8 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             if UserDefaults.standard.object(forKey: "GuestUser") == nil {
                 
                 UserDefaults.standard.set("GuestUser", forKey: "GuestUser")
+                //DisplayNameの登録いる?
+                
             }
             
             
