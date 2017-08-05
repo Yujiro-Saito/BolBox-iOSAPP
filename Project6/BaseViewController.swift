@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
@@ -299,20 +300,79 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
         
     }
     
+    let currentUserCheck = FIRAuth.auth()?.currentUser
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
+        let anonymousUser = currentUserCheck!.isAnonymous
         
         
-        //デフォルトではゲストユーザー
-        
-        
-        if UserDefaults.standard.object(forKey: "AutoLogin") == nil {
+        //初回登録
+        if UserDefaults.standard.object(forKey: "Forever") == nil {
             
-            if UserDefaults.standard.object(forKey: "GuestUser") == nil {
+            UserDefaults.standard.set("Forever", forKey: "Forever")
+            
+            showIndicator()
+            
+            FIRAuth.auth()?.signInAnonymously() { (user, error) in
+                if error == nil {
+                    
+                    let changeRequest = user?.profileChangeRequest()
+                    
+                    changeRequest?.displayName = "ゲスト"
+                    
+                    changeRequest?.commitChanges { error in
+                        if let error = error {
+                            
+                            print(error.localizedDescription)
+                            
+                            DispatchQueue.main.async {
+                                
+                                self.indicator.stopAnimating()
+                            }
+                            
+                            
+                            
+                        } else {
+                            
+                            //成功 ホーム画面に移動
+                            
+                            DispatchQueue.main.async {
+                                
+                                self.indicator.stopAnimating()
+                            }
+                            
+                            
+                            print("匿名ログインに成功")
+                            
+                            
+                            
+                            
+                        }
+                    }
+                    
+                    
+                }
                 
-                UserDefaults.standard.set("GuestUser", forKey: "GuestUser")
-                //DisplayNameの登録いる?
+                
+                
+            }
+            
+            
+        } else {
+            
+            print("２回目以降")
+            
+            
+            
+            if anonymousUser == true {
+                //ゲストユーザー
+                print(currentUserCheck?.displayName!)
+            } else if anonymousUser == false {
+                //
+                
                 
             }
             
@@ -320,35 +380,18 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             
             
             
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        if UserDefaults.standard.object(forKey: "EmailRegister") != nil {
             
             
             
             
-            let alertViewControler = UIAlertController(title: "登録を完了しました", message: "ありがとうございます!", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            
-            alertViewControler.addAction(okAction)
-            self.present(alertViewControler, animated: true, completion: nil)
-            
-            
-            
-            let userDefaults = UserDefaults.standard
-            userDefaults.removeObject(forKey: "EmailRegister")
             
             
             
         }
+        
+            
+        
+       
         
  
     }
@@ -850,6 +893,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
    
 }
 
+        
 
 extension UIColor {
     class func rgb(r: Int, g: Int, b: Int, alpha: CGFloat) -> UIColor{

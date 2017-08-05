@@ -92,9 +92,7 @@ class EmailLoginViewController: UIViewController,UITextFieldDelegate {
                     self.completeLogin(id: user.uid, userData: userData)
                     
                     
-                    
-                    UserDefaults.standard.set("AutoLogin", forKey: "AutoLogin")
-                    
+                   
                     
                     DispatchQueue.main.async {
                         

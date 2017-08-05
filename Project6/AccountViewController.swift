@@ -55,6 +55,25 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
     }
     
     
+    @IBAction func goUser(_ sender: Any) {
+        
+        do {
+            
+            
+            let userDefaults = UserDefaults.standard
+            userDefaults.removeObject(forKey: "previousCounts")
+            
+            try FIRAuth.auth()?.signOut()
+            
+            
+            
+            
+            self.performSegue(withIdentifier: "logout", sender: nil)
+        } catch let error as NSError {
+            print("\(error.localizedDescription)")
+        }
+
+    }
     
     
     
@@ -93,95 +112,95 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
         
     }
     
+    let currentUserCheck = FIRAuth.auth()?.currentUser
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
         
-            //ユーザーデータ読み込み
-            if UserDefaults.standard.object(forKey: "AutoLogin") != nil  {
+        var anonymousUser = currentUserCheck!.isAnonymous
+        
+        if anonymousUser == true {
+            //ゲストユーザー
+            print(currentUserCheck?.displayName!)
+            self.nonRegisterView.isHidden = false
+        } else if anonymousUser == false {
+            //
+            let user = FIRAuth.auth()?.currentUser
+            
+            let userName = user?.displayName
+            let photoURL = user?.photoURL
+            let uid = user?.uid
+            
+            print("ユーザーあり")
+            print(userName)
+            print(photoURL)
+            print(uid)
+            
+            self.profileName.text = userName
+            
+            
+            if photoURL == nil {
+                profileImage.image = UIImage(named: "drop")
+            } else {
+                profileImage.af_setImage(withURL: photoURL!)
+            }
+            
+            
+            
+            
+            DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "userID").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
                 
-                if FIRAuth.auth()?.currentUser != nil {
+                self.userPosts = []
+                print(snapshot.value)
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     
-                    
-                    let user = FIRAuth.auth()?.currentUser
-                    
-                    let userName = user?.displayName
-                    let photoURL = user?.photoURL
-                    let uid = user?.uid
-                    
-                    print("ユーザーあり")
-                    print(userName)
-                    print(photoURL)
-                    print(uid)
-                    
-                    self.profileName.text = userName
-                    
-                    
-                    if photoURL == nil {
-                        profileImage.image = UIImage(named: "drop")
-                    } else {
-                        profileImage.af_setImage(withURL: photoURL!)
-                    }
-                    
-                    
-                    
-                    
-                    DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "userID").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
                         
-                        self.userPosts = []
-                        print(snapshot.value)
-                        
-                        if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
                             
-                            for snap in snapshot {
-                                print("SNAP: \(snap)")
-                                
-                                if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                                    
-                                    let key = snap.key
-                                    let post = Post(postKey: key, postData: postDict)
-                                    
-                                    self.userPosts.append(post)
-                                    
-                                    
-                                    
-                                }
-                                
-                                
-                            }
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            self.userPosts.append(post)
+                            
                             
                             
                         }
                         
                         
-                        self.userPosts.reverse()
-                        self.profilePostTable.reloadData()
-                        
-                        
-                        
-                        
-                    })
-                    
+                    }
                     
                     
                 }
-           
+                
+                
+                self.userPosts.reverse()
+                self.profilePostTable.reloadData()
+                
+                
+                
+                
+            })
+            
+        }
+        
+        
+        
             
         }
             
             
             
-            else if UserDefaults.standard.object(forKey: "GuestUser") != nil {
+    
             
-            print("ゲストユーザー")
+    
             
-            self.nonRegisterView.isHidden = false
-            
-        }
+    
         
-        
-           }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -323,6 +342,7 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
     
     @IBAction func actionButtonDidTap(_ sender: Any) {
         
+        let anonymousUser = currentUserCheck!.isAnonymous
         
         let actionSheet = UIAlertController(title: "選択", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
         
@@ -333,19 +353,22 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
             (action: UIAlertAction!) in
             
             
-            //ゲストユーザーの場合
-            if UserDefaults.standard.object(forKey: "GuestUser") != nil  {
-                
+            if anonymousUser == true {
+                //ゲストユーザー
                 let alertViewControler = UIAlertController(title: "登録をお願いします", message: "登録をすると投稿ができます", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                 
                 alertViewControler.addAction(okAction)
                 self.present(alertViewControler, animated: true, completion: nil)
+                print(self.currentUserCheck?.displayName!)
                 
-                
-            } else if UserDefaults.standard.object(forKey: "AutoLogin") != nil {
+            } else if anonymousUser == false {
+                //
                 self.performSegue(withIdentifier: "goEdit", sender: nil)
+                
             }
+            
+           
             
             
             
@@ -359,11 +382,15 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
             (action: UIAlertAction!) in
             
             do {
+                
+                
+                let userDefaults = UserDefaults.standard
+                userDefaults.removeObject(forKey: "previousCounts")
+                
                 try FIRAuth.auth()?.signOut()
                 
                 
-                let appDomain = Bundle.main.bundleIdentifier
-                UserDefaults.standard.removePersistentDomain(forName: appDomain!)
+                
                 
                 self.performSegue(withIdentifier: "logout", sender: nil)
             } catch let error as NSError {
@@ -395,21 +422,26 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
     
     @IBAction func postButtonDidTap(_ sender: Any) {
         
-        //ゲストユーザーの場合
-        if UserDefaults.standard.object(forKey: "GuestUser") != nil  {
-            
+        let anonymousUser = currentUserCheck!.isAnonymous
+        
+        if anonymousUser == true {
+            //ゲストユーザー
             let alertViewControler = UIAlertController(title: "登録をお願いします", message: "登録をすると投稿ができます", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             
             alertViewControler.addAction(okAction)
             self.present(alertViewControler, animated: true, completion: nil)
             
+            print(currentUserCheck?.displayName!)
+        } else if anonymousUser == false {
             
-        } else if UserDefaults.standard.object(forKey: "AutoLogin") != nil {
+            //ログインユーザー
             performSegue(withIdentifier: "ToPostsss", sender: nil)
+
+            
         }
         
-        
+       
         
     }
     

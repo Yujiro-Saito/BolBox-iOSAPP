@@ -36,7 +36,6 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         notificationTable.dataSource = self
         
         
-        //self.tabItem.badgeColor = UIColor.rgb(r: 31, g: 158, b: 187, alpha: 1)
         self.tabItem.badgeColor = UIColor.red
         
         
@@ -57,7 +56,7 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
 
     }
     
-    
+    let currentUserCheck = FIRAuth.auth()?.currentUser
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
@@ -72,69 +71,66 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         
         //ユーザーデータの読み込みと通知設定
         
+        let anonymousUser = currentUserCheck!.isAnonymous
         
-        if UserDefaults.standard.object(forKey: "AutoLogin") != nil  {
+        if anonymousUser == true {
+            //ゲストユーザー
+            
+            self.guestUserView.isHidden = false
             
             
             
             
-            if FIRAuth.auth()?.currentUser != nil {
+        } else if anonymousUser == false {
+            //ログインユーザーの場合
+            //ユーザの投稿を取得
+            DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "userID").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
                 
-                //ユーザの投稿を取得
-                DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "userID").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
+                self.firstUserNameBox = []
+                print(snapshot.value)
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     
-                    self.firstUserNameBox = []
-                    print(snapshot.value)
-                    
-                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    //繰り返し
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
                         
-                        //繰り返し
-                        for snap in snapshot {
-                            print("SNAP: \(snap)")
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
                             
-                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            //投稿にいいねをつけている人がいる場合
+                            if let peopleWhoLike = postDict["peopleWhoLike"] as? Dictionary<String, AnyObject> {
+                                
+                                print(peopleWhoLike)
                                 
                                 
-                                //投稿にいいねをつけている人がいる場合
-                                if let peopleWhoLike = postDict["peopleWhoLike"] as? Dictionary<String, AnyObject> {
-                                    
-                                    print(peopleWhoLike)
-                                    
+                                
+                                for (nameKey,namevalue) in peopleWhoLike {
+                                    print("キーは\(nameKey)、値は\(namevalue)")
                                     
                                     
-                                    for (nameKey,namevalue) in peopleWhoLike {
-                                        print("キーは\(nameKey)、値は\(namevalue)")
-                                        
-                                        
-                                        print("ユーザー画像URLの取得\(namevalue)")
-                                        
-                                        
-                                        
-                                        let userImageURL = namevalue["imageURL"] as! String
-                                        
-                                        let userPostTitle = namevalue["postName"] as! String
-                                        
-                                        
-                                        self.firstUserNameBox.append(nameKey)
-                                        self.userImageURLBox.append(userImageURL)
-                                        self.userPostTitleBox.append(userPostTitle)
-                                        
-                                        
-                                        self.firstUserNameBox.reverse()
-                                        self.userImageURLBox.reverse()
-                                        self.userPostTitleBox.reverse()
-                                        
-                                        self.notificationTable.reloadData()
-                                        
-                                        print(self.firstUserNameBox)
-                                        print(self.userImageURLBox)
-                                        
-                                    }
+                                    print("ユーザー画像URLの取得\(namevalue)")
                                     
                                     
                                     
+                                    let userImageURL = namevalue["imageURL"] as! String
+                                    
+                                    let userPostTitle = namevalue["postName"] as! String
                                     
                                     
+                                    self.firstUserNameBox.append(nameKey)
+                                    self.userImageURLBox.append(userImageURL)
+                                    self.userPostTitleBox.append(userPostTitle)
+                                    
+                                    
+                                    self.firstUserNameBox.reverse()
+                                    self.userImageURLBox.reverse()
+                                    self.userPostTitleBox.reverse()
+                                    
+                                    self.notificationTable.reloadData()
+                                    
+                                    print(self.firstUserNameBox)
+                                    print(self.userImageURLBox)
                                     
                                     
                                     
@@ -147,35 +143,41 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
                                 
                                 
                                 
-                                
-                                
-                                
                             }
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
                             
                             
                             
                         }
                         
                         
+                        
                     }
                     
                     
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                })
+                }
                 
                 
                 
                 
-            }
+                
+                
+                
+                
+                
+                
+                
+                
+            })
+            
+            //通知設定
             
             ////初回時通知数を登録
             
@@ -191,27 +193,7 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
             
             
             
-            
-            
-            
         }
-        
-        
-        
-        
-            
-            //ゲストユーザーの場合
-        
-        else if UserDefaults.standard.object(forKey: "GuestUser") != nil {
-            
-            print("ゲストユーザー")
-            
-            self.guestUserView.isHidden = false
-            
-        }
-
-        
-        
         
         
         

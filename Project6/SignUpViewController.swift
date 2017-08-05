@@ -116,16 +116,6 @@ class SignUpViewController: UIViewController , UITextFieldDelegate,UIImagePicker
                 
                 if error == nil{
                     
-                    //GuestUserの削除
-                    if UserDefaults.standard.object(forKey: "GuestUser") != nil {
-                        let userDefaults = UserDefaults.standard
-                        userDefaults.removeObject(forKey: "GuestUser")
-                    }
-                    
-                    
-                    
-                    UserDefaults.standard.set("EmailRegister", forKey: "EmailRegister")
-                    UserDefaults.standard.set("AutoLogin", forKey: "AutoLogin")
                     
                     if let user = user {
                         

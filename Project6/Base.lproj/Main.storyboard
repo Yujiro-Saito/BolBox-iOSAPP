@@ -1014,11 +1014,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="83F-9D-E4A">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="637"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="588"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AXd-z1-6vI">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="574" width="375" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="N8w-h7-KTe"/>
                                 </constraints>
@@ -1113,7 +1113,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mw4-IV-JZX">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="687"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CJo-x5-Jos">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="736"/>
@@ -1874,6 +1874,7 @@
                                                             <color key="titleColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
+                                                            <action selector="goUser:" destination="LR8-dZ-54r" eventType="touchUpInside" id="jnu-7h-j4w"/>
                                                             <segue destination="o3q-Mq-hHb" kind="show" id="eDQ-uE-kWy"/>
                                                         </connections>
                                                     </button>
@@ -39079,9 +39080,9 @@ AAAAAAAQDwA
         <image name="safari" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rW4-7Q-TjJ"/>
-        <segue reference="eDQ-uE-kWy"/>
+        <segue reference="Ufe-L3-6S3"/>
         <segue reference="rb3-Ka-dpu"/>
         <segue reference="tEs-cJ-o5z"/>
+        <segue reference="eDQ-uE-kWy"/>
     </inferredMetricsTieBreakers>
 </document>
