@@ -18,6 +18,8 @@ class WebViewController: UIViewController,UIWebViewDelegate,UINavigationBarDeleg
     
     var postUrl: String?
     
+    var currentURL: String?
+    
     
     
     
@@ -99,7 +101,7 @@ class WebViewController: UIViewController,UIWebViewDelegate,UINavigationBarDeleg
         //safari
         //Webviewが使えるとsafariも可能
         
-        let safariVC = SFSafariViewController(url: NSURL(string: self.postUrl!)! as URL)
+        let safariVC = SFSafariViewController(url: NSURL(string: self.currentURL!)! as URL)
         self.present(safariVC, animated: true, completion: nil)
         
     }
@@ -126,14 +128,14 @@ class WebViewController: UIViewController,UIWebViewDelegate,UINavigationBarDeleg
         print("indicator on")
         safariButton.isEnabled = false
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 8.0) {
             
             
             var title = self.webView.stringByEvaluatingJavaScript(from: "document.title")
             
             if title == "" || title == nil {
                 
-                //10秒たっても読み込めない場合
+                //8秒たっても読み込めない場合
                 self.webView.stopLoading()
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 
@@ -164,6 +166,10 @@ class WebViewController: UIViewController,UIWebViewDelegate,UINavigationBarDeleg
     func webViewDidFinishLoad(_ webView: UIWebView) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         print("indicator off")
+        
+        
+        currentURL = webView.stringByEvaluatingJavaScript(from: "document.URL")!
+        
         
         safariButton.isEnabled = true
         
