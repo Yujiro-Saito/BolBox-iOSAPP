@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseStorage
+import SCLAlertView
 
 class FirstCollectionViewCell: UICollectionViewCell {
     

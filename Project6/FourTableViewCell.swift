@@ -10,6 +10,7 @@ import UIKit
 import FirebaseStorage
 import Firebase
 import AlamofireImage
+import SCLAlertView
 
 class FourTableViewCell: UITableViewCell {
     
@@ -44,38 +45,171 @@ class FourTableViewCell: UITableViewCell {
         
         //+処理
         
+        let alertView = SCLAlertView()
+        //ボタンの追加
         
         
-        self.pvCount += 1
+        alertView.addButton("いいね!") {
+            //タップ時の処理
+            self.pvCount += 1
+            
+            
+            print(self.postID)
+            print(self.pvCount)
+            
+            var currentUserName = FIRAuth.auth()?.currentUser?.displayName
+            
+            
+            //DBを更新
+            let likesCount = ["pvCount": self.pvCount]
+            let userImageURL = ["imageURL" : self.imageURL]
+            let userName = [self.postID : currentUserName]
+            let peoples = currentUserName
+            let userData = ["imageURL" : self.imageURL, self.postID : currentUserName, "userID" : self.userID, "postName" : self.cellTitle.text, "userReact" : "いいね!"]
+            
+            //いいね数を更新
+            DataService.dataBase.REF_BASE.child("posts/\(self.postID)").updateChildValues(likesCount)
+            
+            
+            DataService.dataBase.REF_BASE.child("posts/\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(userData)
+            
+            
+            self.likeButton.isEnabled = true
+            self.likeButton.isHidden = false
+            
+            self.emptyLike.isHidden = true
+            self.emptyLike.isEnabled = false
+            
+        }
+        alertView.addButton("かっこいい!") {
+            //タップ時の処理
+            self.pvCount += 1
+            
+            
+            print(self.postID)
+            print(self.pvCount)
+            
+            var currentUserName = FIRAuth.auth()?.currentUser?.displayName
+            
+            
+            //DBを更新
+            let likesCount = ["pvCount": self.pvCount]
+            let userImageURL = ["imageURL" : self.imageURL]
+            let userName = [self.postID : currentUserName]
+            let peoples = currentUserName
+            let userData = ["imageURL" : self.imageURL, self.postID : currentUserName, "userID" : self.userID, "postName" : self.cellTitle.text, "userReact" : "かっこいい!"]
+            
+            //いいね数を更新
+            DataService.dataBase.REF_BASE.child("posts/\(self.postID)").updateChildValues(likesCount)
+            
+            
+            DataService.dataBase.REF_BASE.child("posts/\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(userData)
+            
+            
+            self.likeButton.isEnabled = true
+            self.likeButton.isHidden = false
+            
+            self.emptyLike.isHidden = true
+            self.emptyLike.isEnabled = false
+        }
+        alertView.addButton("おもしろい!") {
+            //タップ時の処理
+            self.pvCount += 1
+            
+            
+            print(self.postID)
+            print(self.pvCount)
+            
+            var currentUserName = FIRAuth.auth()?.currentUser?.displayName
+            
+            
+            //DBを更新
+            let likesCount = ["pvCount": self.pvCount]
+            let userImageURL = ["imageURL" : self.imageURL]
+            let userName = [self.postID : currentUserName]
+            let peoples = currentUserName
+            let userData = ["imageURL" : self.imageURL, self.postID : currentUserName, "userID" : self.userID, "postName" : self.cellTitle.text, "userReact" : "おもしろい"]
+            
+            //いいね数を更新
+            DataService.dataBase.REF_BASE.child("posts/\(self.postID)").updateChildValues(likesCount)
+            
+            
+            DataService.dataBase.REF_BASE.child("posts/\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(userData)
+            
+            
+            self.likeButton.isEnabled = true
+            self.likeButton.isHidden = false
+            
+            self.emptyLike.isHidden = true
+            self.emptyLike.isEnabled = false
+        }
+        alertView.addButton("おしゃれ!") {
+            //タップ時の処理
+            self.pvCount += 1
+            
+            
+            print(self.postID)
+            print(self.pvCount)
+            
+            var currentUserName = FIRAuth.auth()?.currentUser?.displayName
+            
+            
+            //DBを更新
+            let likesCount = ["pvCount": self.pvCount]
+            let userImageURL = ["imageURL" : self.imageURL]
+            let userName = [self.postID : currentUserName]
+            let peoples = currentUserName
+            let userData = ["imageURL" : self.imageURL, self.postID : currentUserName, "userID" : self.userID, "postName" : self.cellTitle.text, "userReact" : "おしゃれ!"]
+            
+            //いいね数を更新
+            DataService.dataBase.REF_BASE.child("posts/\(self.postID)").updateChildValues(likesCount)
+            
+            
+            DataService.dataBase.REF_BASE.child("posts/\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(userData)
+            
+            
+            self.likeButton.isEnabled = true
+            self.likeButton.isHidden = false
+            
+            self.emptyLike.isHidden = true
+            self.emptyLike.isEnabled = false
+        }
+        alertView.addButton("ありがとう!") {
+            self.pvCount += 1
+            
+            
+            print(self.postID)
+            print(self.pvCount)
+            
+            var currentUserName = FIRAuth.auth()?.currentUser?.displayName
+            
+            
+            //DBを更新
+            let likesCount = ["pvCount": self.pvCount]
+            let userImageURL = ["imageURL" : self.imageURL]
+            let userName = [self.postID : currentUserName]
+            let peoples = currentUserName
+            let userData = ["imageURL" : self.imageURL, self.postID : currentUserName, "userID" : self.userID, "postName" : self.cellTitle.text, "userReact" : "ありがとう!"]
+            
+            //いいね数を更新
+            DataService.dataBase.REF_BASE.child("posts/\(self.postID)").updateChildValues(likesCount)
+            
+            
+            DataService.dataBase.REF_BASE.child("posts/\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(userData)
+            
+            
+            self.likeButton.isEnabled = true
+            self.likeButton.isHidden = false
+            
+            self.emptyLike.isHidden = true
+            self.emptyLike.isEnabled = false
+        }
         
         
-        print(self.postID)
-        print(self.pvCount)
-        
-        var currentUserName = FIRAuth.auth()?.currentUser?.displayName
+        alertView.showEdit("", subTitle: "", closeButtonTitle: "キャンセル", duration: 0, colorStyle: 1605527, colorTextButton: 16777215,  animationStyle: .bottomToTop)
         
         
-        //DBを更新
-        let likesCount = ["pvCount": self.pvCount]
-        let userImageURL = ["imageURL" : self.imageURL]
-        let userName = [postID : currentUserName]
-        let peoples = currentUserName
-        let userData = ["imageURL" : self.imageURL, postID : currentUserName, "userID" : self.userID, "postName" : cellTitle.text]
-        
-        //いいね数を更新
-        DataService.dataBase.REF_BASE.child("posts/\(self.postID)").updateChildValues(likesCount)
-        
-        
-        DataService.dataBase.REF_BASE.child("posts/\(self.postID)/peopleWhoLike/\(currentUserName!)").setValue(userData)
-        
-        
-        self.likeButton.isEnabled = true
-        self.likeButton.isHidden = false
-        
-        self.emptyLike.isHidden = true
-        self.emptyLike.isEnabled = false
-        
-        
+
         
         
     }
