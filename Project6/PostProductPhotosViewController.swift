@@ -76,7 +76,26 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
     
     
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        urlFields.resignFirstResponder()
+        
+        return true
+    }
     
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
     
     
    

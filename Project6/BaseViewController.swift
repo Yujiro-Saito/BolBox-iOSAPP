@@ -300,96 +300,111 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
         
     }
     
-    let currentUserCheck = FIRAuth.auth()?.currentUser
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
-        let anonymousUser = currentUserCheck!.isAnonymous
         
         
-        //初回登録
-        if UserDefaults.standard.object(forKey: "Forever") == nil {
+        //ログアウトした状態の場合Loginページに飛ばす
+        if FIRAuth.auth()?.currentUser == nil {
+            //画面遷移
+            performSegue(withIdentifier: "backtoRegister", sender: nil)
             
-            UserDefaults.standard.set("Forever", forKey: "Forever")
             
-            showIndicator()
+        }else {
             
-            FIRAuth.auth()?.signInAnonymously() { (user, error) in
-                if error == nil {
-                    
-                    let changeRequest = user?.profileChangeRequest()
-                    
-                    changeRequest?.displayName = "ゲスト"
-                    
-                    changeRequest?.commitChanges { error in
-                        if let error = error {
-                            
-                            print(error.localizedDescription)
-                            
-                            DispatchQueue.main.async {
+            
+            let currentUserCheck = FIRAuth.auth()?.currentUser!
+            
+            
+            //初回登録
+            if UserDefaults.standard.object(forKey: "Forever") == nil {
+                
+                UserDefaults.standard.set("Forever", forKey: "Forever")
+                
+                showIndicator()
+                
+                FIRAuth.auth()?.signInAnonymously() { (user, error) in
+                    if error == nil {
+                        
+                        let changeRequest = user?.profileChangeRequest()
+                        
+                        changeRequest?.displayName = "ゲスト"
+                        
+                        changeRequest?.commitChanges { error in
+                            if let error = error {
                                 
-                                self.indicator.stopAnimating()
-                            }
-                            
-                            
-                            
-                        } else {
-                            
-                            //成功 ホーム画面に移動
-                            
-                            DispatchQueue.main.async {
+                                print(error.localizedDescription)
                                 
-                                self.indicator.stopAnimating()
+                                DispatchQueue.main.async {
+                                    
+                                    self.indicator.stopAnimating()
+                                }
+                                
+                                
+                                
+                            } else {
+                                
+                                //成功 ホーム画面に移動
+                                
+                                DispatchQueue.main.async {
+                                    
+                                    self.indicator.stopAnimating()
+                                }
+                                
+                                
+                                print("匿名ログインに成功")
+                                
+                                
+                                
+                                
                             }
-                            
-                            
-                            print("匿名ログインに成功")
-                            
-                            
-                            
-                            
                         }
+                        
+                        
                     }
+                    
+                    
+                    
+                }
+                
+                
+            } else {
+                
+                print("２回目以降")
+                
+                let anonymousUser = currentUserCheck?.isAnonymous
+                
+                if anonymousUser == true {
+                    //ゲストユーザー
+                    print(currentUserCheck?.displayName!)
+                } else if anonymousUser == false {
+                    //
                     
                     
                 }
                 
                 
                 
-            }
-            
-            
-        } else {
-            
-            print("２回目以降")
-            
-            
-            
-            if anonymousUser == true {
-                //ゲストユーザー
-                print(currentUserCheck?.displayName!)
-            } else if anonymousUser == false {
-                //
+                
+                
+                
+                
+                
+                
+                
                 
                 
             }
-            
-            
-            
-            
-            
-            
-            
-            
-            
             
             
             
         }
         
-            
+        
+        
         
        
         

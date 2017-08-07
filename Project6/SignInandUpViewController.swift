@@ -123,6 +123,12 @@ class SignInandUpViewController: UIViewController,GIDSignInUIDelegate {
         
     }
     
+    @IBAction func backButton(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
     
     
     func wait(_ waitContinuation: @escaping (()->Bool), compleation: @escaping (()->Void)) {
