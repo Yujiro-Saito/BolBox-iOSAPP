@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'B9F86FF7360E856DF30BFF9FEBD1EACE'
-               BlueprintName = 'XLPagerTabStrip'
+               BlueprintIdentifier = 'EB77D59043E4AFD727ECB1EDAFD286CD'
+               BlueprintName = 'SCLAlertView'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'XLPagerTabStrip.framework'>
+               BuildableName = 'SCLAlertView.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

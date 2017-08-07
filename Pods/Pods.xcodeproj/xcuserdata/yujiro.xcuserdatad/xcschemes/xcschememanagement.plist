@@ -64,6 +64,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SCLAlertView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SkyFloatingLabelTextField.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -97,22 +102,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>076DE9CE0B81A1141CBD16DB756CC593</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>0FEFB4AE64820A37C4E0B99F05351740</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>107A9565F9DF88517DFD3E28C05B2B96</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1D5FBC197215E43D94BAAE5D37A0C5C6</key>
+		<key>1E24D05316B8A23BF5795588A542D5C7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -122,27 +117,37 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>287E986F329C0E0635E4C0CC9DB39A1C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>35A7E6C84DEE0345BABDE9CE03BDA5A7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>41E0CC470B55268BA5EB61542448C02A</key>
+		<key>3D2C13C7923B7BC0962406477A7FA113</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>549B0C432CA926AB5C060AFEBF250B46</key>
+		<key>4C77F0F421492687AAAA7083C86D39BA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5015D247B40F2C226B6183693BE0EFDB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6554A71FE35376AFAEA19D34CF6AEAA1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>681BE6E3D02A43F9BA63777AC435C8FD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7B0249F2B41BF9EA27BE1B294D94C858</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -157,6 +162,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>9AA8580D5D7D834E7354562030C8942A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>9EFE4C70245EE2857D336B8B9FA4E825</key>
 		<dict>
 			<key>primary</key>
@@ -167,7 +177,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B85712D0126CEDA2E4DD6D8D625F2CD8</key>
+		<key>B9F86FF7360E856DF30BFF9FEBD1EACE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -182,7 +192,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FAA8ED5B169C743D86EA6A01DCE69456</key>
+		<key>EB77D59043E4AFD727ECB1EDAFD286CD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -24,6 +24,7 @@ target 'Project6' do
   pod 'ZFRippleButton', '~> 0.6'
   pod 'RSKPlaceholderTextView'
   pod 'OnOffButton'
+  pod 'SCLAlertView'
 
   
 
