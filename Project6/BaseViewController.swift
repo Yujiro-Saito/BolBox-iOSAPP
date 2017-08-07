@@ -331,7 +331,12 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
                         
                         let changeRequest = user?.profileChangeRequest()
                         
-                        changeRequest?.displayName = "ゲスト"
+                        //ゲスト名前 ユーザー名
+                        
+                        let randomGuestNum = arc4random_uniform(2000)
+                        print(randomGuestNum)
+                        
+                        changeRequest?.displayName = "ゲスト\(randomGuestNum)"
                         
                         changeRequest?.commitChanges { error in
                             if let error = error {

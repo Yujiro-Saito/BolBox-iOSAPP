@@ -55,9 +55,15 @@ class SignInandUpViewController: UIViewController,GIDSignInUIDelegate {
         FIRAuth.auth()?.signInAnonymously() { (user, error) in
             if error == nil {
                 
+                
+                
                 let changeRequest = user?.profileChangeRequest()
                 
-                changeRequest?.displayName = "ゲスト"
+                
+                let randomGuestNum = arc4random_uniform(2000)
+                print(randomGuestNum)
+                
+                changeRequest?.displayName = "ゲスト\(randomGuestNum)"
                 
                 changeRequest?.commitChanges { error in
                     if let error = error {

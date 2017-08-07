@@ -101,6 +101,35 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
         self.profilePostTable.backgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
         
         
+        var anonymousUser = currentUserCheck!.isAnonymous
+        
+        if anonymousUser == true {
+            //ゲストユーザー
+            print(currentUserCheck?.displayName!)
+            self.nonRegisterView.isHidden = false
+        } else if anonymousUser == false {
+            //
+            let user = FIRAuth.auth()?.currentUser
+            
+            let userName = user?.displayName
+            let photoURL = user?.photoURL
+            let uid = user?.uid
+            
+            print("ユーザーあり")
+            print(userName)
+            print(photoURL)
+            print(uid)
+            
+            self.profileName.text = userName
+            
+            
+            if photoURL == nil {
+                profileImage.image = UIImage(named: "colo")
+            } else {
+                profileImage.af_setImage(withURL: photoURL!)
+            }
+        }
+        
        
     }
     
@@ -142,7 +171,7 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
             
             
             if photoURL == nil {
-                profileImage.image = UIImage(named: "drop")
+                profileImage.image = UIImage(named: "colo")
             } else {
                 profileImage.af_setImage(withURL: photoURL!)
             }
