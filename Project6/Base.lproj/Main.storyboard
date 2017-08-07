@@ -3124,60 +3124,56 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oCn-Ja-tVp">
                                                     <rect key="frame" x="64" y="16" width="287" height="40"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="287" id="YK4-oz-6IX"/>
-                                                        <constraint firstAttribute="height" constant="40" id="bSh-zA-lyY"/>
+                                                        <constraint firstAttribute="height" constant="40" id="DkF-Py-AMp"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
                                                     <color key="textColor" red="0.19678268729127601" green="0.19678268729127601" blue="0.19678268729127601" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="さんがいいねしました" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qc0-Bz-mLw">
-                                                    <rect key="frame" x="185" y="64" width="166" height="28"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8S1-2P-tqV">
+                                                    <rect key="frame" x="8" y="64" width="145" height="28"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="28" id="Eqb-Zf-NW4"/>
-                                                        <constraint firstAttribute="width" constant="166" id="lHs-36-PfU"/>
+                                                        <constraint firstAttribute="width" constant="145" id="8KD-Qg-a6J"/>
+                                                        <constraint firstAttribute="height" constant="28" id="NsD-zC-ysI"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="13"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8S1-2P-tqV">
-                                                    <rect key="frame" x="8" y="64" width="169" height="28"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qc0-Bz-mLw">
+                                                    <rect key="frame" x="151" y="56" width="200" height="36"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="28" id="Rdz-dc-pJ2"/>
-                                                        <constraint firstAttribute="width" constant="169" id="syI-4b-NbV"/>
+                                                        <constraint firstAttribute="width" constant="200" id="a8A-wg-oBd"/>
+                                                        <constraint firstAttribute="height" constant="36" id="lMd-Hf-Q3f"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="12"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ig4-dq-HwO" customClass="ProfileImage" customModule="Project6" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="16" width="40" height="40"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="40" id="SVH-6H-5zf"/>
-                                                        <constraint firstAttribute="height" constant="40" id="a1h-Fq-3ok"/>
+                                                        <constraint firstAttribute="height" constant="40" id="Si3-lz-CSY"/>
+                                                        <constraint firstAttribute="width" constant="40" id="ia3-Qu-9Ox"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="8S1-2P-tqV" firstAttribute="top" secondItem="oCn-Ja-tVp" secondAttribute="bottom" constant="8" id="3Ts-GZ-n4Q"/>
-                                                <constraint firstItem="ig4-dq-HwO" firstAttribute="top" secondItem="28M-6e-bMX" secondAttribute="top" constant="16" id="C7R-16-O5v"/>
-                                                <constraint firstItem="qc0-Bz-mLw" firstAttribute="leading" secondItem="8S1-2P-tqV" secondAttribute="trailing" constant="8" id="DfF-To-oge"/>
-                                                <constraint firstAttribute="bottom" secondItem="8S1-2P-tqV" secondAttribute="bottom" constant="8" id="Hlp-6O-jUx"/>
-                                                <constraint firstItem="ig4-dq-HwO" firstAttribute="leading" secondItem="28M-6e-bMX" secondAttribute="leading" constant="16" id="IMr-fO-bW1"/>
-                                                <constraint firstAttribute="trailing" secondItem="oCn-Ja-tVp" secondAttribute="trailing" constant="8" id="ISu-w2-RYo"/>
-                                                <constraint firstItem="8S1-2P-tqV" firstAttribute="top" secondItem="ig4-dq-HwO" secondAttribute="bottom" constant="8" id="Los-Px-gmj"/>
-                                                <constraint firstItem="8S1-2P-tqV" firstAttribute="leading" secondItem="28M-6e-bMX" secondAttribute="leading" constant="8" id="UVJ-9c-fr2"/>
-                                                <constraint firstItem="qc0-Bz-mLw" firstAttribute="top" secondItem="oCn-Ja-tVp" secondAttribute="bottom" constant="8" id="bid-T3-rjr"/>
-                                                <constraint firstItem="oCn-Ja-tVp" firstAttribute="leading" secondItem="ig4-dq-HwO" secondAttribute="trailing" constant="8" id="bjx-Xf-DnW"/>
-                                                <constraint firstAttribute="bottom" secondItem="qc0-Bz-mLw" secondAttribute="bottom" constant="8" id="fEE-Lg-p6O"/>
-                                                <constraint firstAttribute="trailing" secondItem="qc0-Bz-mLw" secondAttribute="trailing" constant="8" id="hL6-E9-EEE"/>
-                                                <constraint firstItem="oCn-Ja-tVp" firstAttribute="top" secondItem="28M-6e-bMX" secondAttribute="top" constant="16" id="rYV-0U-26N"/>
+                                                <constraint firstAttribute="trailing" secondItem="qc0-Bz-mLw" secondAttribute="trailing" constant="8" id="1hz-dn-fqA"/>
+                                                <constraint firstItem="ig4-dq-HwO" firstAttribute="top" secondItem="28M-6e-bMX" secondAttribute="top" constant="16" id="5cb-Ti-OYp"/>
+                                                <constraint firstItem="8S1-2P-tqV" firstAttribute="leading" secondItem="28M-6e-bMX" secondAttribute="leading" constant="8" id="EFN-mp-GNu"/>
+                                                <constraint firstAttribute="bottom" secondItem="8S1-2P-tqV" secondAttribute="bottom" constant="8" id="FeD-KI-XFT"/>
+                                                <constraint firstAttribute="bottom" secondItem="qc0-Bz-mLw" secondAttribute="bottom" constant="8" id="KRl-Wr-kUf"/>
+                                                <constraint firstItem="oCn-Ja-tVp" firstAttribute="leading" secondItem="ig4-dq-HwO" secondAttribute="trailing" constant="8" id="Ta7-cu-DLj"/>
+                                                <constraint firstItem="ig4-dq-HwO" firstAttribute="leading" secondItem="28M-6e-bMX" secondAttribute="leading" constant="16" id="bs8-Dm-Mhw"/>
+                                                <constraint firstAttribute="trailing" secondItem="oCn-Ja-tVp" secondAttribute="trailing" constant="8" id="qNC-C0-waZ"/>
+                                                <constraint firstItem="oCn-Ja-tVp" firstAttribute="top" secondItem="28M-6e-bMX" secondAttribute="top" constant="16" id="yLt-1q-MdK"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
+                                            <outlet property="reactMessage" destination="qc0-Bz-mLw" id="OHH-9C-sgd"/>
                                             <outlet property="title" destination="oCn-Ja-tVp" id="KWW-Ab-lv4"/>
                                             <outlet property="userImage" destination="ig4-dq-HwO" id="0Lt-9x-IXm"/>
                                             <outlet property="userName" destination="8S1-2P-tqV" id="jVp-LY-twZ"/>
@@ -3218,7 +3214,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PyT-h2-bjU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3631.1999999999998" y="9034.632683658172"/>
+            <point key="canvasLocation" x="-4383" y="8633"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="Yvr-YY-oSh">

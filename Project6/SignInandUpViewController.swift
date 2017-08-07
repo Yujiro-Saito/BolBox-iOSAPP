@@ -165,7 +165,7 @@ class SignInandUpViewController: UIViewController,GIDSignInUIDelegate {
     
     @IBAction func registerButtonDidTap(_ sender: Any) {
         
-        let actionSheet = UIAlertController(title: "登録", message: "方法", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let actionSheet = UIAlertController(title: "登録", message: "登録方法の選択", preferredStyle: UIAlertControllerStyle.actionSheet)
         
         let google = UIAlertAction(title: "Google", style: UIAlertActionStyle.default, handler: {
             (action: UIAlertAction!) in

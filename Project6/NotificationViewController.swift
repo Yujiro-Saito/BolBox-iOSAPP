@@ -25,6 +25,7 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
     var firstUserNameBox = [String]()
     var userImageURLBox = [String]()
     var userPostTitleBox = [String]()
+    var userReactionTextBox = [String]()
     
     
 
@@ -117,15 +118,20 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
                                     
                                     let userPostTitle = namevalue["postName"] as! String
                                     
+                                    let userReact = namevalue["userReact"] as! String
+                                    
+                                    
                                     
                                     self.firstUserNameBox.append(nameKey)
                                     self.userImageURLBox.append(userImageURL)
                                     self.userPostTitleBox.append(userPostTitle)
+                                    self.userReactionTextBox.append(userReact)
                                     
                                     
                                     self.firstUserNameBox.reverse()
                                     self.userImageURLBox.reverse()
                                     self.userPostTitleBox.reverse()
+                                    self.userReactionTextBox.reverse()
                                     
                                     self.notificationTable.reloadData()
                                     
@@ -268,6 +274,7 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
             notiCell?.userName.text = firstUserNameBox[indexPath.row]
             notiCell?.userImage.af_setImage(withURL: URL(string: userImageURLBox[indexPath.row])!)
             notiCell?.title.text = userPostTitleBox[indexPath.row]
+            notiCell?.reactMessage.text = "さんが \(userReactionTextBox[indexPath.row]) と言っています"
         }
         
         
