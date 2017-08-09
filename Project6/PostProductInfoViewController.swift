@@ -20,7 +20,7 @@ class PostProductInfoViewController: UIViewController,UIPickerViewDelegate, UIPi
     
     
     let selectPicker = UIPickerView()
-    var categoryBox = ["カテゴリーを選択してください","アプリ","メディア","ゲーム","エンタメ", "教育・キャリア"]
+    var categoryBox = ["カテゴリーを選択してください","アプリ","メディア","ゲーム", "教育・キャリア"]
     
     
     
@@ -97,7 +97,7 @@ class PostProductInfoViewController: UIViewController,UIPickerViewDelegate, UIPi
     
     @IBAction func continueButtonDidTap(_ sender: Any) {
         
-            if categoryField.text == "アプリ" || categoryField.text == "メディア" || categoryField.text == "ゲーム" || categoryField.text == "エンタメ" || categoryField.text == "教育・キャリア"  {
+            if categoryField.text == "アプリ" || categoryField.text == "メディア" || categoryField.text == "ゲーム" || categoryField.text == "教育・キャリア"  {
                 
                 if productNameField.text != "" {
                     performSegue(withIdentifier: "ToContinue", sender: nil)
@@ -132,8 +132,6 @@ class PostProductInfoViewController: UIViewController,UIPickerViewDelegate, UIPi
     
     
     @IBAction func backButton(_ sender: Any) {
-        
-        
         
         
         

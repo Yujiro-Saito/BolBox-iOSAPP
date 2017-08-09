@@ -18,7 +18,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     @IBOutlet weak var firstCollection: UICollectionView!
     @IBOutlet weak var secondCollection: UICollectionView!
     @IBOutlet weak var thirdCollection: UICollectionView!
-    @IBOutlet weak var fourthCollection: UICollectionView!
+    //@IBOutlet weak var fourthCollection: UICollectionView!
     @IBOutlet weak var fifthCollection: UICollectionView!
     @IBOutlet weak var purposeCollection: UICollectionView!
     
@@ -57,8 +57,8 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
         secondCollection.dataSource = self
         thirdCollection.delegate = self
         thirdCollection.dataSource = self
-        fourthCollection.delegate = self
-        fourthCollection.dataSource = self
+        //fourthCollection.delegate = self
+        //fourthCollection.dataSource = self
         fifthCollection.delegate = self
         fifthCollection.dataSource = self
         purposeCollection.delegate = self
@@ -194,37 +194,6 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             
         })
         
-        
-        
-        ////Fourthのデータ読み込み
-        
-        DataService.dataBase.REF_FOURTH.queryLimited(toLast: 3).observe(.value, with: { (snapshot) in
-            
-            self.fourthPosts = []
-            
-            print(snapshot.value)
-            
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                
-                for snap in snapshot {
-                    print("SNAP: \(snap)")
-                    
-                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                        
-                        let key = snap.key
-                        let post = Post(postKey: key, postData: postDict)
-                        
-                        self.fourthPosts.append(post)
-                        self.fourthCollection.reloadData()
-                    }
-                    
-                    
-                }
-                
-                
-            }
-            
-        })
         
         
         
@@ -520,30 +489,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             
            
             
-        } else if collectionView == fourthCollection {
-            
-            
-            //4番目の記事のセル
-            
-            let fourthCell = fourthCollection.dequeueReusableCell(withReuseIdentifier: "fourthCell", for: indexPath) as? FourthCollectionViewCell
-            
-            
-            let post = fourthPosts[indexPath.row]
-            
-            
-            if let img = BaseViewController.imageCache.object(forKey: post.imageURL as! NSString) {
-                fourthCell?.configureCell(post: post, img: img)
-            } else {
-                fourthCell?.configureCell(post: post)
-                
-                
-            }
-            
-            
-            
-            return fourthCell!
-            
-        } else if collectionView == fifthCollection {
+        }  else if collectionView == fifthCollection {
             
             
             //5番目の記事のセル
@@ -611,9 +557,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             return secondPosts.count
         } else if collectionView == thirdCollection {
             return thirdPosts.count
-        } else if collectionView == fourthCollection {
-            return fourthPosts.count
-        } else if collectionView == fifthCollection {
+        }  else if collectionView == fifthCollection {
             return fifthPosts.count
         } else if collectionView == purposeCollection {
             return purposePosts.count
@@ -784,29 +728,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             
             performSegue(withIdentifier: "topPosts", sender: nil)
             
-        } else if collectionView == fourthCollection {
-            
-            detailPosts = self.fourthPosts[indexPath.row]
-            
-            //IDの設定、pv数
-            let separateID = self.fourthPosts[indexPath.row].postID
-            var readCount = self.fourthPosts[indexPath.row].readCount
-            
-            
-            print(separateID)
-            print(readCount)
-            
-            readCount += 1
-            
-            let readAmount = ["readCount": readCount]
-            
-            DataService.dataBase.REF_BASE.child("fourth/\(separateID)").updateChildValues(readAmount)
-            
-            
-            performSegue(withIdentifier: "topPosts", sender: nil)
-            
-            
-        } else if collectionView == fifthCollection {
+        }  else if collectionView == fifthCollection {
             
             detailPosts = self.fifthPosts[indexPath.row]
             

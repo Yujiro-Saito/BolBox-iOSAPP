@@ -15,9 +15,13 @@ class SearchViewController: ButtonBarPagerTabStripViewController,UINavigationBar
     
     @IBOutlet weak var searchNavBar: UINavigationBar!
     
+    @IBOutlet weak var categoryLabel: ButtonBarView!
+    
+    
 
     override func viewDidLoad() {
         
+        let viewWidth = self.view.frame.width
         
         //バーの色
         settings.style.buttonBarBackgroundColor = UIColor(red: 31/255, green: 158/255, blue: 187/255, alpha: 1)
@@ -27,9 +31,12 @@ class SearchViewController: ButtonBarPagerTabStripViewController,UINavigationBar
         settings.style.buttonBarItemTitleColor = UIColor.white
         //セレクトバーの色
         settings.style.selectedBarBackgroundColor = UIColor(red: 201/255, green: 202/255, blue: 207/255, alpha: 1)
+
+        
+        
         
         //Font size
-        settings.style.buttonBarItemFont = UIFont.systemFont(ofSize: 14)
+        settings.style.buttonBarItemFont = UIFont.systemFont(ofSize: 17)
         
         //Selected bar line height
         settings.style.selectedBarHeight = 5
@@ -52,11 +59,11 @@ class SearchViewController: ButtonBarPagerTabStripViewController,UINavigationBar
         let oneVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "one")
         let twoVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "two")
         let threeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "three")
-        let fourVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "four")
+        //let fourVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "four")
         let fiveVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "five")
         
         
-        let childViewControllers:[UIViewController] = [popularVC, oneVC, twoVC, threeVC,fourVC,fiveVC]
+        let childViewControllers:[UIViewController] = [popularVC, oneVC, twoVC, threeVC,fiveVC]
         return childViewControllers
     }
 
