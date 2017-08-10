@@ -65,6 +65,7 @@ class OneTableViewCell: UITableViewCell {
     func configureCell(post: Post, img: UIImage? = nil) {
         
         
+        
         self.post = post
         
         self.userImage.af_setImage(withURL: URL(string: userImageURL)!)

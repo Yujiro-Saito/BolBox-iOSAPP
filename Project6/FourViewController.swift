@@ -9,7 +9,8 @@
 import UIKit
 import XLPagerTabStrip
 import Firebase
-
+import AlamofireImage
+import SCLAlertView
 
 
 class FourViewController: UIViewController, IndicatorInfoProvider,UITableViewDelegate, UITableViewDataSource {
@@ -163,6 +164,9 @@ class FourViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
         
         let travelCell = fourTable.dequeueReusableCell(withIdentifier: "travelPosts", for: indexPath) as? FourTableViewCell
         
+        travelCell?.cellImage.image = nil
+        travelCell?.cellUserImage.image = nil
+        
         travelCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
         travelCell?.layer.borderWidth = 10
         travelCell?.clipsToBounds = true
@@ -181,7 +185,11 @@ class FourViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
         
         let post = travelPosts[indexPath.row]
         
-        travelCell?.cellImage.af_setImage(withURL: URL(string: travelPosts[indexPath.row].imageURL)!)
+        if self.travelPosts[indexPath.row].imageURL != nil {
+            travelCell?.cellImage.af_setImage(withURL: URL(string: travelPosts[indexPath.row].imageURL)!)
+        }
+        
+        
         
         if let img = FourViewController.imageCache.object(forKey: post.imageURL as! NSString) {
             

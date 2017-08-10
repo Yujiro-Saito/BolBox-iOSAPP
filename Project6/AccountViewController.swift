@@ -350,11 +350,21 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
         
         let cell = profilePostTable.dequeueReusableCell(withIdentifier: "profilePosts", for: indexPath) as! ProfilePostsTableViewCell
         
+        cell.profileImage.image = nil
+        
+        
         cell.layer.borderColor = UIColor.white.cgColor
         cell.layer.borderWidth = 10
         cell.clipsToBounds = true
         
+        
         let post = userPosts[indexPath.row]
+        
+        
+        if self.userPosts[indexPath.row].imageURL != nil {
+            cell.profileImage.af_setImage(withURL: URL(string: userPosts[indexPath.row].imageURL)!)
+        }
+        
         
         if let img = AccountViewController.imageCache.object(forKey: post.imageURL as! NSString) {
             

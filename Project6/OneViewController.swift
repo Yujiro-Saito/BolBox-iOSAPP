@@ -153,12 +153,15 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
+        
+        
         let currentUserName = FIRAuth.auth()?.currentUser?.displayName
         
         
         let mediaCell = oneTable.dequeueReusableCell(withIdentifier: "mediaPost", for: indexPath) as? OneTableViewCell
         
-        
+        mediaCell?.oneImage.image = nil
+        mediaCell?.userImage.image = nil
         
         mediaCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
         mediaCell?.layer.borderWidth = 10
@@ -176,8 +179,15 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
         
         let post = mediaPosts[indexPath.row]
         
-        //
-        mediaCell?.oneImage.af_setImage(withURL: URL(string: mediaPosts[indexPath.row].imageURL)!)
+        
+        
+        
+        if self.mediaPosts[indexPath.row].imageURL != nil {
+            mediaCell?.oneImage.af_setImage(withURL: URL(string: mediaPosts[indexPath.row].imageURL)!)
+        }
+        
+        
+        
         
         
         

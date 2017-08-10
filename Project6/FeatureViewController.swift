@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import AlamofireImage
+import SCLAlertView
 
 
 class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UINavigationBarDelegate {
@@ -642,6 +644,7 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let readMoreCell = featureTable.dequeueReusableCell(withIdentifier: "FeatureCell", for: indexPath) as? FeatureTableViewCell
             
             
+            readMoreCell?.featureImage.image = nil
             
             readMoreCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
             readMoreCell?.layer.borderWidth = 10
@@ -658,7 +661,12 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let post = readMorePosts[indexPath.row]
             
             //
-            readMoreCell?.featureImage.af_setImage(withURL: URL(string: readMorePosts[indexPath.row].imageURL)!)
+            
+            if self.readMorePosts[indexPath.row].imageURL != nil {
+                readMoreCell?.featureImage.af_setImage(withURL: URL(string: readMorePosts[indexPath.row].imageURL)!)
+            }
+            
+            
             
             
             
@@ -729,6 +737,7 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
             let readMoreCell = featureTable.dequeueReusableCell(withIdentifier: "FeatureCell", for: indexPath) as? FeatureTableViewCell
             
+            readMoreCell?.featureImage.image = nil
             
             
             readMoreCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
@@ -745,8 +754,10 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
             let post = readMorePosts[indexPath.row]
             
-            //
-            readMoreCell?.featureImage.af_setImage(withURL: URL(string: readMorePosts[indexPath.row].imageURL)!)
+            
+            if self.readMorePosts[indexPath.row].imageURL != nil {
+                readMoreCell?.featureImage.af_setImage(withURL: URL(string: readMorePosts[indexPath.row].imageURL)!)
+            }
             
             
             
@@ -812,7 +823,7 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
             let readMoreCell = featureTable.dequeueReusableCell(withIdentifier: "FeatureCell", for: indexPath) as? FeatureTableViewCell
             
-            
+            readMoreCell?.featureImage.image = nil
             
             readMoreCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
             readMoreCell?.layer.borderWidth = 10
@@ -829,7 +840,9 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let post = readMorePosts[indexPath.row]
             
             //
-            readMoreCell?.featureImage.af_setImage(withURL: URL(string: readMorePosts[indexPath.row].imageURL)!)
+            if self.readMorePosts[indexPath.row].imageURL != nil {
+                readMoreCell?.featureImage.af_setImage(withURL: URL(string: readMorePosts[indexPath.row].imageURL)!)
+            }
             
             
             
@@ -890,6 +903,8 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
             let readMoreCell = featureTable.dequeueReusableCell(withIdentifier: "FeatureCell", for: indexPath) as? FeatureTableViewCell
             
+            readMoreCell?.featureImage.image = nil
+            
             
             
             readMoreCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
@@ -908,8 +923,9 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let post = readMorePosts[indexPath.row]
             
             //
-            readMoreCell?.featureImage.af_setImage(withURL: URL(string: readMorePosts[indexPath.row].imageURL)!)
-            
+            if self.readMorePosts[indexPath.row].imageURL != nil {
+                readMoreCell?.featureImage.af_setImage(withURL: URL(string: readMorePosts[indexPath.row].imageURL)!)
+            }
             
             
             if let img = FeatureViewController.imageCache.object(forKey: post.imageURL as! NSString) {
@@ -968,6 +984,7 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
             let readMoreCell = featureTable.dequeueReusableCell(withIdentifier: "FeatureCell", for: indexPath) as? FeatureTableViewCell
             
+            readMoreCell?.featureImage.image = nil
             
             
             readMoreCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
@@ -985,9 +1002,9 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
             let post = readMorePosts[indexPath.row]
             
-            //
-            readMoreCell?.featureImage.af_setImage(withURL: URL(string: readMorePosts[indexPath.row].imageURL)!)
-            
+            if self.readMorePosts[indexPath.row].imageURL != nil {
+                readMoreCell?.featureImage.af_setImage(withURL: URL(string: readMorePosts[indexPath.row].imageURL)!)
+            }
             
             
             if let img = FeatureViewController.imageCache.object(forKey: post.imageURL as! NSString) {
@@ -1051,7 +1068,7 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
             let featureOneCell = featureTable.dequeueReusableCell(withIdentifier: "FeatureCell", for: indexPath) as? FeatureTableViewCell
             
-            
+            featureOneCell?.featureImage.image = nil
             
             featureOneCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
             featureOneCell?.layer.borderWidth = 10
@@ -1069,7 +1086,10 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let post = featureOnePosts[indexPath.row]
             
             //
-            featureOneCell?.featureImage.af_setImage(withURL: URL(string: featureOnePosts[indexPath.row].imageURL)!)
+            
+            if self.featureOnePosts[indexPath.row].imageURL != nil {
+                featureOneCell?.featureImage.af_setImage(withURL: URL(string: featureOnePosts[indexPath.row].imageURL)!)
+            }
             
             
             
@@ -1139,6 +1159,7 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
             let featureTwoeCell = featureTable.dequeueReusableCell(withIdentifier: "FeatureCell", for: indexPath) as? FeatureTableViewCell
             
+            featureTwoeCell?.featureImage.image = nil
             
             
             featureTwoeCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
@@ -1157,7 +1178,11 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let post = featureTwoPosts[indexPath.row]
             
             //
-            featureTwoeCell?.featureImage.af_setImage(withURL: URL(string: featureTwoPosts[indexPath.row].imageURL)!)
+            if self.featureTwoPosts[indexPath.row].imageURL != nil {
+                featureTwoeCell?.featureImage.af_setImage(withURL: URL(string: featureTwoPosts[indexPath.row].imageURL)!)
+            }
+            
+            
             
             
             
@@ -1233,7 +1258,7 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
             let featureThreeCell = featureTable.dequeueReusableCell(withIdentifier: "FeatureCell", for: indexPath) as? FeatureTableViewCell
             
-            
+            featureThreeCell?.featureImage.image = nil
             
             featureThreeCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
             featureThreeCell?.layer.borderWidth = 10
@@ -1252,7 +1277,12 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let post = featureThreePosts[indexPath.row]
             
             //
-            featureThreeCell?.featureImage.af_setImage(withURL: URL(string: featureThreePosts[indexPath.row].imageURL)!)
+            if self.featureThreePosts[indexPath.row].imageURL != nil {
+                featureThreeCell?.featureImage.af_setImage(withURL: URL(string: featureThreePosts[indexPath.row].imageURL)!)
+            }
+            
+        
+            
             
             
             

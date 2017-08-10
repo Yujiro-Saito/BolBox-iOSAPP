@@ -10,6 +10,7 @@ import UIKit
 import XLPagerTabStrip
 import Firebase
 import AlamofireImage
+import SCLAlertView
 
 class PopularViewController: UIViewController, IndicatorInfoProvider,UITableViewDelegate, UITableViewDataSource {
     
@@ -141,6 +142,9 @@ class PopularViewController: UIViewController, IndicatorInfoProvider,UITableView
         let popularCell = popularTable.dequeueReusableCell(withIdentifier: "popularCell", for: indexPath) as? PopularTableViewCell
         
         
+        popularCell?.popImage.image = nil
+        popularCell?.userImage.image = nil
+        
         
         popularCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
         popularCell?.layer.borderWidth = 10
@@ -159,7 +163,12 @@ class PopularViewController: UIViewController, IndicatorInfoProvider,UITableView
         
         let post = posts[indexPath.row]
 
-        popularCell?.popImage.af_setImage(withURL: URL(string: posts[indexPath.row].imageURL)!)
+        
+        if self.posts[indexPath.row].imageURL != nil {
+            popularCell?.popImage.af_setImage(withURL: URL(string: posts[indexPath.row].imageURL)!)
+        }
+        
+        
         
         
         

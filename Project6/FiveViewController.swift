@@ -9,6 +9,8 @@
 import UIKit
 import XLPagerTabStrip
 import Firebase
+import AlamofireImage
+import SCLAlertView
 
 class FiveViewController: UIViewController, IndicatorInfoProvider,UITableViewDelegate,UITableViewDataSource {
     
@@ -168,6 +170,9 @@ class FiveViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
         
         let shoppingCell = fiveTable.dequeueReusableCell(withIdentifier: "shoppingPosts", for: indexPath) as? FiveTableViewCell
         
+        shoppingCell?.cellImage.image = nil
+        shoppingCell?.cellUserImage.image = nil
+        
         shoppingCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
         shoppingCell?.layer.borderWidth = 10
         shoppingCell?.clipsToBounds = true
@@ -185,7 +190,11 @@ class FiveViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
         
         let post = shoppinglPosts[indexPath.row]
         
-        shoppingCell?.cellImage.af_setImage(withURL: URL(string: shoppinglPosts[indexPath.row].imageURL)!)
+        if self.shoppinglPosts[indexPath.row].imageURL != nil {
+            shoppingCell?.cellImage.af_setImage(withURL: URL(string: shoppinglPosts[indexPath.row].imageURL)!)
+        }
+        
+        
         
         if let img = FiveViewController.imageCache.object(forKey: post.imageURL as! NSString) {
             

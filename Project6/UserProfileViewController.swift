@@ -169,6 +169,7 @@ class UserProfileViewController: UIViewController,UITableViewDelegate,UITableVie
         
         let cell = userTable.dequeueReusableCell(withIdentifier: "userprofiletable", for: indexPath) as! UserProfileTableViewCell
         
+        cell.postImage.image = nil
         
         cell.layer.borderColor = UIColor.white.cgColor
         cell.layer.borderWidth = 10
@@ -176,6 +177,10 @@ class UserProfileViewController: UIViewController,UITableViewDelegate,UITableVie
         
         
         let post = userprofilePosts[indexPath.row]
+        
+        if userprofilePosts[indexPath.row].imageURL != nil {
+            cell.postImage.af_setImage(withURL: URL(string: userprofilePosts[indexPath.row].imageURL)!)
+        }
         
         if let img = UserProfileViewController.imageCache.object(forKey: post.imageURL as! NSString) {
             

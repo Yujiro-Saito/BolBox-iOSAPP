@@ -224,6 +224,7 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         
         
         let notiCell = notificationTable.dequeueReusableCell(withIdentifier: "notification", for: indexPath) as? NotificationTableViewCell
+        notiCell?.userImage.image = nil
         
         let currentCounts = self.firstUserNameBox.count
         

@@ -9,6 +9,8 @@
 import UIKit
 import XLPagerTabStrip
 import Firebase
+import AlamofireImage
+import SCLAlertView
 
 class ThreeViewController: UIViewController, IndicatorInfoProvider,UITableViewDelegate,UITableViewDataSource{
     
@@ -156,6 +158,9 @@ class ThreeViewController: UIViewController, IndicatorInfoProvider,UITableViewDe
         
         let educationCell = threeTable.dequeueReusableCell(withIdentifier: "educationPosts", for: indexPath) as? ThreeTableViewCell
         
+        educationCell?.cellImage.image = nil
+        educationCell?.cellUserImage.image = nil
+        
         educationCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
         educationCell?.layer.borderWidth = 10
         educationCell?.clipsToBounds = true
@@ -173,7 +178,12 @@ class ThreeViewController: UIViewController, IndicatorInfoProvider,UITableViewDe
         
         let post = educationPosts[indexPath.row]
         
-        educationCell?.cellImage.af_setImage(withURL: URL(string: educationPosts[indexPath.row].imageURL)!)
+        
+        if self.educationPosts[indexPath.row].linkURL != nil {
+            educationCell?.cellImage.af_setImage(withURL: URL(string: educationPosts[indexPath.row].imageURL)!)
+        }
+        
+        
         
         if let img = ThreeViewController.imageCache.object(forKey: post.imageURL as! NSString) {
             

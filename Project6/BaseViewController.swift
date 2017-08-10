@@ -410,11 +410,16 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             //Top記事のセル
             let topCell = topCollectionTable.dequeueReusableCell(withReuseIdentifier: "topCell", for: indexPath) as? newCollectionViewCell
             
+            topCell?.celImage.image = nil
             
             let post = topPosts[indexPath.row]
             
-            //topCell?.attentionLabel.text = "注目\(indexPath.row -= 1)"
+            if post.imageURL != nil {
+                topCell?.celImage.af_setImage(withURL: URL(string: self.topPosts[indexPath.row].imageURL)!)
+            }
+            
             topCell?.attentionLabel.text = "注目\(indexPath.row + 1)"
+            
             
             
             
@@ -432,8 +437,13 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             
             let firstCell = firstCollection.dequeueReusableCell(withReuseIdentifier: "firstCell", for: indexPath) as? FirstCollectionViewCell
             
+            firstCell?.firstImage.image = nil
+            
             let post = firstPosts[indexPath.row]
             
+            if self.firstPosts[indexPath.row].imageURL != nil {
+                firstCell?.firstImage.af_setImage(withURL: URL(string: self.firstPosts[indexPath.row].imageURL)!)
+            }
             
             if let img = BaseViewController.imageCache.object(forKey: post.imageURL as! NSString) {
                 firstCell?.configureCell(post: post, img: img)
@@ -454,8 +464,13 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             
             let secondCell = secondCollection.dequeueReusableCell(withReuseIdentifier: "secondCell", for: indexPath) as? SecondCollectionViewCell
             
+            secondCell?.cellImage.image = nil
+            
             let post = secondPosts[indexPath.row]
             
+            if post.imageURL != nil {
+                secondCell?.cellImage.af_setImage(withURL: URL(string: self.secondPosts[indexPath.row].imageURL)!)
+            }
             
             if let img = BaseViewController.imageCache.object(forKey: post.imageURL as! NSString) {
                 secondCell?.configureCell(post: post, img: img)
@@ -474,8 +489,14 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             
             let thirdCell = thirdCollection.dequeueReusableCell(withReuseIdentifier: "thirdCell", for: indexPath) as? ThirdCollectionViewCell
             
+            thirdCell?.cellImage.image = nil
+            
+            
             let post = thirdPosts[indexPath.row]
             
+            if post.imageURL != nil {
+                thirdCell?.cellImage.af_setImage(withURL: URL(string: self.thirdPosts[indexPath.row].imageURL)!)
+            }
             
             if let img = BaseViewController.imageCache.object(forKey: post.imageURL as! NSString) {
                 thirdCell?.configureCell(post: post, img: img)
@@ -495,8 +516,13 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             //5番目の記事のセル
             let fifthCell = fifthCollection.dequeueReusableCell(withReuseIdentifier: "fifthCell", for: indexPath) as? FifthCollectionViewCell
             
+            fifthCell?.cellImage.image = nil
             
             let post = fifthPosts[indexPath.row]
+            
+            if post.imageURL != nil {
+                fifthCell?.cellImage.af_setImage(withURL: URL(string: self.fifthPosts[indexPath.row].imageURL)!)
+            }
             
             
             if let img = BaseViewController.imageCache.object(forKey: post.imageURL as! NSString) {
@@ -517,8 +543,13 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
             
             let purposeCell = purposeCollection.dequeueReusableCell(withReuseIdentifier: "purposeCell", for: indexPath) as? PurposeCollectionViewCell
             
+            purposeCell?.cellImage.image = nil
             
             let post = purposePosts[indexPath.row]
+            
+            if post.imageURL != nil {
+                purposeCell?.cellImage.af_setImage(withURL: URL(string: self.purposePosts[indexPath.row].imageURL)!)
+            }
             
             
             if let img = BaseViewController.imageCache.object(forKey: post.imageURL as! NSString) {

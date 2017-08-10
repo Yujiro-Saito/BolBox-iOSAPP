@@ -9,6 +9,8 @@
 import UIKit
 import XLPagerTabStrip
 import Firebase
+import AlamofireImage
+import SCLAlertView
 
 class TwoViewController: UIViewController, IndicatorInfoProvider,UITableViewDataSource,UITableViewDelegate {
     
@@ -159,6 +161,9 @@ class TwoViewController: UIViewController, IndicatorInfoProvider,UITableViewData
         
         let postCell = twoTable.dequeueReusableCell(withIdentifier: "appPost", for: indexPath) as? TwoTableViewCell
         
+        postCell?.cellImage.image = nil
+        postCell?.cellUserImage.image = nil
+        
         postCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
         postCell?.layer.borderWidth = 10
         postCell?.clipsToBounds = true
@@ -174,7 +179,11 @@ class TwoViewController: UIViewController, IndicatorInfoProvider,UITableViewData
         postCell?.linkURL = self.appPosts[indexPath.row].linkURL
         postCell?.userID = self.appPosts[indexPath.row].userID
         
-        postCell?.cellImage.af_setImage(withURL: URL(string: appPosts[indexPath.row].imageURL)!)
+        if self.appPosts[indexPath.row].imageURL != nil {
+            postCell?.cellImage.af_setImage(withURL: URL(string: appPosts[indexPath.row].imageURL)!)
+        }
+        
+        
         
         let post = appPosts[indexPath.row]
         
