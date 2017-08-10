@@ -57,8 +57,6 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
         secondCollection.dataSource = self
         thirdCollection.delegate = self
         thirdCollection.dataSource = self
-        //fourthCollection.delegate = self
-        //fourthCollection.dataSource = self
         fifthCollection.delegate = self
         fifthCollection.dataSource = self
         purposeCollection.delegate = self
@@ -68,6 +66,9 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
         
         //バーの高さ
         self.baseNavBar.frame = CGRect(x: 0,y: 0, width: UIScreen.main.bounds.size.width, height: 60)
+        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 15)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+
         
     }
     override func viewWillAppear(_ animated: Bool) {

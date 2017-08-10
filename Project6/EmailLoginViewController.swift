@@ -55,12 +55,7 @@ class EmailLoginViewController: UIViewController,UITextFieldDelegate {
         
         
         
-        
-        
-        
-        
-        
-        
+                
         
         
 
