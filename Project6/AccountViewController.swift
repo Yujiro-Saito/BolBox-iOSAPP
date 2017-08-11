@@ -101,6 +101,26 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
         self.profilePostTable.backgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
         
         
+        
+        
+       
+    }
+    
+    @IBAction func postDataDidTap(_ sender: Any) {
+        
+        
+        
+        performSegue(withIdentifier: "postData", sender: nil)
+        
+    }
+    
+    let currentUserCheck = FIRAuth.auth()?.currentUser
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
         var anonymousUser = currentUserCheck!.isAnonymous
         
         if anonymousUser == true {
@@ -130,54 +150,18 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
             }
         }
         
-       
-    }
-    
-    @IBAction func postDataDidTap(_ sender: Any) {
         
         
-        
-        performSegue(withIdentifier: "postData", sender: nil)
         
     }
-    
-    let currentUserCheck = FIRAuth.auth()?.currentUser
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
         
-        var anonymousUser = currentUserCheck!.isAnonymous
-        
-        if anonymousUser == true {
-            //ゲストユーザー
-            print(currentUserCheck?.displayName!)
-            self.nonRegisterView.isHidden = false
-        } else if anonymousUser == false {
-            //
-            let user = FIRAuth.auth()?.currentUser
-            
-            let userName = user?.displayName
-            let photoURL = user?.photoURL
-            let uid = user?.uid
-            
-            print("ユーザーあり")
-            print(userName)
-            print(photoURL)
-            print(uid)
-            
-            self.profileName.text = userName
-            
-            
-            if photoURL == nil {
-                profileImage.image = UIImage(named: "colo")
-            } else {
-                profileImage.af_setImage(withURL: photoURL!)
-            }
-            
-            
-            
+       
+       
             
             DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "userID").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
                 
@@ -220,7 +204,7 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
         
         
             
-        }
+    
             
             
             

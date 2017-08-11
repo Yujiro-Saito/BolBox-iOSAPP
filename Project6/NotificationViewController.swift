@@ -72,7 +72,7 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         
         //ユーザーデータの読み込みと通知設定
         
-        let anonymousUser = currentUserCheck!.isAnonymous
+        var anonymousUser = currentUserCheck!.isAnonymous
         
         if anonymousUser == true {
             //ゲストユーザー

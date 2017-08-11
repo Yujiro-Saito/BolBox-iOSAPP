@@ -279,11 +279,88 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
         
         //ログアウトした状態の場合Loginページに飛ばす
         if FIRAuth.auth()?.currentUser == nil {
-            //画面遷移
-            performSegue(withIdentifier: "backtoRegister", sender: nil)
+            
+           
+            //foreverあればlogin画面
+            if UserDefaults.standard.object(forKey: "Forever") != nil {
+                performSegue(withIdentifier: "backtoRegister", sender: nil)
+                
+            } else if UserDefaults.standard.object(forKey: "Forever") == nil {
+            //なければ(初期登録
+                UserDefaults.standard.set("Forever", forKey: "Forever")
+                
+                showIndicator()
+                
+                FIRAuth.auth()?.signInAnonymously() { (user, error) in
+                    if error == nil {
+                        
+                        let changeRequest = user?.profileChangeRequest()
+                        
+                        //ゲスト名前 ユーザー名
+                        
+                        let randomGuestNum = arc4random_uniform(2000)
+                        print(randomGuestNum)
+                        
+                        changeRequest?.displayName = "ゲスト\(randomGuestNum)"
+                        
+                        changeRequest?.commitChanges { error in
+                            if let error = error {
+                                
+                                print(error.localizedDescription)
+                                
+                                DispatchQueue.main.async {
+                                    
+                                    self.indicator.stopAnimating()
+                                }
+                                
+                                
+                                
+                            } else {
+                                
+                                //成功 ホーム画面に移動
+                                
+                                DispatchQueue.main.async {
+                                    
+                                    self.indicator.stopAnimating()
+                                }
+                                
+                                
+                                print("匿名ログインに成功")
+                                
+                                
+                                
+                                
+                            }
+                        }
+                        
+                        
+                    }
+                    
+                    
+                    
+                }
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                                                        }
+                
+                
+                
+                
+                
+                
             
             
-        }else {
+            
+        }else if FIRAuth.auth()?.currentUser != nil {
             
             
             let currentUserCheck = FIRAuth.auth()?.currentUser!

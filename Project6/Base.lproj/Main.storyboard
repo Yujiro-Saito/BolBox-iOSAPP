@@ -1014,11 +1014,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="83F-9D-E4A">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="637"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="588"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AXd-z1-6vI">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="574" width="375" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="N8w-h7-KTe"/>
                                 </constraints>
@@ -1113,7 +1113,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mw4-IV-JZX">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="687"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CJo-x5-Jos">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="736"/>
@@ -2763,7 +2763,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mov-sb-FtR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4905" y="3924"/>
+            <point key="canvasLocation" x="5961" y="3914"/>
         </scene>
         <!--Feature View Controller-->
         <scene sceneID="lCd-om-5e2">
@@ -2954,7 +2954,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oMV-dk-QIV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6474" y="6768"/>
+            <point key="canvasLocation" x="6492" y="6768"/>
         </scene>
         <!--Notification View Controller-->
         <scene sceneID="bDi-UJ-dsh">
@@ -3052,9 +3052,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PKx-ha-5JJ">
-                                <rect key="frame" x="0.0" y="54" width="375" height="558"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PKx-ha-5JJ">
+                                <rect key="frame" x="0.0" y="60" width="375" height="558"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -3062,8 +3061,12 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="lZz-8L-HCK" secondAttribute="trailing" constant="8" id="1aD-6g-pDd"/>
                             <constraint firstItem="EF4-SG-jxj" firstAttribute="top" secondItem="lZz-8L-HCK" secondAttribute="bottom" constant="8" id="6Fp-06-Ghy"/>
+                            <constraint firstItem="EF4-SG-jxj" firstAttribute="top" secondItem="PKx-ha-5JJ" secondAttribute="bottom" id="7ma-pC-IOL"/>
                             <constraint firstAttribute="trailing" secondItem="2SZ-MM-ktG" secondAttribute="trailing" id="7pH-VG-TZh"/>
+                            <constraint firstItem="PKx-ha-5JJ" firstAttribute="leading" secondItem="dnt-we-VvB" secondAttribute="leading" id="Cm5-54-yp0"/>
+                            <constraint firstItem="PKx-ha-5JJ" firstAttribute="top" secondItem="2SZ-MM-ktG" secondAttribute="bottom" id="Gv4-qF-BKJ"/>
                             <constraint firstItem="2SZ-MM-ktG" firstAttribute="top" secondItem="dnt-we-VvB" secondAttribute="top" id="MXw-bk-u5V"/>
+                            <constraint firstAttribute="trailing" secondItem="PKx-ha-5JJ" secondAttribute="trailing" id="UVh-3i-iUB"/>
                             <constraint firstItem="lZz-8L-HCK" firstAttribute="top" secondItem="2SZ-MM-ktG" secondAttribute="bottom" constant="16" id="hlX-l8-e94"/>
                             <constraint firstItem="lZz-8L-HCK" firstAttribute="leading" secondItem="dnt-we-VvB" secondAttribute="leading" constant="8" id="vIG-nV-Ux8"/>
                             <constraint firstItem="2SZ-MM-ktG" firstAttribute="leading" secondItem="dnt-we-VvB" secondAttribute="leading" id="zVr-uY-3Fb"/>
@@ -38970,9 +38973,9 @@ AAAAAAAQDwA
         <image name="safari" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Rbq-EQ-Pxa"/>
-        <segue reference="uPa-V9-bqT"/>
-        <segue reference="f75-nR-suJ"/>
+        <segue reference="otp-AY-99o"/>
         <segue reference="tEs-cJ-o5z"/>
+        <segue reference="uPa-V9-bqT"/>
+        <segue reference="eDQ-uE-kWy"/>
     </inferredMetricsTieBreakers>
 </document>
