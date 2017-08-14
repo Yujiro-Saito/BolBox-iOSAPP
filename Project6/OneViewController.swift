@@ -12,9 +12,9 @@ import Firebase
 import AlamofireImage
 import SCLAlertView
 
+
 class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDelegate, UITableViewDataSource {
 
-    
     
     
     
@@ -134,6 +134,13 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
         
         self.oneTable.refreshControl?.endRefreshing()
         
+        
+        
+    }
+    @IBAction func reportButtonDidTap(_ sender: Any) {
+        
+       //画面遷移
+        self.performSegue(withIdentifier: "report", sender: nil)
         
         
     }
@@ -261,6 +268,8 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        
+        
         detailPosts = self.mediaPosts[indexPath.row]
         
         performSegue(withIdentifier: "ToDetailOne", sender: nil)
@@ -281,17 +290,23 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         
-        let detailVc = (segue.destination as? InDetailViewController)!
+        if segue.identifier == "ToDetailOne" {
+            let detailVc = (segue.destination as? InDetailViewController)!
+            
+            detailVc.name = detailPosts?.name
+            detailVc.numLikes = (detailPosts?.pvCount)!
+            detailVc.whatContent = detailPosts?.whatContent
+            detailVc.imageURL = detailPosts?.imageURL
+            detailVc.linkURL = detailPosts?.linkURL
+            detailVc.userName = detailPosts?.userProfileName
+            detailVc.userImageURL = detailPosts?.userProfileImage
+            detailVc.userID = detailPosts?.userID
+            detailVc.userDescription = userPosts?.userDesc
+
+        } else {
+            
+        }
         
-        detailVc.name = detailPosts?.name
-        detailVc.numLikes = (detailPosts?.pvCount)!
-        detailVc.whatContent = detailPosts?.whatContent
-        detailVc.imageURL = detailPosts?.imageURL
-        detailVc.linkURL = detailPosts?.linkURL
-        detailVc.userName = detailPosts?.userProfileName
-        detailVc.userImageURL = detailPosts?.userProfileImage
-        detailVc.userID = detailPosts?.userID
-        detailVc.userDescription = userPosts?.userDesc
         
         
         

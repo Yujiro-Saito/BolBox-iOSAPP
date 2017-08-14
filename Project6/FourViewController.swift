@@ -16,7 +16,13 @@ import SCLAlertView
 class FourViewController: UIViewController, IndicatorInfoProvider,UITableViewDelegate, UITableViewDataSource {
     
     
-    
+    @IBAction func reportButtonDidTap(_ sender: Any) {
+        
+        //画面遷移
+        self.performSegue(withIdentifier: "report", sender: nil)
+        
+        
+    }
     
     @IBOutlet weak var fourTable: UITableView!
     var travelPosts = [Post]()

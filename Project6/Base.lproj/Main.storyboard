@@ -158,6 +158,9 @@
                                                                 <constraint firstAttribute="width" constant="30" id="dcQ-Up-kMp"/>
                                                             </constraints>
                                                             <state key="normal" image="report"/>
+                                                            <connections>
+                                                                <action selector="reportButtonDidTap:" destination="tDw-ry-Ez4" eventType="touchUpInside" id="0Yy-n0-Snl"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -280,6 +283,7 @@
                     <connections>
                         <outlet property="oneTable" destination="mWh-f5-6H1" id="cdu-6h-TKv"/>
                         <segue destination="MIK-fG-rdI" kind="showDetail" identifier="ToDetailOne" id="GPj-rp-ng9"/>
+                        <segue destination="iXK-ft-cAl" kind="showDetail" identifier="report" id="iXd-kt-ZPe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zQw-qw-k3L" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -394,6 +398,9 @@
                                                                 <constraint firstAttribute="width" constant="30" id="NOq-Yk-cVs"/>
                                                             </constraints>
                                                             <state key="normal" image="report"/>
+                                                            <connections>
+                                                                <action selector="reportButtonDidTap:" destination="plj-91-Tej" eventType="touchUpInside" id="BYy-4X-fNk"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t5q-HG-GZf">
                                                             <rect key="frame" x="221" y="284" width="25" height="25"/>
@@ -471,6 +478,7 @@
                     <connections>
                         <outlet property="fourTable" destination="w0h-wz-ywa" id="dpV-Vh-HBp"/>
                         <segue destination="MIK-fG-rdI" kind="showDetail" identifier="ToDetailFour" id="rW4-7Q-TjJ"/>
+                        <segue destination="iXK-ft-cAl" kind="showDetail" identifier="report" id="H0T-hp-8dg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8V2-lm-JeH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -596,6 +604,9 @@
                                                                 <constraint firstAttribute="height" constant="30" id="jhi-OT-Uzs"/>
                                                             </constraints>
                                                             <state key="normal" image="report"/>
+                                                            <connections>
+                                                                <action selector="reportButtonDidTap:" destination="Jky-Ii-Wzh" eventType="touchUpInside" id="jCz-rb-imN"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <constraints>
@@ -662,6 +673,7 @@
                     <connections>
                         <outlet property="fiveTable" destination="EMn-xm-AlY" id="gAw-cd-YDD"/>
                         <segue destination="MIK-fG-rdI" kind="showDetail" identifier="ToDetailFive" id="83C-BM-jFi"/>
+                        <segue destination="iXK-ft-cAl" kind="showDetail" identifier="report" id="Bv1-tH-ZSR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iHm-Ay-tfN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -787,6 +799,9 @@
                                                                 <constraint firstAttribute="width" constant="30" id="iGD-oS-gfF"/>
                                                             </constraints>
                                                             <state key="normal" image="report"/>
+                                                            <connections>
+                                                                <action selector="reportButtonDidTap:" destination="J2H-3s-3sV" eventType="touchUpInside" id="5Hw-lL-qG7"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -852,6 +867,7 @@
                     <connections>
                         <outlet property="popularTable" destination="YSs-po-OO3" id="o45-QC-48D"/>
                         <segue destination="MIK-fG-rdI" kind="showDetail" identifier="ToDetailPop" id="DKu-Lw-e0u"/>
+                        <segue destination="iXK-ft-cAl" kind="showDetail" identifier="report" id="QYZ-WJ-cx1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cZ1-57-pye" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -967,6 +983,9 @@
                                                                 <constraint firstAttribute="width" constant="30" id="i9G-f3-c7o"/>
                                                             </constraints>
                                                             <state key="normal" image="report"/>
+                                                            <connections>
+                                                                <action selector="reportButtonDidTap:" destination="LMm-9o-SWq" eventType="touchUpInside" id="lSB-D0-J9d"/>
+                                                            </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksm-CC-q3c">
                                                             <rect key="frame" x="257" y="269" width="34" height="53"/>
@@ -1043,6 +1062,7 @@
                     <connections>
                         <outlet property="twoTable" destination="Iff-am-v5C" id="QsJ-Fk-Y17"/>
                         <segue destination="MIK-fG-rdI" kind="showDetail" identifier="ToDetailTwo" id="P8u-To-dpR"/>
+                        <segue destination="iXK-ft-cAl" kind="showDetail" identifier="report" id="Aqw-oG-Y3Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gOE-Mn-qws" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1062,11 +1082,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="83F-9D-E4A">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="588"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="637"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AXd-z1-6vI">
-                                <rect key="frame" x="0.0" y="574" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="N8w-h7-KTe"/>
                                 </constraints>
@@ -1161,7 +1181,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mw4-IV-JZX">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="687"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CJo-x5-Jos">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="736"/>
@@ -1481,6 +1501,9 @@
                                                                 <constraint firstAttribute="height" constant="30" id="y0W-uW-3Xw"/>
                                                             </constraints>
                                                             <state key="normal" image="report"/>
+                                                            <connections>
+                                                                <action selector="reportButtonDidTap:" destination="5o4-BW-YTr" eventType="touchUpInside" id="gc4-K8-OOa"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSw-Zw-PQs">
                                                             <rect key="frame" x="224" y="284" width="25" height="25"/>
@@ -1558,6 +1581,7 @@
                     <connections>
                         <outlet property="threeTable" destination="wdI-Xb-xuL" id="NNk-NM-DUt"/>
                         <segue destination="MIK-fG-rdI" kind="showDetail" identifier="ToDetailThree" id="9p9-aw-wrH"/>
+                        <segue destination="iXK-ft-cAl" kind="showDetail" identifier="report" id="2pM-Pi-izu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QpJ-0i-8jR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3020,6 +3044,9 @@
                                                         <constraint firstAttribute="height" constant="30" id="x15-wG-sUx"/>
                                                     </constraints>
                                                     <state key="normal" image="report"/>
+                                                    <connections>
+                                                        <action selector="reportButtonDidTap:" destination="shX-bm-2Po" eventType="touchUpInside" id="XiU-OR-Nsr"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3076,11 +3103,61 @@
                         <outlet property="featureNavbar" destination="Af4-b1-ThD" id="Tjn-YN-v7c"/>
                         <outlet property="featureTable" destination="gnK-Wh-eL1" id="6st-vQ-Q0i"/>
                         <segue destination="MIK-fG-rdI" kind="show" identifier="DetailsWin" id="otp-AY-99o"/>
+                        <segue destination="iXK-ft-cAl" kind="showDetail" identifier="report" id="LZ7-Eh-Wbd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oMV-dk-QIV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6415" y="6758"/>
+            <point key="canvasLocation" x="6377" y="6768"/>
+        </scene>
+        <!--Report View Controller-->
+        <scene sceneID="hpB-Dy-ntc">
+            <objects>
+                <viewController id="iXK-ft-cAl" customClass="ReportViewController" customModule="Project6" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vrm-ef-dfA"/>
+                        <viewControllerLayoutGuide type="bottom" id="C0G-Gr-4TN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NsL-ie-rbj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="不適切な投稿・ユーザーの報告" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TS9-WV-ma0">
+                                <rect key="frame" x="16" y="61" width="343" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z4B-w1-RIF" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                <rect key="frame" x="36" y="123" width="302" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ng-ud-iPL" customClass="RegisterButton" customModule="Project6" customModuleProvider="target">
+                                <rect key="frame" x="64" y="392" width="246" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <state key="normal" title="送信">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendButtonDidTap:" destination="iXK-ft-cAl" eventType="touchUpInside" id="6vk-D9-xC0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="reportText" destination="z4B-w1-RIF" id="FG7-Sc-Kve"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2QE-du-VET" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1088.8" y="6746.1769115442285"/>
         </scene>
         <!--Notification View Controller-->
         <scene sceneID="bDi-UJ-dsh">
@@ -39101,9 +39178,10 @@ AAAAAAAQDwA
         <image name="safari" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rb3-Ka-dpu"/>
-        <segue reference="tEs-cJ-o5z"/>
-        <segue reference="otp-AY-99o"/>
+        <segue reference="uPa-V9-bqT"/>
         <segue reference="eDQ-uE-kWy"/>
+        <segue reference="tEs-cJ-o5z"/>
+        <segue reference="GPj-rp-ng9"/>
+        <segue reference="iXd-kt-ZPe"/>
     </inferredMetricsTieBreakers>
 </document>

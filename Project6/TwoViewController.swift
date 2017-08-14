@@ -37,6 +37,15 @@ class TwoViewController: UIViewController, IndicatorInfoProvider,UITableViewData
     
     
     
+    @IBAction func reportButtonDidTap(_ sender: Any) {
+        
+        //画面遷移
+        self.performSegue(withIdentifier: "report", sender: nil)
+        
+        
+    }
+    
+    
     
     func refresh() {
         

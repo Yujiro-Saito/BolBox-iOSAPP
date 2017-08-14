@@ -38,6 +38,14 @@ class PopularViewController: UIViewController, IndicatorInfoProvider,UITableView
     }
     
     
+    @IBAction func reportButtonDidTap(_ sender: Any) {
+        
+        //画面遷移
+        self.performSegue(withIdentifier: "report", sender: nil)
+        
+        
+    }
+    
     func refresh() {
         
         DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "pvCount").observe(.value, with: { (snapshot) in
@@ -268,18 +276,23 @@ class PopularViewController: UIViewController, IndicatorInfoProvider,UITableView
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        if segue.identifier == "ToDetailPop" {
+            let detailVc = (segue.destination as? InDetailViewController)!
+            
+            detailVc.name = detailPosts?.name
+            detailVc.numLikes = (detailPosts?.pvCount)!
+            detailVc.whatContent = detailPosts?.whatContent
+            detailVc.imageURL = detailPosts?.imageURL
+            detailVc.linkURL = detailPosts?.linkURL
+            detailVc.userName = detailPosts?.userProfileName
+            detailVc.userImageURL = detailPosts?.userProfileImage
+            detailVc.userID = detailPosts?.userID
+            detailVc.userDescription = userPosts?.userDesc
+
+        } else {
+            
+        }
         
-        let detailVc = (segue.destination as? InDetailViewController)!
-        
-        detailVc.name = detailPosts?.name
-        detailVc.numLikes = (detailPosts?.pvCount)!
-        detailVc.whatContent = detailPosts?.whatContent
-        detailVc.imageURL = detailPosts?.imageURL
-        detailVc.linkURL = detailPosts?.linkURL
-        detailVc.userName = detailPosts?.userProfileName
-        detailVc.userImageURL = detailPosts?.userProfileImage
-        detailVc.userID = detailPosts?.userID
-        detailVc.userDescription = userPosts?.userDesc
         
         
         

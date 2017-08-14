@@ -19,6 +19,15 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     
     
+    
+    @IBAction func reportButtonDidTap(_ sender: Any) {
+        
+        //画面遷移
+        self.performSegue(withIdentifier: "report", sender: nil)
+        
+        
+    }
+    
     //データ引き継ぎ用
     var selectedNum: Int!
     var readMoreNum = 0
