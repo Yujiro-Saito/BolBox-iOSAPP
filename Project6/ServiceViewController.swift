@@ -16,7 +16,6 @@ class ServiceViewController: UIViewController,UITextViewDelegate {
     
     @IBAction func StartButtonDidTap(_ sender: Any) {
         
-        print("ok")
         
     }
     

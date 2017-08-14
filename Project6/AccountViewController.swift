@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import AlamofireImage
+import SafariServices
 
 
 class AccountViewController: UIViewController,UINavigationBarDelegate, UITableViewDelegate, UITableViewDataSource,UIScrollViewDelegate {
@@ -407,6 +408,41 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
             
         })
         
+        let contact = UIAlertAction(title: "運営者に違反を報告", style: UIAlertActionStyle.default, handler: {
+            (action: UIAlertAction!) in
+            
+            
+            //サファリ開く
+            let contactURL = URL(string: "https://peraichi.com/landing_pages/view/portiphoneiosapp")
+            
+            if contactURL != nil {
+                
+                let safariVC = SFSafariViewController(url:  URL(string: "https://peraichi.com/landing_pages/view/portiphoneiosapp")!)
+                    
+                self.present(safariVC, animated: true, completion: nil)
+                
+            } else {
+                
+                //alert
+                
+                let alertController = UIAlertController(title: "エラー", message: "エラーが発生しました", preferredStyle: .alert)
+                
+                let okAction = UIAlertAction(title: "Ok", style: .default) {
+                    (action) in
+                    self.dismiss(animated: true, completion: nil)
+                }
+                
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+                
+                
+                
+                
+            }
+            
+            
+        })
+        
         
         
         let logout = UIAlertAction(title: "ログアウト", style: UIAlertActionStyle.default, handler: {
@@ -438,6 +474,7 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
         })
         
         actionSheet.addAction(edit)
+        actionSheet.addAction(contact)
         actionSheet.addAction(logout)
         actionSheet.addAction(cancel)
         
