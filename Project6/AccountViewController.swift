@@ -121,14 +121,31 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        
+        
+        
+        
+        
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        
+        self.nonRegisterView.isHidden = false
+       
         var anonymousUser = currentUserCheck!.isAnonymous
         
         if anonymousUser == true {
             //ゲストユーザー
+            print("匿名")
             print(currentUserCheck?.displayName!)
             self.nonRegisterView.isHidden = false
         } else if anonymousUser == false {
             //
+            self.nonRegisterView.isHidden = true
+            
             let user = FIRAuth.auth()?.currentUser
             
             let userName = user?.displayName
@@ -144,7 +161,7 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
             
             
             if photoURL == nil {
-                profileImage.image = UIImage(named: "colo")
+                profileImage.image = UIImage(named: "AddPhoto")
             } else {
                 profileImage.af_setImage(withURL: photoURL!)
             }
@@ -153,15 +170,6 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
         
         
         
-    }
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        
-        
-       
-       
             
             DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "userID").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
                 

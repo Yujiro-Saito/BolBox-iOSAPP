@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QLh-cT-mN4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xIb-vg-Juq">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -2765,6 +2765,69 @@
             </objects>
             <point key="canvasLocation" x="5961" y="3914"/>
         </scene>
+        <!--Service View Controller-->
+        <scene sceneID="DA0-LU-iP5">
+            <objects>
+                <viewController id="xIb-vg-Juq" customClass="ServiceViewController" customModule="Project6" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oCg-qP-DbO"/>
+                        <viewControllerLayoutGuide type="bottom" id="sNY-oT-eni"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NSI-6o-rOm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PortLogo" translatesAutoresizingMaskIntoConstraints="NO" id="ArW-6s-dpI" customClass="ProfileImage" customModule="Project6" customModuleProvider="target">
+                                <rect key="frame" x="127" y="20" width="120" height="120"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kkL-Fz-qO8">
+                                <rect key="frame" x="37" y="153" width="300" height="360"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">利用規約
+
+この利用規約（以下，「本規約」といいます。）は，Port [ポート]（以下，「Port」といいます。）がこのアプリ上で提供するサービス（以下，「本サービス」といいます。）の利用条件を定めるものです。登録ユーザーの皆さま（以下，「ユーザー」といいます。）には，本規約に従って，本サービスをご利用いただきます。
+　　　　　　　　　　　　　　　　　第1条（適用）
+本規約は，ユーザーと当社との間の本サービスの利用に関わる一切の関係に適用されるものとします。</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TT4-9Q-JmO" customClass="ZFRippleButton" customModule="Project6" customModuleProvider="target">
+                                <rect key="frame" x="64" y="556" width="246" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="利用規約に同意して始める">
+                                    <color key="titleColor" red="0.19408312181827414" green="0.19408312181827414" blue="0.19408312181827414" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="rippleColor">
+                                        <color key="value" red="0.088537827969999996" green="0.46535834009999999" blue="0.55414155030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="rippleBackgroundColor">
+                                        <color key="value" red="0.10613358000000001" green="0.55784231139999996" blue="0.66427004020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="trackTouchLocation" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonCornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="StartButtonDidTap:" destination="xIb-vg-Juq" eventType="touchUpInside" id="kBF-MW-3bu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.2686251699924469" green="0.62205660343170166" blue="0.73384010791778564" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="guidelineTextView" destination="kkL-Fz-qO8" id="7xw-t0-sv3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c2m-Tc-5wy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7082.3999999999996" y="3412.443778110945"/>
+        </scene>
         <!--Feature View Controller-->
         <scene sceneID="lCd-om-5e2">
             <objects>
@@ -2954,7 +3017,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oMV-dk-QIV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6492" y="6768"/>
+            <point key="canvasLocation" x="6415" y="6758"/>
         </scene>
         <!--Notification View Controller-->
         <scene sceneID="bDi-UJ-dsh">
@@ -3863,6 +3926,7 @@
         <image name="AddPhoto" width="64" height="64"/>
         <image name="AddPlus" width="32" height="32"/>
         <image name="Home" width="30" height="34"/>
+        <image name="PortLogo" width="1024" height="1024"/>
         <image name="Profile" width="34" height="34"/>
         <image name="Search" width="34" height="34"/>
         <image name="closes" width="64" height="64"/>
@@ -38973,9 +39037,9 @@ AAAAAAAQDwA
         <image name="safari" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="otp-AY-99o"/>
+        <segue reference="rb3-Ka-dpu"/>
         <segue reference="tEs-cJ-o5z"/>
-        <segue reference="uPa-V9-bqT"/>
+        <segue reference="otp-AY-99o"/>
         <segue reference="eDQ-uE-kWy"/>
     </inferredMetricsTieBreakers>
 </document>

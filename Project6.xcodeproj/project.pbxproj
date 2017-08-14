@@ -14,6 +14,7 @@
 		B70B98BE1F0F64750036B79D /* InDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70B98BD1F0F64750036B79D /* InDetailViewController.swift */; };
 		B711059D1F13A3C800706FED /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B711059C1F13A3C800706FED /* NotificationTableViewCell.swift */; };
 		B71ACDA81EED8620005DCD80 /* SignInUpViewDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71ACDA71EED8620005DCD80 /* SignInUpViewDesign.swift */; };
+		B71BFDC51F41663C007C44D6 /* ServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71BFDC41F41663C007C44D6 /* ServiceViewController.swift */; };
 		B71EEA3D1EED7D2A00CCF1D1 /* SignInandUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71EEA3C1EED7D2A00CCF1D1 /* SignInandUpViewController.swift */; };
 		B725810E1F22706900CF8E56 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B725810D1F22706900CF8E56 /* User.swift */; };
 		B725A8E01F01AB4B006AC9DF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B725A8DF1F01AB4B006AC9DF /* BaseViewController.swift */; };
@@ -91,6 +92,7 @@
 		B70B98BD1F0F64750036B79D /* InDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InDetailViewController.swift; sourceTree = "<group>"; };
 		B711059C1F13A3C800706FED /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		B71ACDA71EED8620005DCD80 /* SignInUpViewDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInUpViewDesign.swift; sourceTree = "<group>"; };
+		B71BFDC41F41663C007C44D6 /* ServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceViewController.swift; sourceTree = "<group>"; };
 		B71EEA3C1EED7D2A00CCF1D1 /* SignInandUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInandUpViewController.swift; sourceTree = "<group>"; };
 		B725810D1F22706900CF8E56 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B725A8DF1F01AB4B006AC9DF /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 				B725A8DF1F01AB4B006AC9DF /* BaseViewController.swift */,
 				B7060DF21F021EED003E51C7 /* AccountViewController.swift */,
 				B70B98BD1F0F64750036B79D /* InDetailViewController.swift */,
+				B71BFDC41F41663C007C44D6 /* ServiceViewController.swift */,
 				B70B28BE1F11F29C00825004 /* NotificationViewController.swift */,
 				B7F628EA1F1B7B71003257CE /* UserProfileViewController.swift */,
 				B7FE38651F1BAFF900DE1E7F /* WebViewController.swift */,
@@ -396,9 +399,9 @@
 				TargetAttributes = {
 					B72A71F21EC677C100EA9BDF = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = N7JAVHJ5S7;
+						DevelopmentTeam = 4Z7E4P5NG8;
 						LastSwiftMigration = 0830;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -508,6 +511,7 @@
 				B71ACDA81EED8620005DCD80 /* SignInUpViewDesign.swift in Sources */,
 				B771C6051F0CA1DB005D4BF2 /* TwoViewController.swift in Sources */,
 				B771C6091F0CA1ED005D4BF2 /* FourViewController.swift in Sources */,
+				B71BFDC51F41663C007C44D6 /* ServiceViewController.swift in Sources */,
 				B7482CE21F0F141E00E98EF1 /* ThreeTableViewCell.swift in Sources */,
 				B7DB51661EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift in Sources */,
 				B7EE00BC1F08C76F0015AA3B /* SecondCollectionViewCell.swift in Sources */,
@@ -686,11 +690,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Project6/Project6.entitlements;
-				DEVELOPMENT_TEAM = N7JAVHJ5S7;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 4Z7E4P5NG8;
 				INFOPLIST_FILE = Project6/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yujirosaito006.Project6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yujirosaito006.Projectporty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "908f11b3-50d1-4601-900c-48e327834931";
+				PROVISIONING_PROFILE_SPECIFIER = Port_dist;
 				SWIFT_OBJC_BRIDGING_HEADER = "Project6/Project6-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -706,11 +713,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Project6/Project6.entitlements;
-				DEVELOPMENT_TEAM = N7JAVHJ5S7;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 4Z7E4P5NG8;
 				INFOPLIST_FILE = Project6/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yujirosaito006.Project6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yujirosaito006.Projectporty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "908f11b3-50d1-4601-900c-48e327834931";
+				PROVISIONING_PROFILE_SPECIFIER = Port_dist;
 				SWIFT_OBJC_BRIDGING_HEADER = "Project6/Project6-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
