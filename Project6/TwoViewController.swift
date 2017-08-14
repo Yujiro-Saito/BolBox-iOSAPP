@@ -253,16 +253,21 @@ class TwoViewController: UIViewController, IndicatorInfoProvider,UITableViewData
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         
-        let detailVc = (segue.destination as? InDetailViewController)!
+        if segue.identifier == "ToDetailTwo" {
+            let detailVc = (segue.destination as? InDetailViewController)!
+            
+            detailVc.name = detailPosts?.name
+            detailVc.numLikes = (detailPosts?.pvCount)!
+            detailVc.whatContent = detailPosts?.whatContent
+            detailVc.imageURL = detailPosts?.imageURL
+            detailVc.linkURL = detailPosts?.linkURL
+            detailVc.userName = detailPosts?.userProfileName
+            detailVc.userImageURL = detailPosts?.userProfileImage
+            detailVc.userID = detailPosts?.userID
+        } else {
+            
+        }
         
-        detailVc.name = detailPosts?.name
-        detailVc.numLikes = (detailPosts?.pvCount)!
-        detailVc.whatContent = detailPosts?.whatContent
-        detailVc.imageURL = detailPosts?.imageURL
-        detailVc.linkURL = detailPosts?.linkURL
-        detailVc.userName = detailPosts?.userProfileName
-        detailVc.userImageURL = detailPosts?.userProfileImage
-        detailVc.userID = detailPosts?.userID
         
         
         

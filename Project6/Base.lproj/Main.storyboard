@@ -1082,11 +1082,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="83F-9D-E4A">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="637"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="588"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AXd-z1-6vI">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="574" width="375" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="N8w-h7-KTe"/>
                                 </constraints>
@@ -1166,7 +1166,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2SE-MZ-JUx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1934" y="8673"/>
+            <point key="canvasLocation" x="1894" y="8726"/>
         </scene>
         <!--In Detail View Controller-->
         <scene sceneID="ICJ-Wj-wsT">
@@ -1181,7 +1181,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mw4-IV-JZX">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="687"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CJo-x5-Jos">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="736"/>
@@ -3148,11 +3148,58 @@
                                     <action selector="sendButtonDidTap:" destination="iXK-ft-cAl" eventType="touchUpInside" id="6vk-D9-xC0"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dc2-RA-odp">
+                                <rect key="frame" x="16" y="16" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="cWX-Iu-3uB"/>
+                                    <constraint firstAttribute="height" constant="40" id="sxi-Rb-Q6U"/>
+                                </constraints>
+                                <state key="normal" image="closes"/>
+                                <connections>
+                                    <action selector="backButton:" destination="4RX-BM-pM4" eventType="touchUpInside" id="90E-9Q-tOf"/>
+                                    <action selector="closeButtonDidTap:" destination="iXK-ft-cAl" eventType="touchUpInside" id="Rug-A6-XLN"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tXS-SJ-f1p" customClass="OnOffButton" customModule="Project6" customModuleProvider="target">
+                                <rect key="frame" x="137" y="330" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
+                                        <color key="value" red="0.10686858439999999" green="0.56170552370000004" blue="0.66887029399999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="ringAlpha">
+                                        <real key="value" value="0.29999999999999999"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ありがとうございます！" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ecr-Ef-LDt">
+                                <rect key="frame" x="64" y="237" width="246" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
+                                <color key="textColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Dc2-RA-odp" firstAttribute="leading" secondItem="NsL-ie-rbj" secondAttribute="leading" constant="16" id="FMO-qE-4DG"/>
+                            <constraint firstItem="Dc2-RA-odp" firstAttribute="top" secondItem="NsL-ie-rbj" secondAttribute="top" constant="16" id="tbA-23-rx9"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="reportText" destination="z4B-w1-RIF" id="FG7-Sc-Kve"/>
+                        <outlet property="MessageText" destination="ecr-Ef-LDt" id="66a-dD-T4f"/>
+                        <outlet property="backButton" destination="Dc2-RA-odp" id="eS3-rp-Cmn"/>
+                        <outlet property="checkButton" destination="tXS-SJ-f1p" id="nyz-1N-fy3"/>
+                        <outlet property="infoLabel" destination="TS9-WV-ma0" id="s3D-B9-O7S"/>
+                        <outlet property="reportText" destination="z4B-w1-RIF" id="u2f-YU-0aY"/>
+                        <outlet property="sendButton" destination="4Ng-ud-iPL" id="Dho-zp-NvH"/>
+                        <segue destination="QLh-cT-mN4" kind="showDetail" identifier="reportDone" id="dXs-2o-XWQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2QE-du-VET" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3308,7 +3355,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FUe-U6-fB4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-11510" y="10592"/>
+            <point key="canvasLocation" x="177" y="6662"/>
         </scene>
         <!--Post Product Info View Controller-->
         <scene sceneID="GAS-OF-lR9">
@@ -39178,10 +39225,10 @@ AAAAAAAQDwA
         <image name="safari" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uPa-V9-bqT"/>
-        <segue reference="eDQ-uE-kWy"/>
+        <segue reference="dXs-2o-XWQ"/>
+        <segue reference="LZ7-Eh-Wbd"/>
         <segue reference="tEs-cJ-o5z"/>
-        <segue reference="GPj-rp-ng9"/>
-        <segue reference="iXd-kt-ZPe"/>
+        <segue reference="otp-AY-99o"/>
+        <segue reference="eDQ-uE-kWy"/>
     </inferredMetricsTieBreakers>
 </document>
