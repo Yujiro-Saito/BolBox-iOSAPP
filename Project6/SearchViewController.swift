@@ -24,13 +24,13 @@ class SearchViewController: ButtonBarPagerTabStripViewController,UINavigationBar
         let viewWidth = self.view.frame.width
         
         //バーの色
-        settings.style.buttonBarBackgroundColor = UIColor(red: 31/255, green: 158/255, blue: 187/255, alpha: 1)
+        settings.style.buttonBarBackgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
         //ボタンの色
-        settings.style.buttonBarItemBackgroundColor = UIColor(red: 31/255, green: 158/255, blue: 187/255, alpha: 1)
+        settings.style.buttonBarItemBackgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
         //セルの文字色
-        settings.style.buttonBarItemTitleColor = UIColor.white
+        settings.style.buttonBarItemTitleColor = UIColor.darkGray
         //セレクトバーの色
-        settings.style.selectedBarBackgroundColor = UIColor(red: 201/255, green: 202/255, blue: 207/255, alpha: 1)
+        settings.style.selectedBarBackgroundColor = UIColor(red: 31/255.0, green: 158/255.0, blue: 187/255.0, alpha: 1.0)
 
         
         

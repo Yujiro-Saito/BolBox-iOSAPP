@@ -24,6 +24,7 @@ class OneTableViewCell: UITableViewCell {
     @IBOutlet weak var onebgCard: UIView!
     @IBOutlet weak var likesButton: UIButton!
     @IBOutlet weak var unLikeButton: UIButton!
+    @IBOutlet weak var cardView: UIViewDesign!
     
     
     

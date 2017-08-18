@@ -32,7 +32,7 @@ class OneViewController: UIViewController, IndicatorInfoProvider,UITableViewDele
         oneTable.delegate = self
         oneTable.dataSource = self
         
-        
+    
 
         
         self.oneTable.backgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
