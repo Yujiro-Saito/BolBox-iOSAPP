@@ -16,7 +16,8 @@ class ServiceViewController: UIViewController,UITextViewDelegate {
     
     @IBAction func StartButtonDidTap(_ sender: Any) {
         
-        
+        UserDefaults.standard.set("PolicyRead", forKey: "PolicyRead")
+        performSegue(withIdentifier: "TOHomeComing", sender: nil)
     }
     
     

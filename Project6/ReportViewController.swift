@@ -86,6 +86,7 @@ class ReportViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var sendButton: RegisterButton!
     
     
+    
     @IBAction func sendButtonDidTap(_ sender: Any) {
         
         
@@ -101,7 +102,6 @@ class ReportViewController: UIViewController,UITextFieldDelegate {
                 
                 
                 DispatchQueue.main.async {
-                    print("おおおおおおおお")
                     
                     let currentUserName = FIRAuth.auth()?.currentUser?.displayName
                     let currentUserEmail = FIRAuth.auth()?.currentUser?.email

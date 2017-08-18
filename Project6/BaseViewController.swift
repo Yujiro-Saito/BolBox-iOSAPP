@@ -18,7 +18,6 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     @IBOutlet weak var firstCollection: UICollectionView!
     @IBOutlet weak var secondCollection: UICollectionView!
     @IBOutlet weak var thirdCollection: UICollectionView!
-    //@IBOutlet weak var fourthCollection: UICollectionView!
     @IBOutlet weak var fifthCollection: UICollectionView!
     @IBOutlet weak var purposeCollection: UICollectionView!
     
@@ -276,6 +275,11 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
         super.viewDidAppear(true)
         
         
+        if UserDefaults.standard.object(forKey: "PolicyRead") == nil {
+            //利用規約に飛ぶ TOHomeComing
+            performSegue(withIdentifier: "Rules", sender: nil)
+            
+        }
         
         //ログアウトした状態の場合Loginページに飛ばす
         if FIRAuth.auth()?.currentUser == nil {
@@ -286,7 +290,9 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
                 performSegue(withIdentifier: "backtoRegister", sender: nil)
                 
             } else if UserDefaults.standard.object(forKey: "Forever") == nil {
-            //なければ(初期登録
+            //なければ(初期登録)
+                
+                
                 UserDefaults.standard.set("Forever", forKey: "Forever")
                 
                 showIndicator()

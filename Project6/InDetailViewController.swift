@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import AlamofireImage
+import SafariServices
 
 class InDetailViewController: UIViewController {
     
@@ -131,7 +132,19 @@ class InDetailViewController: UIViewController {
     
     @IBAction func goSeeButtonDidTap(_ sender: Any) {
         
-        performSegue(withIdentifier: "webview", sender: nil)
+        
+        //safari開く
+        
+        let safariVC = SFSafariViewController(url: URL(string: self.linkURL!)!)
+        self.present(safariVC, animated: true, completion: nil)
+        
+        
+        //performSegue(withIdentifier: "webview", sender: nil)
+        
+        
+        
+        
+        
         
     }
     
