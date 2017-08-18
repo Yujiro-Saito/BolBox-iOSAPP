@@ -257,7 +257,7 @@ class FiveViewController: UIViewController, IndicatorInfoProvider,UITableViewDel
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "" {
+        if segue.identifier == "ToDetailFive" {
             let detailVc = (segue.destination as? InDetailViewController)!
             
             detailVc.name = detailPosts?.name
