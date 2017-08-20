@@ -53,20 +53,6 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         self.notificationTable.refreshControl?.addTarget(self, action: #selector(NotificationViewController.refresh), for: .valueChanged)
         
         
-        
-        
-        
-
-    }
-    
-    let currentUserCheck = FIRAuth.auth()?.currentUser
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        
-        
-        self.guestUserView.isHidden = true
-        
         let currentCounts = self.firstUserNameBox.count
         
         
@@ -110,11 +96,6 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
                                 
                                 for (nameKey,namevalue) in peopleWhoLike {
                                     print("キーは\(nameKey)、値は\(namevalue)")
-                                    
-                                    
-                                    print("ユーザー画像URLの取得\(namevalue)")
-                                    
-                                    
                                     
                                     let userImageURL = namevalue["imageURL"] as! String
                                     
@@ -209,6 +190,21 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
             
             
         }
+
+        
+        
+        
+
+    }
+    
+    let currentUserCheck = FIRAuth.auth()?.currentUser
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        
+        self.guestUserView.isHidden = true
+        
         
         
         

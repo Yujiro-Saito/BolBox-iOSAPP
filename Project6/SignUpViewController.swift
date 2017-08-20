@@ -136,11 +136,11 @@ class SignUpViewController: UIViewController , UITextFieldDelegate,UIImagePicker
                                 if error != nil {
                                     print("画像のアップロードに失敗しました")
                                 } else {
+                                    
+                                    
                                     print("画像のアップロードに成功しました")
                                     //DBへ画像のURL飛ばす
                                     let userDownloadURL = metaData?.downloadURL()?.absoluteString
-                                    
-                                    let userPhotoURL = String(describing: FIRAuth.auth()?.currentUser?.photoURL)
                                     
                                     
                                     let changeRequest = user.profileChangeRequest()
@@ -154,12 +154,7 @@ class SignUpViewController: UIViewController , UITextFieldDelegate,UIImagePicker
                                             print(error.localizedDescription)
                                         } else {
                                             print("プロフィールの登録完了")
-                                            print(user.displayName!)
-                                            print(user.email!)
-                                            print(user.photoURL!)
-                                            
-                                            
-                                            let userData = ["userName" : FIRAuth.auth()?.currentUser?.displayName, "email" : FIRAuth.auth()?.currentUser?.email,"userImageURL" : userPhotoURL]
+                                            let userData = ["userName" : FIRAuth.auth()?.currentUser?.displayName, "email" : FIRAuth.auth()?.currentUser?.email,"userImageURL" : "", "profileDesc" : "", "uid" : FIRAuth.auth()?.currentUser?.uid]
                                             
                                             //DBに追記
                                             DataService.dataBase.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)").setValue(userData)
@@ -170,6 +165,7 @@ class SignUpViewController: UIViewController , UITextFieldDelegate,UIImagePicker
                                     
                                 }
                             }
+                            
                         }
                         
                                     
@@ -188,6 +184,7 @@ class SignUpViewController: UIViewController , UITextFieldDelegate,UIImagePicker
                         self.completeSignUp(id: user.uid, userData: userData, userName: name, userEmail: email, photoURL: photoUrl)
                         
                        
+                        
                         
                     }
                     

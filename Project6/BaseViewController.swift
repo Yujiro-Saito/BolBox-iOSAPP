@@ -67,6 +67,8 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
         self.baseNavBar.frame = CGRect(x: 0,y: 0, width: UIScreen.main.bounds.size.width, height: 60)
         UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 15)!]
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        
+        
 
         
     }
@@ -274,6 +276,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
+        let currentUserName = FIRAuth.auth()?.currentUser?.displayName
         
         if UserDefaults.standard.object(forKey: "PolicyRead") == nil {
             //利用規約に飛ぶ TOHomeComing
@@ -296,7 +299,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
                 UserDefaults.standard.set("Forever", forKey: "Forever")
                 
                 showIndicator()
-                
+           
                 FIRAuth.auth()?.signInAnonymously() { (user, error) in
                     if error == nil {
                         
@@ -308,6 +311,7 @@ class BaseViewController: UIViewController,UINavigationBarDelegate,UICollectionV
                         print(randomGuestNum)
                         
                         changeRequest?.displayName = "ゲスト\(randomGuestNum)"
+                        
                         
                         changeRequest?.commitChanges { error in
                             if let error = error {
