@@ -19,6 +19,8 @@ class UserProfileViewController: UIViewController,UITableViewDelegate,UITableVie
     @IBOutlet weak var userDescription: UILabel!
     @IBOutlet weak var profileNavBar: UINavigationBar!
     
+    @IBOutlet weak var profileText: UILabel!
+    
     @IBOutlet weak var scrollers: UIScrollView!
     
     
@@ -106,6 +108,46 @@ class UserProfileViewController: UIViewController,UITableViewDelegate,UITableVie
         self.userprofilePosts.reverse()
         self.userTable.reloadData()
             
+            
+            
+            
+        })
+        DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: self.userID).observe(.value, with: { (snapshot) in
+            
+            //ユーザーのデータ取得
+            
+            
+            print(snapshot.value)
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        
+                        let profileDesc = postDict["profileDesc"] as! String?
+                        
+                        self.profileText.text = profileDesc
+                        
+                        
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    }
+                    
+                    
+                }
+                
+                
+            }
             
             
             
