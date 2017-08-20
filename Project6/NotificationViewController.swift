@@ -26,6 +26,8 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
     var userImageURLBox = [String]()
     var userPostTitleBox = [String]()
     var userReactionTextBox = [String]()
+    var currentUserIdNumberBox = [String]()
+    var userPhotoURLBox = [String]()
     
     
 
@@ -120,23 +122,30 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
                                     
                                     let userReact = namevalue["userReact"] as! String
                                     
+                                    let currentUserKeyId = namevalue["currentUserID"] as! String
+                                    
+                                    let photosURL = namevalue["userProfileURL"] as! String
+                                    
                                     
                                     
                                     self.firstUserNameBox.append(nameKey)
                                     self.userImageURLBox.append(userImageURL)
                                     self.userPostTitleBox.append(userPostTitle)
                                     self.userReactionTextBox.append(userReact)
+                                    self.currentUserIdNumberBox.append(currentUserKeyId)
+                                    self.userPhotoURLBox.append(photosURL)
                                     
                                     
                                     self.firstUserNameBox.reverse()
                                     self.userImageURLBox.reverse()
                                     self.userPostTitleBox.reverse()
                                     self.userReactionTextBox.reverse()
+                                    self.currentUserIdNumberBox.reverse()
+                                    self.userPhotoURLBox.reverse()
+                                    
                                     
                                     self.notificationTable.reloadData()
                                     
-                                    print(self.firstUserNameBox)
-                                    print(self.userImageURLBox)
                                     
                                     
                                     
@@ -207,11 +216,28 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         
     }
     
+     var detailUserID: String?
+     var detailUserName: String?
+     var detailUserPhotoURL: String?
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        detailUserID = self.currentUserIdNumberBox[indexPath.row]
+        detailUserName = self.firstUserNameBox[indexPath.row]
+        detailUserPhotoURL = self.userPhotoURLBox[indexPath.row]
+        
+        performSegue(withIdentifier: "DetailUserProfile", sender: nil)
+    }
     
     
-    
-    
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let userProfileVc = (segue.destination as? UserProfileViewController)!
+        
+        userProfileVc.userName = self.detailUserName
+        userProfileVc.userImageURL = self.detailUserPhotoURL
+        userProfileVc.userID = self.detailUserID
+    }
     
 
     

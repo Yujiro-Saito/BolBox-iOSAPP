@@ -111,6 +111,8 @@ class OneTableViewCell: UITableViewCell {
     //いいねが押された時
     @IBAction func likeButtonDidTap(_ sender: Any) {
         
+        let photoLink = FIRAuth.auth()?.currentUser?.photoURL
+        let userPhotoURL = String(describing: photoLink!)
         
         
         let alertView = SCLAlertView()
@@ -129,7 +131,7 @@ class OneTableViewCell: UITableViewCell {
             let userImageURL = ["imageURL" : self.imageURL]
             let userName = [self.postID : currentUserName]
             let peoples = currentUserName
-            let userData = ["imageURL" : self.imageURL, self.postID : currentUserName, "userID" : self.userID, "postName" : self.oneTItle.text, "userReact" : "いいね!"]
+            let userData = ["imageURL" : self.imageURL, self.postID : currentUserName, "userID" : self.userID, "postName" : self.oneTItle.text, "userReact" : "いいね!", "currentUserID" : FIRAuth.auth()?.currentUser?.uid, "userProfileURL" : userPhotoURL]
             
             //いいね数を更新
             DataService.dataBase.REF_BASE.child("posts/\(self.postID)").updateChildValues(likesCount)
@@ -155,7 +157,7 @@ class OneTableViewCell: UITableViewCell {
             let userImageURL = ["imageURL" : self.imageURL]
             let userName = [self.postID : currentUserName]
             let peoples = currentUserName
-            let userData = ["imageURL" : self.imageURL, self.postID : currentUserName, "userID" : self.userID, "postName" : self.oneTItle.text, "userReact" : "かっこいい!"]
+            let userData = ["imageURL" : self.imageURL, self.postID : currentUserName, "userID" : self.userID, "postName" : self.oneTItle.text, "userReact" : "かっこいい!", "currentUserID" : FIRAuth.auth()?.currentUser?.uid, "userProfileURL" : userPhotoURL]
             
             //いいね数を更新
             DataService.dataBase.REF_BASE.child("posts/\(self.postID)").updateChildValues(likesCount)
@@ -180,7 +182,7 @@ class OneTableViewCell: UITableViewCell {
             let userImageURL = ["imageURL" : self.imageURL]
             let userName = [self.postID : currentUserName]
             let peoples = currentUserName
-            let userData = ["imageURL" : self.imageURL, self.postID : currentUserName, "userID" : self.userID, "postName" : self.oneTItle.text, "userReact" : "おもしろい!"]
+            let userData = ["imageURL" : self.imageURL, self.postID : currentUserName, "userID" : self.userID, "postName" : self.oneTItle.text, "userReact" : "おもしろい!", "currentUserID" : FIRAuth.auth()?.currentUser?.uid, "userProfileURL" : userPhotoURL]
             
             //いいね数を更新
             DataService.dataBase.REF_BASE.child("posts/\(self.postID)").updateChildValues(likesCount)
@@ -199,13 +201,14 @@ class OneTableViewCell: UITableViewCell {
             
             let currentUserName = FIRAuth.auth()?.currentUser?.displayName
             
+            
             //DBを更新
             let likesCount = ["pvCount": self.pvCount]
             
             let userImageURL = ["imageURL" : self.imageURL]
             let userName = [self.postID : currentUserName]
             let peoples = currentUserName
-            let userData = ["imageURL" : self.imageURL, self.postID : currentUserName, "userID" : self.userID, "postName" : self.oneTItle.text, "userReact" : "おしゃれ!"]
+            let userData = ["imageURL" : self.imageURL, self.postID : currentUserName, "userID" : self.userID, "postName" : self.oneTItle.text, "userReact" : "おしゃれ!", "currentUserID" : FIRAuth.auth()?.currentUser?.uid, "userProfileURL" : userPhotoURL]
             
             //いいね数を更新
             DataService.dataBase.REF_BASE.child("posts/\(self.postID)").updateChildValues(likesCount)
@@ -223,6 +226,8 @@ class OneTableViewCell: UITableViewCell {
             self.pvCount += 1
             
             let currentUserName = FIRAuth.auth()?.currentUser?.displayName
+            let photoLink = FIRAuth.auth()?.currentUser?.photoURL
+            let userPhotoURL = String(describing: photoLink)
             
             //DBを更新
             let likesCount = ["pvCount": self.pvCount]
@@ -230,7 +235,7 @@ class OneTableViewCell: UITableViewCell {
             let userImageURL = ["imageURL" : self.imageURL]
             let userName = [self.postID : currentUserName]
             let peoples = currentUserName
-            let userData = ["imageURL" : self.imageURL, self.postID : currentUserName, "userID" : self.userID, "postName" : self.oneTItle.text, "userReact" : "ありがとう!"]
+            let userData = ["imageURL" : self.imageURL, self.postID : currentUserName, "userID" : self.userID, "postName" : self.oneTItle.text, "userReact" : "ありがとう!", "currentUserID" : FIRAuth.auth()?.currentUser?.uid, "userProfileURL" : userPhotoURL]
             
             //いいね数を更新
             DataService.dataBase.REF_BASE.child("posts/\(self.postID)").updateChildValues(likesCount)

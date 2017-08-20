@@ -41,6 +41,8 @@ class UserProfileViewController: UIViewController,UITableViewDelegate,UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         print(userID)
         scrollers.delegate = self
         userTable.delegate = self

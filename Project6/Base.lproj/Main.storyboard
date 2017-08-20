@@ -3329,11 +3329,12 @@
                         <outlet property="navBar" destination="2SZ-MM-ktG" id="0nY-0Q-f0o"/>
                         <outlet property="notificationTable" destination="lZz-8L-HCK" id="rGU-L7-A75"/>
                         <outlet property="tabItem" destination="nb4-W0-fJA" id="LJm-xE-e1h"/>
+                        <segue destination="B89-8B-hyD" kind="showDetail" identifier="DetailUserProfile" id="hls-6u-JFQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PyT-h2-bjU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4383.1999999999998" y="8632.533733133434"/>
+            <point key="canvasLocation" x="5918" y="8835"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="Yvr-YY-oSh">
@@ -39226,7 +39227,8 @@ AAAAAAAQDwA
         <segue reference="YKj-mT-Hj4"/>
         <segue reference="tEs-cJ-o5z"/>
         <segue reference="LZ7-Eh-Wbd"/>
-        <segue reference="GBd-kR-lEf"/>
+        <segue reference="hls-6u-JFQ"/>
         <segue reference="jod-eB-na4"/>
+        <segue reference="GBd-kR-lEf"/>
     </inferredMetricsTieBreakers>
 </document>
