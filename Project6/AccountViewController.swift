@@ -20,6 +20,10 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileImage: ProfileImage!
     @IBOutlet weak var nonRegisterView: UIView!
+    @IBOutlet weak var profileDescLabel: UILabel!
+    @IBOutlet weak var profileCard: UIView!
+    
+    
     
     @IBOutlet weak var scroller: UIScrollView!
     
@@ -207,10 +211,64 @@ class AccountViewController: UIViewController,UINavigationBarDelegate, UITableVi
                 
                 
             })
+        
+        
+        
+        DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
             
+            //ユーザーのデータ取得
+            
+            
+            print(snapshot.value)
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        
+                        let profileDesc = postDict["profileDesc"] as! String?
+                        
+                        self.profileDescLabel.text = profileDesc
+                        
+                        
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                        
+                       
+                        
+                        
+                        
+                        
+                    }
+                    
+                    
+                }
+                
+                
+            }
+        
+            
+            
+        })
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         }
-        
-        
+    
+    
         
             
     
