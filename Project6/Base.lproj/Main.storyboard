@@ -2154,7 +2154,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7uP-Mm-F0M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4228" y="8596.5517241379312"/>
+            <point key="canvasLocation" x="4092" y="8630"/>
         </scene>
         <!--Base View Controller-->
         <scene sceneID="sFI-Wc-b3i">
@@ -39244,11 +39244,11 @@ AAAAAAAQDwA
         <image name="safari" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GBd-kR-lEf"/>
         <segue reference="rb3-Ka-dpu"/>
-        <segue reference="hls-6u-JFQ"/>
+        <segue reference="GBd-kR-lEf"/>
+        <segue reference="Ufe-L3-6S3"/>
+        <segue reference="FHI-EE-aFD"/>
         <segue reference="tEs-cJ-o5z"/>
         <segue reference="LZ7-Eh-Wbd"/>
-        <segue reference="Ufe-L3-6S3"/>
     </inferredMetricsTieBreakers>
 </document>
