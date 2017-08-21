@@ -10,14 +10,17 @@ import UIKit
 import Firebase
 import AlamofireImage
 import SkyFloatingLabelTextField
+import RSKPlaceholderTextView
 
-class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UINavigationBarDelegate {
+class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UINavigationBarDelegate,UITextViewDelegate {
     
     
     @IBOutlet weak var editNav: UINavigationBar!
     @IBOutlet weak var userImage: ProfileImage!
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var nameField: SkyFloatingLabelTextField!
+    @IBOutlet weak var descTextview: RSKPlaceholderTextView!
+    
     
     var myImagePicker: UIImagePickerController!
     var mainImageBox = UIImage()
@@ -27,6 +30,9 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        descTextview.delegate = self
+        
+        descTextview.returnKeyType = UIReturnKeyType.done
         
         nameField.delegate = self
         editNav.delegate = self
@@ -41,8 +47,7 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
         nameField.selectedLineColor = barColor
         nameField.lineHeight = 1.0 // bottom line height in points
         nameField.selectedLineHeight = 2.0
-        
-        
+       
         
         
         
@@ -67,6 +72,48 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
             }
             
             
+            
+            
+            //プロフィールの取得
+            DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
+                
+                //ユーザーのデータ取得
+                
+                
+                print(snapshot.value)
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
+                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            
+                            let profileDesc = postDict["profileDesc"] as! String?
+                            
+                            self.descTextview.text = profileDesc
+                            
+                            
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            
+                        }
+                        
+                        
+                    }
+                    
+                    
+                }
+                
+                
+                
+            })
+            
+            
+            
+            
 
         
 
@@ -77,6 +124,28 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
         
         
     }
+    
+    
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        
+        return true
+    }
+    
+    
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        
+        
+        return true
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+
     
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -143,9 +212,13 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
                     //DBへ画像のURL飛ばす
                     let userDownloadURL = metaData?.downloadURL()?.absoluteString
                     
-                    let userPhotoURL = String(describing: FIRAuth.auth()?.currentUser?.photoURL)
+                    //let userPhotoURL = String(describing: FIRAuth.auth()?.currentUser?.photoURL)
                     
                     //UserProfile変更
+                    let photoLink = FIRAuth.auth()?.currentUser?.photoURL
+                    let userPhotoURL = String(describing: photoLink!)
+                    let userDescription = self.descTextview.text
+                    
                     
                     let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
                     changeRequest?.displayName = self.nameField.text
@@ -155,8 +228,7 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
                     changeRequest?.commitChanges() { (error) in
                         
                         
-                        //DBを更新
-                        let userData = ["userName" : FIRAuth.auth()?.currentUser?.displayName, "email" : FIRAuth.auth()?.currentUser?.email,"userImageURL" : userPhotoURL]
+                        let userData = ["userName" : FIRAuth.auth()?.currentUser?.displayName, "email" : FIRAuth.auth()?.currentUser?.email,"userImageURL" : userPhotoURL,"profileDesc" : userDescription, "uid" : FIRAuth.auth()?.currentUser?.uid]
                         
                         //DBに追記
                         DataService.dataBase.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)").updateChildValues(userData)

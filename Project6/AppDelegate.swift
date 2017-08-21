@@ -67,6 +67,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
                 return
             } else {
                 
+                //DB投稿
+                
+                
+                
                 print("Sign In successfully")
                 self.googleSuccessful = true
                 print("AppDelegate真偽判定\(self.googleSuccessful)")
@@ -80,7 +84,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         //Sign Out method
-        print("")
     }
     
    

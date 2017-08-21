@@ -32,6 +32,23 @@ class SignInandUpViewController: UIViewController,GIDSignInUIDelegate {
             
             //登録完了してtrueになったら
             print("登録完了")
+            //DBプロフィール投稿
+            //profileDesc 条件処理
+            
+            let userData = ["userName" : FIRAuth.auth()?.currentUser?.displayName, "email" : FIRAuth.auth()?.currentUser?.email,"userImageURL" : "", "profileDesc" : "", "uid" : FIRAuth.auth()?.currentUser?.uid]
+            
+            //DBに追記
+            DataService.dataBase.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)").setValue(userData)
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
             self.appDelegateAccess.googleSuccessful = false
             
