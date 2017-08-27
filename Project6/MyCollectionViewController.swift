@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import AlamofireImage
+
 
 class MyCollectionViewController: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     
     
     @IBOutlet weak var myCollection: UICollectionView!
+    var userPosts = [Post]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +29,65 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     }
     
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        //ログアウトした状態の場合Loginページに飛ばす
+        if FIRAuth.auth()?.currentUser == nil {
+           
+            performSegue(withIdentifier: "SignUp", sender: nil)
+            
+            
+            
+        } else if FIRAuth.auth()?.currentUser != nil {
+            
+            //ユーザーのコレクションの読み込み
+            DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "userID").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
+                
+                self.userPosts = []
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
+                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            self.userPosts.append(post)
+                            
+                            
+                            
+                        }
+                        
+                        
+                    }
+                    
+                    
+                }
+                
+                
+                self.userPosts.reverse()
+                self.myCollection.reloadData()
+                
+                
+                
+                
+            })
+            
+            
+        }
+        
+       
+        
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 100
+        return userPosts.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -34,6 +96,21 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = myCollection.dequeueReusableCell(withReuseIdentifier: "myCollectionCell", for: indexPath) as? MyCollectionViewCell
+        
+        //読み込むまで画像は非表示
+        cell?.itemImage.image = nil
+        cell?.clipsToBounds = true
+        
+        //現在のCell
+        let post = userPosts[indexPath.row]
+        
+        
+        cell?.itemTitleLabel.text = userPosts[indexPath.row].name
+        
+        //画像の読み込み
+        if self.userPosts[indexPath.row].imageURL != nil {
+            cell?.itemImage.af_setImage(withURL:  URL(string: userPosts[indexPath.row].imageURL)!)
+        }
         
         
         return cell!
@@ -60,6 +137,32 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
      func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView
     {
         let headerView = myCollection.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Head", for: indexPath) as! SectionHeaderCollectionReusableView
+        
+        if FIRAuth.auth()?.currentUser != nil {
+            
+            print("ログインテスト")
+            
+            let user = FIRAuth.auth()?.currentUser
+            
+            let userName = user?.displayName
+            let photoURL = user?.photoURL
+            
+            //ユーザー名
+            headerView.userProfileName.text = userName
+            
+            
+            //ユーザーのプロフィール画像
+            if photoURL != nil {
+                
+                headerView.userProfileImage.af_setImage(withURL: photoURL!)
+                
+            } else {
+                
+            }
+            
+           
+            
+        }
         
         
         return headerView

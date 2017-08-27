@@ -218,8 +218,8 @@
 		B72438ED1F5262EC00BD6E13 /* NewProjects */ = {
 			isa = PBXGroup;
 			children = (
-				B72438F01F52688D00BD6E13 /* MyCollectionViewCell.swift */,
 				B72438F81F52A9D300BD6E13 /* MyCollectionViewController.swift */,
+				B72438F01F52688D00BD6E13 /* MyCollectionViewCell.swift */,
 				B7DB51651EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift */,
 			);
 			name = NewProjects;
