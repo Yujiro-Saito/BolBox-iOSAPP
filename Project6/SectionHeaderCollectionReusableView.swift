@@ -9,7 +9,31 @@
 import UIKit
 
 class SectionHeaderCollectionReusableView: UICollectionReusableView {
-    @IBOutlet weak var sectionLabel: UILabel!
+
+    
+    @IBOutlet weak var userProfileImage: ProfileImage!
+    @IBOutlet weak var userProfileName: UILabel!
+    @IBOutlet weak var addCollectionButton: UIButton!
+    @IBOutlet weak var settingButton: UIButton!
+    
+    @IBAction func addCollectionDidTap(_ sender: Any) {
+        print("add")
+    }
+    
+    
+    @IBAction func settingButtonDidTap(_ sender: Any) {
+        print("setting")
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        userProfileImage.image = UIImage(named: "Sunset")
+        userProfileName.text = "ユジロン"
+        
+        
+    }
+    
     
     
 }
