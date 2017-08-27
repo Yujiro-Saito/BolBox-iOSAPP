@@ -55,6 +55,25 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         return 3
     }
     
+    
+    
+     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView
+    {
+        let headerView = myCollection.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Head", for: indexPath) as! SectionHeaderCollectionReusableView
+        
+        
+        return headerView
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
  
 }
