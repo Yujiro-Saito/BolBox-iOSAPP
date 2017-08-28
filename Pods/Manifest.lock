@@ -2,6 +2,7 @@ PODS:
   - Alamofire (4.4.0)
   - AlamofireImage (3.2.0):
     - Alamofire (~> 4.1)
+  - CircleMenu (2.0.5)
   - DKImagePickerController (3.5.3):
     - DKImagePickerController/Camera (= 3.5.3)
     - DKImagePickerController/ImageManager (= 3.5.3)
@@ -87,6 +88,7 @@ PODS:
 
 DEPENDENCIES:
   - AlamofireImage (~> 3.1)
+  - CircleMenu (~> 2.0.1)
   - DKImagePickerController
   - Firebase/Auth
   - Firebase/Core
@@ -109,6 +111,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
+  CircleMenu: 7cef16b4401de5b545e5f06d720cb202ec64800d
   DKImagePickerController: 274b66ad6e79cd98d2688685c8e370c05d021557
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   Firebase: 53b2343db1ebfa3eb16bdb4318b8bb65360b2220
@@ -137,6 +140,6 @@ SPEC CHECKSUMS:
   XLPagerTabStrip: 9be80a66c6b7d60306b2c0a6004965016d68f813
   ZFRippleButton: 62ea35e209757704dea697d66489fe69c13d7b77
 
-PODFILE CHECKSUM: 9c0fbaac1ae8d03ddc0adecc2b0b2a998c9d946c
+PODFILE CHECKSUM: eae24951e60018cec871bc4bbd6ea71de5f7124d
 
 COCOAPODS: 1.1.0

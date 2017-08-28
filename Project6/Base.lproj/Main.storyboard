@@ -1195,10 +1195,10 @@
             </objects>
             <point key="canvasLocation" x="38802" y="40691"/>
         </scene>
-        <!--View Controller-->
+        <!--Infomation View Controller-->
         <scene sceneID="OZo-mL-IdK">
             <objects>
-                <viewController id="5T0-3l-eMX" sceneMemberID="viewController">
+                <viewController id="5T0-3l-eMX" customClass="InfomationViewController" customModule="Project6" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="g3h-Xw-nXi"/>
                         <viewControllerLayoutGuide type="bottom" id="Cj6-AX-0ML"/>
@@ -1216,26 +1216,43 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Sunset" translatesAutoresizingMaskIntoConstraints="NO" id="eVx-ry-kwu">
-                                            <rect key="frame" x="62" y="208" width="250" height="250"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="We all want the same thing" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jaj-Vc-mXz">
-                                            <rect key="frame" x="27" y="72" width="320" height="80"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We all want the same thing" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jaj-Vc-mXz">
+                                            <rect key="frame" x="45" y="73" width="285" height="80"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="285" id="Q7D-hW-wJg"/>
+                                                <constraint firstAttribute="height" constant="80" id="VGc-EZ-o00"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngr-C7-Awz">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngr-C7-Awz">
                                             <rect key="frame" x="8" y="25" width="40" height="40"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="Pdh-pH-XFP"/>
+                                                <constraint firstAttribute="height" constant="40" id="g4h-J9-i6B"/>
+                                            </constraints>
                                             <state key="normal" image="closes"/>
                                             <connections>
                                                 <action selector="backButtonDidTap:" destination="MIK-fG-rdI" eventType="touchUpInside" id="oYb-ah-85q"/>
                                             </connections>
                                         </button>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sunset" translatesAutoresizingMaskIntoConstraints="NO" id="eVx-ry-kwu">
+                                            <rect key="frame" x="62" y="208" width="250" height="250"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="250" id="4dG-Ol-bYM"/>
+                                                <constraint firstAttribute="height" constant="250" id="B9W-Gg-Equ"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Jaj-Vc-mXz" firstAttribute="centerX" secondItem="Xdm-Kp-Cx9" secondAttribute="centerX" id="8cy-a1-mpC"/>
+                                        <constraint firstItem="eVx-ry-kwu" firstAttribute="centerY" secondItem="Xdm-Kp-Cx9" secondAttribute="centerY" id="Gfx-7r-Oo5"/>
+                                        <constraint firstItem="Jaj-Vc-mXz" firstAttribute="top" secondItem="ngr-C7-Awz" secondAttribute="bottom" constant="8" id="JdK-U4-db1"/>
+                                        <constraint firstItem="ngr-C7-Awz" firstAttribute="leading" secondItem="Xdm-Kp-Cx9" secondAttribute="leading" constant="8" id="g0A-JE-4Qv"/>
+                                        <constraint firstItem="eVx-ry-kwu" firstAttribute="centerX" secondItem="Xdm-Kp-Cx9" secondAttribute="centerX" id="qUE-vi-MTF"/>
+                                        <constraint firstItem="ngr-C7-Awz" firstAttribute="top" secondItem="Xdm-Kp-Cx9" secondAttribute="top" constant="25" id="typ-4B-klH"/>
+                                    </constraints>
                                 </view>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
@@ -1252,10 +1269,14 @@
                             <constraint firstItem="3WG-yM-z5a" firstAttribute="leading" secondItem="80r-Yv-7sB" secondAttribute="leading" id="vAi-4G-dU5"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="itemImage" destination="eVx-ry-kwu" id="yR2-EE-R81"/>
+                        <outlet property="itemName" destination="Jaj-Vc-mXz" id="BC8-Xf-QFL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dDn-cw-B4G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="38815.199999999997" y="41478.710644677667"/>
+            <point key="canvasLocation" x="38838" y="41490"/>
         </scene>
         <!--Three View Controller-->
         <scene sceneID="atL-7y-i8o">
@@ -3402,6 +3423,14 @@
                                 <state key="normal" image="addButton"/>
                                 <connections>
                                     <segue destination="X0E-Jo-YFH" kind="showDetail" id="NSw-z2-AQs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sHT-TZ-tBc">
+                                <rect key="frame" x="313" y="156" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="5T0-3l-eMX" kind="showDetail" id="JCG-7d-Tf3"/>
                                 </connections>
                             </button>
                         </subviews>
