@@ -8,6 +8,10 @@
 
 import UIKit
 import CircleMenu
+import Firebase
+import AlamofireImage
+import SafariServices
+
 
 class InfomationViewController: UIViewController {
     
@@ -16,17 +20,25 @@ class InfomationViewController: UIViewController {
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var itemName: UILabel!
     @IBOutlet weak var windowView: UIView!
+    @IBOutlet weak var urlLabel: UILabel!
     
+    
+    //データ受け継ぎ用
+    
+    var name: String?
+    var numLikes = Int()
+    var imageURL: String?
+    var linkURL: String?
+    var userName: String?
+    var userID: String!
     
     let items: [(icon: String, color: UIColor)] = [
         ("icon_home", UIColor(red:0.19, green:0.57, blue:1, alpha:1)),
-        ("icon_search", UIColor(red:0.22, green:0.74, blue:0, alpha:1)),
-        ("notifications-btn", UIColor(red:0.96, green:0.23, blue:0.21, alpha:1)),
+        ("safari", UIColor(red:0.22, green:0.74, blue:0, alpha:1)),
+        ("twitter", UIColor(red:22.0, green:22.0, blue:22.0, alpha:1)),
         ("settings-btn", UIColor(red:0.51, green:0.15, blue:1, alpha:1)),
         ("nearby-btn", UIColor(red:1, green:0.39, blue:0, alpha:1)),
         ]
-    
-    
     
     
     override func viewDidLoad() {
@@ -35,7 +47,9 @@ class InfomationViewController: UIViewController {
         self.itemImage.layer.cornerRadius = 8
         self.windowView.isHidden = true
         
-        
+        itemImage.af_setImage(withURL: URL(string: imageURL!)!)
+        itemName.text = name
+        urlLabel.text = linkURL
         
         let button = CircleMenu(
             frame: CGRect(x: 200, y: 200, width: 50, height: 50),
@@ -44,29 +58,31 @@ class InfomationViewController: UIViewController {
             buttonsCount: 5,
             duration: 0.5,
             distance: 85)
+        
         button.delegate = self
         button.layer.cornerRadius = button.frame.size.width / 2.0
         button.layer.backgroundColor = UIColor.white.cgColor
-    
+
+        
         view.addSubview(button)
         
         self.view.bringSubview(toFront: button)
         
-        button.translatesAutoresizingMaskIntoConstraints = false
         
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100.0).isActive = true
         button.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
         
         //button size
         button.widthAnchor.constraint(equalToConstant: 50).isActive = true
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         
-
     }
     
     func circleMenu(_ circleMenu: CircleMenu, willDisplay button: UIButton, atIndex: Int) {
-        
+
         self.windowView.isHidden = false
         
         button.backgroundColor = items[atIndex].color
@@ -85,7 +101,21 @@ class InfomationViewController: UIViewController {
     
     func circleMenu(_ circleMenu: CircleMenu, buttonDidSelected button: UIButton, atIndex: Int) {
         print("button did selected: \(atIndex)")
-        self.windowView.isHidden = true
+
+        if atIndex == 0 {
+             print("0")
+        } else if atIndex == 1 {
+            print("1")
+        } else if atIndex == 2 {
+             print("2")
+        } else if atIndex == 3 {
+             print("3")
+        } else if atIndex == 4 {
+             print("4")
+        }
+        
+        
+
     }
     
     
@@ -96,11 +126,11 @@ class InfomationViewController: UIViewController {
     }
     
     
-    
-
-   
-
+    @IBAction func backButtonDidTap(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
+
 
 
 extension UIColor {

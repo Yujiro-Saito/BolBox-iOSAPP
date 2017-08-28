@@ -21,8 +21,4 @@ class MyCollectionViewCell: UICollectionViewCell {
         self.layer.masksToBounds = true
     }
     
-    
-    
-    
-    
 }

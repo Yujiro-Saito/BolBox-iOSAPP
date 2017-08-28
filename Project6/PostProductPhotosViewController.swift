@@ -143,11 +143,7 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
                         }
                         
                     }
-                    
-                    
                 }
-                
-                
                 
                 //メイン写真投稿
                 let mainImgData = UIImageJPEGRepresentation(mainImagePhoto.image!, 0.2)
@@ -374,29 +370,13 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
                                 self.performSegue(withIdentifier: "Done", sender: nil)
                             }
                             
-                            
-                            
-                            
                         }
-                        
-                        
-                        
-                        
                         
                         
                     }
                     
                     
                 }
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 
             }
             
@@ -432,6 +412,8 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
     
     func wait(_ waitContinuation: @escaping (()->Bool), compleation: @escaping (()->Void)) {
         var wait = waitContinuation()
+        
+        
         // 0.01秒周期で待機条件をクリアするまで待ちます。
         let semaphore = DispatchSemaphore(value: 0)
         DispatchQueue.global().async {
@@ -443,6 +425,8 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
                 semaphore.wait()
                 Thread.sleep(forTimeInterval: 0.01)
             }
+            
+            
             // 待機条件をクリアしたので通過後の処理を行います。
             DispatchQueue.main.async {
                 compleation()
@@ -475,9 +459,6 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
         self.view.bringSubview(toFront: indicator)
         
         indicator.startAnimating()
-        
-        
-        
         
     }
 

@@ -18,6 +18,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     
     @IBOutlet weak var myCollection: UICollectionView!
     var userPosts = [Post]()
+    var detailPosts: Post?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -169,10 +170,36 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     }
     
     
+    //Item Tapped
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        detailPosts = self.userPosts[indexPath.row]
+        
+        
+        performSegue(withIdentifier: "GoCheck", sender: nil)
+        
+    }
     
     
-    
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "GoCheck" {
+            
+            let detailVC = (segue.destination as? InfomationViewController)!
+            
+            
+            detailVC.name = detailPosts?.name
+            detailVC.numLikes = (detailPosts?.pvCount)!
+            detailVC.imageURL = detailPosts?.imageURL
+            detailVC.linkURL = detailPosts?.linkURL
+            detailVC.userName = detailPosts?.userProfileName
+            detailVC.userID = detailPosts?.userID
+            
+            
+        } else {
+            
+            
+            
+        }
+    }
     
     
     
