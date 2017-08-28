@@ -15,6 +15,7 @@ class InfomationViewController: UIViewController {
     //Outlet
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var itemName: UILabel!
+    @IBOutlet weak var windowView: UIView!
     
     
     let items: [(icon: String, color: UIColor)] = [
@@ -32,6 +33,7 @@ class InfomationViewController: UIViewController {
         super.viewDidLoad()
         
         self.itemImage.layer.cornerRadius = 8
+        self.windowView.isHidden = true
         
         
         
@@ -48,6 +50,8 @@ class InfomationViewController: UIViewController {
     
         view.addSubview(button)
         
+        self.view.bringSubview(toFront: button)
+        
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100.0).isActive = true
@@ -63,9 +67,7 @@ class InfomationViewController: UIViewController {
     
     func circleMenu(_ circleMenu: CircleMenu, willDisplay button: UIButton, atIndex: Int) {
         
-        print("open")
-        
-        
+        self.windowView.isHidden = false
         
         button.backgroundColor = items[atIndex].color
         
@@ -83,7 +85,18 @@ class InfomationViewController: UIViewController {
     
     func circleMenu(_ circleMenu: CircleMenu, buttonDidSelected button: UIButton, atIndex: Int) {
         print("button did selected: \(atIndex)")
+        self.windowView.isHidden = true
     }
+    
+    
+    
+    func menuCollapsed(_ circleMenu: CircleMenu) {
+        print("cancel")
+        self.windowView.isHidden = true
+    }
+    
+    
+    
 
    
 

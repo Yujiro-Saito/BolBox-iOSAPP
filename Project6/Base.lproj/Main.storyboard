@@ -1228,6 +1228,7 @@
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngr-C7-Awz">
                                             <rect key="frame" x="8" y="25" width="40" height="40"/>
+                                            <color key="backgroundColor" red="0.99244527279999994" green="0.99244527279999994" blue="0.99244527279999994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="Pdh-pH-XFP"/>
                                                 <constraint firstAttribute="height" constant="40" id="g4h-J9-i6B"/>
@@ -1244,6 +1245,11 @@
                                                 <constraint firstAttribute="height" constant="250" id="B9W-Gg-Equ"/>
                                             </constraints>
                                         </imageView>
+                                        <view alpha="0.84999999999999998" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cka-7U-LTr">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.05853845941" green="0.1113366844" blue="0.25922033630000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Jaj-Vc-mXz" firstAttribute="centerX" secondItem="Xdm-Kp-Cx9" secondAttribute="centerX" id="8cy-a1-mpC"/>
@@ -1272,11 +1278,12 @@
                     <connections>
                         <outlet property="itemImage" destination="eVx-ry-kwu" id="yR2-EE-R81"/>
                         <outlet property="itemName" destination="Jaj-Vc-mXz" id="BC8-Xf-QFL"/>
+                        <outlet property="windowView" destination="Cka-7U-LTr" id="he9-RQ-W6C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dDn-cw-B4G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="38838" y="41490"/>
+            <point key="canvasLocation" x="38837.599999999999" y="41489.505247376313"/>
         </scene>
         <!--Three View Controller-->
         <scene sceneID="atL-7y-i8o">
