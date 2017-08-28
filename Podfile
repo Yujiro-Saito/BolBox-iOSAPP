@@ -25,6 +25,7 @@ target 'Project6' do
   pod 'RSKPlaceholderTextView'
   pod 'OnOffButton'
   pod 'SCLAlertView'
+  pod 'CircleMenu', '~> 2.0.1'
 
   
 
