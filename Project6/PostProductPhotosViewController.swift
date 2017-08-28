@@ -18,15 +18,14 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
     
     
     @IBOutlet weak var mainImagePhoto: ImageDesign!
-    var myImagePicker: UIImagePickerController!
     var mainImageBox = UIImage()
     
     @IBOutlet weak var introLabel: UILabel!
     @IBOutlet weak var introImage: UIButton!
     @IBOutlet weak var postButton: ZFRippleButton!
     @IBOutlet weak var backButton: UIButton!
-    
-    
+    @IBOutlet weak var onButton: OnOffButton!
+    @IBOutlet weak var ThanksLabel: UILabel!
     
     
     //データ引き継ぎ用
@@ -207,15 +206,17 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
                         
                         print("投稿を完了しました")
                         
+                     
+                        
                         //チェック以外のUIを隠す
                         self.postButton.isHidden = true
                         self.backButton.isHidden = true
-                        
+                        self.mainImagePhoto.isHidden = true
+                        self.introLabel.isHidden = true
+                        self.introImage.isHidden = true
                         
                         //チェックつける
                         self.ThanksLabel.isHidden = false
-                        self.infoLabel.isHidden = true
-                        
                         self.onButton.isHidden = false
                         self.onButton.checked = true
                         
@@ -356,12 +357,12 @@ class PostProductPhotosViewController: UIViewController, UIImagePickerController
                         //チェック以外のUIを隠す
                         self.postButton.isHidden = true
                         self.backButton.isHidden = true
-                        
-                        
+                        self.mainImagePhoto.isHidden = true
+                        self.introLabel.isHidden = true
+                        self.introImage.isHidden = true
                         
                         //チェックつける
                         self.ThanksLabel.isHidden = false
-                        self.infoLabel.isHidden = true
                         self.onButton.isHidden = false
                         self.onButton.checked = true
                         
