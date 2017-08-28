@@ -221,6 +221,9 @@
 				B72438F81F52A9D300BD6E13 /* MyCollectionViewController.swift */,
 				B72438F01F52688D00BD6E13 /* MyCollectionViewCell.swift */,
 				B7DB51651EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift */,
+				B7B4CAD31EFA81330038F176 /* PostProductInfoViewController.swift */,
+				B7B4CAD51EFA81570038F176 /* PostProductPhotosViewController.swift */,
+				B73D62691F33F894009B230C /* PostFinalViewController.swift */,
 			);
 			name = NewProjects;
 			sourceTree = "<group>";
@@ -320,9 +323,6 @@
 				B71EEA3C1EED7D2A00CCF1D1 /* SignInandUpViewController.swift */,
 				B77B554F1EEF6F1600262589 /* SignUpViewController.swift */,
 				B73D62671F33EEBB009B230C /* EmailPasswordViewController.swift */,
-				B7B4CAD31EFA81330038F176 /* PostProductInfoViewController.swift */,
-				B7B4CAD51EFA81570038F176 /* PostProductPhotosViewController.swift */,
-				B73D62691F33F894009B230C /* PostFinalViewController.swift */,
 				B725A8DF1F01AB4B006AC9DF /* BaseViewController.swift */,
 				B7060DF21F021EED003E51C7 /* AccountViewController.swift */,
 				B70B98BD1F0F64750036B79D /* InDetailViewController.swift */,
