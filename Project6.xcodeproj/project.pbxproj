@@ -39,6 +39,8 @@
 		B7482CE41F0F1B2A00E98EF1 /* FourTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7482CE31F0F1B2A00E98EF1 /* FourTableViewCell.swift */; };
 		B7482CE61F0F23F500E98EF1 /* FiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7482CE51F0F23F500E98EF1 /* FiveTableViewCell.swift */; };
 		B74892681EC7E365003ABE22 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B74892671EC7E365003ABE22 /* GoogleService-Info.plist */; };
+		B758D1C61F56495A0033EBC2 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B758D1C51F56495A0033EBC2 /* FeedViewController.swift */; };
+		B758D1C81F564E0A0033EBC2 /* FeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B758D1C71F564E0A0033EBC2 /* FeedCollectionViewCell.swift */; };
 		B77083381EC7FB9D00302760 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77083371EC7FB9D00302760 /* Post.swift */; };
 		B770833A1EC8034E00302760 /* FIRData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77083391EC8034E00302760 /* FIRData.swift */; };
 		B771C6011F0CA0FD005D4BF2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B771C6001F0CA0FD005D4BF2 /* SearchViewController.swift */; };
@@ -126,6 +128,8 @@
 		B7482CE31F0F1B2A00E98EF1 /* FourTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourTableViewCell.swift; sourceTree = "<group>"; };
 		B7482CE51F0F23F500E98EF1 /* FiveTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiveTableViewCell.swift; sourceTree = "<group>"; };
 		B74892671EC7E365003ABE22 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B758D1C51F56495A0033EBC2 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		B758D1C71F564E0A0033EBC2 /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
 		B77083371EC7FB9D00302760 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		B77083391EC8034E00302760 /* FIRData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRData.swift; sourceTree = "<group>"; };
 		B771C6001F0CA0FD005D4BF2 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -226,6 +230,8 @@
 				B7B4CAD31EFA81330038F176 /* PostProductInfoViewController.swift */,
 				B7B4CAD51EFA81570038F176 /* PostProductPhotosViewController.swift */,
 				B74236051F53DCBF007D5137 /* InfomationViewController.swift */,
+				B758D1C51F56495A0033EBC2 /* FeedViewController.swift */,
+				B758D1C71F564E0A0033EBC2 /* FeedCollectionViewCell.swift */,
 			);
 			name = NewProjects;
 			sourceTree = "<group>";
@@ -520,6 +526,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7B4CAD81EFAACE20038F176 /* PostDetailPhotosCollectionViewCell.swift in Sources */,
+				B758D1C81F564E0A0033EBC2 /* FeedCollectionViewCell.swift in Sources */,
 				B771C60B1F0CA1F7005D4BF2 /* FiveViewController.swift in Sources */,
 				B77CEDED1EE3DB8F005D4215 /* CategoryDisplayTableViewCell.swift in Sources */,
 				B702E72F1EF8A442003C89E4 /* EmailLoginViewController.swift in Sources */,
@@ -565,6 +572,7 @@
 				B7260C381EDEFAC200FC3913 /* DetailCollectionViewCell.swift in Sources */,
 				B77EC8801F0B1E7F00EDDBD5 /* UIViewDesign.swift in Sources */,
 				B7E390271ED59E3C005D8BFC /* ButtonDesign.swift in Sources */,
+				B758D1C61F56495A0033EBC2 /* FeedViewController.swift in Sources */,
 				B7F1789A1F09A78800F00CE7 /* FourthCollectionViewCell.swift in Sources */,
 				B7060DF31F021EED003E51C7 /* AccountViewController.swift in Sources */,
 				B7E91B2F1F1C5E6500D8C522 /* EditViewController.swift in Sources */,

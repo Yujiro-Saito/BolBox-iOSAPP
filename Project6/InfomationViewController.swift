@@ -21,6 +21,7 @@ class InfomationViewController: UIViewController {
     @IBOutlet weak var itemName: UILabel!
     @IBOutlet weak var windowView: UIView!
     @IBOutlet weak var urlLabel: UILabel!
+    @IBOutlet weak var backgroundImage: UIImageView!
     
     
     //データ受け継ぎ用
@@ -47,6 +48,7 @@ class InfomationViewController: UIViewController {
         self.itemImage.layer.cornerRadius = 8
         self.windowView.isHidden = true
         
+        backgroundImage.af_setImage(withURL: URL(string: imageURL!)!)
         itemImage.af_setImage(withURL: URL(string: imageURL!)!)
         itemName.text = name
         urlLabel.text = linkURL
