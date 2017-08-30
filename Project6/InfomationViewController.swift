@@ -34,11 +34,11 @@ class InfomationViewController: UIViewController {
     var userID: String!
     
     let items: [(icon: String, color: UIColor)] = [
-        ("icon_home", UIColor(red:0.19, green:0.57, blue:1, alpha:1)),
+        ("favone", UIColor(red:0.19, green:0.57, blue:1, alpha:1)),
         ("safari", UIColor(red:0.22, green:0.74, blue:0, alpha:1)),
         ("twitter", UIColor(red:22.0, green:22.0, blue:22.0, alpha:1)),
-        ("settings-btn", UIColor(red:0.51, green:0.15, blue:1, alpha:1)),
-        ("nearby-btn", UIColor(red:1, green:0.39, blue:0, alpha:1)),
+        ("user", UIColor(red:0.51, green:0.15, blue:1, alpha:1)),
+        ("flag", UIColor(red:1, green:0.39, blue:0, alpha:1)),
         ]
     
     

@@ -3225,7 +3225,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PyT-h2-bjU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="40449" y="41709"/>
+            <point key="canvasLocation" x="39745" y="41721"/>
         </scene>
         <!--ウォール-->
         <scene sceneID="E6S-I9-nP5">
@@ -3514,7 +3514,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4pK-W3-Qne">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.88675464500000001" green="0.88675464500000001" blue="0.88675464500000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="8" id="INr-lJ-twV">
                                     <size key="itemSize" width="200" height="250"/>
@@ -3591,7 +3591,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TeQ-UV-E72" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="39657" y="41721"/>
+            <point key="canvasLocation" x="39716" y="42478"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="CSu-Df-HqO">
@@ -3605,7 +3605,6 @@
                     <connections>
                         <segue destination="EM1-sN-Z9x" kind="relationship" relationship="viewControllers" id="i9u-pl-kYh"/>
                         <segue destination="k3Z-OT-HQr" kind="relationship" relationship="viewControllers" id="xfF-sq-9zB"/>
-                        <segue destination="cPV-tE-YIf" kind="relationship" relationship="viewControllers" id="SkV-YZ-sFh"/>
                         <segue destination="lji-qR-JC8" kind="relationship" relationship="viewControllers" id="gZw-gc-bcZ"/>
                     </connections>
                 </tabBarController>
