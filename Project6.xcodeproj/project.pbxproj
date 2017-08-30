@@ -82,6 +82,8 @@
 		B7F816361F0B145C00D317FB /* PurposeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F816351F0B145C00D317FB /* PurposeCollectionViewCell.swift */; };
 		B7F9B9631F0698DD0006AD38 /* ProfilePostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F9B9621F0698DD0006AD38 /* ProfilePostsTableViewCell.swift */; };
 		B7FB80951EF5592000EA0CEE /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FB80941EF5592000EA0CEE /* ProfileImage.swift */; };
+		B7FD77551F567D1F0047CE4B /* FollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FD77541F567D1F0047CE4B /* FollowViewController.swift */; };
+		B7FD77571F567EC00047CE4B /* FollowCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FD77561F567EC00047CE4B /* FollowCollectionViewCell.swift */; };
 		B7FE1D6D1EDE2C850072A068 /* PopularMoreReadCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FE1D6C1EDE2C850072A068 /* PopularMoreReadCollectionViewCell.swift */; };
 		B7FE1D6F1EDE2F9A0072A068 /* SectionHeaderPopCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FE1D6E1EDE2F9A0072A068 /* SectionHeaderPopCollectionReusableView.swift */; };
 		B7FE38661F1BAFF900DE1E7F /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FE38651F1BAFF900DE1E7F /* WebViewController.swift */; };
@@ -172,6 +174,8 @@
 		B7F816351F0B145C00D317FB /* PurposeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurposeCollectionViewCell.swift; sourceTree = "<group>"; };
 		B7F9B9621F0698DD0006AD38 /* ProfilePostsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePostsTableViewCell.swift; sourceTree = "<group>"; };
 		B7FB80941EF5592000EA0CEE /* ProfileImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
+		B7FD77541F567D1F0047CE4B /* FollowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
+		B7FD77561F567EC00047CE4B /* FollowCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowCollectionViewCell.swift; sourceTree = "<group>"; };
 		B7FE1D6C1EDE2C850072A068 /* PopularMoreReadCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularMoreReadCollectionViewCell.swift; sourceTree = "<group>"; };
 		B7FE1D6E1EDE2F9A0072A068 /* SectionHeaderPopCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderPopCollectionReusableView.swift; sourceTree = "<group>"; };
 		B7FE38651F1BAFF900DE1E7F /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -232,6 +236,8 @@
 				B74236051F53DCBF007D5137 /* InfomationViewController.swift */,
 				B758D1C51F56495A0033EBC2 /* FeedViewController.swift */,
 				B758D1C71F564E0A0033EBC2 /* FeedCollectionViewCell.swift */,
+				B7FD77541F567D1F0047CE4B /* FollowViewController.swift */,
+				B7FD77561F567EC00047CE4B /* FollowCollectionViewCell.swift */,
 			);
 			name = NewProjects;
 			sourceTree = "<group>";
@@ -542,6 +548,7 @@
 				B71ACDA81EED8620005DCD80 /* SignInUpViewDesign.swift in Sources */,
 				B771C6051F0CA1DB005D4BF2 /* TwoViewController.swift in Sources */,
 				B771C6091F0CA1ED005D4BF2 /* FourViewController.swift in Sources */,
+				B7FD77551F567D1F0047CE4B /* FollowViewController.swift in Sources */,
 				B71BFDC51F41663C007C44D6 /* ServiceViewController.swift in Sources */,
 				B7482CE21F0F141E00E98EF1 /* ThreeTableViewCell.swift in Sources */,
 				B7DB51661EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift in Sources */,
@@ -570,6 +577,7 @@
 				B7E0F8721F08B5E900AD2A5B /* FirstCollectionViewCell.swift in Sources */,
 				B7E712161F2A6A29004E9112 /* PopularViewController.swift in Sources */,
 				B7260C381EDEFAC200FC3913 /* DetailCollectionViewCell.swift in Sources */,
+				B7FD77571F567EC00047CE4B /* FollowCollectionViewCell.swift in Sources */,
 				B77EC8801F0B1E7F00EDDBD5 /* UIViewDesign.swift in Sources */,
 				B7E390271ED59E3C005D8BFC /* ButtonDesign.swift in Sources */,
 				B758D1C61F56495A0033EBC2 /* FeedViewController.swift in Sources */,

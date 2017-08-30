@@ -101,6 +101,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         //読み込むまで画像は非表示
         cell?.itemImage.image = nil
         cell?.clipsToBounds = true
+        //cell?.itemImage.layer.cornerRadius = 1.0
         
         //現在のCell
         let post = userPosts[indexPath.row]
@@ -119,7 +120,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let screenWidth = UIScreen.main.bounds.width
-        let scaleFactor = (screenWidth / 3) - 6
+        let scaleFactor = (screenWidth / 3) - 4
         
         return CGSize(width: scaleFactor, height: scaleFactor + 45)
     }
@@ -130,7 +131,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     }
     //横の間隔
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 3
+        return 0
     }
     
     
