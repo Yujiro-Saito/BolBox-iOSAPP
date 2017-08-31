@@ -12,6 +12,7 @@
 		B7060DF31F021EED003E51C7 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7060DF21F021EED003E51C7 /* AccountViewController.swift */; };
 		B707656C1F418DEF00D42B75 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B707656B1F418DEF00D42B75 /* MessageUI.framework */; };
 		B707656E1F41921A00D42B75 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B707656D1F41921A00D42B75 /* ReportViewController.swift */; };
+		B707AE201F584F69004C654A /* UserCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B707AE1F1F584F69004C654A /* UserCollectionReusableView.swift */; };
 		B70B28BF1F11F29C00825004 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70B28BE1F11F29C00825004 /* NotificationViewController.swift */; };
 		B70B98BE1F0F64750036B79D /* InDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70B98BD1F0F64750036B79D /* InDetailViewController.swift */; };
 		B711059D1F13A3C800706FED /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B711059C1F13A3C800706FED /* NotificationTableViewCell.swift */; };
@@ -59,6 +60,8 @@
 		B77EEC601F28B6E500089A67 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77EEC5F1F28B6E500089A67 /* TabViewController.swift */; };
 		B78053F91EE2C63300F95BDF /* CategorysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78053F81EE2C63300F95BDF /* CategorysTableViewCell.swift */; };
 		B78DE1561F2D72E700E1A3A1 /* ZFRippleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78DE1551F2D72E700E1A3A1 /* ZFRippleButton.swift */; };
+		B7A0F5111F56B7B10037536F /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A0F5101F56B7B10037536F /* UserCollectionViewCell.swift */; };
+		B7A0F5131F56B7CE0037536F /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A0F5121F56B7CE0037536F /* UserViewController.swift */; };
 		B7B4CAD41EFA81330038F176 /* PostProductInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CAD31EFA81330038F176 /* PostProductInfoViewController.swift */; };
 		B7B4CAD61EFA81570038F176 /* PostProductPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CAD51EFA81570038F176 /* PostProductPhotosViewController.swift */; };
 		B7B4CAD81EFAACE20038F176 /* PostDetailPhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CAD71EFAACE20038F176 /* PostDetailPhotosCollectionViewCell.swift */; };
@@ -99,6 +102,7 @@
 		B7060DF21F021EED003E51C7 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		B707656B1F418DEF00D42B75 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		B707656D1F41921A00D42B75 /* ReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		B707AE1F1F584F69004C654A /* UserCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCollectionReusableView.swift; sourceTree = "<group>"; };
 		B70B28BE1F11F29C00825004 /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		B70B98BD1F0F64750036B79D /* InDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InDetailViewController.swift; sourceTree = "<group>"; };
 		B711059C1F13A3C800706FED /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
@@ -150,6 +154,8 @@
 		B77EEC5F1F28B6E500089A67 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		B78053F81EE2C63300F95BDF /* CategorysTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorysTableViewCell.swift; sourceTree = "<group>"; };
 		B78DE1551F2D72E700E1A3A1 /* ZFRippleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFRippleButton.swift; sourceTree = "<group>"; };
+		B7A0F5101F56B7B10037536F /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
+		B7A0F5121F56B7CE0037536F /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		B7B4CAD31EFA81330038F176 /* PostProductInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostProductInfoViewController.swift; sourceTree = "<group>"; };
 		B7B4CAD51EFA81570038F176 /* PostProductPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostProductPhotosViewController.swift; sourceTree = "<group>"; };
 		B7B4CAD71EFAACE20038F176 /* PostDetailPhotosCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailPhotosCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -238,6 +244,9 @@
 				B758D1C71F564E0A0033EBC2 /* FeedCollectionViewCell.swift */,
 				B7FD77541F567D1F0047CE4B /* FollowViewController.swift */,
 				B7FD77561F567EC00047CE4B /* FollowCollectionViewCell.swift */,
+				B7A0F5121F56B7CE0037536F /* UserViewController.swift */,
+				B7A0F5101F56B7B10037536F /* UserCollectionViewCell.swift */,
+				B707AE1F1F584F69004C654A /* UserCollectionReusableView.swift */,
 			);
 			name = NewProjects;
 			sourceTree = "<group>";
@@ -544,6 +553,8 @@
 				B72811071F2C6C0700AF9B76 /* OnOffButton.swift in Sources */,
 				B725A8E21F01BEB5006AC9DF /* BaseTableViewCell.swift in Sources */,
 				B725A8E01F01AB4B006AC9DF /* BaseViewController.swift in Sources */,
+				B7A0F5111F56B7B10037536F /* UserCollectionViewCell.swift in Sources */,
+				B7A0F5131F56B7CE0037536F /* UserViewController.swift in Sources */,
 				B7F628EB1F1B7B71003257CE /* UserProfileViewController.swift in Sources */,
 				B71ACDA81EED8620005DCD80 /* SignInUpViewDesign.swift in Sources */,
 				B771C6051F0CA1DB005D4BF2 /* TwoViewController.swift in Sources */,
@@ -571,6 +582,7 @@
 				B73D62681F33EEBB009B230C /* EmailPasswordViewController.swift in Sources */,
 				B72438F11F52688D00BD6E13 /* MyCollectionViewCell.swift in Sources */,
 				B7FB80951EF5592000EA0CEE /* ProfileImage.swift in Sources */,
+				B707AE201F584F69004C654A /* UserCollectionReusableView.swift in Sources */,
 				B7DA001E1EDCBB8700CE5CC3 /* NewMoreReadCollectionViewCell.swift in Sources */,
 				B7B4CAD61EFA81570038F176 /* PostProductPhotosViewController.swift in Sources */,
 				B71EEA3D1EED7D2A00CCF1D1 /* SignInandUpViewController.swift in Sources */,

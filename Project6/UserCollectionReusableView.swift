@@ -1,0 +1,24 @@
+//
+//  UserCollectionReusableView.swift
+//  Project6
+//
+//  Created by  Yujiro Saito on 2017/08/31.
+//  Copyright © 2017年 yujiro_saito. All rights reserved.
+//
+
+import UIKit
+
+class UserCollectionReusableView: UICollectionReusableView {
+    
+    @IBOutlet weak var userImage: ProfileImage!
+    @IBOutlet weak var userName: UILabel!
+    
+    
+    
+    
+    
+    
+    
+    
+        
+}

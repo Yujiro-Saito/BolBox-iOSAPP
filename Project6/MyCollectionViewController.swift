@@ -102,7 +102,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         cell?.itemImage.image = nil
         cell?.clipsToBounds = true
         //cell?.itemImage.layer.cornerRadius = 1.0
-        
+        cell?.layer.cornerRadius = 5.0
         //現在のCell
         let post = userPosts[indexPath.row]
         
@@ -193,6 +193,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             detailVC.linkURL = detailPosts?.linkURL
             detailVC.userName = detailPosts?.userProfileName
             detailVC.userID = detailPosts?.userID
+            detailVC.userImageURL = detailPosts?.userProfileImage
             
             
         } else {

@@ -122,14 +122,7 @@ class FeedViewController: UIViewController,UICollectionViewDataSource, UICollect
         return CGSize(width: cellSize, height: cellSize + 55.0)
 
         
-        /*
-        let screenWidth = UIScreen.main.bounds.width
-        let scaleFactor = (screenWidth / 2) - 6
-        
-        return CGSize(width: scaleFactor, height: scaleFactor + 55)
- 
- */
-    }
+           }
     
     
     
@@ -145,6 +138,28 @@ class FeedViewController: UIViewController,UICollectionViewDataSource, UICollect
     
     
     
+    //Item Tapped
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        detailPosts = self.newPosts[indexPath.row]
+        
+        
+        performSegue(withIdentifier: "detailInfo", sender: nil)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let detailVC = (segue.destination as? InfomationViewController)!
+        
+        
+        detailVC.name = detailPosts?.name
+        detailVC.numLikes = (detailPosts?.pvCount)!
+        detailVC.imageURL = detailPosts?.imageURL
+        detailVC.linkURL = detailPosts?.linkURL
+        detailVC.userName = detailPosts?.userProfileName
+        detailVC.userID = detailPosts?.userID
+        detailVC.userImageURL = detailPosts?.userProfileImage
+        
+    }
     
 
    

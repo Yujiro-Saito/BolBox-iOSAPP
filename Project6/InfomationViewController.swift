@@ -22,6 +22,7 @@ class InfomationViewController: UIViewController {
     @IBOutlet weak var windowView: UIView!
     @IBOutlet weak var urlLabel: UILabel!
     @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
     
     
     //データ受け継ぎ用
@@ -32,6 +33,7 @@ class InfomationViewController: UIViewController {
     var linkURL: String?
     var userName: String?
     var userID: String!
+    var userImageURL: String?
     
     let items: [(icon: String, color: UIColor)] = [
         ("favone", UIColor(red:0.19, green:0.57, blue:1, alpha:1)),
@@ -42,11 +44,116 @@ class InfomationViewController: UIViewController {
         ]
     
     
+    
+    @IBAction func userNameDidTap(_ sender: Any) {
+        performSegue(withIdentifier: "userProf", sender: nil)
+    }
+    
+    
+    
+    @IBAction func itemImageDidTap(_ sender: Any) {
+        
+        let targetURL = self.linkURL
+        let encodedURL = targetURL?.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
+        
+        //URL正式
+        guard let finalUrl = URL(string: encodedURL!) else {
+            print("無効なURL")
+            return
+        }
+        
+        
+        
+        //opem safari
+        
+        
+        if (encodedURL?.contains("https"))! || (encodedURL?.contains("http"))! {
+            
+            //httpかhttpsで始まってるか確認
+            if (encodedURL?.hasPrefix("https"))! || (encodedURL?.hasPrefix("http"))! {
+                //http(s)で始まってる場合safari起動
+                let safariVC = SFSafariViewController(url: finalUrl)
+                self.present(safariVC, animated: true, completion: nil)
+                
+            }
+                //Httpsの場合
+            else if let range = encodedURL?.range(of: "https") {
+                let startPosition = encodedURL?.characters.distance(from: (encodedURL?.characters.startIndex)!, to: range.lowerBound)
+                
+                //4番目から最後までをURLとして扱う
+                
+                let indexNumber = startPosition
+                
+                let validURLString = (encodedURL?.substring(with: (encodedURL?.index((encodedURL?.startIndex)!, offsetBy: indexNumber!))!..<(encodedURL?.index((encodedURL?.endIndex)!, offsetBy: 0))!))
+                
+                let validURL = URL(string: validURLString!)
+                
+                
+                //safari起動
+                let safariVC = SFSafariViewController(url: validURL!)
+                self.present(safariVC, animated: true, completion: nil)
+                
+                
+            } else if let httpRange = encodedURL?.range(of: "http") {
+                //Httpの場合
+                let startPosition = encodedURL?.characters.distance(from: (encodedURL?.characters.startIndex)!, to: httpRange.lowerBound)
+                
+                //4番目から最後までをURLとして扱う
+                
+                let indexNumber = startPosition
+                
+                let validURLString = (encodedURL?.substring(with: (encodedURL?.index((encodedURL?.startIndex)!, offsetBy: indexNumber!))!..<(encodedURL?.index((encodedURL?.endIndex)!, offsetBy: 0))!))
+                
+                let validURL = URL(string: validURLString!)
+                
+                //safari起動
+                let safariVC = SFSafariViewController(url: validURL!)
+                self.present(safariVC, animated: true, completion: nil)
+                
+                
+                
+                
+                
+                
+            }
+                
+            else {
+            }
+            
+            
+        } else {
+            //そもそもhttp(s)がない場合
+            print("無効なURL")
+            //アラート表示
+            let alertController = UIAlertController(title: "エラー", message: "URLが無効なようです", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "Ok", style: .default) {
+                (action) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+            
+            
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.itemImage.layer.cornerRadius = 8
         self.windowView.isHidden = true
+        self.userNameLabel.text = userName
         
         backgroundImage.af_setImage(withURL: URL(string: imageURL!)!)
         itemImage.af_setImage(withURL: URL(string: imageURL!)!)
@@ -210,12 +317,25 @@ class InfomationViewController: UIViewController {
              print("2")
         } else if atIndex == 3 {
              print("3")
+            self.windowView.isHidden = true
+            performSegue(withIdentifier: "userProf", sender: nil)
+            
         } else if atIndex == 4 {
              print("4")
         }
         
         
 
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "userProf" {
+            let userProfileVc = (segue.destination as? UserViewController)!
+            
+            userProfileVc.userName = self.userName
+            userProfileVc.userImageURL = self.userImageURL
+            userProfileVc.userID = self.userID
+        }
     }
     
     
@@ -226,10 +346,10 @@ class InfomationViewController: UIViewController {
     }
     
     
-    @IBAction func backButtonDidTap(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
+    
 }
+
+
 
 
 
