@@ -1248,13 +1248,13 @@
                                                     <rect key="frame" x="4" y="0.0" width="192" height="200"/>
                                                 </imageView>
                                                 <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LDw-fH-NaC">
-                                                    <rect key="frame" x="4" y="199.5" width="192" height="0.5"/>
+                                                    <rect key="frame" x="4" y="200" width="192" height="0.0"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7ZX-yU-r5V">
-                                                        <rect key="frame" x="0.0" y="0.0" width="192" height="0.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="192" height="0.0"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxR-Ik-nCf">
-                                                                <rect key="frame" x="0.0" y="0.0" width="192" height="0.0"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="192" height="0.5"/>
                                                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="14"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
@@ -1316,6 +1316,9 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="13"/>
                                             <state key="normal" title="フォロー"/>
+                                            <connections>
+                                                <action selector="followButtonDidTap:" destination="H3S-A7-xVq" eventType="touchUpInside" id="eDx-MP-MM1"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Following" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1LM-r0-K4Z">
                                             <rect key="frame" x="196" y="209" width="90" height="21"/>
@@ -1354,6 +1357,7 @@
                                         <constraint firstAttribute="trailing" secondItem="3lC-CE-ihx" secondAttribute="trailing" id="whP-8D-jJr"/>
                                     </constraints>
                                     <connections>
+                                        <outlet property="followButton" destination="Ty1-ss-0an" id="qTL-p6-Sld"/>
                                         <outlet property="userImage" destination="fX1-SO-bJG" id="8aA-Ny-9da"/>
                                         <outlet property="userName" destination="uQK-y8-Xsn" id="rqN-Sj-FmD"/>
                                     </connections>
@@ -3398,7 +3402,7 @@
             </objects>
             <point key="canvasLocation" x="41623.199999999997" y="41720.68965517242"/>
         </scene>
-        <!--My Collection View Controller-->
+        <!--Wall-->
         <scene sceneID="E6S-I9-nP5">
             <objects>
                 <viewController id="EM1-sN-Z9x" customClass="MyCollectionViewController" customModule="Project6" customModuleProvider="target" sceneMemberID="viewController">
@@ -3559,7 +3563,7 @@
                             <constraint firstAttribute="bottom" secondItem="LMg-Fc-x21" secondAttribute="bottom" constant="49" id="qZa-Us-MJX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="6uh-IR-ktU"/>
+                    <navigationItem key="navigationItem" title="Wall" id="6uh-IR-ktU"/>
                     <connections>
                         <outlet property="myCollection" destination="LMg-Fc-x21" id="quj-cx-p1Z"/>
                         <segue destination="o3q-Mq-hHb" kind="showDetail" identifier="SignUp" action="showViewController:sender:" id="U2k-eE-RA9"/>
@@ -4042,7 +4046,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XOA-8o-di1" customClass="SignInUpViewDesign" customModule="Project6" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Port" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ASj-gk-CIp">
@@ -4141,7 +4145,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Sw-YN-Mfs" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="64.5" y="223" width="246" height="45"/>
+                                <rect key="frame" x="64.5" y="179" width="246" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="1Gi-Bs-wyE"/>
                                     <constraint firstAttribute="width" constant="246" id="XM4-eZ-Jkb"/>
@@ -4151,7 +4155,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z80-aJ-4Ic" customClass="RegisterButton" customModule="Project6" customModuleProvider="target">
-                                <rect key="frame" x="64.5" y="379" width="246" height="45"/>
+                                <rect key="frame" x="64.5" y="335" width="246" height="45"/>
                                 <color key="backgroundColor" red="0.1215686275" green="0.61960784310000006" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="246" id="31B-DI-8Ms"/>
@@ -4167,7 +4171,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aiy-KU-CLP" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="64.5" y="308" width="246" height="45"/>
+                                <rect key="frame" x="64.5" y="264" width="246" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="9Qv-7a-E5g"/>
                                     <constraint firstAttribute="width" constant="246" id="ASG-oJ-bvi"/>
@@ -4177,7 +4181,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hzv-zS-DT9">
-                                <rect key="frame" x="16" y="72" width="40" height="40"/>
+                                <rect key="frame" x="16" y="28" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="CjJ-Rv-0df"/>
                                     <constraint firstAttribute="height" constant="40" id="S1h-fB-H5K"/>
@@ -4416,6 +4420,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UIl-fw-qgx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.23919207109999999" green="0.25197785099999997" blue="0.35669303450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

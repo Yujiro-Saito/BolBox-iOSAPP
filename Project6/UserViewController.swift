@@ -17,6 +17,8 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     
     
     @IBOutlet weak var userCollection: UICollectionView!
+    @IBOutlet weak var followButton: UIButton!
+    
     var userPosts = [Post]()
     var detailPosts: Post?
     
@@ -39,13 +41,20 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         self.navigationController?.navigationBar.titleTextAttributes
             = [NSFontAttributeName: UIFont(name: "Times New Roman", size: 15)!]
         
-        
+                
         userCollection.delegate = self
         userCollection.dataSource = self
         
         
         
 
+    }
+    
+    
+    
+    @IBAction func followButtonDidTap(_ sender: Any) {
+        
+        print("1")
     }
     
     
@@ -161,6 +170,14 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView
     {
         let headerView = userCollection.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "UserHeader", for: indexPath) as! UserCollectionReusableView
+        
+        
+        //Follow button
+        
+        headerView.followButton.backgroundColor = UIColor.clear // 背景色
+        headerView.followButton.layer.borderWidth = 1.0 // 枠線の幅
+        headerView.followButton.layer.borderColor = UIColor.white.cgColor // 枠線の色
+        headerView.followButton.layer.cornerRadius = 10.0 // 角丸のサイズ
         
         
         //ユーザー名

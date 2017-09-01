@@ -12,6 +12,7 @@ class UserCollectionReusableView: UICollectionReusableView {
     
     @IBOutlet weak var userImage: ProfileImage!
     @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var followButton: UIButton!
     
     
     
