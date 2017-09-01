@@ -30,7 +30,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     var userImageURL: String!
     var userID: String!
     var isFollow = Bool()
-
+    
     
     
     override func viewDidLoad() {
@@ -42,15 +42,13 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         self.navigationController?.navigationBar.titleTextAttributes
             = [NSFontAttributeName: UIFont(name: "Times New Roman", size: 18)!]
         
-                
         userCollection.delegate = self
         userCollection.dataSource = self
         
-        
-       
-        
 
     }
+    
+
     
     
     
@@ -165,7 +163,6 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         }
         
         
-        
         return cell!
     }
     
@@ -193,14 +190,6 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
             
             isFollow = false
         }
-        
-        
-        
-        
-        
-        
-        
-       
     }
     
     
@@ -315,6 +304,16 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         
         
         return headerView
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let followVC = (segue.destination as? FollowListViewController)!
+        
+        followVC.userID = self.userID
+        
+        
+        
+        
     }
     
     

@@ -25,7 +25,6 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
         //画面遷移
         self.performSegue(withIdentifier: "report", sender: nil)
         
-        
     }
     
     //データ引き継ぎ用
@@ -1310,16 +1309,9 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
             
             
-            
-            
-            
-            
-            
             if self.featureThreePosts[indexPath.row].peopleWhoLike != nil {
                 featureThreeCell?.peopleWhoLike = self.featureThreePosts[indexPath.row].peopleWhoLike as Dictionary<String, AnyObject>
             }
-            
-            
             
             
             print(featureThreePosts[indexPath.row].peopleWhoLike)
@@ -1333,51 +1325,18 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 
                 if nameKey == currentUserName {
                     
-                    
                     featureThreeCell?.likesButton.isHidden = true
                     featureThreeCell?.likesButton.isEnabled = false
                     
                     featureThreeCell?.unLikeButton.isHidden = false
                     featureThreeCell?.unLikeButton.isEnabled = true
-                    
-                    
-                    
-                    
                 }
-                
-                
             }
-            
-            
-            
             return featureThreeCell!
-
-            
-            
-            
-            
-            
-            
-            
-            
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         return UITableViewCell()
     }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -1422,10 +1381,6 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         
         
-        
-        
-        
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -1442,31 +1397,6 @@ class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
- 
+  
 
 }

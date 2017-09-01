@@ -16,6 +16,8 @@
 		B70B28BF1F11F29C00825004 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70B28BE1F11F29C00825004 /* NotificationViewController.swift */; };
 		B70B98BE1F0F64750036B79D /* InDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70B98BD1F0F64750036B79D /* InDetailViewController.swift */; };
 		B711059D1F13A3C800706FED /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B711059C1F13A3C800706FED /* NotificationTableViewCell.swift */; };
+		B71616D51F59AA440076C2E3 /* FollowListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71616D41F59AA440076C2E3 /* FollowListViewController.swift */; };
+		B71717B01F5A233800B87CE2 /* FollowListsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71717AF1F5A233800B87CE2 /* FollowListsCollectionViewCell.swift */; };
 		B71ACDA81EED8620005DCD80 /* SignInUpViewDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71ACDA71EED8620005DCD80 /* SignInUpViewDesign.swift */; };
 		B71BFDC51F41663C007C44D6 /* ServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71BFDC41F41663C007C44D6 /* ServiceViewController.swift */; };
 		B71EEA3D1EED7D2A00CCF1D1 /* SignInandUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71EEA3C1EED7D2A00CCF1D1 /* SignInandUpViewController.swift */; };
@@ -106,6 +108,8 @@
 		B70B28BE1F11F29C00825004 /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		B70B98BD1F0F64750036B79D /* InDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InDetailViewController.swift; sourceTree = "<group>"; };
 		B711059C1F13A3C800706FED /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
+		B71616D41F59AA440076C2E3 /* FollowListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowListViewController.swift; sourceTree = "<group>"; };
+		B71717AF1F5A233800B87CE2 /* FollowListsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowListsCollectionViewCell.swift; sourceTree = "<group>"; };
 		B71ACDA71EED8620005DCD80 /* SignInUpViewDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInUpViewDesign.swift; sourceTree = "<group>"; };
 		B71BFDC41F41663C007C44D6 /* ServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceViewController.swift; sourceTree = "<group>"; };
 		B71EEA3C1EED7D2A00CCF1D1 /* SignInandUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInandUpViewController.swift; sourceTree = "<group>"; };
@@ -247,6 +251,8 @@
 				B7A0F5121F56B7CE0037536F /* UserViewController.swift */,
 				B7A0F5101F56B7B10037536F /* UserCollectionViewCell.swift */,
 				B707AE1F1F584F69004C654A /* UserCollectionReusableView.swift */,
+				B71616D41F59AA440076C2E3 /* FollowListViewController.swift */,
+				B71717AF1F5A233800B87CE2 /* FollowListsCollectionViewCell.swift */,
 			);
 			name = NewProjects;
 			sourceTree = "<group>";
@@ -558,6 +564,7 @@
 				B7F628EB1F1B7B71003257CE /* UserProfileViewController.swift in Sources */,
 				B71ACDA81EED8620005DCD80 /* SignInUpViewDesign.swift in Sources */,
 				B771C6051F0CA1DB005D4BF2 /* TwoViewController.swift in Sources */,
+				B71616D51F59AA440076C2E3 /* FollowListViewController.swift in Sources */,
 				B771C6091F0CA1ED005D4BF2 /* FourViewController.swift in Sources */,
 				B7FD77551F567D1F0047CE4B /* FollowViewController.swift in Sources */,
 				B71BFDC51F41663C007C44D6 /* ServiceViewController.swift in Sources */,
@@ -618,6 +625,7 @@
 				B77EEC601F28B6E500089A67 /* TabViewController.swift in Sources */,
 				B7733EA01EC6A8E300D5B9BD /* newCollectionViewCell.swift in Sources */,
 				B7C8F4C11F09B20900FBA696 /* FifthCollectionViewCell.swift in Sources */,
+				B71717B01F5A233800B87CE2 /* FollowListsCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
