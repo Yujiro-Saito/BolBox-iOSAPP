@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+
 
 class UserCollectionReusableView: UICollectionReusableView {
     
@@ -15,7 +17,11 @@ class UserCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var followButton: UIButton!
     
     
-    
+    @IBAction func tapped(_ sender: Any) {
+        
+        
+        
+    }
     
     
     

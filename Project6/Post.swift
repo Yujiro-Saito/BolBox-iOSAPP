@@ -27,6 +27,7 @@ class Post {
     private var _linkURL: String!
     private var _postID: String!
     private var _peopleWhoLike = Dictionary<String,AnyObject?>()
+    private var _follow = Dictionary<String,AnyObject?>()
     private var _userID: String!
     private var _userProfileImage: String!
     private var _userProfileName: String!
@@ -101,6 +102,10 @@ class Post {
      return _peopleWhoLike
     }
     
+    var follow : Dictionary<String, AnyObject?> {
+        return _follow
+    }
+    
     
     var userID: String {
         return _userID
@@ -117,7 +122,7 @@ class Post {
 
     
     
-    init?(name: String,  category: String, imageURL: String, whatContent: String, goodCount: Int, keepCount: Int, pvCount: Int?,readCount: Int?, detailImageOne: String, detailImageTwo: String, detailImageThree: String, linkURL: String, postID: String, peopleWhoLike: Dictionary<String, AnyObject?>,userID: String,userProfileImage: String,userProfileName: String
+    init?(name: String,  category: String, imageURL: String, whatContent: String, goodCount: Int, keepCount: Int, pvCount: Int?,readCount: Int?, detailImageOne: String, detailImageTwo: String, detailImageThree: String, linkURL: String, postID: String, peopleWhoLike: Dictionary<String, AnyObject?>,userID: String,userProfileImage: String,userProfileName: String, follow: Dictionary<String, AnyObject?>
         )
     {
         
@@ -136,6 +141,7 @@ class Post {
         self._linkURL = linkURL
         self._postID = postID
         self._peopleWhoLike = peopleWhoLike
+        self._follow = follow
         self._userID = userID
         self._userProfileImage = userProfileImage
         self._userProfileName = userProfileName
@@ -203,6 +209,10 @@ class Post {
         }
         
       
+        
+        if let follow = postData["following"] as? Dictionary<String, AnyObject?>! {
+            self._follow = follow
+        }
         
         if let peopleWhoLike = postData["peopleWhoLike"] as? Dictionary<String, AnyObject?>! {
             self._peopleWhoLike = peopleWhoLike
