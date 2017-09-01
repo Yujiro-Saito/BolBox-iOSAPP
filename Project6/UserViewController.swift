@@ -17,6 +17,8 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     
     
     @IBOutlet weak var userCollection: UICollectionView!
+    @IBOutlet weak var cardView: UIView!
+    
     
     let headerAccess = UserCollectionReusableView()
     var userPosts = [Post]()
@@ -34,21 +36,18 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         self.navigationItem.title = "Wall"
         
         // フォント種をTime New Roman、サイズを10に指定
         self.navigationController?.navigationBar.titleTextAttributes
-            = [NSFontAttributeName: UIFont(name: "Times New Roman", size: 15)!]
+            = [NSFontAttributeName: UIFont(name: "Times New Roman", size: 18)!]
         
                 
         userCollection.delegate = self
         userCollection.dataSource = self
         
         
-        
-        
-        
+       
         
 
     }
@@ -232,8 +231,10 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         
         headerView.followButton.backgroundColor = UIColor.clear // 背景色
         headerView.followButton.layer.borderWidth = 1.0 // 枠線の幅
-        headerView.followButton.layer.borderColor = UIColor.white.cgColor // 枠線の色
+        headerView.followButton.layer.borderColor = UIColor.darkGray.cgColor // 枠線の色
         headerView.followButton.layer.cornerRadius = 10.0 // 角丸のサイズ
+        
+        headerView.cardView.layer.cornerRadius = 3.0
         
         headerView.followButton.addTarget(self, action: #selector(self.onClick(_:)), for: .touchUpInside)
         
