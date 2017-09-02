@@ -15,6 +15,7 @@ import FirebaseStorage
 let DB_BASE = FIRDatabase.database().reference()
 let STORAGE_BASE = FIRStorage.storage().reference()
 let REF = FIRDatabaseReference()
+let SHADOW_GRAY: CGFloat = 120.0 / 255.0
 
 let barColor = UIColor.rgb(r: 31, g: 158, b: 187, alpha: 1)
 let KEY_UID = "uid"

@@ -223,7 +223,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         headerView.followButton.layer.borderColor = UIColor.darkGray.cgColor // 枠線の色
         headerView.followButton.layer.cornerRadius = 10.0 // 角丸のサイズ
         
-        headerView.cardView.layer.cornerRadius = 3.0
+        headerView.cardDesign.layer.cornerRadius = 3.0
         
         headerView.followButton.addTarget(self, action: #selector(self.onClick(_:)), for: .touchUpInside)
         
@@ -307,7 +307,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let followVC = (segue.destination as? FollowListViewController)!
+        let followVC = (segue.destination as? FriendsListsViewController)!
         
         followVC.userID = self.userID
         

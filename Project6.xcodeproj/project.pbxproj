@@ -16,8 +16,6 @@
 		B70B28BF1F11F29C00825004 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70B28BE1F11F29C00825004 /* NotificationViewController.swift */; };
 		B70B98BE1F0F64750036B79D /* InDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70B98BD1F0F64750036B79D /* InDetailViewController.swift */; };
 		B711059D1F13A3C800706FED /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B711059C1F13A3C800706FED /* NotificationTableViewCell.swift */; };
-		B71616D51F59AA440076C2E3 /* FollowListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71616D41F59AA440076C2E3 /* FollowListViewController.swift */; };
-		B71717B01F5A233800B87CE2 /* FollowListsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71717AF1F5A233800B87CE2 /* FollowListsCollectionViewCell.swift */; };
 		B71ACDA81EED8620005DCD80 /* SignInUpViewDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71ACDA71EED8620005DCD80 /* SignInUpViewDesign.swift */; };
 		B71BFDC51F41663C007C44D6 /* ServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71BFDC41F41663C007C44D6 /* ServiceViewController.swift */; };
 		B71EEA3D1EED7D2A00CCF1D1 /* SignInandUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71EEA3C1EED7D2A00CCF1D1 /* SignInandUpViewController.swift */; };
@@ -42,6 +40,9 @@
 		B7482CE41F0F1B2A00E98EF1 /* FourTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7482CE31F0F1B2A00E98EF1 /* FourTableViewCell.swift */; };
 		B7482CE61F0F23F500E98EF1 /* FiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7482CE51F0F23F500E98EF1 /* FiveTableViewCell.swift */; };
 		B74892681EC7E365003ABE22 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B74892671EC7E365003ABE22 /* GoogleService-Info.plist */; };
+		B756D7631F5A439300346F0E /* CardDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B756D7621F5A439300346F0E /* CardDesign.swift */; };
+		B756D7651F5A45EE00346F0E /* FriendsListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B756D7641F5A45EE00346F0E /* FriendsListsViewController.swift */; };
+		B756D7671F5A460600346F0E /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B756D7661F5A460600346F0E /* FriendsTableViewCell.swift */; };
 		B758D1C61F56495A0033EBC2 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B758D1C51F56495A0033EBC2 /* FeedViewController.swift */; };
 		B758D1C81F564E0A0033EBC2 /* FeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B758D1C71F564E0A0033EBC2 /* FeedCollectionViewCell.swift */; };
 		B77083381EC7FB9D00302760 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77083371EC7FB9D00302760 /* Post.swift */; };
@@ -108,8 +109,6 @@
 		B70B28BE1F11F29C00825004 /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		B70B98BD1F0F64750036B79D /* InDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InDetailViewController.swift; sourceTree = "<group>"; };
 		B711059C1F13A3C800706FED /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
-		B71616D41F59AA440076C2E3 /* FollowListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowListViewController.swift; sourceTree = "<group>"; };
-		B71717AF1F5A233800B87CE2 /* FollowListsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowListsCollectionViewCell.swift; sourceTree = "<group>"; };
 		B71ACDA71EED8620005DCD80 /* SignInUpViewDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInUpViewDesign.swift; sourceTree = "<group>"; };
 		B71BFDC41F41663C007C44D6 /* ServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceViewController.swift; sourceTree = "<group>"; };
 		B71EEA3C1EED7D2A00CCF1D1 /* SignInandUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInandUpViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +137,9 @@
 		B7482CE31F0F1B2A00E98EF1 /* FourTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourTableViewCell.swift; sourceTree = "<group>"; };
 		B7482CE51F0F23F500E98EF1 /* FiveTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiveTableViewCell.swift; sourceTree = "<group>"; };
 		B74892671EC7E365003ABE22 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B756D7621F5A439300346F0E /* CardDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDesign.swift; sourceTree = "<group>"; };
+		B756D7641F5A45EE00346F0E /* FriendsListsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListsViewController.swift; sourceTree = "<group>"; };
+		B756D7661F5A460600346F0E /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
 		B758D1C51F56495A0033EBC2 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		B758D1C71F564E0A0033EBC2 /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
 		B77083371EC7FB9D00302760 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -251,8 +253,8 @@
 				B7A0F5121F56B7CE0037536F /* UserViewController.swift */,
 				B7A0F5101F56B7B10037536F /* UserCollectionViewCell.swift */,
 				B707AE1F1F584F69004C654A /* UserCollectionReusableView.swift */,
-				B71616D41F59AA440076C2E3 /* FollowListViewController.swift */,
-				B71717AF1F5A233800B87CE2 /* FollowListsCollectionViewCell.swift */,
+				B756D7641F5A45EE00346F0E /* FriendsListsViewController.swift */,
+				B756D7661F5A460600346F0E /* FriendsTableViewCell.swift */,
 			);
 			name = NewProjects;
 			sourceTree = "<group>";
@@ -410,6 +412,7 @@
 				B7FE1D6E1EDE2F9A0072A068 /* SectionHeaderPopCollectionReusableView.swift */,
 				B7E3902A1ED5A13E005D8BFC /* ImageDesign.swift */,
 				B77EC87F1F0B1E7F00EDDBD5 /* UIViewDesign.swift */,
+				B756D7621F5A439300346F0E /* CardDesign.swift */,
 				B77B554B1EEF6C8C00262589 /* SignUpField.swift */,
 			);
 			name = "UI Design";
@@ -564,7 +567,6 @@
 				B7F628EB1F1B7B71003257CE /* UserProfileViewController.swift in Sources */,
 				B71ACDA81EED8620005DCD80 /* SignInUpViewDesign.swift in Sources */,
 				B771C6051F0CA1DB005D4BF2 /* TwoViewController.swift in Sources */,
-				B71616D51F59AA440076C2E3 /* FollowListViewController.swift in Sources */,
 				B771C6091F0CA1ED005D4BF2 /* FourViewController.swift in Sources */,
 				B7FD77551F567D1F0047CE4B /* FollowViewController.swift in Sources */,
 				B71BFDC51F41663C007C44D6 /* ServiceViewController.swift in Sources */,
@@ -584,7 +586,10 @@
 				B727ADDB1EC67AB20081F500 /* SWRevealViewController.m in Sources */,
 				B70B28BF1F11F29C00825004 /* NotificationViewController.swift in Sources */,
 				B7482CE01F0F0C1400E98EF1 /* TwoTableViewCell.swift in Sources */,
+				B756D7671F5A460600346F0E /* FriendsTableViewCell.swift in Sources */,
+				B756D7651F5A45EE00346F0E /* FriendsListsViewController.swift in Sources */,
 				B7FE1D6F1EDE2F9A0072A068 /* SectionHeaderPopCollectionReusableView.swift in Sources */,
+				B756D7631F5A439300346F0E /* CardDesign.swift in Sources */,
 				B770833A1EC8034E00302760 /* FIRData.swift in Sources */,
 				B73D62681F33EEBB009B230C /* EmailPasswordViewController.swift in Sources */,
 				B72438F11F52688D00BD6E13 /* MyCollectionViewCell.swift in Sources */,
@@ -625,7 +630,6 @@
 				B77EEC601F28B6E500089A67 /* TabViewController.swift in Sources */,
 				B7733EA01EC6A8E300D5B9BD /* newCollectionViewCell.swift in Sources */,
 				B7C8F4C11F09B20900FBA696 /* FifthCollectionViewCell.swift in Sources */,
-				B71717B01F5A233800B87CE2 /* FollowListsCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
