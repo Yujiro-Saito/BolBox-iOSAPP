@@ -23,6 +23,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     let headerAccess = UserCollectionReusableView()
     var userPosts = [Post]()
     var detailPosts: Post?
+    var numOfFollowers = [String]()
     
     //データ受け継ぎ用
     
@@ -216,6 +217,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     {
         let headerView = userCollection.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "UserHeader", for: indexPath) as! UserCollectionReusableView
         
+        
         //Follow button
         
         headerView.followButton.backgroundColor = UIColor.clear // 背景色
@@ -250,6 +252,8 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
                                 
                                 print("キーは\(followKey)、値は\(followValue)")
                                 
+                                self.numOfFollowers.append(followKey)
+                                
                                 if followKey == currentUserID {
                                     //フォローしている
                                     headerView.followButton.backgroundColor = UIColor.green
@@ -263,6 +267,8 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
                                 
                                 
                             }
+                            
+                            
 
                         }
                         
@@ -290,7 +296,10 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         
         //ユーザー名
         headerView.userName.text = self.userName
+        //フォローワー数
+        headerView.followerLabel.text = String(self.numOfFollowers.count)
         
+        self.numOfFollowers = []
         
         //ユーザーのプロフィール画像
         

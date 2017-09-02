@@ -1461,6 +1461,7 @@
                                     <connections>
                                         <outlet property="cardDesign" destination="Go9-6h-kpD" id="Fuc-qK-4QP"/>
                                         <outlet property="followButton" destination="Ty1-ss-0an" id="qTL-p6-Sld"/>
+                                        <outlet property="followerLabel" destination="T9e-F4-EwA" id="T0C-SS-Prl"/>
                                         <outlet property="userImage" destination="fX1-SO-bJG" id="8aA-Ny-9da"/>
                                         <outlet property="userName" destination="uQK-y8-Xsn" id="rqN-Sj-FmD"/>
                                     </connections>
