@@ -25,6 +25,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     var detailPosts: Post?
     var numOfFollowers = [String]()
     var numOfFollowing = [String]()
+    var amountOfFollowers = Int()
     
     //データ受け継ぎ用
     
@@ -156,20 +157,38 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         let currentUserUID = FIRAuth.auth()?.currentUser?.uid
         let followersUID: Dictionary<String, String> = [currentUserUID! : currentUserUID!]
         let uidWhoUFollow: Dictionary<String, String> = [self.userID! : self.userID!]
+        let followersCount = ["followerNum": self.amountOfFollowers]
         
         //フォローしていない場合
         
         if isFollow == false {
             
+            
+            self.amountOfFollowers += 1
+            
+            
+            let followersCount = ["followerNum": self.amountOfFollowers]
+            
             DataService.dataBase.REF_BASE.child("users/\(self.userID!)/followers").updateChildValues(followersUID)
             DataService.dataBase.REF_BASE.child("users/\(currentUserUID!)/following").updateChildValues(uidWhoUFollow)
+            
+            //フォロー数を更新
+            DataService.dataBase.REF_BASE.child("users/\(self.userID!)").updateChildValues(followersCount)
             button.backgroundColor = .green
             isFollow = true
             
         } else if isFollow == true {
+            
+            self.amountOfFollowers -= 1
+            let followersCount = ["followerNum": self.amountOfFollowers]
+            
+            
             //フォロしている場合
             DataService.dataBase.REF_BASE.child("users/\(self.userID!)/followers/\(currentUserUID!)").removeValue()
             DataService.dataBase.REF_BASE.child("users/\(currentUserUID!)/following/\(self.userID!)").removeValue()
+            
+            //フォロー数を更新
+            DataService.dataBase.REF_BASE.child("users/\(self.userID!)").updateChildValues(followersCount)
             
             button.backgroundColor = .clear
             
@@ -219,7 +238,14 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
             
             //ユーザーのデータ取得
             
+            
             let currentUserID = FIRAuth.auth()?.currentUser?.uid
+            
+            if self.userID == currentUserID! {
+                
+                headerView.followButton.isHidden = true
+                
+            }
             
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 
@@ -227,6 +253,12 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
                     print("SNAP: \(snap)")
                     
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        
+                        //follow人数をラベルに表示
+                        let countOfFollowers = postDict["followerNum"] as? Int
+                        headerView.followerLabel.text = String(describing: countOfFollowers!)
+                        self.amountOfFollowers = countOfFollowers!
                         
                         
                         if postDict["followers"] as? Dictionary<String, AnyObject?> != nil {
@@ -237,6 +269,9 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
                                 print("キーは\(followKey)、値は\(followValue)")
                                 
                                 self.numOfFollowers.append(followKey)
+                                
+                                
+                                
                                 
                                 if followKey == currentUserID {
                                     //フォローしている
@@ -331,7 +366,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         //ユーザー名
         headerView.userName.text = self.userName
         //フォローワー数
-        headerView.followerLabel.text = String(self.numOfFollowers.count)
+        //headerView.followerLabel.text = String(self.numOfFollowers.count)
         //フォロー数
         headerView.followingLabel.text = String(self.numOfFollowing.count)
         
