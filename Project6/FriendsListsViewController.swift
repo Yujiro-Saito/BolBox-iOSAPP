@@ -25,6 +25,7 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
     //データ受け継ぎ用
     
     var userID: String!
+    var isFollowing = Bool()
 
     
     
@@ -40,57 +41,72 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
-        DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: self.userID).observe(.value, with: { (snapshot) in
-            
-            //ユーザーのデータ取得
-            
-            let currentUserID = FIRAuth.auth()?.currentUser?.uid
-            
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+        
+        if isFollowing == false {
+            //フォローワーの場合
+            print("フォローワーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー")
+            DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: self.userID).observe(.value, with: { (snapshot) in
                 
-                for snap in snapshot {
-                    print("SNAP: \(snap)")
+                
+                //ユーザーのデータ取得
+                let currentUserID = FIRAuth.auth()?.currentUser?.uid
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     
-                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
                         
-                        
-                        if postDict["followers"] as? Dictionary<String, AnyObject?> != nil {
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
                             
-                            let followingDictionary = postDict["followers"] as? Dictionary<String, AnyObject?>
-                            for (followKey,followValue) in followingDictionary! {
+                            
+                            if postDict["followers"] as? Dictionary<String, AnyObject?> != nil {
                                 
-                                print("キーは\(followKey)、値は\(followValue)")
-                                
-                                //Dataquery
-                                //if followkey == uid { usernameとimageURLを配列に追加
-                                
-                                DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: followKey).observe(.value, with: { (snapshot) in
+                                let followingDictionary = postDict["followers"] as? Dictionary<String, AnyObject?>
+                                for (followKey,followValue) in followingDictionary! {
                                     
-                                    //uidと一致するユーザーの取り出し
+                                    print("キーは\(followKey)、値は\(followValue)")
                                     
-                                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                                    //Dataquery
+                                    //if followkey == uid { usernameとimageURLを配列に追加
+                                    
+                                    DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: followKey).observe(.value, with: { (snapshot) in
                                         
-                                        for snap in snapshot {
+                                        //uidと一致するユーザーの取り出し
+                                        
+                                        if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                                             
-                                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                                            for snap in snapshot {
                                                 
-                                                let userName = postDict["userName"] as? String
-                                                let imageURL = postDict["userImageURL"] as? String
-                                                
-                                                self.followUserNameBox.append(userName!)
-                                                self.followUserImageURL.append(imageURL!)
-                                                
-                                                
+                                                if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                                                    
+                                                    let userName = postDict["userName"] as? String
+                                                    let imageURL = postDict["userImageURL"] as? String
+                                                    
+                                                    self.followUserNameBox.append(userName!)
+                                                    self.followUserImageURL.append(imageURL!)
+                                                    
+                                                    
+                                                }
                                             }
                                         }
-                                    }
+                                        
+                                        
+                                        
+                                        self.followUserNameBox.reverse()
+                                        self.followUserImageURL.reverse()
+                                        
+                                        self.friendsTable.reloadData()
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                    })
                                     
                                     
                                     
-                                    self.followUserNameBox.reverse()
-                                    self.followUserImageURL.reverse()
-                                    
-                                    self.friendsTable.reloadData()
                                     
                                     
                                     
@@ -98,29 +114,21 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
                                     
                                     
                                     
-                                })
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
+                                    
+                                    
+                                    
+                                }
                                 
                             }
                             
+                            
+                            
+                            
+                            
+                            
+                            
+                            
                         }
-                        
-                        
-                        
-                        
-                        
-                        
                         
                         
                     }
@@ -129,11 +137,116 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
                 }
                 
                 
-            }
+                
+            })
+            
+        } else if isFollowing == true {
+            //フォロー中表示
+            
+            DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: self.userID).observe(.value, with: { (snapshot) in
+                
+                
+                //ユーザーのデータ取得
+                let currentUserID = FIRAuth.auth()?.currentUser?.uid
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
+                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            
+                            if postDict["following"] as? Dictionary<String, AnyObject?> != nil {
+                                
+                                let followingDictionary = postDict["following"] as? Dictionary<String, AnyObject?>
+                                for (followKey,followValue) in followingDictionary! {
+                                    
+                                    
+                                    print("キーは\(followKey)、値は\(followValue)")
+                                    
+                                    //followkeyはフォロー中のUID
+                                    
+                                    DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: followKey).observe(.value, with: { (snapshot) in
+                                        
+                                        //uidと一致するユーザーの取り出し
+                                        
+                                        if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                                            
+                                            for snap in snapshot {
+                                                
+                                                if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                                                    
+                                                    let userName = postDict["userName"] as? String
+                                                    let imageURL = postDict["userImageURL"] as? String
+                                                    
+                                                    
+                                                    
+                                                    self.followUserNameBox.append(userName!)
+                                                    self.followUserImageURL.append(imageURL!)
+                                                    
+                                                    
+                                                }
+                                            }
+                                        }
+                                        
+                                        
+                                        
+                                        self.followUserNameBox.reverse()
+                                        self.followUserImageURL.reverse()
+                                        
+                                        self.friendsTable.reloadData()
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                    })
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                }
+                                
+                            }
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                        }
+                        
+                        
+                    }
+                    
+                    
+                }
+                
+                
+                
+            })
+
             
             
             
-        })
+        }
+        
+        
+       
 
     }
     
@@ -156,6 +269,11 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
         
         cell?.userImage.image = nil
         cell?.clipsToBounds = true
+        
+        cell?.profileLabel.layer.borderWidth = 1.0 // 枠線の幅
+        cell?.profileLabel.layer.borderColor = UIColor.darkGray.cgColor // 枠線の色
+        cell?.profileLabel.layer.cornerRadius = 10.0 // 角丸のサイズ
+        
         
         let userName = followUserNameBox[indexPath.row]
         let imageURL = followUserImageURL[indexPath.row]

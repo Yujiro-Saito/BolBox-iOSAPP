@@ -15,6 +15,7 @@ class FriendsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var userName: UILabel!
     
+    @IBOutlet weak var profileLabel: UILabel!
     
     
     

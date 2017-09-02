@@ -14,26 +14,12 @@ class SectionHeaderCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var userProfileImage: ProfileImage!
     @IBOutlet weak var userProfileName: UILabel!
     @IBOutlet weak var addCollectionButton: UIButton!
-    @IBOutlet weak var settingButton: UIButton!
     
-    @IBAction func addCollectionDidTap(_ sender: Any) {
-        print("add")
-    }
+    @IBOutlet weak var cardDesign: CardDesign!
+    @IBOutlet weak var editButton: UIButton!
     
-    
-    @IBAction func settingButtonDidTap(_ sender: Any) {
-        print("setting")
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        userProfileImage.image = UIImage(named: "Sunset")
-        userProfileName.text = "ユジロン"
-        
-        
-    }
-    
+    @IBOutlet weak var followerLabel: UILabel!
+    @IBOutlet weak var followingLabel: UILabel!
     
     
 }

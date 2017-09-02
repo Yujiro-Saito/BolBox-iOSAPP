@@ -19,6 +19,8 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     @IBOutlet weak var myCollection: UICollectionView!
     var userPosts = [Post]()
     var detailPosts: Post?
+    var amountOfFollowers = Int()
+    var numOfFollowing = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +28,17 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         myCollection.delegate = self
         myCollection.dataSource = self
         
-
+    
     }
+    
+    @IBAction func toFollowing(_ sender: Any) {
+        performSegue(withIdentifier: "followingLists", sender: nil)
+    }
+    
+    @IBAction func toFollower(_ sender: Any) {
+        performSegue(withIdentifier: "followLists", sender: nil)
+    }
+    
     
     
     
@@ -81,8 +92,6 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             
             
         }
-        
-       
         
     }
     
@@ -140,14 +149,21 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     {
         let headerView = myCollection.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Head", for: indexPath) as! SectionHeaderCollectionReusableView
         
+        headerView.editButton.backgroundColor = UIColor.clear // 背景色
+        headerView.editButton.layer.borderWidth = 1.0 // 枠線の幅
+        headerView.editButton.layer.borderColor = UIColor.darkGray.cgColor // 枠線の色
+        headerView.editButton.layer.cornerRadius = 10.0 // 角丸のサイズ
+        
+        headerView.cardDesign.layer.cornerRadius = 3.0
+        
         if FIRAuth.auth()?.currentUser != nil {
             
-            print("ログインテスト")
-            
+            //////////////////////
             let user = FIRAuth.auth()?.currentUser
             
             let userName = user?.displayName
             let photoURL = user?.photoURL
+            let selfUID = user?.uid
             
             //ユーザー名
             headerView.userProfileName.text = userName
@@ -158,14 +174,52 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
                 
                 headerView.userProfileImage.af_setImage(withURL: photoURL!)
                 
-            } else {
-                
             }
             
-           
+            
+            //Followのチェック follower数のチェック
+            DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: selfUID!).observe(.value, with: { (snapshot) in
+                
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
+                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            //follow人数をラベルに表示
+                            let countOfFollowers = postDict["followerNum"] as? Int
+                            headerView.followerLabel.text = String(describing: countOfFollowers!)
+                            self.amountOfFollowers = countOfFollowers!
+                            
+                            if postDict["following"] as? Dictionary<String, AnyObject?> != nil {
+                                
+                                let followingDictionary = postDict["following"] as? Dictionary<String, AnyObject?>
+                                for (followKey,followValue) in followingDictionary! {
+                                    
+                                    print("キーは\(followKey)、値は\(followValue)")
+                                    
+                                    self.numOfFollowing.append(followKey)
+                                    
+                                    
+                                }
+                                
+                            }
+   
+                        }
+                       
+                    }
+                }
+                
+            })
             
         }
         
+        //フォロー数
+        headerView.followingLabel.text = String(self.numOfFollowing.count)
+        
+        self.numOfFollowing = []
         
         return headerView
     }
@@ -196,16 +250,26 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             detailVC.userImageURL = detailPosts?.userProfileImage
             
             
-        } else {
+        } else if segue.identifier == "followLists" {
+            
+            let followVC = (segue.destination as? FriendsListsViewController)!
+            
+            let currentUserID = FIRAuth.auth()?.currentUser?.uid
+            
+            followVC.userID = currentUserID!
+            
+            followVC.isFollowing = false
+            
+        } else if segue.identifier == "followingLists" {
             
             
+            let followVC = (segue.destination as? FriendsListsViewController)!
             
+            let currentUserID = FIRAuth.auth()?.currentUser?.uid
+            
+            followVC.userID = currentUserID!
+            
+            followVC.isFollowing = true
         }
     }
-    
-    
-    
-    
-
- 
 }
