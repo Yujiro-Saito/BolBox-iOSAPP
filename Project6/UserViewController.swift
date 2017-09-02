@@ -24,6 +24,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     var userPosts = [Post]()
     var detailPosts: Post?
     var numOfFollowers = [String]()
+    var numOfFollowing = [String]()
     
     //データ受け継ぎ用
     
@@ -54,26 +55,6 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     
     
     @IBAction func followButtonDidTap(_ sender: Any) {
-        
-        let currentUserUID = FIRAuth.auth()?.currentUser?.uid
-        let followersUID: Dictionary<String, String> = [currentUserUID! : currentUserUID!]
-        
-         //フォローしていない場合
-        
-        if isFollow == false {
-            
-            DataService.dataBase.REF_BASE.child("users/\(self.userID!)/following").setValue(followersUID)
-            
-        } else {
-            //フォロしている場合
-            DataService.dataBase.REF_BASE.child("users/\(self.userID!)/following/\(currentUserUID!)").removeValue()
-            
-        
-            
- 
-        }
-        
-            
         
         
     }
@@ -174,18 +155,21 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         
         let currentUserUID = FIRAuth.auth()?.currentUser?.uid
         let followersUID: Dictionary<String, String> = [currentUserUID! : currentUserUID!]
+        let uidWhoUFollow: Dictionary<String, String> = [self.userID! : self.userID!]
         
         //フォローしていない場合
         
         if isFollow == false {
             
-            DataService.dataBase.REF_BASE.child("users/\(self.userID!)/following").setValue(followersUID)
+            DataService.dataBase.REF_BASE.child("users/\(self.userID!)/followers").updateChildValues(followersUID)
+            DataService.dataBase.REF_BASE.child("users/\(currentUserUID!)/following").updateChildValues(uidWhoUFollow)
             button.backgroundColor = .green
             isFollow = true
             
         } else if isFollow == true {
             //フォロしている場合
-            DataService.dataBase.REF_BASE.child("users/\(self.userID!)/following/\(currentUserUID!)").removeValue()
+            DataService.dataBase.REF_BASE.child("users/\(self.userID!)/followers/\(currentUserUID!)").removeValue()
+            DataService.dataBase.REF_BASE.child("users/\(currentUserUID!)/following/\(self.userID!)").removeValue()
             
             button.backgroundColor = .clear
             
@@ -217,7 +201,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     {
         let headerView = userCollection.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "UserHeader", for: indexPath) as! UserCollectionReusableView
         
-        
+        let currentUserID = FIRAuth.auth()?.currentUser?.uid
         //Follow button
         
         headerView.followButton.backgroundColor = UIColor.clear // 背景色
@@ -230,7 +214,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         headerView.followButton.addTarget(self, action: #selector(self.onClick(_:)), for: .touchUpInside)
         
         
-        //Followのチェック
+        //Followのチェック follower数のチェック
         DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: self.userID).observe(.value, with: { (snapshot) in
             
             //ユーザーのデータ取得
@@ -245,9 +229,9 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
                         
                         
-                        if postDict["following"] as? Dictionary<String, AnyObject?> != nil {
+                        if postDict["followers"] as? Dictionary<String, AnyObject?> != nil {
                             
-                            let followingDictionary = postDict["following"] as? Dictionary<String, AnyObject?>
+                            let followingDictionary = postDict["followers"] as? Dictionary<String, AnyObject?>
                             for (followKey,followValue) in followingDictionary! {
                                 
                                 print("キーは\(followKey)、値は\(followValue)")
@@ -291,6 +275,56 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
             
         })
         
+        
+        
+        
+        //フォロー人数のチェック
+        
+        DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: self.userID).observe(.value, with: { (snapshot) in
+            
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        
+                        
+                        if postDict["following"] as? Dictionary<String, AnyObject?> != nil {
+                            
+                            let followingDictionary = postDict["following"] as? Dictionary<String, AnyObject?>
+                            for (followKey,followValue) in followingDictionary! {
+                                
+                                print("キーは\(followKey)、値は\(followValue)")
+                                
+                                self.numOfFollowing.append(followKey)
+                                
+                                
+                            }
+                            
+                            
+                            
+                        }
+                        
+                        
+                        
+                        
+                    }
+                }
+            }
+            
+            
+            
+            
+        })
+        
+        
+        
+        
+        
+        
 
         
         
@@ -298,8 +332,11 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         headerView.userName.text = self.userName
         //フォローワー数
         headerView.followerLabel.text = String(self.numOfFollowers.count)
+        //フォロー数
+        headerView.followingLabel.text = String(self.numOfFollowing.count)
         
         self.numOfFollowers = []
+        self.numOfFollowing = []
         
         //ユーザーのプロフィール画像
         

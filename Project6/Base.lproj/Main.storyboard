@@ -1462,6 +1462,7 @@
                                         <outlet property="cardDesign" destination="Go9-6h-kpD" id="Fuc-qK-4QP"/>
                                         <outlet property="followButton" destination="Ty1-ss-0an" id="qTL-p6-Sld"/>
                                         <outlet property="followerLabel" destination="T9e-F4-EwA" id="T0C-SS-Prl"/>
+                                        <outlet property="followingLabel" destination="pel-0O-arh" id="v5v-Gd-LXK"/>
                                         <outlet property="userImage" destination="fX1-SO-bJG" id="8aA-Ny-9da"/>
                                         <outlet property="userName" destination="uQK-y8-Xsn" id="rqN-Sj-FmD"/>
                                     </connections>
@@ -4521,7 +4522,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jJo-dR-Onz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="ウォール" image="Home" id="qMP-Xu-1HA"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UIl-fw-qgx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UIl-fw-qgx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.23919207109999999" green="0.25197785099999997" blue="0.35669303450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4545,7 +4546,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GtW-M7-tyf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="探す" image="Search" id="ubN-eP-8bB"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="oXz-Zf-PXP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oXz-Zf-PXP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

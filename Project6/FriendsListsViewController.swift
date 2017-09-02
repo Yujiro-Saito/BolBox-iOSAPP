@@ -54,9 +54,9 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
                         
                         
-                        if postDict["following"] as? Dictionary<String, AnyObject?> != nil {
+                        if postDict["followers"] as? Dictionary<String, AnyObject?> != nil {
                             
-                            let followingDictionary = postDict["following"] as? Dictionary<String, AnyObject?>
+                            let followingDictionary = postDict["followers"] as? Dictionary<String, AnyObject?>
                             for (followKey,followValue) in followingDictionary! {
                                 
                                 print("キーは\(followKey)、値は\(followValue)")
