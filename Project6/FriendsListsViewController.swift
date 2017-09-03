@@ -271,6 +271,7 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
         
         cell?.userImage.image = nil
         cell?.clipsToBounds = true
+        cell?.userName.text = ""
         
         cell?.profileLabel.layer.borderWidth = 1.0 // 枠線の幅
         cell?.profileLabel.layer.borderColor = UIColor.darkGray.cgColor // 枠線の色
@@ -312,6 +313,10 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ThirdWall" {
+            
+            followUserNameBox = []
+            followUserImageURL = []
+            
             
             let thirdWallVC = (segue.destination as? ThirdWallViewController)!
             
