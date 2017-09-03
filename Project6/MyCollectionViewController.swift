@@ -33,7 +33,12 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
         myCollection.delegate = self
         myCollection.dataSource = self
-       
+        
+        // ナビゲーションを透明にする処理
+        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController!.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.hidesBarsOnSwipe = true
     
     }
     
@@ -127,7 +132,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         cell?.itemImage.image = nil
         cell?.clipsToBounds = true
         //cell?.itemImage.layer.cornerRadius = 1.0
-        cell?.layer.cornerRadius = 5.0
+        cell?.itemImage.layer.cornerRadius = 10.0
         //現在のCell
         let post = userPosts[indexPath.row]
         
@@ -152,7 +157,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     
     //縦の間隔を決定する
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 0
     }
     //横の間隔
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

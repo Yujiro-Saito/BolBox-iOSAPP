@@ -264,6 +264,7 @@
 				B709078C1F5BC50000794E5C /* ThirdWallViewController.swift */,
 				B709078E1F5BC51800794E5C /* ThirdWallCollectionViewCell.swift */,
 				B70907901F5BC52B00794E5C /* ThirdWallCollectionReusableView.swift */,
+				B74892691EC7E37D003ABE22 /* Docs */,
 			);
 			name = NewProjects;
 			sourceTree = "<group>";
@@ -297,7 +298,6 @@
 				B7733EA71EC6A9BA00D5B9BD /* Data */,
 				B7733EA51EC6A99600D5B9BD /* Sidemenu */,
 				B7733EA31EC6A97300D5B9BD /* Cell */,
-				B74892691EC7E37D003ABE22 /* Docs */,
 				B72A71FD1EC677C100EA9BDF /* Assets.xcassets */,
 				B7E390251ED59E1A005D8BFC /* UI Design */,
 				B7733EA61EC6A9AB00D5B9BD /* View */,
