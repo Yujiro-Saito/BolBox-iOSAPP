@@ -21,13 +21,19 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     var detailPosts: Post?
     var amountOfFollowers = Int()
     var numOfFollowing = [String]()
+    var numOfFollowers = [String]()
+    
+    
+    
+    //data
+    var isFollow = Bool()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         myCollection.delegate = self
         myCollection.dataSource = self
-        
+       
     
     }
     
@@ -52,28 +58,27 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             
             
             
-        } else if FIRAuth.auth()?.currentUser != nil {
+        }
+        
+        
+        
+        //ユーザーのコレクションの読み込み
+        DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "userID").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
             
-            //ユーザーのコレクションの読み込み
-            DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "userID").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
+            self.userPosts = []
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 
-                self.userPosts = []
-                
-                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
                     
-                    for snap in snapshot {
-                        print("SNAP: \(snap)")
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
                         
-                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                            
-                            let key = snap.key
-                            let post = Post(postKey: key, postData: postDict)
-                            
-                            self.userPosts.append(post)
-                            
-                            
-                            
-                        }
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        
+                        self.userPosts.append(post)
+                        
                         
                         
                     }
@@ -82,16 +87,27 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
                 }
                 
                 
-                self.userPosts.reverse()
-                self.myCollection.reloadData()
-                
-                
-                
-                
-            })
+            }
             
             
-        }
+            self.userPosts.reverse()
+            self.myCollection.reloadData()
+            
+            
+            
+            
+        })
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
     }
     
@@ -149,77 +165,86 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     {
         let headerView = myCollection.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Head", for: indexPath) as! SectionHeaderCollectionReusableView
         
-        headerView.editButton.backgroundColor = UIColor.clear // 背景色
-        headerView.editButton.layer.borderWidth = 1.0 // 枠線の幅
-        headerView.editButton.layer.borderColor = UIColor.darkGray.cgColor // 枠線の色
-        headerView.editButton.layer.cornerRadius = 10.0 // 角丸のサイズ
         
-        headerView.cardDesign.layer.cornerRadius = 3.0
         
-        if FIRAuth.auth()?.currentUser != nil {
-            
-            //////////////////////
-            let user = FIRAuth.auth()?.currentUser
-            
-            let userName = user?.displayName
-            let photoURL = user?.photoURL
-            let selfUID = user?.uid
-            
-            //ユーザー名
-            headerView.userProfileName.text = userName
+        
             
             
-            //ユーザーのプロフィール画像
-            if photoURL != nil {
+            headerView.editButton.backgroundColor = UIColor.clear // 背景色
+            headerView.editButton.layer.borderWidth = 1.0 // 枠線の幅
+            headerView.editButton.layer.borderColor = UIColor.darkGray.cgColor // 枠線の色
+            headerView.editButton.layer.cornerRadius = 10.0 // 角丸のサイズ
+            
+            headerView.cardDesign.layer.cornerRadius = 3.0
+            
+            
+            
                 
-                headerView.userProfileImage.af_setImage(withURL: photoURL!)
+                //////////////////////
+                let user = FIRAuth.auth()?.currentUser
                 
-            }
-            
-            
-            //Followのチェック follower数のチェック
-            DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: selfUID!).observe(.value, with: { (snapshot) in
+                let userName = user?.displayName
+                let photoURL = user?.photoURL
+                let selfUID = user?.uid
+                
+                //ユーザー名
+                headerView.userProfileName.text = userName
                 
                 
-                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                //ユーザーのプロフィール画像
+                if photoURL != nil {
                     
-                    for snap in snapshot {
-                        print("SNAP: \(snap)")
+                    headerView.userProfileImage.af_setImage(withURL: photoURL!)
+                    
+                }
+                
+                
+                //Followのチェック follower数のチェック
+                DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: selfUID!).observe(.value, with: { (snapshot) in
+                    
+                    
+                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                         
-                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        for snap in snapshot {
+                            print("SNAP: \(snap)")
                             
-                            //follow人数をラベルに表示
-                            let countOfFollowers = postDict["followerNum"] as? Int
-                            headerView.followerLabel.text = String(describing: countOfFollowers!)
-                            self.amountOfFollowers = countOfFollowers!
-                            
-                            if postDict["following"] as? Dictionary<String, AnyObject?> != nil {
+                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
                                 
-                                let followingDictionary = postDict["following"] as? Dictionary<String, AnyObject?>
-                                for (followKey,followValue) in followingDictionary! {
+                                //followwer人数をラベルに表示
+                                let countOfFollowers = postDict["followerNum"] as? Int
+                                headerView.followerLabel.text = String(describing: countOfFollowers!)
+                                self.amountOfFollowers = countOfFollowers!
+                                
+                                if postDict["following"] as? Dictionary<String, AnyObject?> != nil {
                                     
-                                    print("キーは\(followKey)、値は\(followValue)")
-                                    
-                                    self.numOfFollowing.append(followKey)
-                                    
+                                    let followingDictionary = postDict["following"] as? Dictionary<String, AnyObject?>
+                                    for (followKey,followValue) in followingDictionary! {
+                                        
+                                        print("キーは\(followKey)、値は\(followValue)")
+                                        
+                                        self.numOfFollowing.append(followKey)
+                                        
+                                        
+                                    }
                                     
                                 }
                                 
                             }
-   
+                            
                         }
-                       
                     }
-                }
+                    
+                })
                 
-            })
             
-        }
+            //フォロー数
+            headerView.followingLabel.text = String(self.numOfFollowing.count)
+            
+            self.numOfFollowing = []
+            
         
-        //フォロー数
-        headerView.followingLabel.text = String(self.numOfFollowing.count)
         
-        self.numOfFollowing = []
+        
         
         return headerView
     }
@@ -259,6 +284,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             followVC.userID = currentUserID!
             
             followVC.isFollowing = false
+            
             
         } else if segue.identifier == "followingLists" {
             

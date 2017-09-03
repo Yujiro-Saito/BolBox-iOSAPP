@@ -32,12 +32,14 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     var userName: String!
     var userImageURL: String!
     var userID: String!
+    
     var isFollow = Bool()
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         self.navigationItem.title = "Wall"
         
@@ -52,18 +54,23 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     }
     
 
-    
-    
-    
-    @IBAction func followButtonDidTap(_ sender: Any) {
+    @IBAction func followerButtonDidTap(_ sender: Any) {
         
+        performSegue(withIdentifier: "followLists", sender: nil)
         
     }
     
     
+    @IBAction func followingButtonDidTap(_ sender: Any) {
+        
+        performSegue(withIdentifier: "followingLists", sender: nil)
+        
+    }
+    
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
         
         //ユーザー投稿を配列に取得
         
@@ -218,6 +225,9 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView
     {
+        
+        
+        
         let headerView = userCollection.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "UserHeader", for: indexPath) as! UserCollectionReusableView
         
         let currentUserID = FIRAuth.auth()?.currentUser?.uid
@@ -266,7 +276,6 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
                             let followingDictionary = postDict["followers"] as? Dictionary<String, AnyObject?>
                             for (followKey,followValue) in followingDictionary! {
                                 
-                                print("キーは\(followKey)、値は\(followValue)")
                                 
                                 self.numOfFollowers.append(followKey)
                                 
@@ -388,9 +397,34 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let followVC = (segue.destination as? FriendsListsViewController)!
         
-        followVC.userID = self.userID
+        
+        if segue.identifier == "followLists" {
+            
+            let followVC = (segue.destination as? FriendsListsViewController)!
+            
+            followVC.userID = self.userID
+            
+            followVC.isFollowing = false
+            
+            
+        } else if segue.identifier == "followingLists" {
+            
+            
+            let followVC = (segue.destination as? FriendsListsViewController)!
+            
+            followVC.userID = self.userID
+            
+            followVC.isFollowing = true
+            
+        }
+        
+        
+        
+        
+        
+        
+        
         
         
         

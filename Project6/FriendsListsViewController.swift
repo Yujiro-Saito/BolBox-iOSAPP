@@ -17,9 +17,12 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
     
     
     var followUsers = [Post]()
-    var detailPosts: Post?
+    var detailName: String?
+    var detailImageURL: String?
+    var detailUID: String?
     var followUserNameBox = [String]()
     var followUserImageURL = [String]()
+    var followUID = [String]()
     @IBOutlet weak var friendsTable: UITableView!
 
     //データ受け継ぎ用
@@ -44,7 +47,6 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
         
         if isFollowing == false {
             //フォローワーの場合
-            print("フォローワーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー")
             DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: self.userID).observe(.value, with: { (snapshot) in
                 
                 
@@ -81,10 +83,10 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
                                                     
                                                     let userName = postDict["userName"] as? String
                                                     let imageURL = postDict["userImageURL"] as? String
-                                                    
+                                                    let uid = postDict["uid"] as? String
                                                     self.followUserNameBox.append(userName!)
                                                     self.followUserImageURL.append(imageURL!)
-                                                    
+                                                    self.followUID.append(uid!)
                                                     
                                                 }
                                             }
@@ -94,7 +96,7 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
                                         
                                         self.followUserNameBox.reverse()
                                         self.followUserImageURL.reverse()
-                                        
+                                        self.followUID.reverse()
                                         self.friendsTable.reloadData()
                                         
                                         
@@ -179,12 +181,12 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
                                                     
                                                     let userName = postDict["userName"] as? String
                                                     let imageURL = postDict["userImageURL"] as? String
-                                                    
+                                                    let uid = postDict["uid"] as? String
                                                     
                                                     
                                                     self.followUserNameBox.append(userName!)
                                                     self.followUserImageURL.append(imageURL!)
-                                                    
+                                                    self.followUID.append(uid!)
                                                     
                                                 }
                                             }
@@ -194,7 +196,7 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
                                         
                                         self.followUserNameBox.reverse()
                                         self.followUserImageURL.reverse()
-                                        
+                                        self.followUID.reverse()
                                         self.friendsTable.reloadData()
                                         
                                         
@@ -292,10 +294,15 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
     }
     
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        detailName = self.followUserNameBox[indexPath.row]
+        detailImageURL = self.followUserImageURL[indexPath.row]
+        detailUID = self.followUID[indexPath.row]
+
+               
+    }
     
-    
-    
-    
-    
+  
 
 }
