@@ -299,9 +299,50 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
         detailName = self.followUserNameBox[indexPath.row]
         detailImageURL = self.followUserImageURL[indexPath.row]
         detailUID = self.followUID[indexPath.row]
+        
+        performSegue(withIdentifier: "ThirdWall", sender: nil)
 
                
     }
+    
+    
+    
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ThirdWall" {
+            
+            let thirdWallVC = (segue.destination as? ThirdWallViewController)!
+            
+            thirdWallVC.userID = detailUID!
+            thirdWallVC.userName = detailName!
+            thirdWallVC.userImageURL = detailImageURL!
+            
+            
+            
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
   
 

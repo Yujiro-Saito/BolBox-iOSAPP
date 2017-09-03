@@ -13,6 +13,9 @@
 		B707656C1F418DEF00D42B75 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B707656B1F418DEF00D42B75 /* MessageUI.framework */; };
 		B707656E1F41921A00D42B75 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B707656D1F41921A00D42B75 /* ReportViewController.swift */; };
 		B707AE201F584F69004C654A /* UserCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B707AE1F1F584F69004C654A /* UserCollectionReusableView.swift */; };
+		B709078D1F5BC50000794E5C /* ThirdWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B709078C1F5BC50000794E5C /* ThirdWallViewController.swift */; };
+		B709078F1F5BC51800794E5C /* ThirdWallCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B709078E1F5BC51800794E5C /* ThirdWallCollectionViewCell.swift */; };
+		B70907911F5BC52B00794E5C /* ThirdWallCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70907901F5BC52B00794E5C /* ThirdWallCollectionReusableView.swift */; };
 		B70B28BF1F11F29C00825004 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70B28BE1F11F29C00825004 /* NotificationViewController.swift */; };
 		B70B98BE1F0F64750036B79D /* InDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70B98BD1F0F64750036B79D /* InDetailViewController.swift */; };
 		B711059D1F13A3C800706FED /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B711059C1F13A3C800706FED /* NotificationTableViewCell.swift */; };
@@ -106,6 +109,9 @@
 		B707656B1F418DEF00D42B75 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		B707656D1F41921A00D42B75 /* ReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		B707AE1F1F584F69004C654A /* UserCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCollectionReusableView.swift; sourceTree = "<group>"; };
+		B709078C1F5BC50000794E5C /* ThirdWallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdWallViewController.swift; sourceTree = "<group>"; };
+		B709078E1F5BC51800794E5C /* ThirdWallCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdWallCollectionViewCell.swift; sourceTree = "<group>"; };
+		B70907901F5BC52B00794E5C /* ThirdWallCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdWallCollectionReusableView.swift; sourceTree = "<group>"; };
 		B70B28BE1F11F29C00825004 /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		B70B98BD1F0F64750036B79D /* InDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InDetailViewController.swift; sourceTree = "<group>"; };
 		B711059C1F13A3C800706FED /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
@@ -255,6 +261,9 @@
 				B707AE1F1F584F69004C654A /* UserCollectionReusableView.swift */,
 				B756D7641F5A45EE00346F0E /* FriendsListsViewController.swift */,
 				B756D7661F5A460600346F0E /* FriendsTableViewCell.swift */,
+				B709078C1F5BC50000794E5C /* ThirdWallViewController.swift */,
+				B709078E1F5BC51800794E5C /* ThirdWallCollectionViewCell.swift */,
+				B70907901F5BC52B00794E5C /* ThirdWallCollectionReusableView.swift */,
 			);
 			name = NewProjects;
 			sourceTree = "<group>";
@@ -554,6 +563,7 @@
 				B771C60B1F0CA1F7005D4BF2 /* FiveViewController.swift in Sources */,
 				B77CEDED1EE3DB8F005D4215 /* CategoryDisplayTableViewCell.swift in Sources */,
 				B702E72F1EF8A442003C89E4 /* EmailLoginViewController.swift in Sources */,
+				B70907911F5BC52B00794E5C /* ThirdWallCollectionReusableView.swift in Sources */,
 				B725810E1F22706900CF8E56 /* User.swift in Sources */,
 				B73D626A1F33F894009B230C /* PostFinalViewController.swift in Sources */,
 				B7F628ED1F1B838B003257CE /* UserProfileTableViewCell.swift in Sources */,
@@ -575,6 +585,7 @@
 				B7EE00BC1F08C76F0015AA3B /* SecondCollectionViewCell.swift in Sources */,
 				B7E9D62D1F2096F4001115F6 /* FeatureViewController.swift in Sources */,
 				B711059D1F13A3C800706FED /* NotificationTableViewCell.swift in Sources */,
+				B709078F1F5BC51800794E5C /* ThirdWallCollectionViewCell.swift in Sources */,
 				B771C6071F0CA1E6005D4BF2 /* ThreeViewController.swift in Sources */,
 				B77B554C1EEF6C8C00262589 /* SignUpField.swift in Sources */,
 				B707656E1F41921A00D42B75 /* ReportViewController.swift in Sources */,
@@ -587,6 +598,7 @@
 				B70B28BF1F11F29C00825004 /* NotificationViewController.swift in Sources */,
 				B7482CE01F0F0C1400E98EF1 /* TwoTableViewCell.swift in Sources */,
 				B756D7671F5A460600346F0E /* FriendsTableViewCell.swift in Sources */,
+				B709078D1F5BC50000794E5C /* ThirdWallViewController.swift in Sources */,
 				B756D7651F5A45EE00346F0E /* FriendsListsViewController.swift in Sources */,
 				B7FE1D6F1EDE2F9A0072A068 /* SectionHeaderPopCollectionReusableView.swift in Sources */,
 				B756D7631F5A439300346F0E /* CardDesign.swift in Sources */,

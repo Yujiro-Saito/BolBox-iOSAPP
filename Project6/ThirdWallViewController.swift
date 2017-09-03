@@ -1,8 +1,8 @@
 //
-//  UserViewController.swift
+//  ThirdWallViewController.swift
 //  Project6
 //
-//  Created by  Yujiro Saito on 2017/08/30.
+//  Created by  Yujiro Saito on 2017/09/03.
 //  Copyright © 2017年 yujiro_saito. All rights reserved.
 //
 
@@ -12,61 +12,73 @@ import FirebaseAuth
 import AlamofireImage
 
 
-class UserViewController: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
+
+class ThirdWallViewController: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    
-    @IBOutlet weak var userCollection: UICollectionView!
-    @IBOutlet weak var cardView: UIView!
-    
-    
-    var userPosts = [Post]()
+    @IBOutlet weak var thirdWallCollection: UICollectionView!
     var detailPosts: Post?
     var numOfFollowers = [String]()
     var numOfFollowing = [String]()
     var amountOfFollowers = Int()
+    
+    
+    
+    
+    
     
     //データ受け継ぎ用
     
     var userName: String!
     var userImageURL: String!
     var userID: String!
+    var userPosts = [Post]()
+    
     
     var isFollow = Bool()
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        self.navigationItem.title = "Wall"
         
-        // フォント種をTime New Roman、サイズを10に指定
-        self.navigationController?.navigationBar.titleTextAttributes
-            = [NSFontAttributeName: UIFont(name: "Times New Roman", size: 18)!]
-        
-        userCollection.delegate = self
-        userCollection.dataSource = self
-        
+        thirdWallCollection.delegate = self
+        thirdWallCollection.dataSource = self
 
     }
     
-
+    
     @IBAction func followerButtonDidTap(_ sender: Any) {
+        //戻る
         
-        performSegue(withIdentifier: "followLists", sender: nil)
+        let nav = self.navigationController!
+        
+        let listsVC = nav.viewControllers[nav.viewControllers.count-2] as! FriendsListsViewController
+        
+        listsVC.userID = self.userID
+        listsVC.isFollowing = false
+        
+        //閉じる
+        self.navigationController?.popViewController(animated: true)
         
     }
     
     
     @IBAction func followingButtonDidTap(_ sender: Any) {
+        //戻る
+        let nav = self.navigationController!
         
-        performSegue(withIdentifier: "followingLists", sender: nil)
+        let listsVC = nav.viewControllers[nav.viewControllers.count-2] as! FriendsListsViewController
+        
+        listsVC.userID = self.userID
+        listsVC.isFollowing = true
+        
+        //閉じる
+        self.navigationController?.popViewController(animated: true)
+
+        
         
     }
-    
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
@@ -104,7 +116,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
             
             
             self.userPosts.reverse()
-            self.userCollection.reloadData()
+            self.thirdWallCollection.reloadData()
             
             
             
@@ -113,10 +125,10 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         
         
         
+        
     }
-    
-    
-    
+
+  
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -131,11 +143,10 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     
     
     
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
-        let cell = userCollection.dequeueReusableCell(withReuseIdentifier: "userWall", for: indexPath) as? UserCollectionViewCell
+        let cell = thirdWallCollection.dequeueReusableCell(withReuseIdentifier: "ThirdWall", for: indexPath) as? ThirdWallCollectionViewCell
         
         cell?.itemImage.image = nil
         
@@ -145,7 +156,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         //現在のCell
         let post = userPosts[indexPath.row]
         
-        cell?.itemLabel.text = userPosts[indexPath.row].name
+        //cell?.itemLabel.text = userPosts[indexPath.row].name
         
         if userPosts[indexPath.row].imageURL != nil {
             cell?.itemImage.af_setImage(withURL: URL(string: userPosts[indexPath.row].imageURL)!)
@@ -154,6 +165,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         
         return cell!
     }
+    
     
     func onClick(_ sender: AnyObject){
         
@@ -202,8 +214,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         }
     }
     
-    
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let screenWidth = UIScreen.main.bounds.width
         let scaleFactor = (screenWidth / 3) - 4
@@ -221,13 +232,12 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     }
 
     
-    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView
     {
         
         
         
-        let headerView = userCollection.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "UserHeader", for: indexPath) as! UserCollectionReusableView
+        let headerView = thirdWallCollection.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ThirdHeader", for: indexPath) as! ThirdWallCollectionReusableView
         
         let currentUserID = FIRAuth.auth()?.currentUser?.uid
         //Follow button
@@ -296,10 +306,10 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
                             }
                             
                             
-
+                            
                         }
                         
-                       
+                        
                         
                         
                         
@@ -368,7 +378,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         
         
         
-
+        
         
         
         //ユーザー名
@@ -385,9 +395,9 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         
         let userProfileImageURL = URL(string: userImageURL)
         
-            headerView.userImage.af_setImage(withURL: userProfileImageURL!)
-            
-    
+        headerView.userImage.af_setImage(withURL: userProfileImageURL!)
+        
+        
         
         
         
@@ -395,43 +405,6 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         return headerView
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        
-        if segue.identifier == "followLists" {
-            
-            let followVC = (segue.destination as? FriendsListsViewController)!
-            
-            followVC.userID = self.userID
-            
-            followVC.isFollowing = false
-            
-            
-        } else if segue.identifier == "followingLists" {
-            
-            
-            let followVC = (segue.destination as? FriendsListsViewController)!
-            
-            followVC.userID = self.userID
-            
-            followVC.isFollowing = true
-            
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    }
-    
-    
-
     
 
 }
