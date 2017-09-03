@@ -35,12 +35,15 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         myCollection.dataSource = self
         
         // ナビゲーションを透明にする処理
+        //self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.blue
         self.navigationController?.hidesBarsOnSwipe = true
-    
+            
     }
+    
+    
     
     @IBAction func toFollowing(_ sender: Any) {
         performSegue(withIdentifier: "followingLists", sender: nil)
@@ -177,13 +180,9 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             
             headerView.editButton.backgroundColor = UIColor.clear // 背景色
             headerView.editButton.layer.borderWidth = 1.0 // 枠線の幅
-            headerView.editButton.layer.borderColor = UIColor.darkGray.cgColor // 枠線の色
+            headerView.editButton.layer.borderColor = UIColor.white.cgColor // 枠線の色
             headerView.editButton.layer.cornerRadius = 10.0 // 角丸のサイズ
-            
-            headerView.cardDesign.layer.cornerRadius = 3.0
-            
-            
-            
+        
                 
                 //////////////////////
                 let user = FIRAuth.auth()?.currentUser

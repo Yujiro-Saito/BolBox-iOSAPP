@@ -37,6 +37,7 @@
 		B73D62681F33EEBB009B230C /* EmailPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73D62671F33EEBB009B230C /* EmailPasswordViewController.swift */; };
 		B73D626A1F33F894009B230C /* PostFinalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73D62691F33F894009B230C /* PostFinalViewController.swift */; };
 		B73E3B4C1F2D7E89002220D3 /* VisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73E3B4B1F2D7E89002220D3 /* VisualEffect.swift */; };
+		B73ECF7D1F5C41070044EAED /* WallTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73ECF7C1F5C41070044EAED /* WallTabViewController.swift */; };
 		B74236061F53DCBF007D5137 /* InfomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74236051F53DCBF007D5137 /* InfomationViewController.swift */; };
 		B7482CE01F0F0C1400E98EF1 /* TwoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7482CDF1F0F0C1400E98EF1 /* TwoTableViewCell.swift */; };
 		B7482CE21F0F141E00E98EF1 /* ThreeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7482CE11F0F141E00E98EF1 /* ThreeTableViewCell.swift */; };
@@ -137,6 +138,7 @@
 		B73D62671F33EEBB009B230C /* EmailPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailPasswordViewController.swift; sourceTree = "<group>"; };
 		B73D62691F33F894009B230C /* PostFinalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostFinalViewController.swift; sourceTree = "<group>"; };
 		B73E3B4B1F2D7E89002220D3 /* VisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffect.swift; sourceTree = "<group>"; };
+		B73ECF7C1F5C41070044EAED /* WallTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallTabViewController.swift; sourceTree = "<group>"; };
 		B74236051F53DCBF007D5137 /* InfomationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfomationViewController.swift; sourceTree = "<group>"; };
 		B7482CDF1F0F0C1400E98EF1 /* TwoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoTableViewCell.swift; sourceTree = "<group>"; };
 		B7482CE11F0F141E00E98EF1 /* ThreeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeTableViewCell.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				B709078C1F5BC50000794E5C /* ThirdWallViewController.swift */,
 				B709078E1F5BC51800794E5C /* ThirdWallCollectionViewCell.swift */,
 				B70907901F5BC52B00794E5C /* ThirdWallCollectionReusableView.swift */,
+				B73ECF7C1F5C41070044EAED /* WallTabViewController.swift */,
 				B74892691EC7E37D003ABE22 /* Docs */,
 			);
 			name = NewProjects;
@@ -642,6 +645,7 @@
 				B77EEC601F28B6E500089A67 /* TabViewController.swift in Sources */,
 				B7733EA01EC6A8E300D5B9BD /* newCollectionViewCell.swift in Sources */,
 				B7C8F4C11F09B20900FBA696 /* FifthCollectionViewCell.swift in Sources */,
+				B73ECF7D1F5C41070044EAED /* WallTabViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

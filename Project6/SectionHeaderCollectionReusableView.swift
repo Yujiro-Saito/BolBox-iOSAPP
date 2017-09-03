@@ -14,7 +14,6 @@ class SectionHeaderCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var userProfileImage: ProfileImage!
     @IBOutlet weak var userProfileName: UILabel!
     
-    @IBOutlet weak var cardDesign: CardDesign!
     @IBOutlet weak var editButton: UIButton!
     
     @IBOutlet weak var followerLabel: UILabel!
