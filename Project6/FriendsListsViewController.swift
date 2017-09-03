@@ -38,6 +38,12 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
         friendsTable.delegate = self
         friendsTable.dataSource = self
         
+        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController!.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.tintColor = UIColor.blue
+        self.navigationController?.hidesBarsOnSwipe = true
+        
+        
         
     }
     
@@ -272,11 +278,6 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
         cell?.userImage.image = nil
         cell?.clipsToBounds = true
         cell?.userName.text = ""
-        
-        cell?.profileLabel.layer.borderWidth = 1.0 // 枠線の幅
-        cell?.profileLabel.layer.borderColor = UIColor.darkGray.cgColor // 枠線の色
-        cell?.profileLabel.layer.cornerRadius = 10.0 // 角丸のサイズ
-        
         
         let userName = followUserNameBox[indexPath.row]
         let imageURL = followUserImageURL[indexPath.row]
