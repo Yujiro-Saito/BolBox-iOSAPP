@@ -45,6 +45,10 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         // フォント種をTime New Roman、サイズを10に指定
         self.navigationController?.navigationBar.titleTextAttributes
             = [NSFontAttributeName: UIFont(name: "Times New Roman", size: 18)!]
+        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController!.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.tintColor = UIColor.blue
+        self.navigationController?.hidesBarsOnSwipe = true
         
         userCollection.delegate = self
         userCollection.dataSource = self
@@ -237,7 +241,6 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         headerView.followButton.layer.borderColor = UIColor.darkGray.cgColor // 枠線の色
         headerView.followButton.layer.cornerRadius = 10.0 // 角丸のサイズ
         
-        headerView.cardDesign.layer.cornerRadius = 3.0
         
         headerView.followButton.addTarget(self, action: #selector(self.onClick(_:)), for: .touchUpInside)
         

@@ -156,7 +156,7 @@ class ThirdWallViewController: UIViewController,UICollectionViewDataSource, UICo
         //現在のCell
         let post = userPosts[indexPath.row]
         
-        //cell?.itemLabel.text = userPosts[indexPath.row].name
+        cell?.nameLabel.text = userPosts[indexPath.row].name
         
         if userPosts[indexPath.row].imageURL != nil {
             cell?.itemImage.af_setImage(withURL: URL(string: userPosts[indexPath.row].imageURL)!)
@@ -247,7 +247,6 @@ class ThirdWallViewController: UIViewController,UICollectionViewDataSource, UICo
         headerView.followButton.layer.borderColor = UIColor.darkGray.cgColor // 枠線の色
         headerView.followButton.layer.cornerRadius = 10.0 // 角丸のサイズ
         
-        headerView.cardDesign.layer.cornerRadius = 3.0
         
         headerView.followButton.addTarget(self, action: #selector(self.onClick(_:)), for: .touchUpInside)
         

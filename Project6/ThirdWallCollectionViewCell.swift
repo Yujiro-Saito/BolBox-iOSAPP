@@ -10,6 +10,7 @@ import UIKit
 
 class ThirdWallCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var itemImage: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
     
     
 }

@@ -16,7 +16,6 @@ class UserCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var followButton: UIButton!
     
-    @IBOutlet weak var cardDesign: CardDesign!
     
     @IBOutlet weak var followerLabel: UILabel!
     @IBOutlet weak var followingLabel: UILabel!

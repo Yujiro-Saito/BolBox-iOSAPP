@@ -24,8 +24,22 @@ class FeedViewController: UIViewController,UICollectionViewDataSource, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         feedCollection.delegate = self
         feedCollection.dataSource = self
+        
+        self.navigationItem.title = "Port"
+        
+        // フォント種をTime New Roman、サイズを10に指定
+        self.navigationController?.navigationBar.titleTextAttributes
+            = [NSFontAttributeName: UIFont(name: "Times New Roman", size: 18)!]
+        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController!.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.tintColor = UIColor.blue
+        self.navigationController?.hidesBarsOnSwipe = true
+        
+        
+        
         
         
         
