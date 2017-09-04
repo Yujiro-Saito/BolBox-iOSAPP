@@ -23,6 +23,9 @@ class InfomationViewController: UIViewController {
     @IBOutlet weak var urlLabel: UILabel!
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var beingLikedButton: UIButton!
+    @IBOutlet weak var toLikeButton: UIButton!
+    
     
     
     //データ受け継ぎ用
@@ -34,6 +37,8 @@ class InfomationViewController: UIViewController {
     var userName: String?
     var userID: String!
     var userImageURL: String?
+    var postID: String?
+    let currentUserName = FIRAuth.auth()?.currentUser?.displayName
     
     let items: [(icon: String, color: UIColor)] = [
         ("favone", UIColor(red:0.19, green:0.57, blue:1, alpha:1)),
@@ -47,6 +52,57 @@ class InfomationViewController: UIViewController {
     
     @IBAction func userNameDidTap(_ sender: Any) {
         performSegue(withIdentifier: "userProf", sender: nil)
+    }
+    
+    
+    
+    @IBAction func likeButtonDidTap(_ sender: Any) {
+        //いいねが押された時
+        
+        let currentUserName = FIRAuth.auth()?.currentUser?.displayName
+        
+        self.numLikes += 1
+        let likesCount = ["pvCount": self.numLikes]
+        
+        let userPostData: Dictionary<String,Any> = ["imageURL" : self.imageURL!, self.postID! : currentUserName!, "userID" : self.userID, "postName" : self.name!, "currentUserID" : uids!, "userProfileURL" : self.userImageURL!  ]
+        
+      
+        
+        //いいね数を更新
+        DataService.dataBase.REF_BASE.child("posts/\(self.postID!)").updateChildValues(likesCount)
+        DataService.dataBase.REF_BASE.child("posts/\(self.postID!)/peopleWhoLike/\(currentUserName!)").setValue(userPostData)
+        
+        self.beingLikedButton.isHidden = false
+        self.beingLikedButton.isEnabled = true
+        
+        self.toLikeButton.isHidden = true
+        self.toLikeButton.isEnabled = false
+        
+        
+    }
+    
+    @IBAction func cancelLikingButtonDidTap(_ sender: Any) {
+        //いいねキャンセル
+        
+        let currentUserName = FIRAuth.auth()?.currentUser?.displayName
+        
+        self.numLikes -= 1
+        let likesCount = ["pvCount": self.numLikes]
+        
+        
+        
+        //いいね数を更新
+        //いいねのデータを削除
+        DataService.dataBase.REF_BASE.child("posts/\(self.postID!)").updateChildValues(likesCount)
+        
+        DataService.dataBase.REF_BASE.child("posts/\(self.postID!)/peopleWhoLike/\(currentUserName!)").removeValue()
+        
+        self.beingLikedButton.isHidden = true
+        self.beingLikedButton.isEnabled = false
+        
+        self.toLikeButton.isHidden = false
+        self.toLikeButton.isEnabled = true
+
     }
     
     
@@ -148,11 +204,27 @@ class InfomationViewController: UIViewController {
         
     }
     
+    let uids = FIRAuth.auth()?.currentUser?.uid
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.itemImage.layer.cornerRadius = 8
+        
+        print("ああああああああああ")
+        print(self.postID!)
+        print(self.imageURL!)
+        print(self.currentUserName!)
+        print(self.userID!)
+        print(self.name!)
+        print(uids!)
+        print(self.userImageURL!)
+        
+        
+        
+        
         self.windowView.isHidden = true
+        
+        
+        self.itemImage.layer.cornerRadius = 8
         self.userNameLabel.text = userName
         
         backgroundImage.af_setImage(withURL: URL(string: imageURL!)!)
@@ -348,6 +420,10 @@ class InfomationViewController: UIViewController {
     
     
 }
+
+
+
+
 
 
 

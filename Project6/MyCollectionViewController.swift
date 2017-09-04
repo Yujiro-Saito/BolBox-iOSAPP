@@ -64,8 +64,6 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
            
             performSegue(withIdentifier: "SignUp", sender: nil)
             
-            
-            
         }
         
         
@@ -277,6 +275,8 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             detailVC.userName = detailPosts?.userProfileName
             detailVC.userID = detailPosts?.userID
             detailVC.userImageURL = detailPosts?.userProfileImage
+            detailVC.postID = detailPosts?.postID
+            
             
             
         } else if segue.identifier == "followLists" {
