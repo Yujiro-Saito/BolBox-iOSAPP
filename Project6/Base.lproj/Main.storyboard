@@ -1168,7 +1168,7 @@
                                                 <action selector="userNameDidTap:" destination="5T0-3l-eMX" eventType="touchUpInside" id="oII-pA-c8B"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t65-uq-39r">
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t65-uq-39r">
                                             <rect key="frame" x="281" y="454" width="35" height="35"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" image="like"/>
@@ -1176,8 +1176,8 @@
                                                 <action selector="cancelLikingButtonDidTap:" destination="5T0-3l-eMX" eventType="touchUpInside" id="gFA-NE-uVV"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gM7-9d-KNO">
-                                            <rect key="frame" x="324" y="454" width="35" height="35"/>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gM7-9d-KNO">
+                                            <rect key="frame" x="281" y="454" width="35" height="35"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" image="likes"/>
                                             <connections>
@@ -1190,16 +1190,16 @@
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Cka-7U-LTr" firstAttribute="top" secondItem="Xdm-Kp-Cx9" secondAttribute="top" id="BDS-oA-C1G"/>
+                                        <constraint firstItem="Cka-7U-LTr" firstAttribute="leading" secondItem="Xdm-Kp-Cx9" secondAttribute="leading" id="8eQ-ai-Myb"/>
                                         <constraint firstItem="eVx-ry-kwu" firstAttribute="centerY" secondItem="Xdm-Kp-Cx9" secondAttribute="centerY" id="Gfx-7r-Oo5"/>
                                         <constraint firstItem="Jaj-Vc-mXz" firstAttribute="top" secondItem="Xdm-Kp-Cx9" secondAttribute="top" constant="73" id="IFn-hr-CwL"/>
-                                        <constraint firstAttribute="bottom" secondItem="Cka-7U-LTr" secondAttribute="bottom" id="KWU-p5-SF1"/>
                                         <constraint firstItem="Jaj-Vc-mXz" firstAttribute="centerX" secondItem="Xdm-Kp-Cx9" secondAttribute="centerX" id="Zm4-uH-w8R"/>
-                                        <constraint firstItem="Cka-7U-LTr" firstAttribute="leading" secondItem="Xdm-Kp-Cx9" secondAttribute="leading" id="bxI-FQ-qZG"/>
-                                        <constraint firstAttribute="trailing" secondItem="Cka-7U-LTr" secondAttribute="trailing" id="gLL-zB-ZbH"/>
+                                        <constraint firstItem="Cka-7U-LTr" firstAttribute="top" secondItem="Xdm-Kp-Cx9" secondAttribute="top" id="cma-Zo-7Qf"/>
                                         <constraint firstItem="FjG-pm-baU" firstAttribute="centerX" secondItem="Xdm-Kp-Cx9" secondAttribute="centerX" id="ijC-V1-fz6"/>
+                                        <constraint firstAttribute="trailing" secondItem="Cka-7U-LTr" secondAttribute="trailing" id="l2m-dT-n5U"/>
                                         <constraint firstItem="FjG-pm-baU" firstAttribute="top" secondItem="Jaj-Vc-mXz" secondAttribute="bottom" constant="1" id="mNV-XJ-g9b"/>
                                         <constraint firstItem="eVx-ry-kwu" firstAttribute="centerX" secondItem="Xdm-Kp-Cx9" secondAttribute="centerX" id="qUE-vi-MTF"/>
+                                        <constraint firstAttribute="bottom" secondItem="Cka-7U-LTr" secondAttribute="bottom" id="tqy-lr-DDb"/>
                                     </constraints>
                                 </view>
                                 <blurEffect style="dark"/>
@@ -4717,7 +4717,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jJo-dR-Onz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="ウォール" image="Home" id="qMP-Xu-1HA"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UIl-fw-qgx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UIl-fw-qgx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -4740,7 +4740,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GtW-M7-tyf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="探す" image="Search" id="ubN-eP-8bB"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="oXz-Zf-PXP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oXz-Zf-PXP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -4781,7 +4781,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JCm-ct-zIv" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="1J6-dT-ybG"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zpa-RP-mBW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zpa-RP-mBW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4803,7 +4803,7 @@
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="MAV-C6-E7r">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MAV-C6-E7r">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

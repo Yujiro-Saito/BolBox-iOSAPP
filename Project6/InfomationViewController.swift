@@ -26,6 +26,107 @@ class InfomationViewController: UIViewController {
     @IBOutlet weak var beingLikedButton: UIButton!
     @IBOutlet weak var toLikeButton: UIButton!
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+    
+        
+        
+        
+        
+        let currentName = FIRAuth.auth()?.currentUser?.displayName
+        
+        if userNameLabel.text != currentName! {
+            
+            DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "postID").queryEqual(toValue: self.postID!).observe(.value, with: { (snapshot) in
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    
+                    for snap in snapshot {
+                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            //Check if you liked the current post
+                            
+                            
+                            if postDict["peopleWhoLike"] as? Dictionary<String, Dictionary<String,Any>?> != nil {
+                                
+                                
+                                let likingDictionary = postDict["peopleWhoLike"] as? Dictionary<String, Dictionary<String,Any>?>
+                                
+                                
+                                for (key,value) in likingDictionary! {
+                                    
+                                    print("キーは\(key)、値は\(value)")
+                                    
+                                    //check
+                                    
+                                    if key == currentName {
+                                        //いいね押してるとき
+                                        self.beingLikedButton.isHidden = false
+                                        self.beingLikedButton.isEnabled = true
+                                        
+                                        self.toLikeButton.isHidden = true
+                                        self.toLikeButton.isEnabled = false
+                                        
+                                    } else {
+                                        //いいねしてない時
+                                        self.beingLikedButton.isHidden = true
+                                        self.beingLikedButton.isEnabled = false
+                                        
+                                        self.toLikeButton.isHidden = false
+                                        self.toLikeButton.isEnabled = true
+                                        
+                                    }
+                                    
+                                    
+                                }
+                                
+                                
+                                
+                                
+                            } else if postDict["peopleWhoLike"] as? Dictionary<String, Dictionary<String,Any>?> == nil {
+                                
+                                
+                                //いいねしてない時
+                                self.beingLikedButton.isHidden = true
+                                self.beingLikedButton.isEnabled = false
+                                
+                                self.toLikeButton.isHidden = false
+                                self.toLikeButton.isEnabled = true
+                                
+                                
+                            }
+                            
+                            
+                            
+                        }
+                    }
+                }
+                
+                
+            })
+            
+            
+        } else if self.userNameLabel.text == currentName! {
+            
+            //いいねの処理は行わない
+            print("No Liking feature")
+            
+            
+        }
+        
+        
+        
+        
+       
+        
+        
+        
+        
+        
+        
+    }
+    
     
     
     //データ受け継ぎ用
@@ -38,6 +139,10 @@ class InfomationViewController: UIViewController {
     var userID: String!
     var userImageURL: String?
     var postID: String?
+    
+    
+    
+    //
     let currentUserName = FIRAuth.auth()?.currentUser?.displayName
     
     let items: [(icon: String, color: UIColor)] = [
