@@ -35,9 +35,9 @@ class FeedViewController: UIViewController,UICollectionViewDataSource, UICollect
             = [NSFontAttributeName: UIFont(name: "Times New Roman", size: 18)!]
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.tintColor = UIColor.blue
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.hidesBarsOnSwipe = true
-        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
         
         

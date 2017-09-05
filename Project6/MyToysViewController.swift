@@ -26,8 +26,8 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         toysTable.dataSource = self
         // ナビゲーションを透明にする処理
         self.navigationItem.title = folderName
-        self.navigationController?.navigationBar.titleTextAttributes
-            = [NSFontAttributeName: UIFont(name: "Times New Roman", size: 17)!]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.tintColor = UIColor.white

@@ -41,6 +41,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
         // ナビゲーションを透明にする処理
         //self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.tintColor = UIColor.blue

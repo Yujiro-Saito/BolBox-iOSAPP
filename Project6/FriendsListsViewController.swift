@@ -40,7 +40,7 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
         
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.tintColor = UIColor.blue
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.hidesBarsOnSwipe = true
         
         
