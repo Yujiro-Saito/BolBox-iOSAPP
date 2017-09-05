@@ -32,8 +32,9 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         self.navigationController!.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.hidesBarsOnSwipe = true
+    
         
-
+        
     }
     
     
@@ -85,11 +86,14 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     
+   
     
     
-    
-    
-    
+    /*
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+   */
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
