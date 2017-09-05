@@ -23,6 +23,11 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     var numOfFollowing = [String]()
     var numOfFollowers = [String]()
     
+    //new data
+    var folderNameBox = [String]()
+    var folderName = String()
+    var folderImageURLBox = [String]()
+    
     
     
     //data
@@ -69,7 +74,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
         
         //ユーザーのコレクションの読み込み
-        DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "userID").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
+        DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
             
             self.userPosts = []
             
@@ -80,10 +85,51 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
                     
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
                         
-                        let key = snap.key
-                        let post = Post(postKey: key, postData: postDict)
                         
-                        self.userPosts.append(post)
+                        //self.userPosts.append(post)
+                        
+                        if postDict["folderName"] as? Dictionary<String, AnyObject?> != nil {
+                            
+                            
+                            let folderName = postDict["folderName"] as? Dictionary<String, AnyObject?>
+                            
+                            for (key,value) in folderName! {
+                                
+                                self.folderNameBox.append(key)
+                                
+                                
+                            }
+                            
+                            
+                            
+                            
+                        }
+                        
+                        
+                        
+                        if postDict["folderImageURL"] as? Dictionary<String, AnyObject?> != nil {
+                            
+                            
+                            let url = postDict["folderImageURL"] as? Dictionary<String, AnyObject?>
+                            
+                            for (key,value) in url! {
+                                
+                                self.folderImageURLBox.append(value as! String)
+                                
+                                
+                            }
+                            
+                            
+                            
+                            
+                        }
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                         
                         
                         
@@ -97,6 +143,8 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             
             
             self.userPosts.reverse()
+            self.folderNameBox.reverse()
+            self.folderImageURLBox.reverse()
             self.myCollection.reloadData()
             
             
@@ -117,9 +165,17 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        
+        
+        self.folderNameBox = []
+        self.folderImageURLBox = []
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return userPosts.count
+        return folderNameBox.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -135,15 +191,17 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         //cell?.itemImage.layer.cornerRadius = 1.0
         cell?.itemImage.layer.cornerRadius = 10.0
         //現在のCell
-        let post = userPosts[indexPath.row]
+        //let post = userPosts[indexPath.row]
         
         
-        cell?.itemTitleLabel.text = userPosts[indexPath.row].name
+        cell?.itemTitleLabel.text = folderNameBox[indexPath.row]
         
         //画像の読み込み
-        if self.userPosts[indexPath.row].imageURL != nil {
-            cell?.itemImage.af_setImage(withURL:  URL(string: userPosts[indexPath.row].imageURL)!)
+        
+        if self.folderImageURLBox[indexPath.row] != nil {
+            cell?.itemImage.af_setImage(withURL:  URL(string: self.folderImageURLBox[indexPath.row])!)
         }
+        
         
         
         return cell!
@@ -254,10 +312,14 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     
     //Item Tapped
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        detailPosts = self.userPosts[indexPath.row]
+        //detailPosts = self.userPosts[indexPath.row]
         
         
-        performSegue(withIdentifier: "GoCheck", sender: nil)
+        folderName = self.folderNameBox[indexPath.row]
+        
+        //performSegue(withIdentifier: "GoCheck", sender: nil)
+        
+        performSegue(withIdentifier: "toysToFun", sender: nil)
         
     }
     
@@ -300,6 +362,18 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             followVC.userID = currentUserID!
             
             followVC.isFollowing = true
+        } else if segue.identifier == "toysToFun" {
+            
+            let toysVC = (segue.destination as? MyToysViewController)!
+            
+            toysVC.folderName = folderName
+            
+            
+            
+            
+            
         }
+        
+        
     }
 }

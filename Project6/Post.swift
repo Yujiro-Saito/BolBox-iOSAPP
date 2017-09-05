@@ -32,6 +32,12 @@ class Post {
     private var _userProfileImage: String!
     private var _userProfileName: String!
     
+    //private var _email: String!
+    private var _folderName = Dictionary<String,AnyObject?>()
+    private var _folderImageURL = Dictionary<String,AnyObject?>()
+    
+    
+    
     
     
     
@@ -39,6 +45,15 @@ class Post {
     private var _postRef: FIRDatabaseReference!
     
     
+    var folder : Dictionary<String,AnyObject?> {
+        return _follow
+    }
+    
+    var folderImageURL: Dictionary<String,AnyObject?> {
+        return _folderImageURL
+    }
+
+
     
     var name: String {
         return _name
@@ -122,7 +137,7 @@ class Post {
 
     
     
-    init?(name: String,  category: String, imageURL: String, whatContent: String, goodCount: Int, keepCount: Int, pvCount: Int?,readCount: Int?, detailImageOne: String, detailImageTwo: String, detailImageThree: String, linkURL: String, postID: String, peopleWhoLike: Dictionary<String, AnyObject?>,userID: String,userProfileImage: String,userProfileName: String, follow: Dictionary<String, AnyObject?>
+    init?(name: String,  category: String, imageURL: String, whatContent: String, goodCount: Int, keepCount: Int, pvCount: Int?,readCount: Int?, detailImageOne: String, detailImageTwo: String, detailImageThree: String, linkURL: String, postID: String, peopleWhoLike: Dictionary<String, AnyObject?>,userID: String,userProfileImage: String,userProfileName: String, follow: Dictionary<String, AnyObject?>, folderName: Dictionary<String,AnyObject?>, folderImageURL: Dictionary<String,AnyObject?>
         )
     {
         
@@ -145,6 +160,8 @@ class Post {
         self._userID = userID
         self._userProfileImage = userProfileImage
         self._userProfileName = userProfileName
+        self._folderName = folderName
+        self._folderImageURL = folderImageURL
         
     }
     
@@ -214,9 +231,20 @@ class Post {
             self._follow = follow
         }
         
+        
+        
         if let peopleWhoLike = postData["peopleWhoLike"] as? Dictionary<String, AnyObject?>! {
             self._peopleWhoLike = peopleWhoLike
         }
+        
+        if let folderName = postData["folderName"] as? Dictionary<String, AnyObject?>! {
+            self._folderName = folderName
+        }
+ 
+        if let folderName = postData["folderImageURL"] as? Dictionary<String, AnyObject?>! {
+            self._folderImageURL = folderImageURL
+        }
+        
         
         if let userID = postData["userID"] as? String {
             self._userID = userID
