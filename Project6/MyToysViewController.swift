@@ -18,6 +18,9 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     var folderName = String()
     var userPosts = [Post]()
     
+    var smallURL = String()
+    var smallCaption = String()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,12 +59,15 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
                     
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
                         
-                        print(postDict)
+                        
+                        
+                        
                         let key = snap.key
                         let post = Post(postKey: key, postData: postDict)
                         
                         
                         self.userPosts.append(post)
+
                     }
                     
                     
@@ -85,15 +91,13 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         
     }
     
+
+
+    
+    
+    
     
    
-    
-    
-    /*
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
-    }
-   */
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -107,26 +111,73 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = toysTable.dequeueReusableCell(withIdentifier: "toys", for: indexPath) as? ToysTableViewCell
-        
+        //最初は何も入れない
         cell?.toyItem.image = nil
         cell?.clipsToBounds = true
         cell?.toyCaption.text = ""
         cell?.toyURL.text = ""
         
         
+        
+        
         let post = userPosts[indexPath.row]
         
-        cell?.toyCaption.text = post.name
-        cell?.toyURL.text = post.linkURL
-        
-       
-        if post.imageURL != nil {
+        //画像ありのセル
+        if post.imageURL != "" {
             cell?.toyItem.af_setImage(withURL:  URL(string: post.imageURL)!)
-        }
+            
+            cell?.toyCaption.text = post.name
+            cell?.toyURL.text = post.linkURL
+            
+            return cell!
 
-        return cell!
+            
+            
+        } else {
+            //なしのせる
+            cell?.coverView.isHidden = false
+            cell?.toyItem.isHidden = true
+            cell?.toyCaption.isHidden = true
+            cell?.toyURL.isHidden = true
+            
+            
+            cell?.smallCaption.isHidden = false
+            cell?.smallURL.isHidden = false
+            
+            cell?.smallCaption.text = post.name
+            cell?.smallURL.text = post.linkURL
+            
+            return cell!
+            
+            
+        }
     }
     
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        let post = userPosts[indexPath.row]
+        
+        
+        //画像ありのセル
+        if post.imageURL != "" {
+            return 500
+            
+            
+        } else {
+            //なしのせる
+            return 100
+            
+            
+        }
+        
+        
+        
+        
+        
+        
+    }
   
     
 }
