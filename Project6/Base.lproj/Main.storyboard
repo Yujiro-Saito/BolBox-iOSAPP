@@ -3884,6 +3884,63 @@
             </objects>
             <point key="canvasLocation" x="35996" y="47478.710644677667"/>
         </scene>
+        <!--Create Folder View Controller-->
+        <scene sceneID="QSh-KN-tsP">
+            <objects>
+                <viewController id="z6C-kT-c9P" customClass="CreateFolderViewController" customModule="Project6" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EwP-B1-Uv3"/>
+                        <viewControllerLayoutGuide type="bottom" id="8Yt-kG-LTu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dul-EH-zeE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ayH-Cn-9VG" customClass="SignInUpViewDesign" customModule="Project6" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jDJ-By-c7u">
+                                <rect key="frame" x="16" y="16" width="100" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="キャンセル">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelDidTap:" destination="z6C-kT-c9P" eventType="touchUpInside" id="USa-2A-iMR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I66-Xg-3CN">
+                                <rect key="frame" x="300" y="16" width="46" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="作成">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="createDidTap:" destination="z6C-kT-c9P" eventType="touchUpInside" id="S19-0J-q4O"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="InE-sT-WaB" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                <rect key="frame" x="64" y="120" width="246" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="cancel" destination="jDJ-By-c7u" id="fTI-GT-185"/>
+                        <outlet property="createButton" destination="I66-Xg-3CN" id="a22-0Y-Exi"/>
+                        <outlet property="nameTextField" destination="InE-sT-WaB" id="0G4-RY-fh4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SmU-yF-crs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="35538" y="43220"/>
+        </scene>
         <!--Wall-->
         <scene sceneID="E6S-I9-nP5">
             <objects>
@@ -4086,6 +4143,7 @@
                         <segue destination="X9N-mf-jgh" kind="show" identifier="followLists" id="xDY-lT-Obu"/>
                         <segue destination="X9N-mf-jgh" kind="show" identifier="followingLists" id="dBb-0a-QGb"/>
                         <segue destination="cey-Bi-xcT" kind="show" identifier="toysToFun" id="8xx-Vo-6OS"/>
+                        <segue destination="z6C-kT-c9P" kind="showDetail" identifier="MakeFolder" id="JUT-c5-FET"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="baQ-nN-0sL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5049,12 +5107,12 @@
         <image name="safari" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="iXd-kt-ZPe"/>
-        <segue reference="IlS-KR-O67"/>
+        <segue reference="uPa-V9-bqT"/>
         <segue reference="U2k-eE-RA9"/>
-        <segue reference="wNy-Ls-XBD"/>
+        <segue reference="xqF-qD-EHk"/>
         <segue reference="xDY-lT-Obu"/>
         <segue reference="rbt-zG-eG0"/>
         <segue reference="tEs-cJ-o5z"/>
+        <segue reference="iXd-kt-ZPe"/>
     </inferredMetricsTieBreakers>
 </document>

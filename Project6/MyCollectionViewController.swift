@@ -185,10 +185,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         let folder = UIAlertAction(title: "フォルダの作成", style: UIAlertActionStyle.default, handler: {
             (action: UIAlertAction!) in
             
-            
-            
-            
-            
+            self.performSegue(withIdentifier: "MakeFolder", sender: nil)
             
         })
         
@@ -248,8 +245,11 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         cell?.itemTitleLabel.text = folderNameBox[indexPath.row]
         
         //画像の読み込み
+        if self.folderImageURLBox[indexPath.row] == "" {
+            cell?.itemImage.image = UIImage(named: "")
+        }
         
-        if self.folderImageURLBox[indexPath.row] != nil {
+        else if self.folderImageURLBox[indexPath.row] != "" {
             cell?.itemImage.af_setImage(withURL:  URL(string: self.folderImageURLBox[indexPath.row])!)
         }
         

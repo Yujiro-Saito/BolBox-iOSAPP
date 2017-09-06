@@ -66,6 +66,7 @@
 		B77EC8801F0B1E7F00EDDBD5 /* UIViewDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77EC87F1F0B1E7F00EDDBD5 /* UIViewDesign.swift */; };
 		B77EEC601F28B6E500089A67 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77EEC5F1F28B6E500089A67 /* TabViewController.swift */; };
 		B78053F91EE2C63300F95BDF /* CategorysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78053F81EE2C63300F95BDF /* CategorysTableViewCell.swift */; };
+		B7808BF91F5F8E0100557B30 /* CreateFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7808BF81F5F8E0100557B30 /* CreateFolderViewController.swift */; };
 		B78DE1561F2D72E700E1A3A1 /* ZFRippleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78DE1551F2D72E700E1A3A1 /* ZFRippleButton.swift */; };
 		B795FB4F1F5D74E000B2CF3F /* ToysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B795FB4E1F5D74E000B2CF3F /* ToysTableViewCell.swift */; };
 		B7A0F5111F56B7B10037536F /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A0F5101F56B7B10037536F /* UserCollectionViewCell.swift */; };
@@ -169,6 +170,7 @@
 		B77EC87F1F0B1E7F00EDDBD5 /* UIViewDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewDesign.swift; sourceTree = "<group>"; };
 		B77EEC5F1F28B6E500089A67 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		B78053F81EE2C63300F95BDF /* CategorysTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorysTableViewCell.swift; sourceTree = "<group>"; };
+		B7808BF81F5F8E0100557B30 /* CreateFolderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateFolderViewController.swift; sourceTree = "<group>"; };
 		B78DE1551F2D72E700E1A3A1 /* ZFRippleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFRippleButton.swift; sourceTree = "<group>"; };
 		B795FB4E1F5D74E000B2CF3F /* ToysTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToysTableViewCell.swift; sourceTree = "<group>"; };
 		B7A0F5101F56B7B10037536F /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				B73ECF7C1F5C41070044EAED /* WallTabViewController.swift */,
 				B7A5AB641F5D717C00B583A7 /* MyToysViewController.swift */,
 				B795FB4E1F5D74E000B2CF3F /* ToysTableViewCell.swift */,
+				B7808BF81F5F8E0100557B30 /* CreateFolderViewController.swift */,
 				B74892691EC7E37D003ABE22 /* Docs */,
 			);
 			name = NewProjects;
@@ -587,6 +590,7 @@
 				B71ACDA81EED8620005DCD80 /* SignInUpViewDesign.swift in Sources */,
 				B771C6051F0CA1DB005D4BF2 /* TwoViewController.swift in Sources */,
 				B771C6091F0CA1ED005D4BF2 /* FourViewController.swift in Sources */,
+				B7808BF91F5F8E0100557B30 /* CreateFolderViewController.swift in Sources */,
 				B7FD77551F567D1F0047CE4B /* FollowViewController.swift in Sources */,
 				B71BFDC51F41663C007C44D6 /* ServiceViewController.swift in Sources */,
 				B7482CE21F0F141E00E98EF1 /* ThreeTableViewCell.swift in Sources */,
