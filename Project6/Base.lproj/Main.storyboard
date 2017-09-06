@@ -3884,6 +3884,63 @@
             </objects>
             <point key="canvasLocation" x="35996" y="47478.710644677667"/>
         </scene>
+        <!--Photo Post View Controller-->
+        <scene sceneID="fXQ-TB-dJs">
+            <objects>
+                <viewController id="83U-4Q-2RX" customClass="PhotoPostViewController" customModule="Project6" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="swm-4Q-W1p"/>
+                        <viewControllerLayoutGuide type="bottom" id="sPl-sx-a6v"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3lo-0e-uvr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="21s-fd-bXd">
+                                <rect key="frame" x="0.0" y="84" width="375" height="170"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ntd-Gp-BSf">
+                                <rect key="frame" x="313" y="28" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="投稿">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l4e-cW-Pql" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                <rect key="frame" x="35" y="284" width="290" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQq-1g-74e">
+                                <rect key="frame" x="0.0" y="84" width="375" height="170"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="photoTapped:" destination="83U-4Q-2RX" eventType="touchUpInside" id="2iI-4M-rCN"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nSk-mz-Yvt" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                <rect key="frame" x="35" y="366" width="290" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.27177724240000001" green="0.44216120240000001" blue="0.56505721809999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="caption" destination="l4e-cW-Pql" id="m92-yK-QS1"/>
+                        <outlet property="postPhoto" destination="21s-fd-bXd" id="7T1-St-5a7"/>
+                        <outlet property="url" destination="nSk-mz-Yvt" id="isZ-Pg-qsH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RoK-kK-sEn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="34324" y="43522.488755622195"/>
+        </scene>
         <!--Create Folder View Controller-->
         <scene sceneID="QSh-KN-tsP">
             <objects>
@@ -3935,11 +3992,12 @@
                         <outlet property="cancel" destination="jDJ-By-c7u" id="fTI-GT-185"/>
                         <outlet property="createButton" destination="I66-Xg-3CN" id="a22-0Y-Exi"/>
                         <outlet property="nameTextField" destination="InE-sT-WaB" id="0G4-RY-fh4"/>
+                        <segue destination="83U-4Q-2RX" kind="showDetail" identifier="ToPhoto" id="Xng-u6-lMu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SmU-yF-crs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="35538" y="43220"/>
+            <point key="canvasLocation" x="35425" y="43524"/>
         </scene>
         <!--Wall-->
         <scene sceneID="E6S-I9-nP5">
