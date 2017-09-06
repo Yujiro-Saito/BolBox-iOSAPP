@@ -175,6 +175,56 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     }
     
     
+    @IBAction func actionButtonDidTap(_ sender: Any) {
+        
+        
+        
+        
+        let actionSheet = UIAlertController(title: "アクション", message: "フォルダの作成 写真 リンク", preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        let folder = UIAlertAction(title: "フォルダの作成", style: UIAlertActionStyle.default, handler: {
+            (action: UIAlertAction!) in
+            
+            
+            
+            
+            
+            
+        })
+        
+        let photo = UIAlertAction(title: "写真", style: UIAlertActionStyle.default, handler: {
+            (action: UIAlertAction!) in
+            
+            
+            
+            
+        })
+        
+        let link = UIAlertAction(title: "コピーしたリンク", style: UIAlertActionStyle.default, handler: {
+            (action: UIAlertAction!) in
+            
+            
+        })
+        
+        
+        let cancel = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler: {
+            (action: UIAlertAction!) in
+        })
+        
+        actionSheet.addAction(folder)
+        actionSheet.addAction(photo)
+        actionSheet.addAction(link)
+        actionSheet.addAction(cancel)
+        
+        self.present(actionSheet, animated: true, completion: nil)
+
+        
+        
+        
+    }
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return folderNameBox.count
     }
