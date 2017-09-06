@@ -25,7 +25,34 @@ class PhotoPostViewController: UIViewController, UIImagePickerControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
+        caption.delegate = self
+        url.delegate = self
+        
+        //memo
+        caption.placeholder = "メモを追加"
+        caption.title = "メモ"
+        caption.tintColor = UIColor.clear
+        caption.textColor = UIColor.white
+        caption.lineColor = UIColor.white
+        caption.selectedTitleColor = .white
+        caption.selectedLineColor = .white
+        caption.lineHeight = 1.0
+        caption.selectedLineHeight = 2.0
+        
+        
+        //url
+        url.placeholder = "リンクを追加"
+        url.title = "リンク"
+        url.tintColor = UIColor.clear
+        url.textColor = UIColor.white
+        url.lineColor = UIColor.white
+        url.selectedTitleColor = .white
+        url.selectedLineColor = .white
+        url.lineHeight = 1.0
+        url.selectedLineHeight = 2.0
+        
+        
+        
 
     }
     
