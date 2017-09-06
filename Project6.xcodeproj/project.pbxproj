@@ -80,6 +80,9 @@
 		B7D58C9E1EEE0D9100126406 /* signUpButtonDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D58C9D1EEE0D9100126406 /* signUpButtonDesign.swift */; };
 		B7DA001E1EDCBB8700CE5CC3 /* NewMoreReadCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DA001D1EDCBB8700CE5CC3 /* NewMoreReadCollectionViewCell.swift */; };
 		B7DB51661EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB51651EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift */; };
+		B7DB71541F6011FA00338EFD /* LinkPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB71531F6011FA00338EFD /* LinkPostViewController.swift */; };
+		B7DB71561F601C5B00338EFD /* FolderNameListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB71551F601C5B00338EFD /* FolderNameListsViewController.swift */; };
+		B7DB71581F601DF900338EFD /* FoldetListsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB71571F601DF900338EFD /* FoldetListsTableViewCell.swift */; };
 		B7E0F8721F08B5E900AD2A5B /* FirstCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E0F8711F08B5E900AD2A5B /* FirstCollectionViewCell.swift */; };
 		B7E390271ED59E3C005D8BFC /* ButtonDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E390261ED59E3C005D8BFC /* ButtonDesign.swift */; };
 		B7E3902B1ED5A13E005D8BFC /* ImageDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E3902A1ED5A13E005D8BFC /* ImageDesign.swift */; };
@@ -185,6 +188,9 @@
 		B7D58C9D1EEE0D9100126406 /* signUpButtonDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signUpButtonDesign.swift; sourceTree = "<group>"; };
 		B7DA001D1EDCBB8700CE5CC3 /* NewMoreReadCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMoreReadCollectionViewCell.swift; sourceTree = "<group>"; };
 		B7DB51651EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		B7DB71531F6011FA00338EFD /* LinkPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkPostViewController.swift; sourceTree = "<group>"; };
+		B7DB71551F601C5B00338EFD /* FolderNameListsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderNameListsViewController.swift; sourceTree = "<group>"; };
+		B7DB71571F601DF900338EFD /* FoldetListsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldetListsTableViewCell.swift; sourceTree = "<group>"; };
 		B7E0F8711F08B5E900AD2A5B /* FirstCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstCollectionViewCell.swift; sourceTree = "<group>"; };
 		B7E390261ED59E3C005D8BFC /* ButtonDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonDesign.swift; sourceTree = "<group>"; };
 		B7E3902A1ED5A13E005D8BFC /* ImageDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDesign.swift; sourceTree = "<group>"; };
@@ -279,6 +285,9 @@
 				B795FB4E1F5D74E000B2CF3F /* ToysTableViewCell.swift */,
 				B7808BF81F5F8E0100557B30 /* CreateFolderViewController.swift */,
 				B7D3A9B81F5FD69600A23FAD /* PhotoPostViewController.swift */,
+				B7DB71531F6011FA00338EFD /* LinkPostViewController.swift */,
+				B7DB71551F601C5B00338EFD /* FolderNameListsViewController.swift */,
+				B7DB71571F601DF900338EFD /* FoldetListsTableViewCell.swift */,
 				B74892691EC7E37D003ABE22 /* Docs */,
 			);
 			name = NewProjects;
@@ -575,6 +584,7 @@
 			files = (
 				B7B4CAD81EFAACE20038F176 /* PostDetailPhotosCollectionViewCell.swift in Sources */,
 				B758D1C81F564E0A0033EBC2 /* FeedCollectionViewCell.swift in Sources */,
+				B7DB71541F6011FA00338EFD /* LinkPostViewController.swift in Sources */,
 				B771C60B1F0CA1F7005D4BF2 /* FiveViewController.swift in Sources */,
 				B77CEDED1EE3DB8F005D4215 /* CategoryDisplayTableViewCell.swift in Sources */,
 				B702E72F1EF8A442003C89E4 /* EmailLoginViewController.swift in Sources */,
@@ -597,6 +607,7 @@
 				B7FD77551F567D1F0047CE4B /* FollowViewController.swift in Sources */,
 				B71BFDC51F41663C007C44D6 /* ServiceViewController.swift in Sources */,
 				B7482CE21F0F141E00E98EF1 /* ThreeTableViewCell.swift in Sources */,
+				B7DB71581F601DF900338EFD /* FoldetListsTableViewCell.swift in Sources */,
 				B7DB51661EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift in Sources */,
 				B7EE00BC1F08C76F0015AA3B /* SecondCollectionViewCell.swift in Sources */,
 				B7E9D62D1F2096F4001115F6 /* FeatureViewController.swift in Sources */,
@@ -662,6 +673,7 @@
 				B7733EA01EC6A8E300D5B9BD /* newCollectionViewCell.swift in Sources */,
 				B7C8F4C11F09B20900FBA696 /* FifthCollectionViewCell.swift in Sources */,
 				B73ECF7D1F5C41070044EAED /* WallTabViewController.swift in Sources */,
+				B7DB71561F601C5B00338EFD /* FolderNameListsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

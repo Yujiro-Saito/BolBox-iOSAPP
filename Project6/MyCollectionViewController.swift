@@ -192,14 +192,14 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         let photo = UIAlertAction(title: "写真", style: UIAlertActionStyle.default, handler: {
             (action: UIAlertAction!) in
             
-            
+            self.performSegue(withIdentifier: "Options", sender: nil)
             
             
         })
         
         let link = UIAlertAction(title: "コピーしたリンク", style: UIAlertActionStyle.default, handler: {
             (action: UIAlertAction!) in
-            
+            self.performSegue(withIdentifier: "Options", sender: nil)
             
         })
         
