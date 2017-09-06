@@ -37,14 +37,6 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         self.navigationController?.hidesBarsOnSwipe = true
     
         
-        
-    }
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        
-        
         let uids = FIRAuth.auth()?.currentUser?.uid
         
         DataService.dataBase.REF_BASE.child("users").child(uids!).child("posts").queryOrdered(byChild: "folderName").queryEqual(toValue: folderName).observe(.value, with: { (snapshot) in
@@ -67,7 +59,7 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
                         
                         
                         self.userPosts.append(post)
-
+                        
                     }
                     
                     
@@ -79,20 +71,17 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
             
             self.userPosts.reverse()
             self.toysTable.reloadData()
-
-         
+            
+            
             
         })
         
-        
-        
+
         
         
         
     }
     
-
-
     
     
     
