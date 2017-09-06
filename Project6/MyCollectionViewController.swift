@@ -236,13 +236,18 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         //読み込むまで画像は非表示
         cell?.itemImage.image = nil
         cell?.clipsToBounds = true
+        
+        cell?.itemTitleLabel.text = folderNameBox[indexPath.row]
+        
+        
         //cell?.itemImage.layer.cornerRadius = 1.0
-        cell?.itemImage.layer.cornerRadius = 10.0
+        //cell?.itemImage.layer.cornerRadius = 10.0
         //現在のCell
         //let post = userPosts[indexPath.row]
         
         
-        cell?.itemTitleLabel.text = folderNameBox[indexPath.row]
+        
+        
         
         //画像の読み込み
         if self.folderImageURLBox[indexPath.row] == "" {
@@ -260,14 +265,15 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let screenWidth = UIScreen.main.bounds.width
-        let scaleFactor = (screenWidth / 3) - 4
+        //let scaleFactor = (screenWidth / 3) - 4
+        let scaleFactor = screenWidth - 32
         
-        return CGSize(width: scaleFactor, height: scaleFactor + 45)
+        return CGSize(width: scaleFactor, height: 100)
     }
     
     //縦の間隔を決定する
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 16
     }
     //横の間隔
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
