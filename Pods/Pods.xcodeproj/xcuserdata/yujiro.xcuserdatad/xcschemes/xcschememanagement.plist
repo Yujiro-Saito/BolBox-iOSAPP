@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Eureka.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>GTMOAuth2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -112,6 +117,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>1DFB4FB434D38F16C5EE2C0AED220B7E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>23B2342792BD81EB627696E1DF6C3B37</key>
 		<dict>
 			<key>primary</key>
@@ -122,12 +132,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>51FFDBF39ED03D3797E69160679E8698</key>
+		<key>3816BB0351A92F2AE8DAFBC19D9899B6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5E42BF145EA0D58871A0D5D590AB88D0</key>
+		<key>49EFAE79285BB9756439F930FDA5977C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>502CB5864229FF5C656A219A6622E812</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>599B1BC76C64D16D608880FDC156C178</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>675A114988AE198732ED4AD726408964</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -137,7 +162,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>71690FB5B8F9BF2D05A70BD3A9B84366</key>
+		<key>6FCFFD7ACB59D92EDBECB25130DB0FE3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -157,22 +182,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AD2189274157F40E0B59EE7F060B501B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>B1C4AAFAF49036C7007633DAA3C806AD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B224754D5BD58FAA6D0E16CC38D2EB8F</key>
+		<key>B9CE877CB31C79A91362E9E7D5105728</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B2722D7112B92D091D2604BA93ABF5D5</key>
+		<key>BEE41ECFF9FB02526931B0C34EF8AC6E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -182,22 +202,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C7D5DB619F6D632448C1BA66E9E054B7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>D29ECE69EF439D1FF5B5E9EB40FDFFE0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F81C40C5631AF4ED5BF662FAFD3B20DF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FDE681F35AD89BB23EB08E89B8684E6B</key>
+		<key>FAAD402055C7FFEF192E3C009AC2A1C2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -9,81 +9,46 @@
 import UIKit
 import Firebase
 import AlamofireImage
-import SkyFloatingLabelTextField
+import Eureka
+//import SkyFloatingLabelTextField
 
-class LinkPostViewController: UIViewController,UITextFieldDelegate {
+class LinkPostViewController: FormViewController {
     
     
-    @IBOutlet weak var linkField: SkyFloatingLabelTextField!
-    @IBOutlet weak var memoField: SkyFloatingLabelTextField!
     
-    //データ引き継ぎ用
-    var folderName = String()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        linkField.delegate = self
-        memoField.delegate = self
         
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
+        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController!.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.hidesBarsOnSwipe = true
         
-        //memo
-        memoField.placeholder = "メモを追加"
-        memoField.title = "メモ"
-        memoField.tintColor = UIColor.clear
-        memoField.textColor = UIColor.white
-        memoField.lineColor = UIColor.white
-        memoField.selectedTitleColor = .white
-        memoField.selectedLineColor = .white
-        memoField.lineHeight = 1.0
-        memoField.selectedLineHeight = 2.0
-        
-        
-        //url
-        linkField.placeholder = "リンクを追加"
-        linkField.title = "リンク"
-        linkField.tintColor = UIColor.clear
-        linkField.textColor = UIColor.white
-        linkField.lineColor = UIColor.white
-        linkField.selectedTitleColor = .white
-        linkField.selectedLineColor = .white
-        linkField.lineHeight = 1.0
-        linkField.selectedLineHeight = 2.0
+        //データ引き継ぎ用
+        //var folderName = String()
 
-    }
-
-
-    @IBAction func postButtonDidTap(_ sender: Any) {
-    }
-    
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //tableView.backgroundColor = UIColor.orange
         
-        linkField.resignFirstResponder()
-        memoField.resignFirstResponder()
+        tableView.frame = CGRect(x: 0, y: 64, width: self.view.frame.size.width, height: self.view.frame.size.height-64)
         
-        return true
+        
+        form +++ Section("登録")
+            <<< TextRow(){ row in
+                row.title = "リンク"
+                row.placeholder = "コピーしたリンクを貼り付けてください"
+            }
+            <<< TextRow(){ row in
+                row.title = "メモ"
+                row.placeholder = "メモを記入してください"
+        }
+        
     }
     
     
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        return true
-    }
-    
-    
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        return true
-    }
-    
-    
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        return true
-    }
-    
+
 
 }
