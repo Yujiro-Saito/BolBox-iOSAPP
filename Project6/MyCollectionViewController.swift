@@ -15,6 +15,7 @@ import AlamofireImage
 class MyCollectionViewController: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     
+    @IBOutlet weak var modalView: UIView!
     
     @IBOutlet weak var myCollection: UICollectionView!
     var userPosts = [Post]()
@@ -64,6 +65,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        
         
         //ログアウトした状態の場合Loginページに飛ばす
         if FIRAuth.auth()?.currentUser == nil {
@@ -174,15 +176,61 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         self.folderImageURLBox = []
     }
     
+    @IBOutlet weak var backgroundButton: UIButton!
+    
+    
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
+    @IBAction func closeModal(_ sender: Any) {
+        
+        self.tabBarController?.tabBar.layer.zPosition = 0
+        bottomConstraint.constant = -200
+        
+        
+        UIView.animate(withDuration: 0.1) {
+            self.view.layoutIfNeeded()
+            
+            
+            self.backgroundButton.alpha = 0
+            
+            
+            
+        }
+
+        
+        
+    }
     
     @IBAction func actionButtonDidTap(_ sender: Any) {
         
+        self.tabBarController?.tabBar.layer.zPosition = -1
+        bottomConstraint.constant = 0
         
         
+        UIView.animate(withDuration: 0.15) {
+            self.view.layoutIfNeeded()
+            
+            
+            self.backgroundButton.alpha = 0.5
+            
+            
+            
+        }
+        
+        
+        /*
         
         let actionSheet = UIAlertController(title: "アクション", message: "フォルダの作成 写真 リンク", preferredStyle: UIAlertControllerStyle.actionSheet)
         
-        let folder = UIAlertAction(title: "フォルダの作成", style: UIAlertActionStyle.default, handler: {
+        
+        let subview = actionSheet.view.subviews.first! as UIView
+        let alertContentView = subview.subviews.first! as UIView
+        alertContentView.backgroundColor = UIColor.black
+        
+        
+        
+        
+        let folder = UIAlertAction(title: "新規フォルダの作成", style: UIAlertActionStyle.default, handler: {
             (action: UIAlertAction!) in
             
             self.performSegue(withIdentifier: "MakeFolder", sender: nil)
@@ -215,7 +263,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
         self.present(actionSheet, animated: true, completion: nil)
 
-        
+        */
         
         
     }
@@ -235,7 +283,8 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
         //読み込むまで画像は非表示
         cell?.itemImage.image = nil
-        cell?.clipsToBounds = true
+        cell?.layer.masksToBounds = true
+        cell?.layer.cornerRadius = 5.0
         
         cell?.itemTitleLabel.text = folderNameBox[indexPath.row]
         

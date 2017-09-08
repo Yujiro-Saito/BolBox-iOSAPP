@@ -35,7 +35,7 @@ class PhotoPostViewController: FormViewController, UIImagePickerControllerDelega
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.hidesBarsOnSwipe = true
 
-        
+        tableView.backgroundColor = UIColor.rgb(r: 69, g: 113, b: 144, alpha: 1.0)
         tableView.frame = CGRect(x: 0, y: 135, width: self.view.frame.size.width, height: self.view.frame.size.height)
         
         form +++ Section("登録")
@@ -48,36 +48,7 @@ class PhotoPostViewController: FormViewController, UIImagePickerControllerDelega
                 row.placeholder = "メモを記入してください"
         }
         
-        /*
-        caption.delegate = self
-        url.delegate = self
         
-        //memo
-        caption.placeholder = "メモを追加"
-        caption.title = "メモ"
-        caption.tintColor = UIColor.clear
-        caption.textColor = UIColor.white
-        caption.lineColor = UIColor.white
-        caption.selectedTitleColor = .white
-        caption.selectedLineColor = .white
-        caption.lineHeight = 1.0
-        caption.selectedLineHeight = 2.0
-        
-        
-        //url
-        url.placeholder = "リンクを追加"
-        url.title = "リンク"
-        url.tintColor = UIColor.clear
-        url.textColor = UIColor.white
-        url.lineColor = UIColor.white
-        url.selectedTitleColor = .white
-        url.selectedLineColor = .white
-        url.lineHeight = 1.0
-        url.selectedLineHeight = 2.0
-        
-        
-        */
-
     }
     
     @IBAction func photoTapped(_ sender: Any) {

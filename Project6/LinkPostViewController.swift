@@ -31,9 +31,9 @@ class LinkPostViewController: FormViewController {
         //データ引き継ぎ用
         //var folderName = String()
 
-        //tableView.backgroundColor = UIColor.orange
+        //tableView.backgroundColor = UIColor.rgb(r: 69, g: 113, b: 144, alpha: 1.0)
         
-        tableView.frame = CGRect(x: 0, y: 64, width: self.view.frame.size.width, height: self.view.frame.size.height-64)
+        tableView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         
         
         form +++ Section("登録")
