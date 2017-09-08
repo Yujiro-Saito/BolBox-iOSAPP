@@ -15,7 +15,8 @@ import Eureka
 class LinkPostViewController: FormViewController {
     
     
-    
+    //データ引き継ぎ用
+    var folderName = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +29,7 @@ class LinkPostViewController: FormViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.hidesBarsOnSwipe = true
         
-        //データ引き継ぎ用
-        //var folderName = String()
+        
 
         //tableView.backgroundColor = UIColor.rgb(r: 69, g: 113, b: 144, alpha: 1.0)
         

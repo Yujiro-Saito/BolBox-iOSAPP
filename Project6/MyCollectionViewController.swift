@@ -29,7 +29,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     var folderName = String()
     var folderImageURLBox = [String]()
     
-    
+    var isPhoto = Bool()
     
     //data
     var isFollow = Bool()
@@ -235,6 +235,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             
             
         }
+        self.isPhoto = true
         self.performSegue(withIdentifier: "Options", sender: nil)
     }
     
@@ -252,7 +253,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             
             
         }
-        
+        self.isPhoto = false
         self.performSegue(withIdentifier: "Options", sender: nil)
         
     }
@@ -484,9 +485,12 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             let toysVC = (segue.destination as? MyToysViewController)!
             
             toysVC.folderName = folderName
+          
             
+        } else if segue.identifier == "Options" {
             
-            
+            let optionVC = (segue.destination as? FolderNameListsViewController)!
+            optionVC.data = isPhoto
             
             
         }

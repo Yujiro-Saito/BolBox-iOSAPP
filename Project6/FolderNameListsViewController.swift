@@ -12,9 +12,11 @@ import FirebaseAuth
 
 class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
+    var data = Bool()
     
     @IBOutlet weak var folderTable: UITableView!
     var folderListsBox = [String]()
+    var selectedName = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,13 +86,54 @@ class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITabl
         print(self.folderListsBox[indexPath.row])
         cell?.folderName.text = self.folderListsBox[indexPath.row]
         cell?.layer.masksToBounds = true
-        //cell?.layer.cornerRadius = 5.0
         cell?.cardView.layer.cornerRadius = 5.0
         
         return cell!
         
         
     }
+    
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        selectedName = self.folderListsBox[indexPath.row]
+        if self.data == true {
+            performSegue(withIdentifier: "PhotoPos", sender: nil)
+        } else if self.data == false {
+             performSegue(withIdentifier: "ToLinkPos", sender: nil)
+        }
+        
+        
+    }
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "PhotoPos" {
+            
+            let photoVC = (segue.destination as? PhotoPostViewController)!
+            photoVC.folderName = selectedName
+            
+            
+        } else if segue.identifier == "ToLinkPos" {
+            
+            let linkVC = (segue.destination as? LinkPostViewController)!
+            linkVC.folderName = selectedName
+                    
+            
+        }
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
     
  
 }
