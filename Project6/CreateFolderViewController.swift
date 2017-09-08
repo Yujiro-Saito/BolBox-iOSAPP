@@ -16,7 +16,7 @@ class CreateFolderViewController: UIViewController,UITextFieldDelegate {
     
     
     @IBAction func createDidTap(_ sender: Any) {
-        
+    
         
         
         
@@ -25,32 +25,59 @@ class CreateFolderViewController: UIViewController,UITextFieldDelegate {
         let folder = UIAlertAction(title: "フォルダを作成", style: UIAlertActionStyle.default, handler: {
             (action: UIAlertAction!) in
             
-            //folderNameに投稿
-            let currentUserUID = FIRAuth.auth()?.currentUser?.uid
+            if self.nameTextField.text == "" {
+                let alertViewControler = UIAlertController(title: "フォルダ名", message: "フォルダ名を入力してください", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                
+                alertViewControler.addAction(okAction)
+                self.present(alertViewControler, animated: true, completion: nil)
+            } else if self.nameTextField.text != "" {
+                //folderNameに投稿
+                let currentUserUID = FIRAuth.auth()?.currentUser?.uid
+                let folderName = self.nameTextField.text
+                let folderDictionay = ["imageURL" : "" , "name" : folderName!]
+                
+                let folderInfoDict: Dictionary<String, Dictionary<String, String?>> = [folderName! : folderDictionay]
+                
+                DataService.dataBase.REF_BASE.child("users/\(currentUserUID!)/folderName").updateChildValues(folderInfoDict)
+                
+                self.performSegue(withIdentifier: "GoBAcckingh", sender: nil)
+
+            }
             
-            let folderName = self.nameTextField.text
-            let folderNameDic: Dictionary<String, String> = [folderName! : folderName!]
-            //let folderImageDic: Dictionary<String, String> = ["folderImage" : ""]
             
-            DataService.dataBase.REF_BASE.child("users/\(currentUserUID!)/folderName").updateChildValues(folderNameDic)
-            //DataService.dataBase.REF_BASE.child("users/\(currentUserUID!)/folderImageURL").updateChildValues(folderImageDic)
-            
-            //segue
             
         })
         
         let photo = UIAlertAction(title: "写真を追加する", style: UIAlertActionStyle.default, handler: {
             (action: UIAlertAction!) in
+            if self.nameTextField.text == "" {
+                let alertViewControler = UIAlertController(title: "フォルダ名", message: "フォルダ名を入力してください", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                
+                alertViewControler.addAction(okAction)
+                self.present(alertViewControler, animated: true, completion: nil)
+            } else if self.nameTextField.text != "" {
+                
+                self.performSegue(withIdentifier: "ToPhoto", sender: nil)
+            }
             
-            self.performSegue(withIdentifier: "ToPhoto", sender: nil)
             
             
         })
         
         let link = UIAlertAction(title: "リンクを追加する", style: UIAlertActionStyle.default, handler: {
             (action: UIAlertAction!) in
+            if self.nameTextField.text == "" {
+                let alertViewControler = UIAlertController(title: "フォルダ名", message: "フォルダ名を入力してください", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                
+                alertViewControler.addAction(okAction)
+                self.present(alertViewControler, animated: true, completion: nil)
+            } else if self.nameTextField.text != "" {
+                self.performSegue(withIdentifier: "ToLink", sender: nil)
+            }
             
-            self.performSegue(withIdentifier: "ToLink", sender: nil)
         })
         
         
@@ -83,7 +110,7 @@ class CreateFolderViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var nameTextField: SkyFloatingLabelTextField!
     
-    
+    let selectedFolderName = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,6 +156,14 @@ class CreateFolderViewController: UIViewController,UITextFieldDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ToLink" {
+            let linkVC = (segue.destination as? LinkPostViewController)!
+            linkVC.folderName = self.nameTextField.text!
+        }
+        
     }
     
 

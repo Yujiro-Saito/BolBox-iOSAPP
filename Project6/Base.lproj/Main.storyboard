@@ -3792,14 +3792,14 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="QyF-oB-dJ8">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="485"/>
                                                     <subviews>
-                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4W-6S-Yog">
-                                                            <rect key="frame" x="0.0" y="0.0" width="42" height="0.0"/>
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4W-6S-Yog">
+                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="242.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ik6-AN-WM9">
-                                                            <rect key="frame" x="0.0" y="0.0" width="42" height="0.0"/>
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ik6-AN-WM9">
+                                                            <rect key="frame" x="0.0" y="242.5" width="375" height="242.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -4057,11 +4057,12 @@
                         <outlet property="nameTextField" destination="InE-sT-WaB" id="0G4-RY-fh4"/>
                         <segue destination="MY8-bj-ruY" kind="show" identifier="ToLink" id="CUZ-LF-ECr"/>
                         <segue destination="83U-4Q-2RX" kind="show" identifier="ToPhoto" id="bhd-ev-GXW"/>
+                        <segue destination="azm-vx-HAv" kind="show" identifier="GoBAcckingh" id="qlP-ho-8ki"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SmU-yF-crs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="35407" y="42707"/>
+            <point key="canvasLocation" x="34974" y="42799"/>
         </scene>
         <!--Wall-->
         <scene sceneID="E6S-I9-nP5">
@@ -5236,7 +5237,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jJo-dR-Onz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="ウォール" image="Home" id="qMP-Xu-1HA"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UIl-fw-qgx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UIl-fw-qgx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -5259,7 +5260,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GtW-M7-tyf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="探す" image="Search" id="ubN-eP-8bB"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oXz-Zf-PXP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="oXz-Zf-PXP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -5300,7 +5301,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JCm-ct-zIv" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="1J6-dT-ybG"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zpa-RP-mBW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zpa-RP-mBW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -5322,7 +5323,7 @@
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MAV-C6-E7r">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="MAV-C6-E7r">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -5357,14 +5358,14 @@
         <image name="safari" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6wr-E5-5lp"/>
-        <segue reference="xqF-qD-EHk"/>
+        <segue reference="bhd-ev-GXW"/>
+        <segue reference="qlP-ho-8ki"/>
+        <segue reference="xDY-lT-Obu"/>
         <segue reference="U2k-eE-RA9"/>
+        <segue reference="rbt-zG-eG0"/>
         <segue reference="uPa-V9-bqT"/>
         <segue reference="tEs-cJ-o5z"/>
-        <segue reference="xDY-lT-Obu"/>
-        <segue reference="rbt-zG-eG0"/>
-        <segue reference="vNM-fF-O0h"/>
+        <segue reference="CUZ-LF-ECr"/>
         <segue reference="iXd-kt-ZPe"/>
     </inferredMetricsTieBreakers>
 </document>

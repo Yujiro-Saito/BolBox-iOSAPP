@@ -121,7 +121,6 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
                 
             }
             
-            print("ああああああああああ")
             print(self.folderNameBox)
             print(self.folderImageURLBox)
             
@@ -405,7 +404,6 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
         folderName = self.folderNameBox[indexPath.row]
         
-        //performSegue(withIdentifier: "GoCheck", sender: nil)
         
         performSegue(withIdentifier: "toysToFun", sender: nil)
         
