@@ -89,6 +89,7 @@ class CreateFolderViewController: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         
         nameTextField.delegate = self
+        self.view.bringSubview(toFront: createButton)
         
         //テキスト
         nameTextField.placeholder = "フォルダ名を入力"

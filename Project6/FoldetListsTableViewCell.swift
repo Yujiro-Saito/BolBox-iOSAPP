@@ -13,6 +13,7 @@ class FoldetListsTableViewCell: UITableViewCell {
     
     
     @IBOutlet weak var folderName: UILabel!
+    @IBOutlet weak var cardView: UIView!
     
 
     override func awakeFromNib() {

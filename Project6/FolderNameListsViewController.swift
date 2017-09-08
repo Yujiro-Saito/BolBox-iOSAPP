@@ -83,7 +83,9 @@ class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITabl
         let cell = folderTable.dequeueReusableCell(withIdentifier: "Folders", for: indexPath) as? FoldetListsTableViewCell
         print(self.folderListsBox[indexPath.row])
         cell?.folderName.text = self.folderListsBox[indexPath.row]
-        
+        cell?.layer.masksToBounds = true
+        //cell?.layer.cornerRadius = 5.0
+        cell?.cardView.layer.cornerRadius = 5.0
         
         return cell!
         

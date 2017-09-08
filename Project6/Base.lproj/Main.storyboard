@@ -3955,32 +3955,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="73" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kFh-EH-2nv">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="73" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kFh-EH-2nv">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" red="0.27177724240000001" green="0.44216120240000001" blue="0.56505721809999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Folders" rowHeight="73" id="yDf-Ce-zg3" customClass="FoldetListsTableViewCell" customModule="Project6" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yDf-Ce-zg3" id="EBN-Qe-5Tr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="72.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="73"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rigyt" translatesAutoresizingMaskIntoConstraints="NO" id="nD0-UD-UPm">
-                                                    <rect key="frame" x="329" y="26" width="20" height="20"/>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nu3-P0-6EK">
+                                                    <rect key="frame" x="8" y="0.0" width="359" height="66"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ipc-N5-dOn">
-                                                    <rect key="frame" x="42" y="7" width="279" height="57"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="AppleColorEmoji" family="Apple Color Emoji" pointSize="17"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ipc-N5-dOn">
+                                                            <rect key="frame" x="40" y="8" width="279" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
+                                                            <color key="textColor" red="0.27177724240000001" green="0.44216120240000001" blue="0.56505721809999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rigyt" translatesAutoresizingMaskIntoConstraints="NO" id="nD0-UD-UPm">
+                                                            <rect key="frame" x="327" y="23" width="20" height="20"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.27177724240000001" green="0.44216120240000001" blue="0.56505721809999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
+                                            <outlet property="cardView" destination="Nu3-P0-6EK" id="hAg-fb-G31"/>
                                             <outlet property="folderName" destination="Ipc-N5-dOn" id="iXy-jg-2Bd"/>
                                         </connections>
                                     </tableViewCell>
@@ -3989,10 +3997,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="kFh-EH-2nv" firstAttribute="top" secondItem="FJI-Lu-gSg" secondAttribute="top" id="0wa-yn-P0M"/>
-                            <constraint firstAttribute="trailing" secondItem="kFh-EH-2nv" secondAttribute="trailing" id="A91-3E-JeW"/>
-                            <constraint firstItem="kFh-EH-2nv" firstAttribute="leading" secondItem="FJI-Lu-gSg" secondAttribute="leading" id="CpU-n2-Ebz"/>
-                            <constraint firstItem="WCA-1R-b5i" firstAttribute="top" secondItem="kFh-EH-2nv" secondAttribute="bottom" id="Dd0-iZ-BDt"/>
+                            <constraint firstItem="WCA-1R-b5i" firstAttribute="top" secondItem="kFh-EH-2nv" secondAttribute="bottom" id="ACM-pT-w8s"/>
+                            <constraint firstItem="kFh-EH-2nv" firstAttribute="leading" secondItem="FJI-Lu-gSg" secondAttribute="leading" id="gSj-nu-TuD"/>
+                            <constraint firstAttribute="trailing" secondItem="kFh-EH-2nv" secondAttribute="trailing" id="gvY-g0-DFX"/>
+                            <constraint firstItem="kFh-EH-2nv" firstAttribute="top" secondItem="FJI-Lu-gSg" secondAttribute="top" constant="64" id="iFw-Jh-y0d"/>
                         </constraints>
                     </view>
                     <connections>
@@ -4001,7 +4009,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ElR-Nk-l8n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="34078" y="42994"/>
+            <point key="canvasLocation" x="33708" y="42961"/>
         </scene>
         <!--Create Folder View Controller-->
         <scene sceneID="QSh-KN-tsP">
@@ -4018,28 +4026,20 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ayH-Cn-9VG">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I66-Xg-3CN">
+                                        <rect key="frame" x="167" y="564" width="40" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="AddPlus">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="createDidTap:" destination="z6C-kT-c9P" eventType="touchUpInside" id="S19-0J-q4O"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" red="0.27177724240000001" green="0.44216120240000001" blue="0.56505721809999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jDJ-By-c7u">
-                                <rect key="frame" x="16" y="80" width="100" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="キャンセル">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="cancelDidTap:" destination="z6C-kT-c9P" eventType="touchUpInside" id="USa-2A-iMR"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I66-Xg-3CN">
-                                <rect key="frame" x="320" y="76" width="46" height="54"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="作成">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="createDidTap:" destination="z6C-kT-c9P" eventType="touchUpInside" id="S19-0J-q4O"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="InE-sT-WaB" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
                                 <rect key="frame" x="64" y="120" width="246" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -4051,7 +4051,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="cancel" destination="jDJ-By-c7u" id="fTI-GT-185"/>
                         <outlet property="createButton" destination="I66-Xg-3CN" id="a22-0Y-Exi"/>
                         <outlet property="nameTextField" destination="InE-sT-WaB" id="0G4-RY-fh4"/>
                         <segue destination="MY8-bj-ruY" kind="show" identifier="ToLink" id="CUZ-LF-ECr"/>
@@ -4060,7 +4059,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SmU-yF-crs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="35527" y="42705"/>
+            <point key="canvasLocation" x="35407" y="42707"/>
         </scene>
         <!--Wall-->
         <scene sceneID="E6S-I9-nP5">
