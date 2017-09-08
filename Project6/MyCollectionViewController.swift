@@ -183,7 +183,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     
     @IBAction func closeModal(_ sender: Any) {
         
-        self.tabBarController?.tabBar.layer.zPosition = 0
+        self.tabBarController?.tabBar.isHidden = false
         bottomConstraint.constant = -200
         
         
@@ -201,9 +201,66 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
     }
     
+    
+    
+    @IBAction func newFolder(_ sender: Any) {
+        self.tabBarController?.tabBar.isHidden = false
+        bottomConstraint.constant = -200
+        
+        
+        UIView.animate(withDuration: 0.1) {
+            self.view.layoutIfNeeded()
+            
+            
+            self.backgroundButton.alpha = 0
+            
+            
+            
+        }
+        self.performSegue(withIdentifier: "MakeFolder", sender: nil)
+    }
+    
+    
+    @IBAction func photo(_ sender: Any) {
+        self.tabBarController?.tabBar.isHidden = false
+        bottomConstraint.constant = -200
+        
+        
+        UIView.animate(withDuration: 0.1) {
+            self.view.layoutIfNeeded()
+            
+            
+            self.backgroundButton.alpha = 0
+            
+            
+            
+        }
+        self.performSegue(withIdentifier: "Options", sender: nil)
+    }
+    
+    @IBAction func link(_ sender: Any) {
+        self.tabBarController?.tabBar.isHidden = false
+        bottomConstraint.constant = -200
+        
+        
+        UIView.animate(withDuration: 0.1) {
+            self.view.layoutIfNeeded()
+            
+            
+            self.backgroundButton.alpha = 0
+            
+            
+            
+        }
+        
+        self.performSegue(withIdentifier: "Options", sender: nil)
+        
+    }
+    
     @IBAction func actionButtonDidTap(_ sender: Any) {
         
-        self.tabBarController?.tabBar.layer.zPosition = -1
+        self.tabBarController?.tabBar.isHidden = true
+        
         bottomConstraint.constant = 0
         
         
@@ -218,52 +275,6 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         }
         
         
-        /*
-        
-        let actionSheet = UIAlertController(title: "アクション", message: "フォルダの作成 写真 リンク", preferredStyle: UIAlertControllerStyle.actionSheet)
-        
-        
-        let subview = actionSheet.view.subviews.first! as UIView
-        let alertContentView = subview.subviews.first! as UIView
-        alertContentView.backgroundColor = UIColor.black
-        
-        
-        
-        
-        let folder = UIAlertAction(title: "新規フォルダの作成", style: UIAlertActionStyle.default, handler: {
-            (action: UIAlertAction!) in
-            
-            self.performSegue(withIdentifier: "MakeFolder", sender: nil)
-            
-        })
-        
-        let photo = UIAlertAction(title: "写真", style: UIAlertActionStyle.default, handler: {
-            (action: UIAlertAction!) in
-            
-            self.performSegue(withIdentifier: "Options", sender: nil)
-            
-            
-        })
-        
-        let link = UIAlertAction(title: "コピーしたリンク", style: UIAlertActionStyle.default, handler: {
-            (action: UIAlertAction!) in
-            self.performSegue(withIdentifier: "Options", sender: nil)
-            
-        })
-        
-        
-        let cancel = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler: {
-            (action: UIAlertAction!) in
-        })
-        
-        actionSheet.addAction(folder)
-        actionSheet.addAction(photo)
-        actionSheet.addAction(link)
-        actionSheet.addAction(cancel)
-        
-        self.present(actionSheet, animated: true, completion: nil)
-
-        */
         
         
     }
