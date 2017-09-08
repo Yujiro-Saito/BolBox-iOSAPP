@@ -84,40 +84,22 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 
                 for snap in snapshot {
-                    print("SNAP: \(snap)")
                     
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
                         
                         
-                        //self.userPosts.append(post)
-                        
-                        if postDict["folderName"] as? Dictionary<String, AnyObject?> != nil {
+                        if postDict["folderName"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
                             
                             
-                            let folderName = postDict["folderName"] as? Dictionary<String, AnyObject?>
+                            let folderName = postDict["folderName"] as? Dictionary<String, Dictionary<String, String>>
                             
                             for (key,value) in folderName! {
                                 
-                                self.folderNameBox.append(key)
+                                let valueImageURL = value["imageURL"] as! String
+                                let valueText = value["name"] as! String
+                                self.folderImageURLBox.append(valueImageURL)
+                                self.folderNameBox.append(valueText)
                                 
-                                
-                            }
-                            
-                            
-                            
-                            
-                        }
-                        
-                        
-                        
-                        if postDict["folderImageURL"] as? Dictionary<String, AnyObject?> != nil {
-                            
-                            
-                            let url = postDict["folderImageURL"] as? Dictionary<String, AnyObject?>
-                            
-                            for (key,value) in url! {
-                                
-                                self.folderImageURLBox.append(value as! String)
                                 
                                 
                             }
@@ -126,38 +108,36 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
                             
                             
                         }
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
                         
                     }
+                    
                     
                     
                 }
                 
                 
+                
+                
+                
             }
             
+            print("ああああああああああ")
+            print(self.folderNameBox)
+            print(self.folderImageURLBox)
             
+            self.myCollection.reloadData()
             self.userPosts.reverse()
             self.folderNameBox.reverse()
             self.folderImageURLBox.reverse()
             self.myCollection.reloadData()
             
             
-            
-            
         })
+
 
         
         
-        
+ 
         
         
         
@@ -300,26 +280,16 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
         cell?.itemTitleLabel.text = folderNameBox[indexPath.row]
         
+        let photoURL = FIRAuth.auth()?.currentUser?.photoURL
         
-        //cell?.itemImage.layer.cornerRadius = 1.0
-        //cell?.itemImage.layer.cornerRadius = 10.0
-        //現在のCell
-        //let post = userPosts[indexPath.row]
-        
-        
-        
-        
-        
-        //画像の読み込み
-        if self.folderImageURLBox[indexPath.row] == "" {
-            cell?.itemImage.image = UIImage(named: "")
-        }
-        
-        else if self.folderImageURLBox[indexPath.row] != "" {
+        if folderImageURLBox[indexPath.row] == "" {
+            cell?.itemImage.af_setImage(withURL: photoURL!)
+        } else if folderImageURLBox[indexPath.row] != "" {
             cell?.itemImage.af_setImage(withURL:  URL(string: self.folderImageURLBox[indexPath.row])!)
         }
         
         
+       
         
         return cell!
     }
