@@ -20,7 +20,6 @@ class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITabl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -40,29 +39,57 @@ class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITabl
         let uids = FIRAuth.auth()?.currentUser?.uid
         
         //Folderame読み込み
-        DataService.dataBase.REF_BASE.child("users").child(uids!).child("folderName").observe(.value, with: { (snapshot) in
+        DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
             
             self.folderListsBox = []
             
-            
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                
                 for snap in snapshot {
                     
-                    print(snap.value!)
-                   
-                       let folderName = snap.value! as! String
                     
                     
-                    self.folderListsBox.append(folderName)
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                      
+                        
+                         if postDict["folderName"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
+                            
+                            let folderName = postDict["folderName"] as? Dictionary<String, Dictionary<String, String>>
+                            
+                            for (key,value) in folderName! {
+                                
+                                //let valueImageURL = value["imageURL"] as! String
+                                let valueText = value["name"] as! String
+                                //self.folderImageURLBox.append(valueImageURL)
+                                self.folderListsBox.append(valueText)
+                                
+                                
+                                
+                            }
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                        }
                         
                         
+                        
+                        
+                        
+                        
+                    }
+                    
+                    
                        
                     }
                     
                     
                 }
-            print(self.folderListsBox)
             self.folderListsBox.reverse()
             self.folderTable.reloadData()
            
@@ -80,6 +107,10 @@ class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITabl
         return 1
     }
    
+    
+    
+    
+    
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = folderTable.dequeueReusableCell(withIdentifier: "Folders", for: indexPath) as? FoldetListsTableViewCell
