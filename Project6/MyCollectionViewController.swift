@@ -35,19 +35,22 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     var isFollow = Bool()
 
     override func viewDidLoad() {
+        
+        
         super.viewDidLoad()
         
         myCollection.delegate = self
         myCollection.dataSource = self
         
         // ナビゲーションを透明にする処理
-        //self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.tintColor = UIColor.blue
         self.navigationController?.hidesBarsOnSwipe = true
-            
+        
+        
+        
     }
     
     
@@ -66,6 +69,9 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
+        
+        self.tabBarController?.tabBar.isHidden = false
+        bottomConstraint.constant = -200
         
         //ログアウトした状態の場合Loginページに飛ばす
         if FIRAuth.auth()?.currentUser == nil {
@@ -207,12 +213,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
         UIView.animate(withDuration: 0.1) {
             self.view.layoutIfNeeded()
-            
-            
             self.backgroundButton.alpha = 0
-            
-            
-            
         }
         self.isPhoto = true
         self.performSegue(withIdentifier: "Options", sender: nil)
@@ -226,14 +227,12 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         UIView.animate(withDuration: 0.1) {
             self.view.layoutIfNeeded()
             
-            
             self.backgroundButton.alpha = 0
-            
-            
             
         }
         self.isPhoto = false
         self.performSegue(withIdentifier: "Options", sender: nil)
+        
         
     }
     
