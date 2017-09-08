@@ -19,7 +19,7 @@ class LinkPostViewController: FormViewController {
     var folderName = String()
     let uid = FIRAuth.auth()?.currentUser?.uid
     let userName = FIRAuth.auth()?.currentUser?.displayName
-    
+    var folderInfo = Dictionary<String,String>()
     
     //投稿ボタン
     func postButtonDidTap(){
@@ -44,12 +44,20 @@ class LinkPostViewController: FormViewController {
             
             captionValue = ""
             
-            print(linkValue!)
-            print(captionValue!)
+            
             
             showIndicator()
             
-            let folderInfo: Dictionary<String,String> = ["imageURL" : "", "name" : self.folderName]
+            
+            if self.isImage == false {
+                 self.folderInfo = ["imageURL" : self.imageURL, "name" : self.folderName]
+            } else if self.isImage == true {
+                
+                 self.folderInfo = ["imageURL" : self.imageURL, "name" : self.folderName]
+                
+            }
+            
+            
             let folderNameDictionary: Dictionary<String, Dictionary<String, String?>> = [self.folderName : folderInfo]
             
             
@@ -65,7 +73,7 @@ class LinkPostViewController: FormViewController {
                 "userID" : uid as AnyObject,
                 "userName" : userName as AnyObject,
                 "name" : captionValue! as AnyObject,
-                "imageURL" : "" as AnyObject,
+                "imageURL" : self.imageURL as AnyObject,
                 "postID" : keyvalue as AnyObject
             ]
             
@@ -80,11 +88,9 @@ class LinkPostViewController: FormViewController {
             
             let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(1.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
             DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
-                print( "1分後の世界" )
                 self.performSegue(withIdentifier: "DoneLink", sender: nil)
             })
             
-            //performSegue(withIdentifier: "DoneLink", sender: nil)
             
             
         } else {
@@ -93,7 +99,15 @@ class LinkPostViewController: FormViewController {
             
             showIndicator()
             
-            let folderInfo: Dictionary<String,String> = ["imageURL" : "", "name" : self.folderName]
+            if self.isImage == false {
+                self.folderInfo = ["imageURL" : self.imageURL, "name" : self.folderName]
+            } else if self.isImage == true {
+                
+                self.folderInfo = ["imageURL" : self.imageURL, "name" : self.folderName]
+                
+            }
+            
+            
             let folderNameDictionary: Dictionary<String, Dictionary<String, String?>> = [self.folderName : folderInfo]
             
             let firebasePost = DataService.dataBase.REF_USER.child(uid!).child("posts").childByAutoId()
@@ -108,7 +122,7 @@ class LinkPostViewController: FormViewController {
                 "userID" : uid as AnyObject,
                 "userName" : userName as AnyObject,
                 "name" : captionValue! as AnyObject,
-                "imageURL" : "" as AnyObject,
+                "imageURL" : self.imageURL as AnyObject,
                 "postID" : keyvalue as AnyObject
             ]
             
@@ -124,19 +138,54 @@ class LinkPostViewController: FormViewController {
             
             let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(1.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
             DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
-                print( "1分後の世界" )
                 self.performSegue(withIdentifier: "DoneLink", sender: nil)
             })
             
-            //performSegue(withIdentifier: "DoneLink", sender: nil)
             
         }
         
     
     }
     
+    var isImage = Bool()
+    var imageURL = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        DataService.dataBase.REF_BASE.child("users").child(uid!).child("folderName").queryOrdered(byChild: "name").queryEqual(toValue: folderName).observe(.value, with: { (snapshot) in
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    
+                    print("SNAP: \(snap)")
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        print(postDict)
+                        
+                        let itemURL = postDict["imageURL"] as! String
+                        
+                        if itemURL == "" {
+                            self.isImage = false
+                            self.imageURL = ""
+                            
+                        } else if itemURL != "" {
+                            self.isImage = true
+                            self.imageURL = itemURL
+                            
+                        }
+                        
+                        
+                    }
+                    
+                }
+                
+                
+            }
+            
+            
+        })
         
         let rightSearchBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: #selector(LinkPostViewController.postButtonDidTap))
         self.navigationItem.setRightBarButtonItems([rightSearchBarButtonItem], animated: true)
