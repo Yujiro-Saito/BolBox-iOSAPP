@@ -50,6 +50,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         self.navigationController?.navigationBar.tintColor = UIColor.blue
         self.navigationController?.hidesBarsOnSwipe = true
         
+        
         userCollection.delegate = self
         userCollection.dataSource = self
         

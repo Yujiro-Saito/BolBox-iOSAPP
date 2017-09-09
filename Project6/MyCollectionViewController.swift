@@ -43,11 +43,12 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         myCollection.dataSource = self
         
         // ナビゲーションを透明にする処理
+        self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.tintColor = UIColor.blue
-        self.navigationController?.hidesBarsOnSwipe = true
+        //self.navigationController?.hidesBarsOnSwipe = true
         
         
         
@@ -276,6 +277,9 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         cell?.layer.masksToBounds = true
         cell?.layer.cornerRadius = 5.0
         
+        
+        
+        
         cell?.itemTitleLabel.text = folderNameBox[indexPath.row]
         
         let photoURL = FIRAuth.auth()?.currentUser?.photoURL
@@ -325,6 +329,10 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             headerView.editButton.layer.borderColor = UIColor.white.cgColor // 枠線の色
             headerView.editButton.layer.cornerRadius = 10.0 // 角丸のサイズ
         
+            headerView.userProfileImage.layer.borderWidth = 0.5
+            headerView.userProfileImage.layer.borderColor = UIColor.white.cgColor // 枠線の色
+        
+        
                 
                 //////////////////////
                 let user = FIRAuth.auth()?.currentUser
@@ -340,8 +348,8 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
                 //ユーザーのプロフィール画像
                 if photoURL != nil {
                     
-                    headerView.userProfileImage.af_setImage(withURL: photoURL!)
-                    
+                    //headerView.userProfileImage.af_setImage(withURL: photoURL!)
+                    headerView.userProfileImage.image = UIImage(named: "bgg")
                 }
                 
                 
