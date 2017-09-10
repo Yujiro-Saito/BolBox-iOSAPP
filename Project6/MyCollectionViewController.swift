@@ -272,10 +272,18 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = myCollection.dequeueReusableCell(withReuseIdentifier: "myCollectionCell", for: indexPath) as? MyCollectionViewCell
         
+        
         //読み込むまで画像は非表示
         cell?.itemImage.image = nil
-        cell?.layer.masksToBounds = true
-        cell?.layer.cornerRadius = 5.0
+        cell?.bgView.layer.masksToBounds = true
+        cell?.bgView.layer.cornerRadius = 3.0
+        
+        cell?.bgView.layer.shadowColor = UIColor(red: SHADOW_GRAY, green: SHADOW_GRAY, blue: SHADOW_GRAY, alpha: 0.7).cgColor
+        
+        cell?.bgView.layer.shadowOpacity = 0.9
+        cell?.bgView.layer.shadowRadius = 5.0
+        cell?.bgView.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        
         
         
         
@@ -297,11 +305,12 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let screenWidth = UIScreen.main.bounds.width
+        //let screenWidth = UIScreen.main.bounds.width
         //let scaleFactor = (screenWidth / 3) - 4
-        let scaleFactor = screenWidth - 32
-        
-        return CGSize(width: scaleFactor, height: 100)
+        //let scaleFactor = screenWidth - 32
+        let cellSize:CGFloat = self.view.frame.size.width/2-2
+
+        return CGSize(width: cellSize, height: 90)
     }
     
     //縦の間隔を決定する
@@ -329,7 +338,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             headerView.editButton.layer.borderColor = UIColor.white.cgColor // 枠線の色
             headerView.editButton.layer.cornerRadius = 10.0 // 角丸のサイズ
         
-            headerView.userProfileImage.layer.borderWidth = 0.5
+            headerView.userProfileImage.layer.borderWidth = 1.0
             headerView.userProfileImage.layer.borderColor = UIColor.white.cgColor // 枠線の色
         
         

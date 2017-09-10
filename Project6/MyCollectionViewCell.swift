@@ -12,8 +12,8 @@ class MyCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var itemTitleLabel: UILabel!
-    @IBOutlet weak var cardBgView: CardDesign!
     
+    @IBOutlet weak var bgView: UIView!
     
    
     
