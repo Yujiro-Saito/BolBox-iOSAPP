@@ -13,20 +13,20 @@ import AlamofireImage
 
 
 
-class FeedViewController: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
-    @IBOutlet weak var feedCollection: UICollectionView!
     
     var newPosts = [Post]()
     var detailPosts: Post?
     
+    @IBOutlet weak var tableFeed: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         
-        feedCollection.delegate = self
-        feedCollection.dataSource = self
+        tableFeed.delegate = self
+        tableFeed.dataSource = self
         
         self.navigationItem.title = "Port"
         
@@ -79,7 +79,7 @@ class FeedViewController: UIViewController,UICollectionViewDataSource, UICollect
             
             
             self.newPosts.reverse()
-            self.feedCollection.reloadData()
+            self.tableFeed.reloadData()
             
         })
         
@@ -87,91 +87,136 @@ class FeedViewController: UIViewController,UICollectionViewDataSource, UICollect
         
     }
     
+    let photoURLUser = FIRAuth.auth()?.currentUser?.photoURL
     
-    
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newPosts.count
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = feedCollection.dequeueReusableCell(withReuseIdentifier: "FeedCell", for: indexPath) as? FeedCollectionViewCell
-        
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableFeed.dequeueReusableCell(withIdentifier: "Feeder", for: indexPath) as? FeedTableViewCell
         
         //読み込むまで画像は非表示
-        cell?.itemImage.image = nil
         cell?.clipsToBounds = true
-        cell?.itemImage.layer.cornerRadius = 5.0
-        cell?.itemLabel.layer.cornerRadius = 5.0
-        cell?.blurView.layer.cornerRadius = 5.0
+        cell?.cardDesi.isHidden = true
+        
+        cell?.oneLoveButton.isHidden = true
+        cell?.oneCloseButton.isHidden = true
+        cell?.oneLabel.isHidden = true
+        cell?.twoLabel.isHidden = true
+        cell?.itemImage.image = nil
+        cell?.userImage.image = nil
+        cell?.userName.isHidden = true
+        
+        
+        cell?.linkButton.isHidden = true
+        cell?.linkFirstLabel.isHidden = true
+        cell?.linkSecondLabel.isHidden = true
+        cell?.linkImage.image = nil
+        cell?.linkName.isHidden = true
+        cell?.linkLoveButton.isHidden = true
         
         
         //現在のCell
         let post = newPosts[indexPath.row]
         
-        cell?.itemLabel.text = newPosts[indexPath.row].name
+        //画像ありのセル
+        if post.imageURL != "" {
+            
+            
+            cell?.cardDesi.isHidden = true
+            
+            cell?.linkButton.isHidden = true
+            cell?.linkFirstLabel.isHidden = true
+            cell?.linkSecondLabel.isHidden = true
+            cell?.linkImage.image = nil
+            cell?.linkName.isHidden = true
+            cell?.linkLoveButton.isHidden = true
+            
+            cell?.oneLoveButton.isHidden = false
+            cell?.oneLabel.isHidden = false
+            cell?.twoLabel.isHidden = false
+            cell?.userName.isHidden = false
+            cell?.oneCloseButton.isHidden = false
+            
+            cell?.itemImage.af_setImage(withURL:  URL(string: post.imageURL)!)
+            cell?.userImage.af_setImage(withURL:  URL(string: post.userProfileImage)!)
+            
+            
+            cell?.oneLabel.text = "jjjj"
+            cell?.twoLabel.text = "eeeee"
+            cell?.userName.text = "ccece"
+            
+            return cell!
+            
+            
+            
+        } else if post.imageURL == "" {
+            
+            cell?.cardDesi.isHidden = false
+            
+            cell?.oneLoveButton.isHidden = true
+            cell?.oneLabel.isHidden = true
+            cell?.twoLabel.isHidden = true
+            cell?.itemImage.image = nil
+            cell?.userImage.image = nil
+            cell?.userName.isHidden = true
+            cell?.oneCloseButton.isHidden = true
+            
+            
+            //なしのせる
+            cell?.linkButton.isHidden = false
+            cell?.linkFirstLabel.isHidden = false
+            cell?.linkSecondLabel.isHidden = false
+            cell?.userImage.af_setImage(withURL:  URL(string: post.userProfileImage)!)
+            cell?.linkName.isHidden = false
+            cell?.linkLoveButton.isHidden = false
+            
+            
+            cell?.linkFirstLabel.text = "dekoed"
+            cell?.linkSecondLabel.text = "deedede"
+            cell?.linkName.text = "deedede"
+            
+            return cell!
+            
+        }
         
-        //画像の読み込み
-        if self.newPosts[indexPath.row].imageURL != nil {
-            cell?.itemImage.af_setImage(withURL:  URL(string: newPosts[indexPath.row].imageURL)!)
+       return cell!
+
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        let post = newPosts[indexPath.row]
+        
+        
+        //画像ありのセル
+        if post.imageURL != "" {
+            return 500
+            
+            
+        } else {
+            //なしのせる
+            return 120
+            
+            
         }
         
         
-        return cell!
+        
+        
         
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        
-        let cellSize:CGFloat = self.view.frame.size.width/2-2
-        // 正方形で返すためにwidth,heightを同じにする
-        return CGSize(width: cellSize, height: cellSize + 55.0)
-
-        
-           }
     
-    
-    
-    
-    //縦の間隔を決定する
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-    //横の間隔
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 3
-    }
-    
-    
-    
-    //Item Tapped
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        detailPosts = self.newPosts[indexPath.row]
-        
-        
-        performSegue(withIdentifier: "detailInfo", sender: nil)
-        
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let detailVC = (segue.destination as? InfomationViewController)!
-        
-        
-        detailVC.name = detailPosts?.name
-        detailVC.numLikes = (detailPosts?.pvCount)!
-        detailVC.imageURL = detailPosts?.imageURL
-        detailVC.linkURL = detailPosts?.linkURL
-        detailVC.userName = detailPosts?.userProfileName
-        detailVC.userID = detailPosts?.userID
-        detailVC.userImageURL = detailPosts?.userProfileImage
         
     }
     
