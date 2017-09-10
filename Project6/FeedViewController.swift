@@ -62,6 +62,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         self.navigationController?.hidesBarsOnSwipe = true
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
+        
         DataService.dataBase.REF_USER.observe(.value, with: { (snapshot) in
             
             self.filteredNames = []
@@ -89,13 +90,13 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 
             }
             
-            
+            print(self.filteredNames)
             self.filteredNames.reverse()
             self.filteredImages.reverse()
             
         })
         
-        
+ 
         
     }
     
@@ -106,7 +107,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         searchBar.showsCancelButton = false
         searchBar.placeholder = "ユーザー名を検索"
         searchBar.delegate = self
-        searchBar.returnKeyType = UIReturnKeyType.done
+        searchBar.returnKeyType = UIReturnKeyType.search
         self.navigationItem.titleView = searchBar
         
     }
@@ -265,7 +266,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var resImagess = [String]()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+        /*
         if tableView == self.tableFeed {
             return folderNameBox.count
         } else if tableView == searchTable {
@@ -275,11 +276,14 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 
                 return resNames.count
             }
-            
             return filteredNames.count
             
         }
-        return 0
+        
+        */
+        
+        return folderNameBox.count
+        
     }
     
     
@@ -290,9 +294,9 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableFeed.dequeueReusableCell(withIdentifier: "Feeder", for: indexPath) as? FeedTableViewCell
         
-        let searchCell = searchTable.dequeueReusableCell(withIdentifier: "search", for: indexPath) as? SearchTableViewCell
+        //let searchCell = searchTable.dequeueReusableCell(withIdentifier: "search", for: indexPath) as? SearchTableViewCell
         
-        
+        /*
         if inSearchMode {
             
             searchCell?.textLabel?.text = resNames[indexPath.row]
@@ -303,7 +307,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             searchCell?.textLabel?.text = filteredNames[indexPath.row]
             return searchCell!
         }
-        
+       */
         
         //読み込むまで画像は非表示
         cell?.clipsToBounds = true
@@ -390,7 +394,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         }
         
        
-
+return cell!
         
         
     }
@@ -446,6 +450,18 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
    
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("yoyo")
+        
+        resNames = []
+        resNames = filteredNames.filter({$0 == searchBar.text})
+        print(resNames)
+        
+        
+        //searchTable.reloadData()
+    }
+    
+    /*
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("1")
         if searchBar.text == nil || searchBar.text == "" {
@@ -467,7 +483,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
     
-    
+    */
     
     
     
