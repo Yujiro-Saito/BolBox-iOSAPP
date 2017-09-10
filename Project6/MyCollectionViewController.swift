@@ -275,7 +275,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
         //読み込むまで画像は非表示
         cell?.itemImage.image = nil
-        cell?.bgView.layer.masksToBounds = true
+        //cell?.bgView.layer.masksToBounds = true
         cell?.bgView.layer.cornerRadius = 3.0
         
         cell?.bgView.layer.shadowColor = UIColor(red: SHADOW_GRAY, green: SHADOW_GRAY, blue: SHADOW_GRAY, alpha: 0.7).cgColor
@@ -284,7 +284,8 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         cell?.bgView.layer.shadowRadius = 5.0
         cell?.bgView.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         
-        
+        cell?.bgView.layer.borderWidth = 1.0
+        cell?.bgView.layer.borderColor = UIColor.white.cgColor // 枠線の色
         
         
         
