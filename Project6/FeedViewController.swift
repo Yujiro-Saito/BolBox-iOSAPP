@@ -22,6 +22,19 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     @IBOutlet weak var tableFeed: UITableView!
     @IBOutlet weak var searchTable: UITableView!
     
+    
+    
+    //data
+    
+    var folderNameBox = [String]()
+    var imageURLBox = [String]()
+    var linkURLBox = [String]()
+    var nameBox = [String]()
+    //var postIDBox = [String]()
+    //var userIDBox = [String]()
+    var userNameBox = [String]()
+    var userProfileImageBox = [String]()
+    //var pvCountBox = [Int]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,53 +76,161 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         self.navigationItem.titleView = searchBar
         
     }
+   
+    
+    let selfUID = FIRAuth.auth()?.currentUser?.uid
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
         
-        
-        DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
+        //Followのチェック follower数のチェック
+        DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: selfUID!).observe(.value, with: { (snapshot) in
             
-            self.newPosts = []
+            //self.newPosts = []
+            self.folderNameBox = []
+            self.imageURLBox = []
+            self.linkURLBox = []
+            self.nameBox = []
+            self.userNameBox = []
+            self.userProfileImageBox = []
+            
+            
+            
             
             
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 
                 for snap in snapshot {
+                    print("SNAP: \(snap)")
                     
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
                         
                         
-                        
-                        
-                            let key = snap.key
-                            let post = Post(postKey: key, postData: postDict)
+                        if postDict["following"] as? Dictionary<String, AnyObject?> != nil {
                             
-                            self.newPosts.append(post)
+                            let followingDictionary = postDict["following"] as? Dictionary<String, AnyObject?>
+                            for (followKey,followValue) in followingDictionary! {
+                                
+                                print("キーは\(followKey)、値は\(followValue)")
+                                let followingKey = followKey
+                                
+                                
+                            ///
+
+                                //ユーザーのコレクションの読み込み
+                                DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: followingKey).observe(.value, with: { (snapshot) in
+                                    
+                                    self.newPosts = []
+                                    
+                                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                                        
+                                        for snap in snapshot {
+                                            
+                                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                                                
+                                                
+                                                
+                                                if postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
+                                                    
+                                                    
+                                                    let posts = postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject>>
+                                                    
+                                                    for (key,value) in posts! {
+                                                        
+                                                        let folderName = value["folderName"] as! String
+                                                        
+                                                        let imageURL = value["imageURL"] as! String
+                                                        
+                                                        let linkURL = value["linkURL"] as! String
+                                                        
+                                                        let name = value["name"] as! String
+                                                        
+                                                        //let postID = value["postID"] as! String
+                                                        
+                                                        //let pvCount = value["pvCount"] as! Int
+                                                        
+                                                        //let userID = value["userID"] as! String
+                                                        
+                                                        let userName = value["userName"] as! String
+                                                        
+                                                        let userProfileImage = value["userProfileImage"] as! String
+                                                        
+                                                        
+                                                        self.folderNameBox.append(folderName)
+                                                        self.imageURLBox.append(imageURL)
+                                                        self.linkURLBox.append(linkURL)
+                                                        self.nameBox.append(name)
+                                                        //self.postIDBox.append(postID)
+                                                        //self.pvCountBox.append(pvCount)
+                                                        //self.userIDBox.append(userID)
+                                                        self.userNameBox.append(userName)
+                                                        self.userProfileImageBox.append(userProfileImage)
+                                                        
+                                                        
+                                                    }
+                                                    
+                                                    
+                                                    
+                                                }
+                                                
+                                                
+                                                
+                                                
+                                                
+                                            }
+                                            
+                                            
+                                            
+                                        }
+                                        
+                                        
+                                        
+                                        
+                                        
+                                    }
+                                    
+                                
+                                    self.folderNameBox.reverse()
+                                    self.imageURLBox.reverse()
+                                    self.linkURLBox.reverse()
+                                    self.nameBox.reverse()
+                                    //self.postIDBox.append(postID)
+                                    //self.pvCountBox.append(pvCount)
+                                    //self.userIDBox.append(userID)
+                                    self.userNameBox.reverse()
+                                    self.userProfileImageBox.reverse()
+                                    
+                                    self.tableFeed.reloadData()
+                                    
+                                    
+                                })
+
+                                
+                                
+                            }
                             
-                            
+                        }
                         
                     }
+                    
                 }
-                
-                
             }
             
-            
-            self.newPosts.reverse()
-            self.tableFeed.reloadData()
-            
+            //
         })
         
         
         
-    }
+        
+        
+        
+          }
     
     let photoURLUser = FIRAuth.auth()?.currentUser?.photoURL
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return newPosts.count
+        return folderNameBox.count
     }
     
     
@@ -142,10 +263,9 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         
         //現在のCell
-        let post = newPosts[indexPath.row]
         
         //画像ありのセル
-        if post.imageURL != "" {
+        if self.imageURLBox[indexPath.row] != "" {
             
             
             cell?.cardDesi.isHidden = true
@@ -163,8 +283,8 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             cell?.userName.isHidden = false
             cell?.oneCloseButton.isHidden = false
             
-            cell?.itemImage.af_setImage(withURL:  URL(string: post.imageURL)!)
-            cell?.userImage.af_setImage(withURL:  URL(string: post.userProfileImage)!)
+            cell?.itemImage.af_setImage(withURL:  URL(string: self.imageURLBox[indexPath.row])!)
+            cell?.userImage.af_setImage(withURL:  URL(string: self.userProfileImageBox[indexPath.row])!)
             
             
             cell?.oneLabel.text = "jjjj"
@@ -175,7 +295,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
             
             
-        } else if post.imageURL == "" {
+        } else if self.imageURLBox[indexPath.row] == "" {
             
             cell?.cardDesi.isHidden = false
             
@@ -192,7 +312,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             cell?.linkButton.isHidden = false
             cell?.linkFirstLabel.isHidden = false
             cell?.linkSecondLabel.isHidden = false
-            cell?.userImage.af_setImage(withURL:  URL(string: post.userProfileImage)!)
+            cell?.userImage.af_setImage(withURL:  URL(string: self.userProfileImageBox[indexPath.row])!)
             cell?.linkName.isHidden = false
             cell?.linkLoveButton.isHidden = false
             
@@ -211,11 +331,10 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        let post = newPosts[indexPath.row]
         
         
         //画像ありのセル
-        if post.imageURL != "" {
+        if self.imageURLBox[indexPath.row] != "" {
             return 500
             
             

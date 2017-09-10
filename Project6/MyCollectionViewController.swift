@@ -135,7 +135,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             self.userPosts.reverse()
             self.folderNameBox.reverse()
             self.folderImageURLBox.reverse()
-            self.myCollection.reloadData()
+            //self.myCollection.reloadData()
             
             
         })
