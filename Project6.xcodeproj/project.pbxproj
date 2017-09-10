@@ -39,6 +39,7 @@
 		B73E3B4C1F2D7E89002220D3 /* VisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73E3B4B1F2D7E89002220D3 /* VisualEffect.swift */; };
 		B73ECF7D1F5C41070044EAED /* WallTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73ECF7C1F5C41070044EAED /* WallTabViewController.swift */; };
 		B74236061F53DCBF007D5137 /* InfomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74236051F53DCBF007D5137 /* InfomationViewController.swift */; };
+		B745C79C1F654F6C0050E2FE /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B745C79B1F654F6C0050E2FE /* SearchTableViewCell.swift */; };
 		B7482CE01F0F0C1400E98EF1 /* TwoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7482CDF1F0F0C1400E98EF1 /* TwoTableViewCell.swift */; };
 		B7482CE21F0F141E00E98EF1 /* ThreeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7482CE11F0F141E00E98EF1 /* ThreeTableViewCell.swift */; };
 		B7482CE41F0F1B2A00E98EF1 /* FourTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7482CE31F0F1B2A00E98EF1 /* FourTableViewCell.swift */; };
@@ -147,6 +148,7 @@
 		B73E3B4B1F2D7E89002220D3 /* VisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffect.swift; sourceTree = "<group>"; };
 		B73ECF7C1F5C41070044EAED /* WallTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallTabViewController.swift; sourceTree = "<group>"; };
 		B74236051F53DCBF007D5137 /* InfomationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfomationViewController.swift; sourceTree = "<group>"; };
+		B745C79B1F654F6C0050E2FE /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		B7482CDF1F0F0C1400E98EF1 /* TwoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoTableViewCell.swift; sourceTree = "<group>"; };
 		B7482CE11F0F141E00E98EF1 /* ThreeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeTableViewCell.swift; sourceTree = "<group>"; };
 		B7482CE31F0F1B2A00E98EF1 /* FourTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourTableViewCell.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 				B74236051F53DCBF007D5137 /* InfomationViewController.swift */,
 				B758D1C51F56495A0033EBC2 /* FeedViewController.swift */,
 				B7AF2F4B1F65164700455046 /* FeedTableViewCell.swift */,
+				B745C79B1F654F6C0050E2FE /* SearchTableViewCell.swift */,
 				B7FD77541F567D1F0047CE4B /* FollowViewController.swift */,
 				B7FD77561F567EC00047CE4B /* FollowCollectionViewCell.swift */,
 				B7A0F5121F56B7CE0037536F /* UserViewController.swift */,
@@ -642,6 +645,7 @@
 				B7E712161F2A6A29004E9112 /* PopularViewController.swift in Sources */,
 				B7260C381EDEFAC200FC3913 /* DetailCollectionViewCell.swift in Sources */,
 				B7FD77571F567EC00047CE4B /* FollowCollectionViewCell.swift in Sources */,
+				B745C79C1F654F6C0050E2FE /* SearchTableViewCell.swift in Sources */,
 				B795FB4F1F5D74E000B2CF3F /* ToysTableViewCell.swift in Sources */,
 				B77EC8801F0B1E7F00EDDBD5 /* UIViewDesign.swift in Sources */,
 				B7E390271ED59E3C005D8BFC /* ButtonDesign.swift in Sources */,

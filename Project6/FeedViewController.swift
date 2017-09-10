@@ -13,13 +13,15 @@ import AlamofireImage
 
 
 
-class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate {
     
     
     var newPosts = [Post]()
     var detailPosts: Post?
     
     @IBOutlet weak var tableFeed: UITableView!
+    @IBOutlet weak var searchTable: UITableView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,12 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         tableFeed.delegate = self
         tableFeed.dataSource = self
+        searchTable.delegate = self
+        searchTable.dataSource = self
+        
+        searchTable.isHidden = true
+        
+        createSearchBar()
         
         self.navigationItem.title = "Port"
         
@@ -42,6 +50,17 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         
         
+        
+    }
+    
+    func createSearchBar() {
+        
+        let searchBar = UISearchBar()
+        searchBar.showsCancelButton = false
+        searchBar.placeholder = "ユーザー名を検索"
+        searchBar.delegate = self
+        
+        self.navigationItem.titleView = searchBar
         
     }
     
@@ -216,10 +235,21 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
+        self.searchTable.isHidden = false
+        self.view.bringSubview(toFront: searchTable)
         
     }
     
+    
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        self.view.endEditing(true)
+        searchBar.text = ""
+    }
+   
 
    
 
