@@ -311,7 +311,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         //let scaleFactor = screenWidth - 32
         let cellSize:CGFloat = self.view.frame.size.width/2-2
 
-        return CGSize(width: cellSize, height: 90)
+        return CGSize(width: cellSize, height: 200)
     }
     
     //縦の間隔を決定する
