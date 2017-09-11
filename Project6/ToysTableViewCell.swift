@@ -10,17 +10,16 @@ import UIKit
 
 class ToysTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var toyCaption: UILabel!
     
-    @IBOutlet weak var toyItem: UIImageView!
     
-    @IBOutlet weak var toyURL: UILabel!
     
     @IBOutlet weak var smallCaption: UILabel!
     
     @IBOutlet weak var smallURL: UILabel!
     
     @IBOutlet weak var coverView: UIView!
+    
+    @IBOutlet weak var singleURL: UILabel!
     
     
 

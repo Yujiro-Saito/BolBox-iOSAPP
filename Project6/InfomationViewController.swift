@@ -314,7 +314,6 @@ class InfomationViewController: UIViewController {
         super.viewDidLoad()
         
         
-        print("ああああああああああ")
         print(self.postID!)
         print(self.imageURL!)
         print(self.currentUserName!)

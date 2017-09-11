@@ -11,12 +11,33 @@ import Firebase
 import FirebaseAuth
 import AlamofireImage
 
-class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     
+    
+    @IBOutlet weak var toysCollection: UICollectionView!
+    
+    @IBOutlet weak var segment: UISegmentedControl!
+    
+    @IBAction func pageIndexTapped(_ sender: UISegmentedControl) {
+        
+        if sender.selectedSegmentIndex == 0 {
+            self.toysTable.isHidden = true
+            self.toysCollection.isHidden = false
+            
+        } else if sender.selectedSegmentIndex == 1 {
+            self.toysTable.isHidden = false
+            self.toysCollection.isHidden = true
+            
+        }
+        
+        
+        
+    }
     
     @IBOutlet weak var toysTable: UITableView!
     var folderName = String()
-    var userPosts = [Post]()
+    var linkPosts = [Post]()
+    var photoPosts = [Post]()
     
     var smallURL = String()
     var smallCaption = String()
@@ -24,11 +45,24 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(folderName)
         toysTable.delegate = self
         toysTable.dataSource = self
         // ナビゲーションを透明にする処理
-        self.navigationItem.title = folderName
+        
+        toysCollection.delegate = self
+        toysCollection.dataSource = self
+        
+        self.toysTable.isHidden = true
+        self.toysCollection.isHidden = false
+        
+        
+        segment.setTitle("写真", forSegmentAt: 0)
+        segment.setTitle("リンク", forSegmentAt: 1)
+        segment.backgroundColor = UIColor.clear
+        segment.tintColor = UIColor.white
+        
+        self.title = self.folderName
+       
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -41,24 +75,33 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         DataService.dataBase.REF_BASE.child("users").child(uids!).child("posts").queryOrdered(byChild: "folderName").queryEqual(toValue: folderName).observe(.value, with: { (snapshot) in
             
-            self.userPosts = []
+            self.linkPosts = []
             
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 
                 for snap in snapshot {
                     
-                    print("SNAP: \(snap)")
                     
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        //imageURLがない場合配列に追加
+                        if postDict["imageURL"] as? String == "" {
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            self.linkPosts.append(post)
+                        } else if postDict["imageURL"] as? String != "" {
+                            
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            
+                            self.photoPosts.append(post)
+                            
+                            
+                            
+                        }
                         
                         
                         
-                        
-                        let key = snap.key
-                        let post = Post(postKey: key, postData: postDict)
-                        
-                        
-                        self.userPosts.append(post)
                         
                     }
                     
@@ -69,9 +112,10 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
             }
             
             
-            self.userPosts.reverse()
+            self.linkPosts.reverse()
+            self.photoPosts.reverse()
             self.toysTable.reloadData()
-            
+            self.toysCollection.reloadData()
             
             
         })
@@ -83,8 +127,7 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     
-    
-    
+       
    
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -92,53 +135,53 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userPosts.count
+        
+            return linkPosts.count
+        
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = toysTable.dequeueReusableCell(withIdentifier: "toys", for: indexPath) as? ToysTableViewCell
-        //最初は何も入れない
-        cell?.toyItem.image = nil
-        cell?.clipsToBounds = true
-        cell?.toyCaption.text = ""
-        cell?.toyURL.text = ""
-        
-        
-        
-        
-        let post = userPosts[indexPath.row]
-        
-        //画像ありのセル
-        if post.imageURL != "" {
-            cell?.toyItem.af_setImage(withURL:  URL(string: post.imageURL)!)
+        if tableView == toysTable {
             
-            cell?.toyCaption.text = post.name
-            cell?.toyURL.text = post.linkURL
+            let cell = toysTable.dequeueReusableCell(withIdentifier: "toys", for: indexPath) as? ToysTableViewCell
+            //最初は何も入れない
+            cell?.clipsToBounds = true
             
-            return cell!
+            let post = linkPosts[indexPath.row]
+            
+            if post.name == "" {
+                cell?.singleURL.isHidden = false
+                cell?.coverView.isHidden = false
+                cell?.smallCaption.isHidden = true
+                cell?.smallURL.isHidden = true
+                
+                cell?.smallCaption.text = post.name
+                cell?.smallURL.text = post.linkURL
+                
+                return cell!
+            } else if post.name != "" {
+                cell?.singleURL.isHidden = true
+                cell?.coverView.isHidden = false
+                cell?.smallCaption.isHidden = false
+                cell?.smallURL.isHidden = false
+                
+                cell?.smallCaption.text = post.name
+                cell?.smallURL.text = post.linkURL
+                
+                return cell!
+            }
+            
+            
+            
 
             
             
-        } else {
-            //なしのせる
-            cell?.coverView.isHidden = false
-            cell?.toyItem.isHidden = true
-            cell?.toyCaption.isHidden = true
-            cell?.toyURL.isHidden = true
-            
-            
-            cell?.smallCaption.isHidden = false
-            cell?.smallURL.isHidden = false
-            
-            cell?.smallCaption.text = post.name
-            cell?.smallURL.text = post.linkURL
-            
-            return cell!
-            
-            
         }
+        
+        
+           return UITableViewCell()
         
         
         
@@ -149,27 +192,70 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        let post = userPosts[indexPath.row]
+        let post = linkPosts[indexPath.row]
         
-        
-        //画像ありのセル
-        if post.imageURL != "" {
-            return 500
-            
-            
-        } else {
-            //なしのせる
-            return 100
-            
-            
+        if post.name == "" {
+            return 80
+        } else if post.name != "" {
+            return 120
         }
         
         
         
         
+        return 900
         
         
     }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return photoPosts.count
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = toysCollection.dequeueReusableCell(withReuseIdentifier: "toyman", for: indexPath) as? ToyCollectionViewCell
+        let post = photoPosts[indexPath.row]
+        
+        
+        //読み込むまで画像は非表示
+        cell?.itemImage.image = nil
+        
+        cell?.itemImage.layer.cornerRadius = 10.0
+        
+        
+        
+        let url = URL(string: post.imageURL)
+        
+        cell?.itemImage.af_setImage(withURL: url!)
+        
+        
+        return cell!
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        //let cellSize:CGFloat = self.view.frame.size.width/3
+        
+        //return CGSize(width: cellSize, height: cellSize)
+        
+        let cellSize:CGFloat = self.view.frame.size.width/2-2
+        
+        return CGSize(width: cellSize, height: 200)
+    }
+    
+    //縦の間隔を決定する
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
+    }
+    //横の間隔
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+
   
     
 }

@@ -20,6 +20,7 @@ class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITabl
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)

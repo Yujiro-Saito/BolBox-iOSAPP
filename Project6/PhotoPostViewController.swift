@@ -350,6 +350,9 @@ class PhotoPostViewController: FormViewController, UIImagePickerControllerDelega
                         
                         self.mainBool = true
                         
+                        print("ああああああああああいいいいいいいいいいいいいいいいいいuuuuuuuuu")
+                        print(folderInfo)
+                        
                     }
                 }
                 

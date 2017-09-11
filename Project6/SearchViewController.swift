@@ -13,15 +13,13 @@ import XLPagerTabStrip
 class SearchViewController: ButtonBarPagerTabStripViewController,UINavigationBarDelegate {
     
     
-    @IBOutlet weak var searchNavBar: UINavigationBar!
     
     @IBOutlet weak var categoryLabel: ButtonBarView!
-    
+    var folderString = String()
     
 
     override func viewDidLoad() {
         
-        let viewWidth = self.view.frame.width
         
         //バーの色
         settings.style.buttonBarBackgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
@@ -45,25 +43,24 @@ class SearchViewController: ButtonBarPagerTabStripViewController,UINavigationBar
         
         super.viewDidLoad()
         
-        searchNavBar.delegate = self
-        //バーの高さ
-        self.searchNavBar.frame = CGRect(x: 0,y: 0, width: UIScreen.main.bounds.size.width, height: 60)
+        print("のおおおおおおおお")
+        print(folderString)
         
-        self.view.bringSubview(toFront: searchNavBar)
-
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        
+        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController!.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.hidesBarsOnSwipe = true
+       
     }
 
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         //管理されるViewControllerを返す処理
-        let popularVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popular")
-        let oneVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "one")
-        let twoVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "two")
-        let threeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "three")
-        //let fourVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "four")
-        let fiveVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "five")
-        
-        
-        let childViewControllers:[UIViewController] = [popularVC, oneVC, twoVC, threeVC,fiveVC]
+        let imageVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "images")
+        let linkVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "link")
+        let childViewControllers:[UIViewController] = [imageVC, linkVC]
         return childViewControllers
     }
 

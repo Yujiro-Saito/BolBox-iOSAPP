@@ -467,9 +467,10 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             followVC.isFollowing = true
         } else if segue.identifier == "toysToFun" {
             
-            let toysVC = (segue.destination as? MyToysViewController)!
+            let another = (segue.destination as? MyToysViewController)!
             
-            toysVC.folderName = folderName
+            
+            another.folderName = folderName
           
             
         } else if segue.identifier == "Options" {
