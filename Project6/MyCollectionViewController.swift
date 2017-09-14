@@ -43,11 +43,11 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         myCollection.dataSource = self
         
         // ナビゲーションを透明にする処理
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.tintColor = UIColor.blue
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         //self.navigationController?.hidesBarsOnSwipe = true
         
         
@@ -131,11 +131,12 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             print(self.folderNameBox)
             print(self.folderImageURLBox)
             
-            self.myCollection.reloadData()
+            
             self.userPosts.reverse()
             self.folderNameBox.reverse()
             self.folderImageURLBox.reverse()
-            //self.myCollection.reloadData()
+            
+            self.myCollection.reloadData()
             
             
         })

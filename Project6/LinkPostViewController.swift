@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import AlamofireImage
 import Eureka
-//import SkyFloatingLabelTextField
+
 
 class LinkPostViewController: FormViewController {
     
@@ -20,6 +20,7 @@ class LinkPostViewController: FormViewController {
     let uid = FIRAuth.auth()?.currentUser?.uid
     let userName = FIRAuth.auth()?.currentUser?.displayName
     var folderInfo = Dictionary<String,String>()
+    var linkBool = Bool()
     
     //投稿ボタン
     func postButtonDidTap(){
@@ -31,7 +32,7 @@ class LinkPostViewController: FormViewController {
         var captionValue = captionRow?.value
 
         
-        if linkValue == nil {
+        if linkValue == nil  {
             
             let alertViewControler = UIAlertController(title: "リンク", message: "リンクは必須です", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -40,7 +41,7 @@ class LinkPostViewController: FormViewController {
             self.present(alertViewControler, animated: true, completion: nil)
             
             
-        } else if captionValue == nil {
+        } else if captionValue == nil && linkValue != nil {
             
             captionValue = ""
             
@@ -73,23 +74,34 @@ class LinkPostViewController: FormViewController {
                 "userID" : uid as AnyObject,
                 "userName" : userName as AnyObject,
                 "name" : captionValue! as AnyObject,
-                "imageURL" : self.imageURL as AnyObject,
+                "imageURL" : "" as AnyObject,
                 "postID" : keyvalue as AnyObject
             ]
             
+            linkBool = true
             
-            firebasePost.setValue(post)
-            DataService.dataBase.REF_BASE.child("users/\(uid!)/folderName").updateChildValues(folderNameDictionary)
-            
-            DispatchQueue.main.async {
+            self.wait( {self.linkBool == false} ) {
                 
-                self.indicator.stopAnimating()
+                
+                firebasePost.setValue(post)
+                DataService.dataBase.REF_BASE.child("users/\(self.uid!)/folderName").updateChildValues(folderNameDictionary)
+                self.linkBool = false
+                
+                DispatchQueue.main.async {
+                    
+                    self.indicator.stopAnimating()
+                    self.performSegue(withIdentifier: "DoneLink", sender: nil)
+                }
+                
+                
+                
             }
             
-            let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(1.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-            DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
-                self.performSegue(withIdentifier: "DoneLink", sender: nil)
-            })
+            
+            
+            
+            
+            
             
             
             
@@ -122,24 +134,31 @@ class LinkPostViewController: FormViewController {
                 "userID" : uid as AnyObject,
                 "userName" : userName as AnyObject,
                 "name" : captionValue! as AnyObject,
-                "imageURL" : self.imageURL as AnyObject,
+                "imageURL" : "" as AnyObject,
                 "postID" : keyvalue as AnyObject
             ]
             
             
-            firebasePost.setValue(post)
-            DataService.dataBase.REF_BASE.child("users/\(uid!)/folderName").updateChildValues(folderNameDictionary)
+            linkBool = true
             
-            
-            DispatchQueue.main.async {
+            self.wait( {self.linkBool == false} ) {
                 
-                self.indicator.stopAnimating()
+                
+                firebasePost.setValue(post)
+                DataService.dataBase.REF_BASE.child("users/\(self.uid!)/folderName").updateChildValues(folderNameDictionary)
+                self.linkBool = false
+                
+                DispatchQueue.main.async {
+                    
+                    self.indicator.stopAnimating()
+                    self.performSegue(withIdentifier: "DoneLink", sender: nil)
+                }
+                
+                
+                
             }
             
-            let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(1.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-            DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
-                self.performSegue(withIdentifier: "DoneLink", sender: nil)
-            })
+
             
             
         }
@@ -229,7 +248,7 @@ class LinkPostViewController: FormViewController {
     
     func showIndicator() {
         
-        indicator.activityIndicatorViewStyle = .white
+        indicator.activityIndicatorViewStyle = .whiteLarge
         
         indicator.center = self.view.center
         
@@ -243,6 +262,34 @@ class LinkPostViewController: FormViewController {
         
         indicator.startAnimating()
         
+    }
+    
+    
+    func wait(_ waitContinuation: @escaping (()->Bool), compleation: @escaping (()->Void)) {
+        var wait = waitContinuation()
+        
+        
+        // 0.01秒周期で待機条件をクリアするまで待ちます。
+        let semaphore = DispatchSemaphore(value: 0)
+        DispatchQueue.global().async {
+            while wait {
+                DispatchQueue.main.async {
+                    wait = waitContinuation()
+                    semaphore.signal()
+                }
+                semaphore.wait()
+                Thread.sleep(forTimeInterval: 0.01)
+            }
+            
+            
+            // 待機条件をクリアしたので通過後の処理を行います。
+            DispatchQueue.main.async {
+                compleation()
+                
+                
+                
+            }
+        }
     }
 
 

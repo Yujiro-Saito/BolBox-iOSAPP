@@ -157,8 +157,9 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
                 cell?.smallCaption.isHidden = true
                 cell?.smallURL.isHidden = true
                 
-                cell?.smallCaption.text = post.name
-                cell?.smallURL.text = post.linkURL
+                //cell?.smallCaption.text = post.name
+                //cell?.smallURL.text = post.linkURL
+                cell?.singleURL.text = post.linkURL
                 
                 return cell!
             } else if post.name != "" {

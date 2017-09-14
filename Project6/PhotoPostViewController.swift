@@ -10,13 +10,15 @@ import UIKit
 import Firebase
 import AlamofireImage
 import Eureka
-
-//import SkyFloatingLabelTextField
+import OnOffButton
 
 class PhotoPostViewController: FormViewController, UIImagePickerControllerDelegate ,UINavigationControllerDelegate,UITextFieldDelegate {
 
     @IBOutlet weak var postPhoto: UIImageView!
     var mainImageBox = UIImage()
+    
+    @IBOutlet weak var folName: UILabel!
+
     
     //データ
     var folderName = String()
@@ -31,26 +33,22 @@ class PhotoPostViewController: FormViewController, UIImagePickerControllerDelega
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
+        
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.hidesBarsOnSwipe = true
-
-        tableView.backgroundColor = UIColor.rgb(r: 69, g: 113, b: 144, alpha: 1.0)
-        tableView.frame = CGRect(x: 0, y: 135, width: self.view.frame.size.width, height: self.view.frame.size.height)
         
-        form +++ Section("登録")
-            <<< TextRow("link"){ row in
-                row.title = "リンク"
-                row.placeholder = "コピーしたリンク(任意)"
-            }
-            <<< TextRow("memo"){ row in
-                row.title = "メモ"
-                row.placeholder = "メモ(任意)"
-        }
+       
+        
+        
+
+        
         
         
     }
+    
+
     
     @IBAction func photoTapped(_ sender: Any) {
         
@@ -81,9 +79,15 @@ class PhotoPostViewController: FormViewController, UIImagePickerControllerDelega
         let captionRow: TextRow? = form.rowBy(tag: "memo")
         var captionValue = captionRow?.value
         
-        if linkValue == nil {
+        
+        
+        
+        if linkValue == nil && captionValue != nil {
             
             print("1111111")
+            
+            showIndicator()
+            
             
             linkValue = ""
             
@@ -144,28 +148,41 @@ class PhotoPostViewController: FormViewController, UIImagePickerControllerDelega
             
             
             
-            
-            
+        
             
             
             self.wait( {self.mainBool == false} ) {
-                print(post)
+                
                 firebasePost.setValue(post)
                 DataService.dataBase.REF_BASE.child("users/\(self.uid!)/folderName").updateChildValues(self.folderNameDictionary)
                 
                 self.mainBool = false
-            }
+                
+                
+                DispatchQueue.main.async {
+                    self.indicator.stopAnimating()
+                    self.performSegue(withIdentifier: "wallll", sender: nil)
+                    
+                }
+                
+               
+                
+            
+        
+        
             
             
             
             
-            
-            
-            
-        } else if captionValue == nil {
+        }
+        
+        
+    } else if captionValue == nil && linkValue != nil {
             
             print("22222222222")
             captionValue = ""
+            
+            showIndicator()
             
             let firebasePost = DataService.dataBase.REF_USER.child(uid!).child("posts").childByAutoId()
             let key = firebasePost.key
@@ -227,11 +244,18 @@ class PhotoPostViewController: FormViewController, UIImagePickerControllerDelega
                 firebasePost.setValue(post)
                 DataService.dataBase.REF_BASE.child("users/\(self.uid!)/folderName").updateChildValues(self.folderNameDictionary)
                 self.mainBool = false
+                
+                DispatchQueue.main.async {
+                    
+                    self.indicator.stopAnimating()
+                    self.performSegue(withIdentifier: "wallll", sender: nil)
+                }
             }
 
         } else if linkValue == nil && captionValue == nil {
             
             print("33333333333")
+            showIndicator()
             
             linkValue = ""
             captionValue = ""
@@ -295,13 +319,20 @@ class PhotoPostViewController: FormViewController, UIImagePickerControllerDelega
                 firebasePost.setValue(post)
                 DataService.dataBase.REF_BASE.child("users/\(self.uid!)/folderName").updateChildValues(self.folderNameDictionary)
                 self.mainBool = false
+                
+                DispatchQueue.main.async {
+                    
+                    self.indicator.stopAnimating()
+                    self.performSegue(withIdentifier: "wallll", sender: nil)
+                }
+                
             }
             
             
         } else {
             
             print("444444444444")
-            
+            showIndicator()
             
             let firebasePost = DataService.dataBase.REF_USER.child(uid!).child("posts").childByAutoId()
             let key = firebasePost.key
@@ -350,7 +381,6 @@ class PhotoPostViewController: FormViewController, UIImagePickerControllerDelega
                         
                         self.mainBool = true
                         
-                        print("ああああああああああいいいいいいいいいいいいいいいいいいuuuuuuuuu")
                         print(folderInfo)
                         
                     }
@@ -366,6 +396,12 @@ class PhotoPostViewController: FormViewController, UIImagePickerControllerDelega
                 DataService.dataBase.REF_BASE.child("users/\(self.uid!)/folderName").updateChildValues(self.folderNameDictionary)
                 
                 self.mainBool = false
+                
+                DispatchQueue.main.async {
+                    
+                    self.indicator.stopAnimating()
+                    self.performSegue(withIdentifier: "wallll", sender: nil)
+                }
             }
             
             
@@ -387,6 +423,8 @@ class PhotoPostViewController: FormViewController, UIImagePickerControllerDelega
         
         if postPhoto.image == nil {
             
+            //self.view.backgroundColor = UIColor.rgb(r: 123, g: 34, b: 44, alpha: 1.0)
+            
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
                 
                 let imagePickerController = UIImagePickerController()
@@ -400,11 +438,26 @@ class PhotoPostViewController: FormViewController, UIImagePickerControllerDelega
                 
                 
                 
+                
             }
             
         } else {
             
+            self.folName.text = folderName
             
+            tableView.backgroundColor = UIColor.rgb(r: 69, g: 113, b: 144, alpha: 1.0)
+            tableView.frame = CGRect(x: 0, y: 144, width: self.view.frame.size.width, height: self.view.frame.size.height)
+            
+            form +++ Section("登録")
+                <<< TextRow("link"){ row in
+                    row.title = "リンク"
+                    row.placeholder = "コピーしたリンク(任意)"
+                }
+                <<< TextRow("memo"){ row in
+                    row.title = "メモ"
+                    row.placeholder = "メモ(任意)"
+            }
+
             
             
         }
@@ -443,11 +496,11 @@ class PhotoPostViewController: FormViewController, UIImagePickerControllerDelega
     
     func showIndicator() {
         
-        indicator.activityIndicatorViewStyle = .white
+        indicator.activityIndicatorViewStyle = .whiteLarge
         
         indicator.center = self.view.center
         
-        indicator.color = UIColor.red
+        indicator.color = UIColor.white
         
         indicator.hidesWhenStopped = true
         
@@ -458,6 +511,7 @@ class PhotoPostViewController: FormViewController, UIImagePickerControllerDelega
         indicator.startAnimating()
         
     }
+    
     
     func wait(_ waitContinuation: @escaping (()->Bool), compleation: @escaping (()->Void)) {
         var wait = waitContinuation()
