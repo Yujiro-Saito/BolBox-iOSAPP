@@ -25,6 +25,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     var numOfFollowers = [String]()
     var numOfFollowing = [String]()
     var amountOfFollowers = Int()
+    var styleNumBox = [Int]()
     
     //データ受け継ぎ用
     
@@ -39,6 +40,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(userID)
         
         self.navigationItem.title = "Wall"
         
@@ -71,51 +73,73 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         
     }
     
-    
+    var folderNameBox = [String]()
+    var folderName = String()
+    var folderImageURLBox = [String]()
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
-        //ユーザー投稿を配列に取得
-        
-        DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "userID").queryEqual(toValue: userID).observe(.value, with: { (snapshot) in
-            
-            
+        //ユーザーのコレクションの読み込み
+        DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: userID).observe(.value, with: { (snapshot) in
             
             self.userPosts = []
-            
+            self.folderNameBox = []
+            self.folderImageURLBox = []
             
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 
                 for snap in snapshot {
                     
-                    print("SNAP: \(snap)")
-                    
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
                         
-                        print(postDict)
-                        let key = snap.key
-                        let post = Post(postKey: key, postData: postDict)
                         
+                       
                         
-                        self.userPosts.append(post)
+                        if postDict["folderName"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
+                            
+                            
+                            let folderName = postDict["folderName"] as? Dictionary<String, Dictionary<String, String>>
+                            
+                            for (key,value) in folderName! {
+                                
+                                let valueImageURL = value["imageURL"] as! String
+                                let valueText = value["name"] as! String
+                                self.folderImageURLBox.append(valueImageURL)
+                                self.folderNameBox.append(valueText)
+                                
+                                
+                                
+                            }
+                            
+                            
+                            
+                            
+                        }
+                        
                     }
                     
                     
+                    
                 }
+                
+                
+                
                 
                 
             }
             
             
             self.userPosts.reverse()
+            self.folderNameBox.reverse()
+            self.folderImageURLBox.reverse()
+            
             self.userCollection.reloadData()
-            
-            
+            print(self.folderNameBox)
+            print(self.folderImageURLBox)
             
             
         })
-        
         
         
     }
@@ -125,7 +149,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return userPosts.count
+        return folderNameBox.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -146,15 +170,22 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         
         cell?.clipsToBounds = true
         
+        cell?.bgView.layer.cornerRadius = 3.0
         
-        //現在のCell
-        let post = userPosts[indexPath.row]
+        cell?.bgView.layer.shadowColor = UIColor(red: SHADOW_GRAY, green: SHADOW_GRAY, blue: SHADOW_GRAY, alpha: 0.7).cgColor
         
-        cell?.itemLabel.text = userPosts[indexPath.row].name
+        cell?.bgView.layer.shadowOpacity = 0.9
+        cell?.bgView.layer.shadowRadius = 5.0
+        cell?.bgView.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         
-        if userPosts[indexPath.row].imageURL != nil {
-            cell?.itemImage.af_setImage(withURL: URL(string: userPosts[indexPath.row].imageURL)!)
-        }
+        cell?.bgView.layer.borderWidth = 1.0
+        cell?.bgView.layer.borderColor = UIColor.white.cgColor // 枠線の色
+        
+        
+        
+        cell?.itemLabel.text = folderNameBox[indexPath.row]
+        
+        cell?.itemImage.af_setImage(withURL:  URL(string: self.folderImageURLBox[indexPath.row])!)
         
         
         return cell!
@@ -210,15 +241,17 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let screenWidth = UIScreen.main.bounds.width
-        let scaleFactor = (screenWidth / 3) - 4
+        //let screenWidth = UIScreen.main.bounds.width
+        //let scaleFactor = (screenWidth / 3) - 4
+        //let scaleFactor = screenWidth - 32
+        let cellSize:CGFloat = self.view.frame.size.width/2-2
         
-        return CGSize(width: scaleFactor, height: scaleFactor + 0)
+        return CGSize(width: cellSize, height: 200)
     }
     
     //縦の間隔を決定する
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 16
     }
     //横の間隔
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -429,6 +462,17 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         
         
         
+        
+        
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        folderName = self.folderNameBox[indexPath.row]
+        numInt = self.styleNumBox[indexPath.row]
+        
+        performSegue(withIdentifier: "toysToFun", sender: nil)
         
         
         

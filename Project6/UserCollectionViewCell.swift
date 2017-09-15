@@ -13,13 +13,13 @@ class UserCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var itemLabel: UILabel!
+    @IBOutlet weak var bgView: UIView!
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.layer.cornerRadius = 3.0
-        self.layer.masksToBounds = true
+        
     }
     
     

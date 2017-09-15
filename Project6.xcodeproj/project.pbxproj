@@ -303,6 +303,7 @@
 				B7DB71571F601DF900338EFD /* FoldetListsTableViewCell.swift */,
 				B7DD29F91F6A822000E1CF68 /* DesignViewController.swift */,
 				B7DD29FB1F6A82DE00E1CF68 /* DesignCollectionViewCell.swift */,
+				B70B28BE1F11F29C00825004 /* NotificationViewController.swift */,
 				B74892691EC7E37D003ABE22 /* Docs */,
 			);
 			name = NewProjects;
@@ -406,7 +407,6 @@
 				B7060DF21F021EED003E51C7 /* AccountViewController.swift */,
 				B70B98BD1F0F64750036B79D /* InDetailViewController.swift */,
 				B71BFDC41F41663C007C44D6 /* ServiceViewController.swift */,
-				B70B28BE1F11F29C00825004 /* NotificationViewController.swift */,
 				B7F628EA1F1B7B71003257CE /* UserProfileViewController.swift */,
 				B7FE38651F1BAFF900DE1E7F /* WebViewController.swift */,
 				B7E91B2E1F1C5E6500D8C522 /* EditViewController.swift */,

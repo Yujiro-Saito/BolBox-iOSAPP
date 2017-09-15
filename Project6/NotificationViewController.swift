@@ -15,7 +15,6 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
     
     
     @IBOutlet weak var notificationTable: UITableView!
-    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var guestUserView: UIView!
     @IBOutlet weak var tabItem: UITabBarItem!
     
@@ -34,7 +33,6 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navBar.delegate = self
         notificationTable.delegate = self
         notificationTable.dataSource = self
         
@@ -42,12 +40,7 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         self.tabItem.badgeColor = UIColor.red
         
         
-        //バーの高さ
-        self.navBar.frame = CGRect(x: 0,y: 0, width: UIScreen.main.bounds.size.width, height: 60)
         
-        self.view.bringSubview(toFront: navBar)
-        
-        self.notificationTable.backgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
         
         self.notificationTable.refreshControl = UIRefreshControl()
         self.notificationTable.refreshControl?.addTarget(self, action: #selector(NotificationViewController.refresh), for: .valueChanged)
@@ -73,7 +66,7 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         } else if anonymousUser == false {
             //ログインユーザーの場合
             //ユーザの投稿を取得
-            DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "userID").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
+            DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
                 
                 self.firstUserNameBox = []
                 print(snapshot.value)

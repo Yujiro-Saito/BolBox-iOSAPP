@@ -15,6 +15,36 @@ import AlamofireImage
 
 class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate {
     
+    var userID = String()
+    var imagesURL = String()
+    var userName = String()
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        userName = userNameBox[indexPath.row]
+        userID = userIDBox[indexPath.row]
+        imagesURL = userProfileImageBox[indexPath.row]
+        
+        performSegue(withIdentifier: "UserHome", sender: nil)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "UserHome" {
+            
+            let userVC = (segue.destination as? UserViewController)!
+            
+            userVC.userName = userName
+            userVC.userImageURL = imagesURL
+            userVC.userID = userID
+            print(imagesURL)
+            
+            
+        }
+    }
+    
+    
     
     var newPosts = [Post]()
     var detailPosts: Post?
@@ -33,7 +63,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var linkURLBox = [String]()
     var nameBox = [String]()
     //var postIDBox = [String]()
-    //var userIDBox = [String]()
+    var userIDBox = [String]()
     var userNameBox = [String]()
     var userProfileImageBox = [String]()
     //var pvCountBox = [Int]()
@@ -49,7 +79,6 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         searchTable.isHidden = true
         
-        createSearchBar()
         
         self.navigationItem.title = "Port"
         
@@ -101,16 +130,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
    
-    func createSearchBar() {
-        
-        let searchBar = UISearchBar()
-        searchBar.showsCancelButton = false
-        searchBar.placeholder = "ユーザー名を検索"
-        searchBar.delegate = self
-        searchBar.returnKeyType = UIReturnKeyType.search
-        self.navigationItem.titleView = searchBar
-        
-    }
+    
     
     let selfUID = FIRAuth.auth()?.currentUser?.uid
     
@@ -128,7 +148,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             self.nameBox = []
             self.userNameBox = []
             self.userProfileImageBox = []
-            
+            self.userIDBox = []
             
             
             
@@ -184,7 +204,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                                         
                                                         //let pvCount = value["pvCount"] as! Int
                                                         
-                                                        //let userID = value["userID"] as! String
+                                                        let userID = value["userID"] as! String
                                                         
                                                         let userName = value["userName"] as! String
                                                         
@@ -200,6 +220,9 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                                         //self.userIDBox.append(userID)
                                                         self.userNameBox.append(userName)
                                                         self.userProfileImageBox.append(userProfileImage)
+                                                        self.userIDBox.append(userID)
+                                                        
+                                            
                                                         
                                                         
                                                     }
@@ -229,13 +252,14 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                     self.imageURLBox.reverse()
                                     self.linkURLBox.reverse()
                                     self.nameBox.reverse()
-                                    //self.postIDBox.append(postID)
-                                    //self.pvCountBox.append(pvCount)
-                                    //self.userIDBox.append(userID)
+                                    self.userIDBox.reverse()
                                     self.userNameBox.reverse()
                                     self.userProfileImageBox.reverse()
                                     
                                     self.tableFeed.reloadData()
+                                    
+                                    
+                                    print(self.userProfileImageBox)
                                     
                                     
                                 })
@@ -266,21 +290,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var resImagess = [String]()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        /*
-        if tableView == self.tableFeed {
-            return folderNameBox.count
-        } else if tableView == searchTable {
-            
-            
-            if inSearchMode {
-                
-                return resNames.count
-            }
-            return filteredNames.count
-            
-        }
         
-        */
         
         return folderNameBox.count
         
@@ -294,20 +304,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableFeed.dequeueReusableCell(withIdentifier: "Feeder", for: indexPath) as? FeedTableViewCell
         
-        //let searchCell = searchTable.dequeueReusableCell(withIdentifier: "search", for: indexPath) as? SearchTableViewCell
         
-        /*
-        if inSearchMode {
-            
-            searchCell?.textLabel?.text = resNames[indexPath.row]
-            return searchCell!
-            
-        } else {
-            
-            searchCell?.textLabel?.text = filteredNames[indexPath.row]
-            return searchCell!
-        }
-       */
         
         //読み込むまで画像は非表示
         cell?.clipsToBounds = true
@@ -355,9 +352,9 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             cell?.userImage.af_setImage(withURL:  URL(string: self.userProfileImageBox[indexPath.row])!)
             
             
-            cell?.oneLabel.text = "jjjj"
-            cell?.twoLabel.text = "eeeee"
-            cell?.userName.text = "ccece"
+            //cell?.oneLabel.text = "jjjj"
+            cell?.twoLabel.text = self.nameBox[indexPath.row]
+            cell?.userName.text = self.userNameBox[indexPath.row]
             
             return cell!
             
@@ -385,9 +382,9 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             cell?.linkLoveButton.isHidden = false
             
             
-            cell?.linkFirstLabel.text = "dekoed"
-            cell?.linkSecondLabel.text = "deedede"
-            cell?.linkName.text = "deedede"
+            cell?.linkFirstLabel.text = self.folderNameBox[indexPath.row]
+            cell?.linkSecondLabel.text = self.linkURLBox[indexPath.row]
+            cell?.linkName.text = self.userNameBox[indexPath.row]
             
             return cell!
             
@@ -427,63 +424,7 @@ return cell!
     
     
     
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        
-        self.searchTable.isHidden = false
-        self.view.bringSubview(toFront: searchTable)
-        
-        
-        
-        
-        
-        
-    }
     
-    
-  var inSearchMode = false
-    
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.showsCancelButton = false
-        self.view.endEditing(true)
-        searchBar.text = ""
-    }
-   
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("yoyo")
-        
-        resNames = []
-        resNames = filteredNames.filter({$0 == searchBar.text})
-        print(resNames)
-        
-        
-        //searchTable.reloadData()
-    }
-    
-    /*
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("1")
-        if searchBar.text == nil || searchBar.text == "" {
-            print("2")
-            inSearchMode = false
-            
-            view.endEditing(true)
-            
-            searchTable.reloadData()
-            
-        } else {
-            print("3")
-            inSearchMode = true
-            
-            resNames = filteredNames.filter({$0 == searchBar.text})
-            
-            searchTable.reloadData()
-        }
-    }
-    
-    
-    */
     
     
     

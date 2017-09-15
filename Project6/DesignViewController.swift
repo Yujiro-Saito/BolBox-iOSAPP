@@ -12,8 +12,8 @@ class DesignViewController: UIViewController ,UICollectionViewDelegate,UICollect
 
     @IBOutlet weak var designCollection: UICollectionView!
     
-    let images = ["row2","row1","horirow"]
-    let labels = ["縦2列","縦一列","横1列"]
+    let images = ["row2","row1"]
+    let labels = ["縦2列","縦一列"]
     
     
     var folderName = String()
@@ -83,7 +83,7 @@ class DesignViewController: UIViewController ,UICollectionViewDelegate,UICollect
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 2
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

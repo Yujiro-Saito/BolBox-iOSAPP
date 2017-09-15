@@ -38,6 +38,9 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
         friendsTable.delegate = self
         friendsTable.dataSource = self
         
+        print("おかああああああああああああああ")
+        print(userID)
+        
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.tintColor = UIColor.white
@@ -70,9 +73,11 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
                             if postDict["followers"] as? Dictionary<String, AnyObject?> != nil {
                                 
                                 let followingDictionary = postDict["followers"] as? Dictionary<String, AnyObject?>
+                                
+                                
                                 for (followKey,followValue) in followingDictionary! {
                                     
-                                    print("キーは\(followKey)、値は\(followValue)")
+                                    print("キーは\(followKey)、値は\(String(describing: followValue))")
                                     
                                     //Dataquery
                                     //if followkey == uid { usernameとimageURLを配列に追加
@@ -298,11 +303,19 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        detailName = self.followUserNameBox[indexPath.row]
-        detailImageURL = self.followUserImageURL[indexPath.row]
         detailUID = self.followUID[indexPath.row]
         
-        performSegue(withIdentifier: "ThirdWall", sender: nil)
+        self.userID = detailUID
+        
+        let story: UIStoryboard = self.storyboard!
+        let next = story.instantiateViewController(withIdentifier: "ho")
+        let navi = UINavigationController(rootViewController: next)
+        self.navigationController?.pushViewController(next, animated: true)
+        
+        
+        self.userID = detailUID
+        
+        
 
                
     }
@@ -312,23 +325,7 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
     
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ThirdWall" {
-            
-            followUserNameBox = []
-            followUserImageURL = []
-            
-            
-            let thirdWallVC = (segue.destination as? ThirdWallViewController)!
-            
-            thirdWallVC.userID = detailUID!
-            thirdWallVC.userName = detailName!
-            thirdWallVC.userImageURL = detailImageURL!
-            
-            
-            
-        }
-    }
+    
     
     
     
