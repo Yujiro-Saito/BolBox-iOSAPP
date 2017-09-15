@@ -23,6 +23,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     var amountOfFollowers = Int()
     var numOfFollowing = [String]()
     var numOfFollowers = [String]()
+    var styleNumBox = [Int]()
     
     //new data
     var folderNameBox = [String]()
@@ -87,6 +88,8 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
             
             self.userPosts = []
+            self.folderNameBox = []
+            self.folderImageURLBox = []
             
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 
@@ -94,6 +97,23 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
                     
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
                         
+                        
+                        if postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
+                            
+                            let posty = postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject>>
+                            
+                            for (key,value) in posty! {
+                                
+                                let styleNum = value["bgType"] as! Int
+                                self.styleNumBox.append(styleNum)
+                                
+                                
+                                
+                            }
+                            
+                            
+                            
+                        }
                         
                         if postDict["folderName"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
                             
@@ -128,13 +148,11 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
                 
             }
             
-            print(self.folderNameBox)
-            print(self.folderImageURLBox)
             
             
-            self.userPosts.reverse()
             self.folderNameBox.reverse()
             self.folderImageURLBox.reverse()
+            self.styleNumBox.reverse()
             
             self.myCollection.reloadData()
             
@@ -155,13 +173,6 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        
-        
-        self.folderNameBox = []
-        self.folderImageURLBox = []
-    }
     
     @IBOutlet weak var backgroundButton: UIButton!
     
@@ -276,7 +287,6 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
         //読み込むまで画像は非表示
         cell?.itemImage.image = nil
-        //cell?.bgView.layer.masksToBounds = true
         cell?.bgView.layer.cornerRadius = 3.0
         
         cell?.bgView.layer.shadowColor = UIColor(red: SHADOW_GRAY, green: SHADOW_GRAY, blue: SHADOW_GRAY, alpha: 0.7).cgColor
@@ -414,14 +424,14 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         return headerView
     }
     
-    
+    var numInt = Int()
     //Item Tapped
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //detailPosts = self.userPosts[indexPath.row]
         
         
         folderName = self.folderNameBox[indexPath.row]
-        
+        numInt = self.styleNumBox[indexPath.row]
         
         performSegue(withIdentifier: "toysToFun", sender: nil)
         
@@ -430,7 +440,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "GoCheck" {
-            
+          /*
             let detailVC = (segue.destination as? InfomationViewController)!
             
             
@@ -443,7 +453,8 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             detailVC.userImageURL = detailPosts?.userProfileImage
             detailVC.postID = detailPosts?.postID
             
-            
+        
+            */
             
         } else if segue.identifier == "followLists" {
             
@@ -472,6 +483,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             
             
             another.folderName = folderName
+            another.postsType = numInt
           
             
         } else if segue.identifier == "Options" {

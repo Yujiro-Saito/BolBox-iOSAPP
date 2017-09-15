@@ -20,6 +20,7 @@ class Post {
     private var _goodCount: Int!
     private var _keepCount: Int!
     private var _pvCount: Int?
+    private var _style: Int?
     private var _readCount: Int?
     private var _detailImageOne: String!
     private var _detailImageTwo: String!
@@ -41,6 +42,7 @@ class Post {
     
     
     
+    
     private var _postKey: String!
     private var _postRef: FIRDatabaseReference!
     
@@ -53,7 +55,9 @@ class Post {
         return _folderImageURL
     }
 
-
+    var style: Int {
+        return _style!
+    }
     
     var name: String {
         return _name
@@ -137,7 +141,7 @@ class Post {
 
     
     
-    init?(name: String,  category: String, imageURL: String, whatContent: String, goodCount: Int, keepCount: Int, pvCount: Int?,readCount: Int?, detailImageOne: String, detailImageTwo: String, detailImageThree: String, linkURL: String, postID: String, peopleWhoLike: Dictionary<String, AnyObject?>,userID: String,userProfileImage: String,userProfileName: String, follow: Dictionary<String, AnyObject?>, folderName: Dictionary<String,AnyObject?>, folderImageURL: Dictionary<String,AnyObject?>
+    init?(name: String,  category: String, imageURL: String, whatContent: String, goodCount: Int, keepCount: Int, pvCount: Int?,readCount: Int?, detailImageOne: String, detailImageTwo: String, detailImageThree: String, linkURL: String, postID: String, peopleWhoLike: Dictionary<String, AnyObject?>,userID: String,userProfileImage: String,userProfileName: String, follow: Dictionary<String, AnyObject?>, folderName: Dictionary<String,AnyObject?>, folderImageURL: Dictionary<String,AnyObject?>,style: Int
         )
     {
         
@@ -162,6 +166,7 @@ class Post {
         self._userProfileName = userProfileName
         self._folderName = folderName
         self._folderImageURL = folderImageURL
+        self._style = style
         
     }
     
@@ -194,6 +199,10 @@ class Post {
         
         if let keepCount = postData["keepCount"] as? Int {
             self._keepCount = keepCount
+        }
+        
+        if let style = postData["bgType"] as? Int {
+            self._style = style
         }
         
         if let pvCount = postData["pvCount"] as? Int? {

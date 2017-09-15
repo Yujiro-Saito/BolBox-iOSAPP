@@ -1815,6 +1815,35 @@
                                     <action selector="pageIndexTapped:" destination="cey-Bi-xcT" eventType="valueChanged" id="AxS-Hp-Bgq"/>
                                 </connections>
                             </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="571" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="T1N-5D-y0N">
+                                <rect key="frame" x="0.0" y="96" width="375" height="534"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Russia" rowHeight="250" id="KV5-jR-j0v" customClass="ToysPhotoTableViewCell" customModule="Project6" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="250"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KV5-jR-j0v" id="JVJ-uj-FOc">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="249.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mag1" translatesAutoresizingMaskIntoConstraints="NO" id="WUr-W7-eSk">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="229.5"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="WUr-W7-eSk" secondAttribute="trailing" id="B1r-AJ-n2H"/>
+                                                <constraint firstItem="WUr-W7-eSk" firstAttribute="leading" secondItem="JVJ-uj-FOc" secondAttribute="leading" id="RiN-bA-gnO"/>
+                                                <constraint firstAttribute="bottom" secondItem="WUr-W7-eSk" secondAttribute="bottom" constant="20" id="urK-gI-DlO"/>
+                                                <constraint firstItem="WUr-W7-eSk" firstAttribute="top" secondItem="JVJ-uj-FOc" secondAttribute="top" id="y95-Xc-e1E"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="itemImage" destination="WUr-W7-eSk" id="X7j-Tm-CRZ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="500" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mcc-t6-E6Y">
                                 <rect key="frame" x="0.0" y="96" width="375" height="522"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1926,6 +1955,8 @@
                             <constraint firstItem="wBU-Ze-6Vp" firstAttribute="centerX" secondItem="T0S-Jx-LJg" secondAttribute="centerX" id="N67-T4-0G2"/>
                             <constraint firstAttribute="bottom" secondItem="cW4-j6-XKg" secondAttribute="bottom" id="OVc-8N-pmv"/>
                             <constraint firstItem="wBU-Ze-6Vp" firstAttribute="top" secondItem="T0S-Jx-LJg" secondAttribute="top" constant="64" id="SUU-GC-ynz"/>
+                            <constraint firstAttribute="bottom" secondItem="T1N-5D-y0N" secondAttribute="bottom" constant="37" id="Tgk-Ca-3Ys"/>
+                            <constraint firstItem="T1N-5D-y0N" firstAttribute="leading" secondItem="T0S-Jx-LJg" secondAttribute="leading" id="UvM-9E-dz6"/>
                             <constraint firstAttribute="trailing" secondItem="Ods-Lc-vHq" secondAttribute="trailing" id="cbd-HZ-Gps"/>
                             <constraint firstAttribute="trailing" secondItem="cW4-j6-XKg" secondAttribute="trailing" id="d2S-n1-f6b"/>
                             <constraint firstItem="mcc-t6-E6Y" firstAttribute="leading" secondItem="T0S-Jx-LJg" secondAttribute="leading" id="k24-sx-h8G"/>
@@ -1933,10 +1964,13 @@
                             <constraint firstAttribute="trailing" secondItem="mcc-t6-E6Y" secondAttribute="trailing" id="kqw-kg-t7b"/>
                             <constraint firstItem="cW4-j6-XKg" firstAttribute="top" secondItem="wBU-Ze-6Vp" secondAttribute="bottom" constant="4" id="kuD-GG-d54"/>
                             <constraint firstItem="Ods-Lc-vHq" firstAttribute="top" secondItem="T0S-Jx-LJg" secondAttribute="top" id="mYO-hs-kk6"/>
+                            <constraint firstItem="T1N-5D-y0N" firstAttribute="top" secondItem="wBU-Ze-6Vp" secondAttribute="bottom" constant="4" id="qqE-OK-L0S"/>
                             <constraint firstItem="mcc-t6-E6Y" firstAttribute="top" secondItem="wBU-Ze-6Vp" secondAttribute="bottom" constant="4" id="rtF-77-6xw"/>
+                            <constraint firstAttribute="trailing" secondItem="T1N-5D-y0N" secondAttribute="trailing" id="tca-PG-hTF"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="photoTable" destination="T1N-5D-y0N" id="tkv-kE-x40"/>
                         <outlet property="segment" destination="wBU-Ze-6Vp" id="ZaO-Vq-OE5"/>
                         <outlet property="toysCollection" destination="cW4-j6-XKg" id="mm8-t5-es6"/>
                         <outlet property="toysTable" destination="mcc-t6-E6Y" id="bQZ-9V-okt"/>
@@ -1944,7 +1978,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EcD-jM-Rrg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="38049" y="46217"/>
+            <point key="canvasLocation" x="38121" y="46292"/>
         </scene>
         <!--Photo Post View Controller-->
         <scene sceneID="fXQ-TB-dJs">

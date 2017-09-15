@@ -13,6 +13,7 @@ import AlamofireImage
 
 class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     
+    var postsType = Int()
     
     @IBOutlet weak var toysCollection: UICollectionView!
     
@@ -20,13 +21,51 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     @IBAction func pageIndexTapped(_ sender: UISegmentedControl) {
         
+        //写真
         if sender.selectedSegmentIndex == 0 {
-            self.toysTable.isHidden = true
-            self.toysCollection.isHidden = false
             
+            print(self.postsType)
+            //Pinterest
+            if self.postsType == 0 {
+                self.toysTable.isHidden = true
+                self.toysCollection.isHidden = false
+                self.photoTable.isHidden = true
+
+                //縦長
+            } else if self.postsType == 1 {
+                self.toysTable.isHidden = true
+                self.toysCollection.isHidden = true
+                self.photoTable.isHidden = false
+            }
+            
+            
+            
+            
+            
+            
+            //リンク
         } else if sender.selectedSegmentIndex == 1 {
-            self.toysTable.isHidden = false
-            self.toysCollection.isHidden = true
+            
+            if self.postsType == 0 {
+                self.toysTable.isHidden = false
+                self.toysCollection.isHidden = true
+                self.photoTable.isHidden = true
+
+                
+            } else if self.postsType == 1 {
+                
+                self.toysTable.isHidden = false
+                self.toysCollection.isHidden = true
+                self.photoTable.isHidden = true
+                
+            }
+            
+            
+            
+            
+            
+            
+            
             
         }
         
@@ -35,6 +74,7 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     @IBOutlet weak var toysTable: UITableView!
+    
     var folderName = String()
     var linkPosts = [Post]()
     var photoPosts = [Post]()
@@ -43,8 +83,22 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     var smallCaption = String()
     
 
+    
+    
+    
+    
+    @IBOutlet weak var photoTable: UITableView!
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        photoTable.delegate = self
+        photoTable.dataSource = self
+        
         toysTable.delegate = self
         toysTable.dataSource = self
         // ナビゲーションを透明にする処理
@@ -52,8 +106,6 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         toysCollection.delegate = self
         toysCollection.dataSource = self
         
-        self.toysTable.isHidden = true
-        self.toysCollection.isHidden = false
         
         
         segment.setTitle("写真", forSegmentAt: 0)
@@ -70,6 +122,24 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.hidesBarsOnSwipe = true
     
+        
+        
+        if self.postsType == 0 {
+            //Pinterest
+            self.toysTable.isHidden = true
+            self.toysCollection.isHidden = false
+            self.photoTable.isHidden = true
+            
+        } else if self.postsType == 1 {
+
+            //縦長
+            self.toysTable.isHidden = true
+            self.toysCollection.isHidden = true
+            self.photoTable.isHidden = false
+            
+        }
+        
+        
         
         let uids = FIRAuth.auth()?.currentUser?.uid
         
@@ -116,6 +186,7 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
             self.photoPosts.reverse()
             self.toysTable.reloadData()
             self.toysCollection.reloadData()
+            self.photoTable.reloadData()
             
             
         })
@@ -136,12 +207,21 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        if tableView == toysTable {
             return linkPosts.count
+        } else if tableView == photoTable {
+            return photoPosts.count
+        }
+        
+        return 100
         
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+  
+        
         
         if tableView == toysTable {
             
@@ -179,7 +259,31 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
 
             
             
-        }
+        } else if tableView == photoTable {
+            
+            let photoCell = photoTable.dequeueReusableCell(withIdentifier: "Russia", for: indexPath) as? ToysPhotoTableViewCell
+            
+            
+            let post = photoPosts[indexPath.row]
+            
+            
+            //読み込むまで画像は非表示
+            photoCell?.itemImage.image = nil
+            
+            
+            
+            
+            let url = URL(string: post.imageURL)
+            
+            photoCell?.itemImage.af_setImage(withURL: url!)
+            
+            
+            return photoCell!
+
+            
+            
+            
+            }
         
         
            return UITableViewCell()
@@ -193,13 +297,22 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        let post = linkPosts[indexPath.row]
-        
-        if post.name == "" {
-            return 80
-        } else if post.name != "" {
-            return 120
+        if tableView == toysTable {
+            let post = linkPosts[indexPath.row]
+            
+            if post.name == "" {
+                return 80
+            } else if post.name != "" {
+                return 120
+            }
+        } else if tableView == photoTable {
+            
+            ///
+            return 571
+            
+            
         }
+        
         
         
         

@@ -77,6 +77,7 @@
 		B7B4CAD61EFA81570038F176 /* PostProductPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CAD51EFA81570038F176 /* PostProductPhotosViewController.swift */; };
 		B7B4CAD81EFAACE20038F176 /* PostDetailPhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CAD71EFAACE20038F176 /* PostDetailPhotosCollectionViewCell.swift */; };
 		B7C8F4C11F09B20900FBA696 /* FifthCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C8F4C01F09B20900FBA696 /* FifthCollectionViewCell.swift */; };
+		B7D2EE3C1F6B6481000A3957 /* ToysPhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D2EE3B1F6B6481000A3957 /* ToysPhotoTableViewCell.swift */; };
 		B7D3A9B91F5FD69600A23FAD /* PhotoPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D3A9B81F5FD69600A23FAD /* PhotoPostViewController.swift */; };
 		B7D58C9E1EEE0D9100126406 /* signUpButtonDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D58C9D1EEE0D9100126406 /* signUpButtonDesign.swift */; };
 		B7DA001E1EDCBB8700CE5CC3 /* NewMoreReadCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DA001D1EDCBB8700CE5CC3 /* NewMoreReadCollectionViewCell.swift */; };
@@ -189,6 +190,7 @@
 		B7B4CAD51EFA81570038F176 /* PostProductPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostProductPhotosViewController.swift; sourceTree = "<group>"; };
 		B7B4CAD71EFAACE20038F176 /* PostDetailPhotosCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailPhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		B7C8F4C01F09B20900FBA696 /* FifthCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FifthCollectionViewCell.swift; sourceTree = "<group>"; };
+		B7D2EE3B1F6B6481000A3957 /* ToysPhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToysPhotoTableViewCell.swift; sourceTree = "<group>"; };
 		B7D3A9B81F5FD69600A23FAD /* PhotoPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPostViewController.swift; sourceTree = "<group>"; };
 		B7D58C9D1EEE0D9100126406 /* signUpButtonDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signUpButtonDesign.swift; sourceTree = "<group>"; };
 		B7DA001D1EDCBB8700CE5CC3 /* NewMoreReadCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMoreReadCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 				B73ECF7C1F5C41070044EAED /* WallTabViewController.swift */,
 				B7A5AB641F5D717C00B583A7 /* MyToysViewController.swift */,
 				B795FB4E1F5D74E000B2CF3F /* ToysTableViewCell.swift */,
+				B7D2EE3B1F6B6481000A3957 /* ToysPhotoTableViewCell.swift */,
 				B7DC06641F671DA100951D53 /* ToyCollectionViewCell.swift */,
 				B7808BF81F5F8E0100557B30 /* CreateFolderViewController.swift */,
 				B7D3A9B81F5FD69600A23FAD /* PhotoPostViewController.swift */,
@@ -639,6 +642,7 @@
 				B7A5AB651F5D717C00B583A7 /* MyToysViewController.swift in Sources */,
 				B70B28BF1F11F29C00825004 /* NotificationViewController.swift in Sources */,
 				B7482CE01F0F0C1400E98EF1 /* TwoTableViewCell.swift in Sources */,
+				B7D2EE3C1F6B6481000A3957 /* ToysPhotoTableViewCell.swift in Sources */,
 				B756D7671F5A460600346F0E /* FriendsTableViewCell.swift in Sources */,
 				B709078D1F5BC50000794E5C /* ThirdWallViewController.swift in Sources */,
 				B756D7651F5A45EE00346F0E /* FriendsListsViewController.swift in Sources */,
