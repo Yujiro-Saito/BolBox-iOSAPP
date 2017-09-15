@@ -85,6 +85,8 @@
 		B7DB71561F601C5B00338EFD /* FolderNameListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB71551F601C5B00338EFD /* FolderNameListsViewController.swift */; };
 		B7DB71581F601DF900338EFD /* FoldetListsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB71571F601DF900338EFD /* FoldetListsTableViewCell.swift */; };
 		B7DC06651F671DA100951D53 /* ToyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DC06641F671DA100951D53 /* ToyCollectionViewCell.swift */; };
+		B7DD29FA1F6A822000E1CF68 /* DesignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DD29F91F6A822000E1CF68 /* DesignViewController.swift */; };
+		B7DD29FC1F6A82DE00E1CF68 /* DesignCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DD29FB1F6A82DE00E1CF68 /* DesignCollectionViewCell.swift */; };
 		B7E0F8721F08B5E900AD2A5B /* FirstCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E0F8711F08B5E900AD2A5B /* FirstCollectionViewCell.swift */; };
 		B7E390271ED59E3C005D8BFC /* ButtonDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E390261ED59E3C005D8BFC /* ButtonDesign.swift */; };
 		B7E3902B1ED5A13E005D8BFC /* ImageDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E3902A1ED5A13E005D8BFC /* ImageDesign.swift */; };
@@ -195,6 +197,8 @@
 		B7DB71551F601C5B00338EFD /* FolderNameListsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderNameListsViewController.swift; sourceTree = "<group>"; };
 		B7DB71571F601DF900338EFD /* FoldetListsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldetListsTableViewCell.swift; sourceTree = "<group>"; };
 		B7DC06641F671DA100951D53 /* ToyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToyCollectionViewCell.swift; sourceTree = "<group>"; };
+		B7DD29F91F6A822000E1CF68 /* DesignViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignViewController.swift; sourceTree = "<group>"; };
+		B7DD29FB1F6A82DE00E1CF68 /* DesignCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignCollectionViewCell.swift; sourceTree = "<group>"; };
 		B7E0F8711F08B5E900AD2A5B /* FirstCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstCollectionViewCell.swift; sourceTree = "<group>"; };
 		B7E390261ED59E3C005D8BFC /* ButtonDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonDesign.swift; sourceTree = "<group>"; };
 		B7E3902A1ED5A13E005D8BFC /* ImageDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDesign.swift; sourceTree = "<group>"; };
@@ -294,6 +298,8 @@
 				B7DB71531F6011FA00338EFD /* LinkPostViewController.swift */,
 				B7DB71551F601C5B00338EFD /* FolderNameListsViewController.swift */,
 				B7DB71571F601DF900338EFD /* FoldetListsTableViewCell.swift */,
+				B7DD29F91F6A822000E1CF68 /* DesignViewController.swift */,
+				B7DD29FB1F6A82DE00E1CF68 /* DesignCollectionViewCell.swift */,
 				B74892691EC7E37D003ABE22 /* Docs */,
 			);
 			name = NewProjects;
@@ -614,6 +620,7 @@
 				B7482CE21F0F141E00E98EF1 /* ThreeTableViewCell.swift in Sources */,
 				B7DB71581F601DF900338EFD /* FoldetListsTableViewCell.swift in Sources */,
 				B7AF2F4C1F65164700455046 /* FeedTableViewCell.swift in Sources */,
+				B7DD29FC1F6A82DE00E1CF68 /* DesignCollectionViewCell.swift in Sources */,
 				B7DB51661EDCD0FC001847AC /* SectionHeaderCollectionReusableView.swift in Sources */,
 				B7EE00BC1F08C76F0015AA3B /* SecondCollectionViewCell.swift in Sources */,
 				B7E9D62D1F2096F4001115F6 /* FeatureViewController.swift in Sources */,
@@ -636,6 +643,7 @@
 				B709078D1F5BC50000794E5C /* ThirdWallViewController.swift in Sources */,
 				B756D7651F5A45EE00346F0E /* FriendsListsViewController.swift in Sources */,
 				B7FE1D6F1EDE2F9A0072A068 /* SectionHeaderPopCollectionReusableView.swift in Sources */,
+				B7DD29FA1F6A822000E1CF68 /* DesignViewController.swift in Sources */,
 				B756D7631F5A439300346F0E /* CardDesign.swift in Sources */,
 				B770833A1EC8034E00302760 /* FIRData.swift in Sources */,
 				B73D62681F33EEBB009B230C /* EmailPasswordViewController.swift in Sources */,

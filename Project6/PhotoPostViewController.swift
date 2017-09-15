@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 import AlamofireImage
 import Eureka
-import OnOffButton
 
 class PhotoPostViewController: FormViewController, UIImagePickerControllerDelegate ,UINavigationControllerDelegate,UITextFieldDelegate {
 
@@ -26,10 +25,15 @@ class PhotoPostViewController: FormViewController, UIImagePickerControllerDelega
     let userName = FIRAuth.auth()?.currentUser?.displayName
     var mainBool = false
     var folderNameDictionary = Dictionary<String, Dictionary<String, String?>>()
+    var type = Int()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("テスト")
+        print(folderName)
+        print(type)
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
@@ -103,7 +107,8 @@ class PhotoPostViewController: FormViewController, UIImagePickerControllerDelega
                 "userID" : uid as AnyObject,
                 "userName" : userName as AnyObject,
                 "name" : captionValue! as AnyObject,
-                "postID" : keyvalue as AnyObject
+                "postID" : keyvalue as AnyObject,
+                "bgType" : self.type as AnyObject
             ]
             
             
@@ -196,7 +201,8 @@ class PhotoPostViewController: FormViewController, UIImagePickerControllerDelega
                 "userID" : uid as AnyObject,
                 "userName" : userName as AnyObject,
                 "name" : captionValue! as AnyObject,
-                "postID" : keyvalue as AnyObject
+                "postID" : keyvalue as AnyObject,
+                "bgType" : self.type as AnyObject
             ]
             
             
@@ -273,7 +279,8 @@ class PhotoPostViewController: FormViewController, UIImagePickerControllerDelega
                 "userID" : uid as AnyObject,
                 "userName" : userName as AnyObject,
                 "name" : captionValue! as AnyObject,
-                "postID" : keyvalue as AnyObject
+                "postID" : keyvalue as AnyObject,
+                "bgType" : self.type as AnyObject
             ]
             
             
@@ -346,7 +353,8 @@ class PhotoPostViewController: FormViewController, UIImagePickerControllerDelega
                 "userID" : uid as AnyObject,
                 "userName" : userName as AnyObject,
                 "name" : captionValue! as AnyObject,
-                "postID" : keyvalue as AnyObject
+                "postID" : keyvalue as AnyObject,
+                "bgType" : self.type as AnyObject
             ]
             
             

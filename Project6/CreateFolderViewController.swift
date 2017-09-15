@@ -61,13 +61,13 @@ class CreateFolderViewController: UIViewController,UITextFieldDelegate {
         self.folderBool = false
         
         nameTextField.delegate = self
-        self.view.bringSubview(toFront: createButton)
+        //self.view.bringSubview(toFront: createButton)
         
         
         
         //テキスト
-        nameTextField.placeholder = "フォルダ名を入力"
-        nameTextField.title = "フォルダ名"
+        nameTextField.placeholder = "雑誌名を入力"
+        nameTextField.title = "雑誌名"
         nameTextField.tintColor = UIColor.clear
         nameTextField.textColor = UIColor.white
         nameTextField.lineColor = UIColor.white
@@ -87,122 +87,19 @@ class CreateFolderViewController: UIViewController,UITextFieldDelegate {
     
     func postDidTap() {
         
-        let actionSheet = UIAlertController(title: "アクション", message: "フォルダの作成 写真 リンク", preferredStyle: UIAlertControllerStyle.actionSheet)
-        
-        let folder = UIAlertAction(title: "フォルダを作成", style: UIAlertActionStyle.default, handler: {
-            (action: UIAlertAction!) in
+        if self.nameTextField.text != "" {
+            performSegue(withIdentifier: "Design", sender: nil)
+        } else {
+            //alert
+            let alertViewControler = UIAlertController(title: "誌名", message: "誌名を登録してください", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             
-            if self.nameTextField.text == "" {
-                let alertViewControler = UIAlertController(title: "フォルダ名", message: "フォルダ名を入力してください", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                
-                alertViewControler.addAction(okAction)
-                self.present(alertViewControler, animated: true, completion: nil)
-            } else if self.nameTextField.text != "" {
-                //folderNameに投稿
-                
-                self.showIndicator()
-                
-                
-                let currentUserUID = FIRAuth.auth()?.currentUser?.uid
-                let folderName = self.nameTextField.text
-                let folderDictionay = ["imageURL" : "" , "name" : folderName!]
-                
-                let folderInfoDict: Dictionary<String, Dictionary<String, String?>> = [folderName! : folderDictionay]
-                
-                
-                
-                
-                
-                DispatchQueue.main.async {
-                    
-                    
-                    DataService.dataBase.REF_BASE.child("users/\(currentUserUID!)/folderName").updateChildValues(folderInfoDict)
-                    
-                    self.folderBool = true
-                    
-                    self.indicator.stopAnimating()
-                }
-                
-                
-                
-                
-                
-                self.wait( {self.folderBool == false} ) {
-                    
-                    
-                    
-                    
-                    
-                    DispatchQueue.main.async {
-                        self.folderBool = false
-                        self.performSegue(withIdentifier: "GoBAcckingh", sender: nil)
-                    }
-                    
-                    
-                    
-                    
-                    
-                    
-                }
-                
-                
-                
-                
-                
-                
-            }
-            
-            
-            
-        })
-        
-        let photo = UIAlertAction(title: "写真を追加する", style: UIAlertActionStyle.default, handler: {
-            (action: UIAlertAction!) in
-            if self.nameTextField.text == "" {
-                let alertViewControler = UIAlertController(title: "フォルダ名", message: "フォルダ名を入力してください", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                
-                alertViewControler.addAction(okAction)
-                self.present(alertViewControler, animated: true, completion: nil)
-            } else if self.nameTextField.text != "" {
-                
-                self.performSegue(withIdentifier: "photos", sender: nil)
-            }
-            
-            
-            
-        })
-        
-        let link = UIAlertAction(title: "リンクを追加する", style: UIAlertActionStyle.default, handler: {
-            (action: UIAlertAction!) in
-            if self.nameTextField.text == "" {
-                let alertViewControler = UIAlertController(title: "フォルダ名", message: "フォルダ名を入力してください", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                
-                alertViewControler.addAction(okAction)
-                self.present(alertViewControler, animated: true, completion: nil)
-            } else if self.nameTextField.text != "" {
-                self.performSegue(withIdentifier: "ToLink", sender: nil)
-            }
-            
-        })
-        
-        
-        let cancel = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler: {
-            (action: UIAlertAction!) in
-        })
-        
-        actionSheet.addAction(folder)
-        actionSheet.addAction(photo)
-        actionSheet.addAction(link)
-        actionSheet.addAction(cancel)
-        
-        self.present(actionSheet, animated: true, completion: nil)
+            alertViewControler.addAction(okAction)
+            self.present(alertViewControler, animated: true, completion: nil)
+        }
         
         
         
-
         
         
     }
@@ -235,7 +132,7 @@ class CreateFolderViewController: UIViewController,UITextFieldDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ToLink" {
+       /* if segue.identifier == "ToLink" {
             let linkVC = (segue.destination as? LinkPostViewController)!
             linkVC.folderName = self.nameTextField.text!
         } else if segue.identifier == "photos" {
@@ -244,6 +141,13 @@ class CreateFolderViewController: UIViewController,UITextFieldDelegate {
             
             photoVc.folderName = self.nameTextField.text!
             
+            
+        }*/
+        
+        if segue.identifier == "Design" {
+            
+            let designVC = (segue.destination as? DesignViewController)!
+            designVC.folderName = self.nameTextField.text!
             
         }
         
