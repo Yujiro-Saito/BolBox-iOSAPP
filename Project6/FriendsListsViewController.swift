@@ -24,6 +24,14 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
     var followUserImageURL = [String]()
     var followUID = [String]()
     @IBOutlet weak var friendsTable: UITableView!
+    
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        
+        followUserNameBox = []
+        followUserImageURL = []
+    }
 
     //データ受け継ぎ用
     
@@ -38,7 +46,6 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
         friendsTable.delegate = self
         friendsTable.dataSource = self
         
-        print("おかああああああああああああああ")
         print(userID)
         
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -300,24 +307,18 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
         
     }
     
+    var uName = String()
+    var UImageURL = String()
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         detailUID = self.followUID[indexPath.row]
+        uName = self.followUserNameBox[indexPath.row]
+        UImageURL = self.followUserImageURL[indexPath.row]
         
-        self.userID = detailUID
+        performSegue(withIdentifier: "Boke", sender: nil)
         
-        let story: UIStoryboard = self.storyboard!
-        let next = story.instantiateViewController(withIdentifier: "ho")
-        let navi = UINavigationController(rootViewController: next)
-        self.navigationController?.pushViewController(next, animated: true)
-        
-        
-        self.userID = detailUID
-        
-        
-
-               
+                      
     }
     
     
@@ -325,7 +326,23 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
     
     
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Boke" {
+            
+            let userVC = (segue.destination as? UserViewController)!
+            
+            
+            let currentUid = FIRAuth.auth()?.currentUser?.uid
+            
+            userVC.userName = self.uName
+            userVC.userImageURL = self.UImageURL
+            userVC.visitorUID = currentUid
+            userVC.isFollow = self.isFollowing
+            userVC.userID = detailUID
+            
+            
+        }
+    }
     
     
     

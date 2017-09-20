@@ -364,6 +364,7 @@
                     <connections>
                         <outlet property="friendsTable" destination="bFO-wC-rZS" id="zhr-pu-57D"/>
                         <segue destination="cxc-0n-dlL" kind="show" identifier="ThirdWall" id="eiU-7J-xNR"/>
+                        <segue destination="H3S-A7-xVq" kind="show" identifier="Boke" id="rEK-7Q-rWX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fuw-6i-3Th" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -373,7 +374,6 @@
         <!--Third Wall View Controller-->
         <scene sceneID="KeU-EN-BGP">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yjD-wb-aTV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="cxc-0n-dlL" customClass="ThirdWallViewController" customModule="Project6" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rqW-Zx-sPh"/>
@@ -393,7 +393,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <view key="backgroundView" contentMode="scaleToFill" id="FyW-Mx-bxE" customClass="SignInUpViewDesign" customModule="Project6" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="-64" width="375" height="667"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
@@ -562,8 +562,9 @@
                         <outlet property="thirdWallCollection" destination="hl4-Px-sTw" id="aLG-kp-0zD"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yjD-wb-aTV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="40794" y="43854"/>
+            <point key="canvasLocation" x="40503" y="44141"/>
         </scene>
         <!--User View Controller-->
         <scene sceneID="TIq-Io-9ve">
@@ -586,7 +587,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <view key="backgroundView" contentMode="scaleToFill" id="2t1-dN-Y2L" customClass="SignInUpViewDesign" customModule="Project6" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="-64" width="375" height="618"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
@@ -671,11 +672,6 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aZd-Hd-FHz">
-                                            <rect key="frame" x="250" y="220" width="2" height="57"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Books" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIa-lG-XR4">
                                             <rect key="frame" x="70" y="246" width="60" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -704,11 +700,6 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="phV-Yn-kej">
-                                            <rect key="frame" x="140" y="220" width="2" height="57"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="211" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pel-0O-arh">
                                             <rect key="frame" x="265" y="219" width="60" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -782,11 +773,12 @@
                         <outlet property="userCollection" destination="glV-aA-Lk5" id="iE1-Q9-mG0"/>
                         <segue destination="X9N-mf-jgh" kind="show" identifier="followingLists" id="hZb-4J-nsf"/>
                         <segue destination="X9N-mf-jgh" kind="show" identifier="followLists" id="u0E-7g-snp"/>
+                        <segue destination="cey-Bi-xcT" kind="show" identifier="MyTOysView" id="ETH-Me-Y6g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mWo-n6-067" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="39804" y="43453.223388305851"/>
+            <point key="canvasLocation" x="39876" y="43508"/>
         </scene>
         <!--Edit View Controller-->
         <scene sceneID="TFz-EM-VJj">
@@ -1822,7 +1814,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ods-Lc-vHq" customClass="SignInUpViewDesign" customModule="Project6" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wBU-Ze-6Vp">
@@ -1869,7 +1861,7 @@
                                 </prototypes>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="500" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mcc-t6-E6Y">
-                                <rect key="frame" x="0.0" y="96" width="375" height="522"/>
+                                <rect key="frame" x="0.0" y="96" width="375" height="571"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="toys" rowHeight="120" id="HXs-88-QC5" customClass="ToysTableViewCell" customModule="Project6" customModuleProvider="target">
@@ -2002,7 +1994,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EcD-jM-Rrg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="38121" y="46292"/>
+            <point key="canvasLocation" x="40793" y="45072"/>
         </scene>
         <!--Photo Post View Controller-->
         <scene sceneID="fXQ-TB-dJs">
@@ -2271,7 +2263,7 @@
             </objects>
             <point key="canvasLocation" x="37698" y="44337"/>
         </scene>
-        <!--Wall-->
+        <!--My Collection View Controller-->
         <scene sceneID="E6S-I9-nP5">
             <objects>
                 <viewController id="EM1-sN-Z9x" customClass="MyCollectionViewController" customModule="Project6" customModuleProvider="target" sceneMemberID="viewController">
@@ -2605,7 +2597,7 @@
                             <constraint firstItem="T2R-vE-uk7" firstAttribute="centerX" secondItem="b43-zz-KYe" secondAttribute="centerX" id="r4l-2V-5bS"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Wall" id="6uh-IR-ktU"/>
+                    <navigationItem key="navigationItem" id="6uh-IR-ktU"/>
                     <connections>
                         <outlet property="backgroundButton" destination="eaw-NX-a75" id="v4U-z4-dyV"/>
                         <outlet property="bottomConstraint" destination="dQt-fl-MOg" id="xNo-3x-EVS"/>
@@ -3675,7 +3667,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jJo-dR-Onz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="ウォール" image="Home" id="qMP-Xu-1HA"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UIl-fw-qgx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UIl-fw-qgx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -3698,7 +3690,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GtW-M7-tyf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="探す" image="Search" id="ubN-eP-8bB"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oXz-Zf-PXP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="oXz-Zf-PXP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -3723,7 +3715,7 @@
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MAV-C6-E7r">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="MAV-C6-E7r">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3756,13 +3748,14 @@
         <image name="safari" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="U2k-eE-RA9"/>
+        <segue reference="rEK-7Q-rWX"/>
+        <segue reference="u0E-7g-snp"/>
+        <segue reference="ETH-Me-Y6g"/>
         <segue reference="nc3-tx-fPw"/>
         <segue reference="uLk-Fd-Lhw"/>
-        <segue reference="9pS-4N-zg0"/>
-        <segue reference="u0E-7g-snp"/>
         <segue reference="rbt-zG-eG0"/>
-        <segue reference="vNM-fF-O0h"/>
+        <segue reference="U2k-eE-RA9"/>
         <segue reference="uPa-V9-bqT"/>
+        <segue reference="vNM-fF-O0h"/>
     </inferredMetricsTieBreakers>
 </document>

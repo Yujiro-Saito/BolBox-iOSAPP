@@ -26,12 +26,14 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     var numOfFollowing = [String]()
     var amountOfFollowers = Int()
     var styleNumBox = [Int]()
+    let uidss: String = (FIRAuth.auth()?.currentUser?.uid)!
     
     //データ受け継ぎ用
     
     var userName: String!
     var userImageURL: String!
     var userID: String!
+    var visitorUID : String!
     
     var isFollow = Bool()
     
@@ -40,9 +42,8 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(userID)
         
-        self.navigationItem.title = "Wall"
+        
         
         // フォント種をTime New Roman、サイズを10に指定
         self.navigationController?.navigationBar.titleTextAttributes
@@ -55,6 +56,8 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         
         userCollection.delegate = self
         userCollection.dataSource = self
+        
+        
         
 
     }
@@ -92,6 +95,27 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
                 for snap in snapshot {
                     
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        
+                        
+                        if postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
+                            
+                            let posty = postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject>>
+                            
+                            for (key,value) in posty! {
+                                
+                                let styleNum = value["bgType"] as! Int
+                                self.styleNumBox.append(styleNum)
+                                
+                                
+                                
+                            }
+                            
+                            
+                            
+                        }
+                        
+                        
                         
                         
                        
@@ -133,10 +157,9 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
             self.userPosts.reverse()
             self.folderNameBox.reverse()
             self.folderImageURLBox.reverse()
+            self.styleNumBox.reverse()
             
             self.userCollection.reloadData()
-            print(self.folderNameBox)
-            print(self.folderImageURLBox)
             
             
         })
@@ -194,12 +217,25 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     func onClick(_ sender: AnyObject){
         
         
-        let button = sender as! UIButton
         
-        let currentUserUID = FIRAuth.auth()?.currentUser?.uid
-        let followersUID: Dictionary<String, String> = [currentUserUID! : currentUserUID!]
-        let uidWhoUFollow: Dictionary<String, String> = [self.userID! : self.userID!]
-        let followersCount = ["followerNum": self.amountOfFollowers]
+        
+        
+
+        
+        
+        
+        let button = sender as! UIButton
+        //自分 useriDがこの人
+        
+        let followersUID: Dictionary<String, String> = [self.uidss : self.uidss]
+        let uidWhoUFollow = [self.userID! : self.userID!]
+        var followersCount = ["followerNum": self.amountOfFollowers]
+        
+        //DataService.dataBase.REF_BASE.child("users/\(self.uidss)/following").updateChildValues(uidWhoUFollow)
+        
+        
+        
+        
         
         //フォローしていない場合
         
@@ -208,14 +244,29 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
             
             self.amountOfFollowers += 1
             
+            var numFollowings = self.numOfFollowing.count
+            numFollowings += 1
+            let numing = ["followingNum": numFollowings]
             
-            let followersCount = ["followerNum": self.amountOfFollowers]
             
-            DataService.dataBase.REF_BASE.child("users/\(self.userID!)/followers").updateChildValues(followersUID)
-            DataService.dataBase.REF_BASE.child("users/\(currentUserUID!)/following").updateChildValues(uidWhoUFollow)
+            followersCount = ["followerNum": self.amountOfFollowers]
             
-            //フォロー数を更新
-            DataService.dataBase.REF_BASE.child("users/\(self.userID!)").updateChildValues(followersCount)
+           
+           
+            
+            DispatchQueue.main.async {
+                
+                DataService.dataBase.REF_BASE.child("users/\(self.uidss)/following").updateChildValues(uidWhoUFollow)
+                
+                DataService.dataBase.REF_BASE.child("users/\(self.userID!)/followers").updateChildValues(followersUID)
+                
+                //フォロー数を更新
+                DataService.dataBase.REF_BASE.child("users/\(self.userID!)").updateChildValues(followersCount)
+                
+                DataService.dataBase.REF_BASE.child("users/\(self.uidss)").updateChildValues(numing)
+            }
+            
+            
             button.backgroundColor = .green
             isFollow = true
             
@@ -225,25 +276,36 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
             let followersCount = ["followerNum": self.amountOfFollowers]
             
             
-            //フォロしている場合
-            DataService.dataBase.REF_BASE.child("users/\(self.userID!)/followers/\(currentUserUID!)").removeValue()
-            DataService.dataBase.REF_BASE.child("users/\(currentUserUID!)/following/\(self.userID!)").removeValue()
+            var numFollowings = self.numOfFollowing.count
+            numFollowings -= 1
+            let numing = ["followingNum": numFollowings]
             
-            //フォロー数を更新
-            DataService.dataBase.REF_BASE.child("users/\(self.userID!)").updateChildValues(followersCount)
+            DispatchQueue.main.async {
+                //フォロしている場合
+                DataService.dataBase.REF_BASE.child("users/\(self.uidss)/following/\(self.userID!)").removeValue()
+                DataService.dataBase.REF_BASE.child("users/\(self.userID!)/followers/\(self.uidss)").removeValue()
+                
+                //フォロー数を更新
+                DataService.dataBase.REF_BASE.child("users/\(self.userID!)").updateChildValues(followersCount)
+                
+                DataService.dataBase.REF_BASE.child("users/\(self.uidss)").updateChildValues(numing)
+            }
+            
+            
+            
             
             button.backgroundColor = .clear
             
             isFollow = false
         }
+ 
+ 
     }
     
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //let screenWidth = UIScreen.main.bounds.width
-        //let scaleFactor = (screenWidth / 3) - 4
-        //let scaleFactor = screenWidth - 32
+        
         let cellSize:CGFloat = self.view.frame.size.width/2-2
         
         return CGSize(width: cellSize, height: 200)
@@ -270,10 +332,22 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         let currentUserID = FIRAuth.auth()?.currentUser?.uid
         //Follow button
         
-        headerView.followButton.backgroundColor = UIColor.clear // 背景色
-        headerView.followButton.layer.borderWidth = 1.0 // 枠線の幅
-        headerView.followButton.layer.borderColor = UIColor.darkGray.cgColor // 枠線の色
-        headerView.followButton.layer.cornerRadius = 10.0 // 角丸のサイズ
+        
+        if self.isFollow == true {
+            headerView.followButton.backgroundColor = UIColor.green // 背景色
+            headerView.followButton.layer.borderWidth = 1.0 // 枠線の幅
+            headerView.followButton.layer.borderColor = UIColor.darkGray.cgColor // 枠線の色
+            headerView.followButton.layer.cornerRadius = 10.0 // 角丸のサイズ
+        } else if self.isFollow == false {
+            headerView.followButton.backgroundColor = UIColor.clear // 背景色
+            headerView.followButton.layer.borderWidth = 1.0 // 枠線の幅
+            headerView.followButton.layer.borderColor = UIColor.darkGray.cgColor // 枠線の色
+            headerView.followButton.layer.cornerRadius = 10.0 // 角丸のサイズ
+        }
+        
+        
+        
+        
         
         
         headerView.followButton.addTarget(self, action: #selector(self.onClick(_:)), for: .touchUpInside)
@@ -304,6 +378,8 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
                         //follow人数をラベルに表示
                         let countOfFollowers = postDict["followerNum"] as? Int
                         headerView.followerLabel.text = String(describing: countOfFollowers!)
+                        let countOfFollowing = postDict["followingNum"] as? Int
+                        headerView.followingLabel.text = String(describing: countOfFollowing!)
                         self.amountOfFollowers = countOfFollowers!
                         
                         
@@ -403,7 +479,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         
         
         
-        
+        var numFollowings = self.numOfFollowing.count
         
 
         
@@ -411,10 +487,10 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         //ユーザー名
         headerView.userName.text = self.userName
         //フォローワー数
-        //headerView.followerLabel.text = String(self.numOfFollowers.count)
         //フォロー数
-        headerView.followingLabel.text = String(self.numOfFollowing.count)
-        
+       // headerView.followingLabel.text = String(self.numOfFollowing.count)
+        headerView.followingLabel.text = String(numFollowings)
+        /////////
         self.numOfFollowers = []
         self.numOfFollowing = []
         
@@ -456,7 +532,16 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         }
         
         
-        
+        else if segue.identifier == "MyTOysView" {
+            
+            let toyVC = (segue.destination as? MyToysViewController)!
+            
+            toyVC.folderName = folderName
+            toyVC.postsType = numberInt
+            
+            
+            
+        }
         
         
         
@@ -470,9 +555,9 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         folderName = self.folderNameBox[indexPath.row]
-        numInt = self.styleNumBox[indexPath.row]
+        numberInt = self.styleNumBox[indexPath.row]
         
-        performSegue(withIdentifier: "toysToFun", sender: nil)
+        performSegue(withIdentifier: "MyTOysView", sender: nil)
         
         
         
@@ -480,6 +565,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     
     
 
+    var numberInt = Int()
     
 
 }
