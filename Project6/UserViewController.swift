@@ -76,6 +76,8 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         
     }
     
+    
+    
     var folderNameBox = [String]()
     var folderName = String()
     var folderImageURLBox = [String]()
@@ -83,9 +85,13 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
+        
+        
+        
+        
         //ユーザーのコレクションの読み込み
         DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: userID).observe(.value, with: { (snapshot) in
-            
+         
             self.userPosts = []
             self.folderNameBox = []
             self.folderImageURLBox = []
@@ -163,6 +169,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
             
             
         })
+        
         
         
     }
@@ -534,10 +541,15 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         
         else if segue.identifier == "MyTOysView" {
             
-            let toyVC = (segue.destination as? MyToysViewController)!
             
-            toyVC.folderName = folderName
-            toyVC.postsType = numberInt
+            let another = (segue.destination as? MyToysViewController)!
+            
+            
+            another.folderName = folderName
+            another.postsType = numberInt
+            
+            
+            
             
             
             
@@ -566,6 +578,8 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     
 
     var numberInt = Int()
+    
+    
     
 
 }

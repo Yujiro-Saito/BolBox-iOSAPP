@@ -15,7 +15,6 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
     
     
     @IBOutlet weak var notificationTable: UITableView!
-    @IBOutlet weak var guestUserView: UIView!
     @IBOutlet weak var tabItem: UITabBarItem!
     
     
