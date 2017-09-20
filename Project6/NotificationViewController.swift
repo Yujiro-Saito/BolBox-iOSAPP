@@ -23,7 +23,6 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
     var firstUserNameBox = [String]()
     var userImageURLBox = [String]()
     var userPostTitleBox = [String]()
-    var userReactionTextBox = [String]()
     var currentUserIdNumberBox = [String]()
     var userPhotoURLBox = [String]()
     
@@ -36,9 +35,15 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         notificationTable.dataSource = self
         
         
-        self.tabItem.badgeColor = UIColor.red
+        //self.tabItem.badgeColor = UIColor.red
         
-        
+        // フォント種をTime New Roman、サイズを10に指定
+        self.navigationController?.navigationBar.titleTextAttributes
+            = [NSFontAttributeName: UIFont(name: "Times New Roman", size: 18)!]
+        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController!.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.tintColor = UIColor.blue
+        self.navigationController?.hidesBarsOnSwipe = true
         
         
         self.notificationTable.refreshControl = UIRefreshControl()
@@ -57,7 +62,6 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         if anonymousUser == true {
             //ゲストユーザー
             
-            self.guestUserView.isHidden = false
             
             
             
@@ -67,17 +71,73 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
             //ユーザの投稿を取得
             DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
                 
+                
+                
                 self.firstUserNameBox = []
-                print(snapshot.value)
                 
                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     
                     //繰り返し
                     for snap in snapshot {
-                        print("SNAP: \(snap)")
                         
                         if let postDict = snap.value as? Dictionary<String, AnyObject> {
                             
+                            
+                            
+                            if postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
+                                
+                                
+                                
+                                let posty = postDict["posts"] as! Dictionary<String, Dictionary<String, AnyObject>>
+                                
+                                if postDict["posts"] as? Dictionary<String, AnyObject?> != nil {
+                                    
+                                    let posty = postDict["posts"] as? Dictionary<String, AnyObject?>
+                                    for (followKey,followValue) in posty! {
+                                        
+                                        print("キーは\(followKey)、値は\(followValue)")
+                                        
+                                        if followValue?["peopleWhoLike"] as? Dictionary<String, AnyObject?> != nil {
+                                            
+                                            print("ううううううううううううう")
+                                            
+                                            
+                                            
+                                            
+                                        }
+                                        
+                                        
+                                    }
+                                    
+                                }
+ 
+                                
+                                
+                                
+                                
+                                
+                            }
+                        }
+                    }
+                    
+                                
+                }
+                
+            
+            
+                   
+                            })
+            
+            
+            
+        }
+    }
+    
+            
+                            
+            
+            
+            /*
                             
                             //投稿にいいねをつけている人がいる場合
                             if let peopleWhoLike = postDict["peopleWhoLike"] as? Dictionary<String, AnyObject> {
@@ -93,7 +153,6 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
                                     
                                     let userPostTitle = namevalue["postName"] as! String
                                     
-                                    let userReact = namevalue["userReact"] as! String
                                     
                                     let currentUserKeyId = namevalue["currentUserID"] as! String
                                     
@@ -104,7 +163,6 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
                                     self.firstUserNameBox.append(nameKey)
                                     self.userImageURLBox.append(userImageURL)
                                     self.userPostTitleBox.append(userPostTitle)
-                                    self.userReactionTextBox.append(userReact)
                                     self.currentUserIdNumberBox.append(currentUserKeyId)
                                     self.userPhotoURLBox.append(photosURL)
                                     
@@ -112,7 +170,6 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
                                     self.firstUserNameBox.reverse()
                                     self.userImageURLBox.reverse()
                                     self.userPostTitleBox.reverse()
-                                    self.userReactionTextBox.reverse()
                                     self.currentUserIdNumberBox.reverse()
                                     self.userPhotoURLBox.reverse()
                                     
@@ -184,25 +241,15 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         }
 
         
-        
-        
+
+ 
 
     }
+ */
     
     let currentUserCheck = FIRAuth.auth()?.currentUser
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        
-        
-        self.guestUserView.isHidden = true
-        
-        
-        
-        
-        
-        
-    }
+    
     
      var detailUserID: String?
      var detailUserName: String?
@@ -214,7 +261,7 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         detailUserName = self.firstUserNameBox[indexPath.row]
         detailUserPhotoURL = self.userPhotoURLBox[indexPath.row]
         
-        performSegue(withIdentifier: "DetailUserProfile", sender: nil)
+        //performSegue(withIdentifier: "DetailUserProfile", sender: nil)
     }
     
     
@@ -289,7 +336,7 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
             notiCell?.userName.text = firstUserNameBox[indexPath.row]
             notiCell?.userImage.af_setImage(withURL: URL(string: userImageURLBox[indexPath.row])!)
             notiCell?.title.text = userPostTitleBox[indexPath.row]
-            notiCell?.reactMessage.text = "さんが \(userReactionTextBox[indexPath.row]) と言っています"
+            notiCell?.reactMessage.text = "さんがいいねと言っています"
         }
         
         
