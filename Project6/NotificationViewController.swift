@@ -93,17 +93,50 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
                                 if postDict["posts"] as? Dictionary<String, AnyObject?> != nil {
                                     
                                     let posty = postDict["posts"] as? Dictionary<String, AnyObject?>
+                                    
+                                    
                                     for (followKey,followValue) in posty! {
                                         
-                                        print("キーは\(followKey)、値は\(followValue)")
+                                        //print("キーは\(followKey)、値は\(followValue)")
                                         
                                         if followValue?["peopleWhoLike"] as? Dictionary<String, AnyObject?> != nil {
                                             
-                                            print("ううううううううううううう")
                                             
                                             
+                                            let peopleWhoLiked = followValue?["peopleWhoLike"] as? Dictionary<String, AnyObject?>
                                             
                                             
+                                            for (likeKey,likeValue) in peopleWhoLiked! {
+                                                
+                                                
+                                                
+                                                let userImageURL = likeValue?["imageURL"] as! String
+                                                let photosURL = likeValue?["userProfileURL"] as! String
+                                                let userPostTitle = likeValue?["postName"] as! String
+                                                let currentUserKeyId = likeValue?["currentUserID"] as! String
+                                                
+                                                
+                                                
+                                                self.firstUserNameBox.append(likeKey)
+                                                self.userImageURLBox.append(userImageURL)
+                                                self.userPostTitleBox.append(userPostTitle)
+                                                self.currentUserIdNumberBox.append(currentUserKeyId)
+                                                self.userPhotoURLBox.append(photosURL)
+                                                
+                                                
+                                                self.firstUserNameBox.reverse()
+                                                self.userImageURLBox.reverse()
+                                                self.userPostTitleBox.reverse()
+                                                self.currentUserIdNumberBox.reverse()
+                                                self.userPhotoURLBox.reverse()
+                                                
+                                                
+                                                self.notificationTable.reloadData()
+                                                
+                                                
+                                            }
+                                            
+                                           
                                         }
                                         
                                         
@@ -128,6 +161,19 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
                    
                             })
             
+            //通知設定
+            
+            ////初回時通知数を登録
+            /*
+            if UserDefaults.standard.object(forKey: "previousCounts") == nil  {
+                
+                print("初回いいね数を登録しました")
+                UserDefaults.standard.set(self.firstUserNameBox.count, forKey: "previousCounts")
+                
+                
+                
+            }
+            */
             
             
         }
@@ -137,115 +183,7 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
                             
             
             
-            /*
-                            
-                            //投稿にいいねをつけている人がいる場合
-                            if let peopleWhoLike = postDict["peopleWhoLike"] as? Dictionary<String, AnyObject> {
-                                
-                                print(peopleWhoLike)
-                                
-                                
-                                
-                                for (nameKey,namevalue) in peopleWhoLike {
-                                    print("キーは\(nameKey)、値は\(namevalue)")
-                                    
-                                    let userImageURL = namevalue["imageURL"] as! String
-                                    
-                                    let userPostTitle = namevalue["postName"] as! String
-                                    
-                                    
-                                    let currentUserKeyId = namevalue["currentUserID"] as! String
-                                    
-                                    let photosURL = namevalue["userProfileURL"] as! String
-                                    
-                                    
-                                    
-                                    self.firstUserNameBox.append(nameKey)
-                                    self.userImageURLBox.append(userImageURL)
-                                    self.userPostTitleBox.append(userPostTitle)
-                                    self.currentUserIdNumberBox.append(currentUserKeyId)
-                                    self.userPhotoURLBox.append(photosURL)
-                                    
-                                    
-                                    self.firstUserNameBox.reverse()
-                                    self.userImageURLBox.reverse()
-                                    self.userPostTitleBox.reverse()
-                                    self.currentUserIdNumberBox.reverse()
-                                    self.userPhotoURLBox.reverse()
-                                    
-                                    
-                                    self.notificationTable.reloadData()
-                                    
-                                    
-                                    
-                                    
-                                }
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                            }
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                        }
-                        
-                        
-                        
-                    }
-                    
-                    
-                }
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-            })
-            
-            //通知設定
-            
-            ////初回時通知数を登録
-            
-            if UserDefaults.standard.object(forKey: "previousCounts") == nil  {
-                
-                print("初回いいね数を登録しました")
-                UserDefaults.standard.set(self.firstUserNameBox.count, forKey: "previousCounts")
-                
-                
-                
-            }
-            
-            
-            
-            
-        }
-
-        
-
- 
-
-    }
- */
+    
     
     let currentUserCheck = FIRAuth.auth()?.currentUser
     
@@ -285,6 +223,8 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         
         
         let notiCell = notificationTable.dequeueReusableCell(withIdentifier: "notification", for: indexPath) as? NotificationTableViewCell
+        
+        
         notiCell?.userImage.image = nil
         
         let currentCounts = self.firstUserNameBox.count
@@ -292,7 +232,7 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         notiCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
         notiCell?.layer.borderWidth = 10
         notiCell?.clipsToBounds = true
-        
+        /*
         if firstUserNameBox.count >= 1 {
             
             
@@ -321,12 +261,12 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
                     
                 }
                 
-                
+ 
                 
                 
             }
             
-            
+ 
             
             
             
@@ -339,12 +279,13 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
             notiCell?.reactMessage.text = "さんがいいねと言っています"
         }
         
+        */
         
+        notiCell?.userName.text = firstUserNameBox[indexPath.row]
+        notiCell?.userImage.af_setImage(withURL: URL(string: userImageURLBox[indexPath.row])!)
+        notiCell?.title.text = userPostTitleBox[indexPath.row]
+        notiCell?.reactMessage.text = "さんがいいねと言っています"
         
-        
-        
-       
- 
         
         return notiCell!
         
