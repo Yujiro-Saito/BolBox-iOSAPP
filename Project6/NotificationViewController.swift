@@ -19,15 +19,17 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
     
     
     
-    
+    //likes
     var firstUserNameBox = [String]()
     var userImageURLBox = [String]()
     var userPostTitleBox = [String]()
     var currentUserIdNumberBox = [String]()
     var userPhotoURLBox = [String]()
+    var likeBool = false
+    var followBool = false
     
+   
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,8 +55,6 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         let currentCounts = self.firstUserNameBox.count
         
         
-        
-        
         //ユーザーデータの読み込みと通知設定
         
         var anonymousUser = currentUserCheck!.isAnonymous
@@ -68,6 +68,18 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
             
         } else if anonymousUser == false {
             //ログインユーザーの場合
+            
+            
+            self.firstUserNameBox = []
+            self.userPhotoURLBox = []
+            self.userPostTitleBox = []
+            self.currentUserIdNumberBox = []
+            self.userPhotoURLBox = []
+
+            
+            
+            
+           
             //ユーザの投稿を取得
             DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
                 
@@ -81,6 +93,73 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
                     for snap in snapshot {
                         
                         if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            if postDict["following"] as? Dictionary<String,String > != nil {
+                                
+                                
+                                let following = postDict["following"] as? Dictionary<String,String >
+                                
+                                
+                            
+                                for (_,value) in following! {
+                                
+                                    //valueのuidからuser情報取得
+                                    
+                                    DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: value).observe(.value, with: { (snapshot) in
+                                        //self.firstUserNameBox = []
+                                        //self.userPhotoURLBox = []
+                                        
+                                        
+                                        if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                                            
+                                            for snap in snapshot {
+                                                
+                                                if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                                                    
+                                                    let userName = postDict["userName"] as? String
+                                                    let userimage = postDict["userImageURL"] as? String
+                                                    let image = ""
+                                                    let postTItle = ""
+                                                    let keyUID = ""
+                                                    let photoURLL = ""
+                                                    
+                                                    
+                                                    
+                                                    self.firstUserNameBox.append(userName!)
+                                                    self.userImageURLBox.append(image)
+                                                    self.userPhotoURLBox.append(userimage!)
+                                                    self.userPostTitleBox.append(postTItle)
+                                                    self.currentUserIdNumberBox.append(keyUID)
+                                                    
+                                                   
+                                                    
+                                                    self.followBool = true
+                                                    
+                                                    
+                                                    
+                                                  
+                                                }
+                                                
+                                            }
+                                            
+                                            
+                                        }
+                                        
+                                        
+                                        
+                                        
+                                    })
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                            }
+                            }
+                            
                             
                             
                             
@@ -97,7 +176,6 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
                                     
                                     for (followKey,followValue) in posty! {
                                         
-                                        //print("キーは\(followKey)、値は\(followValue)")
                                         
                                         if followValue?["peopleWhoLike"] as? Dictionary<String, AnyObject?> != nil {
                                             
@@ -123,16 +201,9 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
                                                 self.currentUserIdNumberBox.append(currentUserKeyId)
                                                 self.userPhotoURLBox.append(photosURL)
                                                 
+                                                self.likeBool = true
                                                 
-                                                self.firstUserNameBox.reverse()
-                                                self.userImageURLBox.reverse()
-                                                self.userPostTitleBox.reverse()
-                                                self.currentUserIdNumberBox.reverse()
-                                                self.userPhotoURLBox.reverse()
-                                                
-                                                
-                                                self.notificationTable.reloadData()
-                                                
+                                               
                                                 
                                             }
                                             
@@ -161,12 +232,56 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
                    
                             })
             
+            
+            
+            
+            self.wait( {self.followBool == false} ) {
+                
+                self.wait( {self.likeBool == false} ) {
+                    
+                    self.firstUserNameBox.reverse()
+                    self.userImageURLBox.reverse()
+                    self.userPostTitleBox.reverse()
+                    self.currentUserIdNumberBox.reverse()
+                    self.userPhotoURLBox.reverse()
+                    
+                    print(self.firstUserNameBox)
+                    print(self.userPhotoURLBox)
+                    print(self.userPostTitleBox)
+                    print("終わり")
+                    
+                    
+                    self.notificationTable.reloadData()
+
+                    self.followBool = false
+                    self.likeBool = false
+                    
+                    
+                }
+                
+                
+                
+                
+                
+                
+                
+                
+            }
+            
+            
+
+            
+            
+            
+            
+            
+            
             //通知設定
             
             ////初回時通知数を登録
             /*
             if UserDefaults.standard.object(forKey: "previousCounts") == nil  {
-                
+             
                 print("初回いいね数を登録しました")
                 UserDefaults.standard.set(self.firstUserNameBox.count, forKey: "previousCounts")
                 
@@ -232,6 +347,8 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         notiCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
         notiCell?.layer.borderWidth = 10
         notiCell?.clipsToBounds = true
+        
+        
         /*
         if firstUserNameBox.count >= 1 {
             
@@ -281,10 +398,25 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         
         */
         
-        notiCell?.userName.text = firstUserNameBox[indexPath.row]
-        notiCell?.userImage.af_setImage(withURL: URL(string: userImageURLBox[indexPath.row])!)
-        notiCell?.title.text = userPostTitleBox[indexPath.row]
-        notiCell?.reactMessage.text = "さんがいいねと言っています"
+        
+        let check = userPostTitleBox[indexPath.row]
+        if check == "" {
+            
+            notiCell?.userImage.af_setImage(withURL: URL(string: userPhotoURLBox[indexPath.row])!)
+            notiCell?.title.text = firstUserNameBox[indexPath.row]
+            notiCell?.reactMessage.text = "さんがあなたをフォローしています"
+            
+        } else {
+            
+            notiCell?.userName.text = firstUserNameBox[indexPath.row]
+            notiCell?.userImage.af_setImage(withURL: URL(string: userImageURLBox[indexPath.row])!)
+            notiCell?.title.text = userPostTitleBox[indexPath.row]
+            notiCell?.reactMessage.text = "さんがいいねと言っています"
+            
+            
+        }
+        
+        
         
         
         return notiCell!
@@ -401,6 +533,33 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
 
     
 }
+    
+    func wait(_ waitContinuation: @escaping (()->Bool), compleation: @escaping (()->Void)) {
+        var wait = waitContinuation()
+        
+        
+        // 0.01秒周期で待機条件をクリアするまで待ちます。
+        let semaphore = DispatchSemaphore(value: 0)
+        DispatchQueue.global().async {
+            while wait {
+                DispatchQueue.main.async {
+                    wait = waitContinuation()
+                    semaphore.signal()
+                }
+                semaphore.wait()
+                Thread.sleep(forTimeInterval: 0.01)
+            }
+            
+            
+            // 待機条件をクリアしたので通過後の処理を行います。
+            DispatchQueue.main.async {
+                compleation()
+                
+                
+                
+            }
+        }
+    }
 
 }
 
