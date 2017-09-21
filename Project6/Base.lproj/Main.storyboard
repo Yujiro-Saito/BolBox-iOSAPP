@@ -2280,9 +2280,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="8" id="CLM-8D-IY7">
                                     <size key="itemSize" width="170" height="200"/>
-                                    <size key="headerReferenceSize" width="49" height="290"/>
+                                    <size key="headerReferenceSize" width="49" height="330"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="30" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="15" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <view key="backgroundView" contentMode="scaleToFill" id="lrY-Qe-1FQ" customClass="SignInUpViewDesign" customModule="Project6" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="-64" width="375" height="618"/>
@@ -2291,7 +2291,7 @@
                                 </view>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="myCollectionCell" id="xy4-JB-xuA" customClass="MyCollectionViewCell" customModule="Project6" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="320" width="170" height="200"/>
+                                        <rect key="frame" x="0.0" y="345" width="170" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="170" height="200"/>
@@ -2355,7 +2355,7 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Head" id="LZQ-yN-YbB" customClass="SectionHeaderCollectionReusableView" customModule="Project6" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="290"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="330"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Sunset" translatesAutoresizingMaskIntoConstraints="NO" id="uzk-bW-P1I">
@@ -2409,7 +2409,7 @@
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="122" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wVa-bx-2t9">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wVa-bx-2t9">
                                             <rect key="frame" x="62" y="201" width="60" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2425,7 +2425,7 @@
                                                 <action selector="toFollower:" destination="EM1-sN-Z9x" eventType="touchUpInside" id="t5H-SA-S4c"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="231" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBw-OZ-dLN">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBw-OZ-dLN">
                                             <rect key="frame" x="154" y="201" width="60" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2441,7 +2441,7 @@
                                                 <action selector="toFollowing:" destination="EM1-sN-Z9x" eventType="touchUpInside" id="cMJ-ls-aBa"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="211" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iuq-O2-i5e">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iuq-O2-i5e">
                                             <rect key="frame" x="252" y="196" width="60" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2449,12 +2449,24 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="OMQ-Dk-Ce7">
+                                            <rect key="frame" x="42.5" y="296" width="290" height="29"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="Basic"/>
+                                                <segment title="Yujiro"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="pageTabDidTap:" destination="EM1-sN-Z9x" eventType="valueChanged" id="Usv-CT-owc"/>
+                                            </connections>
+                                        </segmentedControl>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <connections>
                                         <outlet property="editButton" destination="xHq-nS-iU8" id="TVE-gC-sVh"/>
                                         <outlet property="followerLabel" destination="PBw-OZ-dLN" id="Q9D-Xn-fKw"/>
                                         <outlet property="followingLabel" destination="iuq-O2-i5e" id="Ybc-K1-x0U"/>
+                                        <outlet property="separator" destination="OMQ-Dk-Ce7" id="Xq5-G0-Aii"/>
                                         <outlet property="userProfileImage" destination="WoK-FF-uU0" id="xqR-qd-L2B"/>
                                         <outlet property="userProfileName" destination="3TE-vu-gfk" id="3mJ-Fj-Gg0"/>
                                     </connections>
@@ -2615,7 +2627,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="baQ-nN-0sL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="39044" y="43442"/>
+            <point key="canvasLocation" x="38996" y="43215"/>
         </scene>
         <!--Port-->
         <scene sceneID="Xfr-Vz-yy8">
@@ -3749,14 +3761,14 @@
         <image name="safari" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xcb-Hs-oNJ"/>
         <segue reference="nc3-tx-fPw"/>
         <segue reference="uLk-Fd-Lhw"/>
-        <segue reference="6nx-pf-rMw"/>
-        <segue reference="KmV-Kj-dpY"/>
-        <segue reference="xDY-lT-Obu"/>
+        <segue reference="rbt-zG-eG0"/>
+        <segue reference="xcb-Hs-oNJ"/>
         <segue reference="U2k-eE-RA9"/>
-        <segue reference="vNM-fF-O0h"/>
+        <segue reference="xDY-lT-Obu"/>
         <segue reference="uPa-V9-bqT"/>
+        <segue reference="vNM-fF-O0h"/>
+        <segue reference="9pS-4N-zg0"/>
     </inferredMetricsTieBreakers>
 </document>

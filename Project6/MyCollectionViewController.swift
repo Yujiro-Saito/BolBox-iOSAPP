@@ -34,11 +34,13 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     
     //data
     var isFollow = Bool()
+    var isBasement = Bool()
 
     override func viewDidLoad() {
         
         
         super.viewDidLoad()
+        
         
         myCollection.delegate = self
         myCollection.dataSource = self
@@ -50,6 +52,16 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         self.navigationController!.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.tintColor = UIColor.white
         //self.navigationController?.hidesBarsOnSwipe = true
+        
+        //Individuals
+        
+        self.folderNameBox = []
+        self.folderImageURLBox = []
+        self.styleNumBox = []
+        
+        self.isBasement = true
+        
+       
         
         
         
@@ -84,6 +96,14 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
         
         
+        
+        //Basics
+        self.folderNameBox = []
+        self.folderImageURLBox = []
+        self.styleNumBox = []
+        
+        
+        
         //ユーザーのコレクションの読み込み
         DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
             
@@ -98,11 +118,11 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
                         
                         
-                        if postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
+                        if postDict["bposts"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
                             
-                            let posty = postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject>>
+                            let posty = postDict["bposts"] as? Dictionary<String, Dictionary<String, AnyObject>>
                             
-                            for (key,value) in posty! {
+                            for (_,value) in posty! {
                                 
                                 let styleNum = value["bgType"] as! Int
                                 self.styleNumBox.append(styleNum)
@@ -115,17 +135,17 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
                             
                         }
                         
-                        if postDict["folderName"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
+                        if postDict["basics"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
                             
                             
-                            let folderName = postDict["folderName"] as? Dictionary<String, Dictionary<String, String>>
+                            let basics = postDict["basics"] as? Dictionary<String, Dictionary<String, String>>
                             
-                            for (key,value) in folderName! {
+                            for (_,value) in basics! {
                                 
-                                let valueImageURL = value["imageURL"] as! String
-                                let valueText = value["name"] as! String
-                                self.folderImageURLBox.append(valueImageURL)
-                                self.folderNameBox.append(valueText)
+                                let basicURL = value["imageURL"]!
+                                let basicName = value["name"]!
+                                self.folderImageURLBox.append(basicURL)
+                                self.folderNameBox.append(basicName)
                                 
                                 
                                 
@@ -158,6 +178,12 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             
             
         })
+        
+        
+        DispatchQueue.main.async {
+            self.indicator.stopAnimating()
+        }
+        
 
 
         
@@ -173,6 +199,209 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
     }
     
+    
+    @IBAction func pageTabDidTap(_ sender: UISegmentedControl) {
+        print("loekdewojfiojew")
+        if sender.selectedSegmentIndex == 0 {
+            
+            self.isBasement = true
+            
+            showIndicator()
+            
+            //Basics
+            self.folderNameBox = []
+            self.folderImageURLBox = []
+            self.styleNumBox = []
+            
+            
+            
+            //ユーザーのコレクションの読み込み
+            DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
+                
+                self.userPosts = []
+                self.folderNameBox = []
+                self.folderImageURLBox = []
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    
+                    for snap in snapshot {
+                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            
+                            if postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
+                                
+                                let posty = postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject>>
+                                
+                                for (_,value) in posty! {
+                                    
+                                    let styleNum = value["bgType"] as! Int
+                                    self.styleNumBox.append(styleNum)
+                                    
+                                    
+                                    
+                                }
+                                
+                                
+                                
+                            }
+                            
+                            if postDict["basics"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
+                                
+                                
+                                let basics = postDict["basics"] as? Dictionary<String, Dictionary<String, String>>
+                                
+                                for (_,value) in basics! {
+                                    
+                                    let basicURL = value["imageURL"]!
+                                    let basicName = value["name"]!
+                                    self.folderImageURLBox.append(basicURL)
+                                    self.folderNameBox.append(basicName)
+                                    
+                                    
+                                    
+                                }
+                                
+                                
+                                
+                                
+                            }
+                            
+                        }
+                        
+                        
+                        
+                    }
+                    
+                    
+                    
+                    
+                    
+                }
+                
+                
+                
+                self.folderNameBox.reverse()
+                self.folderImageURLBox.reverse()
+                self.styleNumBox.reverse()
+                
+                self.myCollection.reloadData()
+                
+                
+            })
+            
+            
+            DispatchQueue.main.async {
+                self.indicator.stopAnimating()
+            }
+
+            
+            
+            
+            
+            
+            
+        } else {
+            
+            self.isBasement = false
+            showIndicator()
+            
+            //Individuals
+            
+            self.folderNameBox = []
+            self.folderImageURLBox = []
+            self.styleNumBox = []
+            
+        
+            
+            //ユーザーのコレクションの読み込み
+            DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
+                
+                self.userPosts = []
+                self.folderNameBox = []
+                self.folderImageURLBox = []
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    
+                    for snap in snapshot {
+                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            
+                            if postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
+                                
+                                let posty = postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject>>
+                                
+                                for (key,value) in posty! {
+                                    
+                                    let styleNum = value["bgType"] as! Int
+                                    self.styleNumBox.append(styleNum)
+                                    
+                                    
+                                    
+                                }
+                                
+                                
+                                
+                            }
+                            
+                            if postDict["folderName"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
+                                
+                                
+                                let folderName = postDict["folderName"] as? Dictionary<String, Dictionary<String, String>>
+                                
+                                for (key,value) in folderName! {
+                                    
+                                    let valueImageURL = value["imageURL"] as! String
+                                    let valueText = value["name"] as! String
+                                    self.folderImageURLBox.append(valueImageURL)
+                                    self.folderNameBox.append(valueText)
+                                    
+                                    
+                                    
+                                }
+                                
+                                
+                                
+                                
+                            }
+                            
+                        }
+                        
+                        
+                        
+                    }
+                    
+                    
+                    
+                    
+                    
+                }
+                
+                
+                
+                self.folderNameBox.reverse()
+                self.folderImageURLBox.reverse()
+                self.styleNumBox.reverse()
+                
+                self.myCollection.reloadData()
+                
+                
+                
+                
+                
+            })
+            
+            
+            
+            
+            DispatchQueue.main.async {
+                self.indicator.stopAnimating()
+            }
+            
+            
+        }
+    }
     
     @IBOutlet weak var backgroundButton: UIButton!
     
@@ -342,9 +571,6 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
         
         
-        
-            
-            
             headerView.editButton.backgroundColor = UIColor.clear // 背景色
             headerView.editButton.layer.borderWidth = 1.0 // 枠線の幅
             headerView.editButton.layer.borderColor = UIColor.white.cgColor // 枠線の色
@@ -352,6 +578,13 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
             headerView.userProfileImage.layer.borderWidth = 1.0
             headerView.userProfileImage.layer.borderColor = UIColor.white.cgColor // 枠線の色
+        
+            headerView.separator.setTitle("Basic", forSegmentAt: 0)
+            headerView.separator.setTitle("自分", forSegmentAt: 1)
+            headerView.separator.backgroundColor = UIColor.clear
+            headerView.separator.tintColor = UIColor.white
+        
+        
         
         
                 
@@ -418,9 +651,6 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             self.numOfFollowing = []
             
         
-        
-        
-        
         return headerView
     }
     
@@ -484,6 +714,10 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             
             another.folderName = folderName
             another.postsType = numInt
+            another.isBasic = self.isBasement
+            
+            
+            
           
             
         } else if segue.identifier == "Options" {
@@ -496,4 +730,55 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
         
     }
+    
+    
+    let indicator = UIActivityIndicatorView()
+    
+    func showIndicator() {
+        
+        indicator.activityIndicatorViewStyle = .whiteLarge
+        
+        indicator.center = self.view.center
+        
+        indicator.color = UIColor.white
+        
+        indicator.hidesWhenStopped = true
+        
+        self.view.addSubview(indicator)
+        
+        self.view.bringSubview(toFront: indicator)
+        
+        indicator.startAnimating()
+        
+    }
+    
+    
+    func wait(_ waitContinuation: @escaping (()->Bool), compleation: @escaping (()->Void)) {
+        var wait = waitContinuation()
+        
+        
+        // 0.01秒周期で待機条件をクリアするまで待ちます。
+        let semaphore = DispatchSemaphore(value: 0)
+        DispatchQueue.global().async {
+            while wait {
+                DispatchQueue.main.async {
+                    wait = waitContinuation()
+                    semaphore.signal()
+                }
+                semaphore.wait()
+                Thread.sleep(forTimeInterval: 0.01)
+            }
+            
+            
+            // 待機条件をクリアしたので通過後の処理を行います。
+            DispatchQueue.main.async {
+                compleation()
+                
+                
+                
+            }
+        }
+    }
+    
+
 }

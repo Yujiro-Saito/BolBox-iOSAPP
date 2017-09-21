@@ -35,7 +35,6 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         
         if let tabItem = self.tabBarController?.tabBar.items?[2] {
             tabItem.badgeColor = UIColor.red
-            //tabItem.badgeValue = "23"
         }
         
         
@@ -312,10 +311,7 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
  
     }
     
-            
-                            
-            
-            
+    
     
     
     let currentUserCheck = FIRAuth.auth()?.currentUser
@@ -473,7 +469,6 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         var wait = waitContinuation()
         
         
-        // 0.01秒周期で待機条件をクリアするまで待ちます。
         let semaphore = DispatchSemaphore(value: 0)
         DispatchQueue.global().async {
             while wait {
@@ -486,7 +481,6 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
             }
             
             
-            // 待機条件をクリアしたので通過後の処理を行います。
             DispatchQueue.main.async {
                 compleation()
                 

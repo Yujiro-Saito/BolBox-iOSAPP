@@ -14,6 +14,7 @@ import AlamofireImage
 class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     
     var postsType = Int()
+    var isBasic = Bool()
     
     @IBOutlet weak var toysCollection: UICollectionView!
     
@@ -23,6 +24,8 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         //写真
         if sender.selectedSegmentIndex == 0 {
+            
+            //APP music movie books
             
             print(self.postsType)
             //Pinterest
@@ -143,34 +146,40 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         let uids = FIRAuth.auth()?.currentUser?.uid
         
-        DataService.dataBase.REF_BASE.child("users").child(uids!).child("posts").queryOrdered(byChild: "folderName").queryEqual(toValue: folderName).observe(.value, with: { (snapshot) in
+        if self.isBasic == false {
+            //個人ボード
             
-            self.linkPosts = []
-            
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+            DataService.dataBase.REF_BASE.child("users").child(uids!).child("posts").queryOrdered(byChild: "folderName").queryEqual(toValue: folderName).observe(.value, with: { (snapshot) in
                 
-                for snap in snapshot {
+                self.linkPosts = []
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     
-                    
-                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                        //imageURLがない場合配列に追加
-                        if postDict["imageURL"] as? String == "" {
-                            let key = snap.key
-                            let post = Post(postKey: key, postData: postDict)
+                    for snap in snapshot {
+                        
+                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            //imageURLがない場合配列に追加
+                            if postDict["imageURL"] as? String == "" {
+                                let key = snap.key
+                                let post = Post(postKey: key, postData: postDict)
+                                
+                                self.linkPosts.append(post)
+                            } else if postDict["imageURL"] as? String != "" {
+                                
+                                let key = snap.key
+                                let post = Post(postKey: key, postData: postDict)
+                                
+                                self.photoPosts.append(post)
+                                
+                                
+                                
+                            }
                             
-                            self.linkPosts.append(post)
-                        } else if postDict["imageURL"] as? String != "" {
-                            
-                            let key = snap.key
-                            let post = Post(postKey: key, postData: postDict)
-                            
-                            self.photoPosts.append(post)
                             
                             
                             
                         }
-                        
-                        
                         
                         
                     }
@@ -179,17 +188,76 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
                 }
                 
                 
-            }
+                self.linkPosts.reverse()
+                self.photoPosts.reverse()
+                self.toysTable.reloadData()
+                self.toysCollection.reloadData()
+                self.photoTable.reloadData()
+                
+                
+            })
             
             
-            self.linkPosts.reverse()
-            self.photoPosts.reverse()
-            self.toysTable.reloadData()
-            self.toysCollection.reloadData()
-            self.photoTable.reloadData()
+        } else {
+            //Basicのデータ
             
             
-        })
+            DataService.dataBase.REF_BASE.child("users").child(uids!).child("bposts").queryOrdered(byChild: "folderName").queryEqual(toValue: folderName).observe(.value, with: { (snapshot) in
+                
+                self.linkPosts = []
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    
+                    for snap in snapshot {
+                        
+                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            //imageURLがない場合配列に追加
+                            if postDict["imageURL"] as? String == "" {
+                                let key = snap.key
+                                let post = Post(postKey: key, postData: postDict)
+                                
+                                self.linkPosts.append(post)
+                            } else if postDict["imageURL"] as? String != "" {
+                                
+                                let key = snap.key
+                                let post = Post(postKey: key, postData: postDict)
+                                
+                                self.photoPosts.append(post)
+                                
+                                
+                                
+                            }
+                            
+                            
+                            
+                            
+                        }
+                        
+                        
+                    }
+                    
+                    
+                }
+                
+                
+                self.linkPosts.reverse()
+                self.photoPosts.reverse()
+                self.toysTable.reloadData()
+                self.toysCollection.reloadData()
+                self.photoTable.reloadData()
+                
+                
+            })
+            
+            
+            
+            
+            
+        }
+        
+        
+        
         
 
         
