@@ -55,15 +55,18 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         notificationTable.dataSource = self
         
         
-        //self.tabItem.badgeColor = UIColor.red
+        
+        // フォント種をTime New Roman、サイズを10に指定
+        self.navigationItem.title = "アクティビティ"
         
         // フォント種をTime New Roman、サイズを10に指定
         self.navigationController?.navigationBar.titleTextAttributes
             = [NSFontAttributeName: UIFont(name: "Times New Roman", size: 18)!]
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.tintColor = UIColor.blue
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.hidesBarsOnSwipe = true
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
         
         //self.notificationTable.refreshControl = UIRefreshControl()
@@ -329,17 +332,27 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         detailUserName = self.firstUserNameBox[indexPath.row]
         detailUserPhotoURL = self.userPhotoURLBox[indexPath.row]
         
-        //performSegue(withIdentifier: "DetailUserProfile", sender: nil)
+        performSegue(withIdentifier: "tousers", sender: nil)
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let userProfileVc = (segue.destination as? UserProfileViewController)!
         
-        userProfileVc.userName = self.detailUserName
-        userProfileVc.userImageURL = self.detailUserPhotoURL
-        userProfileVc.userID = self.detailUserID
+        if segue.identifier == "tousers" {
+            
+            let userVC = (segue.destination as? UserViewController)!
+            
+            userVC.userName = detailUserName
+            userVC.userImageURL = detailUserPhotoURL
+            userVC.userID = detailUserID
+            
+            
+        }
+        
+        
+        
+       
     }
     
 
@@ -359,9 +372,17 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         
         let currentCounts = self.firstUserNameBox.count
         
-        notiCell?.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0).cgColor
+        
+        tableView.tableFooterView = UIView()
+        
+        tableView.separatorInset = .zero
+        tableView.separatorColor = UIColor.white
+        
+        notiCell?.layer.borderColor = UIColor.clear.cgColor
         notiCell?.layer.borderWidth = 10
         notiCell?.clipsToBounds = true
+        notiCell?.layer.masksToBounds = true
+        notiCell?.layer.cornerRadius = 5.0
         
         
         
