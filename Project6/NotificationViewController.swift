@@ -18,7 +18,6 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
     @IBOutlet weak var tabItem: UITabBarItem!
     
     
-    
     //likes
     var firstUserNameBox = [String]()
     var userImageURLBox = [String]()
@@ -32,6 +31,25 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        if let tabItem = self.tabBarController?.tabBar.items?[2] {
+            tabItem.badgeColor = UIColor.red
+            //tabItem.badgeValue = "23"
+        }
+        
+        
+        /*
+         let userDefaults = UserDefaults.standard
+         userDefaults.removeObject(forKey: "previousCounts")
+         
+         if (userDefaults.object(forKey: "previousCounts") != nil) {
+         print("データ有り")
+         } else {
+         print("なし")
+         }
+        
+        */
         
         notificationTable.delegate = self
         notificationTable.dataSource = self
@@ -48,8 +66,8 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         self.navigationController?.hidesBarsOnSwipe = true
         
         
-        self.notificationTable.refreshControl = UIRefreshControl()
-        self.notificationTable.refreshControl?.addTarget(self, action: #selector(NotificationViewController.refresh), for: .valueChanged)
+        //self.notificationTable.refreshControl = UIRefreshControl()
+        //self.notificationTable.refreshControl?.addTarget(self, action: #selector(NotificationViewController.refresh), for: .valueChanged)
         
         
         let currentCounts = self.firstUserNameBox.count
@@ -245,10 +263,7 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
                     self.currentUserIdNumberBox.reverse()
                     self.userPhotoURLBox.reverse()
                     
-                    print(self.firstUserNameBox)
-                    print(self.userPhotoURLBox)
-                    print(self.userPostTitleBox)
-                    print("終わり")
+                   
                     
                     
                     self.notificationTable.reloadData()
@@ -260,8 +275,8 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
                 }
                 
                 
-                
-                
+            }
+            
                 
                 
                 
@@ -277,9 +292,9 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
             
             
             //通知設定
-            
+        
             ////初回時通知数を登録
-            /*
+            
             if UserDefaults.standard.object(forKey: "previousCounts") == nil  {
              
                 print("初回いいね数を登録しました")
@@ -288,10 +303,10 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
                 
                 
             }
-            */
             
+        
             
-        }
+ 
     }
     
             
@@ -349,7 +364,7 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
         notiCell?.clipsToBounds = true
         
         
-        /*
+        
         if firstUserNameBox.count >= 1 {
             
             
@@ -366,7 +381,14 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
                     print("最終")
                     let currentNum = currentCounts - previousNum
                     print(currentNum)
-                    self.tabItem.badgeValue = String(currentNum)
+                    
+                    
+                    if let tabItem = self.tabBarController?.tabBar.items?[2] {
+                        tabItem.badgeColor = UIColor.red
+                        tabItem.badgeValue = String(currentNum)
+                    }
+                    
+                    //self.tabItem.badgeValue = String(currentNum)
                     
                     let userDefaults = UserDefaults.standard
                     
@@ -382,21 +404,12 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
                 
                 
             }
-            
  
             
             
-            
-            
-            
-            
-            notiCell?.userName.text = firstUserNameBox[indexPath.row]
-            notiCell?.userImage.af_setImage(withURL: URL(string: userImageURLBox[indexPath.row])!)
-            notiCell?.title.text = userPostTitleBox[indexPath.row]
-            notiCell?.reactMessage.text = "さんがいいねと言っています"
         }
         
-        */
+        
         
         
         let check = userPostTitleBox[indexPath.row]
@@ -433,106 +446,7 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
     
     
     
-    func refresh() {
-        
-        
-        //ユーザの投稿を取得
-        DataService.dataBase.REF_BASE.child("posts").queryOrdered(byChild: "userID").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
-            
-            self.firstUserNameBox = []
-            print(snapshot.value)
-            
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                
-                //繰り返し
-                for snap in snapshot {
-                    print("SNAP: \(snap)")
-                    
-                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                        
-                        
-                        //投稿にいいねをつけている人がいる場合
-                        if let peopleWhoLike = postDict["peopleWhoLike"] as? Dictionary<String, AnyObject> {
-                            
-                            print(peopleWhoLike)
-                            
-                            
-                            
-                            for (nameKey,namevalue) in peopleWhoLike {
-                                print("キーは\(nameKey)、値は\(namevalue)")
-                                
-                                
-                                print("ユーザー画像URLの取得\(namevalue)")
-                                
-                                
-                                
-                                let userImageURL = namevalue["imageURL"] as! String
-                                
-                                let userPostTitle = namevalue["postName"] as! String
-                                
-                                
-                                self.firstUserNameBox.append(nameKey)
-                                self.userImageURLBox.append(userImageURL)
-                                self.userPostTitleBox.append(userPostTitle)
-                                
-                                
-                                self.firstUserNameBox.reverse()
-                                self.userImageURLBox.reverse()
-                                self.userPostTitleBox.reverse()
-                                
-                                self.notificationTable.reloadData()
-                                
-                                print(self.firstUserNameBox)
-                                print(self.userImageURLBox)
-                                
-                            }
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                        }
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                    }
-                    
-                    
-                    
-                }
-                
-                
-            }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-        })
-        
-        self.notificationTable.refreshControl?.endRefreshing()
-        
-
     
-}
     
     func wait(_ waitContinuation: @escaping (()->Bool), compleation: @escaping (()->Void)) {
         var wait = waitContinuation()
@@ -560,6 +474,7 @@ class NotificationViewController: UIViewController ,UINavigationBarDelegate,UITa
             }
         }
     }
+        
 
 }
 
