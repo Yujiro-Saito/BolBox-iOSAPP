@@ -34,6 +34,11 @@ class AddbasicsViewController: UIViewController,UITableViewDelegate,UITableViewD
 
     }
 
+    
+    func postButtonDidTap(){
+        
+        
+        }
   
     
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -292,6 +297,7 @@ class AddbasicsViewController: UIViewController,UITableViewDelegate,UITableViewD
             basePostVC.previewUrl = previewUrlAi
             basePostVC.appLink = appicationLink
             basePostVC.appDesc = applicationDesc
+            basePostVC.folderName = "bstart"
 
             
             

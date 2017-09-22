@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import AlamofireImage
+import Firebase
 
 class BasicPostViewController: UIViewController {
     
@@ -17,6 +18,12 @@ class BasicPostViewController: UIViewController {
     var imageURL: String!
     var appLink: String?
     var appDesc: String?
+    var folderName: String!
+    
+    var folderInfo = Dictionary<String,String>()
+    let uid = FIRAuth.auth()?.currentUser?.uid
+    let userName = FIRAuth.auth()?.currentUser?.displayName
+    
     
     
     @IBOutlet weak var desc: UILabel!
@@ -25,8 +32,20 @@ class BasicPostViewController: UIViewController {
     @IBOutlet weak var itemImage: UIImageView!
 
     @IBOutlet weak var itemName: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let rightSearchBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: #selector(BasicPostViewController.postButtonDidTap))
+        self.navigationItem.setRightBarButtonItems([rightSearchBarButtonItem], animated: true)
+        
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        
+        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController!.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.hidesBarsOnSwipe = true
         
         let imageDefURL = URL(string: imageURL)
         self.itemImage.af_setImage(withURL: imageDefURL!)
@@ -36,6 +55,41 @@ class BasicPostViewController: UIViewController {
         self.itemImage.layer.cornerRadius = 20
         
         self.desc.text = appDesc
+        
+        
+    }
+    
+    func postButtonDidTap() {
+        
+        self.folderInfo = ["imageURL" : self.imageURL, "name" : "App"]
+        
+        let folderNameDictionary: Dictionary<String, Dictionary<String, String?>> = [self.folderName : folderInfo]
+        
+        
+        let firebasePost = DataService.dataBase.REF_USER.child(uid!).child("bposts").childByAutoId()
+        let key = firebasePost.key
+        let keyvalue = ("\(key)")
+        
+        let post: Dictionary<String, AnyObject> = [
+            "bgType" : 0 as AnyObject,
+            "folderName" :  "App" as AnyObject,
+            "linkURL" : appLink! as AnyObject,
+            "pvCount" : 0 as AnyObject,
+            "userID" : uid as AnyObject,
+            "userName" : userName as AnyObject,
+            "name" : "App" as AnyObject,
+            "imageURL" : imageURL as AnyObject,
+            "postID" : keyvalue as AnyObject,
+            "desc" : appDesc! as AnyObject
+        ]
+        
+        firebasePost.setValue(post)
+        DataService.dataBase.REF_BASE.child("users/\(self.uid!)/basics").updateChildValues(folderNameDictionary)
+        
+        
+     //performSegue(withIdentifier: "Tobacckky", sender: nil)
+        
+        
         
         
     }
