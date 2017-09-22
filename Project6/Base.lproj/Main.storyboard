@@ -1855,6 +1855,7 @@
                         <outlet property="desc" destination="Oce-FK-9Cd" id="Vzh-Yk-PJo"/>
                         <outlet property="itemImage" destination="wdB-4r-HEm" id="BZ5-qz-DsG"/>
                         <outlet property="itemName" destination="3p5-8y-Y3f" id="g9Q-bN-P5m"/>
+                        <segue destination="azm-vx-HAv" kind="presentation" identifier="PenBen" id="XHo-y8-1x1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8KI-y2-yZk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2125,7 +2126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xIe-Ju-5j8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="39286" y="45527"/>
+            <point key="canvasLocation" x="39217" y="45829"/>
         </scene>
         <!--Folder Name Lists View Controller-->
         <scene sceneID="gnm-Y6-CgE">
@@ -3925,7 +3926,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jJo-dR-Onz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="ウォール" image="Home" id="qMP-Xu-1HA"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UIl-fw-qgx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UIl-fw-qgx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -3948,7 +3949,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GtW-M7-tyf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="探す" image="Search" id="ubN-eP-8bB"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="oXz-Zf-PXP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oXz-Zf-PXP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -3973,7 +3974,7 @@
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="MAV-C6-E7r">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MAV-C6-E7r">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4011,14 +4012,14 @@
         <image name="safari" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nc3-tx-fPw"/>
-        <segue reference="uLk-Fd-Lhw"/>
-        <segue reference="rbt-zG-eG0"/>
+        <segue reference="XHo-y8-1x1"/>
         <segue reference="xcb-Hs-oNJ"/>
         <segue reference="U2k-eE-RA9"/>
         <segue reference="xDY-lT-Obu"/>
+        <segue reference="rbt-zG-eG0"/>
+        <segue reference="uLk-Fd-Lhw"/>
+        <segue reference="vNM-fF-O0h"/>
         <segue reference="uPa-V9-bqT"/>
         <segue reference="rEK-7Q-rWX"/>
-        <segue reference="vNM-fF-O0h"/>
     </inferredMetricsTieBreakers>
 </document>

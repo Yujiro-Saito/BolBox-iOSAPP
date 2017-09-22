@@ -17,9 +17,13 @@ class AddbasicsViewController: UIViewController,UITableViewDelegate,UITableViewD
     
     @IBOutlet weak var searchBaraai: UISearchBar!
     
+    var postType: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         
         tableing.delegate = self
         tableing.dataSource = self
@@ -35,10 +39,7 @@ class AddbasicsViewController: UIViewController,UITableViewDelegate,UITableViewD
     }
 
     
-    func postButtonDidTap(){
-        
-        
-        }
+    var uiri = String()
   
     
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -48,16 +49,23 @@ class AddbasicsViewController: UIViewController,UITableViewDelegate,UITableViewD
         let enocodedText = searchText?.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            print("aaaaai")
+            
+            //typeによってURL切り替え
+            
+            if self.postType == 0 {
+                //app
+                 self.uiri = "https://itunes.apple.com/search?term=\(enocodedText!)&country=JP&lang=ja_jp&entity=software&limit=10"
+            } else if self.postType == 1 {
+                self.uiri = "https://itunes.apple.com/search?term=\(enocodedText!)&country=JP&lang=ja_jp&media=music&limit=30"
+            } else if self.postType == 2 {
+                self.uiri = "https://itunes.apple.com/search?term=\(enocodedText!)&entity=movie&country=JP&limit=30"
+            } else if self.postType == 3 {
+            }
             
             
-            //music
-            //let uiri = "https://itunes.apple.com/search?term=\(enocodedText!)&country=JP&lang=ja_jp&media=music&limit=30"
             
-            //app
-            let uiri = "https://itunes.apple.com/search?term=\(enocodedText!)&country=JP&lang=ja_jp&entity=software&limit=10"
             
-            let finalKeyWord = uiri.replacingOccurrences(of: " ", with: "+")
+            let finalKeyWord = self.uiri.replacingOccurrences(of: " ", with: "+")
             
             self.callAlamo(url: finalKeyWord)
             
@@ -125,13 +133,18 @@ class AddbasicsViewController: UIViewController,UITableViewDelegate,UITableViewD
         
     }
     
+    //共通
     var trackNames = [String]()
-    var previewUrls = [String?]()
     var imageURLBox = [String]()
-    var artistNames = [String?]()
-    var appLinks = [String?]()
+    var totalLinkBox = [String]()
+    
+    //app
+    //var appLinks = [String?]()
     var appDescs = [String?]()
     
+    //music
+    var artistNames = [String?]()
+    var previewUrls = [String?]()
     
     typealias jsonFormat = [String : Any]
     
@@ -142,8 +155,9 @@ class AddbasicsViewController: UIViewController,UITableViewDelegate,UITableViewD
         self.previewUrls = []
         self.imageURLBox = []
         self.artistNames = []
-        self.appLinks = []
         self.appDescs = []
+        self.totalLinkBox = []
+        
         
         do {
             
@@ -155,59 +169,152 @@ class AddbasicsViewController: UIViewController,UITableViewDelegate,UITableViewD
                 for a in 0..<songs.count {
                     
                     let song = songs[a]
-                    //print(app)
                     
-                    //"trackViewUrl"
-                    //description
                     
-                    //app ori
-                    if let appLinkURL = song["trackViewUrl"] as? String {
+                    
+                    //APP
+                    if self.postType == 0 {
+                        
+                        //Links
+                        if let appLinkURL = song["trackViewUrl"] as? String {
+                            
+                            
+                            totalLinkBox.append(appLinkURL)
+                        }
+                        
+                        //app Ori
+                        if let appDesc = song["description"] as? String {
+                            
+                            
+                            appDescs.append(appDesc)
+                        }
+                        
+                        //Name
+                        if let title = song["trackName"] as? String {
+                            
+                            
+                            trackNames.append(title)
+                            print(trackNames)
+                        }
                         
                         
-                        appLinks.append(appLinkURL)
-                    }
-                    
-                    //app ori
-                    if let appDesc = song["description"] as? String {
-                        
-                        
-                        appDescs.append(appDesc)
-                    }
-                    
-                    
-                    if let title = song["trackName"] as? String {
-                        
-                        
-                        trackNames.append(title)
-                        print(trackNames)
-                    }
-                    
-                    
-                    if let link = song["previewUrl"] as? String {
-                        
-                        
-                        previewUrls.append(link)
-                        print(previewUrls)
-                    }
-                    
-                    if let imageURL = song["artworkUrl100"] as? String {
+                        //IMG
+                        if let imageURL = song["artworkUrl100"] as? String {
+                            
+                            
+                            
+                            imageURLBox.append(imageURL)
+                            print(imageURLBox)
+                        }
                         
                         
                         
-                        imageURLBox.append(imageURL)
-                        print(imageURLBox)
-                    }
-                    
-                    
-                    
-                    
-                    
-                    if let artistName = song["artistName"] as? String {
                         
-                        artistNames.append(artistName)
                         
                         
                     }
+                    
+                    else if self.postType == 1 {
+                       //Music
+                        
+                        
+                        //Name
+                        if let title = song["trackName"] as? String {
+                            
+                            
+                            trackNames.append(title)
+                            print(trackNames)
+                        }
+                        
+                        //Music Ori
+                        if let preLink = song["previewUrl"] as? String {
+                            
+                            
+                            previewUrls.append(preLink)
+                            print(previewUrls)
+                        }
+                        
+                        
+                        //IMG
+                        if let imageURL = song["artworkUrl100"] as? String {
+                            
+                            
+                            
+                            imageURLBox.append(imageURL)
+                            print(imageURLBox)
+                        }
+                        
+                        
+                        //Link
+                        if let link = song["collectionViewUrl"] as? String {
+                            
+                            
+                            totalLinkBox.append(link)
+                            print(previewUrls)
+                        }
+                        
+                        
+                        //Music Ori
+                        if let artistName = song["artistName"] as? String {
+                            
+                            artistNames.append(artistName)
+                            
+                            
+                        }
+                        
+                        
+                        
+                        
+                    } else if self.postType == 2 {
+                        
+                        
+                        //Name
+                        if let title = song["trackName"] as? String {
+                            
+                            
+                            trackNames.append(title)
+                        }
+                        
+                        
+                        //Link
+                        if let link = song["trackViewUrl"] as? String {
+                            
+                            
+                            totalLinkBox.append(link)
+                        }
+                        
+                        //IMG
+                        if let imageURL = song["artworkUrl100"] as? String {
+                            
+                            
+                            
+                            imageURLBox.append(imageURL)
+                        }
+                        
+                        
+                        
+                        
+                        //監督名
+                        if let artistName = song["artistName"] as? String {
+                            
+                            artistNames.append(artistName)
+                            
+                            
+                        }
+
+                        //Desc
+                        if let desc = song["longDescription"] as? String {
+                            
+                            
+                            appDescs.append(desc)
+                        }
+                        
+                        
+                        
+                        
+                    }
+                    
+                   
                     
                     
                 }
@@ -245,44 +352,79 @@ class AddbasicsViewController: UIViewController,UITableViewDelegate,UITableViewD
         
     }
     
-    var trackNameaI: String!
+    
+    
+    
+    var trackName: String!
+    var trackImageURL: String!
+    var accessLink: String!
+    
+    
+    var trackDesc: String!
+
     var previewUrlAi: String!
-    var imageURLAi: String!
-    var appicationLink: String!
-    var applicationDesc: String!
-
-
+    var artistName: String!
     
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
-        trackNameaI = self.trackNames[indexPath.row]
-        imageURLAi = self.imageURLBox[indexPath.row]
-        
-        print(trackNameaI)
-        print(imageURLAi)
-        print(previewUrls)
-        print(appLinks)
+        trackName = self.trackNames[indexPath.row]
+        trackImageURL = self.imageURLBox[indexPath.row]
+        accessLink = self.totalLinkBox[indexPath.row]
         
         
-        /*if self.previewUrls[indexPath.row] == nil {
-            print("aaaaaai")
-        }else {
-            previewUrlAi = self.previewUrls[indexPath.row]
-        }
-        */
-        if self.appLinks[indexPath.row] != nil {
-            appicationLink = self.appLinks[indexPath.row]
-        }
+       
         
-        if self.appDescs[indexPath.row] != nil {
-            applicationDesc = self.appDescs[indexPath.row]
-        }
+        
+        
+        
+        if self.postType == 0 {
+            
+            
+            if self.appDescs[indexPath.row] != nil {
+                trackDesc = self.appDescs[indexPath.row]
+            }
+            
+            
+            performSegue(withIdentifier: "goingHell", sender: nil)
+            
 
+        } else if self.postType == 1 {
+            
+            if self.previewUrls[indexPath.row] != nil {
+                previewUrlAi = self.previewUrls[indexPath.row]
+            }
+            
+            if self.artistNames[indexPath.row] != nil {
+                
+                artistName = self.artistNames[indexPath.row]
+            }
+            
+            
+            performSegue(withIdentifier: "goingHell", sender: nil)
+            
+        }  else if self.postType == 2 {
+            
+            
+            
+            if self.appDescs[indexPath.row] != nil {
+                trackDesc = self.appDescs[indexPath.row]
+            }
+            
+            if self.artistNames[indexPath.row] != nil {
+                
+                artistName = self.artistNames[indexPath.row]
+            }
+
+            
+            performSegue(withIdentifier: "goingHell", sender: nil)
+            
+            
+        }
         
-        performSegue(withIdentifier: "goingHell", sender: nil)
+        
         
     }
     
@@ -292,12 +434,28 @@ class AddbasicsViewController: UIViewController,UITableViewDelegate,UITableViewD
             
             let basePostVC = (segue.destination as? BasicPostViewController)!
             
-            basePostVC.trackName = trackNameaI
-            basePostVC.imageURL = imageURLAi
+            basePostVC.trackName = trackName
+            basePostVC.imageURL = trackImageURL
             basePostVC.previewUrl = previewUrlAi
-            basePostVC.appLink = appicationLink
-            basePostVC.appDesc = applicationDesc
-            basePostVC.folderName = "bstart"
+            basePostVC.artistName = artistName
+            basePostVC.accessLink = accessLink
+            basePostVC.trackDesc = trackDesc
+        
+            
+            if self.postType == 0 {
+                basePostVC.folderName = "bstart"
+                basePostVC.postingSitu = 0
+                
+            } else if self.postType == 1 {
+                basePostVC.folderName = "dStart"
+                basePostVC.postingSitu = 1
+            } else if self.postType == 2 {
+                basePostVC.folderName = "cstart"
+                basePostVC.postingSitu = 2
+            }
+            
+            
+            
 
             
             

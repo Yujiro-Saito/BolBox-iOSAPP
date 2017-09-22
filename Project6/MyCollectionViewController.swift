@@ -31,6 +31,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     var folderImageURLBox = [String]()
     
     var isPhoto = Bool()
+    var postingType = Int()
     
     //data
     var isFollow = Bool()
@@ -229,6 +230,8 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     
     @IBAction func appTapped(_ sender: Any) {
         
+        
+        self.postingType = 0
         self.tabBarController?.tabBar.isHidden = false
         bottomConstraint.constant = -200
         
@@ -246,12 +249,58 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     }
     
     @IBAction func musicTapped(_ sender: Any) {
+        
+        self.postingType = 1
+        self.tabBarController?.tabBar.isHidden = false
+        bottomConstraint.constant = -200
+        
+        
+        UIView.animate(withDuration: 0.1) {
+            self.view.layoutIfNeeded()
+            
+            
+            self.backgroundButton.alpha = 0
+            
+            
+            
+        }
+        performSegue(withIdentifier: "ItemSearch", sender: nil)
     }
     
     @IBAction func movieTapped(_ sender: Any) {
+        self.postingType = 2
+        self.tabBarController?.tabBar.isHidden = false
+        bottomConstraint.constant = -200
+        
+        
+        UIView.animate(withDuration: 0.1) {
+            self.view.layoutIfNeeded()
+            
+            
+            self.backgroundButton.alpha = 0
+            
+            
+            
+        }
+        performSegue(withIdentifier: "ItemSearch", sender: nil)
     }
     
     @IBAction func bookTapped(_ sender: Any) {
+        self.postingType = 3
+        self.tabBarController?.tabBar.isHidden = false
+        bottomConstraint.constant = -200
+        
+        
+        UIView.animate(withDuration: 0.1) {
+            self.view.layoutIfNeeded()
+            
+            
+            self.backgroundButton.alpha = 0
+            
+            
+            
+        }
+        performSegue(withIdentifier: "ItemSearch", sender: nil)
     }
     
     
@@ -775,22 +824,16 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "GoCheck" {
-          /*
-            let detailVC = (segue.destination as? InfomationViewController)!
+        if segue.identifier == "ItemSearch" {
+          
+            let itemSearchVC = (segue.destination as? AddbasicsViewController)!
             
             
-            detailVC.name = detailPosts?.name
-            detailVC.numLikes = (detailPosts?.pvCount)!
-            detailVC.imageURL = detailPosts?.imageURL
-            detailVC.linkURL = detailPosts?.linkURL
-            detailVC.userName = detailPosts?.userProfileName
-            detailVC.userID = detailPosts?.userID
-            detailVC.userImageURL = detailPosts?.userProfileImage
-            detailVC.postID = detailPosts?.postID
+            itemSearchVC.postType = self.postingType
+            
             
         
-            */
+            
             
         } else if segue.identifier == "followLists" {
             
