@@ -103,7 +103,7 @@ class BasicPostViewController: UIViewController {
                 "pvCount" : 0 as AnyObject,
                 "userID" : uid as AnyObject,
                 "userName" : userName as AnyObject,
-                "name" : "App" as AnyObject,
+                "name" :  trackName as AnyObject,
                 "imageURL" : imageURL as AnyObject,
                 "postID" : keyvalue as AnyObject,
                 "desc" : trackDesc! as AnyObject
@@ -134,7 +134,7 @@ class BasicPostViewController: UIViewController {
                 "pvCount" : 0 as AnyObject,
                 "userID" : uid as AnyObject,
                 "userName" : userName as AnyObject,
-                "name" : "Music" as AnyObject,
+                "name" : trackName as AnyObject,
                 "imageURL" : imageURL as AnyObject,
                 "postID" : keyvalue as AnyObject,
                 "preview" : previewUrl! as AnyObject,
@@ -167,7 +167,7 @@ class BasicPostViewController: UIViewController {
                 "pvCount" : 0 as AnyObject,
                 "userID" : uid as AnyObject,
                 "userName" : userName as AnyObject,
-                "name" : "Movie" as AnyObject,
+                "name" : trackName as AnyObject,
                 "imageURL" : imageURL as AnyObject,
                 "postID" : keyvalue as AnyObject,
                 "artistName" : artistName! as AnyObject,
@@ -184,6 +184,38 @@ class BasicPostViewController: UIViewController {
             
             
             
+            
+            
+            
+            
+        } else if self.postingSitu == 3 {
+            
+            self.folderInfo = ["imageURL" : self.imageURL, "name" : "Book"]
+            
+            let folderNameDictionary: Dictionary<String, Dictionary<String, String?>> = [self.folderName : folderInfo]
+            
+            
+            let firebasePost = DataService.dataBase.REF_USER.child(uid!).child("bposts").childByAutoId()
+            let key = firebasePost.key
+            let keyvalue = ("\(key)")
+            
+            let post: Dictionary<String, AnyObject> = [
+                "bgType" : 0 as AnyObject,
+                "folderName" :  "Book" as AnyObject,
+                "pvCount" : 0 as AnyObject,
+                "userID" : uid as AnyObject,
+                "userName" : userName as AnyObject,
+                "name" : trackName as AnyObject,
+                "imageURL" : imageURL as AnyObject,
+                "postID" : keyvalue as AnyObject,
+                "artistName" : artistName! as AnyObject,
+            ]
+            
+            firebasePost.setValue(post)
+            DataService.dataBase.REF_BASE.child("users/\(self.uid!)/basics").updateChildValues(folderNameDictionary)
+            
+            
+            performSegue(withIdentifier: "PenBen", sender: nil)
             
             
             
