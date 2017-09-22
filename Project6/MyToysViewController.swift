@@ -98,6 +98,13 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if self.isBasic == true {
+            self.segment.isHidden = true
+            
+        } else {
+            self.segment.isHidden = false
+            
+        }
         
         photoTable.delegate = self
         photoTable.dataSource = self
@@ -420,14 +427,20 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        //let cellSize:CGFloat = self.view.frame.size.width/3
-        
+        //let cellSize:CGFloat = self.view.frame.size.width/4
+        let cellSize:CGFloat = self.view.frame.size.width/3-8
         //return CGSize(width: cellSize, height: cellSize)
         
-        let cellSize:CGFloat = self.view.frame.size.width/2-2
+        //let cellSize:CGFloat = self.view.frame.size.width/2-2
         
-        return CGSize(width: cellSize, height: 200)
+        //return CGSize(width: cellSize, height: 200)
+        
+        return CGSize(width: cellSize, height: cellSize)
+    
+    
     }
+    
+    
     
     //縦の間隔を決定する
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
