@@ -45,6 +45,12 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         myCollection.delegate = self
         myCollection.dataSource = self
         
+        self.mainButton.isEnabled = false
+        self.photoButton.isHidden = true
+        self.photoLabel.isHidden = true
+        self.linkButton.isHidden = true
+        self.linkLabel.isHidden = true
+        
         // ナビゲーションを透明にする処理
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
@@ -60,6 +66,9 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         self.styleNumBox = []
         
         self.isBasement = true
+        
+        
+        
         
        
         
@@ -185,26 +194,100 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         }
         
 
-
-        
-        
- 
-        
-        
-        
-        
-        
-        
-        
         
     }
     
     
+    
+    //traditional
+    
+    @IBOutlet weak var mainLabel: UILabel!
+    @IBOutlet weak var mainButton: UIButton!
+    @IBOutlet weak var photoButton: UIButton!
+    @IBOutlet weak var photoLabel: UILabel!
+    @IBOutlet weak var linkButton: UIButton!
+    @IBOutlet weak var linkLabel: UILabel!
+    
+    
+    
+    
+    //Base 
+    @IBOutlet weak var appLabel: UILabel!
+    @IBOutlet weak var musicLabel: UILabel!
+    @IBOutlet weak var movieLabel: UILabel!
+    @IBOutlet weak var bookLabel: UILabel!
+    
+    @IBOutlet weak var appImage: UIImageView!
+    @IBOutlet weak var musicImage: UIImageView!
+    @IBOutlet weak var movieImage: UIImageView!
+    @IBOutlet weak var bookImage: UIImageView!
+    
+    @IBOutlet weak var AppButton: UIButton!
+    @IBOutlet weak var musicButton: UIButton!
+    @IBOutlet weak var movieButton: UIButton!
+    @IBOutlet weak var bookButton: UIButton!
+    
+    @IBAction func appTapped(_ sender: Any) {
+        
+        self.tabBarController?.tabBar.isHidden = false
+        bottomConstraint.constant = -200
+        
+        
+        UIView.animate(withDuration: 0.1) {
+            self.view.layoutIfNeeded()
+            
+            
+            self.backgroundButton.alpha = 0
+            
+            
+            
+        }
+        performSegue(withIdentifier: "ItemSearch", sender: nil)
+    }
+    
+    @IBAction func musicTapped(_ sender: Any) {
+    }
+    
+    @IBAction func movieTapped(_ sender: Any) {
+    }
+    
+    @IBAction func bookTapped(_ sender: Any) {
+    }
+    
+    
     @IBAction func pageTabDidTap(_ sender: UISegmentedControl) {
-        print("loekdewojfiojew")
+        
+        
+        
         if sender.selectedSegmentIndex == 0 {
             
+            //main隠す
+            self.mainLabel.text = "追加"
+            self.mainButton.isEnabled = false
+            self.photoButton.isHidden = true
+            self.photoLabel.isHidden = true
+            self.linkButton.isHidden = true
+            self.linkLabel.isHidden = true
+            
+            //base出す
+            self.appLabel.isHidden = false
+            self.musicLabel.isHidden = false
+            self.movieLabel.isHidden = false
+            self.bookLabel.isHidden = false
+            self.appImage.isHidden = false
+            self.musicImage.isHidden = false
+            self.movieImage.isHidden = false
+            self.bookImage.isHidden = false
+            self.AppButton.isHidden = false
+            self.musicButton.isHidden = false
+            self.movieButton.isHidden = false
+            self.bookButton.isHidden = false
+            
+            
             self.isBasement = true
+            
+            
+            
             
             showIndicator()
             
@@ -302,6 +385,29 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             
             
         } else {
+            
+            //main隠す
+            self.mainLabel.text = "フォルダの作成"
+            self.mainButton.isEnabled = true
+            self.photoButton.isHidden = false
+            self.photoLabel.isHidden = false
+            self.linkButton.isHidden = false
+            self.linkLabel.isHidden = false
+            
+            //base出す
+            self.appLabel.isHidden = true
+            self.musicLabel.isHidden = true
+            self.movieLabel.isHidden = true
+            self.bookLabel.isHidden = true
+            self.appImage.isHidden = true
+            self.musicImage.isHidden = true
+            self.movieImage.isHidden = true
+            self.bookImage.isHidden = true
+            self.AppButton.isHidden = true
+            self.musicButton.isHidden = true
+            self.movieButton.isHidden = true
+            self.bookButton.isHidden = true
+            
             
             self.isBasement = false
             showIndicator()

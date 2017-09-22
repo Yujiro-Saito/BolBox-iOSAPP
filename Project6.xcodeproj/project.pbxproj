@@ -28,6 +28,8 @@
 		B725A8E01F01AB4B006AC9DF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B725A8DF1F01AB4B006AC9DF /* BaseViewController.swift */; };
 		B725A8E21F01BEB5006AC9DF /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B725A8E11F01BEB5006AC9DF /* BaseTableViewCell.swift */; };
 		B7260C381EDEFAC200FC3913 /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7260C371EDEFAC200FC3913 /* DetailCollectionViewCell.swift */; };
+		B7271ECC1F74992C005F5F63 /* AddbasicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7271ECB1F74992C005F5F63 /* AddbasicsViewController.swift */; };
+		B7271ECE1F749CC0005F5F63 /* BaseItemSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7271ECD1F749CC0005F5F63 /* BaseItemSearchTableViewCell.swift */; };
 		B727ADDB1EC67AB20081F500 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B727ADDA1EC67AB20081F500 /* SWRevealViewController.m */; };
 		B72811071F2C6C0700AF9B76 /* OnOffButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72811061F2C6C0700AF9B76 /* OnOffButton.swift */; };
 		B72A71F71EC677C100EA9BDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A71F61EC677C100EA9BDF /* AppDelegate.swift */; };
@@ -67,6 +69,7 @@
 		B77EEC601F28B6E500089A67 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77EEC5F1F28B6E500089A67 /* TabViewController.swift */; };
 		B78053F91EE2C63300F95BDF /* CategorysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78053F81EE2C63300F95BDF /* CategorysTableViewCell.swift */; };
 		B7808BF91F5F8E0100557B30 /* CreateFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7808BF81F5F8E0100557B30 /* CreateFolderViewController.swift */; };
+		B785BEB11F74AE8C0033D8C2 /* BasicPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B785BEB01F74AE8C0033D8C2 /* BasicPostViewController.swift */; };
 		B78DE1561F2D72E700E1A3A1 /* ZFRippleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78DE1551F2D72E700E1A3A1 /* ZFRippleButton.swift */; };
 		B795FB4F1F5D74E000B2CF3F /* ToysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B795FB4E1F5D74E000B2CF3F /* ToysTableViewCell.swift */; };
 		B7A0F5111F56B7B10037536F /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A0F5101F56B7B10037536F /* UserCollectionViewCell.swift */; };
@@ -137,6 +140,8 @@
 		B725A8DF1F01AB4B006AC9DF /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		B725A8E11F01BEB5006AC9DF /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		B7260C371EDEFAC200FC3913 /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		B7271ECB1F74992C005F5F63 /* AddbasicsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddbasicsViewController.swift; sourceTree = "<group>"; };
+		B7271ECD1F749CC0005F5F63 /* BaseItemSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseItemSearchTableViewCell.swift; sourceTree = "<group>"; };
 		B727ADD81EC67AB10081F500 /* Project6-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Project6-Bridging-Header.h"; sourceTree = "<group>"; };
 		B727ADD91EC67AB20081F500 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		B727ADDA1EC67AB20081F500 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -180,6 +185,7 @@
 		B77EEC5F1F28B6E500089A67 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		B78053F81EE2C63300F95BDF /* CategorysTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorysTableViewCell.swift; sourceTree = "<group>"; };
 		B7808BF81F5F8E0100557B30 /* CreateFolderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateFolderViewController.swift; sourceTree = "<group>"; };
+		B785BEB01F74AE8C0033D8C2 /* BasicPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicPostViewController.swift; sourceTree = "<group>"; };
 		B78DE1551F2D72E700E1A3A1 /* ZFRippleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFRippleButton.swift; sourceTree = "<group>"; };
 		B795FB4E1F5D74E000B2CF3F /* ToysTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToysTableViewCell.swift; sourceTree = "<group>"; };
 		B7A0F5101F56B7B10037536F /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -304,6 +310,9 @@
 				B7DD29F91F6A822000E1CF68 /* DesignViewController.swift */,
 				B7DD29FB1F6A82DE00E1CF68 /* DesignCollectionViewCell.swift */,
 				B70B28BE1F11F29C00825004 /* NotificationViewController.swift */,
+				B7271ECB1F74992C005F5F63 /* AddbasicsViewController.swift */,
+				B7271ECD1F749CC0005F5F63 /* BaseItemSearchTableViewCell.swift */,
+				B785BEB01F74AE8C0033D8C2 /* BasicPostViewController.swift */,
 				B74892691EC7E37D003ABE22 /* Docs */,
 			);
 			name = NewProjects;
@@ -600,6 +609,7 @@
 				B7B4CAD81EFAACE20038F176 /* PostDetailPhotosCollectionViewCell.swift in Sources */,
 				B7DB71541F6011FA00338EFD /* LinkPostViewController.swift in Sources */,
 				B771C60B1F0CA1F7005D4BF2 /* FiveViewController.swift in Sources */,
+				B7271ECE1F749CC0005F5F63 /* BaseItemSearchTableViewCell.swift in Sources */,
 				B77CEDED1EE3DB8F005D4215 /* CategoryDisplayTableViewCell.swift in Sources */,
 				B702E72F1EF8A442003C89E4 /* EmailLoginViewController.swift in Sources */,
 				B70907911F5BC52B00794E5C /* ThirdWallCollectionReusableView.swift in Sources */,
@@ -647,6 +657,7 @@
 				B709078D1F5BC50000794E5C /* ThirdWallViewController.swift in Sources */,
 				B756D7651F5A45EE00346F0E /* FriendsListsViewController.swift in Sources */,
 				B7FE1D6F1EDE2F9A0072A068 /* SectionHeaderPopCollectionReusableView.swift in Sources */,
+				B785BEB11F74AE8C0033D8C2 /* BasicPostViewController.swift in Sources */,
 				B7DD29FA1F6A822000E1CF68 /* DesignViewController.swift in Sources */,
 				B756D7631F5A439300346F0E /* CardDesign.swift in Sources */,
 				B770833A1EC8034E00302760 /* FIRData.swift in Sources */,
@@ -682,6 +693,7 @@
 				B7482CE61F0F23F500E98EF1 /* FiveTableViewCell.swift in Sources */,
 				B7FE38661F1BAFF900DE1E7F /* WebViewController.swift in Sources */,
 				B771C6031F0CA1D3005D4BF2 /* OneViewController.swift in Sources */,
+				B7271ECC1F74992C005F5F63 /* AddbasicsViewController.swift in Sources */,
 				B7B4CAD41EFA81330038F176 /* PostProductInfoViewController.swift in Sources */,
 				B7E3902B1ED5A13E005D8BFC /* ImageDesign.swift in Sources */,
 				B74236061F53DCBF007D5137 /* InfomationViewController.swift in Sources */,
