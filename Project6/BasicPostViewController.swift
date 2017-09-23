@@ -92,7 +92,7 @@ class BasicPostViewController: UIViewController {
             let folderNameDictionary: Dictionary<String, Dictionary<String, String?>> = [self.folderName : folderInfo]
             
             
-            let firebasePost = DataService.dataBase.REF_USER.child(uid!).child("bposts").childByAutoId()
+            let firebasePost = DataService.dataBase.REF_USER.child(uid!).child("posts").childByAutoId()
             let key = firebasePost.key
             let keyvalue = ("\(key)")
             
@@ -123,7 +123,7 @@ class BasicPostViewController: UIViewController {
             let folderNameDictionary: Dictionary<String, Dictionary<String, String?>> = [self.folderName : folderInfo]
             
             
-            let firebasePost = DataService.dataBase.REF_USER.child(uid!).child("bposts").childByAutoId()
+            let firebasePost = DataService.dataBase.REF_USER.child(uid!).child("posts").childByAutoId()
             let key = firebasePost.key
             let keyvalue = ("\(key)")
             
@@ -156,7 +156,7 @@ class BasicPostViewController: UIViewController {
             let folderNameDictionary: Dictionary<String, Dictionary<String, String?>> = [self.folderName : folderInfo]
             
             
-            let firebasePost = DataService.dataBase.REF_USER.child(uid!).child("bposts").childByAutoId()
+            let firebasePost = DataService.dataBase.REF_USER.child(uid!).child("posts").childByAutoId()
             let key = firebasePost.key
             let keyvalue = ("\(key)")
             
@@ -195,7 +195,7 @@ class BasicPostViewController: UIViewController {
             let folderNameDictionary: Dictionary<String, Dictionary<String, String?>> = [self.folderName : folderInfo]
             
             
-            let firebasePost = DataService.dataBase.REF_USER.child(uid!).child("bposts").childByAutoId()
+            let firebasePost = DataService.dataBase.REF_USER.child(uid!).child("posts").childByAutoId()
             let key = firebasePost.key
             let keyvalue = ("\(key)")
             

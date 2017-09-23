@@ -80,11 +80,18 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     var folderName = String()
     var linkPosts = [Post]()
-    var photoPosts = [Post]()
+    
     
     var smallURL = String()
     var smallCaption = String()
     
+    //common
+    var names = [String]()
+    var photoPosts = [Post]()
+    
+    
+    //App
+    var appDescs = [String]()
 
     
     
@@ -166,6 +173,8 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
                         
                         
                         if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            
                             //imageURLがない場合配列に追加
                             if postDict["imageURL"] as? String == "" {
                                 let key = snap.key
@@ -209,7 +218,7 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
             //Basicのデータ
             
             
-            DataService.dataBase.REF_BASE.child("users").child(uids!).child("bposts").queryOrdered(byChild: "folderName").queryEqual(toValue: folderName).observe(.value, with: { (snapshot) in
+            DataService.dataBase.REF_BASE.child("users").child(uids!).child("posts").queryOrdered(byChild: "folderName").queryEqual(toValue: folderName).observe(.value, with: { (snapshot) in
                 
                 self.linkPosts = []
                 
@@ -450,7 +459,35 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let detialVC = (segue.destination as? DetialContentViewController)!
+        
+        detialVC.name = self.itemName
+        detialVC.imageURL = self.itemIamgeURL
+        detialVC.appDescription = self.itemDesc
+        detialVC.appLink = self.itemLink
+        
+    }
+    
+    var itemName = String()
+    var itemIamgeURL = String()
+    var itemDesc = String()
+    var itemLink: String?
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        itemName = self.photoPosts[indexPath.row].name
+        itemIamgeURL = self.photoPosts[indexPath.row].imageURL
+        itemDesc = self.photoPosts[indexPath.row].appDesc!
+        itemLink = self.photoPosts[indexPath.row].linkURL
+        
+        performSegue(withIdentifier: "Dettil", sender: nil)
+    }
+    
+    
   
     
 }

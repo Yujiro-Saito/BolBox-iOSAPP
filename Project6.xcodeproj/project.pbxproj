@@ -71,6 +71,7 @@
 		B7808BF91F5F8E0100557B30 /* CreateFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7808BF81F5F8E0100557B30 /* CreateFolderViewController.swift */; };
 		B785BEB11F74AE8C0033D8C2 /* BasicPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B785BEB01F74AE8C0033D8C2 /* BasicPostViewController.swift */; };
 		B78DE1561F2D72E700E1A3A1 /* ZFRippleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78DE1551F2D72E700E1A3A1 /* ZFRippleButton.swift */; };
+		B794C0EE1F768A1600C130E0 /* DetialContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B794C0ED1F768A1600C130E0 /* DetialContentViewController.swift */; };
 		B795FB4F1F5D74E000B2CF3F /* ToysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B795FB4E1F5D74E000B2CF3F /* ToysTableViewCell.swift */; };
 		B7A0F5111F56B7B10037536F /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A0F5101F56B7B10037536F /* UserCollectionViewCell.swift */; };
 		B7A0F5131F56B7CE0037536F /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A0F5121F56B7CE0037536F /* UserViewController.swift */; };
@@ -187,6 +188,7 @@
 		B7808BF81F5F8E0100557B30 /* CreateFolderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateFolderViewController.swift; sourceTree = "<group>"; };
 		B785BEB01F74AE8C0033D8C2 /* BasicPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicPostViewController.swift; sourceTree = "<group>"; };
 		B78DE1551F2D72E700E1A3A1 /* ZFRippleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFRippleButton.swift; sourceTree = "<group>"; };
+		B794C0ED1F768A1600C130E0 /* DetialContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetialContentViewController.swift; sourceTree = "<group>"; };
 		B795FB4E1F5D74E000B2CF3F /* ToysTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToysTableViewCell.swift; sourceTree = "<group>"; };
 		B7A0F5101F56B7B10037536F /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
 		B7A0F5121F56B7CE0037536F /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 			children = (
 				B7EBAC261EEFB6E200C46D42 /* Project6.entitlements */,
 				B72438ED1F5262EC00BD6E13 /* NewProjects */,
+				B794C0EC1F7689F700C130E0 /* Project2 */,
 				B70112861F0D2A3500B3B553 /* CategoryCell */,
 				B771C5FF1F0CA0D8005D4BF2 /* CategoryViewController */,
 				B7733EA41EC6A98100D5B9BD /* View Controller */,
@@ -348,6 +351,7 @@
 				B7733EA51EC6A99600D5B9BD /* Sidemenu */,
 				B7733EA31EC6A97300D5B9BD /* Cell */,
 				B72A71FD1EC677C100EA9BDF /* Assets.xcassets */,
+				B794C0EB1F7689E900C130E0 /* New Group */,
 				B7E390251ED59E1A005D8BFC /* UI Design */,
 				B7733EA61EC6A9AB00D5B9BD /* View */,
 			);
@@ -453,6 +457,21 @@
 				B725810D1F22706900CF8E56 /* User.swift */,
 			);
 			name = Data;
+			sourceTree = "<group>";
+		};
+		B794C0EB1F7689E900C130E0 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
+			sourceTree = "<group>";
+		};
+		B794C0EC1F7689F700C130E0 /* Project2 */ = {
+			isa = PBXGroup;
+			children = (
+				B794C0ED1F768A1600C130E0 /* DetialContentViewController.swift */,
+			);
+			name = Project2;
 			sourceTree = "<group>";
 		};
 		B7E390251ED59E1A005D8BFC /* UI Design */ = {
@@ -695,6 +714,7 @@
 				B771C6031F0CA1D3005D4BF2 /* OneViewController.swift in Sources */,
 				B7271ECC1F74992C005F5F63 /* AddbasicsViewController.swift in Sources */,
 				B7B4CAD41EFA81330038F176 /* PostProductInfoViewController.swift in Sources */,
+				B794C0EE1F768A1600C130E0 /* DetialContentViewController.swift in Sources */,
 				B7E3902B1ED5A13E005D8BFC /* ImageDesign.swift in Sources */,
 				B74236061F53DCBF007D5137 /* InfomationViewController.swift in Sources */,
 				B7E9D62F1F20A14B001115F6 /* FeatureTableViewCell.swift in Sources */,
