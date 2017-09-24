@@ -1,11 +1,3 @@
-//
-//  DetialContentViewController.swift
-//  Project6
-//
-//  Created by  Yujiro Saito on 2017/09/23.
-//  Copyright © 2017年 yujiro_saito. All rights reserved.
-//
-
 import UIKit
 import Alamofire
 import AlamofireImage
@@ -37,7 +29,7 @@ class DetialContentViewController: UIViewController {
     
     //Muaic
     var previewURL: String?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,7 +46,7 @@ class DetialContentViewController: UIViewController {
             
             itemButton.setTitle("インストール", for: .normal)
             itemButton.addTarget(self, action: #selector(self.onClick(_:)), for: .touchUpInside)
-
+            
             
         } else if self.folderName == "Music" {
             
@@ -70,6 +62,28 @@ class DetialContentViewController: UIViewController {
             itemName.text = self.name
             itemImage.af_setImage(withURL: itemURL!)
             Desc.isHidden = true
+            
+        } else if self.folderName == "Book" {
+            
+            
+            let itemURL = URL(string: imageURL)
+            itemName.text = self.name
+            itemImage.af_setImage(withURL: itemURL!)
+            self.itemButton.isHidden = true
+            self.Desc.isHidden = true
+            
+            
+        } else if self.folderName == "Movie" {
+            
+            
+            let itemURL = URL(string: imageURL)
+            itemName.text = self.name
+            Desc.text = self.appDescription!
+            itemImage.af_setImage(withURL: itemURL!)
+            
+            itemButton.setTitle("詳しく見る", for: .normal)
+            itemButton.addTarget(self, action: #selector(self.onClick(_:)), for: .touchUpInside)
+            
             
         }
         
@@ -104,7 +118,7 @@ class DetialContentViewController: UIViewController {
         }
         
         
-       
+        
         
         
         
@@ -125,8 +139,8 @@ class DetialContentViewController: UIViewController {
         downloadTask.resume()
         
         
-            
-
+        
+        
     }
     
     
@@ -134,16 +148,16 @@ class DetialContentViewController: UIViewController {
         
         do {
             
-                
-            
-                player = try AVAudioPlayer(contentsOf: url)
-                player.prepareToPlay()
-                player.play()
-                
             
             
+            player = try AVAudioPlayer(contentsOf: url)
+            player.prepareToPlay()
+            player.play()
             
-           
+            
+            
+            
+            
             
         }
         catch{
@@ -158,95 +172,88 @@ class DetialContentViewController: UIViewController {
         
         
         
+        
+        let targetURL = self.appLink
+        let encodedURL = targetURL?.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
+        
+        //URL正式
+        guard let finalUrl = URL(string: encodedURL!) else {
+            print("無効なURL")
+            return
+        }
+        
+        
+        
+        //opem safari
+        
+        
+        if (encodedURL?.contains("https"))! || (encodedURL?.contains("http"))! {
             
-            let targetURL = self.appLink
-            let encodedURL = targetURL?.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
-            
-            //URL正式
-            guard let finalUrl = URL(string: encodedURL!) else {
-                print("無効なURL")
-                return
+            //httpかhttpsで始まってるか確認
+            if (encodedURL?.hasPrefix("https"))! || (encodedURL?.hasPrefix("http"))! {
+                //http(s)で始まってる場合safari起動
+                let safariVC = SFSafariViewController(url: finalUrl)
+                self.present(safariVC, animated: true, completion: nil)
+                
             }
-            
-            
-            
-            //opem safari
-            
-            
-            if (encodedURL?.contains("https"))! || (encodedURL?.contains("http"))! {
+                //Httpsの場合
+            else if let range = encodedURL?.range(of: "https") {
+                let startPosition = encodedURL?.characters.distance(from: (encodedURL?.characters.startIndex)!, to: range.lowerBound)
                 
-                //httpかhttpsで始まってるか確認
-                if (encodedURL?.hasPrefix("https"))! || (encodedURL?.hasPrefix("http"))! {
-                    //http(s)で始まってる場合safari起動
-                    let safariVC = SFSafariViewController(url: finalUrl)
-                    self.present(safariVC, animated: true, completion: nil)
-                    
-                }
-                    //Httpsの場合
-                else if let range = encodedURL?.range(of: "https") {
-                    let startPosition = encodedURL?.characters.distance(from: (encodedURL?.characters.startIndex)!, to: range.lowerBound)
-                    
-                    //4番目から最後までをURLとして扱う
-                    
-                    let indexNumber = startPosition
-                    
-                    let validURLString = (encodedURL?.substring(with: (encodedURL?.index((encodedURL?.startIndex)!, offsetBy: indexNumber!))!..<(encodedURL?.index((encodedURL?.endIndex)!, offsetBy: 0))!))
-                    
-                    let validURL = URL(string: validURLString!)
-                    
-                    
-                    //safari起動
-                    let safariVC = SFSafariViewController(url: validURL!)
-                    self.present(safariVC, animated: true, completion: nil)
-                    
-                    
-                } else if let httpRange = encodedURL?.range(of: "http") {
-                    //Httpの場合
-                    let startPosition = encodedURL?.characters.distance(from: (encodedURL?.characters.startIndex)!, to: httpRange.lowerBound)
-                    
-                    //4番目から最後までをURLとして扱う
-                    
-                    let indexNumber = startPosition
-                    
-                    let validURLString = (encodedURL?.substring(with: (encodedURL?.index((encodedURL?.startIndex)!, offsetBy: indexNumber!))!..<(encodedURL?.index((encodedURL?.endIndex)!, offsetBy: 0))!))
-                    
-                    let validURL = URL(string: validURLString!)
-                    
-                    //safari起動
-                    let safariVC = SFSafariViewController(url: validURL!)
-                    self.present(safariVC, animated: true, completion: nil)
-                    
-                    
-                    
-                    
-                    
-                    
-                }
-                    
-                else {
-                }
+                //4番目から最後までをURLとして扱う
+                
+                let indexNumber = startPosition
+                
+                let validURLString = (encodedURL?.substring(with: (encodedURL?.index((encodedURL?.startIndex)!, offsetBy: indexNumber!))!..<(encodedURL?.index((encodedURL?.endIndex)!, offsetBy: 0))!))
+                
+                let validURL = URL(string: validURLString!)
                 
                 
-            } else {
-                //そもそもhttp(s)がない場合
-                print("無効なURL")
-                //アラート表示
-                let alertController = UIAlertController(title: "エラー", message: "URLが無効なようです", preferredStyle: .alert)
+                //safari起動
+                let safariVC = SFSafariViewController(url: validURL!)
+                self.present(safariVC, animated: true, completion: nil)
                 
-                let okAction = UIAlertAction(title: "Ok", style: .default) {
-                    (action) in
-                    self.dismiss(animated: true, completion: nil)
-                }
                 
-                alertController.addAction(okAction)
-                self.present(alertController, animated: true, completion: nil)
+            } else if let httpRange = encodedURL?.range(of: "http") {
+                //Httpの場合
+                let startPosition = encodedURL?.characters.distance(from: (encodedURL?.characters.startIndex)!, to: httpRange.lowerBound)
+                
+                //4番目から最後までをURLとして扱う
+                
+                let indexNumber = startPosition
+                
+                let validURLString = (encodedURL?.substring(with: (encodedURL?.index((encodedURL?.startIndex)!, offsetBy: indexNumber!))!..<(encodedURL?.index((encodedURL?.endIndex)!, offsetBy: 0))!))
+                
+                let validURL = URL(string: validURLString!)
+                
+                //safari起動
+                let safariVC = SFSafariViewController(url: validURL!)
+                self.present(safariVC, animated: true, completion: nil)
+                
+                
                 
                 
                 
                 
             }
+                
+            else {
+            }
             
             
+        } else {
+            //そもそもhttp(s)がない場合
+            print("無効なURL")
+            //アラート表示
+            let alertController = UIAlertController(title: "エラー", message: "URLが無効なようです", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "Ok", style: .default) {
+                (action) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
             
             
             
@@ -258,14 +265,21 @@ class DetialContentViewController: UIViewController {
         
         
         
-        
-        
-        
-    
-        
+    }
     
     
-
     
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

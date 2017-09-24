@@ -421,8 +421,14 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         //読み込むまで画像は非表示
         cell?.itemImage.image = nil
+        cell?.itemImage.layer.masksToBounds = true
+        cell?.itemImage.layer.cornerRadius = 1.0
         
-        cell?.itemImage.layer.cornerRadius = 10.0
+        
+        
+        cell?.itemImage.layer.borderWidth = 2.0 // 枠線の幅
+        cell?.itemImage.layer.borderColor = UIColor.white.cgColor // 枠線の色
+        cell?.itemImage.layer.cornerRadius = 10.0 // 角丸のサイズ
         
         
         
@@ -444,7 +450,7 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         //return CGSize(width: cellSize, height: 200)
         
-        return CGSize(width: cellSize, height: cellSize)
+        return CGSize(width: cellSize, height: cellSize+20)
     
     
     }
@@ -484,6 +490,19 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
             detialVC.appLink = self.itemLink
             
         }
+        //Book
+        if self.folderName == "Book" {
+            
+            
+            
+        }
+        
+        if self.folderName == "Movie" {
+            
+            detialVC.appDescription = self.itemDesc
+            detialVC.appLink = self.itemLink
+            
+        }
         
         
         
@@ -505,6 +524,8 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
             itemDesc = self.photoPosts[indexPath.row].appDesc!
         } else if self.folderName == "Music" {
             previewAccess = self.photoPosts[indexPath.row].previewURL
+        } else if self.folderName == "Movie" {
+            itemDesc = self.photoPosts[indexPath.row].appDesc!
         }
         
         

@@ -209,7 +209,8 @@ class BasicPostViewController: UIViewController {
                 "imageURL" : imageURL as AnyObject,
                 "postID" : keyvalue as AnyObject,
                 "artistName" : artistName! as AnyObject,
-            ]
+                "linkURL" : "" as AnyObject
+             ]
             
             firebasePost.setValue(post)
             DataService.dataBase.REF_BASE.child("users/\(self.uid!)/basics").updateChildValues(folderNameDictionary)
