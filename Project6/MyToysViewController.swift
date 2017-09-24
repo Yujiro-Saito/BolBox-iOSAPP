@@ -467,8 +467,25 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         detialVC.name = self.itemName
         detialVC.imageURL = self.itemIamgeURL
-        detialVC.appDescription = self.itemDesc
-        detialVC.appLink = self.itemLink
+        detialVC.folderName = self.folderName
+        
+        
+        //App
+        if self.folderName == "App" {
+            detialVC.appDescription = self.itemDesc
+            detialVC.appLink = self.itemLink
+        }
+       
+    
+        //Music
+        if self.folderName == "Music" {
+            
+            detialVC.previewURL = self.previewAccess
+            detialVC.appLink = self.itemLink
+            
+        }
+        
+        
         
     }
     
@@ -476,13 +493,21 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     var itemIamgeURL = String()
     var itemDesc = String()
     var itemLink: String?
+    var previewAccess: String?
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         itemName = self.photoPosts[indexPath.row].name
         itemIamgeURL = self.photoPosts[indexPath.row].imageURL
-        itemDesc = self.photoPosts[indexPath.row].appDesc!
         itemLink = self.photoPosts[indexPath.row].linkURL
+        
+        if self.folderName == "App" {
+            itemDesc = self.photoPosts[indexPath.row].appDesc!
+        } else if self.folderName == "Music" {
+            previewAccess = self.photoPosts[indexPath.row].previewURL
+        }
+        
+        
         
         performSegue(withIdentifier: "Dettil", sender: nil)
     }

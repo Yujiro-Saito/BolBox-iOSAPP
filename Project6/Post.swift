@@ -23,7 +23,7 @@ class Post {
     private var _style: Int?
     private var _readCount: Int?
     private var _appDesc: String?
-    private var _detailImageTwo: String!
+    private var _previewURL: String?
     private var _detailImageThree: String!
     private var _linkURL: String!
     private var _postID: String!
@@ -99,8 +99,8 @@ class Post {
         return _appDesc
     }
     
-    var detailImageTwo: String {
-        return _detailImageTwo
+    var previewURL: String? {
+        return _previewURL
     }
     
     var detailImageThree: String {
@@ -141,7 +141,7 @@ class Post {
 
     
     
-    init?(name: String,  category: String, imageURL: String, whatContent: String, goodCount: Int, keepCount: Int, pvCount: Int?,readCount: Int?, appDesc: String, detailImageTwo: String, detailImageThree: String, linkURL: String, postID: String, peopleWhoLike: Dictionary<String, AnyObject?>,userID: String,userProfileImage: String,userProfileName: String, follow: Dictionary<String, AnyObject?>, folderName: Dictionary<String,AnyObject?>, folderImageURL: Dictionary<String,AnyObject?>,style: Int
+    init?(name: String,  category: String, imageURL: String, whatContent: String, goodCount: Int, keepCount: Int, pvCount: Int?,readCount: Int?, appDesc: String, previewURL: String?, detailImageThree: String, linkURL: String, postID: String, peopleWhoLike: Dictionary<String, AnyObject?>,userID: String,userProfileImage: String,userProfileName: String, follow: Dictionary<String, AnyObject?>, folderName: Dictionary<String,AnyObject?>, folderImageURL: Dictionary<String,AnyObject?>,style: Int
         )
     {
         
@@ -155,7 +155,7 @@ class Post {
         self._pvCount = pvCount
         self._readCount = readCount
         self._appDesc = appDesc
-        self._detailImageTwo = detailImageTwo
+        self._previewURL = previewURL
         self._detailImageThree = detailImageThree
         self._linkURL = linkURL
         self._postID = postID
@@ -218,8 +218,8 @@ class Post {
             self._appDesc = appDesc
         }
         
-        if let detailImageTwo = postData["detailImageTwo"] as? String {
-            self._detailImageTwo = detailImageTwo
+        if let previewURL = postData["preview"] as? String {
+            self._previewURL = previewURL
         }
         
         if let detailImageThree = postData["detailImageThree"] as? String {
