@@ -67,7 +67,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var userIDBox = [String]()
     var userNameBox = [String]()
     var userProfileImageBox = [String]()
-    //var pvCountBox = [Int]()
+    var pvCountBox = [Int]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -234,7 +234,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                                         
                                                         //let postID = value["postID"] as! String
                                                         
-                                                        //let pvCount = value["pvCount"] as! Int
+                                                        let pvCount = value["pvCount"] as! Int
                                                         
                                                         let userID = value["userID"] as! String
                                                         
@@ -248,7 +248,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                                         self.linkURLBox.append(linkURL)
                                                         self.nameBox.append(name)
                                                         //self.postIDBox.append(postID)
-                                                        //self.pvCountBox.append(pvCount)
+                                                        self.pvCountBox.append(pvCount)
                                                         //self.userIDBox.append(userID)
                                                         self.userNameBox.append(userName)
                                                         self.userProfileImageBox.append(userProfileImage)
@@ -288,6 +288,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                     self.userIDBox.reverse()
                                     self.userNameBox.reverse()
                                     self.userProfileImageBox.reverse()
+                                    self.pvCountBox.reverse()
                                     
                                     self.tableFeed.reloadData()
                                     
@@ -376,6 +377,15 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 
                 cell?.cardDesi.isHidden = false
                 
+                
+                //
+                cell?.fourFavLabel.text = "\(self.pvCountBox[indexPath.row])件のいいね"
+                cell?.favLabel.isHidden = true
+                cell?.linkFavNumLabel.isHidden = true
+                
+                
+                cell?.bigFolderLabel.isHidden = true
+                
                 cell?.linkButton.isHidden = true
                 cell?.linkFirstLabel.isHidden = true
                 cell?.linkSecondLabel.isHidden = true
@@ -420,8 +430,14 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     
                 }
                 
+                //
+                //cell?.fourFavLabel.isHidden = true
+                cell?.favLabel.text = "\(self.pvCountBox[indexPath.row])件のいいね"
+                cell?.linkFavNumLabel.isHidden = true
                 
-                 cell?.fourView.isHidden = true
+                cell?.bigFolderLabel.isHidden = false
+                
+                cell?.fourView.isHidden = true
                 
                 cell?.cardDesi.isHidden = true
                 
@@ -439,8 +455,11 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 cell?.itemImage.af_setImage(withURL:  URL(string: self.imageURLBox[indexPath.row])!)
                 cell?.userImage.af_setImage(withURL:  URL(string: self.userProfileImageBox[indexPath.row])!)
                 
+                cell?.bigFolderLabel.text = self.folderNameBox[indexPath.row]
                 
                 cell?.userName.text = self.userNameBox[indexPath.row]
+                
+                
                 
                 
             }
@@ -462,6 +481,16 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 
             }
             
+            //
+            cell?.bigFolderLabel.isHidden = true
+            
+            cell?.fourView.isHidden = true
+            
+            cell?.favLabel.isHidden = true
+            
+            cell?.linkFavNumLabel.isHidden = false
+            cell?.linkFavNumLabel.text = "\(self.pvCountBox[indexPath.row])件のいいね"
+            
             cell?.cardDesi.isHidden = false
             cell?.fourView.isHidden = true
             
@@ -481,8 +510,8 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             cell?.linkLoveButton.isHidden = false
             
             
-            cell?.linkFirstLabel.text = self.folderNameBox[indexPath.row]
-            cell?.linkSecondLabel.text = self.linkURLBox[indexPath.row]
+            cell?.linkFirstLabel.text = self.nameBox[indexPath.row]
+            cell?.linkSecondLabel.text = self.folderNameBox[indexPath.row]
             cell?.linkName.text = self.userNameBox[indexPath.row]
             
             return cell!

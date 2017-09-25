@@ -26,7 +26,10 @@ class FeedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var cardDesi: UIView!
     
+    @IBOutlet weak var favLabel: UILabel!
+    @IBOutlet weak var oneFavCountButton: UIButton!
     
+    @IBOutlet weak var bigFolderLabel: UILabel!
     
     
     //Link
@@ -41,6 +44,8 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var linkSecondLabel: UILabel!
     
     @IBOutlet weak var linkLoveButton: FaveButton!
+    @IBOutlet weak var linkFavNumLabel: UILabel!
+    @IBOutlet weak var linkFavButtonNUm: UIButton!
     
     
     //Four items
@@ -61,7 +66,9 @@ class FeedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var fourFav: FaveButton!
     
+    @IBOutlet weak var fourFavLabel: UILabel!
     
+    @IBOutlet weak var fourFavNumButton: UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
