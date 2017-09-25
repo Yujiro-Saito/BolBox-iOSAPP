@@ -10,6 +10,7 @@ PODS:
   - DKImagePickerController/ImageManager (3.5.3)
   - Eureka (3.1.0)
   - Fabric (1.6.11)
+  - FaveButton (2.0.3)
   - Firebase/Auth (3.11.1):
     - Firebase/Core
     - FirebaseAuth (= 3.1.0)
@@ -92,6 +93,7 @@ DEPENDENCIES:
   - CircleMenu (~> 2.0.1)
   - DKImagePickerController
   - Eureka
+  - FaveButton (~> 2.0.3)
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -117,6 +119,7 @@ SPEC CHECKSUMS:
   DKImagePickerController: 274b66ad6e79cd98d2688685c8e370c05d021557
   Eureka: d6725c38d0dcdceaa331d1468f75e76315715ae0
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  FaveButton: cfcbc5e73da159c4f916613da5687357b5bb4783
   Firebase: 53b2343db1ebfa3eb16bdb4318b8bb65360b2220
   FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
   FirebaseAuth: b436e4ecebe068bf8e8c6e4e29de5756ffe7ee24
@@ -143,6 +146,6 @@ SPEC CHECKSUMS:
   XLPagerTabStrip: 9be80a66c6b7d60306b2c0a6004965016d68f813
   ZFRippleButton: 62ea35e209757704dea697d66489fe69c13d7b77
 
-PODFILE CHECKSUM: ff5cf4f657aa2b2e60f85588ddec429536235066
+PODFILE CHECKSUM: 4400ad97310f39cbe2d27308d1c90353101fae09
 
 COCOAPODS: 1.1.0

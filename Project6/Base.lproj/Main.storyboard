@@ -3081,13 +3081,13 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v3F-sa-vNj">
                                                                     <rect key="frame" x="0.0" y="73" width="375" height="35"/>
                                                                     <subviews>
-                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifV-Xd-aGk">
+                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifV-Xd-aGk" customClass="FaveButton" customModule="FaveButton">
                                                                             <rect key="frame" x="334" y="3" width="25" height="25"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="25" id="Qej-Fy-RYj"/>
                                                                                 <constraint firstAttribute="width" constant="25" id="bR2-wh-Vs9"/>
                                                                             </constraints>
-                                                                            <state key="normal" image="like"/>
+                                                                            <state key="normal" image="fav"/>
                                                                         </button>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Xm-yu-bnr">
                                                                             <rect key="frame" x="0.0" y="3" width="326" height="32"/>
@@ -3207,13 +3207,13 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eXx-hr-CGY">
                                                             <rect key="frame" x="0.0" y="131" width="375" height="35"/>
                                                             <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oKw-aB-rLq">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oKw-aB-rLq" customClass="FaveButton" customModule="FaveButton">
                                                                     <rect key="frame" x="342" y="3" width="25" height="25"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="25" id="AWU-NO-9WD"/>
                                                                         <constraint firstAttribute="height" constant="25" id="JQU-5V-PDU"/>
                                                                     </constraints>
-                                                                    <state key="normal" image="like"/>
+                                                                    <state key="normal" image="fav"/>
                                                                 </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SuW-eI-ua4">
                                                                     <rect key="frame" x="8" y="3" width="244" height="32"/>
@@ -3297,13 +3297,13 @@
                                                     </constraints>
                                                     <state key="normal" image="closes"/>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BKX-Th-XcZ">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BKX-Th-XcZ" customClass="FaveButton" customModule="FaveButton">
                                                     <rect key="frame" x="334" y="445" width="25" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="0Fl-yj-3b0"/>
                                                         <constraint firstAttribute="width" constant="25" id="Jfg-Pd-NnI"/>
                                                     </constraints>
-                                                    <state key="normal" image="like"/>
+                                                    <state key="normal" image="fav"/>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -3335,9 +3335,9 @@
                                             <outlet property="cardDesi" destination="zOJ-VK-Ild" id="1Pq-sR-nAs"/>
                                             <outlet property="folderName" destination="SuW-eI-ua4" id="cmw-ue-Bro"/>
                                             <outlet property="fourCloseButton" destination="th9-wW-BLS" id="ccU-zq-tbO"/>
+                                            <outlet property="fourFav" destination="oKw-aB-rLq" id="qrI-o6-U8P"/>
                                             <outlet property="fourImage" destination="Szo-pi-6qL" id="BgD-ld-Vqt"/>
                                             <outlet property="fourItemLabel" destination="6BY-CP-AMS" id="soW-MW-DHy"/>
-                                            <outlet property="fourLoveButton" destination="oKw-aB-rLq" id="uBR-GX-gMv"/>
                                             <outlet property="fourProfileImage" destination="N3n-Ic-lUm" id="KJh-9p-bG8"/>
                                             <outlet property="fourView" destination="Id2-92-sKi" id="5FI-P9-N1v"/>
                                             <outlet property="fouruserName" destination="Rah-Mm-3ho" id="CaP-RV-U0o"/>
@@ -3345,11 +3345,11 @@
                                             <outlet property="linkButton" destination="BFr-td-4D2" id="XTH-TY-b3O"/>
                                             <outlet property="linkFirstLabel" destination="ARm-A7-Aak" id="V9O-Gh-2NQ"/>
                                             <outlet property="linkImage" destination="5H9-7D-iAg" id="DWN-h5-VVE"/>
-                                            <outlet property="linkLoveButton" destination="ifV-Xd-aGk" id="INS-UQ-6R7"/>
+                                            <outlet property="linkLoveButton" destination="ifV-Xd-aGk" id="Olq-15-Krz"/>
                                             <outlet property="linkName" destination="ZMe-DC-Y8P" id="9Yk-4w-ADa"/>
                                             <outlet property="linkSecondLabel" destination="0Xm-yu-bnr" id="BQ6-2K-J6z"/>
                                             <outlet property="oneCloseButton" destination="XiF-V5-nJS" id="NkF-PY-aVR"/>
-                                            <outlet property="oneLoveButton" destination="BKX-Th-XcZ" id="bvt-dG-eAG"/>
+                                            <outlet property="oneLoveButton" destination="BKX-Th-XcZ" id="UCV-x4-Oaa"/>
                                             <outlet property="userImage" destination="428-ZT-owa" id="5Xn-g6-wCv"/>
                                             <outlet property="userName" destination="1Dd-kY-xKh" id="tEx-Ec-bpM"/>
                                         </connections>
@@ -3374,7 +3374,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WOL-ug-q5l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="38793" y="42453"/>
+            <point key="canvasLocation" x="39119" y="42433"/>
         </scene>
         <!--フォロー中-->
         <scene sceneID="RjP-q0-jgm">
@@ -4188,6 +4188,7 @@
         <image name="bgg" width="5571" height="3714"/>
         <image name="boook" width="128" height="128"/>
         <image name="closes" width="64" height="64"/>
+        <image name="fav" width="128" height="128"/>
         <image name="images" width="128" height="128"/>
         <image name="like" width="64" height="64"/>
         <image name="likes" width="64" height="64"/>

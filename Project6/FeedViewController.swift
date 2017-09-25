@@ -13,6 +13,7 @@ import AlamofireImage
 
 
 
+
 class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate {
     
     var userID = String()
@@ -354,7 +355,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 //
                 cell?.fourView.isHidden = false
                 
-                cell?.fourLoveButton.isHidden = false
+                cell?.fourFav.isHidden = false
                 cell?.fouruserName.isHidden = false
                 cell?.fourCloseButton.isHidden = false
                 

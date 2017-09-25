@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import FaveButton
 
 class FeedTableViewCell: UITableViewCell {
     //Image
-    @IBOutlet weak var oneLoveButton: UIButton!
     
+    @IBOutlet weak var oneLoveButton: FaveButton!
     
     
     @IBOutlet weak var oneCloseButton: UIButton!
@@ -38,8 +39,8 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var linkFirstLabel: UILabel!
     
     @IBOutlet weak var linkSecondLabel: UILabel!
-    @IBOutlet weak var linkLoveButton: UIButton!
     
+    @IBOutlet weak var linkLoveButton: FaveButton!
     
     
     //Four items
@@ -58,11 +59,15 @@ class FeedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var folderName: UILabel!
     
+    @IBOutlet weak var fourFav: FaveButton!
     
     
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.oneLoveButton.delegate = self
+        self.linkLoveButton.delegate = self
+        self.fourFav.delegate = self
         
         let mScreenSize = UIScreen.main.bounds
         let mSeparatorHeight = CGFloat(15.0)

@@ -27,6 +27,7 @@ target 'Project6' do
   pod 'SCLAlertView'
   pod 'CircleMenu', '~> 2.0.1'
   pod 'Eureka’
+  pod 'FaveButton', '~> 2.0.3'
 
   
 
