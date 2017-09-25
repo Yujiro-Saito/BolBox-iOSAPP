@@ -135,6 +135,8 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     let selfUID = FIRAuth.auth()?.currentUser?.uid
     
+    var checkBox = [String]()
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
@@ -201,6 +203,35 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                                         
                                                         let name = value["name"] as! String
                                                         
+                                                        //Likes
+                                                        if value["peopleWhoLike"] as? Dictionary<String,Dictionary<String,String>?> != nil {
+                                                            
+                                                            
+                                                            let likePeople = value["peopleWhoLike"] as? Dictionary<String,Dictionary<String,String>?>
+                                                            
+                                                            for (likeKey,likeValue) in likePeople! {
+                                                                
+                                                                
+                                                                print(likeValue!)
+                                                                
+                                                                let checkID = likeValue?["currentUserID"] as String!
+                                                                let myUID = FIRAuth.auth()?.currentUser?.uid
+                                                                
+                                                                if checkID! == myUID! {
+                                                                    
+                                                                   self.checkBox.append("YES")
+                                                                    
+                                                                }
+                                                                
+                                                                
+                                                            }
+                                                            
+                                                            
+                                                        } else {
+                                                            self.checkBox.append("NO")
+                                                        }
+                                                        
+                                                        
                                                         //let postID = value["postID"] as! String
                                                         
                                                         //let pvCount = value["pvCount"] as! Int
@@ -249,6 +280,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                     }
                                     
                                 
+                                    self.checkBox.reverse()
                                     self.folderNameBox.reverse()
                                     self.imageURLBox.reverse()
                                     self.linkURLBox.reverse()
@@ -333,6 +365,15 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
             if self.folderNameBox[indexPath.row] == "App" || self.folderNameBox[indexPath.row] == "Music" || self.folderNameBox[indexPath.row] == "Movie" || self.folderNameBox[indexPath.row] == "Book" {
                 
+                
+                if self.checkBox[indexPath.row] == "YES" {
+                    cell?.fourFav.isSelected = true
+                } else {
+                    
+                    cell?.fourFav.isSelected = false
+                    
+                }
+                
                 cell?.cardDesi.isHidden = false
                 
                 cell?.linkButton.isHidden = true
@@ -371,6 +412,14 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 
             } else {
                 
+                if self.checkBox[indexPath.row] == "YES" {
+                    cell?.oneLoveButton.isSelected = true
+                } else {
+                    
+                    cell?.oneLoveButton.isSelected = false
+                    
+                }
+                
                 
                  cell?.fourView.isHidden = true
                 
@@ -403,6 +452,15 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
             
         } else if self.imageURLBox[indexPath.row] == "" {
+            
+            
+            if self.checkBox[indexPath.row] == "YES" {
+                cell?.linkLoveButton.isSelected = true
+            } else {
+                
+                cell?.linkLoveButton.isSelected = false
+                
+            }
             
             cell?.cardDesi.isHidden = false
             cell?.fourView.isHidden = true
