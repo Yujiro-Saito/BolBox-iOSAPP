@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import AlamofireImage
-
+import FaveButton
 
 
 
@@ -63,11 +63,12 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var imageURLBox = [String]()
     var linkURLBox = [String]()
     var nameBox = [String]()
-    //var postIDBox = [String]()
+    var postIDBox = [String]()
     var userIDBox = [String]()
     var userNameBox = [String]()
     var userProfileImageBox = [String]()
     var pvCountBox = [Int]()
+    var checkBox = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,39 +94,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
         
-        DataService.dataBase.REF_USER.observe(.value, with: { (snapshot) in
-            
-            self.filteredNames = []
-            self.filteredImages = []
-            
-            
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                
-                for snap in snapshot {
-                    print("SNAP: \(snap)")
-                    
-                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                        
-                        let userName = postDict["userName"] as! String
-                        let userImage = postDict["userImageURL"] as! String
-                        
-                        self.filteredNames.append(userName)
-                        self.filteredImages.append(userImage)
-                        
-                        
-                        
-                    }
-                }
-                
-                
-            }
-            
-            print(self.filteredNames)
-            self.filteredNames.reverse()
-            self.filteredImages.reverse()
-            
-        })
-        
+       
  
         
     }
@@ -135,7 +104,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     let selfUID = FIRAuth.auth()?.currentUser?.uid
     
-    var checkBox = [String]()
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
@@ -144,7 +113,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         //Followのチェック follower数のチェック
         DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: selfUID!).observe(.value, with: { (snapshot) in
             
-            //self.newPosts = []
+            self.checkBox = []
             self.folderNameBox = []
             self.imageURLBox = []
             self.linkURLBox = []
@@ -152,7 +121,8 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             self.userNameBox = []
             self.userProfileImageBox = []
             self.userIDBox = []
-            
+            self.pvCountBox = []
+            self.postIDBox = []
             
             
             
@@ -232,7 +202,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                                         }
                                                         
                                                         
-                                                        //let postID = value["postID"] as! String
+                                                        let postID = value["postID"] as! String
                                                         
                                                         let pvCount = value["pvCount"] as! Int
                                                         
@@ -247,12 +217,11 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                                         self.imageURLBox.append(imageURL)
                                                         self.linkURLBox.append(linkURL)
                                                         self.nameBox.append(name)
-                                                        //self.postIDBox.append(postID)
+                                                        self.postIDBox.append(postID)
                                                         self.pvCountBox.append(pvCount)
-                                                        //self.userIDBox.append(userID)
+                                                        self.userIDBox.append(userID)
                                                         self.userNameBox.append(userName)
                                                         self.userProfileImageBox.append(userProfileImage)
-                                                        self.userIDBox.append(userID)
                                                         
                                             
                                                         
@@ -289,7 +258,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                     self.userNameBox.reverse()
                                     self.userProfileImageBox.reverse()
                                     self.pvCountBox.reverse()
-                                    
+                                    self.postIDBox.reverse()
                                     self.tableFeed.reloadData()
                                     
                                     
@@ -334,6 +303,103 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
+    var favBool = Bool()
+    
+    func favOne(_ sender: UIButton){
+        
+        
+        
+        /*
+        let cell = sender.superview?.superview as! FeedTableViewCell
+        guard let row = self.tableFeed.indexPath(for: cell)?.row else {
+            return
+        }
+        
+        print(row)
+        
+        var currentFavNum = pvCountBox[row]
+        let favCheck = checkBox[row]
+        var favNum = ["pvCount": currentFavNum]
+        var check = Bool()
+        
+        if favCheck == "YES" {
+            //liked alredy
+            check = true
+            cell.oneLoveButton.isSelected = false
+            
+        } else {
+           //Not yet
+            cell.oneLoveButton.isSelected = false
+            
+            
+        }
+        
+        
+        if cell.oneLoveButton.isSelected == false {
+            print("loved")
+            //++
+            
+            
+           
+            
+        } else {
+            print("hate")
+            //--
+            
+            currentFavNum += 1
+            
+            favNum = ["pvCount": currentFavNum]
+            
+            print(favNum)
+            print(self.userIDBox[row])
+            print(self.postIDBox[row])
+            
+            DataService.dataBase.REF_BASE.child("users/\(self.userIDBox[row])/posts/\(self.postIDBox[row])").updateChildValues(favNum)
+            cell.oneLoveButton.isSelected = true
+        }
+        
+    
+        if cell.oneLoveButton.isSelected == true {
+            //+++
+            print("ddede")
+            currentFavNum -= 1
+            
+            favNum = ["pvCount": currentFavNum]
+         
+            print(favNum)
+            print(self.userIDBox[row])
+            print(self.postIDBox[row])
+            
+            
+            DispatchQueue.main.async {
+                DataService.dataBase.REF_BASE.child("users/\(self.userIDBox[row])/posts/\(self.postIDBox[row])").updateChildValues(favNum)
+                
+                
+            }
+        } else {
+            //---
+            print("aadedede")
+            currentFavNum += 1
+            
+            favNum = ["pvCount": currentFavNum]
+            
+            print(favNum)
+            print(self.userIDBox[row])
+            print(self.postIDBox[row])
+            
+            
+            DispatchQueue.main.async {
+                DataService.dataBase.REF_BASE.child("users/\(self.userIDBox[row])/posts/\(self.postIDBox[row])").updateChildValues(favNum)
+                
+                
+            }
+            
+        }
+ */
+    }
+    
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableFeed.dequeueReusableCell(withIdentifier: "Feeder", for: indexPath) as? FeedTableViewCell
@@ -430,11 +496,12 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     
                 }
                 
+                /////
+                cell?.oneLoveButton.addTarget(self, action: #selector(self.favOne(_:)), for: .touchUpInside)
                 //
                 //cell?.fourFavLabel.isHidden = true
                 cell?.favLabel.text = "\(self.pvCountBox[indexPath.row])件のいいね"
                 cell?.linkFavNumLabel.isHidden = true
-                
                 cell?.bigFolderLabel.isHidden = false
                 
                 cell?.fourView.isHidden = true
