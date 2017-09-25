@@ -12,9 +12,7 @@ class FeedTableViewCell: UITableViewCell {
     //Image
     @IBOutlet weak var oneLoveButton: UIButton!
     
-    @IBOutlet weak var oneLabel: UILabel!
     
-    @IBOutlet weak var twoLabel: UILabel!
     
     @IBOutlet weak var oneCloseButton: UIButton!
     
@@ -41,6 +39,24 @@ class FeedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var linkSecondLabel: UILabel!
     @IBOutlet weak var linkLoveButton: UIButton!
+    
+    
+    
+    //Four items
+    @IBOutlet weak var fourView: UIView!
+    
+    @IBOutlet weak var fourLoveButton: UIButton!
+    
+    @IBOutlet weak var fourCloseButton: UIButton!
+    
+    @IBOutlet weak var fourImage: UIImageView!
+    @IBOutlet weak var fourProfileImage: UIImageView!
+    
+    @IBOutlet weak var fourItemLabel: UILabel!
+    
+    @IBOutlet weak var fouruserName: UILabel!
+    
+    @IBOutlet weak var folderName: UILabel!
     
     
     

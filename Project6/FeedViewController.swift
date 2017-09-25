@@ -312,8 +312,6 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         cell?.oneLoveButton.isHidden = true
         cell?.oneCloseButton.isHidden = true
-        cell?.oneLabel.isHidden = true
-        cell?.twoLabel.isHidden = true
         cell?.itemImage.image = nil
         cell?.userImage.image = nil
         cell?.userName.isHidden = true
@@ -332,29 +330,72 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         //画像ありのセル
         if self.imageURLBox[indexPath.row] != "" {
             
+            if self.folderNameBox[indexPath.row] == "App" || self.folderNameBox[indexPath.row] == "Music" || self.folderNameBox[indexPath.row] == "Movie" || self.folderNameBox[indexPath.row] == "Book" {
+                
+                cell?.cardDesi.isHidden = false
+                
+                cell?.linkButton.isHidden = true
+                cell?.linkFirstLabel.isHidden = true
+                cell?.linkSecondLabel.isHidden = true
+                cell?.linkImage.image = nil
+                cell?.linkName.isHidden = true
+                cell?.linkLoveButton.isHidden = true
+                
+                cell?.oneLoveButton.isHidden = true
+                cell?.userName.isHidden = true
+                cell?.oneCloseButton.isHidden = true
+                cell?.itemImage.image = nil
+                cell?.userImage.image = nil
+                cell?.userName.isHidden = true
+                
+                
+                
+                
+                //
+                cell?.fourView.isHidden = false
+                
+                cell?.fourLoveButton.isHidden = false
+                cell?.fouruserName.isHidden = false
+                cell?.fourCloseButton.isHidden = false
+                
+                cell?.fourImage.af_setImage(withURL:  URL(string: self.imageURLBox[indexPath.row])!)
+                cell?.fourProfileImage.af_setImage(withURL:  URL(string: self.userProfileImageBox[indexPath.row])!)
+                
+                
+                cell?.fouruserName.text = self.userNameBox[indexPath.row]
+                cell?.folderName.text = self.folderNameBox[indexPath.row]
+                cell?.fourItemLabel.text = self.nameBox[indexPath.row]
+                
+
+                
+            } else {
+                
+                
+                 cell?.fourView.isHidden = true
+                
+                cell?.cardDesi.isHidden = true
+                
+                cell?.linkButton.isHidden = true
+                cell?.linkFirstLabel.isHidden = true
+                cell?.linkSecondLabel.isHidden = true
+                cell?.linkImage.image = nil
+                cell?.linkName.isHidden = true
+                cell?.linkLoveButton.isHidden = true
+                
+                cell?.oneLoveButton.isHidden = false
+                cell?.userName.isHidden = false
+                cell?.oneCloseButton.isHidden = false
+                
+                cell?.itemImage.af_setImage(withURL:  URL(string: self.imageURLBox[indexPath.row])!)
+                cell?.userImage.af_setImage(withURL:  URL(string: self.userProfileImageBox[indexPath.row])!)
+                
+                
+                cell?.userName.text = self.userNameBox[indexPath.row]
+                
+                
+            }
             
-            cell?.cardDesi.isHidden = true
             
-            cell?.linkButton.isHidden = true
-            cell?.linkFirstLabel.isHidden = true
-            cell?.linkSecondLabel.isHidden = true
-            cell?.linkImage.image = nil
-            cell?.linkName.isHidden = true
-            cell?.linkLoveButton.isHidden = true
-            
-            cell?.oneLoveButton.isHidden = false
-            cell?.oneLabel.isHidden = false
-            cell?.twoLabel.isHidden = false
-            cell?.userName.isHidden = false
-            cell?.oneCloseButton.isHidden = false
-            
-            cell?.itemImage.af_setImage(withURL:  URL(string: self.imageURLBox[indexPath.row])!)
-            cell?.userImage.af_setImage(withURL:  URL(string: self.userProfileImageBox[indexPath.row])!)
-            
-            
-            //cell?.oneLabel.text = "jjjj"
-            cell?.twoLabel.text = self.nameBox[indexPath.row]
-            cell?.userName.text = self.userNameBox[indexPath.row]
             
             return cell!
             
@@ -363,10 +404,9 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         } else if self.imageURLBox[indexPath.row] == "" {
             
             cell?.cardDesi.isHidden = false
+            cell?.fourView.isHidden = true
             
             cell?.oneLoveButton.isHidden = true
-            cell?.oneLabel.isHidden = true
-            cell?.twoLabel.isHidden = true
             cell?.itemImage.image = nil
             cell?.userImage.image = nil
             cell?.userName.isHidden = true
@@ -401,7 +441,17 @@ return cell!
         if tableView == self.tableFeed {
             //画像ありのセル
             if self.imageURLBox[indexPath.row] != "" {
+                
+                if self.folderNameBox[indexPath.row] == "App" || self.folderNameBox[indexPath.row] == "Music" || self.folderNameBox[indexPath.row] == "Movie" || self.folderNameBox[indexPath.row] == "Book" {
+                
+                return 181
+                
+            } else {
                 return 500
+            }
+            
+                
+            
                 
                 
             } else {
