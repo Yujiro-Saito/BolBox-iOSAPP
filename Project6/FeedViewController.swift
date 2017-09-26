@@ -20,6 +20,9 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var imagesURL = String()
     var userName = String()
     
+    
+      var mySearchBar: UISearchBar!
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
@@ -82,7 +85,6 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         searchTable.isHidden = true
         
         
-        self.navigationItem.title = "Port"
         
         // フォント種をTime New Roman、サイズを10に指定
         self.navigationController?.navigationBar.titleTextAttributes
@@ -90,7 +92,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.hidesBarsOnSwipe = true
+        self.navigationController?.hidesBarsOnSwipe = false
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
         
@@ -99,7 +101,108 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
     }
     
+    
+    var searchUserName = [String]()
+    var serchUserImageURL = [String]()
+    var searchUserUID = [String]()
    
+    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        searchTable.isHidden = false
+        
+        
+        self.searchUserName = []
+        
+        let searchUserText = mySearchBar.text
+        
+        let enocodedText = searchUserText?.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
+        
+        let finalText = enocodedText?.replacingOccurrences(of: " ", with: "+")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            
+            
+            
+            
+            DataService.dataBase.REF_BASE.child("users").observe(.value, with: { (snapshot) in
+                
+                
+
+                
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    
+                    for snap in snapshot {
+                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            
+                            if postDict["userName"] as? String != nil {
+                                
+                                print("あああああああああ")
+                                let name = postDict["userName"] as? String!
+                                
+                                self.searchUserName.append(name!)
+                                
+                               
+                                
+                                
+                            }
+                            
+                            
+                           
+                            
+                            
+                        }
+                        
+                        
+                    }
+                    
+                    
+                    
+                    
+                    
+                }
+                
+                
+                
+            })
+            
+            print("あああdededededeああああ")
+            print(self.searchUserName)
+            self.searchTable.reloadData()
+            
+            
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        return true
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchTable.isHidden = false
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        
+        searchBar.resignFirstResponder()
+        
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.searchTable.isHidden = true
+    }
     
     
     let selfUID = FIRAuth.auth()?.currentUser?.uid
@@ -109,6 +212,19 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
+       
+        
+        mySearchBar = UISearchBar()
+        mySearchBar.sizeToFit()
+        mySearchBar.enablesReturnKeyAutomatically = false
+        
+        // the UIViewController comes with a navigationItem property
+        // this will automatically be initialized for you if when the
+        // view controller is added to a navigation controller's stack
+        // you just need to set the titleView to be the search bar
+        navigationItem.titleView = mySearchBar
+        
+        mySearchBar.delegate = self
         
         //Followのチェック follower数のチェック
         DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: selfUID!).observe(.value, with: { (snapshot) in
@@ -294,8 +410,13 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        if tableView == tableFeed {
+            return folderNameBox.count
+        } else if tableView == searchTable {
+            return searchUserName.count
+        }
         
-        return folderNameBox.count
+        return 100
         
     }
     
@@ -402,7 +523,27 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
+        
+        
+        if tableView == searchTable {
+            
+            let searchCell = searchTable.dequeueReusableCell(withIdentifier: "seacok", for: indexPath) as? SearchTableViewCell
+            
+            searchCell?.userImage.image = nil
+            
+            
+            searchCell?.userName.text = self.searchUserName[indexPath.row]
+            
+            return searchCell!
+            
+        }
+        
+        
+        
         let cell = tableFeed.dequeueReusableCell(withIdentifier: "Feeder", for: indexPath) as? FeedTableViewCell
+        
         
         
         

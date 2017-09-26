@@ -34,6 +34,7 @@ class FollowViewController: UIViewController,UICollectionViewDataSource, UIColle
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
+        ///////////////okasii
         DataService.dataBase.REF_POST.observe(.value, with: { (snapshot) in
             
             self.followingPosts = []
