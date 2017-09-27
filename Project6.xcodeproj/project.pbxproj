@@ -80,6 +80,8 @@
 		B7B4CAD41EFA81330038F176 /* PostProductInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CAD31EFA81330038F176 /* PostProductInfoViewController.swift */; };
 		B7B4CAD61EFA81570038F176 /* PostProductPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CAD51EFA81570038F176 /* PostProductPhotosViewController.swift */; };
 		B7B4CAD81EFAACE20038F176 /* PostDetailPhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CAD71EFAACE20038F176 /* PostDetailPhotosCollectionViewCell.swift */; };
+		B7B644CF1F7B7C6E00697783 /* YoutubeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B644CE1F7B7C6E00697783 /* YoutubeTableViewCell.swift */; };
+		B7B644D11F7B823D00697783 /* YoutubePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B644D01F7B823D00697783 /* YoutubePostViewController.swift */; };
 		B7C8F4C11F09B20900FBA696 /* FifthCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C8F4C01F09B20900FBA696 /* FifthCollectionViewCell.swift */; };
 		B7CEFDB91F7B547E00FD4CED /* YoutubeFindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CEFDB81F7B547E00FD4CED /* YoutubeFindViewController.swift */; };
 		B7D2EE3C1F6B6481000A3957 /* ToysPhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D2EE3B1F6B6481000A3957 /* ToysPhotoTableViewCell.swift */; };
@@ -198,6 +200,8 @@
 		B7B4CAD31EFA81330038F176 /* PostProductInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostProductInfoViewController.swift; sourceTree = "<group>"; };
 		B7B4CAD51EFA81570038F176 /* PostProductPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostProductPhotosViewController.swift; sourceTree = "<group>"; };
 		B7B4CAD71EFAACE20038F176 /* PostDetailPhotosCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailPhotosCollectionViewCell.swift; sourceTree = "<group>"; };
+		B7B644CE1F7B7C6E00697783 /* YoutubeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeTableViewCell.swift; sourceTree = "<group>"; };
+		B7B644D01F7B823D00697783 /* YoutubePostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubePostViewController.swift; sourceTree = "<group>"; };
 		B7C8F4C01F09B20900FBA696 /* FifthCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FifthCollectionViewCell.swift; sourceTree = "<group>"; };
 		B7CEFDB81F7B547E00FD4CED /* YoutubeFindViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeFindViewController.swift; sourceTree = "<group>"; };
 		B7D2EE3B1F6B6481000A3957 /* ToysPhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToysPhotoTableViewCell.swift; sourceTree = "<group>"; };
@@ -473,6 +477,8 @@
 			children = (
 				B794C0ED1F768A1600C130E0 /* DetialContentViewController.swift */,
 				B7CEFDB81F7B547E00FD4CED /* YoutubeFindViewController.swift */,
+				B7B644CE1F7B7C6E00697783 /* YoutubeTableViewCell.swift */,
+				B7B644D01F7B823D00697783 /* YoutubePostViewController.swift */,
 			);
 			name = Project2;
 			sourceTree = "<group>";
@@ -640,10 +646,12 @@
 				B7F628ED1F1B838B003257CE /* UserProfileTableViewCell.swift in Sources */,
 				B7F9B9631F0698DD0006AD38 /* ProfilePostsTableViewCell.swift in Sources */,
 				B7733EA21EC6A96700D5B9BD /* popularCollectionViewCell.swift in Sources */,
+				B7B644D11F7B823D00697783 /* YoutubePostViewController.swift in Sources */,
 				B72811071F2C6C0700AF9B76 /* OnOffButton.swift in Sources */,
 				B725A8E21F01BEB5006AC9DF /* BaseTableViewCell.swift in Sources */,
 				B725A8E01F01AB4B006AC9DF /* BaseViewController.swift in Sources */,
 				B7A0F5111F56B7B10037536F /* UserCollectionViewCell.swift in Sources */,
+				B7B644CF1F7B7C6E00697783 /* YoutubeTableViewCell.swift in Sources */,
 				B7A0F5131F56B7CE0037536F /* UserViewController.swift in Sources */,
 				B7F628EB1F1B7B71003257CE /* UserProfileViewController.swift in Sources */,
 				B71ACDA81EED8620005DCD80 /* SignInUpViewDesign.swift in Sources */,

@@ -680,7 +680,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         cell?.bgView.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         
         cell?.bgView.layer.borderWidth = 1.0
-        cell?.bgView.layer.borderColor = UIColor.darkGray.cgColor // 枠線の色
+        cell?.bgView.layer.borderColor = UIColor.white.cgColor // 枠線の色
         
         
         
@@ -740,7 +740,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             headerView.separator.setTitle("Basic", forSegmentAt: 0)
             headerView.separator.setTitle("自分", forSegmentAt: 1)
             headerView.separator.backgroundColor = UIColor.clear
-            headerView.separator.tintColor = UIColor.darkGray
+            headerView.separator.tintColor = UIColor.white
         
         
         

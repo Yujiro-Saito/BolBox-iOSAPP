@@ -9,9 +9,10 @@
 import UIKit
 import Alamofire
 
-class YoutubeFindViewController: UIViewController,UISearchBarDelegate {
+class YoutubeFindViewController: UIViewController,UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var searchField: UISearchBar!
+    @IBOutlet weak var sTable: UITableView!
     
     var searchURL = String()
     var titleBox = [String]()
@@ -22,7 +23,8 @@ class YoutubeFindViewController: UIViewController,UISearchBarDelegate {
         super.viewDidLoad()
         
         searchField.delegate = self
-        
+        sTable.delegate = self
+        sTable.dataSource = self
         //何も入力されていなくてもReturnキーを押せるようにする。
         searchField.enablesReturnKeyAutomatically = false
         
@@ -30,7 +32,7 @@ class YoutubeFindViewController: UIViewController,UISearchBarDelegate {
         searchField.placeholder = "Youtubeを検索"
         
         searchField.disableBlur()
-        searchField.backgroundColor = UIColor.darkGray
+        searchField.backgroundColor = UIColor.clear
         
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.darkGray]
@@ -59,7 +61,53 @@ class YoutubeFindViewController: UIViewController,UISearchBarDelegate {
         
         
     }
+    
+    var selectedImageURL = String()
+    var selctedTitle = String()
+    var videoKey = String()
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        self.selectedImageURL = thumbnailURLBox[indexPath.row]
+        self.selctedTitle = titleBox[indexPath.row]
+        self.videoKey = videoIDBox[indexPath.row]
+        
+        performSegue(withIdentifier: "GoHellToge", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let postVC = (segue.destination as? YoutubePostViewController)!
+        
+        postVC.imageURL = self.selectedImageURL
+        postVC.titleString = self.selctedTitle
+        postVC.videoCode = self.videoKey
+        
+        
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
 
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return titleBox.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = sTable.dequeueReusableCell(withIdentifier: "GoHell", for: indexPath) as? YoutubeTableViewCell
+        tableView.tableFooterView = UIView()
+        cell?.videoTitle.text = self.titleBox[indexPath.row]
+        
+        return cell!
+        
+        
+    }
+    
+    
+    
     
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
@@ -68,7 +116,7 @@ class YoutubeFindViewController: UIViewController,UISearchBarDelegate {
         let enocodedText = searchText!.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.searchURL = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyB2oGwTctsfRWNPQ-d1kUvtFzOUXhN9Z0w&q=\(enocodedText!)&part=id,snippet&maxResults=1&order=viewCount"
+            self.searchURL = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyB2oGwTctsfRWNPQ-d1kUvtFzOUXhN9Z0w&q=\(enocodedText!)&part=id,snippet&maxResults=10&order=viewCount"
             
             let finalKeyWord = self.searchURL.replacingOccurrences(of: " ", with: "+")
             
@@ -174,6 +222,8 @@ class YoutubeFindViewController: UIViewController,UISearchBarDelegate {
                 
             }
             
+            self.sTable.reloadData()
+            
             
             
         }
@@ -192,6 +242,11 @@ class YoutubeFindViewController: UIViewController,UISearchBarDelegate {
         
         
     }
+    
+    
+    
+    
+    
     
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

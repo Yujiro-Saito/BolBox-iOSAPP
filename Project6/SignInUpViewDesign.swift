@@ -39,11 +39,16 @@ class SignInUpViewDesign: UIView, CAAnimationDelegate {
      #colorLiteral(red: 0.07239989191, green: 0.1719785929, blue: 0.1734149456, alpha: 1),
      #colorLiteral(red: 0.3254901961, green: 0.4705882353, blue: 0.5843137255, alpha: 1)
      ].map { $0.cgColor }
+     
+     let colors: [CGColor] = [
+     #colorLiteral(red: 0.02456902526, green: 0.03176719323, blue: 0.04250981659, alpha: 1),
+     #colorLiteral(red: 0.129422605, green: 0.1345290542, blue: 0.1522062719, alpha: 1)
+     ].map { $0.cgColor }
 
     */
     
     let colors: [CGColor] = [
-        #colorLiteral(red: 0.02375288887, green: 0.02398806599, blue: 0.02398806599, alpha: 1),
+        #colorLiteral(red: 0.07842033356, green: 0.07843840867, blue: 0.07841635495, alpha: 1),
         #colorLiteral(red: 0.1821230025, green: 0.1839262005, blue: 0.1839262005, alpha: 1)
         ].map { $0.cgColor }
 
