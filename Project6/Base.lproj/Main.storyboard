@@ -2284,11 +2284,12 @@
                         <outlet property="folderTable" destination="kFh-EH-2nv" id="8GV-Jv-DQ2"/>
                         <segue destination="83U-4Q-2RX" kind="show" identifier="PhotoPos" id="6wr-E5-5lp"/>
                         <segue destination="MY8-bj-ruY" kind="show" identifier="ToLinkPos" id="vNM-fF-O0h"/>
+                        <segue destination="cba-qz-Oxu" kind="show" identifier="ToYoutube" id="e6A-br-Xb9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ElR-Nk-l8n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="36832.800000000003" y="45845.127436281866"/>
+            <point key="canvasLocation" x="36817" y="44354"/>
         </scene>
         <!--Youtube Post View Controller-->
         <scene sceneID="VkU-Xl-v0h">
@@ -2333,6 +2334,7 @@
                         <outlet property="bgImage" destination="KWG-dW-A9S" id="yaJ-cE-bGv"/>
                         <outlet property="mainImage" destination="HTj-XU-fJo" id="mQh-S1-6ba"/>
                         <outlet property="titleLabel" destination="gOk-1w-zGK" id="3ra-sX-dAY"/>
+                        <segue destination="azm-vx-HAv" kind="presentation" identifier="VideoDone" id="wG1-AK-0DV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YZZ-b1-Q4b" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2602,7 +2604,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pbu-wf-zws" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="38856.800000000003" y="44351.87406296852"/>
+            <point key="canvasLocation" x="38814" y="44459"/>
         </scene>
         <!--My Collection View Controller-->
         <scene sceneID="E6S-I9-nP5">
@@ -2805,14 +2807,6 @@
                                     </connections>
                                 </collectionReusableView>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="enK-Mv-YgI">
-                                <rect key="frame" x="230" y="570" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="cba-qz-Oxu" kind="show" id="CYf-iE-tTA"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T2R-vE-uk7">
                                 <rect key="frame" x="167.5" y="570" width="40" height="40"/>
                                 <constraints>
@@ -4336,7 +4330,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jJo-dR-Onz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="ウォール" image="Home" id="qMP-Xu-1HA"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UIl-fw-qgx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UIl-fw-qgx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -4359,7 +4353,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GtW-M7-tyf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="探す" image="Search" id="ubN-eP-8bB"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="oXz-Zf-PXP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oXz-Zf-PXP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -4384,7 +4378,7 @@
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="MAV-C6-E7r">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MAV-C6-E7r">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4426,14 +4420,14 @@
         <image name="yoputuen" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qlP-ho-8ki"/>
-        <segue reference="9pS-4N-zg0"/>
-        <segue reference="rbt-zG-eG0"/>
-        <segue reference="xcb-Hs-oNJ"/>
-        <segue reference="U2k-eE-RA9"/>
-        <segue reference="xDY-lT-Obu"/>
-        <segue reference="uPa-V9-bqT"/>
         <segue reference="6wr-E5-5lp"/>
+        <segue reference="wG1-AK-0DV"/>
+        <segue reference="U2k-eE-RA9"/>
+        <segue reference="xcb-Hs-oNJ"/>
+        <segue reference="xDY-lT-Obu"/>
+        <segue reference="rbt-zG-eG0"/>
+        <segue reference="uPa-V9-bqT"/>
+        <segue reference="rEK-7Q-rWX"/>
         <segue reference="vNM-fF-O0h"/>
     </inferredMetricsTieBreakers>
 </document>

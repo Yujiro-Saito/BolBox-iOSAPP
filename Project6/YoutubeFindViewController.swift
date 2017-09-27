@@ -19,6 +19,9 @@ class YoutubeFindViewController: UIViewController,UISearchBarDelegate,UITableVie
     var thumbnailURLBox = [String]()
     var videoIDBox = [String]()
     
+    
+    var selectedFolder = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -72,6 +75,7 @@ class YoutubeFindViewController: UIViewController,UISearchBarDelegate,UITableVie
         self.selctedTitle = titleBox[indexPath.row]
         self.videoKey = videoIDBox[indexPath.row]
         
+        
         performSegue(withIdentifier: "GoHellToge", sender: nil)
     }
     
@@ -82,6 +86,8 @@ class YoutubeFindViewController: UIViewController,UISearchBarDelegate,UITableVie
         postVC.imageURL = self.selectedImageURL
         postVC.titleString = self.selctedTitle
         postVC.videoCode = self.videoKey
+        postVC.folderName = self.selectedFolder
+        
         
         
     }
@@ -205,7 +211,6 @@ class YoutubeFindViewController: UIViewController,UISearchBarDelegate,UITableVie
                         }
                         
                         
-                        print("いいいいいいいいいいいいいいいいいううううううう")
                         print(titleBox)
                         print(thumbnailURLBox)
                         print(videoIDBox)

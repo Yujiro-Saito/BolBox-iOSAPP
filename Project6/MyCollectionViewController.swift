@@ -22,6 +22,26 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     @IBOutlet weak var youtubeLabel: UILabel!
     @IBOutlet weak var youtubeButton: UIButton!
     @IBAction func youtubeDidTap(_ sender: Any) {
+        
+        self.tabBarController?.tabBar.isHidden = false
+        bottomConstraint.constant = -300
+        
+        self.isVideo = true
+        
+        UIView.animate(withDuration: 0.1) {
+            self.view.layoutIfNeeded()
+            self.backgroundButton.alpha = 0
+        }
+        
+        
+        self.isPhoto = false
+        self.isVideo = true
+        self.isLink = false
+        
+        
+        
+        self.performSegue(withIdentifier: "Options", sender: nil)
+
     }
     
     
@@ -40,6 +60,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     var folderImageURLBox = [String]()
     
     var isPhoto = Bool()
+    var isLink = Bool()
     var postingType = Int()
     
     //data
@@ -637,13 +658,14 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         self.tabBarController?.tabBar.isHidden = false
         bottomConstraint.constant = -300
         
-        print("ssssssss")
         
         UIView.animate(withDuration: 0.1) {
             self.view.layoutIfNeeded()
             self.backgroundButton.alpha = 0
         }
         self.isPhoto = true
+        self.isLink = false
+        self.isVideo = false
         self.performSegue(withIdentifier: "Options", sender: nil)
     }
     
@@ -658,7 +680,11 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             self.backgroundButton.alpha = 0
             
         }
+        
         self.isPhoto = false
+        self.isVideo = false
+        self.isLink = true
+        
         self.performSegue(withIdentifier: "Options", sender: nil)
         
         
@@ -906,14 +932,19 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         } else if segue.identifier == "Options" {
             
             let optionVC = (segue.destination as? FolderNameListsViewController)!
-            optionVC.data = isPhoto
-            
+            optionVC.photoData = isPhoto
+            optionVC.linkData = isLink
+            optionVC.isYoutube = self.isVideo
             
         }
+       
+        
+        
         
         
     }
     
+    var isVideo = Bool()
     
     let indicator = UIActivityIndicatorView()
     

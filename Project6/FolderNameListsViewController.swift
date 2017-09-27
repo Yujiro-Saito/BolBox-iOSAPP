@@ -12,7 +12,9 @@ import FirebaseAuth
 
 class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
-    var data = Bool()
+    var photoData = Bool()
+    var linkData = Bool()
+    var isYoutube = false
     
     @IBOutlet weak var folderTable: UITableView!
     var folderListsBox = [String]()
@@ -141,13 +143,31 @@ class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITabl
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         selectedName = self.folderListsBox[indexPath.row]
-        if self.data == true {
+        
+        
+        if self.isYoutube == true {
+            performSegue(withIdentifier: "ToYoutube", sender: nil)
+        }
+        
+        if self.photoData == true {
+            
             performSegue(withIdentifier: "PhotoPos", sender: nil)
-        } else if self.data == false {
-             performSegue(withIdentifier: "ToLinkPos", sender: nil)
+            
+        } else if self.linkData == true {
+            
+           performSegue(withIdentifier: "ToLinkPos", sender: nil)
+            
         }
         
         
+        
+        
+    }
+    
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+    
     }
     
     
@@ -165,6 +185,12 @@ class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITabl
             let linkVC = (segue.destination as? LinkPostViewController)!
             linkVC.folderName = selectedName
                     
+            
+        } else if segue.identifier == "ToYoutube" {
+            
+            let videoVC = (segue.destination as? YoutubeFindViewController)!
+            videoVC.selectedFolder = selectedName
+                
             
         }
         
