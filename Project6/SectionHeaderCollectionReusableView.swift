@@ -18,7 +18,7 @@ class SectionHeaderCollectionReusableView: UICollectionReusableView {
     
     @IBOutlet weak var followerLabel: UILabel!
     @IBOutlet weak var followingLabel: UILabel!
-    @IBOutlet weak var separator: UISegmentedControl!
+    //@IBOutlet weak var separator: UISegmentedControl!
     
     
 }

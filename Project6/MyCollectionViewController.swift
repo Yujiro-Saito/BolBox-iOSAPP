@@ -65,7 +65,6 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     
     //data
     var isFollow = Bool()
-    var isBasement = Bool()
 
     override func viewDidLoad() {
         
@@ -76,11 +75,10 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         myCollection.delegate = self
         myCollection.dataSource = self
         
-        self.mainButton.isEnabled = false
-        self.photoButton.isHidden = true
-        self.photoLabel.isHidden = true
-        self.linkButton.isHidden = true
-        self.linkLabel.isHidden = true
+        self.tabBarController?.tabBar.isHidden = false
+        bottomConstraint.constant = -300
+        
+
         
         // ナビゲーションを透明にする処理
         self.navigationController?.isNavigationBarHidden = false
@@ -92,60 +90,8 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
         //Individuals
         
-        self.folderNameBox = []
-        self.folderImageURLBox = []
-        self.styleNumBox = []
-        
-        self.isBasement = true
         
         
-        
-        
-       
-        
-        
-        
-    }
-    
-    
-    
-    @IBAction func toFollowing(_ sender: Any) {
-        performSegue(withIdentifier: "followingLists", sender: nil)
-    }
-    
-    @IBAction func toFollower(_ sender: Any) {
-        performSegue(withIdentifier: "followLists", sender: nil)
-    }
-    
-    
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        
-        
-        
-        self.photoImage.isHidden = true
-        self.linkImage.isHidden = true
-        self.youtubeImage.isHidden = true
-        self.youtubeLabel.isHidden = true
-        self.youtubeButton.isHidden = true
-        
-        
-        self.tabBarController?.tabBar.isHidden = false
-        bottomConstraint.constant = -300
-        
-        //ログアウトした状態の場合Loginページに飛ばす
-        if FIRAuth.auth()?.currentUser == nil {
-           
-            performSegue(withIdentifier: "SignUp", sender: nil)
-            
-        }
-        
-        
-        
-        
-        //Basics
         self.folderNameBox = []
         self.folderImageURLBox = []
         self.styleNumBox = []
@@ -166,11 +112,11 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
                         
                         
-                        if postDict["bposts"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
+                        if postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
                             
-                            let posty = postDict["bposts"] as? Dictionary<String, Dictionary<String, AnyObject>>
+                            let posty = postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject>>
                             
-                            for (_,value) in posty! {
+                            for (key,value) in posty! {
                                 
                                 let styleNum = value["bgType"] as! Int
                                 self.styleNumBox.append(styleNum)
@@ -183,17 +129,17 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
                             
                         }
                         
-                        if postDict["basics"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
+                        if postDict["folderName"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
                             
                             
-                            let basics = postDict["basics"] as? Dictionary<String, Dictionary<String, String>>
+                            let folderName = postDict["folderName"] as? Dictionary<String, Dictionary<String, String>>
                             
-                            for (_,value) in basics! {
+                            for (key,value) in folderName! {
                                 
-                                let basicURL = value["imageURL"]!
-                                let basicName = value["name"]!
-                                self.folderImageURLBox.append(basicURL)
-                                self.folderNameBox.append(basicName)
+                                let valueImageURL = value["imageURL"] as! String
+                                let valueText = value["name"] as! String
+                                self.folderImageURLBox.append(valueImageURL)
+                                self.folderNameBox.append(valueText)
                                 
                                 
                                 
@@ -225,16 +171,31 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             self.myCollection.reloadData()
             
             
+            
+            
+            
         })
         
         
-        DispatchQueue.main.async {
-            self.indicator.stopAnimating()
-        }
+       
         
-
+        
         
     }
+    
+    
+    
+    @IBAction func toFollowing(_ sender: Any) {
+        performSegue(withIdentifier: "followingLists", sender: nil)
+    }
+    
+    @IBAction func toFollower(_ sender: Any) {
+        performSegue(withIdentifier: "followLists", sender: nil)
+    }
+    
+    
+    
+  
     
     
     
@@ -342,272 +303,6 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     }
     
     
-    @IBAction func pageTabDidTap(_ sender: UISegmentedControl) {
-        
-        
-        
-        if sender.selectedSegmentIndex == 0 {
-            
-            //main隠す
-            self.mainLabel.text = "追加"
-            self.mainButton.isEnabled = false
-            self.photoButton.isHidden = true
-            self.photoLabel.isHidden = true
-            self.linkButton.isHidden = true
-            self.linkLabel.isHidden = true
-            
-            self.photoImage.isHidden = true
-            self.linkImage.isHidden = true
-            self.youtubeImage.isHidden = true
-            self.youtubeLabel.isHidden = true
-            self.youtubeButton.isHidden = true
-            
-            
-            //base出す
-            self.appLabel.isHidden = false
-            self.musicLabel.isHidden = false
-            self.movieLabel.isHidden = false
-            self.bookLabel.isHidden = false
-            self.appImage.isHidden = false
-            self.musicImage.isHidden = false
-            self.movieImage.isHidden = false
-            self.bookImage.isHidden = false
-            self.AppButton.isHidden = false
-            self.musicButton.isHidden = false
-            self.movieButton.isHidden = false
-            self.bookButton.isHidden = false
-            
-            
-            self.isBasement = true
-            
-            
-            
-            
-            showIndicator()
-            
-            //Basics
-            self.folderNameBox = []
-            self.folderImageURLBox = []
-            self.styleNumBox = []
-            
-            
-            
-            //ユーザーのコレクションの読み込み
-            DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
-                
-                self.userPosts = []
-                self.folderNameBox = []
-                self.folderImageURLBox = []
-                
-                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                    
-                    for snap in snapshot {
-                        
-                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                            
-                            
-                            if postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
-                                
-                                let posty = postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject>>
-                                
-                                for (_,value) in posty! {
-                                    
-                                    let styleNum = value["bgType"] as! Int
-                                    self.styleNumBox.append(styleNum)
-                                    
-                                    
-                                    
-                                }
-                                
-                                
-                                
-                            }
-                            
-                            if postDict["basics"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
-                                
-                                
-                                let basics = postDict["basics"] as? Dictionary<String, Dictionary<String, String>>
-                                
-                                for (_,value) in basics! {
-                                    
-                                    let basicURL = value["imageURL"]!
-                                    let basicName = value["name"]!
-                                    self.folderImageURLBox.append(basicURL)
-                                    self.folderNameBox.append(basicName)
-                                    
-                                    
-                                    
-                                }
-                                
-                                
-                                
-                                
-                            }
-                            
-                        }
-                        
-                        
-                        
-                    }
-                    
-                    
-                    
-                    
-                    
-                }
-                
-                
-                
-                self.folderNameBox.reverse()
-                self.folderImageURLBox.reverse()
-                self.styleNumBox.reverse()
-                
-                self.myCollection.reloadData()
-                
-                
-            })
-            
-            
-            DispatchQueue.main.async {
-                self.indicator.stopAnimating()
-            }
-
-            
-            
-            
-            
-            
-            
-        } else {
-            
-            //main隠す
-            self.mainLabel.text = "フォルダの作成"
-            self.mainButton.isEnabled = true
-            self.photoButton.isHidden = false
-            self.photoLabel.isHidden = false
-            self.linkButton.isHidden = false
-            self.linkLabel.isHidden = false
-            
-            self.photoImage.isHidden = false
-            self.linkImage.isHidden = false
-            self.youtubeImage.isHidden = false
-            self.youtubeLabel.isHidden = false
-            self.youtubeButton.isHidden = false
-            
-            //base出す
-            self.appLabel.isHidden = true
-            self.musicLabel.isHidden = true
-            self.movieLabel.isHidden = true
-            self.bookLabel.isHidden = true
-            self.appImage.isHidden = true
-            self.musicImage.isHidden = true
-            self.movieImage.isHidden = true
-            self.bookImage.isHidden = true
-            self.AppButton.isHidden = true
-            self.musicButton.isHidden = true
-            self.movieButton.isHidden = true
-            self.bookButton.isHidden = true
-            
-            
-            self.isBasement = false
-            showIndicator()
-            
-            //Individuals
-            
-            self.folderNameBox = []
-            self.folderImageURLBox = []
-            self.styleNumBox = []
-            
-        
-            
-            //ユーザーのコレクションの読み込み
-            DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
-                
-                self.userPosts = []
-                self.folderNameBox = []
-                self.folderImageURLBox = []
-                
-                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                    
-                    for snap in snapshot {
-                        
-                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                            
-                            
-                            if postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
-                                
-                                let posty = postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject>>
-                                
-                                for (key,value) in posty! {
-                                    
-                                    let styleNum = value["bgType"] as! Int
-                                    self.styleNumBox.append(styleNum)
-                                    
-                                    
-                                    
-                                }
-                                
-                                
-                                
-                            }
-                            
-                            if postDict["folderName"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
-                                
-                                
-                                let folderName = postDict["folderName"] as? Dictionary<String, Dictionary<String, String>>
-                                
-                                for (key,value) in folderName! {
-                                    
-                                    let valueImageURL = value["imageURL"] as! String
-                                    let valueText = value["name"] as! String
-                                    self.folderImageURLBox.append(valueImageURL)
-                                    self.folderNameBox.append(valueText)
-                                    
-                                    
-                                    
-                                }
-                                
-                                
-                                
-                                
-                            }
-                            
-                        }
-                        
-                        
-                        
-                    }
-                    
-                    
-                    
-                    
-                    
-                }
-                
-                
-                
-                self.folderNameBox.reverse()
-                self.folderImageURLBox.reverse()
-                self.styleNumBox.reverse()
-                
-                self.myCollection.reloadData()
-                
-                
-                
-                
-                
-            })
-            
-            
-            
-            
-            DispatchQueue.main.async {
-                self.indicator.stopAnimating()
-            }
-            
-            
-        }
-    }
     
     @IBOutlet weak var backgroundButton: UIButton!
     
@@ -793,12 +488,12 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             headerView.userProfileImage.layer.masksToBounds = true
             headerView.userProfileImage.layer.cornerRadius = 1.0
         
-        
+        /*
             headerView.separator.setTitle("Basic", forSegmentAt: 0)
             headerView.separator.setTitle("自分", forSegmentAt: 1)
             headerView.separator.backgroundColor = UIColor.clear
             headerView.separator.tintColor = UIColor.white
-        
+        */
         
         
         
@@ -923,7 +618,6 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             
             another.folderName = folderName
             another.postsType = numInt
-            another.isBasic = self.isBasement
             
             
             

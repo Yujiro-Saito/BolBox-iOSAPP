@@ -15,8 +15,8 @@ class WallTabViewController: UITabBarController {
 
         UITabBar.appearance().tintColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
         
-        UITabBar.appearance().barTintColor = UIColor(red: 53/255, green: 70/255, blue: 92/255, alpha: 1.0)
         
+        UITabBar.appearance().barTintColor = UIColor(red: 33/255, green: 33/255, blue: 33/255, alpha: 1.0)
         
         
     }
