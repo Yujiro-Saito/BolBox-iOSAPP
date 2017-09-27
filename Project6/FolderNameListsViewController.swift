@@ -17,6 +17,8 @@ class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITabl
     @IBOutlet weak var folderTable: UITableView!
     var folderListsBox = [String]()
     var selectedName = String()
+    var folderImageLists = [String]()
+    var folderImageURL = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +45,7 @@ class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITabl
         DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
             
             self.folderListsBox = []
+            self.folderImageLists = []
             
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshot {
@@ -61,9 +64,9 @@ class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITabl
                                 
                                 //let valueImageURL = value["imageURL"] as! String
                                 let valueText = value["name"] as! String
-                                //self.folderImageURLBox.append(valueImageURL)
+                                let folderImage = value["imageURL"] as! String
                                 self.folderListsBox.append(valueText)
-                                
+                                self.folderImageLists.append(folderImage)
                                 
                                 
                             }
@@ -92,6 +95,7 @@ class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITabl
                     
                 }
             self.folderListsBox.reverse()
+            self.folderImageLists.reverse()
             self.folderTable.reloadData()
            
         })
@@ -119,6 +123,13 @@ class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITabl
         cell?.folderName.text = self.folderListsBox[indexPath.row]
         cell?.layer.masksToBounds = true
         cell?.cardView.layer.cornerRadius = 5.0
+        cell?.folderImage.image = nil
+        
+        let urlString = self.folderImageLists[indexPath.row]
+        let url = URL(string: urlString)
+        
+        cell?.folderImage.af_setImage(withURL: url!)
+        
         
         return cell!
         

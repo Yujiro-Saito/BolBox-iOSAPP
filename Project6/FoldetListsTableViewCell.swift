@@ -11,6 +11,7 @@ import UIKit
 class FoldetListsTableViewCell: UITableViewCell {
     
     
+    @IBOutlet weak var folderImage: UIImageView!
     
     @IBOutlet weak var folderName: UILabel!
     @IBOutlet weak var cardView: UIView!

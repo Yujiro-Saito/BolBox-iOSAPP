@@ -16,6 +16,15 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     
     
     @IBOutlet weak var modalView: UIView!
+    @IBOutlet weak var photoImage: UIImageView!
+    @IBOutlet weak var linkImage: UIImageView!
+    @IBOutlet weak var youtubeImage: UIImageView!
+    @IBOutlet weak var youtubeLabel: UILabel!
+    @IBOutlet weak var youtubeButton: UIButton!
+    @IBAction func youtubeDidTap(_ sender: Any) {
+    }
+    
+    
     
     @IBOutlet weak var myCollection: UICollectionView!
     var userPosts = [Post]()
@@ -94,8 +103,16 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         super.viewDidAppear(true)
         
         
+        
+        self.photoImage.isHidden = true
+        self.linkImage.isHidden = true
+        self.youtubeImage.isHidden = true
+        self.youtubeLabel.isHidden = true
+        self.youtubeButton.isHidden = true
+        
+        
         self.tabBarController?.tabBar.isHidden = false
-        bottomConstraint.constant = -200
+        bottomConstraint.constant = -300
         
         //ログアウトした状態の場合Loginページに飛ばす
         if FIRAuth.auth()?.currentUser == nil {
@@ -233,7 +250,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
         self.postingType = 0
         self.tabBarController?.tabBar.isHidden = false
-        bottomConstraint.constant = -200
+        bottomConstraint.constant = -300
         
         
         UIView.animate(withDuration: 0.1) {
@@ -252,7 +269,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
         self.postingType = 1
         self.tabBarController?.tabBar.isHidden = false
-        bottomConstraint.constant = -200
+        bottomConstraint.constant = -300
         
         
         UIView.animate(withDuration: 0.1) {
@@ -270,7 +287,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     @IBAction func movieTapped(_ sender: Any) {
         self.postingType = 2
         self.tabBarController?.tabBar.isHidden = false
-        bottomConstraint.constant = -200
+        bottomConstraint.constant = -300
         
         
         UIView.animate(withDuration: 0.1) {
@@ -288,7 +305,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     @IBAction func bookTapped(_ sender: Any) {
         self.postingType = 3
         self.tabBarController?.tabBar.isHidden = false
-        bottomConstraint.constant = -200
+        bottomConstraint.constant = -300
         
         
         UIView.animate(withDuration: 0.1) {
@@ -317,6 +334,13 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             self.photoLabel.isHidden = true
             self.linkButton.isHidden = true
             self.linkLabel.isHidden = true
+            
+            self.photoImage.isHidden = true
+            self.linkImage.isHidden = true
+            self.youtubeImage.isHidden = true
+            self.youtubeLabel.isHidden = true
+            self.youtubeButton.isHidden = true
+            
             
             //base出す
             self.appLabel.isHidden = false
@@ -443,6 +467,12 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             self.linkButton.isHidden = false
             self.linkLabel.isHidden = false
             
+            self.photoImage.isHidden = false
+            self.linkImage.isHidden = false
+            self.youtubeImage.isHidden = false
+            self.youtubeLabel.isHidden = false
+            self.youtubeButton.isHidden = false
+            
             //base出す
             self.appLabel.isHidden = true
             self.musicLabel.isHidden = true
@@ -566,7 +596,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     @IBAction func closeModal(_ sender: Any) {
         
         self.tabBarController?.tabBar.isHidden = false
-        bottomConstraint.constant = -200
+        bottomConstraint.constant = -300
         
         
         UIView.animate(withDuration: 0.1) {
@@ -587,7 +617,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     
     @IBAction func newFolder(_ sender: Any) {
         self.tabBarController?.tabBar.isHidden = false
-        bottomConstraint.constant = -200
+        bottomConstraint.constant = -300
         
         
         UIView.animate(withDuration: 0.1) {
@@ -605,7 +635,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     
     @IBAction func photo(_ sender: Any) {
         self.tabBarController?.tabBar.isHidden = false
-        bottomConstraint.constant = -200
+        bottomConstraint.constant = -300
         
         print("ssssssss")
         
@@ -619,7 +649,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     
     @IBAction func link(_ sender: Any) {
         self.tabBarController?.tabBar.isHidden = false
-        bottomConstraint.constant = -200
+        bottomConstraint.constant = -300
         
         
         UIView.animate(withDuration: 0.1) {
