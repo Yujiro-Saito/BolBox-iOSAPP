@@ -81,6 +81,7 @@
 		B7B4CAD61EFA81570038F176 /* PostProductPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CAD51EFA81570038F176 /* PostProductPhotosViewController.swift */; };
 		B7B4CAD81EFAACE20038F176 /* PostDetailPhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CAD71EFAACE20038F176 /* PostDetailPhotosCollectionViewCell.swift */; };
 		B7C8F4C11F09B20900FBA696 /* FifthCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C8F4C01F09B20900FBA696 /* FifthCollectionViewCell.swift */; };
+		B7CEFDB91F7B547E00FD4CED /* YoutubeFindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CEFDB81F7B547E00FD4CED /* YoutubeFindViewController.swift */; };
 		B7D2EE3C1F6B6481000A3957 /* ToysPhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D2EE3B1F6B6481000A3957 /* ToysPhotoTableViewCell.swift */; };
 		B7D3A9B91F5FD69600A23FAD /* PhotoPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D3A9B81F5FD69600A23FAD /* PhotoPostViewController.swift */; };
 		B7D58C9E1EEE0D9100126406 /* signUpButtonDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D58C9D1EEE0D9100126406 /* signUpButtonDesign.swift */; };
@@ -198,6 +199,7 @@
 		B7B4CAD51EFA81570038F176 /* PostProductPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostProductPhotosViewController.swift; sourceTree = "<group>"; };
 		B7B4CAD71EFAACE20038F176 /* PostDetailPhotosCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailPhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		B7C8F4C01F09B20900FBA696 /* FifthCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FifthCollectionViewCell.swift; sourceTree = "<group>"; };
+		B7CEFDB81F7B547E00FD4CED /* YoutubeFindViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeFindViewController.swift; sourceTree = "<group>"; };
 		B7D2EE3B1F6B6481000A3957 /* ToysPhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToysPhotoTableViewCell.swift; sourceTree = "<group>"; };
 		B7D3A9B81F5FD69600A23FAD /* PhotoPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPostViewController.swift; sourceTree = "<group>"; };
 		B7D58C9D1EEE0D9100126406 /* signUpButtonDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signUpButtonDesign.swift; sourceTree = "<group>"; };
@@ -470,6 +472,7 @@
 			isa = PBXGroup;
 			children = (
 				B794C0ED1F768A1600C130E0 /* DetialContentViewController.swift */,
+				B7CEFDB81F7B547E00FD4CED /* YoutubeFindViewController.swift */,
 			);
 			name = Project2;
 			sourceTree = "<group>";
@@ -660,6 +663,7 @@
 				B709078F1F5BC51800794E5C /* ThirdWallCollectionViewCell.swift in Sources */,
 				B771C6071F0CA1E6005D4BF2 /* ThreeViewController.swift in Sources */,
 				B77B554C1EEF6C8C00262589 /* SignUpField.swift in Sources */,
+				B7CEFDB91F7B547E00FD4CED /* YoutubeFindViewController.swift in Sources */,
 				B7DC06651F671DA100951D53 /* ToyCollectionViewCell.swift in Sources */,
 				B707656E1F41921A00D42B75 /* ReportViewController.swift in Sources */,
 				B70B98BE1F0F64750036B79D /* InDetailViewController.swift in Sources */,
