@@ -19,7 +19,6 @@ class ToysTableViewCell: UITableViewCell {
     
     @IBOutlet weak var coverView: UIView!
     
-    @IBOutlet weak var singleURL: UILabel!
     
     
 
@@ -29,7 +28,7 @@ class ToysTableViewCell: UITableViewCell {
         let mScreenSize = UIScreen.main.bounds
         let mSeparatorHeight = CGFloat(15.0)
         let mAddSeparator = UIView.init(frame: CGRect(x: 0, y: self.frame.size.height - mSeparatorHeight, width: mScreenSize.width, height: mSeparatorHeight))
-        mAddSeparator.backgroundColor = UIColor.color(53, green: 70, blue: 92, alpha: 1)
+        mAddSeparator.backgroundColor = UIColor.color(33, green: 33, blue: 33, alpha: 1)
         self.addSubview(mAddSeparator)
         
         

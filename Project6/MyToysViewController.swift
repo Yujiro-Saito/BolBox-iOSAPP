@@ -125,7 +125,7 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         
         
-        segment.setTitle("写真", forSegmentAt: 0)
+        segment.setTitle("写真・ビデオ", forSegmentAt: 0)
         segment.setTitle("リンク", forSegmentAt: 1)
         segment.backgroundColor = UIColor.clear
         segment.tintColor = UIColor.white
@@ -315,19 +315,7 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
             
             let post = linkPosts[indexPath.row]
             
-            if post.name == "" {
-                cell?.singleURL.isHidden = false
-                cell?.coverView.isHidden = false
-                cell?.smallCaption.isHidden = true
-                cell?.smallURL.isHidden = true
-                
-                //cell?.smallCaption.text = post.name
-                //cell?.smallURL.text = post.linkURL
-                cell?.singleURL.text = post.linkURL
-                
-                return cell!
-            } else if post.name != "" {
-                cell?.singleURL.isHidden = true
+            
                 cell?.coverView.isHidden = false
                 cell?.smallCaption.isHidden = false
                 cell?.smallURL.isHidden = false
@@ -336,7 +324,7 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
                 cell?.smallURL.text = post.linkURL
                 
                 return cell!
-            }
+        
             
             
             
@@ -384,15 +372,8 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         if tableView == toysTable {
             let post = linkPosts[indexPath.row]
             
-            if post.name == "" {
-                return 80
-            } else if post.name != "" {
-                return 120
-            }
-        } else if tableView == photoTable {
-            
-            ///
-            return 571
+           
+            return 120
             
             
         }

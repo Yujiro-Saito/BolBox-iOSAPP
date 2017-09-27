@@ -1879,9 +1879,9 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wBU-Ze-6Vp">
-                                <rect key="frame" x="127" y="64" width="121" height="29"/>
+                                <rect key="frame" x="97.5" y="64" width="180" height="29"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="121" id="ElG-PJ-x6E"/>
+                                    <constraint firstAttribute="width" constant="180" id="ElG-PJ-x6E"/>
                                     <constraint firstAttribute="height" constant="28" id="eM7-Y2-urk"/>
                                 </constraints>
                                 <segments>
@@ -1943,46 +1943,35 @@
                                                 </label>
                                                 <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l9t-XQ-hok">
                                                     <rect key="frame" x="0.0" y="105" width="375" height="15"/>
-                                                    <color key="backgroundColor" red="0.20784313730000001" green="0.27450980390000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="YgA-gG-9ES"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URLonlylonolookokokoko" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMR-cq-b3n">
-                                                    <rect key="frame" x="8" y="8" width="359" height="89"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="11"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使い方" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ik6-AN-WM9">
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ニューヨーク、ベストプランはこれだ！NY最新人気観光スポットとおすすめグルメ16選" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ik6-AN-WM9">
                                                     <rect key="frame" x="8" y="8" width="359" height="54"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="54" id="oxd-f0-f5W"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="l9t-XQ-hok" secondAttribute="trailing" id="0QR-D1-xk6"/>
                                                 <constraint firstAttribute="trailing" secondItem="d4W-6S-Yog" secondAttribute="trailing" constant="8" id="8TU-7I-dyz"/>
-                                                <constraint firstItem="zMR-cq-b3n" firstAttribute="top" secondItem="naq-pq-NS3" secondAttribute="top" constant="8" id="BZl-a4-q5y"/>
-                                                <constraint firstItem="l9t-XQ-hok" firstAttribute="top" secondItem="zMR-cq-b3n" secondAttribute="bottom" constant="8" id="DhP-nL-Uuy"/>
                                                 <constraint firstItem="l9t-XQ-hok" firstAttribute="leading" secondItem="naq-pq-NS3" secondAttribute="leading" id="NsP-uz-Rw3"/>
                                                 <constraint firstItem="Ik6-AN-WM9" firstAttribute="top" secondItem="naq-pq-NS3" secondAttribute="top" constant="8" id="PCQ-i2-XUn"/>
                                                 <constraint firstAttribute="trailing" secondItem="Ik6-AN-WM9" secondAttribute="trailing" constant="8" id="Vfp-lS-1EK"/>
                                                 <constraint firstItem="d4W-6S-Yog" firstAttribute="leading" secondItem="naq-pq-NS3" secondAttribute="leading" constant="8" id="W4t-E7-nC1"/>
-                                                <constraint firstItem="zMR-cq-b3n" firstAttribute="leading" secondItem="naq-pq-NS3" secondAttribute="leading" constant="8" id="gtd-Pq-49X"/>
                                                 <constraint firstItem="d4W-6S-Yog" firstAttribute="top" secondItem="Ik6-AN-WM9" secondAttribute="bottom" constant="8" id="jbV-Bm-lL5"/>
                                                 <constraint firstItem="Ik6-AN-WM9" firstAttribute="leading" secondItem="naq-pq-NS3" secondAttribute="leading" constant="8" id="k1v-bl-KBh"/>
                                                 <constraint firstAttribute="bottom" secondItem="l9t-XQ-hok" secondAttribute="bottom" id="oZy-K5-HVw"/>
-                                                <constraint firstAttribute="trailing" secondItem="zMR-cq-b3n" secondAttribute="trailing" constant="8" id="q49-3f-ZEG"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="coverView" destination="l9t-XQ-hok" id="wA9-nZ-jRM"/>
-                                            <outlet property="singleURL" destination="zMR-cq-b3n" id="Md6-cU-FtM"/>
                                             <outlet property="smallCaption" destination="d4W-6S-Yog" id="aSC-f4-JEy"/>
                                             <outlet property="smallURL" destination="Ik6-AN-WM9" id="KUY-sO-fkh"/>
                                         </connections>
@@ -4198,7 +4187,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jJo-dR-Onz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="ウォール" image="Home" id="qMP-Xu-1HA"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UIl-fw-qgx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UIl-fw-qgx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -4221,7 +4210,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GtW-M7-tyf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="探す" image="Search" id="ubN-eP-8bB"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oXz-Zf-PXP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="oXz-Zf-PXP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -4246,7 +4235,7 @@
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MAV-C6-E7r">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="MAV-C6-E7r">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
