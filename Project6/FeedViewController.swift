@@ -83,8 +83,8 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         searchTable.dataSource = self
         
         searchTable.isHidden = true
-        
-        
+
+        tableFeed.isPagingEnabled = true
         
         // フォント種をTime New Roman、サイズを10に指定
         self.navigationController?.navigationBar.titleTextAttributes
@@ -138,7 +138,6 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                             
                             if postDict["userName"] as? String != nil {
                                 
-                                print("あああああああああ")
                                 let name = postDict["userName"] as? String!
                                 
                                 self.searchUserName.append(name!)
@@ -167,7 +166,6 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 
             })
             
-            print("あああdededededeああああ")
             print(self.searchUserName)
             self.searchTable.reloadData()
             
@@ -740,7 +738,7 @@ return cell!
                 
                 if self.folderNameBox[indexPath.row] == "App" || self.folderNameBox[indexPath.row] == "Music" || self.folderNameBox[indexPath.row] == "Movie" || self.folderNameBox[indexPath.row] == "Book" {
                 
-                return 181
+                return 216
                 
             } else {
                 return 500
@@ -752,7 +750,7 @@ return cell!
                 
             } else {
                 //なしのせる
-                return 120
+                return 170
                 
                 
             }
