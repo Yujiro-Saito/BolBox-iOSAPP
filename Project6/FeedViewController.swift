@@ -20,8 +20,8 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var imagesURL = String()
     var userName = String()
     
+    @IBOutlet weak var allBgView: UIView!
     
-      var mySearchBar: UISearchBar!
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -54,10 +54,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var detailPosts: Post?
     
     @IBOutlet weak var tableFeed: UITableView!
-    @IBOutlet weak var searchTable: UITableView!
     
-    var filteredNames = [String]()
-    var filteredImages = [String]()
     
     
     //data
@@ -72,6 +69,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var userProfileImageBox = [String]()
     var pvCountBox = [Int]()
     var checkBox = [String]()
+    var videoKeyCheck = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,10 +77,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         tableFeed.delegate = self
         tableFeed.dataSource = self
-        searchTable.delegate = self
-        searchTable.dataSource = self
         
-        searchTable.isHidden = true
 
         tableFeed.isPagingEnabled = true
         
@@ -102,105 +97,8 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
     
-    var searchUserName = [String]()
-    var serchUserImageURL = [String]()
-    var searchUserUID = [String]()
+    
    
-    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        searchTable.isHidden = false
-        
-        
-        self.searchUserName = []
-        
-        let searchUserText = mySearchBar.text
-        
-        let enocodedText = searchUserText?.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
-        
-        let finalText = enocodedText?.replacingOccurrences(of: " ", with: "+")
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            
-            
-            
-            
-            DataService.dataBase.REF_BASE.child("users").observe(.value, with: { (snapshot) in
-                
-                
-
-                
-                
-                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                    
-                    for snap in snapshot {
-                        
-                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                            
-                            
-                            if postDict["userName"] as? String != nil {
-                                
-                                let name = postDict["userName"] as? String!
-                                
-                                self.searchUserName.append(name!)
-                                
-                               
-                                
-                                
-                            }
-                            
-                            
-                           
-                            
-                            
-                        }
-                        
-                        
-                    }
-                    
-                    
-                    
-                    
-                    
-                }
-                
-                
-                
-            })
-            
-            print(self.searchUserName)
-            self.searchTable.reloadData()
-            
-            
-            
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        return true
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchTable.isHidden = false
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
-        
-        searchBar.resignFirstResponder()
-        
-    }
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.searchTable.isHidden = true
-    }
     
     
     let selfUID = FIRAuth.auth()?.currentUser?.uid
@@ -212,17 +110,11 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
        
         
-        mySearchBar = UISearchBar()
-        mySearchBar.sizeToFit()
-        mySearchBar.enablesReturnKeyAutomatically = false
+       
         
-        // the UIViewController comes with a navigationItem property
-        // this will automatically be initialized for you if when the
-        // view controller is added to a navigation controller's stack
-        // you just need to set the titleView to be the search bar
-        navigationItem.titleView = mySearchBar
         
-        mySearchBar.delegate = self
+        //navigationItem.titleView = mySearchBar
+        
         
         //Followのチェック follower数のチェック
         DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: selfUID!).observe(.value, with: { (snapshot) in
@@ -237,7 +129,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             self.userIDBox = []
             self.pvCountBox = []
             self.postIDBox = []
-            
+            self.videoKeyCheck = []
             
             
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
@@ -287,6 +179,11 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                                         
                                                         let name = value["name"] as! String
                                                         
+                                                        let videoCheck = value["videoKey"] as! String?
+                                                        
+                                                        
+                                                        
+                                                        
                                                         //Likes
                                                         if value["peopleWhoLike"] as? Dictionary<String,Dictionary<String,String>?> != nil {
                                                             
@@ -327,6 +224,12 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                                         let userProfileImage = value["userProfileImage"] as! String
                                                         
                                                         
+                                                        if videoCheck != nil {
+                                                            self.videoKeyCheck.append(videoCheck!)
+                                                        } else {
+                                                            self.videoKeyCheck.append("")
+                                                        }
+                                                        
                                                         self.folderNameBox.append(folderName)
                                                         self.imageURLBox.append(imageURL)
                                                         self.linkURLBox.append(linkURL)
@@ -364,6 +267,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                     
                                 
                                     self.checkBox.reverse()
+                                    self.videoKeyCheck.reverse()
                                     self.folderNameBox.reverse()
                                     self.imageURLBox.reverse()
                                     self.linkURLBox.reverse()
@@ -407,15 +311,9 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var resImagess = [String]()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if tableView == tableFeed {
-            return folderNameBox.count
-        } else if tableView == searchTable {
-            return searchUserName.count
-        }
-        
-        return 100
-        
+    
+        return folderNameBox.count
+       
     }
     
     
@@ -525,18 +423,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         
         
-        if tableView == searchTable {
-            
-            let searchCell = searchTable.dequeueReusableCell(withIdentifier: "seacok", for: indexPath) as? SearchTableViewCell
-            
-            searchCell?.userImage.image = nil
-            
-            
-            searchCell?.userName.text = self.searchUserName[indexPath.row]
-            
-            return searchCell!
-            
-        }
+        
         
         
         
@@ -547,123 +434,61 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         //読み込むまで画像は非表示
         cell?.clipsToBounds = true
-        cell?.cardDesi.isHidden = true
+        cell?.bigImage.isHidden = true
+        cell?.middleImage.isHidden = true
+        cell?.titleLabel.isHidden = true
+        cell?.textBox.isHidden = true
+        cell?.bigImage.image = nil
+        cell?.middleImage.image = nil
         
-        cell?.oneLoveButton.isHidden = true
-        cell?.oneCloseButton.isHidden = true
-        cell?.itemImage.image = nil
-        cell?.userImage.image = nil
-        cell?.userName.isHidden = true
+        //Common
+        cell?.folderName.text = self.folderNameBox[indexPath.row]
+        cell?.userName.text = self.userNameBox[indexPath.row]
+        cell?.userPrfileImage.af_setImage(withURL:  URL(string: self.userProfileImageBox[indexPath.row])!)
+        cell?.favNumLabel.text = "\(self.pvCountBox[indexPath.row])件"
         
+    
         
-        cell?.linkButton.isHidden = true
-        cell?.linkFirstLabel.isHidden = true
-        cell?.linkSecondLabel.isHidden = true
-        cell?.linkImage.image = nil
-        cell?.linkName.isHidden = true
-        cell?.linkLoveButton.isHidden = true
-        
-        
-        //現在のCell
         
         //画像ありのセル
         if self.imageURLBox[indexPath.row] != "" {
             
-            if self.folderNameBox[indexPath.row] == "App" || self.folderNameBox[indexPath.row] == "Music" || self.folderNameBox[indexPath.row] == "Movie" || self.folderNameBox[indexPath.row] == "Book" {
+            
+            self.allBgView.backgroundColor = UIColor.black
+            
+            //Youtubeの場合
+            
+            
+            if self.videoKeyCheck[indexPath.row] != ""  {
                 
                 
                 if self.checkBox[indexPath.row] == "YES" {
-                    cell?.fourFav.isSelected = true
+                    cell?.favButton.isSelected = true
                 } else {
                     
-                    cell?.fourFav.isSelected = false
+                    cell?.favButton.isSelected = false
                     
                 }
                 
-                cell?.cardDesi.isHidden = false
                 
-                
-                //
-                cell?.fourFavLabel.text = "\(self.pvCountBox[indexPath.row])件のいいね"
-                cell?.favLabel.isHidden = true
-                cell?.linkFavNumLabel.isHidden = true
-                
-                
-                cell?.bigFolderLabel.isHidden = true
-                
-                cell?.linkButton.isHidden = true
-                cell?.linkFirstLabel.isHidden = true
-                cell?.linkSecondLabel.isHidden = true
-                cell?.linkImage.image = nil
-                cell?.linkName.isHidden = true
-                cell?.linkLoveButton.isHidden = true
-                
-                cell?.oneLoveButton.isHidden = true
-                cell?.userName.isHidden = true
-                cell?.oneCloseButton.isHidden = true
-                cell?.itemImage.image = nil
-                cell?.userImage.image = nil
-                cell?.userName.isHidden = true
-                
-                
-                
-                
-                //
-                cell?.fourView.isHidden = false
-                
-                cell?.fourFav.isHidden = false
-                cell?.fouruserName.isHidden = false
-                cell?.fourCloseButton.isHidden = false
-                
-                cell?.fourImage.af_setImage(withURL:  URL(string: self.imageURLBox[indexPath.row])!)
-                cell?.fourProfileImage.af_setImage(withURL:  URL(string: self.userProfileImageBox[indexPath.row])!)
-                
-                
-                cell?.fouruserName.text = self.userNameBox[indexPath.row]
-                cell?.folderName.text = self.folderNameBox[indexPath.row]
-                cell?.fourItemLabel.text = self.nameBox[indexPath.row]
-                
+              cell?.middleImage.isHidden = false
+              cell?.middleImage.af_setImage(withURL:  URL(string: self.imageURLBox[indexPath.row])!)
+              cell?.titleLabel.text = self.nameBox[indexPath.row]
 
                 
             } else {
                 
                 if self.checkBox[indexPath.row] == "YES" {
-                    cell?.oneLoveButton.isSelected = true
+                    cell?.favButton.isSelected = true
                 } else {
                     
-                    cell?.oneLoveButton.isSelected = false
+                    cell?.favButton.isSelected = false
                     
                 }
                 
-                /////
-                cell?.oneLoveButton.addTarget(self, action: #selector(self.favOne(_:)), for: .touchUpInside)
-                //
-                //cell?.fourFavLabel.isHidden = true
-                cell?.favLabel.text = "\(self.pvCountBox[indexPath.row])件のいいね"
-                cell?.linkFavNumLabel.isHidden = true
-                cell?.bigFolderLabel.isHidden = false
-                
-                cell?.fourView.isHidden = true
-                
-                cell?.cardDesi.isHidden = true
-                
-                cell?.linkButton.isHidden = true
-                cell?.linkFirstLabel.isHidden = true
-                cell?.linkSecondLabel.isHidden = true
-                cell?.linkImage.image = nil
-                cell?.linkName.isHidden = true
-                cell?.linkLoveButton.isHidden = true
-                
-                cell?.oneLoveButton.isHidden = false
-                cell?.userName.isHidden = false
-                cell?.oneCloseButton.isHidden = false
-                
-                cell?.itemImage.af_setImage(withURL:  URL(string: self.imageURLBox[indexPath.row])!)
-                cell?.userImage.af_setImage(withURL:  URL(string: self.userProfileImageBox[indexPath.row])!)
-                
-                cell?.bigFolderLabel.text = self.folderNameBox[indexPath.row]
-                
-                cell?.userName.text = self.userNameBox[indexPath.row]
+                //Image
+                cell?.bigImage.isHidden = false
+                cell?.bigImage.af_setImage(withURL:  URL(string: self.imageURLBox[indexPath.row])!)
                 
                 
                 
@@ -678,47 +503,23 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
         } else if self.imageURLBox[indexPath.row] == "" {
             
+            self.allBgView.backgroundColor = UIColor.white
+            
             
             if self.checkBox[indexPath.row] == "YES" {
-                cell?.linkLoveButton.isSelected = true
+                cell?.favButton.isSelected = true
             } else {
                 
-                cell?.linkLoveButton.isSelected = false
+                cell?.favButton.isSelected = false
                 
             }
             
-            //
-            cell?.bigFolderLabel.isHidden = true
+            cell?.titleLabel.isHidden = false
+            cell?.textBox.isHidden = false
             
-            cell?.fourView.isHidden = true
+            cell?.titleLabel.text = self.nameBox[indexPath.row]
+            cell?.textBox.text = "Quoraは英語のサービスだが、2016年からは多言語化を開始している。現在はドイツ語、スペイン語、フランス語、イタリア語でもサービスを提供していて、先日9月26日には、日本語ベータ版もローンチした（日本語ベータ版をいち早く試してみたい人は、ここから事前登録することができる）。TechCrunch Tokyo 2017では、Adam D’Angelo氏にQuoraを創業した経緯やユニコーンに成長するまでの道のりについて聞きたいと思っている。また、日本だとYahoo!知恵袋やOKWaveといった先行するサービスがある中、どのようにサービス展開を考えているかも聞きたいところだ。"
             
-            cell?.favLabel.isHidden = true
-            
-            cell?.linkFavNumLabel.isHidden = false
-            cell?.linkFavNumLabel.text = "\(self.pvCountBox[indexPath.row])件のいいね"
-            
-            cell?.cardDesi.isHidden = false
-            cell?.fourView.isHidden = true
-            
-            cell?.oneLoveButton.isHidden = true
-            cell?.itemImage.image = nil
-            cell?.userImage.image = nil
-            cell?.userName.isHidden = true
-            cell?.oneCloseButton.isHidden = true
-            
-            
-            //なしのせる
-            cell?.linkButton.isHidden = false
-            cell?.linkFirstLabel.isHidden = false
-            cell?.linkSecondLabel.isHidden = false
-            cell?.userImage.af_setImage(withURL:  URL(string: self.userProfileImageBox[indexPath.row])!)
-            cell?.linkName.isHidden = false
-            cell?.linkLoveButton.isHidden = false
-            
-            
-            cell?.linkFirstLabel.text = self.nameBox[indexPath.row]
-            cell?.linkSecondLabel.text = self.folderNameBox[indexPath.row]
-            cell?.linkName.text = self.userNameBox[indexPath.row]
             
             return cell!
             
@@ -732,31 +533,11 @@ return cell!
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if tableView == self.tableFeed {
-            //画像ありのセル
-            if self.imageURLBox[indexPath.row] != "" {
-                
-                if self.folderNameBox[indexPath.row] == "App" || self.folderNameBox[indexPath.row] == "Music" || self.folderNameBox[indexPath.row] == "Movie" || self.folderNameBox[indexPath.row] == "Book" {
-                
-                return 216
-                
-            } else {
-                return 500
-            }
-            
-                
-            
-                
-                
-            } else {
-                //なしのせる
-                return 170
-                
-                
-            }
-        }
         
-        return 80
+        //let height = self.view.frame.height
+        let height = self.tableFeed.frame.height
+        
+        return height
     }
     
         
