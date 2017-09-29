@@ -8,6 +8,7 @@
 
 import UIKit
 import FaveButton
+import youtube_ios_player_helper
 
 class FeedTableViewCell: UITableViewCell {
     
@@ -17,6 +18,7 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var favButton: FaveButton!
     @IBOutlet weak var folderImage: ProfileImage!
     
+    @IBOutlet weak var videoPlayer: YTPlayerView!
     
     @IBOutlet weak var actionButton: UIButton!
     @IBOutlet weak var folderName: UILabel!
@@ -36,7 +38,6 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var bigImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
-    @IBOutlet weak var middleImage: UIImageView!
     
     
     @IBOutlet weak var textBox: UITextView!

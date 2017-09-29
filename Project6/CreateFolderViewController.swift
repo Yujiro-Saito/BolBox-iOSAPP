@@ -91,7 +91,7 @@ class CreateFolderViewController: UIViewController,UITextFieldDelegate {
             performSegue(withIdentifier: "Design", sender: nil)
         } else {
             //alert
-            let alertViewControler = UIAlertController(title: "誌名", message: "誌名を登録してください", preferredStyle: .alert)
+            let alertViewControler = UIAlertController(title: "フォルダー名", message: "タイトルを登録してください", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             
             alertViewControler.addAction(okAction)

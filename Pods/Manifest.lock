@@ -86,6 +86,7 @@ PODS:
   - TwitterKit (2.8.1):
     - TwitterCore (>= 2.8)
   - XLPagerTabStrip (7.0.0)
+  - youtube-ios-player-helper (0.1.6)
   - ZFRippleButton (0.6)
 
 DEPENDENCIES:
@@ -110,6 +111,7 @@ DEPENDENCIES:
   - SwiftKeychainWrapper
   - TwitterKit
   - XLPagerTabStrip
+  - youtube-ios-player-helper (~> 0.1.4)
   - ZFRippleButton (~> 0.6)
 
 SPEC CHECKSUMS:
@@ -144,8 +146,9 @@ SPEC CHECKSUMS:
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
   XLPagerTabStrip: 9be80a66c6b7d60306b2c0a6004965016d68f813
+  youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
   ZFRippleButton: 62ea35e209757704dea697d66489fe69c13d7b77
 
-PODFILE CHECKSUM: 4400ad97310f39cbe2d27308d1c90353101fae09
+PODFILE CHECKSUM: e9c8d5bd1031b11b892d848e139c6e599fd31c77
 
 COCOAPODS: 1.1.0

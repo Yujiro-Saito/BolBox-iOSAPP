@@ -28,7 +28,7 @@ target 'Project6' do
   pod 'CircleMenu', '~> 2.0.1'
   pod 'Eureka’
   pod 'FaveButton', '~> 2.0.3'
-
+  pod "youtube-ios-player-helper", "~> 0.1.4"
   
 
 end

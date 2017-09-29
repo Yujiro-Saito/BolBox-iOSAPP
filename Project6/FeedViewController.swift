@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import AlamofireImage
 import FaveButton
-
+import youtube_ios_player_helper
 
 
 class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate {
@@ -240,6 +240,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                                         self.userNameBox.append(userName)
                                                         self.userProfileImageBox.append(userProfileImage)
                                                         
+                                                       
                                             
                                                         
                                                         
@@ -417,7 +418,64 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
     
+     func safariOnclick(_ sender: AnyObject){
+        let actionSheet = UIAlertController(title: "アクション", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        let safari = UIAlertAction(title: "Safariで開く", style: UIAlertActionStyle.default, handler: {
+            (action: UIAlertAction!) in
+            
+            
+           
+            
+            
+        })
+        
+        let report = UIAlertAction(title: "不審な投稿として報告", style: UIAlertActionStyle.default, handler: {
+            (action: UIAlertAction!) in
+            
+            
+            
+        })
+        
+        
+        let cancel = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler: {
+            (action: UIAlertAction!) in
+        })
+        
+        actionSheet.addAction(safari)
+        actionSheet.addAction(report)
+        actionSheet.addAction(cancel)
+        
+        self.present(actionSheet, animated: true, completion: nil)
+    }
     
+    func imageOnClick(_ sender: AnyObject){
+        
+        let actionSheet = UIAlertController(title: "アクション", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+      
+        
+        let report = UIAlertAction(title: "不審な投稿として報告", style: UIAlertActionStyle.default, handler: {
+            (action: UIAlertAction!) in
+            
+            
+            
+        })
+        
+        
+        let cancel = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler: {
+            (action: UIAlertAction!) in
+        })
+        
+        actionSheet.addAction(report)
+        actionSheet.addAction(cancel)
+        
+        self.present(actionSheet, animated: true, completion: nil)
+        
+    }
+
+
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
@@ -435,20 +493,19 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         //読み込むまで画像は非表示
         cell?.clipsToBounds = true
         cell?.bigImage.isHidden = true
-        cell?.middleImage.isHidden = true
+        cell?.videoPlayer.isHidden = true
         cell?.titleLabel.isHidden = true
         cell?.textBox.isHidden = true
         cell?.bigImage.image = nil
-        cell?.middleImage.image = nil
         
         //Common
         cell?.folderName.text = self.folderNameBox[indexPath.row]
         cell?.userName.text = self.userNameBox[indexPath.row]
         cell?.userPrfileImage.af_setImage(withURL:  URL(string: self.userProfileImageBox[indexPath.row])!)
         cell?.favNumLabel.text = "\(self.pvCountBox[indexPath.row])件"
-        
+
     
-        
+
         
         //画像ありのセル
         if self.imageURLBox[indexPath.row] != "" {
@@ -462,6 +519,18 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             if self.videoKeyCheck[indexPath.row] != ""  {
                 
                 
+                
+                cell?.actionButton.addTarget(self, action: #selector(self.safariOnclick(_:)), for: .touchUpInside)
+                
+                
+                
+                    
+                
+                
+                
+                cell?.videoPlayer.load(withVideoId: self.videoKeyCheck[indexPath.row])
+                
+                
                 if self.checkBox[indexPath.row] == "YES" {
                     cell?.favButton.isSelected = true
                 } else {
@@ -470,14 +539,13 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     
                 }
                 
-                
-              cell?.middleImage.isHidden = false
-              cell?.middleImage.af_setImage(withURL:  URL(string: self.imageURLBox[indexPath.row])!)
-              cell?.titleLabel.text = self.nameBox[indexPath.row]
+              cell?.videoPlayer.backgroundColor = UIColor.black
+              cell?.videoPlayer.isHidden = false
 
                 
             } else {
                 
+                cell?.actionButton.addTarget(self, action: #selector(self.imageOnClick(_:)), for: .touchUpInside)
                 if self.checkBox[indexPath.row] == "YES" {
                     cell?.favButton.isSelected = true
                 } else {
@@ -502,6 +570,8 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
             
         } else if self.imageURLBox[indexPath.row] == "" {
+            
+            cell?.actionButton.addTarget(self, action: #selector(self.safariOnclick(_:)), for: .touchUpInside)
             
             self.allBgView.backgroundColor = UIColor.white
             
