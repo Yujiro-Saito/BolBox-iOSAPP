@@ -48,6 +48,7 @@ class DetialContentViewController: UIViewController,UIWebViewDelegate {
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.tintColor = UIColor.darkGray
+        self.navigationController?.hidesBarsOnSwipe = false
 
         webViewing.delegate = self
         webViewing.scalesPageToFit = true

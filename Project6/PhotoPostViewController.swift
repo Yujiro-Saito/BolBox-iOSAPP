@@ -9,9 +9,8 @@
 import UIKit
 import Firebase
 import AlamofireImage
-import Eureka
 
-class PhotoPostViewController: FormViewController, UIImagePickerControllerDelegate ,UINavigationControllerDelegate,UITextFieldDelegate {
+class PhotoPostViewController: UIViewController, UIImagePickerControllerDelegate ,UINavigationControllerDelegate,UITextFieldDelegate {
 
     @IBOutlet weak var postPhoto: UIImageView!
     var mainImageBox = UIImage()
@@ -31,22 +30,21 @@ class PhotoPostViewController: FormViewController, UIImagePickerControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("テスト")
         print(folderName)
         print(type)
         
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.darkGray]
         
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.hidesBarsOnSwipe = true
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGray
+        self.navigationController?.hidesBarsOnSwipe = false
         
        
+        folName.text = self.folderName
         
-        
-
+        self.postPhoto.layer.masksToBounds = true
+         self.postPhoto.layer.cornerRadius = 15
         
         
         
@@ -77,341 +75,65 @@ class PhotoPostViewController: FormViewController, UIImagePickerControllerDelega
     
     func postButtonDidTap() {
         
-        let linkRow: TextRow? = form.rowBy(tag: "link")
-        var linkValue = linkRow?.value
-        
-        let captionRow: TextRow? = form.rowBy(tag: "memo")
-        var captionValue = captionRow?.value
+        showIndicator()
         
         
         
         
-        if linkValue == nil && captionValue != nil {
+        
+        let firebasePost = DataService.dataBase.REF_USER.child(uid!).child("posts").childByAutoId()
+        let key = firebasePost.key
+        let keyvalue = ("\(key)")
+        
+        var post: Dictionary<String, AnyObject> = [
             
-            print("1111111")
             
-            showIndicator()
+            "folderName" :  folderName as AnyObject,
+            "linkURL" : "" as AnyObject,
+            "pvCount" : 0 as AnyObject,
+            "userID" : uid as AnyObject,
+            "userName" : userName as AnyObject,
+            "name" : "" as AnyObject,
+            "postID" : keyvalue as AnyObject,
+            "bgType" : self.type as AnyObject
+        ]
+        
+        
+        
+        //画像処理
+        
+        let mainImgData = UIImageJPEGRepresentation(postPhoto.image!, 0.2)
+        
+        let metaData = FIRStorageMetadata()
+        metaData.contentType = "image/jpeg"
+        let mainImgUid = NSUUID().uuidString
+        
+        DispatchQueue.global().async {
             
-            
-            linkValue = ""
-            
-            let firebasePost = DataService.dataBase.REF_USER.child(uid!).child("posts").childByAutoId()
-            let key = firebasePost.key
-            let keyvalue = ("\(key)")
-            
-            var post: Dictionary<String, AnyObject> = [
+            DataService.dataBase.REF_POST_IMAGES.child(mainImgUid).put(mainImgData!, metadata: metaData) {
+                (metaData, error) in
                 
-                "folderName" :  folderName as AnyObject,
-                "linkURL" : linkValue! as AnyObject,
-                "pvCount" : 0 as AnyObject,
-                "userID" : uid as AnyObject,
-                "userName" : userName as AnyObject,
-                "name" : captionValue! as AnyObject,
-                "postID" : keyvalue as AnyObject,
-                "bgType" : self.type as AnyObject
-            ]
-            
-            
-            
-            //画像処理
-            
-            let mainImgData = UIImageJPEGRepresentation(postPhoto.image!, 0.2)
-            
-            let metaData = FIRStorageMetadata()
-            metaData.contentType = "image/jpeg"
-            let mainImgUid = NSUUID().uuidString
-            
-            DispatchQueue.global().async {
-                
-                DataService.dataBase.REF_POST_IMAGES.child(mainImgUid).put(mainImgData!, metadata: metaData) {
-                    (metaData, error) in
+                if error != nil {
+                    print("画像のアップロードに失敗しました")
+                } else {
                     
-                    if error != nil {
-                        print("画像のアップロードに失敗しました")
-                    } else {
-                        
-                        print("画像のアップロードに成功しました")
-                        //DBへ画像のURL飛ばす
-                        let firstDownloadURL = metaData?.downloadURL()?.absoluteString
-                        
-                        //メイン画像を追加
-                        post["imageURL"] = firstDownloadURL as AnyObject
-                        
-                        
-                        //folder name 
-                        let folderInfo: Dictionary<String,String> = ["imageURL" : firstDownloadURL!, "name" : self.folderName]
-                        
-                         self.folderNameDictionary = [self.folderName : folderInfo]
-                        
-                        self.mainBool = true
-                        
-                    }
-                }
-                
-            }
-
-            
-            
-            
-        
-            
-            
-            self.wait( {self.mainBool == false} ) {
-                
-                firebasePost.setValue(post)
-                DataService.dataBase.REF_BASE.child("users/\(self.uid!)/folderName").updateChildValues(self.folderNameDictionary)
-                
-                self.mainBool = false
-                
-                
-                DispatchQueue.main.async {
-                    self.indicator.stopAnimating()
-                    self.performSegue(withIdentifier: "wallll", sender: nil)
+                    print("画像のアップロードに成功しました")
+                    //DBへ画像のURL飛ばす
+                    let firstDownloadURL = metaData?.downloadURL()?.absoluteString
                     
-                }
-                
-               
-                
-            
-        
-        
-            
-            
-            
-            
-        }
-        
-        
-    } else if captionValue == nil && linkValue != nil {
-            
-            print("22222222222")
-            captionValue = ""
-            
-            showIndicator()
-            
-            let firebasePost = DataService.dataBase.REF_USER.child(uid!).child("posts").childByAutoId()
-            let key = firebasePost.key
-            let keyvalue = ("\(key)")
-            
-            var post: Dictionary<String, AnyObject> = [
-                
-                "folderName" :  folderName as AnyObject,
-                "linkURL" : linkValue! as AnyObject,
-                "pvCount" : 0 as AnyObject,
-                "userID" : uid as AnyObject,
-                "userName" : userName as AnyObject,
-                "name" : captionValue! as AnyObject,
-                "postID" : keyvalue as AnyObject,
-                "bgType" : self.type as AnyObject
-            ]
-            
-            
-            
-            //画像処理
-            
-            let mainImgData = UIImageJPEGRepresentation(postPhoto.image!, 0.2)
-            
-            let metaData = FIRStorageMetadata()
-            metaData.contentType = "image/jpeg"
-            let mainImgUid = NSUUID().uuidString
-            
-            DispatchQueue.global().async {
-                
-                DataService.dataBase.REF_POST_IMAGES.child(mainImgUid).put(mainImgData!, metadata: metaData) {
-                    (metaData, error) in
+                    //メイン画像を追加
+                    post["imageURL"] = firstDownloadURL as AnyObject
                     
-                    if error != nil {
-                        print("画像のアップロードに失敗しました")
-                    } else {
-                        
-                        print("画像のアップロードに成功しました")
-                        //DBへ画像のURL飛ばす
-                        let firstDownloadURL = metaData?.downloadURL()?.absoluteString
-                        
-                        //メイン画像を追加
-                        post["imageURL"] = firstDownloadURL as AnyObject
-                        
-                        //folder name
-                        let folderInfo: Dictionary<String,String> = ["imageURL" : firstDownloadURL!, "name" : self.folderName]
-                        
-                        self.folderNameDictionary = [self.folderName : folderInfo]
-                        
-                        self.mainBool = true
-                        
-                    }
-                }
-                
-            }
-            
-            
-            
-            self.wait( {self.mainBool == false} ) {
-                print(post)
-                firebasePost.setValue(post)
-                DataService.dataBase.REF_BASE.child("users/\(self.uid!)/folderName").updateChildValues(self.folderNameDictionary)
-                self.mainBool = false
-                
-                DispatchQueue.main.async {
                     
-                    self.indicator.stopAnimating()
-                    self.performSegue(withIdentifier: "wallll", sender: nil)
+                    //folder name
+                    let folderInfo: Dictionary<String,String> = ["imageURL" : firstDownloadURL!, "name" : self.folderName]
+                    
+                    self.folderNameDictionary = [self.folderName : folderInfo]
+                    
+                    self.mainBool = true
+                    
                 }
             }
-
-        } else if linkValue == nil && captionValue == nil {
-            
-            print("33333333333")
-            showIndicator()
-            
-            linkValue = ""
-            captionValue = ""
-            
-            
-            let firebasePost = DataService.dataBase.REF_USER.child(uid!).child("posts").childByAutoId()
-            let key = firebasePost.key
-            let keyvalue = ("\(key)")
-            
-            var post: Dictionary<String, AnyObject> = [
-                
-                "folderName" :  folderName as AnyObject,
-                "linkURL" : linkValue! as AnyObject,
-                "pvCount" : 0 as AnyObject,
-                "userID" : uid as AnyObject,
-                "userName" : userName as AnyObject,
-                "name" : captionValue! as AnyObject,
-                "postID" : keyvalue as AnyObject,
-                "bgType" : self.type as AnyObject
-            ]
-            
-            
-            
-            //画像処理
-            
-            let mainImgData = UIImageJPEGRepresentation(postPhoto.image!, 0.2)
-            
-            let metaData = FIRStorageMetadata()
-            metaData.contentType = "image/jpeg"
-            let mainImgUid = NSUUID().uuidString
-            
-            DispatchQueue.global().async {
-                
-                DataService.dataBase.REF_POST_IMAGES.child(mainImgUid).put(mainImgData!, metadata: metaData) {
-                    (metaData, error) in
-                    
-                    if error != nil {
-                        print("画像のアップロードに失敗しました")
-                    } else {
-                        print("画像のアップロードに成功しました")
-                        //DBへ画像のURL飛ばす
-                        let firstDownloadURL = metaData?.downloadURL()?.absoluteString
-                        
-                        //メイン画像を追加
-                        post["imageURL"] = firstDownloadURL as AnyObject
-                        //folder name
-                        let folderInfo: Dictionary<String,String> = ["imageURL" : firstDownloadURL!, "name" : self.folderName]
-                        
-                        self.folderNameDictionary = [self.folderName : folderInfo]
-                        
-                        self.mainBool = true
-                        
-                    }
-                }
-                
-            }
-            
-            
-            
-            self.wait( {self.mainBool == false} ) {
-                print(post)
-                firebasePost.setValue(post)
-                DataService.dataBase.REF_BASE.child("users/\(self.uid!)/folderName").updateChildValues(self.folderNameDictionary)
-                self.mainBool = false
-                
-                DispatchQueue.main.async {
-                    
-                    self.indicator.stopAnimating()
-                    self.performSegue(withIdentifier: "wallll", sender: nil)
-                }
-                
-            }
-            
-            
-        } else {
-            
-            print("444444444444")
-            showIndicator()
-            
-            let firebasePost = DataService.dataBase.REF_USER.child(uid!).child("posts").childByAutoId()
-            let key = firebasePost.key
-            let keyvalue = ("\(key)")
-            
-            var post: Dictionary<String, AnyObject> = [
-                
-                "folderName" :  folderName as AnyObject,
-                "linkURL" : linkValue! as AnyObject,
-                "pvCount" : 0 as AnyObject,
-                "userID" : uid as AnyObject,
-                "userName" : userName as AnyObject,
-                "name" : captionValue! as AnyObject,
-                "postID" : keyvalue as AnyObject,
-                "bgType" : self.type as AnyObject
-            ]
-            
-            
-            
-            //画像処理
-            
-            let mainImgData = UIImageJPEGRepresentation(postPhoto.image!, 0.2)
-            
-            let metaData = FIRStorageMetadata()
-            metaData.contentType = "image/jpeg"
-            let mainImgUid = NSUUID().uuidString
-            
-            DispatchQueue.global().async {
-                
-                DataService.dataBase.REF_POST_IMAGES.child(mainImgUid).put(mainImgData!, metadata: metaData) {
-                    (metaData, error) in
-                    
-                    if error != nil {
-                        print("画像のアップロードに失敗しました")
-                    } else {
-                        print("画像のアップロードに成功しました")
-                        //DBへ画像のURL飛ばす
-                        let firstDownloadURL = metaData?.downloadURL()?.absoluteString
-                        
-                        //メイン画像を追加
-                        post["imageURL"] = firstDownloadURL as AnyObject
-                        
-                        //folder name
-                        let folderInfo: Dictionary<String,String> = ["imageURL" : firstDownloadURL!, "name" : self.folderName]
-                        
-                        self.folderNameDictionary = [self.folderName : folderInfo]
-                        
-                        self.mainBool = true
-                        
-                        print(folderInfo)
-                        
-                    }
-                }
-                
-            }
-            
-            
-            
-            self.wait( {self.mainBool == false} ) {
-                print(post)
-                firebasePost.setValue(post)
-                DataService.dataBase.REF_BASE.child("users/\(self.uid!)/folderName").updateChildValues(self.folderNameDictionary)
-                
-                self.mainBool = false
-                
-                DispatchQueue.main.async {
-                    
-                    self.indicator.stopAnimating()
-                    self.performSegue(withIdentifier: "wallll", sender: nil)
-                }
-            }
-            
             
         }
         
@@ -419,6 +141,29 @@ class PhotoPostViewController: FormViewController, UIImagePickerControllerDelega
         
         
         
+        
+        
+        self.wait( {self.mainBool == false} ) {
+            
+            firebasePost.setValue(post)
+            DataService.dataBase.REF_BASE.child("users/\(self.uid!)/folderName").updateChildValues(self.folderNameDictionary)
+            
+            self.mainBool = false
+            
+            
+            DispatchQueue.main.async {
+                self.indicator.stopAnimating()
+                self.performSegue(withIdentifier: "wallll", sender: nil)
+                
+            }
+            
+            
+            
+            
+            
+            
+        }
+
         
     }
     
@@ -448,25 +193,6 @@ class PhotoPostViewController: FormViewController, UIImagePickerControllerDelega
                 
                 
             }
-            
-        } else {
-            
-            self.folName.text = folderName
-            
-            tableView.backgroundColor = UIColor.rgb(r: 69, g: 113, b: 144, alpha: 1.0)
-            tableView.frame = CGRect(x: 0, y: 144, width: self.view.frame.size.width, height: self.view.frame.size.height)
-            
-            form +++ Section("登録")
-                <<< TextRow("link"){ row in
-                    row.title = "リンク"
-                    row.placeholder = "コピーしたリンク(任意)"
-                }
-                <<< TextRow("memo"){ row in
-                    row.title = "メモ"
-                    row.placeholder = "メモ(任意)"
-            }
-
-            
             
         }
 

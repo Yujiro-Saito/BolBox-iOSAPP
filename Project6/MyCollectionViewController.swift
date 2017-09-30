@@ -52,7 +52,6 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     var amountOfFollowers = Int()
     var numOfFollowing = [String]()
     var numOfFollowers = [String]()
-    var styleNumBox = [Int]()
     
     //new data
     var folderNameBox = [String]()
@@ -86,7 +85,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        //self.navigationController?.hidesBarsOnSwipe = true
+        self.navigationController?.hidesBarsOnSwipe = false
         
         //Individuals
         
@@ -94,7 +93,6 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
         self.folderNameBox = []
         self.folderImageURLBox = []
-        self.styleNumBox = []
         
         
         
@@ -112,22 +110,6 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
                         
                         
-                        if postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
-                            
-                            let posty = postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject>>
-                            
-                            for (key,value) in posty! {
-                                
-                                let styleNum = value["bgType"] as! Int
-                                self.styleNumBox.append(styleNum)
-                                
-                                
-                                
-                            }
-                            
-                            
-                            
-                        }
                         
                         if postDict["folderName"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
                             
@@ -166,7 +148,6 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             
             self.folderNameBox.reverse()
             self.folderImageURLBox.reverse()
-            self.styleNumBox.reverse()
             
             self.myCollection.reloadData()
             
@@ -566,7 +547,6 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
         
         folderName = self.folderNameBox[indexPath.row]
-        numInt = self.styleNumBox[indexPath.row]
         
         performSegue(withIdentifier: "toysToFun", sender: nil)
         
@@ -579,7 +559,6 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             let itemSearchVC = (segue.destination as? AddbasicsViewController)!
             
             
-            itemSearchVC.postType = self.postingType
             
             
         
@@ -612,7 +591,6 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             
             
             another.folderName = folderName
-            another.postsType = numInt
             
             
             

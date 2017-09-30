@@ -13,7 +13,6 @@ import AlamofireImage
 
 class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     
-    var postsType = Int()
     var isBasic = Bool()
     
     @IBOutlet weak var toysCollection: UICollectionView!
@@ -25,22 +24,12 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         //写真
         if sender.selectedSegmentIndex == 0 {
             
-            //APP music movie books
             
-            print(self.postsType)
-            //Pinterest
-            if self.postsType == 0 {
+
                 self.toysTable.isHidden = true
                 self.toysCollection.isHidden = false
                 self.photoTable.isHidden = true
 
-                //縦長
-            } else if self.postsType == 1 {
-                self.toysTable.isHidden = true
-                self.toysCollection.isHidden = true
-                self.photoTable.isHidden = false
-            }
-            
             
             
             
@@ -49,19 +38,19 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
             //リンク
         } else if sender.selectedSegmentIndex == 1 {
             
-            if self.postsType == 0 {
+           
                 self.toysTable.isHidden = false
                 self.toysCollection.isHidden = true
                 self.photoTable.isHidden = true
 
                 
-            } else if self.postsType == 1 {
+            
                 
                 self.toysTable.isHidden = false
                 self.toysCollection.isHidden = true
                 self.photoTable.isHidden = true
-                
-            }
+
+            
             
             
             
@@ -138,13 +127,12 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     
         
         
-        if self.postsType == 0 {
+       
             //Pinterest
             self.toysTable.isHidden = true
             self.toysCollection.isHidden = false
             self.photoTable.isHidden = true
             
-        }
         
         let uids = FIRAuth.auth()?.currentUser?.uid
         

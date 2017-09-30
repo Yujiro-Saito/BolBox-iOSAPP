@@ -546,7 +546,6 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
             
             
             another.folderName = folderName
-            another.postsType = numberInt
             
             
             

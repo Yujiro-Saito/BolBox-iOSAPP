@@ -11,10 +11,9 @@ import Firebase
 import AlamofireImage
 import Eureka
 
-
-class LinkPostViewController: FormViewController {
+class LinkPostViewController: FormViewController, UIWebViewDelegate  {
     
-    
+    let titleWebView : UIWebView = UIWebView()
     //データ
     var folderName = String()
     let uid = FIRAuth.auth()?.currentUser?.uid
@@ -22,17 +21,36 @@ class LinkPostViewController: FormViewController {
     var folderInfo = Dictionary<String,String>()
     var linkBool = Bool()
     
+    // ロード時にインジケータをまわす
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    // ロード完了でインジケータ非表示
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        DispatchQueue.main.async {
+            self.indicator.stopAnimating()
+        }
+        self.check = true
+    }
+   
+    
+    var check = false
     //投稿ボタン
     func postButtonDidTap(){
+
+        showIndicator()
         
         let linkRow: TextRow? = form.rowBy(tag: "link")
         let linkValue = linkRow?.value
         
-        let captionRow: TextRow? = form.rowBy(tag: "memo")
-        var captionValue = captionRow?.value
-
         
         if linkValue == nil  {
+            
+            DispatchQueue.main.async {
+                self.indicator.stopAnimating()
+            }
             
             let alertViewControler = UIAlertController(title: "リンク", message: "リンクは必須です", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -41,129 +59,114 @@ class LinkPostViewController: FormViewController {
             self.present(alertViewControler, animated: true, completion: nil)
             
             
-        } else if captionValue == nil && linkValue != nil {
-            
-            captionValue = ""
-            
-            
-            
-            showIndicator()
-            
-            
-            if self.isImage == false {
-                 self.folderInfo = ["imageURL" : self.imageURL, "name" : self.folderName]
-            } else if self.isImage == true {
-                
-                 self.folderInfo = ["imageURL" : self.imageURL, "name" : self.folderName]
-                
-            }
-            
-            
-            let folderNameDictionary: Dictionary<String, Dictionary<String, String?>> = [self.folderName : folderInfo]
-            
-            
-            let firebasePost = DataService.dataBase.REF_USER.child(uid!).child("posts").childByAutoId()
-            let key = firebasePost.key
-            let keyvalue = ("\(key)")
-            
-            let post: Dictionary<String, AnyObject> = [
-                
-                "folderName" :  folderName as AnyObject,
-                "linkURL" : linkValue! as AnyObject,
-                "pvCount" : 0 as AnyObject,
-                "userID" : uid as AnyObject,
-                "userName" : userName as AnyObject,
-                "name" : captionValue! as AnyObject,
-                "imageURL" : "" as AnyObject,
-                "postID" : keyvalue as AnyObject
-            ]
-            
-            linkBool = true
-            
-            self.wait( {self.linkBool == false} ) {
-                
-                
-                firebasePost.setValue(post)
-                DataService.dataBase.REF_BASE.child("users/\(self.uid!)/folderName").updateChildValues(folderNameDictionary)
-                self.linkBool = false
-                
-                DispatchQueue.main.async {
-                    
-                    self.indicator.stopAnimating()
-                    self.performSegue(withIdentifier: "DoneLink", sender: nil)
-                }
-                
-                
-                
-            }
-            
-            
-            
-            
-            
-            
-            
-            
-            
         } else {
             
+            //タイトル取得
             
-            
-            showIndicator()
-            
-            if self.isImage == false {
-                self.folderInfo = ["imageURL" : self.imageURL, "name" : self.folderName]
-            } else if self.isImage == true {
+            DispatchQueue.main.async {
                 
-                self.folderInfo = ["imageURL" : self.imageURL, "name" : self.folderName]
+                let url: URL = URL(string: linkValue!)!
+                let request: URLRequest = URLRequest(url: url)
                 
-            }
-            
-            
-            let folderNameDictionary: Dictionary<String, Dictionary<String, String?>> = [self.folderName : folderInfo]
-            
-            let firebasePost = DataService.dataBase.REF_USER.child(uid!).child("posts").childByAutoId()
-            let key = firebasePost.key
-            let keyvalue = ("\(key)")
-            
-            let post: Dictionary<String, AnyObject> = [
+                self.titleWebView.loadRequest(request)
                 
-                "folderName" :  folderName as AnyObject,
-                "linkURL" : linkValue! as AnyObject,
-                "pvCount" : 0 as AnyObject,
-                "userID" : uid as AnyObject,
-                "userName" : userName as AnyObject,
-                "name" : captionValue! as AnyObject,
-                "imageURL" : "" as AnyObject,
-                "postID" : keyvalue as AnyObject
-            ]
-            
-            
-            linkBool = true
-            
-            self.wait( {self.linkBool == false} ) {
-                
-                
-                firebasePost.setValue(post)
-                DataService.dataBase.REF_BASE.child("users/\(self.uid!)/folderName").updateChildValues(folderNameDictionary)
-                self.linkBool = false
-                
-                DispatchQueue.main.async {
-                    
-                    self.indicator.stopAnimating()
-                    self.performSegue(withIdentifier: "DoneLink", sender: nil)
-                }
-                
-                
-                
-            }
-            
 
+                
+            }
+            
+            
+            self.wait( {self.check == false} ) {
+                let titles = self.titleWebView.stringByEvaluatingJavaScript(from: "document.title")!
+                print(self.titleWebView.stringByEvaluatingJavaScript(from: "document.title")!)
+                self.check = false
+                
+                
+                let alert: UIAlertController = UIAlertController(title: titles, message: nil, preferredStyle:  UIAlertControllerStyle.alert)
+                
+                let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                    (action: UIAlertAction!) -> Void in
+                    print("OK")
+                    
+                    self.showIndicator()
+                    
+                    if self.isImage == false {
+                        self.folderInfo = ["imageURL" : self.imageURL, "name" : self.folderName]
+                    } else if self.isImage == true {
+                        
+                        self.folderInfo = ["imageURL" : self.imageURL, "name" : self.folderName]
+                        
+                    }
+                    
+                    
+                    let folderNameDictionary: Dictionary<String, Dictionary<String, String?>> = [self.folderName : self.folderInfo]
+                    
+                    
+                    let firebasePost = DataService.dataBase.REF_USER.child(self.uid!).child("posts").childByAutoId()
+                    let key = firebasePost.key
+                    let keyvalue = ("\(key)")
+                    
+                    let post: Dictionary<String, AnyObject> = [
+                        //
+                        
+                        
+                        "folderName" :  self.folderName as AnyObject,
+                        "linkURL" : linkValue! as AnyObject,
+                        "pvCount" : 0 as AnyObject,
+                        "userID" : self.uid as AnyObject,
+                        "userName" : self.userName as AnyObject,
+                        "name" : titles as AnyObject,
+                        "imageURL" : "" as AnyObject,
+                        "postID" : keyvalue as AnyObject
+                    ]
+                    
+                    self.linkBool = true
+                    
+                    self.wait( {self.linkBool == false} ) {
+                        
+                        
+                        firebasePost.setValue(post)
+                        DataService.dataBase.REF_BASE.child("users/\(self.uid!)/folderName").updateChildValues(folderNameDictionary)
+                        self.linkBool = false
+                        
+                        DispatchQueue.main.async {
+                            
+                            self.indicator.stopAnimating()
+                            self.performSegue(withIdentifier: "DoneLink", sender: nil)
+                        }
+                        
+                        
+                        
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                })
+                let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
+                    (action: UIAlertAction!) -> Void in
+                    print("Cancel")
+                })
+                
+                alert.addAction(cancelAction)
+                alert.addAction(defaultAction)
+                
+                self.present(alert, animated: true, completion: nil)
+                
+            }
+            
+            
             
             
         }
         
-    
+
+        
+        
     }
     
     var isImage = Bool()
@@ -171,6 +174,12 @@ class LinkPostViewController: FormViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        titleWebView.delegate = self
+        titleWebView.scalesPageToFit = true
+        
+        
         DataService.dataBase.REF_BASE.child("users").child(uid!).child("folderName").queryOrdered(byChild: "name").queryEqual(toValue: folderName).observe(.value, with: { (snapshot) in
             
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
@@ -210,13 +219,13 @@ class LinkPostViewController: FormViewController {
         self.navigationItem.setRightBarButtonItems([rightSearchBarButtonItem], animated: true)
         
         
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.darkGray]
         
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.hidesBarsOnSwipe = true
-        tableView.backgroundColor = UIColor.rgb(r: 69, g: 113, b: 144, alpha: 1.0)
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGray
+        self.navigationController?.hidesBarsOnSwipe = false
+        tableView.backgroundColor = UIColor.white
         
         tableView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         
@@ -226,15 +235,6 @@ class LinkPostViewController: FormViewController {
                 row.title = "リンク"
                 row.placeholder = "コピーしたリンク(必須)"
             }
-            <<< TextRow("memo"){ row in
-                row.title = "メモ"
-                row.placeholder = "メモ(任意)"
-        }
-        
-        
-        
-        
-        
         
         
         
@@ -252,7 +252,7 @@ class LinkPostViewController: FormViewController {
         
         indicator.center = self.view.center
         
-        indicator.color = UIColor.white
+        indicator.color = UIColor.darkGray
         
         indicator.hidesWhenStopped = true
         
@@ -291,6 +291,7 @@ class LinkPostViewController: FormViewController {
             }
         }
     }
-
-
+    
+    
 }
+
