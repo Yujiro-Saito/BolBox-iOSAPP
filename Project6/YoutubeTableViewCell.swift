@@ -10,6 +10,7 @@ import UIKit
 
 class YoutubeTableViewCell: UITableViewCell {
 
+@IBOutlet weak var itemIMage: UIImageView!
    @IBOutlet weak var videoTitle: UILabel!
 
 }

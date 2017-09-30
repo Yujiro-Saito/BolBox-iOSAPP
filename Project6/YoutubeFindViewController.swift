@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import AlamofireImage
 
 class YoutubeFindViewController: UIViewController,UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource {
     
@@ -28,7 +29,6 @@ class YoutubeFindViewController: UIViewController,UISearchBarDelegate,UITableVie
         searchField.delegate = self
         sTable.delegate = self
         sTable.dataSource = self
-        //何も入力されていなくてもReturnキーを押せるようにする。
         searchField.enablesReturnKeyAutomatically = false
         
         
@@ -38,10 +38,10 @@ class YoutubeFindViewController: UIViewController,UISearchBarDelegate,UITableVie
         searchField.backgroundColor = UIColor.clear
         
         self.navigationController?.isNavigationBarHidden = false
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.darkGray]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.tintColor = UIColor.darkGray
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         
         
         
@@ -104,8 +104,19 @@ class YoutubeFindViewController: UIViewController,UISearchBarDelegate,UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = sTable.dequeueReusableCell(withIdentifier: "GoHell", for: indexPath) as? YoutubeTableViewCell
+        
+        cell?.itemIMage.image = nil
         tableView.tableFooterView = UIView()
         cell?.videoTitle.text = self.titleBox[indexPath.row]
+        
+        DispatchQueue.main.async {
+            
+            cell?.itemIMage.af_setImage(withURL: URL(string: self.thumbnailURLBox[indexPath.row])!)
+            
+            
+            
+        }
+        
         
         return cell!
         
@@ -122,7 +133,7 @@ class YoutubeFindViewController: UIViewController,UISearchBarDelegate,UITableVie
         let enocodedText = searchText!.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.searchURL = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyB2oGwTctsfRWNPQ-d1kUvtFzOUXhN9Z0w&q=\(enocodedText!)&part=id,snippet&maxResults=10&order=viewCount"
+            self.searchURL = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyB2oGwTctsfRWNPQ-d1kUvtFzOUXhN9Z0w&q=\(enocodedText!)&part=id,snippet&maxResults=20&order=viewCount"
             
             let finalKeyWord = self.searchURL.replacingOccurrences(of: " ", with: "+")
             
@@ -211,9 +222,6 @@ class YoutubeFindViewController: UIViewController,UISearchBarDelegate,UITableVie
                         }
                         
                         
-                        print(titleBox)
-                        print(thumbnailURLBox)
-                        print(videoIDBox)
                         
                         
                         
