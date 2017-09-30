@@ -89,17 +89,14 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     var names = [String]()
     var photoPosts = [Post]()
     
-    
-    //App
-    var appDescs = [String]()
-
+    var videoKeyBox = [String]()
     
     
     
     
     @IBOutlet weak var photoTable: UITableView!
     
-    
+    var types = [String]()
     
     
     override func viewDidLoad() {
@@ -128,16 +125,16 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         segment.setTitle("写真・ビデオ", forSegmentAt: 0)
         segment.setTitle("リンク", forSegmentAt: 1)
         segment.backgroundColor = UIColor.clear
-        segment.tintColor = UIColor.white
+        segment.tintColor = UIColor.darkGray
         
         self.title = self.folderName
        
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.darkGray]
         
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.hidesBarsOnSwipe = true
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGray
+        
     
         
         
@@ -147,22 +144,11 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
             self.toysCollection.isHidden = false
             self.photoTable.isHidden = true
             
-        } else if self.postsType == 1 {
-
-            //縦長
-            self.toysTable.isHidden = true
-            self.toysCollection.isHidden = true
-            self.photoTable.isHidden = false
-            
         }
-        
-        
         
         let uids = FIRAuth.auth()?.currentUser?.uid
         
-        if self.isBasic == false {
-            //個人ボード
-            
+        
             DataService.dataBase.REF_BASE.child("users").child(uids!).child("posts").queryOrdered(byChild: "folderName").queryEqual(toValue: folderName).observe(.value, with: { (snapshot) in
                 
                 self.linkPosts = []
@@ -175,6 +161,8 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
                         if let postDict = snap.value as? Dictionary<String, AnyObject> {
                             
                             
+                            
+                            
                             //imageURLがない場合配列に追加
                             if postDict["imageURL"] as? String == "" {
                                 let key = snap.key
@@ -183,10 +171,31 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
                                 self.linkPosts.append(post)
                             } else if postDict["imageURL"] as? String != "" {
                                 
-                                let key = snap.key
-                                let post = Post(postKey: key, postData: postDict)
+                                if postDict["videoKey"] as? String != nil {
+                                    
+                                    let keyBox = postDict["videoKey"] as? String
+                                    self.types.append("YES")
+                                    self.videoKeyBox.append(keyBox!)
+                                    let key = snap.key
+                                    let post = Post(postKey: key, postData: postDict)
+                                    
+                                    
+                                    
+                                    self.photoPosts.append(post)
+                                    
+                                } else {
+                                    
+                                    self.videoKeyBox.append("")
+                                    self.types.append("NO")
+                                    let key = snap.key
+                                    let post = Post(postKey: key, postData: postDict)
+                                    
+                                    
+                                    
+                                    self.photoPosts.append(post)
+                                }
                                 
-                                self.photoPosts.append(post)
+                              
                                 
                                 
                                 
@@ -203,7 +212,8 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
                     
                 }
                 
-                
+                self.videoKeyBox.reverse()
+                self.types.reverse()
                 self.linkPosts.reverse()
                 self.photoPosts.reverse()
                 self.toysTable.reloadData()
@@ -214,65 +224,6 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
             })
             
             
-        } else {
-            //Basicのデータ
-            
-            
-            DataService.dataBase.REF_BASE.child("users").child(uids!).child("posts").queryOrdered(byChild: "folderName").queryEqual(toValue: folderName).observe(.value, with: { (snapshot) in
-                
-                self.linkPosts = []
-                
-                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                    
-                    for snap in snapshot {
-                        
-                        
-                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                            //imageURLがない場合配列に追加
-                            if postDict["imageURL"] as? String == "" {
-                                let key = snap.key
-                                let post = Post(postKey: key, postData: postDict)
-                                
-                                self.linkPosts.append(post)
-                            } else if postDict["imageURL"] as? String != "" {
-                                
-                                let key = snap.key
-                                let post = Post(postKey: key, postData: postDict)
-                                
-                                self.photoPosts.append(post)
-                                
-                                
-                                
-                            }
-                            
-                            
-                            
-                            
-                        }
-                        
-                        
-                    }
-                    
-                    
-                }
-                
-                
-                self.linkPosts.reverse()
-                self.photoPosts.reverse()
-                self.toysTable.reloadData()
-                self.toysCollection.reloadData()
-                self.photoTable.reloadData()
-                
-                
-            })
-            
-            
-            
-            
-            
-        }
-        
-        
         
         
 
@@ -424,14 +375,15 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         //let cellSize:CGFloat = self.view.frame.size.width/4
-        let cellSize:CGFloat = self.view.frame.size.width/3-8
+        //let cellSize:CGFloat = self.view.frame.size.width/3-8
+        let cellSize:CGFloat = self.view.frame.size.width/2-2
         //return CGSize(width: cellSize, height: cellSize)
         
         //let cellSize:CGFloat = self.view.frame.size.width/2-2
         
         //return CGSize(width: cellSize, height: 200)
         
-        return CGSize(width: cellSize, height: cellSize+20)
+        return CGSize(width: cellSize-8, height: cellSize-40)
     
     
     }
@@ -447,43 +399,28 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         return 0
     }
     
+    var videoCheckKey = String()
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         let detialVC = (segue.destination as? DetialContentViewController)!
         
+        detialVC.videoKey = self.videoCheckKey
+        
         detialVC.name = self.itemName
         detialVC.imageURL = self.itemIamgeURL
         detialVC.folderName = self.folderName
         
-        
-        //App
-        if self.folderName == "App" {
-            detialVC.appDescription = self.itemDesc
-            detialVC.appLink = self.itemLink
-        }
-       
-    
-        //Music
-        if self.folderName == "Music" {
-            
-            detialVC.previewURL = self.previewAccess
-            detialVC.appLink = self.itemLink
-            
-        }
-        //Book
-        if self.folderName == "Book" {
-            
-            
-            
+        if self.typeCheck == "YES" {
+            detialVC.type = 2
+        } else if self.typeCheck == "NO" {
+            detialVC.type = 0
+        } else {
+            detialVC.type = self.typing
         }
         
-        if self.folderName == "Movie" {
-            
-            detialVC.appDescription = self.itemDesc
-            detialVC.appLink = self.itemLink
-            
-        }
+        
+        
         
         
         
@@ -495,25 +432,32 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     var itemLink: String?
     var previewAccess: String?
     
+    var typing = Int()
+    var typeCheck = String()
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         itemName = self.photoPosts[indexPath.row].name
         itemIamgeURL = self.photoPosts[indexPath.row].imageURL
         itemLink = self.photoPosts[indexPath.row].linkURL
         
-        if self.folderName == "App" {
-            itemDesc = self.photoPosts[indexPath.row].appDesc!
-        } else if self.folderName == "Music" {
-            previewAccess = self.photoPosts[indexPath.row].previewURL
-        } else if self.folderName == "Movie" {
-            itemDesc = self.photoPosts[indexPath.row].appDesc!
-        }
+        self.videoCheckKey = self.videoKeyBox[indexPath.row]
         
+        typeCheck = self.types[indexPath.row]
         
         
         performSegue(withIdentifier: "Dettil", sender: nil)
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        itemName = self.linkPosts[indexPath.row].name
+        itemLink = self.linkPosts[indexPath.row].linkURL
+        
+        self.typing = 1
+        
+        self.videoCheckKey = "Fuck"
+        
+        performSegue(withIdentifier: "Dettil", sender: nil)
+    }
     
   
     

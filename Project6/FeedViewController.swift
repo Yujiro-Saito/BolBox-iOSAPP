@@ -31,12 +31,12 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         userID = userIDBox[indexPath.row]
         imagesURL = userProfileImageBox[indexPath.row]
         
-        performSegue(withIdentifier: "UserHome", sender: nil)
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "UserHome" {
+            
             
             let userVC = (segue.destination as? UserViewController)!
             
@@ -418,6 +418,33 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
  */
     }
     
+    
+    
+    @IBAction func UserCheckButton(_ sender: Any) {
+        
+        let cell = (sender as AnyObject).superview??.superview?.superview as! FeedTableViewCell
+        
+        guard let row = self.tableFeed.indexPath(for: cell)?.row else {
+            return
+        }
+        
+        imagesURL = self.userProfileImageBox[row]
+        self.userName = self.userNameBox[row]
+        self.userID = self.userIDBox[row]
+        
+        
+        
+        
+    performSegue(withIdentifier: "UserHome", sender: nil)
+    }
+    
+    @IBAction func folderChecking(_ sender: Any) {
+    }
+    
+    
+    @IBAction func likersLists(_ sender: Any) {
+        
+    }
     
      func safariOnclick(_ sender: AnyObject){
         

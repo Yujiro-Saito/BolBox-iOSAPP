@@ -14,11 +14,10 @@ class SectionHeaderCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var userProfileImage: ProfileImage!
     @IBOutlet weak var userProfileName: UILabel!
     
-    @IBOutlet weak var editButton: UIButton!
     
     @IBOutlet weak var followerLabel: UILabel!
     @IBOutlet weak var followingLabel: UILabel!
-    //@IBOutlet weak var separator: UISegmentedControl!
+    @IBOutlet weak var separator: UISegmentedControl!
     
     
 }

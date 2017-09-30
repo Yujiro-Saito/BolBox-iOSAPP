@@ -458,7 +458,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         //let scaleFactor = screenWidth - 32
         let cellSize:CGFloat = self.view.frame.size.width/2-2
 
-        return CGSize(width: cellSize, height: 200)
+        return CGSize(width: cellSize, height: cellSize)
     }
     
     //縦の間隔を決定する
@@ -477,11 +477,6 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         let headerView = myCollection.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Head", for: indexPath) as! SectionHeaderCollectionReusableView
         
         
-        
-            headerView.editButton.backgroundColor = UIColor.clear // 背景色
-            headerView.editButton.layer.borderWidth = 1.0 // 枠線の幅
-            headerView.editButton.layer.borderColor = UIColor.white.cgColor // 枠線の色
-            headerView.editButton.layer.cornerRadius = 10.0 // 角丸のサイズ
         
             headerView.userProfileImage.layer.borderWidth = 3.0
             headerView.userProfileImage.layer.borderColor = UIColor.white.cgColor // 枠線の色
@@ -513,7 +508,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
                 if photoURL != nil {
                     
                     //headerView.userProfileImage.af_setImage(withURL: photoURL!)
-                    headerView.userProfileImage.image = UIImage(named: "bgg")
+                    headerView.userProfileImage.image = UIImage(named: "mag1")
                 }
                 
                 

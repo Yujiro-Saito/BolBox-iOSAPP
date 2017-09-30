@@ -26,9 +26,9 @@ class ToysTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         let mScreenSize = UIScreen.main.bounds
-        let mSeparatorHeight = CGFloat(15.0)
+        let mSeparatorHeight = CGFloat(2.5)
         let mAddSeparator = UIView.init(frame: CGRect(x: 0, y: self.frame.size.height - mSeparatorHeight, width: mScreenSize.width, height: mSeparatorHeight))
-        mAddSeparator.backgroundColor = UIColor.color(33, green: 33, blue: 33, alpha: 1)
+        mAddSeparator.backgroundColor = UIColor.darkGray
         self.addSubview(mAddSeparator)
         
         
