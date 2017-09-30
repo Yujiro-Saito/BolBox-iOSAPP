@@ -12,6 +12,7 @@ import FirebaseAuth
 import AlamofireImage
 import FaveButton
 import youtube_ios_player_helper
+import SafariServices
 
 
 class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate {
@@ -19,12 +20,12 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var userID = String()
     var imagesURL = String()
     var userName = String()
+    var linkURL = String()
     
     @IBOutlet weak var allBgView: UIView!
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         
         userName = userNameBox[indexPath.row]
         userID = userIDBox[indexPath.row]
@@ -109,7 +110,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         super.viewDidAppear(true)
         
        
-        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
        
         
         
@@ -419,12 +420,115 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     
      func safariOnclick(_ sender: AnyObject){
-        let actionSheet = UIAlertController(title: "アクション", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        
+        
+        
+        
+        
+        let cell = sender.superview??.superview?.superview as! FeedTableViewCell
+        
+        guard let row = self.tableFeed.indexPath(for: cell)?.row else {
+            return
+        }
+ 
+        let selectedURL = self.linkURLBox[row]
+        
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         
         let safari = UIAlertAction(title: "Safariで開く", style: UIAlertActionStyle.default, handler: {
             (action: UIAlertAction!) in
             
             
+            
+            let targetURL = selectedURL
+            let encodedURL = targetURL.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
+            
+            //URL正式
+            guard let finalUrl = URL(string: encodedURL!) else {
+                print("無効なURL")
+                return
+            }
+            
+            
+            
+            //opem safari
+            
+            
+            if (encodedURL?.contains("https"))! || (encodedURL?.contains("http"))! {
+                
+                //httpかhttpsで始まってるか確認
+                if (encodedURL?.hasPrefix("https"))! || (encodedURL?.hasPrefix("http"))! {
+                    //http(s)で始まってる場合safari起動
+                    let safariVC = SFSafariViewController(url: finalUrl)
+                    self.present(safariVC, animated: true, completion: nil)
+                    
+                }
+                    //Httpsの場合
+                else if let range = encodedURL?.range(of: "https") {
+                    let startPosition = encodedURL?.characters.distance(from: (encodedURL?.characters.startIndex)!, to: range.lowerBound)
+                    
+                    //4番目から最後までをURLとして扱う
+                    
+                    let indexNumber = startPosition
+                    
+                    let validURLString = (encodedURL?.substring(with: (encodedURL?.index((encodedURL?.startIndex)!, offsetBy: indexNumber!))!..<(encodedURL?.index((encodedURL?.endIndex)!, offsetBy: 0))!))
+                    
+                    let validURL = URL(string: validURLString!)
+                    
+                    
+                    //safari起動
+                    let safariVC = SFSafariViewController(url: validURL!)
+                    self.present(safariVC, animated: true, completion: nil)
+                    
+                    
+                } else if let httpRange = encodedURL?.range(of: "http") {
+                    //Httpの場合
+                    let startPosition = encodedURL?.characters.distance(from: (encodedURL?.characters.startIndex)!, to: httpRange.lowerBound)
+                    
+                    //4番目から最後までをURLとして扱う
+                    
+                    let indexNumber = startPosition
+                    
+                    let validURLString = (encodedURL?.substring(with: (encodedURL?.index((encodedURL?.startIndex)!, offsetBy: indexNumber!))!..<(encodedURL?.index((encodedURL?.endIndex)!, offsetBy: 0))!))
+                    
+                    let validURL = URL(string: validURLString!)
+                    
+                    //safari起動
+                    let safariVC = SFSafariViewController(url: validURL!)
+                    self.present(safariVC, animated: true, completion: nil)
+                    
+                    
+                    
+                    
+                    
+                    
+                }
+                    
+                else {
+                }
+                
+                
+            } else {
+                //そもそもhttp(s)がない場合
+                print("無効なURL")
+                //アラート表示
+                let alertController = UIAlertController(title: "エラー", message: "URLが無効なようです", preferredStyle: .alert)
+                
+                let okAction = UIAlertAction(title: "Ok", style: .default) {
+                    (action) in
+                    self.dismiss(animated: true, completion: nil)
+                }
+                
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+                
+                
+                
+                
+            }
+            
+
            
             
             
@@ -447,11 +551,15 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         actionSheet.addAction(cancel)
         
         self.present(actionSheet, animated: true, completion: nil)
+ 
+ 
+ 
+ 
     }
     
     func imageOnClick(_ sender: AnyObject){
         
-        let actionSheet = UIAlertController(title: "アクション", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         
       
         
@@ -490,6 +598,9 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         
         
+        
+        
+        
         //読み込むまで画像は非表示
         cell?.clipsToBounds = true
         cell?.bigImage.isHidden = true
@@ -515,14 +626,11 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
             //Youtubeの場合
             
-            
             if self.videoKeyCheck[indexPath.row] != ""  {
                 
                 
-                
-                cell?.actionButton.addTarget(self, action: #selector(self.safariOnclick(_:)), for: .touchUpInside)
-                
-                
+                //cell?.actionButton.addTarget(self, action: #selector(self.safariOnclick(_:)), for: .touchUpInside)
+                cell?.actionButton.addTarget(self, action: #selector(FeedViewController.safariOnclick(_:)), for: .touchUpInside)
                 
                     
                 
