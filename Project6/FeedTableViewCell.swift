@@ -23,8 +23,13 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var actionButton: UIButton!
     @IBOutlet weak var folderName: UILabel!
     
+    @IBOutlet weak var linkWeb: UIWebView!
     
     @IBOutlet weak var userImage: ProfileImage!
+    
+    
+    @IBOutlet weak var webViewView: UIView!
+    
     
  
     @IBOutlet weak var favNumLabel: UILabel!

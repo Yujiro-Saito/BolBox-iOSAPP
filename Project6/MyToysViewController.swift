@@ -80,7 +80,7 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     var folderName = String()
     var linkPosts = [Post]()
-    
+    var linkingURL = String()
     
     var smallURL = String()
     var smallCaption = String()
@@ -271,8 +271,8 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
                 cell?.smallCaption.isHidden = false
                 cell?.smallURL.isHidden = false
                 
-                cell?.smallCaption.text = post.name
-                cell?.smallURL.text = post.linkURL
+                cell?.smallCaption.text = post.linkURL
+                cell?.smallURL.text = post.name
                 
                 return cell!
         
@@ -411,12 +411,14 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         detialVC.imageURL = self.itemIamgeURL
         detialVC.folderName = self.folderName
         
+        
         if self.typeCheck == "YES" {
             detialVC.type = 2
         } else if self.typeCheck == "NO" {
             detialVC.type = 0
         } else {
             detialVC.type = self.typing
+            detialVC.linkURL = self.itemLink!
         }
         
         

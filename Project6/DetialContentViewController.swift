@@ -4,7 +4,7 @@ import AlamofireImage
 import SafariServices
 import youtube_ios_player_helper
 
-class DetialContentViewController: UIViewController {
+class DetialContentViewController: UIViewController,UIWebViewDelegate {
     
     //Common
     @IBOutlet weak var itemImage: UIImageView!
@@ -14,12 +14,31 @@ class DetialContentViewController: UIViewController {
     var folderName: String!
     var type = Int()
     var videoKey = String()
+    var linkURL = String()
     
     @IBOutlet weak var videoPlayer: YTPlayerView!
     @IBOutlet weak var itemTextBox: UITextView!
     
+    @IBOutlet weak var webViewing: UIWebView!
     
+    @IBOutlet weak var paginView: UIView!
+    @IBAction func baking(_ sender: Any) {
+        
+        webViewing.goBack()
+    }
+    @IBAction func goIng(_ sender: Any) {
+        webViewing.goForward()
+    }
     
+    // ロード時にインジケータをまわす
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    // ロード完了でインジケータ非表示
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +49,8 @@ class DetialContentViewController: UIViewController {
         self.navigationController!.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.tintColor = UIColor.darkGray
 
-        
+        webViewing.delegate = self
+        webViewing.scalesPageToFit = true
         
         
         print(name)
@@ -42,6 +62,10 @@ class DetialContentViewController: UIViewController {
         self.itemName.isHidden = true
         self.videoPlayer.isHidden = true
         self.itemTextBox.isHidden = true
+        self.paginView.isHidden = true
+        self.webViewing.isHidden = true
+        
+        
         
         self.itemImage.layer.cornerRadius = 15
         
@@ -49,10 +73,23 @@ class DetialContentViewController: UIViewController {
             self.itemImage.isHidden = false
             self.itemImage.af_setImage(withURL: URL(string: imageURL)!)
         } else if self.type == 1 {
-            self.itemName.isHidden = false
-            self.itemTextBox.isHidden = false
-            self.itemName.text = name
-            self.itemTextBox.text = "スマートフォンでスクリーンショットを撮る方法　スナップチャットでスクリーンショットを撮る方法は他のアプリと変わりませんが、素早く撮る必要があります。スナップチャットのスクリーンショットを撮ると相手に通知が送られるため、相手に知られても問題がないことを確認してから撮りましょう。スクリーンショットの撮り方はスマートフォンの機種によって異なります。"
+            
+            self.itemName.isHidden = true
+            self.itemTextBox.isHidden = true
+            
+            self.paginView.isHidden = false
+            self.webViewing.isHidden = false
+            
+            let linkURLweb = linkURL
+            let favoriteURL = NSURL(string: linkURLweb)
+            
+            let urlRequest = NSURLRequest(url: favoriteURL! as URL)
+            
+            webViewing.loadRequest(urlRequest as URLRequest)
+            
+            
+            
+            
             
         } else {
             if self.videoKey != "Fuck" && self.videoKey != "" {

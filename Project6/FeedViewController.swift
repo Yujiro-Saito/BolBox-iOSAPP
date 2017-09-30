@@ -15,7 +15,7 @@ import youtube_ios_player_helper
 import SafariServices
 
 
-class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate {
+class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate, UIWebViewDelegate {
     
     var userID = String()
     var imagesURL = String()
@@ -75,7 +75,6 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         tableFeed.delegate = self
         tableFeed.dataSource = self
         
@@ -419,6 +418,26 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
     
+    @IBAction func GoBack(_ sender: Any) {
+        
+       
+        let cell = (sender as AnyObject).superview??.superview?.superview as! FeedTableViewCell
+        
+        cell.linkWeb.goBack()
+        
+    }
+    
+    @IBAction func GoForward(_ sender: Any) {
+        
+        
+        let cell = (sender as AnyObject).superview??.superview?.superview as! FeedTableViewCell
+        
+        cell.linkWeb.goForward()
+        
+    }
+    
+    
+    
     
     @IBAction func UserCheckButton(_ sender: Any) {
         
@@ -609,6 +628,16 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
     }
 
+    
+    // ロード時にインジケータをまわす
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    // ロード完了でインジケータ非表示
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -625,8 +654,8 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         
         
-        
-        
+        cell?.linkWeb.delegate = self
+        cell?.linkWeb.scalesPageToFit = true
         
         //読み込むまで画像は非表示
         cell?.clipsToBounds = true
@@ -635,6 +664,8 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         cell?.titleLabel.isHidden = true
         cell?.textBox.isHidden = true
         cell?.bigImage.image = nil
+        cell?.linkWeb.isHidden = true
+        cell?.webViewView.isHidden = true
         
         //Common
         cell?.folderName.text = self.folderNameBox[indexPath.row]
@@ -710,6 +741,10 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
             self.allBgView.backgroundColor = UIColor.white
             
+            cell?.titleLabel.isHidden = true
+            cell?.textBox.isHidden = true
+            cell?.webViewView.isHidden = false
+            
             
             if self.checkBox[indexPath.row] == "YES" {
                 cell?.favButton.isSelected = true
@@ -719,14 +754,21 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 
             }
             
-            cell?.titleLabel.isHidden = false
-            cell?.textBox.isHidden = false
             
-            cell?.titleLabel.text = self.nameBox[indexPath.row]
-            cell?.textBox.text = "Quoraは英語のサービスだが、2016年からは多言語化を開始している。現在はドイツ語、スペイン語、フランス語、イタリア語でもサービスを提供していて、先日9月26日には、日本語ベータ版もローンチした（日本語ベータ版をいち早く試してみたい人は、ここから事前登録することができる）。TechCrunch Tokyo 2017では、Adam D’Angelo氏にQuoraを創業した経緯やユニコーンに成長するまでの道のりについて聞きたいと思っている。また、日本だとYahoo!知恵袋やOKWaveといった先行するサービスがある中、どのようにサービス展開を考えているかも聞きたいところだ。"
+            
+            
+            cell?.linkWeb.isHidden = false
+            
+            let linkURLweb = self.linkURLBox[indexPath.row]
+            let favoriteURL = NSURL(string: linkURLweb)
+            
+            let urlRequest = NSURLRequest(url: favoriteURL as! URL)
+            
+            cell?.linkWeb.loadRequest(urlRequest as URLRequest)
             
             
             return cell!
+            
             
         }
         
