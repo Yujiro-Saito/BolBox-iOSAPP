@@ -95,8 +95,15 @@ class UserFIndViewController: UIViewController,UITableViewDelegate,UITableViewDa
         
         cell?.profileIMage.image = nil
         cell?.titleName.text = self.names[indexPath.row]
-        cell?.profileIMage.af_setImage(withURL: URL(string: images[indexPath.row])!)
         
+        
+        DispatchQueue.main.async {
+            
+            cell?.profileIMage.af_setImage(withURL: URL(string: self.images[indexPath.row])!)
+            
+            
+            
+        }
         
         
         

@@ -11,5 +11,7 @@ import UIKit
 class ToyCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var itemImage: UIImageView!
+    @IBOutlet weak var blurImageView: UIView!
+    @IBOutlet weak var dropBox: UIImageView!
     
 }

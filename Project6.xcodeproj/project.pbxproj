@@ -52,6 +52,8 @@
 		B756D7631F5A439300346F0E /* CardDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = B756D7621F5A439300346F0E /* CardDesign.swift */; };
 		B756D7651F5A45EE00346F0E /* FriendsListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B756D7641F5A45EE00346F0E /* FriendsListsViewController.swift */; };
 		B756D7671F5A460600346F0E /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B756D7661F5A460600346F0E /* FriendsTableViewCell.swift */; };
+		B7581EFD1F80C6A40092CB97 /* ItemEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7581EFC1F80C6A40092CB97 /* ItemEditTableViewCell.swift */; };
+		B7581EFF1F80C6B40092CB97 /* ItemEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7581EFE1F80C6B40092CB97 /* ItemEditViewController.swift */; };
 		B758D1C61F56495A0033EBC2 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B758D1C51F56495A0033EBC2 /* FeedViewController.swift */; };
 		B77083381EC7FB9D00302760 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77083371EC7FB9D00302760 /* Post.swift */; };
 		B770833A1EC8034E00302760 /* FIRData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77083391EC8034E00302760 /* FIRData.swift */; };
@@ -175,6 +177,8 @@
 		B756D7621F5A439300346F0E /* CardDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDesign.swift; sourceTree = "<group>"; };
 		B756D7641F5A45EE00346F0E /* FriendsListsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListsViewController.swift; sourceTree = "<group>"; };
 		B756D7661F5A460600346F0E /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
+		B7581EFC1F80C6A40092CB97 /* ItemEditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemEditTableViewCell.swift; sourceTree = "<group>"; };
+		B7581EFE1F80C6B40092CB97 /* ItemEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemEditViewController.swift; sourceTree = "<group>"; };
 		B758D1C51F56495A0033EBC2 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		B77083371EC7FB9D00302760 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		B77083391EC8034E00302760 /* FIRData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRData.swift; sourceTree = "<group>"; };
@@ -488,6 +492,8 @@
 				B7D3FA511F804E9A0009A219 /* EditProfileViewController.swift */,
 				B724C7761F808491001F5448 /* UserFIndViewController.swift */,
 				B724C7781F808698001F5448 /* FindTableViewCell.swift */,
+				B7581EFC1F80C6A40092CB97 /* ItemEditTableViewCell.swift */,
+				B7581EFE1F80C6B40092CB97 /* ItemEditViewController.swift */,
 			);
 			name = Project2;
 			sourceTree = "<group>";
@@ -653,6 +659,7 @@
 				B725810E1F22706900CF8E56 /* User.swift in Sources */,
 				B73D626A1F33F894009B230C /* PostFinalViewController.swift in Sources */,
 				B7F628ED1F1B838B003257CE /* UserProfileTableViewCell.swift in Sources */,
+				B7581EFD1F80C6A40092CB97 /* ItemEditTableViewCell.swift in Sources */,
 				B7F9B9631F0698DD0006AD38 /* ProfilePostsTableViewCell.swift in Sources */,
 				B7733EA21EC6A96700D5B9BD /* popularCollectionViewCell.swift in Sources */,
 				B7B644D11F7B823D00697783 /* YoutubePostViewController.swift in Sources */,
@@ -725,6 +732,7 @@
 				B77B554E1EEF6E4900262589 /* RegisterButton.swift in Sources */,
 				B73E3B4C1F2D7E89002220D3 /* VisualEffect.swift in Sources */,
 				B7E712181F2A6D07004E9112 /* PopularTableViewCell.swift in Sources */,
+				B7581EFF1F80C6B40092CB97 /* ItemEditViewController.swift in Sources */,
 				B771C6011F0CA0FD005D4BF2 /* SearchViewController.swift in Sources */,
 				B78053F91EE2C63300F95BDF /* CategorysTableViewCell.swift in Sources */,
 				B7D3FA521F804E9A0009A219 /* EditProfileViewController.swift in Sources */,

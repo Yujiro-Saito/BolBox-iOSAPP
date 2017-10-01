@@ -1705,7 +1705,7 @@
                                         <rect key="frame" x="0.0" y="28" width="359" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vsp-id-cPc" id="28M-6e-bMX">
-                                            <rect key="frame" x="0.0" y="0.0" width="359" height="129.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="359" height="130"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oCn-Ja-tVp">
@@ -1886,7 +1886,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="250"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KV5-jR-j0v" id="JVJ-uj-FOc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="249.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mag1" translatesAutoresizingMaskIntoConstraints="NO" id="WUr-W7-eSk">
@@ -1984,6 +1984,14 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="suz-4S-EGl">
                                                     <rect key="frame" x="8" y="8" width="169" height="158"/>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WuO-c5-ysc">
+                                                    <rect key="frame" x="140" y="20" width="25" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="trash"/>
+                                                    <connections>
+                                                        <action selector="delte:" destination="cey-Bi-xcT" eventType="touchUpInside" id="O2E-kS-huE"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <constraints>
@@ -2604,7 +2612,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iZf-9t-meB" id="NH4-IM-YaG">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bwz-Oo-OdK">
@@ -3350,7 +3358,7 @@
                                                 <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RxH-G0-6vp">
                                                     <rect key="frame" x="8" y="226.5" width="184" height="23.5"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="I6x-lA-YCe">
-                                                        <rect key="frame" x="0.0" y="0.0" width="184" height="23.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="184" height="24"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atb-K8-iGp">
@@ -4053,7 +4061,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jJo-dR-Onz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="ウォール" image="Home" id="qMP-Xu-1HA"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UIl-fw-qgx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UIl-fw-qgx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -4076,7 +4084,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GtW-M7-tyf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="探す" image="Search" id="ubN-eP-8bB"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oXz-Zf-PXP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="oXz-Zf-PXP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -4101,7 +4109,7 @@
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MAV-C6-E7r">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="MAV-C6-E7r">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4138,6 +4146,7 @@
         <image name="notification" width="21" height="34"/>
         <image name="rigyt" width="128" height="128"/>
         <image name="safari" width="128" height="128"/>
+        <image name="trash" width="128" height="128"/>
         <image name="userAdd" width="128" height="128"/>
         <image name="yoputuen" width="128" height="128"/>
     </resources>

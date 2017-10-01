@@ -13,7 +13,84 @@ import AlamofireImage
 
 class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     
-    var isBasic = Bool()
+    var deleteCheck = false
+    
+    
+    @IBAction func delte(_ sender: Any) {
+        
+        
+        
+        var btn = sender as! UIButton
+        var cell = btn.superview?.superview as! ToyCollectionViewCell
+        var row = toysCollection.indexPath(for: cell)?.row
+        
+        // 行数を表示
+        print("\(row!)")
+        
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        let postID = self.photoPosts[row!].postID
+        
+        print(postID)
+        
+        let alert: UIAlertController = UIAlertController(title: "削除", message: "このアイテムを削除しますか", preferredStyle:  UIAlertControllerStyle.alert)
+        
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+            (action: UIAlertAction!) -> Void in
+            print("OK")
+            
+       //PhotoPosts削除
+            
+            
+            
+            DispatchQueue.main.async {
+                self.photoPosts.remove(at: row!)
+                self.photoPosts = []
+                
+                 self.toysCollection.reloadData()
+                
+                self.deleteCheck = true
+            }
+            
+            
+            self.wait( {self.deleteCheck == false} ) {
+                
+                DataService.dataBase.REF_BASE.child("users/\(userID!)/posts/\(postID)").removeValue()
+                
+                
+                
+                
+                self.deleteCheck = false
+                
+                
+                
+            }
+            
+            
+            
+            
+           
+            
+            
+            
+        })
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
+            (action: UIAlertAction!) -> Void in
+            print("Cancel")
+        })
+        
+        alert.addAction(cancelAction)
+        alert.addAction(defaultAction)
+        
+        self.present(alert, animated: true, completion: nil)
+        
+        
+        
+        
+    }
+    
+    
+    
+    
     
     @IBOutlet weak var toysCollection: UICollectionView!
     
@@ -81,7 +158,13 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     var videoKeyBox = [String]()
     
     
-    
+    func editDidTap() {
+        
+        self.isDoingEdit = true
+        
+        
+        
+    }
     
     @IBOutlet weak var photoTable: UITableView!
     
@@ -91,13 +174,11 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if self.isBasic == true {
-            self.segment.isHidden = true
+        
             
-        } else {
-            self.segment.isHidden = false
-            
-        }
+        
+        self.segment.isHidden = false
+
         
         photoTable.delegate = self
         photoTable.dataSource = self
@@ -124,7 +205,8 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         self.navigationController!.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.tintColor = UIColor.darkGray
         
-    
+        let rightSearchBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.trash, target: self, action: #selector(MyToysViewController.editDidTap))
+        self.navigationItem.setRightBarButtonItems([rightSearchBarButtonItem], animated: true)
         
         
        
@@ -339,6 +421,7 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         let post = photoPosts[indexPath.row]
         
         
+        
         //読み込むまで画像は非表示
         cell?.itemImage.image = nil
         cell?.itemImage.layer.masksToBounds = true
@@ -425,17 +508,29 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     var typing = Int()
     var typeCheck = String()
     
+    var isDoingEdit = false
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        itemName = self.photoPosts[indexPath.row].name
-        itemIamgeURL = self.photoPosts[indexPath.row].imageURL
-        itemLink = self.photoPosts[indexPath.row].linkURL
-        
-        self.videoCheckKey = self.videoKeyBox[indexPath.row]
-        
-        typeCheck = self.types[indexPath.row]
         
         
-        performSegue(withIdentifier: "Dettil", sender: nil)
+        if self.isDoingEdit == false {
+            itemName = self.photoPosts[indexPath.row].name
+            itemIamgeURL = self.photoPosts[indexPath.row].imageURL
+            itemLink = self.photoPosts[indexPath.row].linkURL
+            
+            self.videoCheckKey = self.videoKeyBox[indexPath.row]
+            
+            typeCheck = self.types[indexPath.row]
+            
+            
+            performSegue(withIdentifier: "Dettil", sender: nil)
+        } else {
+            
+            performSegue(withIdentifier: "Edit", sender: nil)
+            
+        }
+        
+       
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -448,6 +543,55 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         performSegue(withIdentifier: "Dettil", sender: nil)
     }
+    
+    let indicator = UIActivityIndicatorView()
+    
+    func showIndicator() {
+        
+        indicator.activityIndicatorViewStyle = .whiteLarge
+        
+        indicator.center = self.view.center
+        
+        indicator.color = UIColor.darkGray
+        
+        indicator.hidesWhenStopped = true
+        
+        self.view.addSubview(indicator)
+        
+        self.view.bringSubview(toFront: indicator)
+        
+        indicator.startAnimating()
+        
+    }
+    
+    
+    func wait(_ waitContinuation: @escaping (()->Bool), compleation: @escaping (()->Void)) {
+        var wait = waitContinuation()
+        
+        
+        // 0.01秒周期で待機条件をクリアするまで待ちます。
+        let semaphore = DispatchSemaphore(value: 0)
+        DispatchQueue.global().async {
+            while wait {
+                DispatchQueue.main.async {
+                    wait = waitContinuation()
+                    semaphore.signal()
+                }
+                semaphore.wait()
+                Thread.sleep(forTimeInterval: 0.01)
+            }
+            
+            
+            // 待機条件をクリアしたので通過後の処理を行います。
+            DispatchQueue.main.async {
+                compleation()
+                
+                
+                
+            }
+        }
+    }
+
     
   
     
