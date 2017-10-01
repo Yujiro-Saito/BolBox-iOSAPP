@@ -154,7 +154,7 @@ class SignUpViewController: UIViewController , UITextFieldDelegate,UIImagePicker
                                             print(error.localizedDescription)
                                         } else {
                                             print("プロフィールの登録完了")
-                                            let userData = ["userName" : FIRAuth.auth()?.currentUser?.displayName, "email" : FIRAuth.auth()?.currentUser?.email,"userImageURL" : "", "profileDesc" : "", "uid" : FIRAuth.auth()?.currentUser?.uid]
+                                        let userData = ["userName" : FIRAuth.auth()?.currentUser?.displayName, "email" : FIRAuth.auth()?.currentUser?.email,"userImageURL" : "", "profileDesc" : "", "uid" : FIRAuth.auth()?.currentUser?.uid]
                                             
                                             //DBに追記
                                             DataService.dataBase.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)").setValue(userData)

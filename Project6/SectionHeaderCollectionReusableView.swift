@@ -11,9 +11,9 @@ import UIKit
 class SectionHeaderCollectionReusableView: UICollectionReusableView {
 
     
-    @IBOutlet weak var userProfileImage: ProfileImage!
     @IBOutlet weak var userProfileName: UILabel!
     
+    @IBOutlet weak var profImage: ProfileImage!
     
     @IBOutlet weak var followerLabel: UILabel!
     @IBOutlet weak var followingLabel: UILabel!

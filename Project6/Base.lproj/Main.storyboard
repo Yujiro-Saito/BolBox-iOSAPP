@@ -566,6 +566,56 @@
             </objects>
             <point key="canvasLocation" x="40503" y="44141"/>
         </scene>
+        <!--Edit Profile View Controller-->
+        <scene sceneID="FoT-rY-BD7">
+            <objects>
+                <viewController id="YK9-68-dYB" customClass="EditProfileViewController" customModule="Project6" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ltw-BB-XTF"/>
+                        <viewControllerLayoutGuide type="bottom" id="2jA-Sr-hxy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HlO-2x-f0r">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Sunset" translatesAutoresizingMaskIntoConstraints="NO" id="3sW-nq-eKO">
+                                <rect key="frame" x="124" y="128" width="127" height="124"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hcK-5H-ifU" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                <rect key="frame" x="64" y="311" width="246" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                            </textField>
+                            <view alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GjG-WQ-xm5">
+                                <rect key="frame" x="124" y="126" width="127" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KrU-7a-0yz">
+                                <rect key="frame" x="159" y="161" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="edit"/>
+                                <connections>
+                                    <action selector="edit:" destination="YK9-68-dYB" eventType="touchUpInside" id="4qp-6g-F6I"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="coverView" destination="GjG-WQ-xm5" id="ESC-2K-1Ih"/>
+                        <outlet property="editButton" destination="KrU-7a-0yz" id="7Xo-mw-gaV"/>
+                        <outlet property="itemImage" destination="3sW-nq-eKO" id="0RQ-Sf-ult"/>
+                        <outlet property="nameField" destination="hcK-5H-ifU" id="mNd-6n-DbR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="amG-HE-fFS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="41300" y="43828.335832083962"/>
+        </scene>
         <!--User View Controller-->
         <scene sceneID="TIq-Io-9ve">
             <objects>
@@ -2752,6 +2802,19 @@
                                             <rect key="frame" x="16" y="8" width="80" height="80"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gpg-3q-Ox2">
+                                            <rect key="frame" x="298" y="16" width="20" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="edit"/>
+                                            <connections>
+                                                <action selector="editing:" destination="EM1-sN-Z9x" eventType="touchUpInside" id="72a-n3-uPQ"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c3h-Qb-2DS">
+                                            <rect key="frame" x="335" y="16" width="20" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="userAdd"/>
+                                        </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="following" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RCV-Ol-f9x">
                                             <rect key="frame" x="94" y="148" width="60" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2825,7 +2888,7 @@
                                     <connections>
                                         <outlet property="followerLabel" destination="PBw-OZ-dLN" id="Q9D-Xn-fKw"/>
                                         <outlet property="followingLabel" destination="iuq-O2-i5e" id="Ybc-K1-x0U"/>
-                                        <outlet property="userProfileImage" destination="WoK-FF-uU0" id="xqR-qd-L2B"/>
+                                        <outlet property="profImage" destination="WoK-FF-uU0" id="Kdb-SI-ONU"/>
                                         <outlet property="userProfileName" destination="3TE-vu-gfk" id="3mJ-Fj-Gg0"/>
                                     </connections>
                                 </collectionReusableView>
@@ -2999,11 +3062,12 @@
                         <segue destination="z6C-kT-c9P" kind="show" identifier="MakeFolder" id="aP3-w3-59D"/>
                         <segue destination="cey-Bi-xcT" kind="show" identifier="toysToFun" id="xcb-Hs-oNJ"/>
                         <segue destination="mVv-9c-8VL" kind="show" identifier="ItemSearch" id="5lf-Mz-sbS"/>
+                        <segue destination="YK9-68-dYB" kind="show" identifier="edit" id="4Fr-JF-hfQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="baQ-nN-0sL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="40414" y="43299"/>
+            <point key="canvasLocation" x="40430" y="43299"/>
         </scene>
         <!--Feed View Controller-->
         <scene sceneID="Xfr-Vz-yy8">
@@ -4126,6 +4190,7 @@
         <image name="arrowNext" width="128" height="128"/>
         <image name="cameras" width="128" height="128"/>
         <image name="closes" width="64" height="64"/>
+        <image name="edit" width="128" height="128"/>
         <image name="fav" width="128" height="128"/>
         <image name="folderBox" width="128" height="128"/>
         <image name="images" width="128" height="128"/>
@@ -4138,17 +4203,18 @@
         <image name="notification" width="21" height="34"/>
         <image name="rigyt" width="128" height="128"/>
         <image name="safari" width="128" height="128"/>
+        <image name="userAdd" width="128" height="128"/>
         <image name="yoputuen" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="793-Iu-LQa"/>
         <segue reference="CUZ-LF-ECr"/>
-        <segue reference="xcb-Hs-oNJ"/>
-        <segue reference="U2k-eE-RA9"/>
-        <segue reference="xDY-lT-Obu"/>
-        <segue reference="uPa-V9-bqT"/>
         <segue reference="bhd-ev-GXW"/>
-        <segue reference="KmV-Kj-dpY"/>
         <segue reference="9pS-4N-zg0"/>
+        <segue reference="xcb-Hs-oNJ"/>
+        <segue reference="xDY-lT-Obu"/>
+        <segue reference="rbt-zG-eG0"/>
+        <segue reference="U2k-eE-RA9"/>
+        <segue reference="uPa-V9-bqT"/>
     </inferredMetricsTieBreakers>
 </document>

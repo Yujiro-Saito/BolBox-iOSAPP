@@ -388,6 +388,15 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
     }
     
+    @IBAction func editing(_ sender: Any) {
+        
+        
+        performSegue(withIdentifier: "edit", sender: nil)
+        
+        
+        
+    }
+    
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -459,10 +468,9 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
         
         
-            headerView.userProfileImage.layer.borderWidth = 3.0
-            headerView.userProfileImage.layer.borderColor = UIColor.white.cgColor // 枠線の色
-            headerView.userProfileImage.layer.masksToBounds = true
-            headerView.userProfileImage.layer.cornerRadius = 1.0
+            headerView.profImage.layer.borderWidth = 3.0
+            headerView.profImage.layer.borderColor = UIColor.white.cgColor // 枠線の色
+        
         
         /*
             headerView.separator.setTitle("Basic", forSegmentAt: 0)
@@ -488,8 +496,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
                 //ユーザーのプロフィール画像
                 if photoURL != nil {
                     
-                    //headerView.userProfileImage.af_setImage(withURL: photoURL!)
-                    headerView.userProfileImage.image = UIImage(named: "mag1")
+                    headerView.profImage.af_setImage(withURL: photoURL!)
                 }
                 
                 
