@@ -24,6 +24,8 @@
 		B71EEA3D1EED7D2A00CCF1D1 /* SignInandUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71EEA3C1EED7D2A00CCF1D1 /* SignInandUpViewController.swift */; };
 		B72438F11F52688D00BD6E13 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72438F01F52688D00BD6E13 /* MyCollectionViewCell.swift */; };
 		B72438F91F52A9D300BD6E13 /* MyCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72438F81F52A9D300BD6E13 /* MyCollectionViewController.swift */; };
+		B724C7771F808491001F5448 /* UserFIndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B724C7761F808491001F5448 /* UserFIndViewController.swift */; };
+		B724C7791F808698001F5448 /* FindTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B724C7781F808698001F5448 /* FindTableViewCell.swift */; };
 		B725810E1F22706900CF8E56 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B725810D1F22706900CF8E56 /* User.swift */; };
 		B725A8E01F01AB4B006AC9DF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B725A8DF1F01AB4B006AC9DF /* BaseViewController.swift */; };
 		B725A8E21F01BEB5006AC9DF /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B725A8E11F01BEB5006AC9DF /* BaseTableViewCell.swift */; };
@@ -141,6 +143,8 @@
 		B71EEA3C1EED7D2A00CCF1D1 /* SignInandUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInandUpViewController.swift; sourceTree = "<group>"; };
 		B72438F01F52688D00BD6E13 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		B72438F81F52A9D300BD6E13 /* MyCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewController.swift; sourceTree = "<group>"; };
+		B724C7761F808491001F5448 /* UserFIndViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFIndViewController.swift; sourceTree = "<group>"; };
+		B724C7781F808698001F5448 /* FindTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindTableViewCell.swift; sourceTree = "<group>"; };
 		B725810D1F22706900CF8E56 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B725A8DF1F01AB4B006AC9DF /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		B725A8E11F01BEB5006AC9DF /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
@@ -482,6 +486,8 @@
 				B7B644CE1F7B7C6E00697783 /* YoutubeTableViewCell.swift */,
 				B7B644D01F7B823D00697783 /* YoutubePostViewController.swift */,
 				B7D3FA511F804E9A0009A219 /* EditProfileViewController.swift */,
+				B724C7761F808491001F5448 /* UserFIndViewController.swift */,
+				B724C7781F808698001F5448 /* FindTableViewCell.swift */,
 			);
 			name = Project2;
 			sourceTree = "<group>";
@@ -651,6 +657,7 @@
 				B7733EA21EC6A96700D5B9BD /* popularCollectionViewCell.swift in Sources */,
 				B7B644D11F7B823D00697783 /* YoutubePostViewController.swift in Sources */,
 				B72811071F2C6C0700AF9B76 /* OnOffButton.swift in Sources */,
+				B724C7791F808698001F5448 /* FindTableViewCell.swift in Sources */,
 				B725A8E21F01BEB5006AC9DF /* BaseTableViewCell.swift in Sources */,
 				B725A8E01F01AB4B006AC9DF /* BaseViewController.swift in Sources */,
 				B7A0F5111F56B7B10037536F /* UserCollectionViewCell.swift in Sources */,
@@ -737,6 +744,7 @@
 				B7D3A9B91F5FD69600A23FAD /* PhotoPostViewController.swift in Sources */,
 				B7482CE41F0F1B2A00E98EF1 /* FourTableViewCell.swift in Sources */,
 				B77B55501EEF6F1600262589 /* SignUpViewController.swift in Sources */,
+				B724C7771F808491001F5448 /* UserFIndViewController.swift in Sources */,
 				B77EEC601F28B6E500089A67 /* TabViewController.swift in Sources */,
 				B7733EA01EC6A8E300D5B9BD /* newCollectionViewCell.swift in Sources */,
 				B7C8F4C11F09B20900FBA696 /* FifthCollectionViewCell.swift in Sources */,

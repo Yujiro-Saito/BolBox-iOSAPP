@@ -25,7 +25,6 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     var numOfFollowers = [String]()
     var numOfFollowing = [String]()
     var amountOfFollowers = Int()
-    var styleNumBox = [Int]()
     let uidss: String = (FIRAuth.auth()?.currentUser?.uid)!
     
     //データ受け継ぎ用
@@ -104,22 +103,6 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
                         
                         
                         
-                        if postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
-                            
-                            let posty = postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject>>
-                            
-                            for (key,value) in posty! {
-                                
-                                let styleNum = value["bgType"] as! Int
-                                self.styleNumBox.append(styleNum)
-                                
-                                
-                                
-                            }
-                            
-                            
-                            
-                        }
                         
                         
                         
@@ -163,7 +146,6 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
             self.userPosts.reverse()
             self.folderNameBox.reverse()
             self.folderImageURLBox.reverse()
-            self.styleNumBox.reverse()
             
             self.userCollection.reloadData()
             
@@ -566,7 +548,6 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         folderName = self.folderNameBox[indexPath.row]
-        numberInt = self.styleNumBox[indexPath.row]
         
         performSegue(withIdentifier: "MyTOysView", sender: nil)
         
