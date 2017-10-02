@@ -516,9 +516,19 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
                                 headerView.followerLabel.text = String(describing: countOfFollowers!)
                                 self.amountOfFollowers = countOfFollowers!
                                 
+                                
+                                let follwingount = postDict["followingNum"] as? Int
+                                headerView.followingLabel.text = String(describing: follwingount!)
+                                //self.amountOfFollowers = countOfFollowers!
+                                
+                                
                                 if postDict["following"] as? Dictionary<String, AnyObject?> != nil {
                                     
                                     let followingDictionary = postDict["following"] as? Dictionary<String, AnyObject?>
+                                    
+                                    
+                                    
+                                    
                                     for (followKey,followValue) in followingDictionary! {
                                         
                                         print("キーは\(followKey)、値は\(followValue)")
@@ -539,7 +549,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
                 
             
             //フォロー数
-            headerView.followingLabel.text = String(self.numOfFollowing.count)
+            //headerView.followingLabel.text = String(self.numOfFollowing.count)
             
             self.numOfFollowing = []
             
@@ -554,6 +564,8 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
         
         folderName = self.folderNameBox[indexPath.row]
+        
+        
         
         performSegue(withIdentifier: "toysToFun", sender: nil)
         
@@ -599,6 +611,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             
             another.folderName = folderName
             
+            another.isFriend = false
             
             
           

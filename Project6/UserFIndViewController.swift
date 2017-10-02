@@ -85,7 +85,7 @@ class UserFIndViewController: UIViewController,UITableViewDelegate,UITableViewDa
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return names.count
+        return images.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -154,11 +154,12 @@ class UserFIndViewController: UIViewController,UITableViewDelegate,UITableViewDa
                                 self.ids.append(uid!)
                                 self.images.append(image!)
                                 
+                                self.findTable.reloadData()
                                 
-                                print(self.names)
-                                print(self.ids)
-                                print(self.images)
-                            }
+                                
+                                
+                                
+                                                            }
                             
                             
                             
@@ -191,7 +192,7 @@ class UserFIndViewController: UIViewController,UITableViewDelegate,UITableViewDa
             
             
             
-            self.findTable.reloadData()
+            //self.findTable.reloadData()
            
         }
         
@@ -207,6 +208,7 @@ class UserFIndViewController: UIViewController,UITableViewDelegate,UITableViewDa
             self.names.removeAll()
             self.ids.removeAll()
             self.images.removeAll()
+            self.findTable.reloadData()
             
         }
         

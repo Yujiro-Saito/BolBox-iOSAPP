@@ -15,6 +15,8 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     var deleteCheck = false
     
+    var isFriend = Bool()
+    
     @IBAction func linkDelete(_ sender: Any) {
         
         var buttonS = sender as! UIButton
@@ -94,6 +96,8 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         let postID = self.photoPosts[row!].postID
         
         print(postID)
+        
+        
         
         let alert: UIAlertController = UIAlertController(title: "削除", message: "このアイテムを削除しますか", preferredStyle:  UIAlertControllerStyle.alert)
         
@@ -290,7 +294,6 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
                 
                 
                 
-                print("GOOOOOOOOOORU")
                 
                 self.performSegue(withIdentifier: "Armin", sender: nil)
                 
@@ -367,8 +370,11 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         self.navigationController!.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.tintColor = UIColor.darkGray
         
-        let rightSearchBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.trash, target: self, action: #selector(MyToysViewController.editDidTap))
-        self.navigationItem.setRightBarButtonItems([rightSearchBarButtonItem], animated: true)
+        if self.isFriend == false {
+            let rightSearchBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.trash, target: self, action: #selector(MyToysViewController.editDidTap))
+            self.navigationItem.setRightBarButtonItems([rightSearchBarButtonItem], animated: true)
+
+        }
         
         
        
@@ -496,12 +502,19 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
   
-        
-        
+       
         if tableView == toysTable {
             
             let cell = toysTable.dequeueReusableCell(withIdentifier: "toys", for: indexPath) as? ToysTableViewCell
             //最初は何も入れない
+            
+            
+            if self.isFriend == true {
+                
+                cell?.trashButton.isHidden = true
+            }
+            
+            
             cell?.clipsToBounds = true
             
             let post = linkPosts[indexPath.row]
@@ -525,6 +538,8 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         } else if tableView == photoTable {
             
             let photoCell = photoTable.dequeueReusableCell(withIdentifier: "Russia", for: indexPath) as? ToysPhotoTableViewCell
+            
+            
             
             
             let post = photoPosts[indexPath.row]
@@ -590,6 +605,11 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         let cell = toysCollection.dequeueReusableCell(withReuseIdentifier: "toyman", for: indexPath) as? ToyCollectionViewCell
         let post = photoPosts[indexPath.row]
         
+        
+        if self.isFriend == true {
+           
+            cell?.trashyButton.isHidden = true
+        }
         
         
         //読み込むまで画像は非表示

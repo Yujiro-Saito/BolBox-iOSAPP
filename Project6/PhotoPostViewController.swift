@@ -24,14 +24,12 @@ class PhotoPostViewController: UIViewController, UIImagePickerControllerDelegate
     let userName = FIRAuth.auth()?.currentUser?.displayName
     var mainBool = false
     var folderNameDictionary = Dictionary<String, Dictionary<String, String?>>()
-    var type = Int()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print(folderName)
-        print(type)
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.darkGray]
         
@@ -94,8 +92,7 @@ class PhotoPostViewController: UIViewController, UIImagePickerControllerDelegate
             "userID" : uid as AnyObject,
             "userName" : userName as AnyObject,
             "name" : "" as AnyObject,
-            "postID" : keyvalue as AnyObject,
-            "bgType" : self.type as AnyObject
+            "postID" : keyvalue as AnyObject
         ]
         
         

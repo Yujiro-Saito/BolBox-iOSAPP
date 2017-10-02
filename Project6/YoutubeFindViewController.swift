@@ -188,6 +188,8 @@ class YoutubeFindViewController: UIViewController,UISearchBarDelegate,UITableVie
                         if id != nil {
                             
                             self.videoIDBox.append(id!)
+                        } else if id == nil {
+                            self.videoIDBox.append("")
                         }
                         
                         
@@ -234,6 +236,13 @@ class YoutubeFindViewController: UIViewController,UISearchBarDelegate,UITableVie
                 
                 
             }
+            
+            
+            print("ああああああああああいいいいいいいいいいいいうううううううう")
+            print(self.titleBox)
+            print(self.thumbnailURLBox)
+            print(self.videoIDBox)
+            
             
             self.sTable.reloadData()
             

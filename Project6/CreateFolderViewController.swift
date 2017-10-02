@@ -66,8 +66,8 @@ class CreateFolderViewController: UIViewController,UITextFieldDelegate {
         
         
         //テキスト
-        nameTextField.placeholder = "雑誌名を入力"
-        nameTextField.title = "雑誌名"
+        nameTextField.placeholder = "フォルダ名を入力"
+        nameTextField.title = "フォルダ名"
         nameTextField.tintColor = UIColor.clear
         nameTextField.textColor = UIColor.white
         nameTextField.lineColor = UIColor.white
@@ -81,17 +81,25 @@ class CreateFolderViewController: UIViewController,UITextFieldDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
-        let rightSearchBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(CreateFolderViewController.postDidTap))
+        // ナビゲーションを透明にする処理
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController!.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.hidesBarsOnSwipe = false
+        
+        let rightSearchBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.camera, target: self, action: #selector(CreateFolderViewController.postDidTap))
         self.navigationItem.setRightBarButtonItems([rightSearchBarButtonItem], animated: true)
     }
     
     func postDidTap() {
         
         if self.nameTextField.text != "" {
-            performSegue(withIdentifier: "Design", sender: nil)
+            performSegue(withIdentifier: "photo", sender: nil)
         } else {
             //alert
-            let alertViewControler = UIAlertController(title: "フォルダー名", message: "タイトルを登録してください", preferredStyle: .alert)
+            let alertViewControler = UIAlertController(title: "フォルダ名", message: "タイトルを登録してください", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             
             alertViewControler.addAction(okAction)
@@ -144,9 +152,9 @@ class CreateFolderViewController: UIViewController,UITextFieldDelegate {
             
         }*/
         
-        if segue.identifier == "Design" {
+        if segue.identifier == "photo" {
             
-            let designVC = (segue.destination as? DesignViewController)!
+            let designVC = (segue.destination as? PhotoPostViewController)!
             designVC.folderName = self.nameTextField.text!
             
         }

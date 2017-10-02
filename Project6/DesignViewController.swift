@@ -38,7 +38,6 @@ class DesignViewController: UIViewController ,UICollectionViewDelegate,UICollect
             //folderNameと雑誌タイプ
             let photoVC = (segue.destination as? PhotoPostViewController)!
             photoVC.folderName = self.folderName
-            photoVC.type = self.selectedType
             
         }
     }

@@ -44,13 +44,11 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         
         
         
-        // フォント種をTime New Roman、サイズを10に指定
-        self.navigationController?.navigationBar.titleTextAttributes
-            = [NSFontAttributeName: UIFont(name: "Times New Roman", size: 18)!]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.darkGray]
+        
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.tintColor = UIColor.blue
-        self.navigationController?.hidesBarsOnSwipe = true
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGray
         
         
         userCollection.delegate = self
@@ -75,7 +73,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         
     }
     
-    
+    var fCount = Int()
     
     var folderNameBox = [String]()
     var folderName = String()
@@ -85,7 +83,31 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         super.viewDidAppear(true)
         
         
-        
+          DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: uidss).observe(.value, with: { (snapshot) in
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        
+                        if postDict["followingNum"] as? Int != nil {
+                            
+                            let follwingCounter = postDict["followingNum"] as? Int
+                            self.fCount = follwingCounter!
+                            
+                            
+                        }
+                        
+                    }
+                    
+                }
+            
+            
+            
+          }
+          })
         
         
         //ユーザーのコレクションの読み込み
@@ -148,6 +170,8 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
             self.folderImageURLBox.reverse()
             
             self.userCollection.reloadData()
+            
+            print(self.numOfFollowing)
             
             
         })
@@ -224,24 +248,29 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         
         
         
-        
+        var numFollowings = self.numOfFollowing.count
         
         //フォローしていない場合
         
         if isFollow == false {
             
             
+            
             self.amountOfFollowers += 1
             
-            var numFollowings = self.numOfFollowing.count
-            numFollowings += 1
-            let numing = ["followingNum": numFollowings]
+            //numFollowings = self.numOfFollowing.count
+            self.fCount += 1
+            //numFollowings += 1
+            
+            
+            //let numing = ["followingNum": numFollowings]
+            let numing = ["followingNum": self.fCount]
             
             
             followersCount = ["followerNum": self.amountOfFollowers]
             
            
-           
+            
             
             DispatchQueue.main.async {
                 
@@ -265,9 +294,10 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
             let followersCount = ["followerNum": self.amountOfFollowers]
             
             
-            var numFollowings = self.numOfFollowing.count
-            numFollowings -= 1
-            let numing = ["followingNum": numFollowings]
+            //var numFollowings = self.numOfFollowing.count
+            //numFollowings -= 1
+            self.fCount -= 1
+            let numing = ["followingNum": self.fCount]
             
             DispatchQueue.main.async {
                 //フォロしている場合
@@ -297,7 +327,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         
         let cellSize:CGFloat = self.view.frame.size.width/2-2
         
-        return CGSize(width: cellSize, height: 200)
+        return CGSize(width: cellSize, height: cellSize)
     }
     
     //縦の間隔を決定する
@@ -529,7 +559,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
             
             another.folderName = folderName
             
-            
+            another.isFriend = true
             
             
             

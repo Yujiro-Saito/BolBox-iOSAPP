@@ -25,13 +25,18 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
     var followUID = [String]()
     @IBOutlet weak var friendsTable: UITableView!
     
-    
     override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(true)
+        super.viewDidAppear(true)
         
-        followUserNameBox = []
-        followUserImageURL = []
+        self.followUserNameBox = []
+        self.followUserImageURL = []
+        self.followUID = []
+        
     }
+    
+    
+    
+    
 
     //データ受け継ぎ用
     
@@ -39,12 +44,17 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
     var isFollowing = Bool()
 
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
         friendsTable.delegate = self
         friendsTable.dataSource = self
+        self.followUserNameBox = []
+        self.followUserImageURL = []
+        self.followUID = []
+
+        
+        
         
         print(userID)
         
@@ -55,14 +65,15 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
         
         
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        
-        
         if isFollowing == false {
             //フォローワーの場合
+            
+            
+            self.followUserNameBox = []
+            self.followUserImageURL = []
+            self.followUID = []
+            
+            
             DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: self.userID).observe(.value, with: { (snapshot) in
                 
                 
@@ -106,18 +117,23 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
                                                     self.followUserImageURL.append(imageURL!)
                                                     self.followUID.append(uid!)
                                                     
+                                                    self.followUserNameBox.reverse()
+                                                    self.followUserImageURL.reverse()
+                                                    self.followUID.reverse()
+                                                    self.friendsTable.reloadData()
+                                                    
                                                 }
                                             }
                                         }
                                         
                                         
                                         
-                                        self.followUserNameBox.reverse()
+                                        /*self.followUserNameBox.reverse()
                                         self.followUserImageURL.reverse()
                                         self.followUID.reverse()
                                         self.friendsTable.reloadData()
                                         
-                                        
+                                        */
                                         
                                         
                                         
@@ -163,6 +179,10 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
         } else if isFollowing == true {
             //フォロー中表示
             
+            self.followUserNameBox = []
+            self.followUserImageURL = []
+            self.followUID = []
+            
             DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: self.userID).observe(.value, with: { (snapshot) in
                 
                 
@@ -206,6 +226,9 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
                                                     self.followUserImageURL.append(imageURL!)
                                                     self.followUID.append(uid!)
                                                     
+                                                    
+                                                    
+                                                    
                                                 }
                                             }
                                         }
@@ -215,6 +238,8 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
                                         self.followUserNameBox.reverse()
                                         self.followUserImageURL.reverse()
                                         self.followUID.reverse()
+                                        
+                                        
                                         self.friendsTable.reloadData()
                                         
                                         
@@ -259,16 +284,17 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
                 
                 
             })
-
+            
             
             
             
         }
         
-        
-       
 
     }
+    
+    
+   
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -287,9 +313,10 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
         let cell = friendsTable.dequeueReusableCell(withIdentifier: "userCellItem", for: indexPath) as? FriendsTableViewCell
         
         
+        
         cell?.userImage.image = nil
         cell?.clipsToBounds = true
-        cell?.userName.text = ""
+        cell?.userName.text = nil
         
         let userName = followUserNameBox[indexPath.row]
         let imageURL = followUserImageURL[indexPath.row]
@@ -320,6 +347,8 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
         
                       
     }
+    
+    
     
     
     

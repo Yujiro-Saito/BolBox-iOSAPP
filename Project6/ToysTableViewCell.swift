@@ -19,6 +19,7 @@ class ToysTableViewCell: UITableViewCell {
     
     @IBOutlet weak var coverView: UIView!
     
+    @IBOutlet weak var trashButton: UIButton!
     
     
 
