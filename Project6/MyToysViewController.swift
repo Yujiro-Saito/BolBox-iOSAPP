@@ -15,6 +15,69 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     var deleteCheck = false
     
+    @IBAction func linkDelete(_ sender: Any) {
+        
+        var buttonS = sender as! UIButton
+        var cellings = buttonS.superview?.superview as! ToysTableViewCell
+        var rows = toysTable.indexPath(for: cellings)?.row
+        
+        
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        let postID = self.linkPosts[rows!].postID
+
+
+        print("\(rows!)")
+        
+        let alert: UIAlertController = UIAlertController(title: "削除", message: "このアイテムを削除しますか", preferredStyle:  UIAlertControllerStyle.alert)
+        
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+            (action: UIAlertAction!) -> Void in
+            print("OK")
+            
+            //linkPosts削除
+            
+            DispatchQueue.main.async {
+                self.linkPosts.remove(at: rows!)
+                //self.linkPosts = []
+                
+                self.toysTable.reloadData()
+                
+                self.deleteCheck = true
+            }
+            
+            
+            self.wait( {self.deleteCheck == false} ) {
+                
+                DataService.dataBase.REF_BASE.child("users/\(userID!)/posts/\(postID)").removeValue()
+                
+                
+                
+                
+                self.deleteCheck = false
+                
+                
+                
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+        })
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
+            (action: UIAlertAction!) -> Void in
+            print("Cancel")
+        })
+        
+        alert.addAction(cancelAction)
+        alert.addAction(defaultAction)
+        
+        self.present(alert, animated: true, completion: nil)
+        
+    }
     
     @IBAction func delte(_ sender: Any) {
         
@@ -160,8 +223,100 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     func editDidTap() {
         
-        self.isDoingEdit = true
+       
+        print(self.postIDSS)
         
+        var firstCheck = false
+        var secondCheck = false
+        
+        
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        
+        
+        
+        let alert: UIAlertController = UIAlertController(title: "削除", message: "このフォルダを削除しますか", preferredStyle:  UIAlertControllerStyle.alert)
+        
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+            (action: UIAlertAction!) -> Void in
+            print("OK")
+            
+            self.showIndicator()
+            
+            //FolderName消す
+            DispatchQueue.main.async {
+                
+                 DataService.dataBase.REF_BASE.child("users/\(userID!)/folderName/\(self.folderName)").removeValue()
+                firstCheck = true
+            }
+            
+            //FolderItem消す
+            
+            self.wait( {firstCheck == false} ) {
+                
+                
+                
+                DispatchQueue.main.async {
+                    
+                    
+                    for postingID in self.postIDSS {
+                        
+                        //link
+                        
+                        DataService.dataBase.REF_BASE.child("users/\(userID!)/posts/\(postingID)").removeValue()
+                        
+                    }
+                    
+                    firstCheck = false
+                    secondCheck = true
+                    self.photoPosts = []
+                    
+                    self.toysCollection.reloadData()
+
+                    self.indicator.stopAnimating()
+                    
+            }
+            
+           
+                
+                
+                
+                
+                
+                
+            }
+            
+            
+            self.wait( {secondCheck == false} ) {
+                
+                
+                
+                print("GOOOOOOOOOORU")
+                
+                self.performSegue(withIdentifier: "Armin", sender: nil)
+                
+                
+                
+                
+                
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+        })
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
+            (action: UIAlertAction!) -> Void in
+            print("Cancel")
+        })
+        
+        alert.addAction(cancelAction)
+        alert.addAction(defaultAction)
+        
+        self.present(alert, animated: true, completion: nil)
         
         
     }
@@ -170,12 +325,19 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     var types = [String]()
     
+    var postIDSS = [String]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.videoKeyBox = []
+        self.types = []
+        self.postIDSS = []
+        self.linkPosts = []
+        self.photoPosts = []
+
         
-            
         
         self.segment.isHidden = false
 
@@ -232,6 +394,13 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
                             
                             
                             
+                            if postDict["postID"] as? String != "" {
+                                
+                                let id = postDict["postID"] as? String
+                                self.postIDSS.append(id!)
+                                
+                                
+                            }
                             
                             //imageURLがない場合配列に追加
                             if postDict["imageURL"] as? String == "" {
@@ -284,6 +453,7 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
                 
                 self.videoKeyBox.reverse()
                 self.types.reverse()
+                self.postIDSS.reverse()
                 self.linkPosts.reverse()
                 self.photoPosts.reverse()
                 self.toysTable.reloadData()
@@ -474,23 +644,32 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let detialVC = (segue.destination as? DetialContentViewController)!
         
-        detialVC.videoKey = self.videoCheckKey
-        
-        detialVC.name = self.itemName
-        detialVC.imageURL = self.itemIamgeURL
-        detialVC.folderName = self.folderName
-        
-        
-        if self.typeCheck == "YES" {
-            detialVC.type = 2
-        } else if self.typeCheck == "NO" {
-            detialVC.type = 0
+        if segue.identifier == "Armin" {
+            
+            
+            
         } else {
-            detialVC.type = self.typing
-            detialVC.linkURL = self.itemLink!
+            let detialVC = (segue.destination as? DetialContentViewController)!
+            
+            detialVC.videoKey = self.videoCheckKey
+            
+            detialVC.name = self.itemName
+            detialVC.imageURL = self.itemIamgeURL
+            detialVC.folderName = self.folderName
+            
+            
+            if self.typeCheck == "YES" {
+                detialVC.type = 2
+            } else if self.typeCheck == "NO" {
+                detialVC.type = 0
+            } else {
+                detialVC.type = self.typing
+                detialVC.linkURL = self.itemLink!
+            }
+
         }
+        
         
         
         

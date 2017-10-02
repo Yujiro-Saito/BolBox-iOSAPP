@@ -243,7 +243,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ktx-IX-WJt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="41632.800000000003" y="43250.824587706149"/>
+            <point key="canvasLocation" x="41278" y="43299"/>
         </scene>
         <!--Friends Lists View Controller-->
         <scene sceneID="jIb-t2-qPA">
@@ -764,7 +764,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mWo-n6-067" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="39594" y="43299"/>
+            <point key="canvasLocation" x="39790" y="43299"/>
         </scene>
         <!--Edit View Controller-->
         <scene sceneID="TFz-EM-VJj">
@@ -1946,6 +1946,9 @@
                                                     <rect key="frame" x="335" y="80" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="trash"/>
+                                                    <connections>
+                                                        <action selector="linkDelete:" destination="cey-Bi-xcT" eventType="touchUpInside" id="woR-Qx-Zbo"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -2040,11 +2043,12 @@
                         <outlet property="toysCollection" destination="cW4-j6-XKg" id="mm8-t5-es6"/>
                         <outlet property="toysTable" destination="mcc-t6-E6Y" id="bQZ-9V-okt"/>
                         <segue destination="MEk-W0-hwE" kind="show" identifier="Dettil" id="3h7-NI-DIm"/>
+                        <segue destination="azm-vx-HAv" kind="presentation" identifier="Armin" id="cZq-PN-muw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EcD-jM-Rrg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="40792.800000000003" y="45071.514242878562"/>
+            <point key="canvasLocation" x="40742" y="45312"/>
         </scene>
         <!--Detial Content View Controller-->
         <scene sceneID="opB-kJ-Fqj">
@@ -3018,7 +3022,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="baQ-nN-0sL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="40614" y="43299"/>
+            <point key="canvasLocation" x="39114" y="43299"/>
         </scene>
         <!--Feed View Controller-->
         <scene sceneID="Xfr-Vz-yy8">
@@ -3432,7 +3436,6 @@
                     <connections>
                         <segue destination="jJo-dR-Onz" kind="relationship" relationship="viewControllers" id="i9u-pl-kYh"/>
                         <segue destination="GtW-M7-tyf" kind="relationship" relationship="viewControllers" id="xfF-sq-9zB"/>
-                        <segue destination="Tlx-6I-ycr" kind="relationship" relationship="viewControllers" id="fwO-BT-qtb"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aKA-o5-pKj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4156,13 +4159,13 @@
         <image name="yoputuen" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6wr-E5-5lp"/>
-        <segue reference="793-Iu-LQa"/>
-        <segue reference="vNM-fF-O0h"/>
-        <segue reference="U2k-eE-RA9"/>
         <segue reference="uPa-V9-bqT"/>
+        <segue reference="U2k-eE-RA9"/>
+        <segue reference="cZq-PN-muw"/>
+        <segue reference="xcb-Hs-oNJ"/>
+        <segue reference="xDY-lT-Obu"/>
+        <segue reference="6wr-E5-5lp"/>
+        <segue reference="vNM-fF-O0h"/>
         <segue reference="v8p-7V-qkf"/>
-        <segue reference="ETH-Me-Y6g"/>
-        <segue reference="u0E-7g-snp"/>
     </inferredMetricsTieBreakers>
 </document>
