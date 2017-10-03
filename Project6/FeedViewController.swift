@@ -24,6 +24,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     @IBOutlet weak var allBgView: UIView!
     
+    @IBOutlet weak var noFriendView: UIView!
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -140,7 +141,16 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
                         
                         
-                        if postDict["following"] as? Dictionary<String, AnyObject?> != nil {
+                        if postDict["following"] as? Dictionary<String, AnyObject?> == nil {
+                            
+                            self.noFriendView.isHidden = false
+                            
+                        }
+                        
+                        
+                        else if postDict["following"] as? Dictionary<String, AnyObject?> != nil {
+                            
+                            self.noFriendView.isHidden = true
                             
                             let followingDictionary = postDict["following"] as? Dictionary<String, AnyObject?>
                             for (followKey,followValue) in followingDictionary! {

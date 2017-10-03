@@ -15,6 +15,27 @@ import AlamofireImage
 class MyCollectionViewController: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        // ナビゲーションを透明にする処理
+        
+        self.navigationItem.title = "VolBox"
+        
+        // フォント種をTime New Roman、サイズを10に指定
+        self.navigationController?.navigationBar.titleTextAttributes
+            = [NSFontAttributeName: UIFont(name: "MarkerFelt-Wide", size: 20)!]
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.black]
+        //self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        //self.navigationController!.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.barTintColor = UIColor.rgb(r: 250, g: 250, b: 250, alpha: 1.0)
+        // UIColor.rgb(r: 255, g: 255, b: 255, alpha: 1)
+        self.navigationController?.hidesBarsOnSwipe = false
+    }
+    
+    
     @IBOutlet weak var modalView: UIView!
     @IBOutlet weak var photoImage: UIImageView!
     @IBOutlet weak var linkImage: UIImageView!
@@ -45,6 +66,19 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        
+        if FIRAuth.auth()?.currentUser == nil {
+            performSegue(withIdentifier: "TesterLogout", sender: nil)
+        }
+        
+        
+        
+    }
+    
+    
     
     @IBOutlet weak var myCollection: UICollectionView!
     var userPosts = [Post]()
@@ -64,13 +98,17 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     
     //data
     var isFollow = Bool()
+    
+    @IBOutlet weak var noBoxView: UIView!
+    
+    
 
     override func viewDidLoad() {
         
         
         super.viewDidLoad()
         
-        
+       
         myCollection.delegate = self
         myCollection.dataSource = self
         
@@ -79,13 +117,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
 
         
-        // ナビゲーションを透明にする処理
-        self.navigationController?.isNavigationBarHidden = false
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController!.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.hidesBarsOnSwipe = false
+        
         
         //Individuals
         
@@ -151,7 +183,11 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             
             self.myCollection.reloadData()
             
-            
+            if self.folderNameBox.count == 0 {
+                self.noBoxView.isHidden = false
+            } else {
+                self.noBoxView.isHidden = true
+            }
             
             
             
@@ -484,75 +520,90 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
                 
                 //////////////////////
                 let user = FIRAuth.auth()?.currentUser
+        
+        
+        
+        if user == nil {
+            performSegue(withIdentifier: "TesterLogout", sender: nil)
+        } else {
+            
+            
+            let userName = user?.displayName
+            let photoURL = user?.photoURL
+            let selfUID = user?.uid
+            
+            
+            
+            
+            
+            //ユーザー名
+            headerView.userProfileName.text = userName
+            
+            
+            //ユーザーのプロフィール画像
+            if photoURL != nil {
                 
-                let userName = user?.displayName
-                let photoURL = user?.photoURL
-                let selfUID = user?.uid
+                headerView.profImage.af_setImage(withURL: photoURL!)
+            }
+            
+            
+            //Followのチェック follower数のチェック
+            DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: selfUID!).observe(.value, with: { (snapshot) in
                 
-                //ユーザー名
-                headerView.userProfileName.text = userName
                 
-                
-                //ユーザーのプロフィール画像
-                if photoURL != nil {
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     
-                    headerView.profImage.af_setImage(withURL: photoURL!)
-                }
-                
-                
-                //Followのチェック follower数のチェック
-                DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: selfUID!).observe(.value, with: { (snapshot) in
-                    
-                    
-                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
                         
-                        for snap in snapshot {
-                            print("SNAP: \(snap)")
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
                             
-                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            //followwer人数をラベルに表示
+                            let countOfFollowers = postDict["followerNum"] as? Int
+                            headerView.followerLabel.text = String(describing: countOfFollowers!)
+                            self.amountOfFollowers = countOfFollowers!
+                            
+                            
+                            let follwingount = postDict["followingNum"] as? Int
+                            headerView.followingLabel.text = String(describing: follwingount!)
+                            //self.amountOfFollowers = countOfFollowers!
+                            
+                            
+                            if postDict["following"] as? Dictionary<String, AnyObject?> != nil {
                                 
-                                //followwer人数をラベルに表示
-                                let countOfFollowers = postDict["followerNum"] as? Int
-                                headerView.followerLabel.text = String(describing: countOfFollowers!)
-                                self.amountOfFollowers = countOfFollowers!
+                                let followingDictionary = postDict["following"] as? Dictionary<String, AnyObject?>
                                 
                                 
-                                let follwingount = postDict["followingNum"] as? Int
-                                headerView.followingLabel.text = String(describing: follwingount!)
-                                //self.amountOfFollowers = countOfFollowers!
                                 
                                 
-                                if postDict["following"] as? Dictionary<String, AnyObject?> != nil {
+                                for (followKey,followValue) in followingDictionary! {
                                     
-                                    let followingDictionary = postDict["following"] as? Dictionary<String, AnyObject?>
+                                    print("キーは\(followKey)、値は\(followValue)")
                                     
+                                    self.numOfFollowing.append(followKey)
                                     
-                                    
-                                    
-                                    for (followKey,followValue) in followingDictionary! {
-                                        
-                                        print("キーは\(followKey)、値は\(followValue)")
-                                        
-                                        self.numOfFollowing.append(followKey)
-                                        
-                                        
-                                    }
                                     
                                 }
                                 
                             }
                             
                         }
+                        
                     }
-                    
-                })
+                }
                 
+            })
+            
             
             //フォロー数
             //headerView.followingLabel.text = String(self.numOfFollowing.count)
             
             self.numOfFollowing = []
             
+            
+            return headerView
+            
+        }
         
         return headerView
     }

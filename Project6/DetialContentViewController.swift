@@ -54,11 +54,7 @@ class DetialContentViewController: UIViewController,UIWebViewDelegate {
         webViewing.scalesPageToFit = true
         
         
-        print(name)
-        print(imageURL)
-        print(folderName)
-        print(type)
-        print(videoKey)
+        
         self.itemImage.isHidden = true
         self.itemName.isHidden = true
         self.videoPlayer.isHidden = true

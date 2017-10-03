@@ -13,6 +13,25 @@ import Firebase
 
 class EditProfileViewController: UIViewController,UITextFieldDelegate ,UIImagePickerControllerDelegate ,UINavigationControllerDelegate{
 
+    
+    
+    
+    @IBAction func SignOutButton(_ sender: Any) {
+        
+        let firebaseAuth = FIRAuth.auth()
+        do {
+            try firebaseAuth?.signOut()
+            performSegue(withIdentifier: "TesterLogout", sender: nil)
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+
+    }
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
