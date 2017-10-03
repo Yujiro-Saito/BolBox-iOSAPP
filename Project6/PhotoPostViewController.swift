@@ -17,6 +17,7 @@ class PhotoPostViewController: UIViewController, UIImagePickerControllerDelegate
     
     @IBOutlet weak var folName: UILabel!
 
+    var folderPrivate = String()
     
     //データ
     var folderName = String()
@@ -24,12 +25,12 @@ class PhotoPostViewController: UIViewController, UIImagePickerControllerDelegate
     let userName = FIRAuth.auth()?.currentUser?.displayName
     var mainBool = false
     var folderNameDictionary = Dictionary<String, Dictionary<String, String?>>()
+    var isPRivate = String()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(folderName)
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.darkGray]
         
@@ -63,6 +64,7 @@ class PhotoPostViewController: UIViewController, UIImagePickerControllerDelegate
             } else {
                 print("カメラロール許可をしていない時の処理")
                 //UIViewで許可のお願いを出す
+                
             }
             
         
@@ -74,9 +76,6 @@ class PhotoPostViewController: UIViewController, UIImagePickerControllerDelegate
     func postButtonDidTap() {
         
         showIndicator()
-        
-        
-        
         
         
         let firebasePost = DataService.dataBase.REF_USER.child(uid!).child("posts").childByAutoId()
@@ -92,7 +91,8 @@ class PhotoPostViewController: UIViewController, UIImagePickerControllerDelegate
             "userID" : uid as AnyObject,
             "userName" : userName as AnyObject,
             "name" : "" as AnyObject,
-            "postID" : keyvalue as AnyObject
+            "postID" : keyvalue as AnyObject,
+            "isPrivate" : folderPrivate as AnyObject
         ]
         
         
@@ -123,7 +123,7 @@ class PhotoPostViewController: UIViewController, UIImagePickerControllerDelegate
                     
                     
                     //folder name
-                    let folderInfo: Dictionary<String,String> = ["imageURL" : firstDownloadURL!, "name" : self.folderName]
+                    let folderInfo: Dictionary<String,String> = ["imageURL" : firstDownloadURL!, "name" : self.folderName, "isPrivate" : self.folderPrivate]
                     
                     self.folderNameDictionary = [self.folderName : folderInfo]
                     

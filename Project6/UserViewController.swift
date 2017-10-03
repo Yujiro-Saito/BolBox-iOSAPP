@@ -44,12 +44,12 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         
         
         
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.darkGray]
-        
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.tintColor = UIColor.darkGray
-        
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.hidesBarsOnSwipe = false
         
         userCollection.delegate = self
         userCollection.dataSource = self
@@ -140,8 +140,15 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
                                 
                                 let valueImageURL = value["imageURL"] as! String
                                 let valueText = value["name"] as! String
-                                self.folderImageURLBox.append(valueImageURL)
-                                self.folderNameBox.append(valueText)
+                                let checkPrivate = value["isPrivate"] as! String
+                                
+                                if checkPrivate == "NO" {
+                                    self.folderImageURLBox.append(valueImageURL)
+                                    self.folderNameBox.append(valueText)
+                                } else {
+                                    print("NO FOLDER found")
+                                }
+                                
                                 
                                 
                                 

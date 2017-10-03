@@ -14,6 +14,7 @@ import Eureka
 class LinkPostViewController: FormViewController, UIWebViewDelegate  {
     
     let titleWebView : UIWebView = UIWebView()
+    var webLoaded = Bool()
     //データ
     var folderName = String()
     let uid = FIRAuth.auth()?.currentUser?.uid
@@ -23,18 +24,22 @@ class LinkPostViewController: FormViewController, UIWebViewDelegate  {
     
     // ロード時にインジケータをまわす
     func webViewDidStartLoad(_ webView: UIWebView) {
+        webLoaded = false
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }
     
     // ロード完了でインジケータ非表示
     func webViewDidFinishLoad(_ webView: UIWebView) {
+        webLoaded = true
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        
         DispatchQueue.main.async {
             self.indicator.stopAnimating()
         }
         self.check = true
     }
    
+    var folderPrivate = String()
     
     var check = false
     //投稿ボタン
@@ -64,13 +69,33 @@ class LinkPostViewController: FormViewController, UIWebViewDelegate  {
             //タイトル取得
             
             DispatchQueue.main.async {
-                
-                let url: URL = URL(string: linkValue!)!
+                let hyperLink = linkValue!.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
+                let url: URL = URL(string: hyperLink!)!
                 let request: URLRequest = URLRequest(url: url)
                 
                 self.titleWebView.loadRequest(request)
                 
-
+                DispatchQueue.main.asyncAfter(deadline: .now() + 12.0) {
+                    
+                    if self.webLoaded == false {
+                        let alertViewControler = UIAlertController(title: "エラー", message: "エラーが発生しました", preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        
+                        alertViewControler.addAction(okAction)
+                        self.present(alertViewControler, animated: true, completion: nil)
+                        self.indicator.stopAnimating()
+                        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                        
+                        
+                        return
+                    }
+                    
+                    
+                    
+                    
+                    
+                }
+                
                 
             }
             
@@ -90,10 +115,10 @@ class LinkPostViewController: FormViewController, UIWebViewDelegate  {
                     self.showIndicator()
                     
                     if self.isImage == false {
-                        self.folderInfo = ["imageURL" : self.imageURL, "name" : self.folderName]
+                        self.folderInfo = ["imageURL" : self.imageURL, "name" : self.folderName,"isPrivate" : self.folderPrivate]
                     } else if self.isImage == true {
                         
-                        self.folderInfo = ["imageURL" : self.imageURL, "name" : self.folderName]
+                        self.folderInfo = ["imageURL" : self.imageURL, "name" : self.folderName,"isPrivate" : self.folderPrivate]
                         
                     }
                     
@@ -104,6 +129,13 @@ class LinkPostViewController: FormViewController, UIWebViewDelegate  {
                     let firebasePost = DataService.dataBase.REF_USER.child(self.uid!).child("posts").childByAutoId()
                     let key = firebasePost.key
                     let keyvalue = ("\(key)")
+                    var isPrivate = String()
+                    
+                    if self.isBeingPrivate == true {
+                        isPrivate = "YES"
+                    } else {
+                        isPrivate = "NO"
+                    }
                     
                     let post: Dictionary<String, AnyObject> = [
                         //
@@ -116,7 +148,8 @@ class LinkPostViewController: FormViewController, UIWebViewDelegate  {
                         "userName" : self.userName as AnyObject,
                         "name" : titles as AnyObject,
                         "imageURL" : "" as AnyObject,
-                        "postID" : keyvalue as AnyObject
+                        "postID" : keyvalue as AnyObject,
+                        "isPrivate" : self.folderPrivate as AnyObject
                     ]
                     
                     self.linkBool = true
@@ -171,6 +204,7 @@ class LinkPostViewController: FormViewController, UIWebViewDelegate  {
     
     var isImage = Bool()
     var imageURL = String()
+    var isBeingPrivate = Bool()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -193,6 +227,7 @@ class LinkPostViewController: FormViewController, UIWebViewDelegate  {
                         print(postDict)
                         
                         let itemURL = postDict["imageURL"] as! String
+                        
                         
                         if itemURL == "" {
                             self.isImage = false

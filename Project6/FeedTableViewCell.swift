@@ -15,7 +15,7 @@ class FeedTableViewCell: UITableViewCell {
     
     
     //Common
-    @IBOutlet weak var favButton: FaveButton!
+    //@IBOutlet weak var favButton: FaveButton!
     @IBOutlet weak var folderImage: ProfileImage!
     
     @IBOutlet weak var videoPlayer: YTPlayerView!
@@ -25,14 +25,14 @@ class FeedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var linkWeb: UIWebView!
     
-    @IBOutlet weak var userImage: ProfileImage!
+   // @IBOutlet weak var userImage: ProfileImage!
     
     
     @IBOutlet weak var webViewView: UIView!
     
     
  
-    @IBOutlet weak var favNumLabel: UILabel!
+   // @IBOutlet weak var favNumLabel: UILabel!
     
     @IBOutlet weak var userName: UILabel!
     
@@ -50,7 +50,7 @@ class FeedTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.favButton.delegate = self
+        //self.favButton.delegate = self
         
         /*
         let mScreenSize = UIScreen.main.bounds

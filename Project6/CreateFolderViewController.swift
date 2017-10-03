@@ -15,7 +15,19 @@ import OnOffButton
 class CreateFolderViewController: UIViewController,UITextFieldDelegate {
     
     
+    var isPrivate = false
     
+    @IBOutlet weak var swithcer: UISwitch!
+    
+    @IBAction func privateSettingButton(_ sender: Any) {
+        
+        if ( swithcer.isOn ) {
+            self.isPrivate = true
+        } else {
+            self.isPrivate = false
+        }
+        
+    }
     
     
     let indicator = UIActivityIndicatorView()
@@ -80,6 +92,8 @@ class CreateFolderViewController: UIViewController,UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        
+        self.swithcer.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
         
         // ナビゲーションを透明にする処理
         self.navigationController?.isNavigationBarHidden = false
@@ -156,6 +170,13 @@ class CreateFolderViewController: UIViewController,UITextFieldDelegate {
             
             let designVC = (segue.destination as? PhotoPostViewController)!
             designVC.folderName = self.nameTextField.text!
+            
+            if self.isPrivate == true {
+                designVC.isPRivate = "YES"
+            } else {
+                designVC.isPRivate = "NO"
+            }
+            
             
         }
         

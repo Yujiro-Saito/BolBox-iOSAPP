@@ -21,6 +21,7 @@ class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITabl
     var selectedName = String()
     var folderImageLists = [String]()
     var folderImageURL = String()
+    var selectedPrivate = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,9 +68,10 @@ class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITabl
                                 //let valueImageURL = value["imageURL"] as! String
                                 let valueText = value["name"] as! String
                                 let folderImage = value["imageURL"] as! String
+                                let folderPrivate = value["isPrivate"] as! String
                                 self.folderListsBox.append(valueText)
                                 self.folderImageLists.append(folderImage)
-                                
+                                self.privates.append(folderPrivate)
                                 
                             }
                             
@@ -96,6 +98,7 @@ class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITabl
                     
                     
                 }
+            self.privates.reverse()
             self.folderListsBox.reverse()
             self.folderImageLists.reverse()
             self.folderTable.reloadData()
@@ -104,6 +107,8 @@ class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITabl
         
     }
     
+    
+    var privates = [String]()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return folderListsBox.count
@@ -143,7 +148,7 @@ class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITabl
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         selectedName = self.folderListsBox[indexPath.row]
-        
+        selectedPrivate = self.privates[indexPath.row]
         
         if self.isYoutube == true {
             performSegue(withIdentifier: "ToYoutube", sender: nil)
@@ -165,11 +170,6 @@ class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITabl
     }
     
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(true)
-    
-    }
-    
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -179,17 +179,19 @@ class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITabl
             let photoVC = (segue.destination as? PhotoPostViewController)!
             photoVC.folderName = selectedName
             
+            photoVC.folderPrivate = selectedPrivate
             
         } else if segue.identifier == "ToLinkPos" {
             
             let linkVC = (segue.destination as? LinkPostViewController)!
             linkVC.folderName = selectedName
-                    
+            linkVC.folderPrivate = selectedPrivate
             
         } else if segue.identifier == "ToYoutube" {
             
             let videoVC = (segue.destination as? YoutubeFindViewController)!
             videoVC.selectedFolder = selectedName
+            videoVC.folderPrivate = selectedPrivate
                 
             
         }

@@ -162,6 +162,13 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                             
                                             if let postDict = snap.value as? Dictionary<String, AnyObject> {
                                                 
+                                                let followUserName = postDict["userName"] as? String
+                                                let followUserURL = postDict["userImageURL"] as? String
+                                                
+                                                
+                                                
+
+                                                
                                                 
                                                 
                                                 if postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
@@ -181,9 +188,10 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                                         
                                                         let videoCheck = value["videoKey"] as! String?
                                                         
+                                                        let isPrivate = value["isPrivate"] as! String
                                                         
                                                         
-                                                        
+                                                        /*
                                                         //Likes
                                                         if value["peopleWhoLike"] as? Dictionary<String,Dictionary<String,String>?> != nil {
                                                             
@@ -212,17 +220,14 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                                             self.checkBox.append("NO")
                                                         }
                                                         
-                                                        
+                                                        */
                                                         let postID = value["postID"] as! String
                                                         
                                                         let pvCount = value["pvCount"] as! Int
                                                         
                                                         let userID = value["userID"] as! String
                                                         
-                                                        let userName = value["userName"] as! String
-                                                        
-                                                        let userProfileImage = value["userProfileImage"] as! String
-                                                        
+                                                                                                              
                                                         
                                                         if videoCheck != nil {
                                                             self.videoKeyCheck.append(videoCheck!)
@@ -230,17 +235,24 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                                             self.videoKeyCheck.append("")
                                                         }
                                                         
-                                                        self.folderNameBox.append(folderName)
-                                                        self.imageURLBox.append(imageURL)
-                                                        self.linkURLBox.append(linkURL)
-                                                        self.nameBox.append(name)
-                                                        self.postIDBox.append(postID)
-                                                        self.pvCountBox.append(pvCount)
-                                                        self.userIDBox.append(userID)
-                                                        self.userNameBox.append(userName)
-                                                        self.userProfileImageBox.append(userProfileImage)
+                                                        if isPrivate == "NO" {
+                                                            
+                                                            self.folderNameBox.append(folderName)
+                                                            self.imageURLBox.append(imageURL)
+                                                            self.linkURLBox.append(linkURL)
+                                                            self.nameBox.append(name)
+                                                            self.postIDBox.append(postID)
+                                                            self.pvCountBox.append(pvCount)
+                                                            self.userIDBox.append(userID)
+                                                            
+                                                            self.userNameBox.append(followUserName!)
+                                                            self.userProfileImageBox.append(followUserURL!)
+                                                            
+                                                        } else {
+                                                            
+                                                        }
                                                         
-                                                       
+                                                        
                                             
                                                         
                                                         
@@ -281,7 +293,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                     self.tableFeed.reloadData()
                                     
                                     
-                                    print(self.userProfileImageBox)
+                                    
                                     
                                     
                                 })
@@ -671,7 +683,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         cell?.folderName.text = self.folderNameBox[indexPath.row]
         cell?.userName.text = self.userNameBox[indexPath.row]
         cell?.userPrfileImage.af_setImage(withURL:  URL(string: self.userProfileImageBox[indexPath.row])!)
-        cell?.favNumLabel.text = "\(self.pvCountBox[indexPath.row])件"
+        //cell?.favNumLabel.text = "\(self.pvCountBox[indexPath.row])件"
 
     
 
@@ -696,7 +708,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 
                 cell?.videoPlayer.load(withVideoId: self.videoKeyCheck[indexPath.row])
                 
-                
+                /*
                 if self.checkBox[indexPath.row] == "YES" {
                     cell?.favButton.isSelected = true
                 } else {
@@ -704,7 +716,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     cell?.favButton.isSelected = false
                     
                 }
-                
+                */
               cell?.videoPlayer.backgroundColor = UIColor.black
               cell?.videoPlayer.isHidden = false
 
@@ -712,6 +724,8 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             } else {
                 
                 cell?.actionButton.addTarget(self, action: #selector(self.imageOnClick(_:)), for: .touchUpInside)
+                
+                /*
                 if self.checkBox[indexPath.row] == "YES" {
                     cell?.favButton.isSelected = true
                 } else {
@@ -719,7 +733,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     cell?.favButton.isSelected = false
                     
                 }
-                
+                */
                 //Image
                 cell?.bigImage.isHidden = false
                 cell?.bigImage.af_setImage(withURL:  URL(string: self.imageURLBox[indexPath.row])!)
@@ -744,7 +758,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             cell?.titleLabel.isHidden = true
             cell?.textBox.isHidden = true
             cell?.webViewView.isHidden = false
-            
+            /*
             
             if self.checkBox[indexPath.row] == "YES" {
                 cell?.favButton.isSelected = true
@@ -755,7 +769,7 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             }
             
             
-            
+            */
             
             cell?.linkWeb.isHidden = false
             

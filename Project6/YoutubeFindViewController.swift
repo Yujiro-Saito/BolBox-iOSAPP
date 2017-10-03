@@ -19,7 +19,7 @@ class YoutubeFindViewController: UIViewController,UISearchBarDelegate,UITableVie
     var titleBox = [String]()
     var thumbnailURLBox = [String]()
     var videoIDBox = [String]()
-    
+    var folderPrivate = String()
     
     var selectedFolder = String()
     
