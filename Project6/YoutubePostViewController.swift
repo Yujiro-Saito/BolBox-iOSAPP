@@ -22,6 +22,7 @@ class YoutubePostViewController: UIViewController {
     var titleString = String()
     var videoCode = String()
     var folderName = String()
+    var folderPrits = String()
     
     var folderInfo = Dictionary<String,String>()
     let uid = FIRAuth.auth()?.currentUser?.uid
@@ -56,7 +57,7 @@ class YoutubePostViewController: UIViewController {
     
     func postButtonDidTap () {
         
-        self.folderInfo = ["imageURL" : self.imageURL, "name" : self.folderName]
+        self.folderInfo = ["imageURL" : self.imageURL, "name" : self.folderName, "isPrivate" : self.folderPrits]
         
         let folderNameDictionary: Dictionary<String, Dictionary<String, String?>> = [self.folderName : folderInfo]
         
@@ -65,16 +66,17 @@ class YoutubePostViewController: UIViewController {
         let keyvalue = ("\(key)")
 
         let post: Dictionary<String, AnyObject> = [
-            "bgType" : 0 as AnyObject,
             "folderName" :  self.folderName as AnyObject,
-            "linkURL" : "" as AnyObject,
+            "linkURL" : "https://www.youtube.com/watch?v=\(self.videoCode)" as AnyObject,
             "pvCount" : 0 as AnyObject,
             "userID" : uid as AnyObject,
             "userName" : userName as AnyObject,
             "name" :  self.titleString as AnyObject,
             "imageURL" : imageURL as AnyObject,
             "postID" : keyvalue as AnyObject,
-            "videoKey" : self.videoCode as AnyObject
+            "videoKey" : self.videoCode as AnyObject,
+            "isPrivate" : self.folderPrits as AnyObject
+            //folderPrivate
         ]
         
         firebasePost.setValue(post)

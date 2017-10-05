@@ -19,7 +19,7 @@ class YoutubeFindViewController: UIViewController,UISearchBarDelegate,UITableVie
     var titleBox = [String]()
     var thumbnailURLBox = [String]()
     var videoIDBox = [String]()
-    var folderPrivate = String()
+    var folderPrivates = String()
     
     var selectedFolder = String()
     
@@ -87,7 +87,7 @@ class YoutubeFindViewController: UIViewController,UISearchBarDelegate,UITableVie
         postVC.titleString = self.selctedTitle
         postVC.videoCode = self.videoKey
         postVC.folderName = self.selectedFolder
-        
+        postVC.folderPrits = self.folderPrivates
         
         
     }
@@ -242,12 +242,7 @@ class YoutubeFindViewController: UIViewController,UISearchBarDelegate,UITableVie
                 
             }
             
-            
-            print("ああああああああああいいいいいいいいいいいいうううううううう")
-            print(self.titleBox)
-            print(self.thumbnailURLBox)
-            print(self.videoIDBox)
-            
+                       
             
             self.sTable.reloadData()
             

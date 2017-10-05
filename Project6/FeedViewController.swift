@@ -295,6 +295,8 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                     self.userProfileImageBox.reverse()
                                     self.pvCountBox.reverse()
                                     self.postIDBox.reverse()
+ 
+ 
                                     self.tableFeed.reloadData()
                                     
                                     
@@ -314,7 +316,6 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 }
             }
             
-            //
         })
         
         
@@ -510,6 +511,15 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             //URL正式
             guard let finalUrl = URL(string: encodedURL!) else {
                 print("無効なURL")
+                
+                let alertViewControler = UIAlertController(title: "エラー", message: "Safariを開けません", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                
+                alertViewControler.addAction(okAction)
+                self.present(alertViewControler, animated: true, completion: nil)
+
+                
+                
                 return
             }
             

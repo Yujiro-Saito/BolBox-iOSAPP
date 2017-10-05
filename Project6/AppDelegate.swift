@@ -48,6 +48,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         
+        
+        let accessToLogin = AccoutSettingViewController()
+        accessToLogin.showIndicator()
+        
         if let error = error {
             
             print(error.localizedDescription)
@@ -64,11 +68,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
             // ...
             if let error = error {
                 // ...
+               
                 return
             } else {
                 
-                //DB投稿
-                
+               
                 
                 
                 print("Sign In successfully")

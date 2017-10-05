@@ -17,6 +17,7 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     var isFriend = Bool()
     
+    var friendID = String()
     
     func webViewDidStartLoad(_ webView: UIWebView) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -358,7 +359,7 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         segment.setTitle("写真・ビデオ", forSegmentAt: 0)
         segment.setTitle("リンク", forSegmentAt: 1)
         segment.backgroundColor = UIColor.clear
-        segment.tintColor = UIColor.darkGray
+        segment.tintColor = UIColor(red: 70/255, green: 153/255, blue: 61/255, alpha: 1.0)
         
         self.title = self.folderName
        
@@ -385,6 +386,100 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         let uids = FIRAuth.auth()?.currentUser?.uid
         
         
+        if self.isFriend == true {
+            
+            DataService.dataBase.REF_BASE.child("users").child(self.friendID).child("posts").queryOrdered(byChild: "folderName").queryEqual(toValue: folderName).observe(.value, with: { (snapshot) in
+                
+                self.linkPosts = []
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    
+                    for snap in snapshot {
+                        
+                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            
+                            
+                            if postDict["postID"] as? String != "" {
+                                
+                                let id = postDict["postID"] as? String
+                                self.postIDSS.append(id!)
+                                
+                                
+                            }
+                            
+                            //imageURLがない場合配列に追加
+                            if postDict["imageURL"] as? String == "" {
+                                let key = snap.key
+                                let post = Post(postKey: key, postData: postDict)
+                                
+                                self.linkPosts.append(post)
+                                
+                                
+                            } else if postDict["imageURL"] as? String != "" {
+                                
+                                if postDict["videoKey"] as? String != nil {
+                                    
+                                    let keyBox = postDict["videoKey"] as? String
+                                    self.types.append("YES")
+                                    self.videoKeyBox.append(keyBox!)
+                                    let key = snap.key
+                                    let post = Post(postKey: key, postData: postDict)
+                                    
+                                    
+                                    
+                                    self.photoPosts.append(post)
+                                    
+                                } else {
+                                    
+                                    self.videoKeyBox.append("")
+                                    self.types.append("NO")
+                                    let key = snap.key
+                                    let post = Post(postKey: key, postData: postDict)
+                                    
+                                    
+                                    
+                                    self.photoPosts.append(post)
+                                }
+                                
+                                
+                                
+                                
+                                
+                            }
+                            
+                            
+                            
+                            
+                        }
+                        
+                        
+                    }
+                    
+                    
+                }
+                
+                self.videoKeyBox.reverse()
+                self.types.reverse()
+                self.postIDSS.reverse()
+                self.linkPosts.reverse()
+                self.photoPosts.reverse()
+                self.toysTable.reloadData()
+                self.toysCollection.reloadData()
+                self.photoTable.reloadData()
+                
+                
+            })
+
+            
+            
+            
+            
+            
+            /////////
+            
+        } else {
             DataService.dataBase.REF_BASE.child("users").child(uids!).child("posts").queryOrdered(byChild: "folderName").queryEqual(toValue: folderName).observe(.value, with: { (snapshot) in
                 
                 self.linkPosts = []
@@ -440,7 +535,7 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
                                     self.photoPosts.append(post)
                                 }
                                 
-                              
+                                
                                 
                                 
                                 
@@ -468,7 +563,13 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
                 
                 
             })
-            
+
+        }
+        
+        
+        
+        
+        
             
         
         
@@ -686,8 +787,8 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
             detialVC.imageURL = self.itemIamgeURL
             detialVC.folderName = self.folderName
             
-            
             if self.typeCheck == "YES" {
+                detialVC.linkURL = self.itemLink!
                 detialVC.type = 2
             } else if self.typeCheck == "NO" {
                 detialVC.type = 0

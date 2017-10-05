@@ -13,10 +13,10 @@ class WallTabViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        UITabBar.appearance().tintColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+        UITabBar.appearance().tintColor = UIColor(red: 70/255, green: 153/255, blue: 61/255, alpha: 1.0)
         
         
-        UITabBar.appearance().barTintColor = UIColor(red: 33/255, green: 33/255, blue: 33/255, alpha: 1.0)
+        UITabBar.appearance().barTintColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
         
         
     }

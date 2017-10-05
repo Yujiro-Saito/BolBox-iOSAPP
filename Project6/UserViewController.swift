@@ -54,6 +54,8 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         //self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         //self.navigationController!.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.barTintColor = UIColor.rgb(r: 250, g: 250, b: 250, alpha: 1.0)
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGray
+        
         // UIColor.rgb(r: 255, g: 255, b: 255, alpha: 1)
         self.navigationController?.hidesBarsOnSwipe = false
         
@@ -366,12 +368,13 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         
         
         if self.isFollow == true {
-            headerView.followButton.backgroundColor = UIColor.green // 背景色
+            headerView.followButton.backgroundColor = UIColor(red: 70/255, green: 153/255, blue: 61/255, alpha: 1.0) // 背景色
+            headerView.followButton.tintColor = UIColor.white
             headerView.followButton.layer.borderWidth = 1.0 // 枠線の幅
-            headerView.followButton.layer.borderColor = UIColor.darkGray.cgColor // 枠線の色
+            headerView.followButton.layer.borderColor = UIColor.white.cgColor // 枠線の色
             headerView.followButton.layer.cornerRadius = 10.0 // 角丸のサイズ
         } else if self.isFollow == false {
-            headerView.followButton.backgroundColor = UIColor.clear // 背景色
+            headerView.followButton.backgroundColor = UIColor.white
             headerView.followButton.layer.borderWidth = 1.0 // 枠線の幅
             headerView.followButton.layer.borderColor = UIColor.darkGray.cgColor // 枠線の色
             headerView.followButton.layer.cornerRadius = 10.0 // 角丸のサイズ
@@ -574,7 +577,7 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
             
             another.isFriend = true
             
-            
+            another.friendID = self.userID
             
             
         }

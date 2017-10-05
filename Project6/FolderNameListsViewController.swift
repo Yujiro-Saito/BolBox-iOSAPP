@@ -182,7 +182,7 @@ class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITabl
             let photoVC = (segue.destination as? PhotoPostViewController)!
             photoVC.folderName = selectedName
             
-            photoVC.folderPrivate = selectedPrivate
+            photoVC.privateStr = selectedPrivate
             
         } else if segue.identifier == "ToLinkPos" {
             
@@ -194,7 +194,7 @@ class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITabl
             
             let videoVC = (segue.destination as? YoutubeFindViewController)!
             videoVC.selectedFolder = selectedName
-            videoVC.folderPrivate = selectedPrivate
+            videoVC.folderPrivates = selectedPrivate
                 
             
         }

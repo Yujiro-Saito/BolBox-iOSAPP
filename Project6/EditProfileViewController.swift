@@ -18,13 +18,41 @@ class EditProfileViewController: UIViewController,UITextFieldDelegate ,UIImagePi
     
     @IBAction func SignOutButton(_ sender: Any) {
         
-        let firebaseAuth = FIRAuth.auth()
-        do {
-            try firebaseAuth?.signOut()
-            performSegue(withIdentifier: "TesterLogout", sender: nil)
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
+         let alert: UIAlertController = UIAlertController(title: "ログアウトしますか", message: nil, preferredStyle:  UIAlertControllerStyle.alert)
+        
+        
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+            (action: UIAlertAction!) -> Void in
+            print("OK")
+            
+            
+            let firebaseAuth = FIRAuth.auth()
+            do {
+                try firebaseAuth?.signOut()
+                self.performSegue(withIdentifier: "TesterLogout", sender: nil)
+            } catch let signOutError as NSError {
+                print ("Error signing out: %@", signOutError)
+            }
+            
+            
+        })
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
+            (action: UIAlertAction!) -> Void in
+            print("Cancel")
+        })
+        
+        alert.addAction(cancelAction)
+        alert.addAction(defaultAction)
+        
+        self.present(alert, animated: true, completion: nil)
+        
+        
+        
+        
+        
+        
+        
+       
 
     }
     
@@ -212,6 +240,15 @@ class EditProfileViewController: UIViewController,UITextFieldDelegate ,UIImagePi
                     
                     self.indicator.stopAnimating()
                     self.checkBool = false
+                    
+                    
+                    let alertViewControler = UIAlertController(title: "プロフィールを変更しました", message: nil, preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    
+                    alertViewControler.addAction(okAction)
+                    self.present(alertViewControler, animated: true, completion: nil)
+                    //self.performSegue(withIdentifier: "GOINGBACK", sender: nil)
+                    
                 }
                 
                 

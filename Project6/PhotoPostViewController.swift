@@ -17,7 +17,7 @@ class PhotoPostViewController: UIViewController, UIImagePickerControllerDelegate
     
     @IBOutlet weak var folName: UILabel!
 
-    var folderPrivate = String()
+    var privateStr = String()
     
     //データ
     var folderName = String()
@@ -43,7 +43,7 @@ class PhotoPostViewController: UIViewController, UIImagePickerControllerDelegate
         folName.text = self.folderName
         
         self.postPhoto.layer.masksToBounds = true
-         self.postPhoto.layer.cornerRadius = 15
+        self.postPhoto.layer.cornerRadius = 15
         
         
         
@@ -92,7 +92,7 @@ class PhotoPostViewController: UIViewController, UIImagePickerControllerDelegate
             "userName" : userName as AnyObject,
             "name" : "" as AnyObject,
             "postID" : keyvalue as AnyObject,
-            "isPrivate" : folderPrivate as AnyObject
+            "isPrivate" : self.privateStr as AnyObject
         ]
         
         
@@ -123,7 +123,7 @@ class PhotoPostViewController: UIViewController, UIImagePickerControllerDelegate
                     
                     
                     //folder name
-                    let folderInfo: Dictionary<String,String> = ["imageURL" : firstDownloadURL!, "name" : self.folderName, "isPrivate" : self.folderPrivate]
+                    let folderInfo: Dictionary<String,String> = ["imageURL" : firstDownloadURL!, "name" : self.folderName, "isPrivate" : self.privateStr]
                     
                     self.folderNameDictionary = [self.folderName : folderInfo]
                     

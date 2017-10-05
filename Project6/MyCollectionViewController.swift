@@ -33,8 +33,10 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         self.navigationController?.navigationBar.barTintColor = UIColor.rgb(r: 250, g: 250, b: 250, alpha: 1.0)
         // UIColor.rgb(r: 255, g: 255, b: 255, alpha: 1)
         self.navigationController?.hidesBarsOnSwipe = false
-    }
-    
+        
+        
+        
+            }
     
     @IBOutlet weak var modalView: UIView!
     @IBOutlet weak var photoImage: UIImageView!
@@ -72,6 +74,45 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
         if FIRAuth.auth()?.currentUser == nil {
             performSegue(withIdentifier: "TesterLogout", sender: nil)
+        } else {
+            
+            //ユーザーのコレクションの読み込み
+            DataService.dataBase.REF_BASE.child("users").queryOrdered(byChild: "uid").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observe(.value, with: { (snapshot) in
+                
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    
+                    for snap in snapshot {
+                        
+                        
+                        
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            
+                            
+                            if postDict["followers"] as? Dictionary<String, String> == nil {
+                                
+                                let followerdata = ["followerNum" : 0 ]
+                                
+                                
+                                DataService.dataBase.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)").updateChildValues(followerdata)
+                                
+                            }
+                            
+                            if postDict["following"] as? Dictionary<String, String> == nil {
+                                let followingData = ["followingNum" : 0]
+                                DataService.dataBase.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)").updateChildValues(followingData)
+                                
+                                
+                            }
+                            
+                            
+                        }
+                    }
+                }
+            })
+
+            
         }
         
         
@@ -102,7 +143,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     
     @IBOutlet weak var noBoxView: UIView!
     
-    
+   
 
     override func viewDidLoad() {
         
@@ -141,27 +182,66 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
                 
                 for snap in snapshot {
                     
+                    
+                                        
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
                         
                         
-                        
-                        if postDict["followerNum"] as? Dictionary<String, Int> == nil {
-                            //0
+                    /*
+                        if postDict["followers"] as? Dictionary<String, String> == nil {
+                            
                             let followerdata = ["followerNum" : 0 ]
                             
                             
                             DataService.dataBase.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)").updateChildValues(followerdata)
+                            
                         }
+                        
+                        if postDict["following"] as? Dictionary<String, String> == nil {
+                            let followingData = ["followingNum" : 0]
+                            DataService.dataBase.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)").updateChildValues(followingData)
+                            
+                            
+                        }
+*/
+                        
+                        
+                       /*
+                        if postDict["followingNum"] as? Int == nil {
+                            print("おおおおおおおおおおおおお")
+                            
+                            
+                            let followingData = ["followingNum" : 0]
+                            DataService.dataBase.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)").updateChildValues(followingData)
+                            
+                        } else {
+                            
+                        }
+                        
+                        if postDict["followerNum"] as? Int == nil {
+                            
+                            let followerdata = ["followerNum" : 0 ]
+                            
+                            
+                            DataService.dataBase.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)").updateChildValues(followerdata)
+                        } else {
+                            
+                        }
+                        */
+                        
+                        
+                        //guard postDict["followerNum"] as? Int != nil else {
+                         ///   print("iiiiいいいあああああああああああああ")
+                        //}
+                        
+                       // guard postDict["followingNum"] as? Int != nil else {
+                       ///     print("uuuuuuuuいいいあああああああああああああ")
+                       // }
+                        
+                       
 
                         
                         
-                        if postDict["followingNum"] as? Dictionary<String, Int> == nil {
-                            //0
-                            let followingData = ["followingNum" : 0]
-                            
-                            
-                            DataService.dataBase.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)").updateChildValues(followingData)
-                        }
                         
                         if postDict["folderName"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
                             

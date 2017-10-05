@@ -40,8 +40,145 @@ class DetialContentViewController: UIViewController,UIWebViewDelegate {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
+    
+    func safariTapped() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        let safari = UIAlertAction(title: "Safariで開く", style: UIAlertActionStyle.default, handler: {
+            (action: UIAlertAction!) in
+            
+            
+            print("いいいいいいいいいいいあああああああああああ")
+            print(self.linkURL)
+            let targetURL = self.linkURL
+            let encodedURL = targetURL.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
+            
+            //URL正式
+            guard let finalUrl = URL(string: encodedURL!) else {
+                print("無効なURL")
+                return
+            }
+            
+            
+            
+            //opem safari
+            
+            
+            if (encodedURL?.contains("https"))! || (encodedURL?.contains("http"))! {
+                
+                //httpかhttpsで始まってるか確認
+                if (encodedURL?.hasPrefix("https"))! || (encodedURL?.hasPrefix("http"))! {
+                    //http(s)で始まってる場合safari起動
+                    let safariVC = SFSafariViewController(url: finalUrl)
+                    self.present(safariVC, animated: true, completion: nil)
+                    
+                }
+                    //Httpsの場合
+                else if let range = encodedURL?.range(of: "https") {
+                    let startPosition = encodedURL?.characters.distance(from: (encodedURL?.characters.startIndex)!, to: range.lowerBound)
+                    
+                    //4番目から最後までをURLとして扱う
+                    
+                    let indexNumber = startPosition
+                    
+                    let validURLString = (encodedURL?.substring(with: (encodedURL?.index((encodedURL?.startIndex)!, offsetBy: indexNumber!))!..<(encodedURL?.index((encodedURL?.endIndex)!, offsetBy: 0))!))
+                    
+                    let validURL = URL(string: validURLString!)
+                    
+                    
+                    //safari起動
+                    let safariVC = SFSafariViewController(url: validURL!)
+                    self.present(safariVC, animated: true, completion: nil)
+                    
+                    
+                } else if let httpRange = encodedURL?.range(of: "http") {
+                    //Httpの場合
+                    let startPosition = encodedURL?.characters.distance(from: (encodedURL?.characters.startIndex)!, to: httpRange.lowerBound)
+                    
+                    //4番目から最後までをURLとして扱う
+                    
+                    let indexNumber = startPosition
+                    
+                    let validURLString = (encodedURL?.substring(with: (encodedURL?.index((encodedURL?.startIndex)!, offsetBy: indexNumber!))!..<(encodedURL?.index((encodedURL?.endIndex)!, offsetBy: 0))!))
+                    
+                    let validURL = URL(string: validURLString!)
+                    
+                    //safari起動
+                    let safariVC = SFSafariViewController(url: validURL!)
+                    self.present(safariVC, animated: true, completion: nil)
+                    
+                    
+                    
+                    
+                    
+                    
+                }
+                    
+                else {
+                }
+                
+                
+            } else {
+                //そもそもhttp(s)がない場合
+                print("無効なURL")
+                //アラート表示
+                let alertController = UIAlertController(title: "エラー", message: "URLが無効なようです", preferredStyle: .alert)
+                
+                let okAction = UIAlertAction(title: "Ok", style: .default) {
+                    (action) in
+                    self.dismiss(animated: true, completion: nil)
+                }
+                
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+                
+                
+                
+                
+            }
+            
+            
+            
+            
+            
+        })
+        
+        let report = UIAlertAction(title: "不審な投稿として報告", style: UIAlertActionStyle.default, handler: {
+            (action: UIAlertAction!) in
+            
+            
+            
+        })
+        
+        
+        let cancel = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler: {
+            (action: UIAlertAction!) in
+        })
+        
+        actionSheet.addAction(safari)
+        actionSheet.addAction(report)
+        actionSheet.addAction(cancel)
+        
+        self.present(actionSheet, animated: true, completion: nil)
+        
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        if self.imageURL != "" {
+            
+            if self.videoKey != "" {
+                let rightSearchBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.action, target: self, action: #selector(DetialContentViewController.safariTapped))
+                self.navigationItem.setRightBarButtonItems([rightSearchBarButtonItem], animated: true)
+            }
+            
+        } else if linkURL != "" {
+            let rightSearchBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.action, target: self, action: #selector(DetialContentViewController.safariTapped))
+            self.navigationItem.setRightBarButtonItems([rightSearchBarButtonItem], animated: true)
+        }
         
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]

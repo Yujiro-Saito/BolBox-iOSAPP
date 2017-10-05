@@ -172,9 +172,9 @@ class CreateFolderViewController: UIViewController,UITextFieldDelegate {
             designVC.folderName = self.nameTextField.text!
             
             if self.isPrivate == true {
-                designVC.folderPrivate = "YES"
+                designVC.privateStr = "YES"
             } else {
-                designVC.folderPrivate = "NO"
+                designVC.privateStr = "NO"
             }
             
             
