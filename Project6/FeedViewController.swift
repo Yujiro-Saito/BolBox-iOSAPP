@@ -176,11 +176,6 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                                 let followUserURL = postDict["userImageURL"] as? String
                                                 
                                                 
-                                                
-
-                                                
-                                                
-                                                
                                                 if postDict["posts"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
                                                     
                                                     
@@ -673,6 +668,10 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         let cell = tableFeed.dequeueReusableCell(withIdentifier: "Feeder", for: indexPath) as? FeedTableViewCell
         
+        let cellSelectedBgView = UIView()
+        cellSelectedBgView.backgroundColor = UIColor.black
+        cell?.selectedBackgroundView = cellSelectedBgView
+
         
         
         

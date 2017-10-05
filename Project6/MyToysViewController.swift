@@ -17,6 +17,18 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     var isFriend = Bool()
     
+    
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    // ロード完了でインジケータ非表示
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        
+        
+    }
+    
     @IBAction func linkDelete(_ sender: Any) {
         
         var buttonS = sender as! UIButton
@@ -187,21 +199,7 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
                 self.toysCollection.isHidden = true
                 self.photoTable.isHidden = true
 
-                
-            
-                
-                self.toysTable.isHidden = false
-                self.toysCollection.isHidden = true
-                self.photoTable.isHidden = true
-
-            
-            
-            
-            
-            
-            
-            
-            
+           
             
         }
         
@@ -414,6 +412,8 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
                                 let post = Post(postKey: key, postData: postDict)
                                 
                                 self.linkPosts.append(post)
+                                
+                                
                             } else if postDict["imageURL"] as? String != "" {
                                 
                                 if postDict["videoKey"] as? String != nil {
@@ -502,12 +502,19 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
   
+        
+        var cellSelectedBgView = UIView()
+        cellSelectedBgView.backgroundColor = UIColor.white
+        
+        
+        
+        
        
         if tableView == toysTable {
             
             let cell = toysTable.dequeueReusableCell(withIdentifier: "toys", for: indexPath) as? ToysTableViewCell
             //最初は何も入れない
-            
+            cell?.selectedBackgroundView = cellSelectedBgView
             
             if self.isFriend == true {
                 
@@ -539,7 +546,7 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
             
             let photoCell = photoTable.dequeueReusableCell(withIdentifier: "Russia", for: indexPath) as? ToysPhotoTableViewCell
             
-            
+            photoCell?.selectedBackgroundView = cellSelectedBgView
             
             
             let post = photoPosts[indexPath.row]
@@ -666,10 +673,11 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         
         if segue.identifier == "Armin" {
-            
-            
+           
             
         } else {
+            
+            
             let detialVC = (segue.destination as? DetialContentViewController)!
             
             detialVC.videoKey = self.videoCheckKey
@@ -684,7 +692,7 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
             } else if self.typeCheck == "NO" {
                 detialVC.type = 0
             } else {
-                detialVC.type = self.typing
+                detialVC.type = 1
                 detialVC.linkURL = self.itemLink!
             }
 
@@ -737,7 +745,7 @@ class MyToysViewController: UIViewController,UITableViewDelegate,UITableViewData
         itemLink = self.linkPosts[indexPath.row].linkURL
         
         self.typing = 1
-        
+        self.typeCheck = ""
         self.videoCheckKey = "Fuck"
         
         performSegue(withIdentifier: "Dettil", sender: nil)

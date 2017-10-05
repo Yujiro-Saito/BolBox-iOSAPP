@@ -127,6 +127,9 @@ class FolderNameListsViewController: UIViewController,UITableViewDelegate,UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = folderTable.dequeueReusableCell(withIdentifier: "Folders", for: indexPath) as? FoldetListsTableViewCell
         print(self.folderListsBox[indexPath.row])
+        let cellSelectedBgView = UIView()
+        cellSelectedBgView.backgroundColor = UIColor.black
+        cell?.selectedBackgroundView = cellSelectedBgView
         cell?.folderName.text = self.folderListsBox[indexPath.row]
         cell?.layer.masksToBounds = true
         cell?.cardView.layer.cornerRadius = 5.0

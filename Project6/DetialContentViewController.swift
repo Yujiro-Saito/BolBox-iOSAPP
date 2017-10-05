@@ -67,9 +67,14 @@ class DetialContentViewController: UIViewController,UIWebViewDelegate {
         self.itemImage.layer.cornerRadius = 15
         
         if self.type == 0 {
+            
             self.itemImage.isHidden = false
             self.itemImage.af_setImage(withURL: URL(string: imageURL)!)
         } else if self.type == 1 {
+            
+            
+            
+            self.itemImage.isHidden = true
             
             self.itemName.isHidden = true
             self.itemTextBox.isHidden = true
@@ -89,6 +94,8 @@ class DetialContentViewController: UIViewController,UIWebViewDelegate {
             
             
         } else {
+            
+            
             if self.videoKey != "Fuck" && self.videoKey != "" {
                 self.videoPlayer.isHidden = false
                 videoPlayer.load(withVideoId: videoKey)

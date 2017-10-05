@@ -15,6 +15,7 @@ class MyCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var bgView: UIView!
     
+    @IBOutlet weak var lockButton: UIImageView!
    
     
 }

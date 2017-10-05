@@ -13,6 +13,12 @@ import Eureka
 
 class LinkPostViewController: FormViewController, UIWebViewDelegate  {
     
+    
+    
+    
+    
+    
+    
     let titleWebView : UIWebView = UIWebView()
     var webLoaded = Bool()
     //データ
@@ -38,6 +44,8 @@ class LinkPostViewController: FormViewController, UIWebViewDelegate  {
         }
         self.check = true
     }
+    
+    
    
     var folderPrivate = String()
     

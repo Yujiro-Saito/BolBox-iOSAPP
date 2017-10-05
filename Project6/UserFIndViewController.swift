@@ -55,26 +55,7 @@ class UserFIndViewController: UIViewController,UITableViewDelegate,UITableViewDa
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+     
         
     }
     
@@ -92,6 +73,10 @@ class UserFIndViewController: UIViewController,UITableViewDelegate,UITableViewDa
         
         
         let cell = findTable.dequeueReusableCell(withIdentifier: "Finder", for: indexPath) as? FindTableViewCell
+        
+        let cellSelectedBgView = UIView()
+        cellSelectedBgView.backgroundColor = UIColor.black
+        cell?.selectedBackgroundView = cellSelectedBgView
         
         cell?.profileIMage.image = nil
         cell?.titleName.text = self.names[indexPath.row]
@@ -126,7 +111,7 @@ class UserFIndViewController: UIViewController,UITableViewDelegate,UITableViewDa
         
         
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             
             
             DataService.dataBase.REF_BASE.child("users").observe(.value, with: { (snapshot) in

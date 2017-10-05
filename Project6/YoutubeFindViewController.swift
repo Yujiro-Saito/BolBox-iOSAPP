@@ -105,6 +105,11 @@ class YoutubeFindViewController: UIViewController,UISearchBarDelegate,UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = sTable.dequeueReusableCell(withIdentifier: "GoHell", for: indexPath) as? YoutubeTableViewCell
         
+        let cellSelectedBgView = UIView()
+        cellSelectedBgView.backgroundColor = UIColor.black
+        cell?.selectedBackgroundView = cellSelectedBgView
+        
+        
         cell?.itemIMage.image = nil
         tableView.tableFooterView = UIView()
         cell?.videoTitle.text = self.titleBox[indexPath.row]

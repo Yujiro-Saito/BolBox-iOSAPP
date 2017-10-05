@@ -314,6 +314,11 @@ class FriendsListsViewController: UIViewController,UITableViewDelegate,UITableVi
         
         
         
+        let cellSelectedBgView = UIView()
+        cellSelectedBgView.backgroundColor = UIColor.black
+        cell?.selectedBackgroundView = cellSelectedBgView
+        
+        
         cell?.userImage.image = nil
         cell?.clipsToBounds = true
         cell?.userName.text = nil

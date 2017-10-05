@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import SafariServices
 
 class AccoutSettingViewController: UIViewController,GIDSignInUIDelegate{
 
@@ -25,6 +26,15 @@ class AccoutSettingViewController: UIViewController,GIDSignInUIDelegate{
     }
     
     @IBAction func policyButtonDidTap(_ sender: Any) {
+        
+        
+        let finalURL = URL(string: "https://peraichi.com/landing_pages/view/66yls")
+        
+        let safariVC = SFSafariViewController(url: finalURL!)
+        self.present(safariVC, animated: true, completion: nil)
+        
+        
+        
     }
     @IBOutlet weak var googleLabel: UILabel!
 
@@ -53,15 +63,13 @@ class AccoutSettingViewController: UIViewController,GIDSignInUIDelegate{
         
         self.wait( {self.appDelegateAccess.googleSuccessful == false} ) {
             
-            //登録完了してtrueになったら
-            print("登録完了")
-            //DBプロフィール投稿
-            let photoString = String(describing: FIRAuth.auth()?.currentUser?.photoURL)
+            let photos = FIRAuth.auth()?.currentUser?.photoURL
+            let photoStr = String(describing: photos!)
             
-            let userData = ["userName" : FIRAuth.auth()?.currentUser?.displayName, "email" : FIRAuth.auth()?.currentUser?.email,"userImageURL" : photoString,  "uid" : FIRAuth.auth()?.currentUser?.uid, "followerNum" : 0,"followingNum" : 0] as [String : Any]
+            let userData = ["userName" : FIRAuth.auth()?.currentUser?.displayName!, "email" : FIRAuth.auth()?.currentUser?.email,"userImageURL" : photoStr,  "uid" : FIRAuth.auth()?.currentUser?.uid, "followerNum" : 0,"followingNum" : 0] as [String : Any]
             
             //DBに追記
-            DataService.dataBase.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)").setValue(userData)
+            DataService.dataBase.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)").updateChildValues(userData)
             
         
             

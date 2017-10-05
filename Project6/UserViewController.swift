@@ -44,11 +44,17 @@ class UserViewController: UIViewController,UICollectionViewDataSource, UICollect
         
         
         
+        self.navigationItem.title = "VolBox"
+        
+        // フォント種をTime New Roman、サイズを10に指定
+        self.navigationController?.navigationBar.titleTextAttributes
+            = [NSFontAttributeName: UIFont(name: "MarkerFelt-Wide", size: 20)!]
         self.navigationController?.isNavigationBarHidden = false
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController!.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.black]
+        //self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        //self.navigationController!.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.barTintColor = UIColor.rgb(r: 250, g: 250, b: 250, alpha: 1.0)
+        // UIColor.rgb(r: 255, g: 255, b: 255, alpha: 1)
         self.navigationController?.hidesBarsOnSwipe = false
         
         userCollection.delegate = self

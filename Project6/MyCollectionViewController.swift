@@ -91,6 +91,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
     var folderNameBox = [String]()
     var folderName = String()
     var folderImageURLBox = [String]()
+    var isPrivates = [String]()
     
     var isPhoto = Bool()
     var isLink = Bool()
@@ -134,6 +135,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             self.userPosts = []
             self.folderNameBox = []
             self.folderImageURLBox = []
+            self.isPrivates = []
             
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 
@@ -142,6 +144,24 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
                         
                         
+                        
+                        if postDict["followerNum"] as? Dictionary<String, Int> == nil {
+                            //0
+                            let followerdata = ["followerNum" : 0 ]
+                            
+                            
+                            DataService.dataBase.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)").updateChildValues(followerdata)
+                        }
+
+                        
+                        
+                        if postDict["followingNum"] as? Dictionary<String, Int> == nil {
+                            //0
+                            let followingData = ["followingNum" : 0]
+                            
+                            
+                            DataService.dataBase.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)").updateChildValues(followingData)
+                        }
                         
                         if postDict["folderName"] as? Dictionary<String, Dictionary<String, AnyObject?>> != nil {
                             
@@ -152,9 +172,10 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
                                 
                                 let valueImageURL = value["imageURL"] as! String
                                 let valueText = value["name"] as! String
+                                let isLocked = value["isPrivate"] as! String
                                 self.folderImageURLBox.append(valueImageURL)
                                 self.folderNameBox.append(valueText)
-                                
+                                self.isPrivates.append(isLocked)
                                 
                                 
                             }
@@ -177,7 +198,7 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
             }
             
             
-            
+            self.isPrivates.reverse()
             self.folderNameBox.reverse()
             self.folderImageURLBox.reverse()
             
@@ -462,6 +483,15 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
         
         
         
+        
+        if self.isPrivates[indexPath.row] == "YES" {
+            cell?.lockButton.isHidden = false
+        } else if self.isPrivates[indexPath.row] == "NO" {
+            cell?.lockButton.isHidden = true
+        } else {
+            cell?.lockButton.isHidden = false
+        }
+        
         cell?.itemTitleLabel.text = folderNameBox[indexPath.row]
         
         let photoURL = FIRAuth.auth()?.currentUser?.photoURL
@@ -559,14 +589,42 @@ class MyCollectionViewController: UIViewController,UICollectionViewDataSource, U
                         if let postDict = snap.value as? Dictionary<String, AnyObject> {
                             
                             //followwer人数をラベルに表示
-                            let countOfFollowers = postDict["followerNum"] as? Int
-                            headerView.followerLabel.text = String(describing: countOfFollowers!)
-                            self.amountOfFollowers = countOfFollowers!
+                            if postDict["followerNum"] as? Int != nil {
+                                let countOfFollowers = postDict["followerNum"] as? Int
+                                headerView.followerLabel.text = String(describing: countOfFollowers!)
+                                self.amountOfFollowers = countOfFollowers!
+
+                            } else {
+                                headerView.followerLabel.text = "0"
+                            }
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                            //let countOfFollowers = postDict["followerNum"] as? Int
+                            //headerView.followerLabel.text = String(describing: countOfFollowers!)
                             
                             
-                            let follwingount = postDict["followingNum"] as? Int
-                            headerView.followingLabel.text = String(describing: follwingount!)
                             //self.amountOfFollowers = countOfFollowers!
+                            
+                            
+                            //let follwingount = postDict["followingNum"] as? Int
+                            //headerView.followingLabel.text = String(describing: follwingount!)
+                            //self.amountOfFollowers = countOfFollowers!
+                            
+                            if postDict["followingNum"] as? Int != nil {
+                                let follwingount = postDict["followingNum"] as? Int
+                                headerView.followingLabel.text = String(describing: follwingount!)
+                                //self.amountOfFollowers = countOfFollowers!
+                                
+                            } else {
+                                headerView.followingLabel.text = "0"
+                            }
+                            
                             
                             
                             if postDict["following"] as? Dictionary<String, AnyObject?> != nil {
