@@ -203,6 +203,14 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                                         let isPrivate = value["isPrivate"] as! String
                                                         
                                                         
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
                                                         /*
                                                         //Likes
                                                         if value["peopleWhoLike"] as? Dictionary<String,Dictionary<String,String>?> != nil {
@@ -239,13 +247,6 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                                         
                                                         let userID = value["userID"] as! String
                                                         
-                                                                                                              
-                                                        
-                                                        if videoCheck != nil {
-                                                            self.videoKeyCheck.append(videoCheck!)
-                                                        } else {
-                                                            self.videoKeyCheck.append("")
-                                                        }
                                                         
                                                         if isPrivate == "NO" {
                                                             
@@ -260,12 +261,17 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                                             self.userNameBox.append(followUserName!)
                                                             self.userProfileImageBox.append(followUserURL!)
                                                             
+                                                            if videoCheck != nil {
+                                                                self.videoKeyCheck.append(videoCheck!)
+                                                            } else {
+                                                                self.videoKeyCheck.append("")
+                                                            }
+                                                            
                                                         } else {
                                                             
+                                                            //Private
+                                                           
                                                         }
-                                                        
-                                                        
-                                            
                                                         
                                                         
                                                     }
@@ -291,17 +297,17 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                     }
                                     
                                 
-                                    self.checkBox.reverse()
-                                    self.videoKeyCheck.reverse()
-                                    self.folderNameBox.reverse()
-                                    self.imageURLBox.reverse()
-                                    self.linkURLBox.reverse()
-                                    self.nameBox.reverse()
-                                    self.userIDBox.reverse()
-                                    self.userNameBox.reverse()
-                                    self.userProfileImageBox.reverse()
-                                    self.pvCountBox.reverse()
-                                    self.postIDBox.reverse()
+                                    //self.checkBox.reverse()
+                                    //self.videoKeyCheck.reverse()
+                                    //self.folderNameBox.reverse()
+                                    //self.imageURLBox.reverse()
+                                    //self.linkURLBox.reverse()
+                                   // self.nameBox.reverse()
+                                    //self.userIDBox.reverse()
+                                   // self.userNameBox.reverse()
+                                   // self.userProfileImageBox.reverse()
+                                   // self.pvCountBox.reverse()
+                                   // self.postIDBox.reverse()
  
  
                                     self.tableFeed.reloadData()
