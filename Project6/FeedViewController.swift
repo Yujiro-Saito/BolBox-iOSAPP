@@ -92,13 +92,20 @@ class FeedViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
         
-       
+        
+        self.tableFeed.refreshControl = UIRefreshControl()
+        self.tableFeed.refreshControl?.addTarget(self, action: #selector(FeedViewController.refresh), for: .valueChanged)
+
  
         
     }
     
     
-    
+    func refresh() {
+        
+        self.tableFeed.refreshControl?.endRefreshing()
+        
+    }
    
     
     
