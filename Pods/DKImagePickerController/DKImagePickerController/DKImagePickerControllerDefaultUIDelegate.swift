@@ -29,12 +29,34 @@ open class DKImagePickerControllerDefaultUIDelegate: NSObject, DKImagePickerCont
     
     open func updateDoneButtonTitle(_ button: UIButton) {
         if self.imagePickerController.selectedAssets.count > 0 {
-            button.setTitle(String(format: DKImageLocalizedStringWithKey("select"), self.imagePickerController.selectedAssets.count), for: .normal)
+            
+            let nF = NumberFormatter()
+            nF.numberStyle = .decimal
+            nF.locale = Locale(identifier: Locale.current.identifier)
+            
+            let formattedSelectableCount = nF.string(from: NSNumber(value: self.imagePickerController.selectedAssets.count))
+            
+            button.setTitle(String(format: DKImageLocalizedStringWithKey("select"), formattedSelectableCount ?? self.imagePickerController.selectedAssets.count), for: .normal)
         } else {
             button.setTitle(DKImageLocalizedStringWithKey("done"), for: .normal)
         }
         
         button.sizeToFit()
+        
+        if #available(iOS 11.0, *) { // Handle iOS 11 BarButtonItems bug
+            if button.constraints.count == 0 {
+                button.widthAnchor.constraint(equalToConstant: button.bounds.width).isActive = true
+                button.heightAnchor.constraint(equalToConstant: button.bounds.height).isActive = true
+            } else {
+                for constraint in button.constraints {
+                    if constraint.firstAttribute == .width {
+                        constraint.constant = button.bounds.width
+                    } else if constraint.firstAttribute == .height {
+                        constraint.constant = button.bounds.height
+                    }
+                }
+            }
+        }
     }
 	
 	// Delegate methods...
@@ -60,7 +82,7 @@ open class DKImagePickerControllerDefaultUIDelegate: NSObject, DKImagePickerCont
 	                                  showsCancelButtonForVC vc: UIViewController) {
 		vc.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
 		                                                      target: imagePickerController,
-		                                                      action: #selector(imagePickerController.dismiss as (Void) -> Void))
+		                                                      action: #selector(imagePickerController.dismiss as () -> Void))
 	}
 	
 	open func imagePickerController(_ imagePickerController: DKImagePickerController,
@@ -77,10 +99,19 @@ open class DKImagePickerControllerDefaultUIDelegate: NSObject, DKImagePickerCont
     }
 	
 	open func imagePickerControllerDidReachMaxLimit(_ imagePickerController: DKImagePickerController) {
-        let alert = UIAlertController(title: DKImageLocalizedStringWithKey("maxLimitReached")
-            , message:String(format: DKImageLocalizedStringWithKey("maxLimitReachedMessage"), imagePickerController.maxSelectableCount)
-            , preferredStyle: .alert)
+        
+        let nF = NumberFormatter()
+        nF.numberStyle = .decimal
+        nF.locale = Locale(identifier: Locale.current.identifier)
+        
+        let formattedMaxSelectableCount = nF.string(from: NSNumber(value: imagePickerController.maxSelectableCount))
+        
+        let alert = UIAlertController(title: DKImageLocalizedStringWithKey("maxLimitReached"), message: nil, preferredStyle: .alert)
+        
+        alert.message = String(format: DKImageLocalizedStringWithKey("maxLimitReachedMessage"), formattedMaxSelectableCount ?? imagePickerController.maxSelectableCount)
+        
         alert.addAction(UIAlertAction(title: DKImageLocalizedStringWithKey("ok"), style: .cancel) { _ in })
+        
         imagePickerController.present(alert, animated: true){}
 	}
 	
@@ -132,7 +163,7 @@ open class DKImagePickerControllerCamera: DKCamera, DKImagePickerControllerCamer
         
     }
 
-    open func setDidFinishCapturingImage(block: @escaping (UIImage) -> Void) {
+    open func setDidFinishCapturingImage(block: @escaping (UIImage, [AnyHashable : Any]?) -> Void) {
         super.didFinishCapturingImage = block
     }
 

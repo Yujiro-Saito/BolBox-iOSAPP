@@ -274,7 +274,7 @@ open class CircleMenu: UIButton {
   
   // MARK: actions
   
-  func onTap() {
+  @objc func onTap() {
     if buttonsIsShown() == false {
       let platform = createPlatform()
       buttons = createButtons(platform: platform)
@@ -288,7 +288,7 @@ open class CircleMenu: UIButton {
     tapRotatedAnimation(0.3, isSelected: isShow)
   }
   
-  func buttonHandler(_ sender: CircleMenuButton) {
+  @objc func buttonHandler(_ sender: CircleMenuButton) {
     guard let platform = self.platform else { return }
 
     delegate?.circleMenu?(self, buttonWillSelected: sender, atIndex: sender.tag)
