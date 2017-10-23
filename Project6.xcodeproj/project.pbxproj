@@ -554,7 +554,7 @@
 					B72A71F21EC677C100EA9BDF = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 4Z7E4P5NG8;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -896,7 +896,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = Port_dist;
 				SWIFT_OBJC_BRIDGING_HEADER = "Project6/Project6-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -918,7 +919,8 @@
 				PROVISIONING_PROFILE = "908f11b3-50d1-4601-900c-48e327834931";
 				PROVISIONING_PROFILE_SPECIFIER = Port_dist;
 				SWIFT_OBJC_BRIDGING_HEADER = "Project6/Project6-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

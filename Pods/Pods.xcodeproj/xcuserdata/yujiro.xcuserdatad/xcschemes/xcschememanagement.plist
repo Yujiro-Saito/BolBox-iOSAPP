@@ -69,11 +69,43 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+<<<<<<< HEAD
+		<key>youtube-ios-player-helper.xcscheme</key>
+=======
+		<key>XLPagerTabStrip-XLPagerTabStrip.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>XLPagerTabStrip.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ZFRippleButton.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>leveldb-library.xcscheme</key>
+>>>>>>> eea162afd70d275de969ca09215b750918331a44
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+<<<<<<< HEAD
+=======
+		<key>nanopb.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>youtube-ios-player-helper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
+>>>>>>> eea162afd70d275de969ca09215b750918331a44
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict/>

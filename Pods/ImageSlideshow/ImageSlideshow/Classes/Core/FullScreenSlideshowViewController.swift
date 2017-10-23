@@ -7,6 +7,7 @@
 
 import UIKit
 
+@objcMembers
 open class FullScreenSlideshowViewController: UIViewController {
 
     open var slideshow: ImageSlideshow = {
@@ -49,16 +50,12 @@ open class FullScreenSlideshowViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = backgroundColor
-
-        // slideshow view configuration
-        slideshow.frame = view.frame
         slideshow.backgroundColor = backgroundColor
 
         if let inputs = inputs {
             slideshow.setImageInputs(inputs)
         }
 
-        slideshow.frame = view.frame
         view.addSubview(slideshow)
 
         // close button configuration
@@ -85,7 +82,7 @@ open class FullScreenSlideshowViewController: UIViewController {
         slideshow.frame = view.frame
     }
 
-    func close() {
+    @objc func close() {
         // if pageSelected closure set, send call it with current page
         if let pageSelected = pageSelected {
             pageSelected(slideshow.currentPage)

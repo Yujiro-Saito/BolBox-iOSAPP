@@ -8,6 +8,7 @@
 
 import UIKit
 
+@objcMembers
 open class ZoomAnimatedTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
     /// parent image view used for animated transition
     open var referenceImageView: UIImageView?
@@ -60,7 +61,7 @@ open class ZoomAnimatedTransitioningDelegate: NSObject, UIViewControllerTransiti
         UIApplication.shared.keyWindow?.addGestureRecognizer(gestureRecognizer)
     }
 
-    func handleSwipe(_ gesture: UIPanGestureRecognizer) {
+    @objc func handleSwipe(_ gesture: UIPanGestureRecognizer) {
         guard let referenceSlideshowController = referenceSlideshowController else {
             return
         }
@@ -144,6 +145,7 @@ extension ZoomAnimatedTransitioningDelegate: UIGestureRecognizerDelegate {
     }
 }
 
+@objcMembers
 class ZoomAnimator: NSObject {
 
     var referenceImageView: UIImageView?
@@ -164,6 +166,7 @@ class ZoomAnimator: NSObject {
     }
 }
 
+@objcMembers
 class ZoomInAnimator: ZoomAnimator { }
 
 extension ZoomInAnimator: UIViewControllerAnimatedTransitioning {
