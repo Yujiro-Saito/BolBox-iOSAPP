@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 import AlamofireImage
 import RSKPlaceholderTextView
-import OnOffButton
 import SkyFloatingLabelTextField
 
 class PostProductPhotosViewController: UIViewController, UIImagePickerControllerDelegate ,UINavigationControllerDelegate,UITextFieldDelegate {

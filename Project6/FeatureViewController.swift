@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import AlamofireImage
-import SCLAlertView
 
 
 class FeatureViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UINavigationBarDelegate {

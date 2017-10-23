@@ -10,7 +10,6 @@ import UIKit
 import SkyFloatingLabelTextField
 import Firebase
 import FirebaseAuth
-import OnOffButton
 
 class CreateFolderViewController: UIViewController,UITextFieldDelegate {
     

@@ -7,10 +7,8 @@
 //
 
 import UIKit
-import XLPagerTabStrip
 import Firebase
 import AlamofireImage
-import SCLAlertView
 
 class ThreeViewController: UIViewController, IndicatorInfoProvider,UITableViewDelegate,UITableViewDataSource{
     

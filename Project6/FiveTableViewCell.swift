@@ -10,7 +10,6 @@ import UIKit
 import FirebaseStorage
 import Firebase
 import AlamofireImage
-import SCLAlertView
 
 
 class FiveTableViewCell: UITableViewCell {

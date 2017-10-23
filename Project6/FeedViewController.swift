@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import AlamofireImage
-import FaveButton
 import youtube_ios_player_helper
 import SafariServices
 

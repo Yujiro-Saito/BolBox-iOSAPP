@@ -9,7 +9,6 @@
 import UIKit
 import SkyFloatingLabelTextField
 import Firebase
-import OnOffButton
 
 class ReportViewController: UIViewController,UITextFieldDelegate {
     

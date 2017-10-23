@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import AlamofireImage
-import Eureka
 
 class LinkPostViewController: FormViewController, UIWebViewDelegate  {
     

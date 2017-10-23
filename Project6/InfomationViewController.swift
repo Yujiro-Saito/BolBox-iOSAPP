@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CircleMenu
 import Firebase
 import AlamofireImage
 import SafariServices

@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 import FirebaseStorage
 import AlamofireImage
-import SCLAlertView
 
 
 

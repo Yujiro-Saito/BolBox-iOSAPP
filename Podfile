@@ -6,7 +6,6 @@ target 'Project6' do
   use_frameworks!
 
   # Pods for Project6
-  pod 'SlideMenuControllerSwift'
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
@@ -19,15 +18,8 @@ target 'Project6' do
   pod 'GoogleSignIn'
   pod 'SwiftKeychainWrapper'
   pod 'DKImagePickerController'
-  pod 'XLPagerTabStrip'
   pod 'SkyFloatingLabelTextField', '~> 3.0'
-  pod 'ZFRippleButton', '~> 0.6'
   pod 'RSKPlaceholderTextView'
-  pod 'OnOffButton'
-  pod 'SCLAlertView'
-  pod 'CircleMenu', '~> 2.0.1'
-  pod 'Eureka’
-  pod 'FaveButton', '~> 2.0.3'
   pod "youtube-ios-player-helper", "~> 0.1.4"
   
 

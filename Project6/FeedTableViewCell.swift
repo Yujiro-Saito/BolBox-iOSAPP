@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FaveButton
 import youtube_ios_player_helper
 
 class FeedTableViewCell: UITableViewCell {
